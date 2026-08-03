@@ -11,7 +11,11 @@ from benchmark.providers.base import (
 from benchmark.providers.known_target.azure import AzurePronunciationAdapter
 from benchmark.providers.replay import ReplayKnownTargetProvider, ReplayUnknownTargetProvider
 from benchmark.providers.unknown_target.google import GoogleChirpAdapter
-from benchmark.providers.unknown_target.local import JsonCommandPerceptionAdapter
+from benchmark.providers.unknown_target.local import (
+    JsonCommandPerceptionAdapter,
+    funasr_paraformer_adapter,
+    whisper_adapter,
+)
 from benchmark.providers.unknown_target.openai import OpenAITranscriptionAdapter
 
 
@@ -227,6 +231,40 @@ def test_local_adapter_reports_missing_executable(recorded_sample) -> None:  # t
     )
     with pytest.raises(UnsupportedConfigurationError, match="not found"):
         provider.perceive(recorded_sample.perception_request())
+
+
+def test_whisper_factory_uses_validated_runner_contract() -> None:
+    adapter = whisper_adapter("small", condition_on_previous_text=False)
+    assert adapter.command[1:] == (
+        "-m",
+        "benchmark.providers.unknown_target.whisper_runner",
+        "--model",
+        "small",
+        "--audio",
+        "{audio}",
+        "--condition-on-previous-text",
+        "false",
+    )
+    assert "initial_prompt" not in adapter.command
+
+
+def test_funasr_factory_uses_current_automodel_runner_contract() -> None:
+    adapter = funasr_paraformer_adapter(
+        "paraformer-zh", vad_model="fsmn-vad", punctuation_model="ct-punc"
+    )
+    assert adapter.command[1:] == (
+        "-m",
+        "benchmark.providers.unknown_target.funasr_runner",
+        "--model",
+        "paraformer-zh",
+        "--audio",
+        "{audio}",
+        "--vad-model",
+        "fsmn-vad",
+        "--punctuation-model",
+        "ct-punc",
+    )
+    assert not any(part.startswith("++") for part in adapter.command)
 
 
 def test_unknown_request_type_at_runtime(recorded_sample) -> None:  # type: ignore[no-untyped-def]

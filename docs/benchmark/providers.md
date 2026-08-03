@@ -28,10 +28,18 @@ credentials in production; the environment token is a research-smoke convenience
 
 ### FunASR and Whisper
 
-Install each tool in an isolated environment and configure/use the JSON command adapter. Local
-commands must emit one JSON object with a `text` string. The boundary launches an argument vector,
-not a shell, and has no prompt field. FunASR model weights may have a different license than the
-MIT toolkit. Whisper needs FFmpeg and local model storage/GPU planning.
+The local factories use package-owned Python runners that emit the one-object JSON contract
+consumed by the benchmark; they do not assume that a third-party CLI writes JSON to stdout. The
+boundary launches an argument vector, not a shell, and accepts no semantic prompt.
+
+Whisper uses the upstream package API, never passes `initial_prompt`, records
+`condition_on_previous_text`, and preserves segment uncertainty fields when present. FunASR uses
+the currently documented `AutoModel(...).generate(input=...)` API with explicit model, VAD, and
+punctuation configuration and no hotwords. Their argument vectors have contract tests. Neither
+runner has been executed against downloaded local models in this repository, so local model and
+hardware compatibility must be validated before collecting benchmark evidence. FunASR weights
+may have a different license than the MIT toolkit. Whisper needs FFmpeg and local model
+storage/GPU planning.
 
 ## Known-target live adapters
 

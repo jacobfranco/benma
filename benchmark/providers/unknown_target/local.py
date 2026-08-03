@@ -1,7 +1,7 @@
-"""Local FunASR and Whisper command adapters.
+"""Local ASR command adapters with package-owned JSON runners.
 
-No shell is used and no semantic prompt is accepted. Commands must emit one
-JSON object to stdout with at least a ``text`` field.
+No shell is used and no semantic prompt is accepted. The optional runners own
+the stdout JSON contract instead of assuming third-party CLIs provide one.
 """
 
 from __future__ import annotations
@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import shutil
 import subprocess
+import sys
 from typing import cast
 
 from benchmark.models import UnknownTargetPerceptionRequest, UnknownTargetPerceptionResult
@@ -57,17 +58,47 @@ class JsonCommandPerceptionAdapter(UnknownTargetPerceptionProvider):
         return UnknownTargetPerceptionResult(transcript=cast(str, raw["text"])), raw
 
 
-def funasr_paraformer_adapter() -> JsonCommandPerceptionAdapter:
+def funasr_paraformer_adapter(
+    model: str = "paraformer-zh",
+    *,
+    vad_model: str | None = "fsmn-vad",
+    punctuation_model: str | None = "ct-punc",
+) -> JsonCommandPerceptionAdapter:
+    command = [
+        sys.executable,
+        "-m",
+        "benchmark.providers.unknown_target.funasr_runner",
+        "--model",
+        model,
+        "--audio",
+        "{audio}",
+    ]
+    if vad_model is not None:
+        command.extend(("--vad-model", vad_model))
+    if punctuation_model is not None:
+        command.extend(("--punctuation-model", punctuation_model))
     return JsonCommandPerceptionAdapter(
         "funasr",
-        "paraformer-zh",
-        ("funasr", "++model=paraformer-zh", "++input={audio}", "++output_format=json"),
+        model,
+        tuple(command),
     )
 
 
-def whisper_adapter(model: str = "turbo") -> JsonCommandPerceptionAdapter:
+def whisper_adapter(
+    model: str = "turbo", *, condition_on_previous_text: bool = True
+) -> JsonCommandPerceptionAdapter:
     return JsonCommandPerceptionAdapter(
         "openai_whisper_local",
         model,
-        ("whisper", "{audio}", "--model", model, "--language", "zh", "--output_format", "json"),
+        (
+            sys.executable,
+            "-m",
+            "benchmark.providers.unknown_target.whisper_runner",
+            "--model",
+            model,
+            "--audio",
+            "{audio}",
+            "--condition-on-previous-text",
+            "true" if condition_on_previous_text else "false",
+        ),
     )
