@@ -1,0 +1,165 @@
+{
+  "$defs": {
+    "JsonValue": {},
+    "TimeSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "end_seconds": {
+          "minimum": 0.0,
+          "title": "End Seconds",
+          "type": "number"
+        },
+        "start_seconds": {
+          "minimum": 0.0,
+          "title": "Start Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_seconds",
+        "end_seconds"
+      ],
+      "title": "TimeSpan",
+      "type": "object"
+    },
+    "TimedToken": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "span": {
+          "$ref": "#/$defs/TimeSpan"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "span"
+      ],
+      "title": "TimedToken",
+      "type": "object"
+    },
+    "TranscriptAlternative": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "transcript": {
+          "title": "Transcript",
+          "type": "string"
+        }
+      },
+      "required": [
+        "transcript"
+      ],
+      "title": "TranscriptAlternative",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "alternatives": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TranscriptAlternative"
+      },
+      "title": "Alternatives",
+      "type": "array"
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Confidence"
+    },
+    "detected_language": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Detected Language"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "segments": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TimedToken"
+      },
+      "title": "Segments",
+      "type": "array"
+    },
+    "tokens": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TimedToken"
+      },
+      "title": "Tokens",
+      "type": "array"
+    },
+    "transcript": {
+      "title": "Transcript",
+      "type": "string"
+    },
+    "uncertainty": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/JsonValue"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "transcript"
+  ],
+  "title": "UnknownTargetPerceptionResult",
+  "type": "object"
+}

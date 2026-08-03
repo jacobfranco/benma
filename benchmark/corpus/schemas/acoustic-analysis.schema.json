@@ -1,0 +1,201 @@
+{
+  "$defs": {
+    "PitchPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "energy_rms": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Energy Rms"
+        },
+        "f0_hz": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "F0 Hz"
+        },
+        "normalized_semitones": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized Semitones"
+        },
+        "timestamp_seconds": {
+          "minimum": 0.0,
+          "title": "Timestamp Seconds",
+          "type": "number"
+        },
+        "voicing_probability": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Voicing Probability"
+        },
+        "z_log_f0": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Z Log F0"
+        }
+      },
+      "required": [
+        "timestamp_seconds"
+      ],
+      "title": "PitchPoint",
+      "type": "object"
+    },
+    "TimeSpan": {
+      "additionalProperties": false,
+      "properties": {
+        "end_seconds": {
+          "minimum": 0.0,
+          "title": "End Seconds",
+          "type": "number"
+        },
+        "start_seconds": {
+          "minimum": 0.0,
+          "title": "Start Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_seconds",
+        "end_seconds"
+      ],
+      "title": "TimeSpan",
+      "type": "object"
+    },
+    "VoicedSegment": {
+      "additionalProperties": false,
+      "properties": {
+        "median_f0_hz": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Median F0 Hz"
+        },
+        "span": {
+          "$ref": "#/$defs/TimeSpan"
+        }
+      },
+      "required": [
+        "span"
+      ],
+      "title": "VoicedSegment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "algorithm_version": {
+      "title": "Algorithm Version",
+      "type": "string"
+    },
+    "contour_features": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Contour Features",
+      "type": "object"
+    },
+    "f0": {
+      "items": {
+        "$ref": "#/$defs/PitchPoint"
+      },
+      "title": "F0",
+      "type": "array"
+    },
+    "normalization_method": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Normalization Method"
+    },
+    "pitch_algorithm": {
+      "title": "Pitch Algorithm",
+      "type": "string"
+    },
+    "sample_rate_hz": {
+      "exclusiveMinimum": 0,
+      "title": "Sample Rate Hz",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "voiced_segments": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/VoicedSegment"
+      },
+      "title": "Voiced Segments",
+      "type": "array"
+    }
+  },
+  "required": [
+    "pitch_algorithm",
+    "algorithm_version",
+    "sample_rate_hz",
+    "f0"
+  ],
+  "title": "AcousticAnalysisResult",
+  "type": "object"
+}

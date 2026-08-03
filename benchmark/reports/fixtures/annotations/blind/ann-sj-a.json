@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "annotation_id": "ann-sj-a",
+  "sample_id": "sentence_shuijiao_wrong_initial",
+  "listener_id": "listener-a",
+  "randomized_order": 2,
+  "response": {
+    "perceived_text": "他吃完饭以后想睡觉",
+    "perceived_pinyin": [],
+    "understood_first_pass": true,
+    "would_request_repetition": false,
+    "confidence": 0.8,
+    "notes": "Synthetic fixture; not a human research annotation."
+  },
+  "committed_at": "2026-08-03T12:00:02Z",
+  "commit_sha256": "58438ab42a96ab8af1630924366611a18220c342e3bbb7cffd6047dbb363f750"
+}

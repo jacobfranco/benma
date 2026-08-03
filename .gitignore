@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+benchmark/corpus/recordings/original/*
+benchmark/corpus/recordings/canonical/*
+!benchmark/corpus/recordings/original/.gitkeep
+!benchmark/corpus/recordings/canonical/.gitkeep
+benchmark/reports/outputs/runs/*.json
+benchmark/reports/outputs/plots/*.svg
+

@@ -1,0 +1,24 @@
+name: benchmark-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --extra dev --locked
+      - run: uv run pytest
+      - run: uv run ruff check .
+      - run: uv run mypy benchmark
+      - run: uv run python -m benchmark validate-corpus
+      - run: uv run python -m benchmark run-fixtures
+      - run: uv run python -m benchmark report --fixtures
+

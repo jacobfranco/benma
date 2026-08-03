@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "fixture-unknown-google_cloud-control_nonsense_1",
+  "provider": "google_cloud",
+  "product": "chirp_3",
+  "provider_version": "fixture",
+  "adapter_version": "1.0.0",
+  "timestamp": "2026-08-03T12:00:07Z",
+  "benchmark_sample_id": "control_nonsense_1",
+  "request_mode": "unknown_target",
+  "request_configuration": {
+    "replay_fixture": true,
+    "warning": "not experimental evidence"
+  },
+  "response_latency_seconds": 0.31999999999999995,
+  "audio_duration_seconds": 2.2,
+  "estimated_billable_units": 0.03666666666666667,
+  "estimated_cost_usd": 0.0007999999999999999,
+  "normalized_result": {
+    "schema_version": "1.0.0",
+    "transcript": "咖喱米",
+    "alternatives": [],
+    "confidence": 0.89,
+    "tokens": [],
+    "segments": [],
+    "detected_language": "zh"
+  },
+  "raw_response": {
+    "text": "咖喱米",
+    "confidence": 0.89,
+    "fixture": true
+  },
+  "status": "succeeded"
+}

@@ -1,0 +1,446 @@
+{
+  "$defs": {
+    "AudioAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_path": {
+          "format": "path",
+          "title": "Asset Path",
+          "type": "string"
+        },
+        "channels": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Channels"
+        },
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Duration Seconds"
+        },
+        "media_type": {
+          "default": "audio/wav",
+          "title": "Media Type",
+          "type": "string"
+        },
+        "original_asset_path": {
+          "anyOf": [
+            {
+              "format": "path",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Original Asset Path"
+        },
+        "sample_rate_hz": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sample Rate Hz"
+        },
+        "sample_width_bits": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sample Width Bits"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        }
+      },
+      "required": [
+        "asset_path"
+      ],
+      "title": "AudioAsset",
+      "type": "object"
+    },
+    "BenchmarkSample": {
+      "additionalProperties": false,
+      "properties": {
+        "audio": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AudioAsset"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "corpus_version": {
+          "minLength": 1,
+          "title": "Corpus Version",
+          "type": "string"
+        },
+        "deliberate_error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeliberateError"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "device": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeviceMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "environmental_condition": {
+          "$ref": "#/$defs/EnvironmentalCondition",
+          "default": "quiet"
+        },
+        "expected_surface_tones": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Expected Surface Tones",
+          "type": "array"
+        },
+        "intended_pinyin": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Intended Pinyin",
+          "type": "array"
+        },
+        "intended_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Intended Text"
+        },
+        "lexical_tones": {
+          "default": [],
+          "items": {
+            "type": "integer"
+          },
+          "title": "Lexical Tones",
+          "type": "array"
+        },
+        "recording_notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recording Notes"
+        },
+        "sample_id": {
+          "minLength": 3,
+          "pattern": "^[a-z0-9][a-z0-9_-]+$",
+          "title": "Sample Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "speaker_category": {
+          "$ref": "#/$defs/SpeakerCategory"
+        },
+        "speaker_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Speaker Id"
+        },
+        "status": {
+          "default": "planned",
+          "enum": [
+            "planned",
+            "recorded",
+            "annotated"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "sample_id",
+        "corpus_version",
+        "speaker_category"
+      ],
+      "title": "BenchmarkSample",
+      "type": "object"
+    },
+    "DeliberateError": {
+      "additionalProperties": false,
+      "properties": {
+        "corrupted_syllable_index": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Corrupted Syllable Index"
+        },
+        "error_type": {
+          "$ref": "#/$defs/ErrorType"
+        },
+        "expected_form": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Form"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "produced_form": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Produced Form"
+        }
+      },
+      "required": [
+        "error_type"
+      ],
+      "title": "DeliberateError",
+      "type": "object"
+    },
+    "DeviceMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "capture_software": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capture Software"
+        },
+        "device_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Device Name"
+        },
+        "microphone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Microphone"
+        },
+        "operating_system": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operating System"
+        }
+      },
+      "title": "DeviceMetadata",
+      "type": "object"
+    },
+    "EnvironmentalCondition": {
+      "enum": [
+        "quiet",
+        "room_noise",
+        "background_conversation",
+        "low_volume",
+        "clipped",
+        "silence"
+      ],
+      "title": "EnvironmentalCondition",
+      "type": "string"
+    },
+    "ErrorType": {
+      "enum": [
+        "wrong_tone",
+        "wrong_initial",
+        "wrong_final",
+        "substituted_syllable",
+        "substituted_word",
+        "omitted_syllable",
+        "extra_syllable",
+        "americanized",
+        "distorted_prosody",
+        "none"
+      ],
+      "title": "ErrorType",
+      "type": "string"
+    },
+    "SpeakerCategory": {
+      "enum": [
+        "native_control",
+        "learner",
+        "intentionally_corrupted",
+        "synthetic_reference"
+      ],
+      "title": "SpeakerCategory",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "corpus_id": {
+      "title": "Corpus Id",
+      "type": "string"
+    },
+    "corpus_version": {
+      "title": "Corpus Version",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "desired_sample_count": {
+      "minimum": 1,
+      "title": "Desired Sample Count",
+      "type": "integer"
+    },
+    "samples": {
+      "items": {
+        "$ref": "#/$defs/BenchmarkSample"
+      },
+      "title": "Samples",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "corpus_id",
+    "corpus_version",
+    "desired_sample_count",
+    "description",
+    "samples"
+  ],
+  "title": "CorpusManifest",
+  "type": "object"
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "fixture-unknown-funasr-tone_pair_33",
+  "provider": "funasr",
+  "product": "paraformer-zh",
+  "provider_version": "fixture",
+  "adapter_version": "1.0.0",
+  "timestamp": "2026-08-03T12:00:09Z",
+  "benchmark_sample_id": "tone_pair_33",
+  "request_mode": "unknown_target",
+  "request_configuration": {
+    "replay_fixture": true,
+    "warning": "not experimental evidence"
+  },
+  "response_latency_seconds": 0.32999999999999996,
+  "audio_duration_seconds": 2.2,
+  "estimated_billable_units": 0.03666666666666667,
+  "estimated_cost_usd": 0.0006,
+  "normalized_result": {
+    "schema_version": "1.0.0",
+    "transcript": "水果",
+    "alternatives": [],
+    "confidence": 0.93,
+    "tokens": [],
+    "segments": [],
+    "detected_language": "zh"
+  },
+  "raw_response": {
+    "text": "水果",
+    "confidence": 0.93,
+    "fixture": true
+  },
+  "status": "succeeded"
+}

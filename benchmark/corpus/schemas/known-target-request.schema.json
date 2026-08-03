@@ -1,0 +1,166 @@
+{
+  "$defs": {
+    "AudioAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_path": {
+          "format": "path",
+          "title": "Asset Path",
+          "type": "string"
+        },
+        "channels": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Channels"
+        },
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Duration Seconds"
+        },
+        "media_type": {
+          "default": "audio/wav",
+          "title": "Media Type",
+          "type": "string"
+        },
+        "original_asset_path": {
+          "anyOf": [
+            {
+              "format": "path",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Original Asset Path"
+        },
+        "sample_rate_hz": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sample Rate Hz"
+        },
+        "sample_width_bits": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sample Width Bits"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        }
+      },
+      "required": [
+        "asset_path"
+      ],
+      "title": "AudioAsset",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "audio": {
+      "$ref": "#/$defs/AudioAsset"
+    },
+    "expected_surface_tones": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Expected Surface Tones",
+      "type": "array"
+    },
+    "lexical_tones": {
+      "default": [],
+      "items": {
+        "type": "integer"
+      },
+      "title": "Lexical Tones",
+      "type": "array"
+    },
+    "locale": {
+      "default": "zh-CN",
+      "title": "Locale",
+      "type": "string"
+    },
+    "sample_id": {
+      "title": "Sample Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target_pinyin": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Target Pinyin",
+      "type": "array"
+    },
+    "target_text": {
+      "minLength": 1,
+      "title": "Target Text",
+      "type": "string"
+    },
+    "timeout_seconds": {
+      "default": 60.0,
+      "exclusiveMinimum": 0,
+      "maximum": 600,
+      "title": "Timeout Seconds",
+      "type": "number"
+    }
+  },
+  "required": [
+    "sample_id",
+    "audio",
+    "target_text"
+  ],
+  "title": "KnownTargetAssessmentRequest",
+  "type": "object"
+}

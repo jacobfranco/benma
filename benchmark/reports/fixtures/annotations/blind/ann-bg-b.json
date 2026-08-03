@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "annotation_id": "ann-bg-b",
+  "sample_id": "sentence_beijing_wrong_tone",
+  "listener_id": "listener-b",
+  "randomized_order": 1,
+  "response": {
+    "perceived_text": "我明天想去北京",
+    "perceived_pinyin": [],
+    "understood_first_pass": true,
+    "would_request_repetition": false,
+    "confidence": 0.8,
+    "notes": "Synthetic fixture; not a human research annotation."
+  },
+  "committed_at": "2026-08-03T12:00:01Z",
+  "commit_sha256": "88fb87e3cc0b869cae085e68a7fbc26e51620370651a278f7bd122d9e3f8e7a1"
+}

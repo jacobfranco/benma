@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "fixture-known-azure_speech-sentence_shuijiao_wrong_initial",
+  "provider": "azure_speech",
+  "product": "pronunciation_assessment_zh-CN",
+  "provider_version": "fixture",
+  "adapter_version": "1.0.0",
+  "timestamp": "2026-08-03T12:00:20Z",
+  "benchmark_sample_id": "sentence_shuijiao_wrong_initial",
+  "request_mode": "known_target",
+  "request_configuration": {
+    "replay_fixture": true,
+    "warning": "not experimental evidence"
+  },
+  "response_latency_seconds": 0.5,
+  "audio_duration_seconds": 1.5,
+  "normalized_result": {
+    "schema_version": "1.0.0",
+    "overall_score": 70.0,
+    "pronunciation_score": 66.0,
+    "fluency_score": 88.0,
+    "completeness_score": 100.0,
+    "syllables": [
+      {
+        "text": "fixture-unit-0",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-1",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-2",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-3",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-4",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-5",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-6",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-7",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-8",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      }
+    ],
+    "provider_error_classifications": [],
+    "unsupported_capabilities": [
+      "explicit detected tone"
+    ]
+  },
+  "raw_response": {
+    "normalized": {
+      "schema_version": "1.0.0",
+      "overall_score": 70.0,
+      "pronunciation_score": 66.0,
+      "fluency_score": 88.0,
+      "completeness_score": 100.0,
+      "syllables": [
+        {
+          "text": "fixture-unit-0",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-1",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-2",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-3",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-4",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-5",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-6",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-7",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-8",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        }
+      ],
+      "provider_error_classifications": [],
+      "confidence": null,
+      "unsupported_capabilities": [
+        "explicit detected tone"
+      ]
+    },
+    "fixture": true
+  },
+  "status": "succeeded"
+}

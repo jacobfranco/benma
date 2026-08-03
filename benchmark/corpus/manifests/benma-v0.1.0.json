@@ -1,0 +1,3161 @@
+{
+  "schema_version": "1.0.0",
+  "corpus_id": "benma-mandarin-truthfulness",
+  "corpus_version": "0.1.0",
+  "desired_sample_count": 384,
+  "description": "Pilot prompts for truthfulness, tone/segment diagnosis, sandhi, adversarial context, and controls. Planned entries become recordings without schema changes.",
+  "samples": [
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma1_correct_r1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "correct_control",
+        "tone_1",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma1_correct_r2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "correct_control",
+        "tone_1",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma1_correct_r3",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "correct_control",
+        "tone_1",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma1_wrong_as_t2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T1",
+        "produced_form": "T2"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "deliberate_error",
+        "tone_1",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma2_correct_r1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_2",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma2_correct_r2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_2",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma2_correct_r3",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_2",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma2_wrong_as_t3",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T2",
+        "produced_form": "T3"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_2",
+        "deliberate_error",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma3_correct_r1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_3",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma3_correct_r2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_3",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma3_correct_r3",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_3",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma3_wrong_as_t2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T3",
+        "produced_form": "T2"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_3",
+        "deliberate_error",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma4_correct_r1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_4",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma4_correct_r2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_4",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma4_correct_r3",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_4",
+        "correct_control",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "isolated_ma4_wrong_as_t2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T4",
+        "produced_form": "T2"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_4",
+        "deliberate_error",
+        "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_11",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "今天",
+      "intended_pinyin": [
+        "jīn",
+        "tiān"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [
+        "T1",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_11",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_12",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "中国",
+      "intended_pinyin": [
+        "zhōng",
+        "guó"
+      ],
+      "lexical_tones": [
+        1,
+        2
+      ],
+      "expected_surface_tones": [
+        "T1",
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_pair_matrix",
+        "pair_12"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_13",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "开始",
+      "intended_pinyin": [
+        "kāi",
+        "shǐ"
+      ],
+      "lexical_tones": [
+        1,
+        3
+      ],
+      "expected_surface_tones": [
+        "T1",
+        "half-T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_pair_matrix",
+        "pair_13"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_14",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "音乐",
+      "intended_pinyin": [
+        "yīn",
+        "yuè"
+      ],
+      "lexical_tones": [
+        1,
+        4
+      ],
+      "expected_surface_tones": [
+        "T1",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_pair_matrix",
+        "pair_14"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_21",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "明天",
+      "intended_pinyin": [
+        "míng",
+        "tiān"
+      ],
+      "lexical_tones": [
+        2,
+        1
+      ],
+      "expected_surface_tones": [
+        "T2",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_21",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_22",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "学习",
+      "intended_pinyin": [
+        "xué",
+        "xí"
+      ],
+      "lexical_tones": [
+        2,
+        2
+      ],
+      "expected_surface_tones": [
+        "T2",
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_pair_matrix",
+        "pair_22"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_23",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "牛奶",
+      "intended_pinyin": [
+        "niú",
+        "nǎi"
+      ],
+      "lexical_tones": [
+        2,
+        3
+      ],
+      "expected_surface_tones": [
+        "T2",
+        "phrase-final-T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_23",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_24",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "文化",
+      "intended_pinyin": [
+        "wén",
+        "huà"
+      ],
+      "lexical_tones": [
+        2,
+        4
+      ],
+      "expected_surface_tones": [
+        "T2",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_24",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_31",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "北京",
+      "intended_pinyin": [
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        1
+      ],
+      "expected_surface_tones": [
+        "half-T3",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_31",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_32",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "旅行",
+      "intended_pinyin": [
+        "lǚ",
+        "xíng"
+      ],
+      "lexical_tones": [
+        3,
+        2
+      ],
+      "expected_surface_tones": [
+        "half-T3",
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_32",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_33",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "水果",
+      "intended_pinyin": [
+        "shuǐ",
+        "guǒ"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [
+        "T2-sandhi",
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_33",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_34",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "考试",
+      "intended_pinyin": [
+        "kǎo",
+        "shì"
+      ],
+      "lexical_tones": [
+        3,
+        4
+      ],
+      "expected_surface_tones": [
+        "half-T3",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_34",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_41",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "大家",
+      "intended_pinyin": [
+        "dà",
+        "jiā"
+      ],
+      "lexical_tones": [
+        4,
+        1
+      ],
+      "expected_surface_tones": [
+        "T4",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_pair_matrix",
+        "pair_41"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_42",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "具体",
+      "intended_pinyin": [
+        "jù",
+        "tǐ"
+      ],
+      "lexical_tones": [
+        4,
+        2
+      ],
+      "expected_surface_tones": [
+        "T4",
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_pair_matrix",
+        "pair_42"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_43",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "电脑",
+      "intended_pinyin": [
+        "diàn",
+        "nǎo"
+      ],
+      "lexical_tones": [
+        4,
+        3
+      ],
+      "expected_surface_tones": [
+        "T4",
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_43",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "tone_pair_44",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "见面",
+      "intended_pinyin": [
+        "jiàn",
+        "miàn"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [
+        "T4",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "pair_44",
+        "tone_pair_matrix"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_mai_buy",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "买",
+      "intended_pinyin": [
+        "mǎi"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_mai_sell",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "卖",
+      "intended_pinyin": [
+        "mài"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_shui_water",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "水",
+      "intended_pinyin": [
+        "shuǐ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_shui_sleep",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "睡",
+      "intended_pinyin": [
+        "shuì"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_shenghuo",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "生活",
+      "intended_pinyin": [
+        "shēng",
+        "huó"
+      ],
+      "lexical_tones": [
+        1,
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_houmian",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "后面",
+      "intended_pinyin": [
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_shuijiao",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "睡觉",
+      "intended_pinyin": [
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_wen_kiss",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "吻",
+      "intended_pinyin": [
+        "wěn"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_wen_ask",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "问",
+      "intended_pinyin": [
+        "wèn"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_tang_soup",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "汤",
+      "intended_pinyin": [
+        "tāng"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_tang_sugar",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "糖",
+      "intended_pinyin": [
+        "táng"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_tang_lie",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "躺",
+      "intended_pinyin": [
+        "tǎng"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "lexical_tang_hot",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "烫",
+      "intended_pinyin": [
+        "tàng"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sensitive_lexeme",
+        "required_lexical"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_33_nihao",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "你好",
+      "intended_pinyin": [
+        "nǐ",
+        "hǎo"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [
+        "T2-sandhi",
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_31_haochi",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "好吃",
+      "intended_pinyin": [
+        "hǎo",
+        "chī"
+      ],
+      "lexical_tones": [
+        3,
+        1
+      ],
+      "expected_surface_tones": [
+        "half-T3",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_32_haoren",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "好人",
+      "intended_pinyin": [
+        "hǎo",
+        "rén"
+      ],
+      "lexical_tones": [
+        3,
+        2
+      ],
+      "expected_surface_tones": [
+        "half-T3",
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_34_haokan",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "好看",
+      "intended_pinyin": [
+        "hǎo",
+        "kàn"
+      ],
+      "lexical_tones": [
+        3,
+        4
+      ],
+      "expected_surface_tones": [
+        "half-T3",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_yi1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "第一",
+      "intended_pinyin": [
+        "dì",
+        "yī"
+      ],
+      "lexical_tones": [
+        4,
+        1
+      ],
+      "expected_surface_tones": [
+        "T4",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_yi2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "一年",
+      "intended_pinyin": [
+        "yì",
+        "nián"
+      ],
+      "lexical_tones": [
+        1,
+        2
+      ],
+      "expected_surface_tones": [
+        "T4-sandhi",
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_yi4",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "一个",
+      "intended_pinyin": [
+        "yí",
+        "gè"
+      ],
+      "lexical_tones": [
+        1,
+        4
+      ],
+      "expected_surface_tones": [
+        "T2-sandhi",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_bu1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "不高",
+      "intended_pinyin": [
+        "bù",
+        "gāo"
+      ],
+      "lexical_tones": [
+        4,
+        1
+      ],
+      "expected_surface_tones": [
+        "T4",
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_bu4",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "不是",
+      "intended_pinyin": [
+        "bú",
+        "shì"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [
+        "T2-sandhi",
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_neutral_mama",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "妈妈",
+      "intended_pinyin": [
+        "mā",
+        "ma"
+      ],
+      "lexical_tones": [
+        1,
+        5
+      ],
+      "expected_surface_tones": [
+        "T1",
+        "neutral"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_neutral_dongxi",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "东西",
+      "intended_pinyin": [
+        "dōng",
+        "xi"
+      ],
+      "lexical_tones": [
+        1,
+        5
+      ],
+      "expected_surface_tones": [
+        "T1",
+        "neutral"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sandhi_neutral_houzi",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "猴子",
+      "intended_pinyin": [
+        "hóu",
+        "zi"
+      ],
+      "lexical_tones": [
+        2,
+        5
+      ],
+      "expected_surface_tones": [
+        "T2",
+        "neutral"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_sandhi",
+        "surface_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_z_zh",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "早 / 找",
+      "intended_pinyin": [
+        "zǎo",
+        "zhǎo"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "z_zh",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_c_ch",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "擦 / 叉",
+      "intended_pinyin": [
+        "cā",
+        "chā"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "c_ch",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_s_sh",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "四 / 是",
+      "intended_pinyin": [
+        "sì",
+        "shì"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "s_sh",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_j_zh",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "鸡 / 知",
+      "intended_pinyin": [
+        "jī",
+        "zhī"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "j_zh",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_q_ch",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "七 / 吃",
+      "intended_pinyin": [
+        "qī",
+        "chī"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "initial_final_contrast",
+        "q_ch"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_x_sh",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "西 / 师",
+      "intended_pinyin": [
+        "xī",
+        "shī"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "initial_final_contrast",
+        "x_sh"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_x_s",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "洗 / 死",
+      "intended_pinyin": [
+        "xǐ",
+        "sǐ"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "x_s",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_u_v",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "路 / 绿",
+      "intended_pinyin": [
+        "lù",
+        "lǜ"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "initial_final_contrast",
+        "u_v"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_n_ng_en_eng",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "真 / 争",
+      "intended_pinyin": [
+        "zhēn",
+        "zhēng"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "n_ng_en_eng",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_n_ng_in_ing",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "亲 / 清",
+      "intended_pinyin": [
+        "qīn",
+        "qīng"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "n_ng_in_ing",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_asp_b_p",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "八 / 趴",
+      "intended_pinyin": [
+        "bā",
+        "pā"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "asp_b_p",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_asp_d_t",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "到 / 套",
+      "intended_pinyin": [
+        "dào",
+        "tào"
+      ],
+      "lexical_tones": [
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "initial_final_contrast",
+        "asp_d_t"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_asp_g_k",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "高 / 考",
+      "intended_pinyin": [
+        "gāo",
+        "kǎo"
+      ],
+      "lexical_tones": [
+        1,
+        3
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "asp_g_k",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_asp_j_q",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "鸡 / 七",
+      "intended_pinyin": [
+        "jī",
+        "qī"
+      ],
+      "lexical_tones": [
+        1,
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "asp_j_q",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_asp_z_c",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "早 / 草",
+      "intended_pinyin": [
+        "zǎo",
+        "cǎo"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "asp_z_c",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_asp_zh_ch",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "找 / 炒",
+      "intended_pinyin": [
+        "zhǎo",
+        "chǎo"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "asp_zh_ch",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_mandarin_r",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "人",
+      "intended_pinyin": [
+        "rén"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "mandarin_r",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_compound_xue",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "学",
+      "intended_pinyin": [
+        "xué"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "compound_xue",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_compound_qiong",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "穷",
+      "intended_pinyin": [
+        "qióng"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "initial_final_contrast",
+        "compound_qiong"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "segmental_compound_guang",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "光",
+      "intended_pinyin": [
+        "guāng"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "compound_guang",
+        "initial_final_contrast"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_control",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "control",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_wrong_tone",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 3,
+        "expected_form": "xiǎng",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "wrong_tone",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_wrong_initial",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 1,
+        "expected_form": "míng",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "sentence_corruption",
+        "wrong_initial"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_wrong_final",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 2,
+        "expected_form": "tiān",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "wrong_final",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_sub_syllable",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "substituted_syllable",
+        "corrupted_syllable_index": 4,
+        "expected_form": "qù",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "sub_syllable",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_sub_word",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "substituted_word",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "sub_word",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_omission",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "omitted_syllable",
+        "corrupted_syllable_index": 2,
+        "expected_form": "tiān",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "omission",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_americanized",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "americanized",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "americanized",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_beijing_bad_prosody",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "我明天想去北京。",
+      "intended_pinyin": [
+        "wǒ",
+        "míng",
+        "tiān",
+        "xiǎng",
+        "qù",
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        2,
+        1,
+        3,
+        4,
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "distorted_prosody",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "bad_prosody",
+        "adversarial_context",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_control",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "control",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_wrong_tone",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 3,
+        "expected_form": "fàn",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "wrong_tone",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_wrong_initial",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 1,
+        "expected_form": "chī",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "sentence_corruption",
+        "wrong_initial"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_wrong_final",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 2,
+        "expected_form": "wán",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "wrong_final",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_sub_syllable",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "substituted_syllable",
+        "corrupted_syllable_index": 4,
+        "expected_form": "yǐ",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "sub_syllable",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_sub_word",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "substituted_word",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "sub_word",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_omission",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "omitted_syllable",
+        "corrupted_syllable_index": 2,
+        "expected_form": "wán",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "omission",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_americanized",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "americanized",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "adversarial_context",
+        "americanized",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_shuijiao_bad_prosody",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "他吃完饭以后想睡觉。",
+      "intended_pinyin": [
+        "tā",
+        "chī",
+        "wán",
+        "fàn",
+        "yǐ",
+        "hòu",
+        "xiǎng",
+        "shuì",
+        "jiào"
+      ],
+      "lexical_tones": [
+        1,
+        1,
+        2,
+        4,
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "distorted_prosody",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "bad_prosody",
+        "adversarial_context",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_control",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "control",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_wrong_tone",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 3,
+        "expected_form": "zài",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "wrong_tone",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_wrong_initial",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 1,
+        "expected_form": "diàn",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "sentence_corruption",
+        "sentence_set",
+        "wrong_initial"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_wrong_final",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 2,
+        "expected_form": "jiù",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "wrong_final",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_sub_syllable",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "substituted_syllable",
+        "corrupted_syllable_index": 4,
+        "expected_form": "xué",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "sub_syllable",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_sub_word",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "substituted_word",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "sub_word",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_omission",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "omitted_syllable",
+        "corrupted_syllable_index": 2,
+        "expected_form": "jiù",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "omission",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_americanized",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "americanized",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "americanized",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "sentence_houmian_bad_prosody",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "商店就在学校后面。",
+      "intended_pinyin": [
+        "shāng",
+        "diàn",
+        "jiù",
+        "zài",
+        "xué",
+        "xiào",
+        "hòu",
+        "miàn"
+      ],
+      "lexical_tones": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "distorted_prosody",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "environmental_condition": "quiet",
+      "tags": [
+        "bad_prosody",
+        "sentence_set",
+        "sentence_corruption"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_silence",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "silence",
+      "tags": [
+        "negative_control",
+        "silence"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_nonsense_1",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "nonsense",
+        "negative_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_nonsense_2",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "nonsense",
+        "negative_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_clipped",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "clipped",
+      "tags": [
+        "clipped",
+        "negative_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_low_volume",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "low_volume",
+      "tags": [
+        "negative_control",
+        "low_volume"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_room_noise",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "room_noise",
+      "tags": [
+        "noise_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_background_talk",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "background_conversation",
+      "tags": [
+        "noise_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_exaggerated",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "你好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "exaggerated",
+        "delivery_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_very_slow",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "你好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "slow",
+        "delivery_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_fast",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "你好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "environmental_condition": "quiet",
+      "tags": [
+        "delivery_control",
+        "fast"
+      ],
+      "status": "planned"
+    }
+  ]
+}

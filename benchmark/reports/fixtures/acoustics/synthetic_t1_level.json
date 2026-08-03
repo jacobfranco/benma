@@ -1,0 +1,639 @@
+{
+  "schema_version": "1.0.0",
+  "pitch_algorithm": "normalized_autocorrelation",
+  "algorithm_version": "1.0.0",
+  "sample_rate_hz": 16000,
+  "normalization_method": "semitones_relative_to_utterance_median_and_z_log_f0",
+  "f0": [
+    {
+      "timestamp_seconds": 0.02,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9300020350955929,
+      "energy_rms": 0.13934353841780694,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.03,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9450716032148936,
+      "energy_rms": 0.15504872351144708,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.04,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.05,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.06,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.07,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.08,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.09,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.1,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.11,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.12,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.13,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.14,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.15,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.16,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.17,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.18,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.19,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.2,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.21,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.22,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.23,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.24,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.25,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.26,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.27,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.28,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.29,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.3,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.31,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.32,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.33,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.34,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.35,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.36,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.37,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.38,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.39,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.4,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.41,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.42,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.43,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.44,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.45,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.46,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.47,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.48,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.49,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.5,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.51,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.52,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.53,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.54,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.55,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.56,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.57,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.58,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.59,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.6,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.61,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.62,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.63,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.64,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.65,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.66,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.67,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.68,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.69,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.7,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.71,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.72,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.73,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.74,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.75,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.76,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9491129408038744,
+      "energy_rms": 0.15588943255312163,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.77,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9451357000445402,
+      "energy_rms": 0.1550710876497657,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    },
+    {
+      "timestamp_seconds": 0.78,
+      "f0_hz": 250.0,
+      "voicing_probability": 0.9300968184470944,
+      "energy_rms": 0.1395494892725985,
+      "normalized_semitones": 0.0,
+      "z_log_f0": 0.0
+    }
+  ],
+  "voiced_segments": [
+    {
+      "span": {
+        "start_seconds": 0.02,
+        "end_seconds": 0.79
+      },
+      "median_f0_hz": 250.0
+    }
+  ],
+  "contour_features": {
+    "voiced_fraction": 1.0,
+    "semitone_range": 0.0,
+    "start_end_slope_st_per_s": 0.0
+  }
+}

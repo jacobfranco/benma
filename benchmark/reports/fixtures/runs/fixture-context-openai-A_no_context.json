@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "fixture-context-openai-A_no_context",
+  "provider": "openai",
+  "product": "gpt-4o-transcribe",
+  "provider_version": "fixture",
+  "adapter_version": "1.0.0",
+  "timestamp": "2026-08-03T12:00:12Z",
+  "benchmark_sample_id": "sentence_beijing_wrong_tone",
+  "request_mode": "context_probe",
+  "request_configuration": {
+    "replay_fixture": true,
+    "warning": "not experimental evidence",
+    "experimental_prompt": null,
+    "excluded_from_production_path": true
+  },
+  "response_latency_seconds": 0.3,
+  "audio_duration_seconds": 2.2,
+  "normalized_result": {
+    "schema_version": "1.0.0",
+    "transcript": "我明天想去背景",
+    "alternatives": [],
+    "tokens": [],
+    "segments": []
+  },
+  "raw_response": {
+    "text": "我明天想去背景",
+    "fixture": true
+  },
+  "status": "succeeded",
+  "context_condition": "A_no_context"
+}

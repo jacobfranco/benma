@@ -1,0 +1,412 @@
+{
+  "corpus": {
+    "defined_samples": 114,
+    "desired_samples": 384,
+    "recorded_samples": 0,
+    "version": "0.1.0"
+  },
+  "data_status": "replay_fixture_only",
+  "failure_gallery": [
+    {
+      "deliberate_issue": {
+        "corrupted_syllable_index": 1,
+        "error_type": "wrong_initial",
+        "expected_form": "chī",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "native_listener_transcripts": [
+        "他吃完饭以后想睡觉",
+        "他吃完饭以后想水饺"
+      ],
+      "observation": "Provider returned the target while at least one blind listener did not.",
+      "product": "paraformer-zh",
+      "provider": "funasr",
+      "provider_transcript": "他吃完饭以后想睡觉",
+      "sample_id": "sentence_shuijiao_wrong_initial",
+      "target": "他吃完饭以后想睡觉。"
+    },
+    {
+      "deliberate_issue": {
+        "corrupted_syllable_index": 3,
+        "error_type": "wrong_tone",
+        "expected_form": "xiǎng",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "native_listener_transcripts": [
+        "我明天想去背景",
+        "我明天想去北京"
+      ],
+      "observation": "Provider returned the target while at least one blind listener did not.",
+      "product": "chirp_3",
+      "provider": "google_cloud",
+      "provider_transcript": "我明天想去北京",
+      "sample_id": "sentence_beijing_wrong_tone",
+      "target": "我明天想去北京。"
+    },
+    {
+      "deliberate_issue": {
+        "corrupted_syllable_index": 1,
+        "error_type": "wrong_initial",
+        "expected_form": "chī",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "native_listener_transcripts": [
+        "他吃完饭以后想睡觉",
+        "他吃完饭以后想水饺"
+      ],
+      "observation": "Provider returned the target while at least one blind listener did not.",
+      "product": "chirp_3",
+      "provider": "google_cloud",
+      "provider_transcript": "他吃完饭以后想睡觉",
+      "sample_id": "sentence_shuijiao_wrong_initial",
+      "target": "他吃完饭以后想睡觉。"
+    },
+    {
+      "deliberate_issue": {
+        "corrupted_syllable_index": 3,
+        "error_type": "wrong_tone",
+        "expected_form": "xiǎng",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "native_listener_transcripts": [
+        "我明天想去背景",
+        "我明天想去北京"
+      ],
+      "observation": "Provider returned the target while at least one blind listener did not.",
+      "product": "gpt-4o-transcribe",
+      "provider": "openai",
+      "provider_transcript": "我明天想去北京",
+      "sample_id": "sentence_beijing_wrong_tone",
+      "target": "我明天想去北京。"
+    },
+    {
+      "deliberate_issue": {
+        "corrupted_syllable_index": 1,
+        "error_type": "wrong_initial",
+        "expected_form": "chī",
+        "produced_form": "deliberately varied at recording time"
+      },
+      "native_listener_transcripts": [
+        "他吃完饭以后想睡觉",
+        "他吃完饭以后想水饺"
+      ],
+      "observation": "Provider returned the target while at least one blind listener did not.",
+      "product": "gpt-4o-transcribe",
+      "provider": "openai",
+      "provider_transcript": "他吃完饭以后想睡觉",
+      "sample_id": "sentence_shuijiao_wrong_initial",
+      "target": "他吃完饭以后想睡觉。"
+    }
+  ],
+  "human_annotations": {
+    "blind_commits": 6,
+    "inter_rater_pairwise_cer": 0.5026455026455027
+  },
+  "known_target": {
+    "azure_speech/pronunciation_assessment_zh-CN": {
+      "attempted": 5,
+      "confusion": {},
+      "estimated_cost_usd": null,
+      "final_error_recall": null,
+      "initial_error_recall": 0.0,
+      "native_false_reject_rate": 0.0,
+      "p50_latency_seconds": 0.5,
+      "p95_latency_seconds": 0.5900000000000001,
+      "phone_error_recall": 0.0,
+      "succeeded": 5,
+      "tone_false_accept_rate": null,
+      "tone_observations": 0,
+      "unsupported_capabilities": [
+        "explicit detected tone"
+      ]
+    },
+    "tencent/SOE-N": {
+      "attempted": 5,
+      "confusion": {
+        "T1": {
+          "T1": 1
+        },
+        "T2": {
+          "T3": 1
+        },
+        "T3": {
+          "T2": 1,
+          "T3": 1
+        }
+      },
+      "estimated_cost_usd": null,
+      "final_error_recall": null,
+      "initial_error_recall": 1.0,
+      "native_false_reject_rate": 0.0,
+      "p50_latency_seconds": 0.5,
+      "p95_latency_seconds": 0.5900000000000001,
+      "phone_error_recall": 1.0,
+      "succeeded": 5,
+      "tone_false_accept_rate": 0.5,
+      "tone_observations": 4,
+      "unsupported_capabilities": []
+    }
+  },
+  "known_tone_examples": [
+    {
+      "detected_tone": "T1",
+      "expected_tone": "T1",
+      "human_judgment": null,
+      "product": "SOE-N",
+      "provider": "tencent",
+      "sample_id": "isolated_ma1_correct_r1",
+      "syllable_index": 0,
+      "tone_score": 94.0
+    },
+    {
+      "detected_tone": "T3",
+      "expected_tone": "T2",
+      "human_judgment": null,
+      "product": "SOE-N",
+      "provider": "tencent",
+      "sample_id": "isolated_ma2_wrong_as_t3",
+      "syllable_index": 0,
+      "tone_score": 42.0
+    },
+    {
+      "detected_tone": "T2",
+      "expected_tone": "T3",
+      "human_judgment": null,
+      "product": "SOE-N",
+      "provider": "tencent",
+      "sample_id": "sentence_beijing_wrong_tone",
+      "syllable_index": 3,
+      "tone_score": 82.0
+    },
+    {
+      "detected_tone": "T3",
+      "expected_tone": "T3",
+      "human_judgment": null,
+      "product": "SOE-N",
+      "provider": "tencent",
+      "sample_id": "tone_pair_33",
+      "syllable_index": 0,
+      "tone_score": 90.0
+    }
+  ],
+  "negative_control_examples": [
+    {
+      "confidence": 0.93,
+      "product": "paraformer-zh",
+      "provider": "funasr",
+      "sample_id": "control_nonsense_1",
+      "transcript": "嘎咯咪"
+    },
+    {
+      "confidence": 0.89,
+      "product": "chirp_3",
+      "provider": "google_cloud",
+      "sample_id": "control_nonsense_1",
+      "transcript": "咖喱米"
+    },
+    {
+      "confidence": 0.8500000000000001,
+      "product": "gpt-4o-transcribe",
+      "provider": "openai",
+      "sample_id": "control_nonsense_1",
+      "transcript": "咖喱米"
+    }
+  ],
+  "provider_capabilities": {
+    "known_target": [
+      {
+        "alignment_timing_detail": "documented fine-grained timing",
+        "documented_caveat": "Chinese pinyin tone detection is limited to short pinyin input in the documented mode.",
+        "native_false_rejection": null,
+        "operational_difficulty": "medium/high; Tencent account and WebSocket signing",
+        "phone_diagnostics": "documented",
+        "price": "0.005 CNY/call postpaid",
+        "product": "SOE-N",
+        "provider": "Tencent",
+        "sandhi_handling": null,
+        "streaming": true,
+        "tone_detection": "explicitly documented for Chinese/pinyin mode; unbenchmarked",
+        "tone_false_acceptance": null
+      },
+      {
+        "alignment_timing_detail": "detailed result nodes",
+        "documented_caveat": "Legacy WebAPI is retired; use streaming service. Symbols are vendor-specific.",
+        "native_false_rejection": null,
+        "operational_difficulty": "medium/high; account, app ID, signing",
+        "phone_diagnostics": "phone_score and detailed proprietary symbols documented",
+        "price": "console quote required",
+        "product": "ISE streaming",
+        "provider": "iFlytek",
+        "sandhi_handling": null,
+        "streaming": true,
+        "tone_detection": "tone_score documented for Mandarin",
+        "tone_false_acceptance": null
+      },
+      {
+        "alignment_timing_detail": "word/phoneme offsets in detailed output",
+        "documented_caveat": "Syllable groups and spoken-phoneme alternatives are English-only.",
+        "native_false_rejection": null,
+        "operational_difficulty": "low/medium",
+        "phone_diagnostics": "SAPI phoneme names for zh-CN",
+        "price": "same baseline as standard STT; region quote required",
+        "product": "Pronunciation Assessment zh-CN",
+        "provider": "Azure Speech",
+        "sandhi_handling": null,
+        "streaming": true,
+        "tone_detection": "not explicitly exposed as a detected Mandarin tone",
+        "tone_false_acceptance": null
+      },
+      {
+        "alignment_timing_detail": null,
+        "documented_caveat": "Do not infer equivalence between Alibaba-hosted pages and a native Alibaba Cloud speech API until contracting is clear.",
+        "native_false_rejection": null,
+        "operational_difficulty": "access-dependent",
+        "phone_diagnostics": null,
+        "price": "quote required",
+        "product": "Mandarin/pinyin evaluation",
+        "provider": "SpeechSuper / Alibaba distribution",
+        "sandhi_handling": null,
+        "streaming": null,
+        "tone_detection": "product documentation located; response semantics require account validation",
+        "tone_false_acceptance": null
+      }
+    ],
+    "schema_version": "1.0.0",
+    "unknown_target": [
+      {
+        "confidence_usefulness": null,
+        "documented_caveat": "Toolkit MIT; each model has its own license.",
+        "human_agreement": null,
+        "literal_perception_quality": null,
+        "operational_difficulty": "medium/high",
+        "price": "self-hosted; measure infrastructure",
+        "privacy": "local processing possible",
+        "product": "paraformer-zh",
+        "provider": "FunASR",
+        "sdk_api_maturity": "active open-source toolkit",
+        "semantic_repair_risk": null,
+        "streaming": true
+      },
+      {
+        "confidence_usefulness": null,
+        "documented_caveat": "Region/language/method combinations vary.",
+        "human_agreement": null,
+        "literal_perception_quality": null,
+        "operational_difficulty": "medium",
+        "price": "$0.016/min first V2 standard tier",
+        "privacy": "cloud; review account/data controls",
+        "product": "Chirp 3",
+        "provider": "Google Cloud",
+        "sdk_api_maturity": "GA V2",
+        "semantic_repair_risk": null,
+        "streaming": true
+      },
+      {
+        "confidence_usefulness": "token logprobs available; calibration untested",
+        "documented_caveat": "API accepts prompts, which the production adapter intentionally omits.",
+        "human_agreement": null,
+        "literal_perception_quality": null,
+        "operational_difficulty": "low",
+        "price": "token-priced; cost/min requires measured usage",
+        "privacy": "cloud; review API data controls",
+        "product": "gpt-4o-transcribe",
+        "provider": "OpenAI",
+        "sdk_api_maturity": "current Transcription API",
+        "semantic_repair_risk": null,
+        "streaming": true
+      },
+      {
+        "confidence_usefulness": "segment probabilities/logprobs; calibration untested",
+        "documented_caveat": "Initial prompts exist in upstream code and must remain disabled.",
+        "human_agreement": null,
+        "literal_perception_quality": null,
+        "operational_difficulty": "medium",
+        "price": "self-hosted",
+        "privacy": "local processing possible",
+        "product": "Whisper turbo baseline",
+        "provider": "OpenAI open source",
+        "sdk_api_maturity": "mature baseline",
+        "semantic_repair_risk": null,
+        "streaming": false
+      }
+    ],
+    "warning": "Documentation-derived inventory only. Blank experimental fields must be populated by live benchmark evidence."
+  },
+  "report_timestamp": "2026-08-03T12:00:24+00:00",
+  "runs": {
+    "failed": 0,
+    "succeeded": 25,
+    "total": 25
+  },
+  "schema_version": "1.0.0",
+  "unknown_target": {
+    "funasr/paraformer-zh": {
+      "attempted": 4,
+      "confidence_observations": 4,
+      "context_leakage_delta": null,
+      "error_preservation_recall": 0.5,
+      "estimated_cost_usd": 0.0024,
+      "failed": 0,
+      "high_confidence_repair_rate": 0.5,
+      "intended_cer": 0.09523809523809523,
+      "intended_wer": null,
+      "mean_confidence": 0.93,
+      "mean_human_cer": 0.12698412698412698,
+      "p50_latency_seconds": 0.27,
+      "p95_latency_seconds": 0.32399999999999995,
+      "semantic_repair_rate": 0.5,
+      "succeeded": 4
+    },
+    "google_cloud/chirp_3": {
+      "attempted": 4,
+      "confidence_observations": 4,
+      "context_leakage_delta": null,
+      "error_preservation_recall": 0.0,
+      "estimated_cost_usd": 0.0031999999999999997,
+      "failed": 0,
+      "high_confidence_repair_rate": 1.0,
+      "intended_cer": 0.0,
+      "intended_wer": null,
+      "mean_confidence": 0.89,
+      "mean_human_cer": 0.12698412698412698,
+      "p50_latency_seconds": 0.3,
+      "p95_latency_seconds": 0.354,
+      "semantic_repair_rate": 1.0,
+      "succeeded": 4
+    },
+    "openai/gpt-4o-transcribe": {
+      "attempted": 4,
+      "confidence_observations": 4,
+      "context_leakage_delta": null,
+      "error_preservation_recall": 0.0,
+      "estimated_cost_usd": 0.004,
+      "failed": 0,
+      "high_confidence_repair_rate": 1.0,
+      "intended_cer": 0.0,
+      "intended_wer": null,
+      "mean_confidence": 0.8500000000000001,
+      "mean_human_cer": 0.12698412698412698,
+      "p50_latency_seconds": 0.32999999999999996,
+      "p95_latency_seconds": 0.38399999999999995,
+      "semantic_repair_rate": 1.0,
+      "succeeded": 4
+    },
+    "openai/gpt-4o-transcribe/context_probe": {
+      "attempted": 3,
+      "confidence_observations": 0,
+      "context_leakage_delta": 0.5,
+      "error_preservation_recall": 0.6666666666666666,
+      "estimated_cost_usd": null,
+      "failed": 0,
+      "high_confidence_repair_rate": null,
+      "intended_cer": 0.19047619047619047,
+      "intended_wer": null,
+      "mean_confidence": null,
+      "mean_human_cer": 0.19047619047619047,
+      "p50_latency_seconds": 0.3,
+      "p95_latency_seconds": 0.3,
+      "semantic_repair_rate": 0.3333333333333333,
+      "succeeded": 3
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "$defs": {
+    "BlindAnnotationCommit": {
+      "additionalProperties": false,
+      "properties": {
+        "annotation_id": {
+          "title": "Annotation Id",
+          "type": "string"
+        },
+        "commit_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Commit Sha256",
+          "type": "string"
+        },
+        "committed_at": {
+          "format": "date-time",
+          "title": "Committed At",
+          "type": "string"
+        },
+        "listener_id": {
+          "title": "Listener Id",
+          "type": "string"
+        },
+        "randomized_order": {
+          "minimum": 0,
+          "title": "Randomized Order",
+          "type": "integer"
+        },
+        "response": {
+          "$ref": "#/$defs/BlindListenerResponse"
+        },
+        "sample_id": {
+          "title": "Sample Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotation_id",
+        "sample_id",
+        "listener_id",
+        "randomized_order",
+        "response",
+        "committed_at",
+        "commit_sha256"
+      ],
+      "title": "BlindAnnotationCommit",
+      "type": "object"
+    },
+    "BlindListenerResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "perceived_pinyin": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Perceived Pinyin",
+          "type": "array"
+        },
+        "perceived_text": {
+          "title": "Perceived Text",
+          "type": "string"
+        },
+        "understood_first_pass": {
+          "title": "Understood First Pass",
+          "type": "boolean"
+        },
+        "would_request_repetition": {
+          "title": "Would Request Repetition",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "perceived_text",
+        "understood_first_pass",
+        "would_request_repetition",
+        "confidence"
+      ],
+      "title": "BlindListenerResponse",
+      "type": "object"
+    },
+    "RevealedAnnotationCommit": {
+      "additionalProperties": false,
+      "properties": {
+        "annotation_id": {
+          "title": "Annotation Id",
+          "type": "string"
+        },
+        "blind_commit_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Blind Commit Sha256",
+          "type": "string"
+        },
+        "committed_at": {
+          "format": "date-time",
+          "title": "Committed At",
+          "type": "string"
+        },
+        "listener_id": {
+          "title": "Listener Id",
+          "type": "string"
+        },
+        "response": {
+          "$ref": "#/$defs/RevealedTargetResponse"
+        },
+        "sample_id": {
+          "title": "Sample Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotation_id",
+        "sample_id",
+        "listener_id",
+        "blind_commit_sha256",
+        "response",
+        "committed_at"
+      ],
+      "title": "RevealedAnnotationCommit",
+      "type": "object"
+    },
+    "RevealedTargetResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_syllable_indices": {
+          "default": [],
+          "items": {
+            "type": "integer"
+          },
+          "title": "Affected Syllable Indices",
+          "type": "array"
+        },
+        "final_problem": {
+          "title": "Final Problem",
+          "type": "boolean"
+        },
+        "initial_problem": {
+          "title": "Initial Problem",
+          "type": "boolean"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "rhythm_or_prosody_issue": {
+          "title": "Rhythm Or Prosody Issue",
+          "type": "boolean"
+        },
+        "severity": {
+          "enum": [
+            "none",
+            "minor",
+            "moderate",
+            "severe"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "still_understandable": {
+          "title": "Still Understandable",
+          "type": "boolean"
+        },
+        "tone_problem": {
+          "title": "Tone Problem",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "tone_problem",
+        "initial_problem",
+        "final_problem",
+        "rhythm_or_prosody_issue",
+        "still_understandable",
+        "severity"
+      ],
+      "title": "RevealedTargetResponse",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "blind": {
+      "$ref": "#/$defs/BlindAnnotationCommit"
+    },
+    "revealed": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RevealedAnnotationCommit"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "blind"
+  ],
+  "title": "HumanListenerAnnotation",
+  "type": "object"
+}

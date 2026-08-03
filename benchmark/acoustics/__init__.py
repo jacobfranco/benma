@@ -1,0 +1,1 @@
+"""Independent acoustic evidence extraction."""

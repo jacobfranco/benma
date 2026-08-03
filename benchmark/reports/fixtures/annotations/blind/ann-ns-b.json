@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "annotation_id": "ann-ns-b",
+  "sample_id": "control_nonsense_1",
+  "listener_id": "listener-b",
+  "randomized_order": 5,
+  "response": {
+    "perceived_text": "不确定",
+    "perceived_pinyin": [],
+    "understood_first_pass": false,
+    "would_request_repetition": true,
+    "confidence": 0.8,
+    "notes": "Synthetic fixture; not a human research annotation."
+  },
+  "committed_at": "2026-08-03T12:00:05Z",
+  "commit_sha256": "51d84091c97d047ded6ee2a5c3f6a4ff2c306ebc93ce4ef0e209fd723684e129"
+}

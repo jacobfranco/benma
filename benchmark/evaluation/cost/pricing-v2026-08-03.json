@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "pricing_date": "2026-08-03",
+  "assumptions": [
+    {
+      "provider": "google_cloud",
+      "product": "Speech-to-Text V2 standard (includes Chirp)",
+      "category": "asr",
+      "billing_unit": "audio_minute",
+      "unit_price_usd": 0.016,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "documented",
+      "source_url": "https://cloud.google.com/speech-to-text/pricing",
+      "accessed_date": "2026-08-03",
+      "notes": "First V2 standard tier; request rounding and additional GCS charges can apply."
+    },
+    {
+      "provider": "openai",
+      "product": "whisper-1",
+      "category": "asr",
+      "billing_unit": "audio_minute",
+      "unit_price_usd": 0.006,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "documented",
+      "source_url": "https://developers.openai.com/api/docs/models/whisper-1",
+      "accessed_date": "2026-08-03",
+      "notes": "OpenAI's model page states a per-minute transcription rate."
+    },
+    {
+      "provider": "openai",
+      "product": "gpt-4o-transcribe",
+      "category": "asr",
+      "billing_unit": "unknown",
+      "unit_price_usd": null,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "unknown",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-4o-transcribe",
+      "accessed_date": "2026-08-03",
+      "notes": "Official page gives audio-token input/output rates, not a stable cost/minute conversion. Measure tokens on corpus runs before modeling."
+    },
+    {
+      "provider": "openai",
+      "product": "gpt-realtime-whisper",
+      "category": "asr",
+      "billing_unit": "audio_minute",
+      "unit_price_usd": 0.017,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "documented",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-realtime-whisper",
+      "accessed_date": "2026-08-03",
+      "notes": "Official model page lists realtime audio-duration pricing. This is a researched streaming candidate, not an implemented Pass 1 adapter."
+    },
+    {
+      "provider": "funasr",
+      "product": "paraformer-zh self-hosted",
+      "category": "asr",
+      "billing_unit": "unknown",
+      "unit_price_usd": null,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "unknown",
+      "source_url": "https://github.com/modelscope/FunASR",
+      "accessed_date": "2026-08-03",
+      "notes": "Software is self-hosted; benchmark CPU/GPU throughput and infrastructure price before estimating."
+    },
+    {
+      "provider": "tencent",
+      "product": "SOE-N postpaid",
+      "category": "pronunciation",
+      "billing_unit": "request",
+      "unit_price_usd": 0.000699,
+      "assumed_requests_per_minute": 6.0,
+      "evidence_status": "converted",
+      "source_url": "https://cloud.tencent.com/document/product/1774/107342",
+      "accessed_date": "2026-08-03",
+      "notes": "0.005 CNY/call converted at an explicitly provisional 7.15 CNY/USD; assumes six short assessment calls per practice minute. Longer text can bill multiple calls."
+    },
+    {
+      "provider": "azure_speech",
+      "product": "Pronunciation Assessment zh-CN",
+      "category": "pronunciation",
+      "billing_unit": "unknown",
+      "unit_price_usd": null,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "unknown",
+      "source_url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-pronunciation-assessment",
+      "accessed_date": "2026-08-03",
+      "notes": "Docs say the service costs the same as standard STT, but the public calculator is region-dependent; capture the account region quote."
+    },
+    {
+      "provider": "iflytek",
+      "product": "ISE streaming",
+      "category": "pronunciation",
+      "billing_unit": "unknown",
+      "unit_price_usd": null,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "unknown",
+      "source_url": "https://www.xfyun.cn/doc/voiceservice/ise/API.html",
+      "accessed_date": "2026-08-03",
+      "notes": "Public API documentation confirms capability but did not expose a durable public rate. Obtain a console quote."
+    },
+    {
+      "provider": "unselected",
+      "product": "TTS reference audio",
+      "category": "tts",
+      "billing_unit": "unknown",
+      "unit_price_usd": null,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "unknown",
+      "source_url": "https://developers.openai.com/api/docs/models",
+      "accessed_date": "2026-08-03",
+      "notes": "TTS selection is a Pass 1 non-goal. The category remains visible so later estimates cannot silently omit it."
+    },
+    {
+      "provider": "unselected",
+      "product": "Conversation reasoner",
+      "category": "llm",
+      "billing_unit": "unknown",
+      "unit_price_usd": null,
+      "assumed_requests_per_minute": 1.0,
+      "evidence_status": "unknown",
+      "source_url": "https://developers.openai.com/api/docs/models",
+      "accessed_date": "2026-08-03",
+      "notes": "Conversation AI is not built in this pass; no LLM cost should be inferred."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "warning": "Documentation-derived inventory only. Blank experimental fields must be populated by live benchmark evidence.",
+  "unknown_target": [
+    {
+      "provider": "FunASR",
+      "product": "paraformer-zh",
+      "literal_perception_quality": null,
+      "human_agreement": null,
+      "semantic_repair_risk": null,
+      "confidence_usefulness": null,
+      "streaming": true,
+      "price": "self-hosted; measure infrastructure",
+      "operational_difficulty": "medium/high",
+      "privacy": "local processing possible",
+      "sdk_api_maturity": "active open-source toolkit",
+      "documented_caveat": "Toolkit MIT; each model has its own license."
+    },
+    {
+      "provider": "Google Cloud",
+      "product": "Chirp 3",
+      "literal_perception_quality": null,
+      "human_agreement": null,
+      "semantic_repair_risk": null,
+      "confidence_usefulness": null,
+      "streaming": true,
+      "price": "$0.016/min first V2 standard tier",
+      "operational_difficulty": "medium",
+      "privacy": "cloud; review account/data controls",
+      "sdk_api_maturity": "GA V2",
+      "documented_caveat": "Region/language/method combinations vary."
+    },
+    {
+      "provider": "OpenAI",
+      "product": "gpt-4o-transcribe",
+      "literal_perception_quality": null,
+      "human_agreement": null,
+      "semantic_repair_risk": null,
+      "confidence_usefulness": "token logprobs available; calibration untested",
+      "streaming": true,
+      "price": "token-priced; cost/min requires measured usage",
+      "operational_difficulty": "low",
+      "privacy": "cloud; review API data controls",
+      "sdk_api_maturity": "current Transcription API",
+      "documented_caveat": "API accepts prompts, which the production adapter intentionally omits."
+    },
+    {
+      "provider": "OpenAI open source",
+      "product": "Whisper turbo baseline",
+      "literal_perception_quality": null,
+      "human_agreement": null,
+      "semantic_repair_risk": null,
+      "confidence_usefulness": "segment probabilities/logprobs; calibration untested",
+      "streaming": false,
+      "price": "self-hosted",
+      "operational_difficulty": "medium",
+      "privacy": "local processing possible",
+      "sdk_api_maturity": "mature baseline",
+      "documented_caveat": "Initial prompts exist in upstream code and must remain disabled."
+    }
+  ],
+  "known_target": [
+    {
+      "provider": "Tencent",
+      "product": "SOE-N",
+      "tone_detection": "explicitly documented for Chinese/pinyin mode; unbenchmarked",
+      "tone_false_acceptance": null,
+      "phone_diagnostics": "documented",
+      "sandhi_handling": null,
+      "native_false_rejection": null,
+      "alignment_timing_detail": "documented fine-grained timing",
+      "streaming": true,
+      "price": "0.005 CNY/call postpaid",
+      "operational_difficulty": "medium/high; Tencent account and WebSocket signing",
+      "documented_caveat": "Chinese pinyin tone detection is limited to short pinyin input in the documented mode."
+    },
+    {
+      "provider": "iFlytek",
+      "product": "ISE streaming",
+      "tone_detection": "tone_score documented for Mandarin",
+      "tone_false_acceptance": null,
+      "phone_diagnostics": "phone_score and detailed proprietary symbols documented",
+      "sandhi_handling": null,
+      "native_false_rejection": null,
+      "alignment_timing_detail": "detailed result nodes",
+      "streaming": true,
+      "price": "console quote required",
+      "operational_difficulty": "medium/high; account, app ID, signing",
+      "documented_caveat": "Legacy WebAPI is retired; use streaming service. Symbols are vendor-specific."
+    },
+    {
+      "provider": "Azure Speech",
+      "product": "Pronunciation Assessment zh-CN",
+      "tone_detection": "not explicitly exposed as a detected Mandarin tone",
+      "tone_false_acceptance": null,
+      "phone_diagnostics": "SAPI phoneme names for zh-CN",
+      "sandhi_handling": null,
+      "native_false_rejection": null,
+      "alignment_timing_detail": "word/phoneme offsets in detailed output",
+      "streaming": true,
+      "price": "same baseline as standard STT; region quote required",
+      "operational_difficulty": "low/medium",
+      "documented_caveat": "Syllable groups and spoken-phoneme alternatives are English-only."
+    },
+    {
+      "provider": "SpeechSuper / Alibaba distribution",
+      "product": "Mandarin/pinyin evaluation",
+      "tone_detection": "product documentation located; response semantics require account validation",
+      "tone_false_acceptance": null,
+      "phone_diagnostics": null,
+      "sandhi_handling": null,
+      "native_false_rejection": null,
+      "alignment_timing_detail": null,
+      "streaming": null,
+      "price": "quote required",
+      "operational_difficulty": "access-dependent",
+      "documented_caveat": "Do not infer equivalence between Alibaba-hosted pages and a native Alibaba Cloud speech API until contracting is clear."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "openai-synthetic_openai_smoke-9984be952375",
+  "provider": "openai",
+  "product": "gpt-4o-transcribe",
+  "adapter_version": "1.0.0",
+  "timestamp": "2026-08-03T22:46:00.642001Z",
+  "benchmark_sample_id": "synthetic_openai_smoke",
+  "request_mode": "unknown_target",
+  "request_configuration": {
+    "language_hint": "zh"
+  },
+  "response_latency_seconds": 1.2867534099968907,
+  "audio_duration_seconds": 0.8,
+  "status": "failed",
+  "error": {
+    "error_type": "ProviderAdapterError",
+    "message": "provider HTTP 429: {\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n",
+    "retryable": true,
+    "provider_code": "429"
+  }
+}

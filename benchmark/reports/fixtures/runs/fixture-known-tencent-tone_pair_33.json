@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "fixture-known-tencent-tone_pair_33",
+  "provider": "tencent",
+  "product": "SOE-N",
+  "provider_version": "fixture",
+  "adapter_version": "1.0.0",
+  "timestamp": "2026-08-03T12:00:23Z",
+  "benchmark_sample_id": "tone_pair_33",
+  "request_mode": "known_target",
+  "request_configuration": {
+    "replay_fixture": true,
+    "warning": "not experimental evidence"
+  },
+  "response_latency_seconds": 0.6000000000000001,
+  "audio_duration_seconds": 1.5,
+  "normalized_result": {
+    "schema_version": "1.0.0",
+    "overall_score": 92.0,
+    "pronunciation_score": 91.0,
+    "fluency_score": 88.0,
+    "completeness_score": 100.0,
+    "syllables": [
+      {
+        "text": "fixture-unit-0",
+        "score": 90.0,
+        "phones": [],
+        "reference_tone": "T3",
+        "detected_tone": "T3",
+        "tone_score": 90.0,
+        "error_classifications": []
+      },
+      {
+        "text": "fixture-unit-1",
+        "score": 90.0,
+        "phones": [],
+        "error_classifications": []
+      }
+    ],
+    "provider_error_classifications": [],
+    "unsupported_capabilities": []
+  },
+  "raw_response": {
+    "normalized": {
+      "schema_version": "1.0.0",
+      "overall_score": 92.0,
+      "pronunciation_score": 91.0,
+      "fluency_score": 88.0,
+      "completeness_score": 100.0,
+      "syllables": [
+        {
+          "text": "fixture-unit-0",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": "T3",
+          "detected_tone": "T3",
+          "tone_score": 90.0,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        },
+        {
+          "text": "fixture-unit-1",
+          "pinyin": null,
+          "score": 90.0,
+          "phones": [],
+          "reference_tone": null,
+          "detected_tone": null,
+          "tone_score": null,
+          "span": null,
+          "confidence": null,
+          "error_classifications": []
+        }
+      ],
+      "provider_error_classifications": [],
+      "confidence": null,
+      "unsupported_capabilities": []
+    },
+    "fixture": true
+  },
+  "status": "succeeded"
+}

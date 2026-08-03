@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "annotation_id": "ann-sj-b",
+  "sample_id": "sentence_shuijiao_wrong_initial",
+  "listener_id": "listener-b",
+  "randomized_order": 3,
+  "response": {
+    "perceived_text": "他吃完饭以后想水饺",
+    "perceived_pinyin": [],
+    "understood_first_pass": false,
+    "would_request_repetition": true,
+    "confidence": 0.8,
+    "notes": "Synthetic fixture; not a human research annotation."
+  },
+  "committed_at": "2026-08-03T12:00:03Z",
+  "commit_sha256": "552915853409b3389d48bed37e3585ab28c781d7446a73edd4970db96a49d110"
+}

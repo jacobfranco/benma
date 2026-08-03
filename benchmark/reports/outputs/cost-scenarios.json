@@ -1,0 +1,427 @@
+{
+  "1000_users_30_minutes_per_day": {
+    "categories_with_unknown_cost": [
+      "asr",
+      "llm",
+      "pronunciation",
+      "tts"
+    ],
+    "category_totals_usd_if_all_products_used": {
+      "asr": 35100.0,
+      "pronunciation": 3774.6
+    },
+    "practice_minutes_per_month": 900000,
+    "products": [
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 14400.0,
+        "product": "Speech-to-Text V2 standard (includes Chirp)",
+        "provider": "google_cloud"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 5400.0,
+        "product": "whisper-1",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "gpt-4o-transcribe",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 15300.000000000002,
+        "product": "gpt-realtime-whisper",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "paraformer-zh self-hosted",
+        "provider": "funasr"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "converted",
+        "monthly_cost_usd": 3774.6,
+        "product": "SOE-N postpaid",
+        "provider": "tencent"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Pronunciation Assessment zh-CN",
+        "provider": "azure_speech"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "ISE streaming",
+        "provider": "iflytek"
+      },
+      {
+        "category": "tts",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "TTS reference audio",
+        "provider": "unselected"
+      },
+      {
+        "category": "llm",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Conversation reasoner",
+        "provider": "unselected"
+      }
+    ]
+  },
+  "100_users_30_minutes_per_day": {
+    "categories_with_unknown_cost": [
+      "asr",
+      "llm",
+      "pronunciation",
+      "tts"
+    ],
+    "category_totals_usd_if_all_products_used": {
+      "asr": 3510.0,
+      "pronunciation": 377.46
+    },
+    "practice_minutes_per_month": 90000,
+    "products": [
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 1440.0,
+        "product": "Speech-to-Text V2 standard (includes Chirp)",
+        "provider": "google_cloud"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 540.0,
+        "product": "whisper-1",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "gpt-4o-transcribe",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 1530.0,
+        "product": "gpt-realtime-whisper",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "paraformer-zh self-hosted",
+        "provider": "funasr"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "converted",
+        "monthly_cost_usd": 377.46,
+        "product": "SOE-N postpaid",
+        "provider": "tencent"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Pronunciation Assessment zh-CN",
+        "provider": "azure_speech"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "ISE streaming",
+        "provider": "iflytek"
+      },
+      {
+        "category": "tts",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "TTS reference audio",
+        "provider": "unselected"
+      },
+      {
+        "category": "llm",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Conversation reasoner",
+        "provider": "unselected"
+      }
+    ]
+  },
+  "10_minutes_per_day": {
+    "categories_with_unknown_cost": [
+      "asr",
+      "llm",
+      "pronunciation",
+      "tts"
+    ],
+    "category_totals_usd_if_all_products_used": {
+      "asr": 11.7,
+      "pronunciation": 1.2582
+    },
+    "practice_minutes_per_month": 300,
+    "products": [
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 4.8,
+        "product": "Speech-to-Text V2 standard (includes Chirp)",
+        "provider": "google_cloud"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 1.8,
+        "product": "whisper-1",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "gpt-4o-transcribe",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 5.1000000000000005,
+        "product": "gpt-realtime-whisper",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "paraformer-zh self-hosted",
+        "provider": "funasr"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "converted",
+        "monthly_cost_usd": 1.2582,
+        "product": "SOE-N postpaid",
+        "provider": "tencent"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Pronunciation Assessment zh-CN",
+        "provider": "azure_speech"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "ISE streaming",
+        "provider": "iflytek"
+      },
+      {
+        "category": "tts",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "TTS reference audio",
+        "provider": "unselected"
+      },
+      {
+        "category": "llm",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Conversation reasoner",
+        "provider": "unselected"
+      }
+    ]
+  },
+  "30_minutes_per_day": {
+    "categories_with_unknown_cost": [
+      "asr",
+      "llm",
+      "pronunciation",
+      "tts"
+    ],
+    "category_totals_usd_if_all_products_used": {
+      "asr": 35.1,
+      "pronunciation": 3.7746
+    },
+    "practice_minutes_per_month": 900,
+    "products": [
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 14.4,
+        "product": "Speech-to-Text V2 standard (includes Chirp)",
+        "provider": "google_cloud"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 5.4,
+        "product": "whisper-1",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "gpt-4o-transcribe",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 15.3,
+        "product": "gpt-realtime-whisper",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "paraformer-zh self-hosted",
+        "provider": "funasr"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "converted",
+        "monthly_cost_usd": 3.7746,
+        "product": "SOE-N postpaid",
+        "provider": "tencent"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Pronunciation Assessment zh-CN",
+        "provider": "azure_speech"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "ISE streaming",
+        "provider": "iflytek"
+      },
+      {
+        "category": "tts",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "TTS reference audio",
+        "provider": "unselected"
+      },
+      {
+        "category": "llm",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Conversation reasoner",
+        "provider": "unselected"
+      }
+    ]
+  },
+  "60_minutes_per_day": {
+    "categories_with_unknown_cost": [
+      "asr",
+      "llm",
+      "pronunciation",
+      "tts"
+    ],
+    "category_totals_usd_if_all_products_used": {
+      "asr": 70.2,
+      "pronunciation": 7.5492
+    },
+    "practice_minutes_per_month": 1800,
+    "products": [
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 28.8,
+        "product": "Speech-to-Text V2 standard (includes Chirp)",
+        "provider": "google_cloud"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 10.8,
+        "product": "whisper-1",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "gpt-4o-transcribe",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "documented",
+        "monthly_cost_usd": 30.6,
+        "product": "gpt-realtime-whisper",
+        "provider": "openai"
+      },
+      {
+        "category": "asr",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "paraformer-zh self-hosted",
+        "provider": "funasr"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "converted",
+        "monthly_cost_usd": 7.5492,
+        "product": "SOE-N postpaid",
+        "provider": "tencent"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Pronunciation Assessment zh-CN",
+        "provider": "azure_speech"
+      },
+      {
+        "category": "pronunciation",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "ISE streaming",
+        "provider": "iflytek"
+      },
+      {
+        "category": "tts",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "TTS reference audio",
+        "provider": "unselected"
+      },
+      {
+        "category": "llm",
+        "evidence_status": "unknown",
+        "monthly_cost_usd": null,
+        "product": "Conversation reasoner",
+        "provider": "unselected"
+      }
+    ]
+  }
+}
