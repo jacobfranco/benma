@@ -5,10 +5,16 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .env
+.DS_Store
+services/api/.venv/
+services/api/var/
+apps/mobile/node_modules/
+apps/mobile/.expo/
+apps/mobile/dist/
+apps/mobile/.env
 benchmark/corpus/recordings/original/*
 benchmark/corpus/recordings/canonical/*
 !benchmark/corpus/recordings/original/.gitkeep
 !benchmark/corpus/recordings/canonical/.gitkeep
 benchmark/reports/outputs/runs/*.json
 benchmark/reports/outputs/plots/*.svg
-

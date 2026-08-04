@@ -1,24 +1,95 @@
-name: benchmark-ci
+name: CI
 
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  verify:
+  benchmark:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
-          enable-cache: true
-      - run: uv sync --extra dev --locked
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v8
+      - run: uv sync --locked --extra dev
       - run: uv run pytest
-      - run: uv run ruff check .
+      - run: uv run ruff check benchmark tests
       - run: uv run mypy benchmark
       - run: uv run python -m benchmark validate-corpus
       - run: uv run python -m benchmark run-fixtures
       - run: uv run python -m benchmark report --fixtures
+      - run: git diff --exit-code -- benchmark/reports/outputs
 
+  api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: benma
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d benma"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      BENMA_ENVIRONMENT: test
+      BENMA_DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/benma
+      BENMA_AUDIO_STORAGE_DIR: /tmp/benma-api-audio
+      BENMA_DEV_AUTH_ENABLED: "true"
+      BENMA_PERCEPTION_PROVIDER: replay
+      BENMA_ASSESSMENT_PROVIDER: replay
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v8
+      - run: sudo apt-get update && sudo apt-get install --yes ffmpeg
+      - run: uv sync --project services/api --locked --group dev
+      - run: uv run pytest
+        working-directory: services/api
+      - run: uv run ruff check .
+        working-directory: services/api
+      - run: uv run mypy
+        working-directory: services/api
+      - run: uv run alembic upgrade head
+        working-directory: services/api
+      - run: uv run alembic check
+        working-directory: services/api
+      - run: uv run python scripts/export_openapi.py
+        working-directory: services/api
+      - run: git diff --exit-code -- apps/mobile/src/api/openapi.json apps/mobile/src/api/openapi.generated.ts
+      - run: bash scripts/scan-secrets.sh
+
+  mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - run: npm ci
+        working-directory: apps/mobile
+      - run: npm run lint
+        working-directory: apps/mobile
+      - run: npm run typecheck
+        working-directory: apps/mobile
+      - run: npm test
+        working-directory: apps/mobile
+      - run: npx expo export --platform android --output-dir /tmp/benma-expo-export
+        working-directory: apps/mobile
+        env:
+          CI: "1"

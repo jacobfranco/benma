@@ -1,55 +1,88 @@
-# Benma speech foundation research
+# Benma
 
-This repository is currently in the **research/benchmark phase**. The benchmark exists to
-determine Benma's speech foundation before the product is built. There is no mobile product,
-account system, conversation engine, or production backend here.
+Benma is a Mandarin speech-learning project built around one permanent distinction:
+what a speaker produced is evidence; what they intended is later interpretation. The repository
+now contains three deliberately separate applications:
 
-Benma's governing rule is that raw perception evidence must describe what reached a listener,
-not what context says the speaker probably meant. The code therefore has two incompatible
-request types:
-
-- `UnknownTargetPerceptionRequest`: audio, a Mandarin language hint, and timeout only.
-- `KnownTargetAssessmentRequest`: audio plus explicit target text/pinyin/tone metadata.
-
-Pydantic rejects extra fields, and tests prove target/context cannot enter the unknown-target
-contract. Provider responses are stored twice: untouched raw JSON and a provider-neutral
-normalized result. Later interpretation may reference evidence; it cannot rewrite it.
-
-## Quick start
-
-```bash
-uv sync --extra dev
-uv run python -m benchmark validate-corpus
-uv run python -m benchmark run-fixtures
-uv run python -m benchmark report --fixtures
-uv run pytest
-uv run ruff check .
-uv run mypy benchmark
+```text
+benchmark/       reproducible speech-provider research laboratory
+services/api/    production modular-monolith API and persistence
+apps/mobile/     Expo mobile client for the first speech workflows
 ```
 
-`report` automatically falls back to explicitly labeled replay fixtures when no live runs exist.
-Replay numbers validate metrics/reporting only; they are not evidence for vendor selection.
+The production API does not import benchmark domain models. Both layers preserve the same
+truth rules, especially the prohibition on feeding targets, corrections, prompts, or conversation
+context into unknown-target perception.
 
-## What exists
+## Local vertical slice
 
-- Versioned schemas for corpus samples, provider runs, both evaluation modes, acoustic evidence,
-  alignment, and immutable two-stage human annotations.
-- A 384-utterance target design with a materialized pilot manifest covering all tone pairs,
-  required lexical examples, sandhi, English-speaker segmental contrasts, exact-one-error
-  sentences, context probes, and controls.
-- Original-preserving recording/import and canonical mono 16 kHz PCM16 generation.
-- Live adapter boundaries for OpenAI Transcription, Google Chirp 3, Azure Pronunciation
-  Assessment, and local FunASR/Whisper commands; replay boundaries cover unavailable services.
-- Independent autocorrelation F0, optional torchcrepe and Praat/Parselmouth comparisons,
-  speaker-relative normalization, static SVG diagnostics, and an MFA experiment boundary.
-- Exact metrics, latency/cost modeling, scorecards, failure galleries, and deterministic reports.
+Prerequisites are Python 3.12, `uv`, Node 22, Docker, FFmpeg/FFprobe, and an iOS or Android
+device/simulator. Copy `services/api/.env.example` to `services/api/.env`; its explicit replay
+providers produce synthetic development evidence and require no vendor credentials.
 
-Start with [running the benchmark](docs/benchmark/running.md), then read the
-[technology landscape](docs/research/technology-landscape.md) and the provisional
-[architecture decision](docs/adr/0001-speech-foundation.md).
+Terminal 1 — PostgreSQL and schema:
 
-## Status
+```bash
+make api-db-up
+make api-sync
+make api-migrate
+```
 
-No provider has won. The checked-in output is based only on synthetic replay fixtures. Real
-selection requires recorded learner/native audio and blind native-listener annotations.
+Terminal 2 — API:
 
+```bash
+make api-dev
+```
+
+Terminal 3 — mobile:
+
+```bash
+make mobile-sync
+EXPO_PUBLIC_BENMA_API_URL=http://YOUR_LAN_IP:8000 make mobile-dev
+```
+
+Use development authentication in the app with a real-looking test number such as
+`+12025550123`. The API normalizes it to E.164, returns an opaque token once, and persists only
+the token hash. `make api-seed` optionally creates that account plus three target records; it
+does not create evidence rows.
+
+## What works
+
+- Unknown target: record, replay, persist original and canonical audio, run perception, preserve
+  what the provider heard, and append an optional user correction without rewriting the run.
+- Known target: enter Chinese text, retain generated pinyin provenance and lexical tones, record
+  unlimited attempts, assess each attempt, expose only provider-supported evidence, and replay
+  session-local attempts.
+- Authenticated history survives app restart because the bearer token uses SecureStore on native
+  platforms and recordings remain server-owned behind authorized streaming.
+- Replay evidence is prominently labeled `synthetic_replay`; live provider failures never fall
+  back to replay.
+
+This is not conversation mode and it does not claim human-calibrated correctness, intelligibility,
+or tone grading.
+
+## Validation
+
+```bash
+make benchmark-check
+make api-check
+make mobile-check
+make secret-scan
+```
+
+The API exports both the canonical OpenAPI snapshot and generated mobile DTOs with `make openapi`.
+CI regenerates both and rejects drift. The benchmark, API, and mobile app have independent CI jobs;
+no live provider credentials are used.
+
+## Documentation
+
+- [Development guide](docs/development.md)
+- [Production foundation decision](docs/adr/0002-production-foundation.md)
+- [Speech truth invariants](docs/architecture/speech-truth-invariants.md)
+- [Physical-device test plan](docs/testing/physical-device.md)
+- [Benchmark guide](docs/benchmark/running.md)
+- [API guide](services/api/README.md)
+- [Mobile guide](apps/mobile/README.md)
+
+Provider selection remains provisional. The checked-in benchmark and development replay results
+are fixtures, not vendor-selection evidence.
