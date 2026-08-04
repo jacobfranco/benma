@@ -233,7 +233,7 @@ def known_metrics(
     runs: Sequence[ProviderRun],
     samples: dict[str, BenchmarkSample],
     *,
-    accept_threshold: float = 70.0,
+    accept_threshold: float | None = None,
 ) -> KnownMetrics:
     succeeded = [
         run
@@ -273,7 +273,11 @@ def known_metrics(
                 if index is not None and index < len(result.syllables)
                 else None
             )
-            if target is not None and target.tone_score is not None:
+            if (
+                accept_threshold is not None
+                and target is not None
+                and target.tone_score is not None
+            ):
                 wrong_tone_scored += 1
                 accepted = target.tone_score >= accept_threshold
             else:
@@ -287,7 +291,11 @@ def known_metrics(
                 if result.pronunciation_score is not None
                 else result.overall_score
             )
-            if score is not None and score < accept_threshold:
+            if (
+                accept_threshold is not None
+                and score is not None
+                and score < accept_threshold
+            ):
                 native_rejected += 1
         if error is not None and error.error_type in {
             ErrorType.WRONG_INITIAL,
@@ -306,9 +314,12 @@ def known_metrics(
             )
             if target is not None:
                 caught_by_class = bool(target.error_classifications)
-                caught_by_score = any(
-                    phone.score is not None and phone.score < accept_threshold
-                    for phone in target.phones
+                caught_by_score = (
+                    accept_threshold is not None
+                    and any(
+                        phone.score is not None and phone.score < accept_threshold
+                        for phone in target.phones
+                    )
                 )
                 if caught_by_class or caught_by_score:
                     phone_errors_detected += 1
@@ -329,7 +340,9 @@ def known_metrics(
         tone_false_accept_rate=(
             wrong_tone_accepted / wrong_tone_scored if wrong_tone_scored else None
         ),
-        native_false_reject_rate=native_rejected / native if native else None,
+        native_false_reject_rate=(
+            native_rejected / native if native and accept_threshold is not None else None
+        ),
         phone_error_recall=phone_errors_detected / phone_errors if phone_errors else None,
         initial_error_recall=(initial_errors_detected / initial_errors if initial_errors else None),
         final_error_recall=final_errors_detected / final_errors if final_errors else None,

@@ -10,6 +10,7 @@ benchmark-check:
 	uv run python -m benchmark validate-corpus
 	uv run python -m benchmark run-fixtures
 	uv run python -m benchmark report --fixtures
+	uv run python -m benchmark pronunciation-calibration
 
 api-sync:
 	cd services/api && uv sync --locked --group dev

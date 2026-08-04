@@ -63,6 +63,11 @@
     {
       "provider": "Tencent",
       "product": "SOE-N",
+      "documented": true,
+      "implemented": false,
+      "fixture_validated": false,
+      "live_validated": false,
+      "calibrated": false,
       "tone_detection": "explicitly documented for Chinese/pinyin mode; unbenchmarked",
       "tone_false_acceptance": null,
       "phone_diagnostics": "documented",
@@ -77,6 +82,11 @@
     {
       "provider": "iFlytek",
       "product": "ISE streaming",
+      "documented": true,
+      "implemented": false,
+      "fixture_validated": false,
+      "live_validated": false,
+      "calibrated": false,
       "tone_detection": "tone_score documented for Mandarin",
       "tone_false_acceptance": null,
       "phone_diagnostics": "phone_score and detailed proprietary symbols documented",
@@ -91,6 +101,11 @@
     {
       "provider": "Azure Speech",
       "product": "Pronunciation Assessment zh-CN",
+      "documented": true,
+      "implemented": true,
+      "fixture_validated": true,
+      "live_validated": false,
+      "calibrated": false,
       "tone_detection": "not explicitly exposed as a detected Mandarin tone",
       "tone_false_acceptance": null,
       "phone_diagnostics": "SAPI phoneme names for zh-CN",
@@ -103,9 +118,14 @@
       "documented_caveat": "Syllable groups and spoken-phoneme alternatives are English-only."
     },
     {
-      "provider": "SpeechSuper / Alibaba distribution",
-      "product": "Mandarin/pinyin evaluation",
-      "tone_detection": "product documentation located; response semantics require account validation",
+      "provider": "Alibaba Cloud",
+      "product": "Chinese/Pinyin pronunciation assessment candidate",
+      "documented": true,
+      "implemented": false,
+      "fixture_validated": false,
+      "live_validated": false,
+      "calibrated": false,
+      "tone_detection": "tone score and confidence-vector documentation located; response semantics require account validation",
       "tone_false_acceptance": null,
       "phone_diagnostics": null,
       "sandhi_handling": null,
@@ -114,7 +134,26 @@
       "streaming": null,
       "price": "quote required",
       "operational_difficulty": "access-dependent",
-      "documented_caveat": "Do not infer equivalence between Alibaba-hosted pages and a native Alibaba Cloud speech API until contracting is clear."
+      "documented_caveat": "Account/API access is required before response contracts can be normalized."
+    },
+    {
+      "provider": "SpeechSuper",
+      "product": "Mandarin pronunciation assessment candidate",
+      "documented": true,
+      "implemented": false,
+      "fixture_validated": false,
+      "live_validated": false,
+      "calibrated": false,
+      "tone_detection": "documented at product level; raw response contract not validated",
+      "tone_false_acceptance": null,
+      "phone_diagnostics": "target/detected phone evidence documented",
+      "sandhi_handling": null,
+      "native_false_rejection": null,
+      "alignment_timing_detail": null,
+      "streaming": null,
+      "price": "quote required",
+      "operational_difficulty": "access-dependent",
+      "documented_caveat": "Eligibility for testing is not evidence of correctness or support."
     }
   ]
 }

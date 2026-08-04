@@ -106,7 +106,7 @@ def test_no_human_noncanonical_evidence_means_ineligible() -> None:
     assert metrics.semantic_repair_rate is None
 
 
-def test_known_tone_false_accept_and_confusion() -> None:
+def test_known_tone_scores_remain_uncalibrated_and_confusion_is_reported() -> None:
     samples = {sample.sample_id: sample for sample in seed_manifest().samples}
     sample_id = "sentence_beijing_wrong_tone"
     syllables = tuple(
@@ -130,5 +130,5 @@ def test_known_tone_false_accept_and_confusion() -> None:
         status=RunStatus.SUCCEEDED,
     )
     metrics = known_metrics([provider_run], samples)
-    assert metrics.tone_false_accept_rate == 1.0
+    assert metrics.tone_false_accept_rate is None
     assert metrics.confusion == {"T3": {"T2": 1}}

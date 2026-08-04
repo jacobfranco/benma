@@ -38,8 +38,8 @@ Confidence summaries describe field availability and synthetic-fixture behavior;
 
 | Provider/product | Success | Tone observations | Tone false accept | Native false reject | Phone / initial / final recall |
 |---|---:|---:|---:|---:|---:|
-| azure_speech/pronunciation_assessment_zh-CN | 5/5 | 0 | n/a | 0.0% | 0.0% / 0.0% / n/a |
-| tencent/SOE-N | 5/5 | 4 | 50.0% | 0.0% | 100.0% / 100.0% / n/a |
+| azure_speech/pronunciation_assessment_zh-CN | 5/5 | 0 | n/a | n/a | 0.0% / 0.0% / n/a |
+| tencent/SOE-N | 5/5 | 4 | n/a | n/a | 100.0% / 100.0% / n/a |
 
 ### Known-target operations and unavailable capabilities
 

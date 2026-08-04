@@ -25,6 +25,7 @@ from benchmark.providers.known_target.azure import AzurePronunciationAdapter
 from benchmark.providers.unknown_target.google import GoogleChirpAdapter
 from benchmark.providers.unknown_target.openai import OpenAITranscriptionAdapter
 from benchmark.reports.generation import generate_report
+from benchmark.reports.pronunciation_calibration import generate_pronunciation_calibration
 from benchmark.runner import run_known_target, run_unknown_target
 from benchmark.schemas import export_json_schemas
 from benchmark.storage import load_model, write_json, write_model
@@ -197,6 +198,21 @@ def command_report(args: argparse.Namespace) -> None:
     print(f"generated {summary['data_status']} report at {Path(args.output) / 'report.md'}")
 
 
+def command_pronunciation_calibration(args: argparse.Namespace) -> None:
+    summary = generate_pronunciation_calibration(
+        manifest_path=Path(args.manifest),
+        runs_dir=Path(args.runs),
+        annotations_dir=Path(args.annotations),
+        output_dir=Path(args.output),
+    )
+    counts = summary["counts"]
+    print(
+        "pronunciation calibration "
+        f"{'READY' if summary['calibration_ready'] else 'NOT READY'}: "
+        f"{counts['real_recordings']}/50 real pilot recordings"
+    )
+
+
 def command_cost(args: argparse.Namespace) -> None:
     result = calculate_scenarios(load_catalog(Path(args.pricing)))
     if args.output:
@@ -305,6 +321,13 @@ def build_parser() -> argparse.ArgumentParser:
     report.add_argument("--output", default=OUTPUTS)
     report.add_argument("--fixtures", action="store_true")
     report.set_defaults(func=command_report)
+
+    calibration = commands.add_parser("pronunciation-calibration")
+    calibration.add_argument("--manifest", default=DEFAULT_MANIFEST)
+    calibration.add_argument("--runs", default=DEFAULT_RUNS)
+    calibration.add_argument("--annotations", default=DEFAULT_ANNOTATIONS)
+    calibration.add_argument("--output", default=OUTPUTS)
+    calibration.set_defaults(func=command_pronunciation_calibration)
 
     cost = commands.add_parser("cost")
     cost.add_argument("--pricing", default=PRICING)

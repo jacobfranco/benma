@@ -1,0 +1,64 @@
+{
+  "calibration_ready": false,
+  "counts": {
+    "annotations": 0,
+    "known_target_provider_runs": 0,
+    "native_controls": 0,
+    "native_listeners": 0,
+    "negative_controls": 0,
+    "real_learner_deliberate_errors": 0,
+    "real_recordings": 0
+  },
+  "data_status": "real_only",
+  "gates": {
+    "final_errors": {
+      "actual": 0,
+      "ready": false,
+      "required": 10
+    },
+    "initial_errors": {
+      "actual": 0,
+      "ready": false,
+      "required": 10
+    },
+    "learner_deliberate_errors": {
+      "actual": 0,
+      "ready": false,
+      "required": 30
+    },
+    "native_controls": {
+      "actual": 0,
+      "ready": false,
+      "required": 10
+    },
+    "negative_controls": {
+      "actual": 0,
+      "ready": false,
+      "required": 10
+    },
+    "three_listeners_per_critical_sample": {
+      "actual": 0,
+      "ready": false,
+      "required": 30
+    },
+    "tone_errors": {
+      "actual": 0,
+      "ready": false,
+      "required": 10
+    }
+  },
+  "human_consensus": {},
+  "score_distributions": {},
+  "segmental_metrics": {
+    "final_false_acceptance": null,
+    "initial_false_acceptance": null,
+    "overall_false_acceptance": null,
+    "reason": "Requires real provider evidence joined to three-listener labels."
+  },
+  "tone_metrics": {
+    "by_provider": {},
+    "method": "Rates require provider tone hypotheses and at least three listener annotations. No provider-score threshold is selected."
+  },
+  "unresolved_conflicts": [],
+  "warning": "Synthetic/replay fixtures are excluded from every count and metric."
+}
