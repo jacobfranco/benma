@@ -41,10 +41,17 @@ APISecret. If the requested extra abilities are not enabled for the account, tha
 `account capability not enabled`, not evidence that Mandarin tone detail is unsupported. A real
 successful request is still required for `LIVE_VALIDATED`.
 
+The current API page says a newly created application receives a default daily 500-call allowance
+and directs production users to obtain free quota or purchase a package. A durable public unit
+price was not exposed in the reviewed API page, so Benma keeps cost unknown until the console/account
+quote and observed bill are recorded. The ISE SDK privacy page describes mainland-China service and
+storage; confirm the WebAPI account terms rather than assuming the SDK statement transfers exactly.
+
 ## Official sources
 
 - [Streaming ISE WebAPI documentation](https://www.xfyun.cn/doc/Ise/IseAPI.html)
 - [iFlytek service console](https://console.xfyun.cn/)
+- [ISE SDK privacy policy](https://www.xfyun.cn/doc/total_sdk_privacy/ise_privacy.html)
 
 The official page states that the ordinary assessment product is offline, documents the current
 streaming endpoint and the full-dimension parameters, and recommends final `status=2` results as

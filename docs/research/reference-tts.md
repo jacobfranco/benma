@@ -23,7 +23,10 @@ The provisional default is `azure_speech / zh-CN-Xiaochen:DragonHDLatestNeural /
 
 Generate at least Xiaochen HD, Yunfan HD, Xiaoxiao Neural, and one current Tencent Mandarin voice where credentials permit. Compare clean pronunciation, tone, sandhi, neutral tone, pacing, and imitation suitability. Record listener/voice/config notes; do not rank from vendor scores.
 
+Generate the Azure browser bundle with `services/api/scripts/reference_listening_corpus.py` and
+complete `docs/calibration/reference-tts-listening-worksheet.md`. No voice has yet been generated or
+heard with live credentials, so the selected default remains provisional.
+
 The cache key covers normalized text, provider, locale, voice, model/version, rate, and output configuration. A changed configuration creates another immutable asset. Normal retries reuse the successful asset; an explicit force request creates new evidence.
 
 The development replay produces tonal beeps and is labeled `synthetic_replay`. It proves playback/caching only and is not speech. A reference contour is one realization for visual comparison. It is never a correct-shape boundary or grading template.
-

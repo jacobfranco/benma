@@ -65,6 +65,13 @@ uv run python -m benchmark annotate-reveal SAMPLE_ID ANN_ID
 
 The second command refuses to run before the hashed blind commit exists.
 
+For the browser workflow:
+
+```bash
+uv run python -m benchmark annotation-workbench
+uv run python -m benchmark export-annotations --output /tmp/benma-annotations.zip
+```
+
 ## Credential-free reproducibility
 
 ```bash
@@ -106,11 +113,25 @@ uv run python -m benchmark acoustics canonical.wav \
 uv run python -m benchmark acoustics canonical.wav --algorithm parselmouth \
   --output-json praat.json --output-svg praat.svg
 
+uv run python -m benchmark compare-acoustics canonical.wav \
+  --evidence-origin real_recording --output comparison/
+
 uv run python -m benchmark align canonical.wav '你好' --output alignment.json
+uv run python -m benchmark compare-alignments --manual manual.json \
+  --candidate mfa=mfa.json --candidate provider=provider.json \
+  --evidence-origin real_recording --output alignment-comparison.json
 ```
 
 Inspect every pilot alignment against waveform/audio. A timestamp is not proof of a correct
 boundary. Keep bad alignments and warnings in the failure gallery.
+
+Create the immutable split once sufficient real data exists, then pass it to the report:
+
+```bash
+uv run python -m benchmark create-calibration-split \
+  --split-version benma-v0.1.0-s1 --output split.json
+uv run python -m benchmark pronunciation-calibration --split split.json
+```
 
 ## Final validation
 
@@ -126,4 +147,3 @@ git grep -n -E '(sk-|SecretKey|API_KEY=.+)' -- . ':!uv.lock'
 CI requires no paid credentials. Live smoke tests are opt-in and should run only on consented
 audio. A new provider should require only a new adapter and fixtures; corpus/evaluation/report code
 must remain unchanged.
-

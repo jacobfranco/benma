@@ -104,7 +104,7 @@ when present, are retained as provider-native uncertainty rather than converted 
 Azure evidence explicitly declares tone detection and surface-tone interpretation unsupported.
 
 Developer research tools include `reference_listening_corpus.py`,
-`pronunciation_diagnostic.py`, and the confirmation-gated
+`pronunciation_diagnostic.py`, `provider_bakeoff.py`, `replay_interpreter.py`, and the confirmation-gated
 `export_pronunciation_attempt.py`. They never run automatically.
 
 Use `scripts/provider_smoke.py` to test a live known-target provider without the mobile app. It
@@ -118,6 +118,11 @@ uv run python scripts/provider_smoke.py tencent_sentence \
 ```
 
 Documentation examples are never labeled as live captures.
+
+`provider_bakeoff.py` invokes all four implemented configurations against identical canonical
+bytes and writes an audio-hash manifest. `replay_interpreter.py --output PATH` compares the current
+version/configuration against stored interpretation observations over the same immutable evidence
+IDs and assessment raw hash. Neither tool mutates evidence or silently retries billable calls.
 
 ## Quality and schema
 

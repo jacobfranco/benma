@@ -33,15 +33,22 @@ This avoids treating the curator's intent alone as acoustic proof.
 The current preservation metric is deliberately auditable and incomplete. Pass 2 should add
 corrupted-unit span matching once human-produced pinyin and alignment are reliable.
 
-## Known-target metrics
+## Human-supported known-target metrics
 
 - **Tone confusion matrix**: count explicit `(reference_tone, detected_tone)` pairs only. Providers
   without detected tones are labeled unavailable, never inferred from a score.
-- **Tone false accept**: deliberate wrong-tone cases whose affected syllable tone score is at least
-  the configured acceptance threshold / all deliberate wrong-tone cases with a usable affected
-  syllable. Default fixture threshold is 70/100; choose production thresholds on held-out data.
-- **Native false reject**: native controls below the same pronunciation/overall threshold / native
-  controls with a score.
+- **Tone detection FAR**: human-supported tone-error syllables where explicit valid provider
+  evidence fails to flag a concern / human-supported tone-error syllables with a provider decision.
+- **Tone diagnosis FAR**: human-supported known tone substitutions where the provider identifies
+  the expected tone / substitutions with a valid provider tone hypothesis. Missing/invalid tone is
+  an abstention, not a pass or a tone.
+- **Native FRR**: native-control decisions that flag a concern / native controls with a provider
+  decision.
+- **Learner-correct/acceptable FRR**: flagged syllables / human-supported acceptable learner
+  syllables with a decision. Surface tone, not dictionary tone, supplies the expectation.
+- **Severe FAR**: likely-unintelligible/repetition samples shown reassuring evidence / severe
+  samples eligible under a predeclared reassurance policy. It remains undefined until such a policy
+  is selected; the report does not fabricate a zero rate.
 - **Phone error recall**: deliberate initial/final substitutions whose affected syllable has a
   provider error classification or a phone score below threshold / eligible substitutions.
 - **Omission/substitution recall**: provider miscue/absence classification at the declared unit;
@@ -59,3 +66,7 @@ corrupted-unit span matching once human-produced pinyin and alignment are reliab
 - Costs come only from dated configuration. Per-request services state assumed utterances/minute.
   Token-priced services stay unknown until run usage exists. Report p50/p95 failures/timeouts
   alongside successful latency; never exclude a provider's failures silently.
+
+Every rate reports numerator, denominator, fraction, and Wilson interval when the denominator is
+nonzero. Thresholds are explored on a persisted calibration partition and reported on held-out data
+separately. Small samples remain exploratory.

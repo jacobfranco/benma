@@ -52,22 +52,25 @@ unsupported normalized capabilities rather than inventing tones.
 ### Tencent SOE-N
 
 Required: enabled Tencent Cloud SOE-N service, `TENCENT_SECRET_ID`, `TENCENT_SECRET_KEY`, and
-`TENCENT_SOE_APP_ID`. The checked-in scorecard/replay mapping exists, but no signed WebSocket
-transport is enabled because no account/schema response was available to validate it. Implement
-against current request/response documentation, save every frame/final payload, and add contract
-fixtures before a live run.
+`TENCENT_SOE_APP_ID` for the benchmark adapter, or the `BENMA_`-prefixed equivalents for the
+production API. Production now has a signed SOE-N product-1774 WebSocket transport, separate
+sentence (`eval_mode=1`) and pinyin (`eval_mode=8`) identities, explicit `F_TDET=true`, pinned
+strictness, detailed normalization, and documentation-contract fixtures. Legacy Basic product 884
+cannot be selected. No real request succeeded because credentials were absent.
 
 ### iFlytek ISE
 
 Required: an iFlytek application with streaming ISE enabled plus `IFLYTEK_APP_ID`,
 `IFLYTEK_API_KEY`, and `IFLYTEK_API_SECRET`. Do not build against the retired one-shot API. Preserve
-vendor pinyin/phone symbols raw and map only documented fields.
+vendor pinyin/phone symbols raw and map only documented fields. Production implements the current
+streaming endpoint and full-dimension configuration; fixture validation is not live validation.
 
-### SpeechSuper / Alibaba-hosted access
+### SpeechSuper / Alibaba SSECP
 
-Obtain a written product/API identity, endpoint, region, data terms, response schema, and price.
-No adapter should imply Alibaba Cloud owns/operates the service merely because documentation is
-hosted there.
+Both remain documentation-only. Alibaba's SSECP onboarding requires provisioned commercial
+access/warrant/SDK details. SpeechSuper requires a trial and complete usable contract. Obtain a
+written product/API identity, endpoint, region, data terms, response schema, and price before
+implementation.
 
 ## Adapter acceptance checklist
 

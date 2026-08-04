@@ -54,3 +54,36 @@ Use the advanced panel and API/database only in development. Confirm account/utt
 duration, provider/product, adapter version, latency, status, and normalized evidence correspond.
 Do not paste raw provider payloads containing user speech into bug reports without appropriate
 handling, and never capture bearer tokens or provider credentials.
+
+## Pass 4 provider capture
+
+- [ ] Record one consented Mandarin attempt on the phone; replay it and confirm the saved attempt.
+- [ ] Explicitly export it; verify original/canonical hashes and canonical 16 kHz mono PCM16 format.
+- [ ] Run Azure, Tencent SOE-N sentence, Tencent SOE-N pinyin, and iFlytek through the same-audio
+      bakeoff. Confirm every row has the identical SHA-256 and target snapshot.
+- [ ] Confirm Tencent uses product 1774, never Basic 884; inspect valid and invalid tone handling.
+- [ ] Confirm iFlytek requested full-dimension mode and returned or explicitly lacked its detail.
+- [ ] Record provider latency/failures and check no credential/signed URL appears in output.
+
+## Reference speech routes
+
+- [ ] Generate and actually listen to Azure Xiaochen, Yunfan, and Xiaoxiao candidates across the
+      worksheet corpus; add Tencent only if accessible.
+- [ ] Repeat playback through speaker, wired headphones, and Bluetooth; record route artifacts.
+- [ ] Judge naturalness, tone, T3/一/不 sandhi, neutral tone, pacing, and repetition comfort by ear.
+      Do not use a provider score to choose the voice.
+
+## Calibration and annotation
+
+- [ ] Capture a correct/error pair for the same target and session; replay/discard/retry before save.
+- [ ] Confirm the calibration screen is visibly development-only and shows no provider feedback
+      before final save.
+- [ ] Export only the selected attempt with explicit confirmation; verify no unrelated account data.
+- [ ] Open the tokenized annotation workbench from another browser/device. Before blind commit,
+      inspect the UI/network path and confirm target, requested error, sample ID, and provider output
+      are absent.
+- [ ] Commit Stage A, complete Stage B, restart mid-form to verify recovery, and export/import a
+      bundle into a clean annotations directory.
+
+None of these Pass 4 physical-device items was executed by Codex. Check them only after observing
+the behavior on real hardware and preserve the resulting device/build/provider manifest.

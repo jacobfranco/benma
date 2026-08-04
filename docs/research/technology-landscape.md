@@ -103,8 +103,8 @@ streaming service. Vendor phonetic symbols are not IPA and must remain in raw/ve
 Credentials are app ID, API key, and API secret. Public durable pricing was not found; obtain a
 console quote.
 
-Sources: [ISE API and retirement notice](https://www.xfyun.cn/doc/voiceservice/ise/API.html),
-[detailed Mandarin result schema](https://www.xfyun.cn/doc/voiceservice/ise/ise_protocol.html).
+Sources: [current ISE streaming API](https://www.xfyun.cn/doc/Ise/IseAPI.html),
+[current result-parameter reference](https://www.xfyun.cn/doc/Ise/ise_word.html).
 
 ### Azure Pronunciation Assessment
 

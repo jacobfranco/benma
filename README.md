@@ -54,9 +54,11 @@ does not create evidence rows.
   unlimited attempts, revise polyphonic readings without overwriting the generated target, replay
   reference speech, preserve assessment/acoustic/alignment evidence separately, inspect relative
   pitch and surface-tone expectations, and replay/compare durable attempts.
-- Calibration: capture a 50-item development pilot, export a selected attempt only through an
-  explicit confirmation-gated command, retain blind two-stage listener annotations, and generate a
-  real-only readiness report. The current report is correctly blocked at 0/50 real recordings.
+- Calibration: capture a paired development pilot, export a selected attempt only through an
+  explicit confirmation-gated command, run a tokenized browser annotator with immutable blind and
+  revealed stages, compare identical audio across implemented Mandarin providers, persist a held-
+  out split, and generate a real-only FAR/FRR/readiness report. The current report is correctly
+  blocked at 0/50 real recordings and zero live providers.
 - Authenticated history survives app restart because the bearer token uses SecureStore on native
   platforms and recordings remain server-owned behind authorized streaming.
 - Replay evidence is prominently labeled `synthetic_replay`; live provider failures never fall
@@ -84,6 +86,8 @@ no live provider credentials are used.
 - [Production foundation decision](docs/adr/0002-production-foundation.md)
 - [Speech truth invariants](docs/architecture/speech-truth-invariants.md)
 - [Physical-device test plan](docs/testing/physical-device.md)
+- [Pass 4 manual action kit](docs/calibration/manual-action-kit.md)
+- [Speech-provider calibration decision](docs/adr/0004-speech-provider-calibration-and-truth-gates.md)
 - [Benchmark guide](docs/benchmark/running.md)
 - [API guide](services/api/README.md)
 - [Mobile guide](apps/mobile/README.md)

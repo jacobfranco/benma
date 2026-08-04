@@ -37,6 +37,14 @@ assessment because doing so may duplicate billing; a deliberate rerun creates a 
 Error codes for OOV text, silence/no speech, audio decoding, unsupported modes, concurrency, and
 service failures remain provider failures rather than synthetic fallback results.
 
+The current pricing page (updated 2025-11-05, reviewed 2026-08-03) documents 0.005 CNY per
+postpaid call, text-length rounding for longer modes, prepaid bundles, 50 included concurrency for
+prepaid usage, and separately priced added concurrency. The dated cost catalog converts only that
+documented request price using an explicitly provisional exchange rate. Account/region eligibility
+and WebAPI audio retention were not established from sufficiently specific official text; verify
+both in the actual account contract before non-personal collection. No US-versus-China-account
+claim is inferred.
+
 ## Official sources
 
 - [SOE-N product overview](https://cloud.tencent.com/document/product/1774)
@@ -44,6 +52,7 @@ service failures remain provider failures rather than synthetic fallback results
 - [Evaluation modes](https://cloud.tencent.com/document/product/1774/107338)
 - [Pinyin mode and tone-detection example](https://cloud.tencent.com/document/product/1774/107402)
 - [Strictness coefficient](https://cloud.tencent.com/document/product/1774/107379)
+- [SOE-N pricing and concurrency](https://cloud.tencent.com/document/product/1774/107342)
 - [Basic product retirement notice](https://cloud.tencent.com/product/oeb)
 
 The older product 884 data-structure page is linked from parts of the current documentation. It is
