@@ -94,7 +94,7 @@
       "unit_price_usd": null,
       "assumed_requests_per_minute": 1.0,
       "evidence_status": "unknown",
-      "source_url": "https://www.xfyun.cn/doc/voiceservice/ise/API.html",
+      "source_url": "https://www.xfyun.cn/doc/Ise/IseAPI.html",
       "accessed_date": "2026-08-03",
       "notes": "Public API documentation confirms capability but did not expose a durable public rate. Obtain a console quote."
     },

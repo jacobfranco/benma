@@ -13,12 +13,23 @@ def test_cost_scenarios_include_required_scales() -> None:
     catalog = load_catalog(ROOT / "benchmark/evaluation/cost/pricing-v2026-08-03.json")
     result = calculate_scenarios(catalog)
     assert set(result) == {
+        "one_attempt",
+        "100_attempts",
         "10_minutes_per_day",
         "30_minutes_per_day",
         "60_minutes_per_day",
         "100_users_30_minutes_per_day",
         "1000_users_30_minutes_per_day",
     }
+
+
+def test_pronunciation_architectures_keep_unknown_ensembles_unknown() -> None:
+    catalog = load_catalog(ROOT / "benchmark/evaluation/cost/pricing-v2026-08-03.json")
+    scenario = calculate_scenarios(catalog)["100_attempts"]
+    architectures = scenario["pronunciation_architectures"]
+    assert architectures["single_provider"]["tencent"] == pytest.approx(0.0699)
+    assert architectures["benchmark_all_providers"] is None
+    assert any(value is None for value in architectures["two_provider_ensemble"].values())
 
 
 def test_google_monthly_cost_uses_dated_rate() -> None:

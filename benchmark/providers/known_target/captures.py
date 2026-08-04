@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import uuid
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +26,12 @@ from benchmark.storage import write_model
 def _number(value: object) -> float | None:
     if isinstance(value, int | float):
         return max(0.0, min(100.0, float(value)))
+    return None
+
+
+def _nonnegative(value: object) -> float | None:
+    if isinstance(value, int | float) and value >= 0:
+        return float(value)
     return None
 
 
@@ -165,12 +172,20 @@ def import_live_capture(
         else {}
     )
     configuration = payload.get("request_configuration")
+    timestamp_value = payload.get("timestamp")
+    timestamp = (
+        datetime.fromisoformat(timestamp_value.replace("Z", "+00:00"))
+        if isinstance(timestamp_value, str)
+        else datetime.now(UTC)
+    )
     run = ProviderRun(
         run_id=f"{provider}-{sample.sample_id}-{uuid.uuid4().hex[:12]}",
         provider=provider,
         product=product,
         provider_version=str(payload.get("provider_version") or "undocumented"),
         adapter_version=str(payload.get("adapter_version") or "undocumented"),
+        git_commit_sha=str(payload.get("git_commit_sha") or "undocumented"),
+        timestamp=timestamp,
         benchmark_sample_id=sample.sample_id,
         request_mode=RequestMode.KNOWN_TARGET,
         request_configuration=configuration if isinstance(configuration, dict) else {},
@@ -179,6 +194,8 @@ def import_live_capture(
         transport_timings_seconds=timings,
         response_latency_seconds=timings.get("total"),
         audio_duration_seconds=sample.audio.duration_seconds,
+        estimated_billable_units=_nonnegative(payload.get("estimated_billable_units")),
+        estimated_cost_usd=_nonnegative(payload.get("estimated_cost_usd")),
         normalized_result=normalized_result(evidence),
         raw_response=payload.get("raw_response"),
         raw_response_sha256=(

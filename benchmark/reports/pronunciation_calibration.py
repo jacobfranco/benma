@@ -20,6 +20,7 @@ from benchmark.evaluation.calibration import (
 )
 from benchmark.evaluation.metrics import quantile
 from benchmark.models import (
+    AcousticAnalysisResult,
     BenchmarkSample,
     CalibrationMaturity,
     CalibrationMode,
@@ -72,7 +73,23 @@ def _tone(value: str | int | None) -> str | None:
 
 
 def _provider_identity(run: ProviderRun) -> str:
-    return f"{run.provider}/{run.product}"
+    configuration = json.dumps(
+        run.request_configuration, sort_keys=True, ensure_ascii=False, separators=(",", ":")
+    )
+    digest = hashlib.sha256(configuration.encode()).hexdigest()[:10]
+    return f"{run.provider}/{run.product}#config-{digest}"
+
+
+def _latest_evidence_runs(runs: list[ProviderRun]) -> tuple[list[ProviderRun], list[str]]:
+    latest: dict[tuple[str, str], ProviderRun] = {}
+    superseded: list[str] = []
+    for run in sorted(runs, key=lambda item: (item.timestamp, item.run_id)):
+        key = (run.benchmark_sample_id, _provider_identity(run))
+        previous = latest.get(key)
+        if previous is not None:
+            superseded.append(previous.run_id)
+        latest[key] = run
+    return list(latest.values()), superseded
 
 
 def _expected_tone(sample: BenchmarkSample, index: int, reference: str | None) -> str | None:
@@ -110,6 +127,47 @@ def _human_consensus(
         sample_id: consensus_for_sample(samples[sample_id], items)
         for sample_id, items in grouped.items()
         if sample_id in samples
+    }
+
+
+def _human_evidence_summary(
+    consensus: dict[str, dict[str, Any]],
+    annotations: list[HumanListenerAnnotation],
+) -> dict[str, Any]:
+    understood_yes = sum(item["understood_first_pass"]["yes"] for item in consensus.values())
+    understood_total = sum(
+        item["understood_first_pass"]["total"] for item in consensus.values()
+    )
+    repeat_yes = sum(item["would_request_repetition"]["yes"] for item in consensus.values())
+    repeat_total = sum(
+        item["would_request_repetition"]["total"] for item in consensus.values()
+    )
+    return {
+        "consensus_classes": dict(
+            Counter(item["consensus_class"] for item in consensus.values())
+        ),
+        "understood_first_pass": rate_estimate(
+            understood_yes, understood_total
+        ).normalized(),
+        "would_request_repetition": rate_estimate(repeat_yes, repeat_total).normalized(),
+        "understanding_vote_patterns": dict(
+            Counter(
+                f"{item['understood_first_pass']['yes']}/{item['understood_first_pass']['total']}"
+                for item in consensus.values()
+            )
+        ),
+        "samples_with_understanding_disagreement": sum(
+            0 < item["understood_first_pass"]["yes"]
+            < item["understood_first_pass"]["total"]
+            for item in consensus.values()
+        ),
+        "rater_roles": dict(
+            Counter(
+                annotation.blind.rater_profile.role.value
+                for annotation in annotations
+                if annotation.blind.rater_profile is not None
+            )
+        ),
     }
 
 
@@ -328,6 +386,16 @@ def _threshold_search(
         if majority is None or human["consensus_class"] == "invalid_sample":
             continue
         identity = _provider_identity(run)
+        technical_error = any(
+            human[f"{dimension}_issue"]["majority"] is True
+            for dimension in ("tone", "initial", "final")
+        )
+        for field in ("pronunciation_score", "overall_score"):
+            score = getattr(result, field)
+            if score is not None:
+                observations[f"{identity}:{field}"].append(
+                    BinaryObservation(sample.sample_id, score, technical_error)
+                )
         for index, syllable in enumerate(result.syllables):
             if syllable.tone_score is not None:
                 if majority is True and index not in affected_tone_indices:
@@ -339,13 +407,35 @@ def _threshold_search(
                         index in affected_tone_indices,
                     )
                 )
-    return {
+        phone_scores = [
+            phone.score
+            for syllable in result.syllables
+            for phone in syllable.phones
+            if phone.score is not None
+        ]
+        segment_error = (
+            human["initial_issue"]["majority"] is True
+            or human["final_issue"]["majority"] is True
+        )
+        if phone_scores:
+            observations[f"{identity}:minimum_phone_score"].append(
+                BinaryObservation(sample.sample_id, min(phone_scores), segment_error)
+            )
+    candidates = {
         identity: {
             "selection_policy": "No automatic winner; inspect conservative calibration results.",
             "candidates": explore_thresholds(items, split=split),
         }
         for identity, items in observations.items()
     }
+    candidates["_unsupported_signals"] = {
+        "provider_error_confidence": (
+            "Preserved in raw provider detail, but vendors expose different polarity/scales and "
+            "missing-on-correct behavior. Define a provider-specific acceptance signal before "
+            "threshold exploration; do not coerce it into a universal score."
+        )
+    }
+    return candidates
 
 
 def _provider_summary(runs: list[ProviderRun]) -> dict[str, Any]:
@@ -392,6 +482,101 @@ def _provider_summary(runs: list[ProviderRun]) -> dict[str, Any]:
     }
 
 
+def _acoustic_provider_agreement(
+    runs: list[ProviderRun],
+    samples: dict[str, BenchmarkSample],
+    consensus: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    acoustics: dict[str, list[tuple[str, AcousticAnalysisResult]]] = defaultdict(list)
+    providers: dict[str, list[tuple[str, KnownTargetAssessmentResult]]] = defaultdict(list)
+    for run in runs:
+        if isinstance(run.normalized_result, AcousticAnalysisResult):
+            acoustics[run.benchmark_sample_id].append(
+                (_provider_identity(run), run.normalized_result)
+            )
+        elif isinstance(run.normalized_result, KnownTargetAssessmentResult):
+            providers[run.benchmark_sample_id].append(
+                (_provider_identity(run), run.normalized_result)
+            )
+    counts: Counter[str] = Counter()
+    rows: list[dict[str, Any]] = []
+    directions = {1: "level", 2: "rising", 4: "falling"}
+    for sample_id in sorted(set(acoustics) & set(providers)):
+        sample = samples.get(sample_id)
+        human = consensus.get(sample_id)
+        if sample is None or len(sample.intended_pinyin) != 1:
+            continue
+        for provider_identity, provider_result in providers[sample_id]:
+            syllable = provider_result.syllables[0] if provider_result.syllables else None
+            provider_tone = _tone(syllable.detected_tone) if syllable else None
+            expected = _expected_tone(
+                sample, 0, syllable.reference_tone if syllable else None
+            )
+            for acoustic_identity, acoustic_result in acoustics[sample_id]:
+                slope = acoustic_result.contour_features.get("start_end_slope_st_per_s")
+                f0_direction = (
+                    "rising"
+                    if slope is not None and slope > 0
+                    else "falling"
+                    if slope is not None and slope < 0
+                    else "level"
+                    if slope == 0
+                    else None
+                )
+                numeric_provider = (
+                    int(provider_tone[1:])
+                    if provider_tone and provider_tone[1:].isdigit()
+                    else None
+                )
+                numeric_expected = (
+                    int(expected[1:])
+                    if expected and expected[1:].isdigit()
+                    else None
+                )
+                if provider_tone is None and f0_direction is None:
+                    classification = "both_unavailable"
+                elif provider_tone is None:
+                    classification = "provider_tone_unavailable"
+                elif f0_direction is None:
+                    classification = "f0_unavailable"
+                elif (
+                    numeric_provider is not None
+                    and directions.get(numeric_provider) == f0_direction
+                ):
+                    classification = "provider_agrees_with_f0"
+                else:
+                    classification = "provider_conflicts_with_f0"
+                counts[classification] += 1
+                rows.append(
+                    {
+                        "sample_id": sample_id,
+                        "provider": provider_identity,
+                        "acoustic": acoustic_identity,
+                        "expected_surface_tone": expected,
+                        "provider_tone": provider_tone,
+                        "f0_direction": f0_direction,
+                        "classification": classification,
+                        "human_tone_error": (
+                            0 in human["human_supported_tone_error_indices"]
+                            if human
+                            and human["qualifying_native_listener_count"] >= 3
+                            else None
+                        ),
+                        "provider_matches_expected": (
+                            numeric_provider == numeric_expected
+                            if numeric_provider is not None and numeric_expected is not None
+                            else None
+                        ),
+                    }
+                )
+    return {
+        "counts": dict(counts),
+        "comparisons": rows,
+        "promotion_state": "exploratory_only",
+        "warning": "F0 conflict is evidence conflict, not acoustic ground truth.",
+    }
+
+
 def _git_commit() -> str:
     try:
         completed = subprocess.run(
@@ -430,11 +615,12 @@ def generate_pronunciation_calibration(
     ]
     samples = {sample.sample_id: sample for sample in recorded}
     all_runs = _runs(runs_dir)
-    runs = [
+    qualifying_runs = [
         run
         for run in all_runs
         if run.benchmark_sample_id in samples and _real_run(run)
     ]
+    runs, superseded_run_ids = _latest_evidence_runs(qualifying_runs)
     annotations = [
         item for item in _annotations(annotations_dir) if item.blind.sample_id in samples
     ]
@@ -621,7 +807,9 @@ def generate_pronunciation_calibration(
         },
         "split": split.model_dump(mode="json") if split else None,
         "human_consensus": consensus,
+        "human_evidence_summary": _human_evidence_summary(consensus, annotations),
         "provider_metrics": provider_metrics,
+        "superseded_provider_run_ids": sorted(superseded_run_ids),
         "score_distributions": _score_distributions(runs, samples, consensus),
         "threshold_search": threshold_search,
         "providers": _provider_summary(runs),
@@ -631,6 +819,7 @@ def generate_pronunciation_calibration(
                 "not_run" if not recorded else "tooling_pending_manual_review"
             ),
             "production_decision": "keep_autocorrelation_pending_real_comparison",
+            "provider_agreement": _acoustic_provider_agreement(runs, samples, consensus),
         },
         "alignment": {
             "real_comparison_status": "not_run" if not recorded else "pending_manual_review",
@@ -713,6 +902,19 @@ def generate_pronunciation_calibration(
                 else "Provider metrics, counts, confidence intervals, abstentions, score overlap, "
                 "and exploratory thresholds are in the JSON artifact."
             ),
+            "",
+            "| Provider/mode | Lifecycle | Live runs | Calibration |",
+            "|---|---|---:|---|",
+        ]
+    )
+    for row in summary["provider_status_scorecard"]:
+        lines.append(
+            f"| {row['provider']} / {row['mode']} | {row['lifecycle']} | "
+            f"{row['observed_live_run_count']} | {row['calibration_maturity']} / "
+            f"{row['calibration_scope']} |"
+        )
+    lines.extend(
+        [
             "",
             "## Decision",
             "",

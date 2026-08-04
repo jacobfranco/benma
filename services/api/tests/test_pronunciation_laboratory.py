@@ -292,6 +292,9 @@ def test_analysis_orchestrates_separate_evidence_and_is_idempotent(
     assert rerun["alignment"]["id"] != first["alignment"]["id"]
     assert rerun["interpretation"]["id"] != first["interpretation"]["id"]
     assert first["capability_policy"]["categorical_tone_judgment"] == "unavailable"
+    assert first["capability_policy"]["wording_policy"]["raw_evidence"] == (
+        "factual_provider_or_acoustic_observation_only"
+    )
     assert first["overall_evidence"]["recording_quality"]["status"] == (
         "invalid_for_interpretation"
     )

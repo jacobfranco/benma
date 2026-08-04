@@ -7,6 +7,7 @@ import pytest
 from benchmark.annotations import commit_blind, commit_revealed
 from benchmark.evaluation.calibration import (
     BinaryObservation,
+    calibration_scope_for_promotion,
     consensus_for_sample,
     create_stratified_split,
     explore_thresholds,
@@ -187,4 +188,29 @@ def test_thresholds_are_selected_on_calibration_and_report_holdout_separately() 
     assert all(
         candidate["held_out"]["false_acceptance"]["denominator"] == 1
         for candidate in candidates
+    )
+
+
+def test_personal_scope_never_silently_becomes_general() -> None:
+    assert (
+        calibration_scope_for_promotion(
+            held_out_gate_passed=True, learner_speaker_ids={"learner_1"}
+        ).value
+        == "personal"
+    )
+    assert (
+        calibration_scope_for_promotion(
+            held_out_gate_passed=True,
+            learner_speaker_ids={"learner_1", "learner_2"},
+            pilot_population_gate_passed=True,
+        ).value
+        == "pilot_population"
+    )
+    assert (
+        calibration_scope_for_promotion(
+            held_out_gate_passed=True,
+            learner_speaker_ids={"learner_1"},
+            representative_general_study_passed=False,
+        ).value
+        != "general"
     )

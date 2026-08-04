@@ -17,8 +17,12 @@ PROVIDERS = ("azure", "tencent_sentence", "tencent_pinyin", "iflytek")
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="benma-provider-bakeoff")
     parser.add_argument("--sample", required=True, type=Path)
+    parser.add_argument("--sample-id", required=True)
     parser.add_argument("--target", required=True)
     parser.add_argument("--pinyin", nargs="*", default=[])
+    parser.add_argument("--surface-tones", nargs="*", default=[])
+    parser.add_argument("--acoustic-json", type=Path)
+    parser.add_argument("--alignment-json", type=Path)
     parser.add_argument("--timeout", type=float, default=45.0)
     parser.add_argument("--output", required=True, type=Path)
     return parser
@@ -30,6 +34,19 @@ def _last_json(stdout: str) -> dict[str, Any] | None:
     except json.JSONDecodeError:
         return None
     return value if isinstance(value, dict) else None
+
+
+def _optional_evidence(path: Path | None) -> dict[str, Any] | None:
+    if path is None:
+        return None
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise SystemExit(f"evidence file must be a JSON object: {path}")
+    return {
+        "path": str(path),
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "evidence": value,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -84,11 +101,17 @@ def main(argv: list[str] | None = None) -> int:
     manifest = {
         "run_type": "same_audio_known_target_bakeoff",
         "timestamp": datetime.now(UTC).isoformat(),
-        "target": args.target,
-        "pinyin": args.pinyin,
+        "sample_id": args.sample_id,
+        "target_snapshot": {
+            "text": args.target,
+            "pinyin": args.pinyin,
+            "expected_surface_tones": args.surface_tones,
+        },
         "audio_path": str(args.sample),
         "audio_sha256": audio_hash,
         "providers": rows,
+        "acoustic_evidence": _optional_evidence(args.acoustic_json),
+        "alignment_evidence": _optional_evidence(args.alignment_json),
         "truth_note": (
             "A requested production is not ground truth. Human annotation is required before "
             "calibration metrics may use these captures."
@@ -101,6 +124,9 @@ def main(argv: list[str] | None = None) -> int:
         "# Same-audio Mandarin provider bakeoff",
         "",
         f"Audio SHA-256: `{audio_hash}`",
+        f"Sample ID: `{args.sample_id}`",
+        f"Target: `{args.target}` / `{' '.join(args.pinyin)}`",
+        f"Expected surface tones: `{' '.join(args.surface_tones) or 'not supplied'}`",
         "",
         "| Configuration | State | Product | Capture |",
         "|---|---|---|---|",
@@ -110,7 +136,19 @@ def main(argv: list[str] | None = None) -> int:
             f"| {row['provider_configuration']} | {row['state']} | "
             f"{row.get('product') or 'not reached'} | {row.get('capture') or 'none'} |"
         )
-    lines.extend(["", manifest["truth_note"], ""])
+    lines.extend(
+        [
+            "",
+            "## Independent evidence",
+            "",
+            f"Acoustics: `{args.acoustic_json or 'not supplied'}`",
+            "",
+            f"Alignment: `{args.alignment_json or 'not supplied'}`",
+            "",
+            manifest["truth_note"],
+            "",
+        ]
+    )
     (args.output / "bakeoff.md").write_text("\n".join(lines), encoding="utf-8")
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
     return 0 if any(row["state"] == "LIVE_VALIDATED" for row in rows) else 2

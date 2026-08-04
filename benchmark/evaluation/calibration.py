@@ -14,6 +14,7 @@ from typing import Any
 from benchmark.models import (
     BenchmarkSample,
     CalibrationMode,
+    CalibrationScope,
     CalibrationSplitManifest,
     ErrorType,
     HumanConsensusClass,
@@ -304,3 +305,21 @@ def severity_is_severe(
         SemanticSeverity.REQUIRES_REPETITION.value,
         SemanticSeverity.WRONG_WORD_PERCEIVED.value,
     }
+
+
+def calibration_scope_for_promotion(
+    *,
+    held_out_gate_passed: bool,
+    learner_speaker_ids: set[str],
+    pilot_population_gate_passed: bool = False,
+    representative_general_study_passed: bool = False,
+) -> CalibrationScope:
+    if not held_out_gate_passed:
+        return CalibrationScope.NONE
+    if representative_general_study_passed:
+        return CalibrationScope.GENERAL
+    if len(learner_speaker_ids) == 1:
+        return CalibrationScope.PERSONAL
+    if pilot_population_gate_passed and len(learner_speaker_ids) > 1:
+        return CalibrationScope.PILOT_POPULATION
+    return CalibrationScope.NONE

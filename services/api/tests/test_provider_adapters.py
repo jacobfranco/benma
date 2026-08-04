@@ -10,7 +10,12 @@ import httpx
 import pytest
 
 from benma_api.config import Settings
-from benma_api.errors import AnalysisUnsupportedError
+from benma_api.errors import (
+    AnalysisUnsupportedError,
+    ProviderMalformedResponseError,
+    ProviderRejectedError,
+    ProviderTimeoutError,
+)
 from benma_api.speech.contracts import (
     KnownTargetAssessmentInput,
     UnknownTargetPerceptionInput,
@@ -228,6 +233,41 @@ def test_tencent_tone_command_is_pinned() -> None:
     assert TONE_COMMAND == "{::cmd{F_TDET=true}}"
 
 
+def test_tencent_rejects_missing_pinyin_and_malformed_result() -> None:
+    provider = TencentSoenPronunciationProvider(
+        "secret-id", "secret-key", "123456", mode="pinyin"
+    )
+    request = KnownTargetAssessmentInput(
+        attempt_id=uuid.uuid4(),
+        canonical_audio=b"wav",
+        mime_type="audio/wav",
+        target_snapshot={"text": "生活"},
+        timeout_seconds=30,
+    )
+    with pytest.raises(ProviderRejectedError, match="numeric pinyin"):
+        provider.signed_url(request)
+    with pytest.raises(ProviderMalformedResponseError, match="valid JSON"):
+        parse_tencent_result("not-json")
+
+
+def test_tencent_timeout_is_not_replayed() -> None:
+    def timeout(_url: str, _audio: bytes, _seconds: float):  # type: ignore[no-untyped-def]
+        raise ProviderTimeoutError("timed out", retryable=True)
+
+    provider = TencentSoenPronunciationProvider(
+        "secret-id", "secret-key", "123456", mode="sentence", exchange=timeout
+    )
+    request = KnownTargetAssessmentInput(
+        attempt_id=uuid.uuid4(),
+        canonical_audio=b"wav",
+        mime_type="audio/wav",
+        target_snapshot={"text": "生活"},
+        timeout_seconds=30,
+    )
+    with pytest.raises(ProviderTimeoutError):
+        provider.assess(request)
+
+
 def test_iflytek_full_dimension_request_and_auth_do_not_expose_secret() -> None:
     provider = IflytekIsePronunciationProvider("app-id", "api-key", "api-secret")
     request = KnownTargetAssessmentInput(
@@ -303,3 +343,31 @@ def test_iflytek_live_wrapper_keeps_identical_audio_and_sanitizes_envelope() -> 
     assert response.request_configuration is not None
     assert response.request_configuration["full_dimension_requested"] is True
     assert "sensitive-copy" not in str(response.raw_payload)
+
+
+def test_iflytek_malformed_xml_and_empty_target_are_rejected() -> None:
+    with pytest.raises(ProviderMalformedResponseError, match="malformed XML"):
+        parse_iflytek_xml("<not-closed>")
+    provider = IflytekIsePronunciationProvider("app-id", "api-key", "api-secret")
+    request = KnownTargetAssessmentInput(
+        attempt_id=uuid.uuid4(),
+        canonical_audio=b"wav",
+        mime_type="audio/wav",
+        target_snapshot={"text": ""},
+        timeout_seconds=30,
+    )
+    with pytest.raises(ProviderRejectedError, match="requires a Mandarin target"):
+        provider.start_payload(request)
+
+
+def test_iflytek_preserves_dp_omission_and_substitution() -> None:
+    xml = """<xml_result><read_sentence version="1"><read_sentence total_score="50">
+    <word><syll content="生" symbol="sheng1" dp_message="16">
+    <phone content="sh" is_yun="0" dp_message="128" perr_msg="1" perr_level_msg="3"/>
+    </syll></word></read_sentence></read_sentence></xml_result>"""
+    evidence, _ = parse_iflytek_xml(xml)
+    assert evidence.syllables is not None
+    classifications = evidence.syllables[0]["error_classifications"]
+    assert "omission" in classifications
+    assert "substitution" in classifications
+    assert "initial_error" in classifications

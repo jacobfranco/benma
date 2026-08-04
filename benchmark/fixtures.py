@@ -9,6 +9,7 @@ from benchmark.annotations import commit_blind
 from benchmark.models import (
     BlindListenerResponse,
     ContextCondition,
+    EvidenceOrigin,
     KnownTargetAssessmentResult,
     ProviderRun,
     RequestMode,
@@ -79,6 +80,7 @@ def materialize_replay_fixtures(root: Path) -> tuple[int, int]:
                 ),
                 raw_response=raw,
                 status=RunStatus.SUCCEEDED,
+                evidence_origin=EvidenceOrigin.CONSTRUCTED_FIXTURE,
             )
             write_model(runs_dir / f"{run.run_id}.json", run)
             run_count += 1
@@ -108,6 +110,7 @@ def materialize_replay_fixtures(root: Path) -> tuple[int, int]:
             raw_response={"text": transcript, "fixture": True},
             status=RunStatus.SUCCEEDED,
             context_condition=condition,
+            evidence_origin=EvidenceOrigin.CONSTRUCTED_FIXTURE,
         )
         write_model(runs_dir / f"{run.run_id}.json", run)
         run_count += 1
@@ -178,6 +181,7 @@ def materialize_replay_fixtures(root: Path) -> tuple[int, int]:
                 normalized_result=normalized,
                 raw_response={"normalized": normalized.model_dump(mode="json"), "fixture": True},
                 status=RunStatus.SUCCEEDED,
+                evidence_origin=EvidenceOrigin.CONSTRUCTED_FIXTURE,
             )
             write_model(runs_dir / f"{run.run_id}.json", run)
             run_count += 1

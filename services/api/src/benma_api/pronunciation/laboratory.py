@@ -25,7 +25,7 @@ from benma_api.pronunciation.acoustics import (
     DisabledAcousticAnalyzer,
 )
 from benma_api.pronunciation.alignment import AlignmentService, build_aligner
-from benma_api.pronunciation.capabilities import pronunciation_provider_statuses
+from benma_api.pronunciation.capabilities import pronunciation_capability_policy
 from benma_api.pronunciation.interpretation import PronunciationInterpretationService
 from benma_api.pronunciation.reference import ReferenceSpeechService
 from benma_api.pronunciation.service import AssessmentService
@@ -395,17 +395,7 @@ class PronunciationLaboratoryService:
             interpretation=(
                 interpretation_response(interpretation) if interpretation else None
             ),
-            capability_policy={
-                "tone_interpretation": (
-                    "experimental"
-                    if self.settings.enable_experimental_tone_interpretation
-                    else "raw_evidence"
-                ),
-                "categorical_tone_judgment": "unavailable",
-                "reference_contour_role": "visual_example_not_grading_truth",
-                "intelligibility_inference": "unavailable",
-                "provider_candidates": pronunciation_provider_statuses(),
-            },
+            capability_policy=pronunciation_capability_policy(self.settings),
         )
 
     def reference(

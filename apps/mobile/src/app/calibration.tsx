@@ -11,11 +11,24 @@ import { colors } from '@/theme';
 interface CalibrationPrompt {
   id: string;
   target: string;
+  pinyin: string;
+  pairId: string;
   requestedProduction: 'correct' | 'wrong tone' | 'wrong initial' | 'wrong final' | 'negative control';
   instruction: string;
 }
 
-const TARGETS = ['妈', '麻', '马', '骂', '买', '卖', '水', '睡', '生活', '睡觉'];
+const TARGETS = [
+  { target: '妈', pinyin: 'mā', alternateTone: 2 },
+  { target: '麻', pinyin: 'má', alternateTone: 3 },
+  { target: '马', pinyin: 'mǎ', alternateTone: 4 },
+  { target: '骂', pinyin: 'mà', alternateTone: 1 },
+  { target: '买', pinyin: 'mǎi', alternateTone: 4 },
+  { target: '卖', pinyin: 'mài', alternateTone: 3 },
+  { target: '水', pinyin: 'shuǐ', alternateTone: 4 },
+  { target: '睡', pinyin: 'shuì', alternateTone: 3 },
+  { target: '生活', pinyin: 'shēng huó', alternateTone: 4 },
+  { target: '睡觉', pinyin: 'shuì jiào', alternateTone: 3 },
+];
 
 function prompts(): CalibrationPrompt[] {
   const categories: CalibrationPrompt['requestedProduction'][] = [
@@ -25,17 +38,21 @@ function prompts(): CalibrationPrompt[] {
     'correct',
     'negative control',
   ];
-  return categories.flatMap((category, categoryIndex) =>
-    TARGETS.map((target, index) => ({
-      id: `pilot-${categoryIndex + 1}-${index + 1}`,
-      target,
+  return TARGETS.flatMap((item, targetIndex) =>
+    categories.map((category, categoryIndex) => ({
+      id: `pilot-${targetIndex + 1}-${categoryIndex + 1}`,
+      target: item.target,
+      pinyin: item.pinyin,
+      pairId: `pilot-pair-${targetIndex + 1}`,
       requestedProduction: category,
       instruction:
         category === 'correct'
           ? 'Produce the target naturally and clearly.'
           : category === 'negative control'
             ? 'Produce nonsense, very unclear speech, or silence as assigned in the session notes.'
-            : `Deliberately produce exactly one ${category.replace('wrong ', '')} error.`,
+            : category === 'wrong tone'
+              ? `Intentionally produce Tone ${item.alternateTone} on the assigned syllable.`
+              : `Deliberately produce exactly one ${category.replace('wrong ', '')} error.`,
     })),
   );
 }
@@ -87,6 +104,7 @@ export default function CalibrationCaptureScreen() {
       const practice = await api.createPracticeSession('pronunciation', {
         development_calibration_capture: true,
         prompt_id: prompt.id,
+        pair_id: prompt.pairId,
         requested_production: prompt.requestedProduction,
         requested_production_is_ground_truth: false,
         evidence_requires_three_native_listener_annotations: true,
@@ -124,6 +142,7 @@ export default function CalibrationCaptureScreen() {
       <Card>
         <Text style={styles.promptId}>{prompt.id}</Text>
         <Chinese>{prompt.target}</Chinese>
+        <Body>{prompt.pinyin}</Body>
         <Text style={styles.production}>{prompt.requestedProduction}</Text>
         <Body>{prompt.instruction}</Body>
         {capture.isRecording ? (

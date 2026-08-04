@@ -17,12 +17,16 @@ def _capture(path: Path, audio_hash: str, *, target: str = "你好") -> Path:
         "product": "soe-n_mandarin_sentence_tone_detection",
         "provider_version": "undocumented",
         "adapter_version": "1.0.0",
+        "timestamp": "2026-08-03T12:00:00+00:00",
+        "git_commit_sha": "b" * 40,
         "target": target,
         "audio_sha256": audio_hash,
         "sample_rate_hz": 16000,
         "request_configuration": {"eval_mode": 1, "tone_detection": True},
         "transport_timings_ms": {"total": 124},
         "raw_response_sha256": "a" * 64,
+        "estimated_billable_units": 1,
+        "estimated_cost_usd": 0.000699,
         "normalized_evidence": {
             "overall_score": 80,
             "syllables": [
@@ -57,6 +61,9 @@ def test_import_live_capture_preserves_identity_and_provenance(
     assert run.evidence_origin == EvidenceOrigin.LIVE_CAPTURED_SANITIZED
     assert run.audio_sha256 == audio_hash
     assert run.response_latency_seconds == pytest.approx(0.124)
+    assert run.git_commit_sha == "b" * 40
+    assert run.estimated_billable_units == 1
+    assert run.estimated_cost_usd == pytest.approx(0.000699)
     assert isinstance(run.normalized_result, KnownTargetAssessmentResult)
     assert run.normalized_result.syllables[0].detected_tone == "T2"
     assert (tmp_path / "runs" / f"{run.run_id}.json").exists()

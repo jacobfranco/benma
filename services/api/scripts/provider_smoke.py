@@ -5,9 +5,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 import sys
 import uuid
 import wave
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -52,6 +54,20 @@ def _wav_metadata(path: Path) -> dict[str, Any]:
     if actual != expected:
         raise SystemExit(f"sample must be canonical 16kHz mono PCM16 WAV; got {actual}")
     return metadata
+
+
+def _git_commit() -> str:
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=2,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return "undocumented"
+    return completed.stdout.strip() or "undocumented"
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -102,6 +118,8 @@ def main(argv: list[str] | None = None) -> int:
     output = {
         "capture_type": "LIVE_REQUEST_SUCCEEDED",
         "lifecycle": "LIVE_VALIDATED",
+        "timestamp": datetime.now(UTC).isoformat(),
+        "git_commit_sha": _git_commit(),
         "provider": provider.provider_name,
         "product": provider.product_name,
         "provider_version": response.provider_version or "undocumented",
@@ -112,6 +130,17 @@ def main(argv: list[str] | None = None) -> int:
         "request_configuration": response.request_configuration or {},
         "transport_timings_ms": response.transport_timings_ms or {},
         "raw_response_sha256": raw_hash,
+        "estimated_billable_units": 1 if args.provider.startswith("tencent_") else None,
+        "estimated_cost_usd": 0.000699 if args.provider.startswith("tencent_") else None,
+        "pricing_provenance": (
+            {
+                "pricing_date": "2026-08-03",
+                "source": "https://cloud.tencent.com/document/product/1774/107342",
+                "conversion": "0.005 CNY/call at provisional 7.15 CNY/USD",
+            }
+            if args.provider.startswith("tencent_")
+            else {"status": "unknown_until_account_quote_or_observed_bill"}
+        ),
         "normalized_evidence": response.evidence.normalized(),
     }
     print(json.dumps(output, ensure_ascii=False, indent=2))

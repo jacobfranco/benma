@@ -67,14 +67,20 @@ def _three_annotations(
         )
 
 
-def _run(sample: BenchmarkSample, result: KnownTargetAssessmentResult) -> ProviderRun:
+def _run(
+    sample: BenchmarkSample,
+    result: KnownTargetAssessmentResult,
+    *,
+    configuration: dict[str, str] | None = None,
+) -> ProviderRun:
     return ProviderRun(
-        run_id=f"run-{sample.sample_id}",
+        run_id=f"run-{sample.sample_id}-{(configuration or {}).get('mode', 'baseline')}",
         provider="live_test_provider",
         product="mandarin_product",
         adapter_version="1",
         benchmark_sample_id=sample.sample_id,
         request_mode=RequestMode.KNOWN_TARGET,
+        request_configuration=configuration or {},
         normalized_result=result,
         raw_response={"capture_type": "LIVE_PROVIDER_RESPONSE"},
         evidence_origin=EvidenceOrigin.LIVE_PROVIDER,
@@ -169,13 +175,22 @@ def test_report_uses_surface_tones_human_error_indices_and_explicit_denominators
     runs = tmp_path / "runs"
     write_model(runs / "error.json", _run(error_sample, provider_result))
     write_model(runs / "acceptable.json", _run(acceptable_sample, provider_result))
+    missing_hypothesis = KnownTargetAssessmentResult(
+        syllables=(SyllableAssessment(), SyllableAssessment())
+    )
+    write_model(
+        runs / "missing.json",
+        _run(error_sample, missing_hypothesis, configuration={"mode": "missing"}),
+    )
     summary = generate_pronunciation_calibration(
         manifest_path=manifest_path,
         runs_dir=runs,
         annotations_dir=annotations,
         output_dir=tmp_path / "output",
     )
-    metrics = summary["provider_metrics"]["live_test_provider/mandarin_product"]
+    identity = next(iter(summary["provider_metrics"]))
+    assert identity.startswith("live_test_provider/mandarin_product#config-")
+    metrics = summary["provider_metrics"][identity]
     assert metrics["tone_detection_false_acceptance"] == {
         "numerator": 1,
         "denominator": 1,
@@ -190,3 +205,10 @@ def test_report_uses_surface_tones_human_error_indices_and_explicit_denominators
         "human_supported_tone_error_syllables"
     ]["actual"] == 1
     assert summary["categorical_tone_judgment_allowed"] is False
+    missing_metrics = next(
+        value
+        for key, value in summary["provider_metrics"].items()
+        if key != identity
+    )
+    assert missing_metrics["tone_error_abstentions"] == 1
+    assert missing_metrics["tone_detection_false_acceptance"]["denominator"] == 0
