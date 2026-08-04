@@ -24,7 +24,7 @@ from benma_api.speech.contracts import (
 class AzurePronunciationProvider:
     provider_name = "azure_speech"
     product_name = "pronunciation_assessment_zh-CN"
-    adapter_version = "1.0.0"
+    adapter_version = "1.0.1"
 
     def __init__(self, key: str, region: str) -> None:
         self.key = key
@@ -73,9 +73,30 @@ class AzurePronunciationProvider:
         try:
             raw: Any = response.json()
             best = raw["NBest"][0]
-            assessment = best["PronunciationAssessment"]
+            if not isinstance(best, dict):
+                raise TypeError("Azure NBest item is not an object")
         except (ValueError, KeyError, IndexError, TypeError) as exc:
             raise ProviderMalformedResponseError("Azure response has no assessment") from exc
+
+        nested_assessment = best.get("PronunciationAssessment")
+        if isinstance(nested_assessment, dict):
+            assessment = nested_assessment
+        else:
+            # Azure's short-audio REST endpoint may flatten pronunciation
+            # assessment fields directly onto NBest[0].
+            assessment = {
+                key: best[key]
+                for key in (
+                    "PronScore",
+                    "AccuracyScore",
+                    "FluencyScore",
+                    "CompletenessScore",
+                )
+                if key in best
+            }
+
+        if not assessment:
+            raise ProviderMalformedResponseError("Azure response has no assessment")
 
         syllables: list[dict[str, Any]] = []
 
@@ -92,11 +113,27 @@ class AzurePronunciationProvider:
         for word in best.get("Words", []):
             if not isinstance(word, dict):
                 continue
-            word_assessment = word.get("PronunciationAssessment", {})
+            nested_word_assessment = word.get("PronunciationAssessment")
+            if isinstance(nested_word_assessment, dict):
+                word_assessment = nested_word_assessment
+            else:
+                word_assessment = {
+                    key: word[key]
+                    for key in ("AccuracyScore", "ErrorType")
+                    if key in word
+                }
             phones = []
             for phone in word.get("Phonemes", []):
                 if isinstance(phone, dict):
-                    phone_assessment = phone.get("PronunciationAssessment", {})
+                    nested_phone_assessment = phone.get("PronunciationAssessment")
+                    if isinstance(nested_phone_assessment, dict):
+                        phone_assessment = nested_phone_assessment
+                    else:
+                        phone_assessment = {
+                            key: phone[key]
+                            for key in ("AccuracyScore",)
+                            if key in phone
+                        }
                     phones.append(
                         {
                             "phone": phone.get("Phoneme"),

@@ -101,9 +101,90 @@ def test_azure_serializes_target_and_preserves_only_supported_evidence(
     assert request_config["ReferenceText"] == "生活"
     normalized = result.evidence.normalized()
     assert normalized["overall_score"] == 81.0
-    assert normalized["syllables"][0]["phones"][0]["phone"] == "sh"  # type: ignore[index]
+    assert normalized["syllables"][0]["phones"][0]["phone"] == "sh"
     assert "detected_tone" not in str(normalized)
-    assert "tone score" in normalized["unsupported_capabilities"]  # type: ignore[operator]
+    assert "tone score" in normalized["unsupported_capabilities"]
+
+
+def test_azure_accepts_flattened_short_audio_pronunciation_response(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class Response:
+        status_code = 200
+
+        def json(self) -> dict[str, object]:
+            return {
+                "RecognitionStatus": "Success",
+                "DisplayText": "生活。",
+                "NBest": [
+                    {
+                        "AccuracyScore": 95.0,
+                        "FluencyScore": 100.0,
+                        "CompletenessScore": 100.0,
+                        "PronScore": 97.0,
+                        "Words": [
+                            {
+                                "Word": "生活",
+                                "Offset": 47_100_000,
+                                "Duration": 11_400_000,
+                                "AccuracyScore": 95.0,
+                                "ErrorType": "None",
+                                "Phonemes": [
+                                    {
+                                        "Phoneme": "sheng 1",
+                                        "Offset": 47_100_000,
+                                        "Duration": 4_900_000,
+                                        "AccuracyScore": 83.0,
+                                    },
+                                    {
+                                        "Phoneme": "huo 2",
+                                        "Offset": 52_100_000,
+                                        "Duration": 6_400_000,
+                                        "AccuracyScore": 96.0,
+                                    },
+                                ],
+                            }
+                        ],
+                    }
+                ],
+            }
+
+    monkeypatch.setattr(httpx, "post", lambda *args, **kwargs: Response())
+
+    result = AzurePronunciationProvider("secret-test-key", "eastus").assess(
+        KnownTargetAssessmentInput(
+            attempt_id=uuid.uuid4(),
+            canonical_audio=b"wav",
+            mime_type="audio/wav",
+            target_snapshot={"text": "生活", "lexical_tones": [1, 2]},
+            timeout_seconds=30,
+        )
+    )
+
+    normalized = result.evidence.normalized()
+
+    assert normalized["overall_score"] == 97.0
+    assert normalized["pronunciation_score"] == 95.0
+    assert normalized["fluency_score"] == 100.0
+    assert normalized["completeness_score"] == 100.0
+
+    word = normalized["syllables"][0]
+    assert word["text"] == "生活"
+    assert word["pronunciation_score"] == 95.0
+    assert word["provider_errors"] == ["None"]
+    assert word["timing"] == {
+        "start_seconds": 4.71,
+        "end_seconds": 5.85,
+    }
+
+    phones = word["phones"]
+    assert phones[0]["phone"] == "sheng 1"
+    assert phones[0]["pronunciation_score"] == 83.0
+    assert phones[1]["phone"] == "huo 2"
+    assert phones[1]["pronunciation_score"] == 96.0
+
+    assert isinstance(result.raw_payload, dict)
+    assert result.raw_payload["RecognitionStatus"] == "Success"
 
 
 def test_provider_registry_is_closed_and_disabled_is_explicit() -> None:
