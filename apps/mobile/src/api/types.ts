@@ -1,0 +1,38 @@
+import type { components } from '@/api/openapi.generated';
+
+type Schemas = components['schemas'];
+
+export type ApiErrorPayload = Schemas['ErrorResponse'];
+export type AuthToken = Schemas['AuthTokenResponse'];
+export type PracticeSession = Schemas['PracticeSessionResponse'];
+export type AudioAsset = Schemas['AudioAssetResponse'];
+export type Utterance = Schemas['UtteranceResponse'];
+export type PerceptionRun = Schemas['PerceptionRunResponse'];
+export type UserCorrection = Schemas['UserCorrectionResponse'];
+export type PronunciationTarget = Schemas['PronunciationTargetResponse'];
+export type PronunciationAttempt = Schemas['PronunciationAttemptResponse'];
+
+export interface SyllableEvidence {
+  text?: string;
+  pinyin?: string;
+  pronunciation_score?: number;
+  detected_tone?: number;
+  reference_tone?: number;
+  tone_score?: number;
+  phones?: Record<string, unknown>[];
+  provider_errors?: string[];
+}
+
+export interface NormalizedAssessment {
+  evidence_status: 'synthetic_replay' | 'live_provider' | string;
+  overall_score?: number;
+  pronunciation_score?: number;
+  fluency_score?: number;
+  completeness_score?: number;
+  syllables?: SyllableEvidence[];
+  unsupported_capabilities?: string[];
+}
+
+export type AssessmentRun = Omit<Schemas['AssessmentRunResponse'], 'normalized_result'> & {
+  normalized_result: NormalizedAssessment | null;
+};

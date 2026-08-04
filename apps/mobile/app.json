@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Benma",
+    "slug": "benma",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "benma",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.benma.mobile"
+    },
+    "android": {
+      "package": "app.benma.mobile"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Benma to record your Mandarin practice.",
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
