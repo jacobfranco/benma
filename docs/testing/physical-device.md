@@ -16,14 +16,21 @@ with each run. Replay is acceptable for pipeline testing only when the fixture b
 - [ ] 9. View “What Benma heard”; for replay, confirm the development-fixture banner.
 - [ ] 10. Enter a different intended sentence as a correction.
 - [ ] 11. Confirm the original transcript and correction remain visible and distinct.
-- [ ] 12. Open Pronunciation, enter `生活`, and confirm `shēng huó` is secondary to the characters.
-- [ ] 13. Record and upload a pronunciation attempt.
-- [ ] 14. Run assessment; confirm only supported scores/syllables/phones/tones appear.
-- [ ] 15. Replay the attempt, record a second one, and replay both from session-local history.
-- [ ] 16. Kill and restart the app; confirm native auth restoration and server-backed audio history.
-- [ ] 17. Sign out; confirm the revoked token cannot reload history.
-- [ ] 18. Disconnect the network during upload and confirm a useful failure state.
-- [ ] 19. Restore the network and retry without app corruption; when upload had completed, retry
+- [ ] 12. Open Pronunciation, enter `生活`, confirm `shēng huó`, edit to numeric pinyin, and verify
+      the correction creates a new prepared reading.
+- [ ] 13. Play the native reference repeatedly, then alternate reference/mine through headphones.
+- [ ] 14. Record and upload a pronunciation attempt; verify too-quiet/clipped attempts produce a
+      recording warning rather than a pronunciation verdict.
+- [ ] 15. Analyze and confirm supported syllable, phone, tone, pitch, and alignment evidence appears;
+      missing capabilities must be explicit.
+- [ ] 16. Inspect the post-utterance pitch plot for stable rendering, unvoiced gaps, syllable regions,
+      and reference/user colors. No live microphone pitch should appear.
+- [ ] 17. Record at least five retries; replay old attempts and select two for A/B comparison.
+- [ ] 18. Kill and restart the app; confirm native auth restoration and server-backed audio history.
+- [ ] 19. Sign out; confirm the revoked token cannot reload history.
+- [ ] 20. Disconnect the network during reference generation, upload, and analysis; each failure
+      must leave the target/attempt usable.
+- [ ] 21. Restore the network and retry without app corruption; when upload had completed, retry
       analysis without rerecording and confirm a distinct evidence run.
 
 ## Audio-route smoke tests
@@ -36,6 +43,10 @@ with each run. Replay is acceptable for pipeline testing only when the fixture b
       asks for a fresh recording without presenting a partial file as successful.
 - [ ] Background the app during recording and verify recording does not continue. This pass has no
       background recording or phone-call mode.
+- [ ] Lock the device during foreground recording and during reference/self playback; document
+      Android and iOS behavior rather than assuming background continuation.
+- [ ] Interrupt recording/playback with another audio app or phone-call simulation and verify a
+      recoverable state.
 
 ## Evidence inspection
 

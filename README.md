@@ -51,8 +51,12 @@ does not create evidence rows.
 - Unknown target: record, replay, persist original and canonical audio, run perception, preserve
   what the provider heard, and append an optional user correction without rewriting the run.
 - Known target: enter Chinese text, retain generated pinyin provenance and lexical tones, record
-  unlimited attempts, assess each attempt, expose only provider-supported evidence, and replay
-  session-local attempts.
+  unlimited attempts, revise polyphonic readings without overwriting the generated target, replay
+  reference speech, preserve assessment/acoustic/alignment evidence separately, inspect relative
+  pitch and surface-tone expectations, and replay/compare durable attempts.
+- Calibration: capture a 50-item development pilot, export a selected attempt only through an
+  explicit confirmation-gated command, retain blind two-stage listener annotations, and generate a
+  real-only readiness report. The current report is correctly blocked at 0/50 real recordings.
 - Authenticated history survives app restart because the bearer token uses SecureStore on native
   platforms and recordings remain server-owned behind authorized streaming.
 - Replay evidence is prominently labeled `synthetic_replay`; live provider failures never fall
