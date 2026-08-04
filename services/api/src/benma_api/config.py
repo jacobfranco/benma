@@ -12,6 +12,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 Environment = Literal["development", "test", "production"]
 PerceptionProviderName = Literal["replay", "openai", "disabled"]
 AssessmentProviderName = Literal["replay", "azure", "disabled"]
+ReferenceSpeechProviderName = Literal["replay", "azure", "disabled"]
+AcousticProviderName = Literal["autocorrelation", "disabled"]
+AlignmentProviderName = Literal["replay", "mfa", "disabled"]
 
 
 class Settings(BaseSettings):
@@ -31,10 +34,22 @@ class Settings(BaseSettings):
 
     perception_provider: PerceptionProviderName = "disabled"
     assessment_provider: AssessmentProviderName = "disabled"
+    reference_speech_provider: ReferenceSpeechProviderName = "disabled"
+    acoustic_provider: AcousticProviderName = "autocorrelation"
+    alignment_provider: AlignmentProviderName = "disabled"
     openai_api_key: SecretStr | None = None
     openai_transcription_model: str = "gpt-4o-transcribe"
     azure_speech_key: SecretStr | None = None
     azure_speech_region: str | None = None
+    reference_speech_voice: str = "zh-CN-Xiaochen:DragonHDLatestNeural"
+    reference_speech_model_version: str = "DragonHDLatestNeural"
+    reference_speech_rate: str = "0%"
+    mfa_binary: str = "mfa"
+    mfa_dictionary: str = "mandarin_mfa"
+    mfa_acoustic_model: str = "mandarin_mfa"
+    mfa_timeout_seconds: float = 45.0
+    enable_experimental_tone_interpretation: bool = True
+    enable_categorical_tone_judgment: bool = False
 
     @model_validator(mode="after")
     def validate_environment(self) -> Self:
@@ -48,6 +63,14 @@ class Settings(BaseSettings):
             not self.azure_speech_key or not self.azure_speech_region
         ):
             raise ValueError("Azure speech key and region are required for the Azure provider")
+        if self.reference_speech_provider == "azure" and (
+            not self.azure_speech_key or not self.azure_speech_region
+        ):
+            raise ValueError("Azure speech key and region are required for reference speech")
+        if self.enable_categorical_tone_judgment:
+            raise ValueError(
+                "categorical tone judgment cannot be enabled before calibration policy exists"
+            )
         return self
 
 

@@ -32,6 +32,9 @@ def target_snapshot(target: PronunciationTarget) -> dict[str, object]:
         "lexical_tones": target.lexical_tones,
         "target_source": target.target_source,
         "pinyin_source": target.pinyin_source,
+        "syllable_units": target.syllable_units,
+        "surface_tone_expectation": target.surface_tone_expectation,
+        "parent_target_id": str(target.parent_target_id) if target.parent_target_id else None,
     }
 
 

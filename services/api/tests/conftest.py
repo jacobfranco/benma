@@ -63,6 +63,9 @@ def settings(tmp_path: Path) -> Settings:
         dev_auth_enabled=True,
         perception_provider="replay",
         assessment_provider="replay",
+        reference_speech_provider="replay",
+        acoustic_provider="autocorrelation",
+        alignment_provider="replay",
         max_upload_bytes=2 * 1024 * 1024,
         max_audio_duration_seconds=5,
     )

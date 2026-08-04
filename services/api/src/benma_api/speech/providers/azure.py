@@ -78,6 +78,17 @@ class AzurePronunciationProvider:
             raise ProviderMalformedResponseError("Azure response has no assessment") from exc
 
         syllables: list[dict[str, Any]] = []
+
+        def span(item: dict[str, Any]) -> dict[str, float] | None:
+            offset = item.get("Offset")
+            duration = item.get("Duration")
+            if not isinstance(offset, int | float) or not isinstance(duration, int | float):
+                return None
+            return {
+                "start_seconds": float(offset) / 10_000_000,
+                "end_seconds": float(offset + duration) / 10_000_000,
+            }
+
         for word in best.get("Words", []):
             if not isinstance(word, dict):
                 continue
@@ -90,6 +101,8 @@ class AzurePronunciationProvider:
                         {
                             "phone": phone.get("Phoneme"),
                             "pronunciation_score": phone_assessment.get("AccuracyScore"),
+                            "timing": span(phone),
+                            "provider_assessment": phone_assessment,
                         }
                     )
             syllables.append(
@@ -100,6 +113,8 @@ class AzurePronunciationProvider:
                     if word_assessment.get("ErrorType")
                     else [],
                     "phones": phones,
+                    "timing": span(word),
+                    "provider_assessment": word_assessment,
                 }
             )
 

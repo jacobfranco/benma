@@ -30,6 +30,11 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
 - `BENMA_MAX_UPLOAD_BYTES` and `BENMA_MAX_AUDIO_DURATION_SECONDS`: ingest limits.
 - `BENMA_PERCEPTION_PROVIDER`: `disabled`, `replay`, or `openai`.
 - `BENMA_ASSESSMENT_PROVIDER`: `disabled`, `replay`, or `azure`.
+- `BENMA_REFERENCE_SPEECH_PROVIDER`: `disabled`, `replay`, or `azure`.
+- `BENMA_ACOUSTIC_PROVIDER`: dependency-free `autocorrelation` or `disabled`.
+- `BENMA_ALIGNMENT_PROVIDER`: `disabled`, development `replay`, or optional `mfa`.
+- `BENMA_ENABLE_EXPERIMENTAL_TONE_INTERPRETATION`: factual evidence agreement language.
+- `BENMA_ENABLE_CATEGORICAL_TONE_JUDGMENT`: intentionally rejected until calibrated.
 
 The application refuses production startup with development auth enabled and refuses configured
 live providers without their required credentials. It never silently selects replay.
@@ -62,10 +67,17 @@ POST   /v1/utterances/{id}/perceptions
 GET    /v1/perceptions/{id}
 POST   /v1/utterances/{id}/corrections
 POST   /v1/pronunciation-targets
+POST   /v1/pronunciation-targets/{id}/pinyin-corrections
+POST   /v1/pronunciation-targets/{id}/reference-speech
+GET    /v1/reference-speech/{id}/audio
 GET    /v1/pronunciation-targets/{id}
 POST   /v1/pronunciation-attempts
 GET    /v1/pronunciation-attempts/{id}
 POST   /v1/pronunciation-attempts/{id}/assessments
+POST   /v1/pronunciation-attempts/{id}/analyze
+GET    /v1/pronunciation-attempts/{id}/result
+GET    /v1/pronunciation-targets/{id}/attempts
+POST   /v1/pronunciation-attempts/compare
 ```
 
 There are no generic PATCH or DELETE routes for evidence.
@@ -78,11 +90,19 @@ There are no generic PATCH or DELETE routes for evidence.
 | OpenAI transcription | Yes | Transport contract | No | API key; no prompt is sent |
 | Replay pronunciation | Yes | Yes | Not applicable | Explicit `replay` selection |
 | Azure pronunciation | Yes | Transport/normalization contract | No | Speech key and region |
+| Replay reference | Yes | Yes | Not applicable | Explicit synthetic selection |
+| Azure reference | Yes | Transport/cache contract | No | Speech key and region |
+| Autocorrelation acoustics | Yes | Synthetic signals + API | Local | No optional runtime |
+| MFA alignment | Experimental | Parser/sanity fixtures | No | MFA 3.x models and CLI |
 | Disabled ports | Yes | Yes | Not applicable | Explicit `disabled` selection |
 
 Replay is development evidence and always returns `synthetic_replay`. OpenAI log probabilities,
 when present, are retained as provider-native uncertainty rather than converted to confidence.
 Azure evidence explicitly declares tone detection and surface-tone interpretation unsupported.
+
+Developer research tools include `reference_listening_corpus.py`,
+`pronunciation_diagnostic.py`, and the confirmation-gated
+`export_pronunciation_attempt.py`. They never run automatically.
 
 ## Quality and schema
 

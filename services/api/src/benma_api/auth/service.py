@@ -21,7 +21,6 @@ from benma_api.errors import AuthenticationError
 
 bearer = HTTPBearer(auto_error=False)
 
-
 def hash_token(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
 

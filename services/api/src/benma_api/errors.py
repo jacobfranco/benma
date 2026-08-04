@@ -28,6 +28,11 @@ class InvalidAudioError(BenmaError):
     status_code = 422
 
 
+class InvalidTargetError(BenmaError):
+    code = "invalid_pronunciation_target"
+    status_code = 422
+
+
 class ProviderUnavailableError(BenmaError):
     code = "provider_unavailable"
     status_code = 503

@@ -6,7 +6,17 @@ import uuid
 from datetime import UTC, datetime
 from typing import Any
 
-from sqlalchemy import JSON, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
+from sqlalchemy import (
+    JSON,
+    DateTime,
+    Float,
+    ForeignKey,
+    Index,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from benma_api.db.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
@@ -91,6 +101,11 @@ class PronunciationTarget(UUIDPrimaryKeyMixin, Base):
     target_source: Mapped[str] = mapped_column(String(32), nullable=False)
     pinyin_source: Mapped[str] = mapped_column(String(64), nullable=False)
     pinyin_alternatives: Mapped[list[list[str]]] = mapped_column(JSON, default=list)
+    syllable_units: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
+    surface_tone_expectation: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    parent_target_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("pronunciation_targets.id"), index=True
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
@@ -145,8 +160,77 @@ class AcousticRun(UUIDPrimaryKeyMixin, Base):
     algorithm: Mapped[str] = mapped_column(String(128), nullable=False)
     algorithm_version: Mapped[str] = mapped_column(String(64), nullable=False)
     normalized_result: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    parameters: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    latency_ms: Mapped[int | None] = mapped_column(Integer)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     status: Mapped[str] = mapped_column(String(32), nullable=False)
+    error_code: Mapped[str | None] = mapped_column(String(64))
+    error_message: Mapped[str | None] = mapped_column(Text)
+
+
+class ReferenceSpeechAsset(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "reference_speech_assets"
+    __table_args__ = (
+        Index("ix_reference_speech_assets_account_cache", "account_id", "cache_key"),
+    )
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
+    target_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("pronunciation_targets.id"), index=True)
+    audio_asset_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("audio_assets.id"))
+    cache_key: Mapped[str] = mapped_column(String(64), nullable=False)
+    provider: Mapped[str] = mapped_column(String(64), nullable=False)
+    voice: Mapped[str] = mapped_column(String(160), nullable=False)
+    locale: Mapped[str] = mapped_column(String(32), nullable=False)
+    model_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    generation_config: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    target_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    acoustic_result: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    status: Mapped[str] = mapped_column(String(32), nullable=False)
+    error_code: Mapped[str | None] = mapped_column(String(64))
+    error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class AlignmentRun(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "alignment_runs"
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
+    utterance_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("utterances.id"), index=True)
+    pronunciation_attempt_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("pronunciation_attempts.id"), index=True
+    )
+    target_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    algorithm: Mapped[str] = mapped_column(String(128), nullable=False)
+    algorithm_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    normalized_result: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    raw_result: Mapped[dict[str, Any] | None] = mapped_column(JSON)
+    quality: Mapped[str] = mapped_column(String(32), nullable=False)
+    latency_ms: Mapped[int | None] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(String(32), nullable=False)
+    error_code: Mapped[str | None] = mapped_column(String(64))
+    error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class PronunciationInterpretationRun(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "pronunciation_interpretation_runs"
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
+    pronunciation_attempt_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("pronunciation_attempts.id"), index=True
+    )
+    interpreter_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    input_evidence_run_ids: Mapped[dict[str, str | None]] = mapped_column(JSON, nullable=False)
+    structured_observations: Mapped[list[dict[str, Any]]] = mapped_column(JSON, nullable=False)
+    capability_state: Mapped[str] = mapped_column(String(32), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class ResearchExport(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "research_exports"
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
+    pronunciation_attempt_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("pronunciation_attempts.id"), index=True
+    )
+    export_metadata: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
 class UserCorrection(UUIDPrimaryKeyMixin, Base):
@@ -158,4 +242,13 @@ class UserCorrection(UUIDPrimaryKeyMixin, Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
-APPEND_ONLY_MODELS = (PerceptionRun, AssessmentRun, AcousticRun, UserCorrection)
+APPEND_ONLY_MODELS = (
+    PerceptionRun,
+    AssessmentRun,
+    AcousticRun,
+    ReferenceSpeechAsset,
+    AlignmentRun,
+    PronunciationInterpretationRun,
+    ResearchExport,
+    UserCorrection,
+)

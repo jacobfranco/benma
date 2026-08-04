@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import uuid
+from functools import partial
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, File, Form, UploadFile, status
@@ -10,6 +11,7 @@ from fastapi.responses import Response
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from benma_api.api.blocking import run_bounded_speech_work
 from benma_api.audio.service import AudioIngestService
 from benma_api.auth.service import (
     AuthContext,
@@ -25,29 +27,38 @@ from benma_api.db.models import (
     PracticeSession,
     PronunciationAttempt,
     PronunciationTarget,
+    ReferenceSpeechAsset,
     UserCorrection,
     Utterance,
 )
 from benma_api.db.session import get_db
-from benma_api.errors import AuthorizationError, InvalidAudioError
+from benma_api.errors import AuthorizationError, InvalidAudioError, InvalidTargetError
 from benma_api.perception.repository import SqlPerceptionRepository
 from benma_api.perception.service import PerceptionService
+from benma_api.pronunciation.laboratory import PronunciationLaboratoryService
 from benma_api.pronunciation.service import AssessmentService
-from benma_api.pronunciation.targets import parse_mandarin_target
+from benma_api.pronunciation.targets import parse_corrected_pinyin, parse_mandarin_target
 from benma_api.schemas import (
     AccountResponse,
     AssessmentRequest,
     AssessmentRunResponse,
+    AttemptComparisonRequest,
+    AttemptComparisonResponse,
     AudioAssetResponse,
     AuthTokenResponse,
     DevAuthRequest,
     PerceptionRunResponse,
+    PinyinCorrectionCreate,
     PracticeSessionCreate,
     PracticeSessionResponse,
+    PronunciationAnalyzeRequest,
     PronunciationAttemptCreate,
     PronunciationAttemptResponse,
+    PronunciationResultResponse,
     PronunciationTargetCreate,
     PronunciationTargetResponse,
+    ReferenceSpeechRequestBody,
+    ReferenceSpeechResponse,
     UnknownPerceptionRequest,
     UserCorrectionCreate,
     UserCorrectionResponse,
@@ -220,11 +231,15 @@ async def create_utterance(
     data = await file.read(settings.max_upload_bytes + 1)
     if len(data) > settings.max_upload_bytes:
         raise InvalidAudioError("audio upload exceeds the configured size limit")
-    utterance = AudioIngestService(db, store, settings).ingest(
-        account_id=auth.account_id,
-        data=data,
-        mime_type=file.content_type or "application/octet-stream",
-        practice_session_id=practice_session_id,
+    utterance = await run_bounded_speech_work(
+        settings,
+        partial(
+            AudioIngestService(db, store, settings).ingest,
+            account_id=auth.account_id,
+            data=data,
+            mime_type=file.content_type or "application/octet-stream",
+            practice_session_id=practice_session_id,
+        ),
     )
     return utterance_response(db, utterance)
 
@@ -291,11 +306,15 @@ async def create_perception(
         SqlPerceptionRepository(db), store, build_perception_provider(settings)
     )
     return perception_response(
-        service.run(
-            account_id=auth.account_id,
-            utterance_id=utterance_id,
-            language_hint=body.language_hint,
-            timeout_seconds=body.timeout_seconds,
+        await run_bounded_speech_work(
+            settings,
+            partial(
+                service.run,
+                account_id=auth.account_id,
+                utterance_id=utterance_id,
+                language_hint=body.language_hint,
+                timeout_seconds=body.timeout_seconds,
+            ),
         )
     )
 
@@ -365,10 +384,98 @@ async def create_pronunciation_target(
         target_source=body.target_source,
         pinyin_source=parsed.provenance,
         pinyin_alternatives=parsed.alternatives,
+        syllable_units=parsed.syllable_units,
+        surface_tone_expectation=parsed.surface_tone_expectation,
     )
     db.add(target)
     db.commit()
     return PronunciationTargetResponse.model_validate(target)
+
+
+@router.post(
+    "/v1/pronunciation-targets/{target_id}/pinyin-corrections",
+    response_model=PronunciationTargetResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def correct_pronunciation_target(
+    target_id: uuid.UUID,
+    body: PinyinCorrectionCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> PronunciationTargetResponse:
+    original = db.get(PronunciationTarget, target_id)
+    if original is None or original.account_id != auth.account_id:
+        raise AuthorizationError("pronunciation target was not found")
+    try:
+        parsed = parse_corrected_pinyin(original.text, body.pinyin)
+    except ValueError as exc:
+        raise InvalidTargetError(str(exc)) from exc
+    corrected = PronunciationTarget(
+        account_id=auth.account_id,
+        text=original.text,
+        display_pinyin=parsed.display_pinyin,
+        pinyin_syllables=parsed.pinyin_syllables,
+        lexical_tones=parsed.lexical_tones,
+        target_source=original.target_source,
+        pinyin_source=parsed.provenance,
+        pinyin_alternatives=parsed.alternatives,
+        syllable_units=parsed.syllable_units,
+        surface_tone_expectation=parsed.surface_tone_expectation,
+        parent_target_id=original.id,
+    )
+    db.add(corrected)
+    db.commit()
+    return PronunciationTargetResponse.model_validate(corrected)
+
+
+@router.post(
+    "/v1/pronunciation-targets/{target_id}/reference-speech",
+    response_model=ReferenceSpeechResponse,
+)
+async def create_reference_speech(
+    target_id: uuid.UUID,
+    body: ReferenceSpeechRequestBody,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> ReferenceSpeechResponse:
+    service = PronunciationLaboratoryService(db, store, settings)
+    return await run_bounded_speech_work(
+        settings,
+        partial(
+            service.reference,
+            account_id=auth.account_id,
+            target_id=target_id,
+            force=body.force,
+            timeout_seconds=body.timeout_seconds,
+        ),
+    )
+
+
+@router.get("/v1/reference-speech/{reference_id}/audio")
+async def get_reference_speech_audio(
+    reference_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> Response:
+    reference = db.get(ReferenceSpeechAsset, reference_id)
+    if (
+        reference is None
+        or reference.account_id != auth.account_id
+        or reference.audio_asset_id is None
+        or reference.status != "succeeded"
+    ):
+        raise AuthorizationError("reference speech was not found")
+    asset = db.get(AudioAsset, reference.audio_asset_id)
+    if asset is None or asset.account_id != auth.account_id:
+        raise AuthorizationError("reference audio was not found")
+    return Response(
+        content=store.read(asset.storage_key),
+        media_type=asset.mime_type,
+        headers={"Cache-Control": "private, max-age=31536000, immutable"},
+    )
 
 
 @router.get(
@@ -443,9 +550,102 @@ async def create_assessment(
 ) -> AssessmentRunResponse:
     service = AssessmentService(db, store, build_assessment_provider(settings))
     return assessment_response(
-        service.run(
+        await run_bounded_speech_work(
+            settings,
+            partial(
+                service.run,
+                account_id=auth.account_id,
+                attempt_id=attempt_id,
+                timeout_seconds=body.timeout_seconds,
+            ),
+        )
+    )
+
+
+@router.post(
+    "/v1/pronunciation-attempts/{attempt_id}/analyze",
+    response_model=PronunciationResultResponse,
+)
+async def analyze_pronunciation_attempt(
+    attempt_id: uuid.UUID,
+    body: PronunciationAnalyzeRequest,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> PronunciationResultResponse:
+    service = PronunciationLaboratoryService(db, store, settings)
+    return await run_bounded_speech_work(
+        settings,
+        partial(
+            service.analyze,
             account_id=auth.account_id,
             attempt_id=attempt_id,
-            timeout_seconds=body.timeout_seconds,
+            reuse_existing=body.reuse_existing,
+            rerun_provider=body.rerun_provider,
+            rerun_acoustics=body.rerun_acoustics,
+            rerun_alignment=body.rerun_alignment,
+        ),
+    )
+
+
+@router.get(
+    "/v1/pronunciation-attempts/{attempt_id}/result",
+    response_model=PronunciationResultResponse,
+)
+async def get_pronunciation_result(
+    attempt_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> PronunciationResultResponse:
+    return PronunciationLaboratoryService(db, store, settings).result(
+        account_id=auth.account_id, attempt_id=attempt_id
+    )
+
+
+@router.get(
+    "/v1/pronunciation-targets/{target_id}/attempts",
+    response_model=list[PronunciationResultResponse],
+)
+async def list_pronunciation_attempts(
+    target_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> list[PronunciationResultResponse]:
+    target = db.get(PronunciationTarget, target_id)
+    if target is None or target.account_id != auth.account_id:
+        raise AuthorizationError("pronunciation target was not found")
+    attempts = db.scalars(
+        select(PronunciationAttempt)
+        .where(
+            PronunciationAttempt.account_id == auth.account_id,
+            PronunciationAttempt.target_id == target_id,
         )
+        .order_by(PronunciationAttempt.created_at.asc())
+        .limit(100)
+    )
+    service = PronunciationLaboratoryService(db, store, settings)
+    return [service.result(account_id=auth.account_id, attempt_id=item.id) for item in attempts]
+
+
+@router.post(
+    "/v1/pronunciation-attempts/compare",
+    response_model=AttemptComparisonResponse,
+)
+async def compare_pronunciation_attempts(
+    body: AttemptComparisonRequest,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> AttemptComparisonResponse:
+    service = PronunciationLaboratoryService(db, store, settings)
+    return AttemptComparisonResponse(
+        first=service.result(account_id=auth.account_id, attempt_id=body.first_attempt_id),
+        second=service.result(account_id=auth.account_id, attempt_id=body.second_attempt_id),
+        disclaimer="Evidence is shown side by side; Benma does not calculate an improvement score.",
     )
