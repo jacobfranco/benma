@@ -12,6 +12,7 @@
     "replay_fixture": true,
     "warning": "not experimental evidence"
   },
+  "transport_timings_seconds": {},
   "response_latency_seconds": 0.45,
   "audio_duration_seconds": 1.5,
   "normalized_result": {
@@ -170,5 +171,6 @@
     },
     "fixture": true
   },
+  "evidence_origin": "constructed_fixture",
   "status": "succeeded"
 }

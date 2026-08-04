@@ -14,6 +14,7 @@
     "experimental_prompt": "旅行计划提到北京",
     "excluded_from_production_path": true
   },
+  "transport_timings_seconds": {},
   "response_latency_seconds": 0.3,
   "audio_duration_seconds": 2.2,
   "normalized_result": {
@@ -27,6 +28,7 @@
     "text": "我明天想去北京",
     "fixture": true
   },
+  "evidence_origin": "constructed_fixture",
   "status": "succeeded",
   "context_condition": "B_congruent"
 }

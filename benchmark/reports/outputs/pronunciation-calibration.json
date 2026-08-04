@@ -1,15 +1,149 @@
 {
+  "acoustics": {
+    "production_decision": "keep_autocorrelation_pending_real_comparison",
+    "provider_agreement": {
+      "comparisons": [],
+      "counts": {},
+      "promotion_state": "exploratory_only",
+      "warning": "F0 conflict is evidence conflict, not acoustic ground truth."
+    },
+    "real_comparison_status": "not_run"
+  },
+  "alignment": {
+    "production_strategy": "provider_timing_and_MFA_remain_provenance-separated",
+    "real_comparison_status": "not_run"
+  },
+  "audio_quality_exclusions": [],
+  "benchmark_version": "0.1.0",
+  "calibration_maturity": "raw_evidence",
   "calibration_ready": false,
+  "calibration_scope": "none",
+  "categorical_tone_judgment_allowed": false,
+  "categorical_tone_judgment_reason": "No threshold has satisfied real-data, three-rater, calibration-selection, and held-out promotion gates.",
   "counts": {
-    "annotations": 0,
+    "final_errors": 0,
+    "initial_errors": 0,
     "known_target_provider_runs": 0,
+    "learner_correct": 0,
     "native_controls": 0,
-    "native_listeners": 0,
     "negative_controls": 0,
-    "real_learner_deliberate_errors": 0,
-    "real_recordings": 0
+    "real_recordings": 0,
+    "samples_with_three_native_raters": 0,
+    "spontaneous_samples": 0,
+    "stage_a_annotations": 0,
+    "stage_b_annotations": 0,
+    "tone_errors": 0,
+    "unique_native_raters": 0
   },
   "data_status": "real_only",
+  "gate_sets": {
+    "categorical_tone": {
+      "critical_rater_coverage": {
+        "actual": 0,
+        "ready": false,
+        "required": 30
+      },
+      "held_out_evaluation": {
+        "actual": 0,
+        "ready": false,
+        "required": ">=1 persisted held-out partition"
+      },
+      "held_out_validated_threshold": {
+        "actual": 0,
+        "ready": false,
+        "required": "explicit promotion decision after holdout review"
+      },
+      "human_supported_acceptable_tone_syllables": {
+        "actual": 0,
+        "ready": false,
+        "required": 20
+      },
+      "human_supported_tone_error_syllables": {
+        "actual": 0,
+        "ready": false,
+        "required": 20
+      }
+    },
+    "minimum_existing_pilot": {
+      "final_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "initial_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "learner_deliberate_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 30
+      },
+      "native_controls": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "negative_controls": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "three_native_listeners_per_critical_sample": {
+        "actual": 0,
+        "ready": false,
+        "required": 30
+      },
+      "tone_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      }
+    },
+    "stronger_paired_pilot": {
+      "final_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "initial_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "learner_correct_controls": {
+        "actual": 0,
+        "ready": false,
+        "required": 12
+      },
+      "learner_deliberate_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 30
+      },
+      "native_controls": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "negative_controls": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      },
+      "three_native_listeners_per_critical_sample": {
+        "actual": 0,
+        "ready": false,
+        "required": 30
+      },
+      "tone_errors": {
+        "actual": 0,
+        "ready": false,
+        "required": 10
+      }
+    }
+  },
   "gates": {
     "final_errors": {
       "actual": 0,
@@ -36,7 +170,7 @@
       "ready": false,
       "required": 10
     },
-    "three_listeners_per_critical_sample": {
+    "three_native_listeners_per_critical_sample": {
       "actual": 0,
       "ready": false,
       "required": 30
@@ -48,17 +182,222 @@
     }
   },
   "human_consensus": {},
+  "human_evidence_summary": {
+    "consensus_classes": {},
+    "rater_roles": {},
+    "samples_with_understanding_disagreement": 0,
+    "understanding_vote_patterns": {},
+    "understood_first_pass": {
+      "confidence_interval_95": null,
+      "denominator": 0,
+      "fraction": null,
+      "numerator": 0
+    },
+    "would_request_repetition": {
+      "confidence_interval_95": null,
+      "denominator": 0,
+      "fraction": null,
+      "numerator": 0
+    }
+  },
+  "provider_metrics": {},
+  "provider_status_scorecard": [
+    {
+      "access_and_auth": "SecretId/SecretKey/AppId required; absent locally",
+      "api_reachability": "not tested without credentials",
+      "audio_quality": "not established from real response",
+      "calibration_maturity": "raw_evidence",
+      "calibration_scope": "none",
+      "cost_status": "unknown until account quote/billing observation",
+      "error_coding": "match tags and phone detail",
+      "final_detection": "unknown; no human-supported real runs",
+      "fixture_status": "documentation-contract parser fixture passing",
+      "granularity": "utterance, word/syllable, phone",
+      "implementation": "production adapter implemented",
+      "implementation_complexity": "blocking WSS transport; bounded worker required",
+      "initial_detection": "unknown; no human-supported real runs",
+      "latency_status": "unknown; no live run",
+      "learner_false_rejection": "unknown; denominator 0",
+      "lifecycle": "fixture_validated",
+      "mandarin_mode": "16k_zh sentence",
+      "mode": "sentence / eval_mode=1 / F_TDET=true",
+      "native_false_rejection": "unknown; denominator 0",
+      "observed_live_run_count": 0,
+      "privacy_and_data_flow": "audio leaves Benma for Tencent Cloud when invoked",
+      "product": "Smart Oral Evaluation-New Age (product 1774)",
+      "provider": "tencent_soe_n",
+      "response_received": "documentation contract example only",
+      "severe_error_false_acceptance": "unknown; denominator 0",
+      "timing_evidence": "provider millisecond offsets",
+      "tone_detection": "unknown; no human-supported real runs",
+      "tone_diagnosis": "unknown; no human-supported real runs",
+      "tone_evidence": "explicit tone valid/ref/hypothesis when vendor marks valid"
+    },
+    {
+      "access_and_auth": "SecretId/SecretKey/AppId required; absent locally",
+      "api_reachability": "not tested without credentials",
+      "audio_quality": "not established from real response",
+      "calibration_maturity": "raw_evidence",
+      "calibration_scope": "none",
+      "cost_status": "unknown until account quote/billing observation",
+      "error_coding": "match tags and phone detail",
+      "final_detection": "unknown; no human-supported real runs",
+      "fixture_status": "documentation-contract invalid-tone fixture passing",
+      "granularity": "utterance, word/syllable, phone",
+      "implementation": "production adapter implemented",
+      "implementation_complexity": "blocking WSS transport; pinyin serialization",
+      "initial_detection": "unknown; no human-supported real runs",
+      "latency_status": "unknown; no live run",
+      "learner_false_rejection": "unknown; denominator 0",
+      "lifecycle": "fixture_validated",
+      "mandarin_mode": "16k_zh pinyin",
+      "mode": "pinyin / eval_mode=8 / F_TDET=true",
+      "native_false_rejection": "unknown; denominator 0",
+      "observed_live_run_count": 0,
+      "privacy_and_data_flow": "audio leaves Benma for Tencent Cloud when invoked",
+      "product": "Smart Oral Evaluation-New Age (product 1774)",
+      "provider": "tencent_soe_n",
+      "response_received": "documentation contract example only",
+      "severe_error_false_acceptance": "unknown; denominator 0",
+      "timing_evidence": "provider millisecond offsets",
+      "tone_detection": "unknown; no human-supported real runs",
+      "tone_diagnosis": "unknown; no human-supported real runs",
+      "tone_evidence": "invalid vendor tone values normalize to missing evidence"
+    },
+    {
+      "access_and_auth": "AppId/APIKey/APISecret required; absent locally",
+      "api_reachability": "not tested without credentials",
+      "audio_quality": "rejection/exception fields retained",
+      "calibration_maturity": "raw_evidence",
+      "calibration_scope": "none",
+      "cost_status": "unknown until account quote/billing observation",
+      "error_coding": "DP and initial/final/tone error codes",
+      "final_detection": "unknown; no human-supported real runs",
+      "fixture_status": "full-dimension XML parser fixture passing",
+      "granularity": "utterance, sentence, word/syllable, phone",
+      "implementation": "production streaming adapter implemented",
+      "implementation_complexity": "multi-frame WSS plus base64 XML parsing",
+      "initial_detection": "unknown; no human-supported real runs",
+      "latency_status": "unknown; no live run",
+      "learner_false_rejection": "unknown; denominator 0",
+      "lifecycle": "fixture_validated",
+      "mandarin_mode": "cn_vip",
+      "mode": "cn_vip read_sentence full dimension",
+      "native_false_rejection": "unknown; denominator 0",
+      "observed_live_run_count": 0,
+      "privacy_and_data_flow": "audio leaves Benma for iFlytek when invoked",
+      "product": "Streaming Pronunciation Assessment /v2/open-ise",
+      "provider": "iflytek_ise",
+      "response_received": "documentation-shaped XML example only",
+      "severe_error_false_acceptance": "unknown; denominator 0",
+      "timing_evidence": "provider position units retained with documented inference",
+      "tone_detection": "unknown; no human-supported real runs",
+      "tone_diagnosis": "unknown; no human-supported real runs",
+      "tone_evidence": "tone score, phone tone/error fields when returned"
+    },
+    {
+      "access_and_auth": "Speech key/region required; absent locally",
+      "api_reachability": "not tested in this pass",
+      "audio_quality": "not established from real response",
+      "calibration_maturity": "raw_evidence",
+      "calibration_scope": "none",
+      "cost_status": "catalog estimate only; no observed bill",
+      "error_coding": "provider error types retained",
+      "final_detection": "unknown from real pilot",
+      "fixture_status": "constructed adapter fixtures passing",
+      "granularity": "utterance, word, phoneme (locale-dependent)",
+      "implementation": "existing production adapter retained",
+      "implementation_complexity": "single REST request; mainstream account path",
+      "initial_detection": "unknown from real pilot",
+      "latency_status": "unknown; no live Pass 4 run",
+      "learner_false_rejection": "unknown; denominator 0",
+      "lifecycle": "fixture_validated",
+      "mandarin_mode": "zh-CN scripted",
+      "mode": "scripted phoneme assessment",
+      "native_false_rejection": "unknown; denominator 0",
+      "observed_live_run_count": 0,
+      "privacy_and_data_flow": "audio leaves Benma for Azure Speech when invoked",
+      "product": "Pronunciation Assessment zh-CN",
+      "provider": "azure_speech",
+      "response_received": "constructed replay coverage only",
+      "severe_error_false_acceptance": "unknown; denominator 0",
+      "timing_evidence": "provider offsets when returned",
+      "tone_detection": "unsupported as explicit zh-CN hypothesis",
+      "tone_diagnosis": "unsupported as explicit zh-CN hypothesis",
+      "tone_evidence": "no supported zh-CN spoken-syllable/tone-label contract established"
+    },
+    {
+      "access_and_auth": "purchased access, warrant, and SDK provisioning required",
+      "api_reachability": "blocked before provisioned access",
+      "audio_quality": "audio quality field documented",
+      "calibration_maturity": "raw_evidence",
+      "calibration_scope": "none",
+      "cost_status": "commercial access not obtained",
+      "error_coding": "documented fields require live verification",
+      "final_detection": "documented; unverified",
+      "fixture_status": "none; documentation is not a captured response",
+      "granularity": "sentence, word, syllable/phone fields documented",
+      "implementation": "documented; no transport adapter",
+      "implementation_complexity": "high until warrant/SDK provisioning is understood",
+      "initial_detection": "documented; unverified",
+      "latency_status": "unknown",
+      "learner_false_rejection": "unknown; denominator 0",
+      "lifecycle": "documented",
+      "mandarin_mode": "documented Mandarin sentence/word scoring",
+      "mode": "cn.raw.score / cn.word.score",
+      "native_false_rejection": "unknown; denominator 0",
+      "observed_live_run_count": 0,
+      "privacy_and_data_flow": "requires vendor processing; retention terms need account review",
+      "product": "Smart Education Content Platform",
+      "provider": "alibaba_ssecp",
+      "response_received": "none",
+      "severe_error_false_acceptance": "unknown; denominator 0",
+      "timing_evidence": "documented fields require live verification",
+      "tone_detection": "documented vector; unverified",
+      "tone_diagnosis": "documented vector; unverified",
+      "tone_evidence": "tone confidence vector documented"
+    },
+    {
+      "access_and_auth": "trial/account and usable API documentation required",
+      "api_reachability": "blocked before trial access",
+      "audio_quality": "unverified",
+      "calibration_maturity": "raw_evidence",
+      "calibration_scope": "none",
+      "cost_status": "public pricing page exists; account-specific cost unverified",
+      "error_coding": "unverified",
+      "final_detection": "demo-visible; API unverified",
+      "fixture_status": "none",
+      "granularity": "demo displays word/syllable dimensions",
+      "implementation": "documented; no transport adapter",
+      "implementation_complexity": "unknown until trial contract is available",
+      "initial_detection": "demo-visible; API unverified",
+      "latency_status": "unknown",
+      "learner_false_rejection": "unknown; denominator 0",
+      "lifecycle": "documented",
+      "mandarin_mode": "Mandarin demo advertises initial/final/tone",
+      "mode": "character/sentence evaluation",
+      "native_false_rejection": "unknown; denominator 0",
+      "observed_live_run_count": 0,
+      "privacy_and_data_flow": "requires vendor processing; terms need account review",
+      "product": "Mandarin scripted pronunciation assessment",
+      "provider": "speechsuper",
+      "response_received": "none",
+      "severe_error_false_acceptance": "unknown; denominator 0",
+      "timing_evidence": "unverified",
+      "tone_detection": "demo-visible; API unverified",
+      "tone_diagnosis": "demo-visible; API unverified",
+      "tone_evidence": "demo-visible tone dimension; API contract unverified"
+    }
+  ],
+  "providers": {},
   "score_distributions": {},
-  "segmental_metrics": {
-    "final_false_acceptance": null,
-    "initial_false_acceptance": null,
-    "overall_false_acceptance": null,
-    "reason": "Requires real provider evidence joined to three-listener labels."
+  "split": null,
+  "stronger_paired_pilot_ready": false,
+  "superseded_provider_run_ids": [],
+  "threshold_search": {
+    "_unsupported_signals": {
+      "provider_error_confidence": "Preserved in raw provider detail, but vendors expose different polarity/scales and missing-on-correct behavior. Define a provider-specific acceptance signal before threshold exploration; do not coerce it into a universal score."
+    }
   },
-  "tone_metrics": {
-    "by_provider": {},
-    "method": "Rates require provider tone hypotheses and at least three listener annotations. No provider-score threshold is selected."
-  },
-  "unresolved_conflicts": [],
-  "warning": "Synthetic/replay fixtures are excluded from every count and metric."
+  "warning": "Synthetic replay, constructed fixtures, documentation examples, and TTS are excluded from every headline count and metric. Requested learner error is not ground truth."
 }

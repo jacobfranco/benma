@@ -7,7 +7,7 @@ Data status: **replay_fixture_only**.
 
 ## Benchmark status
 
-- Corpus: 114 defined / 384 desired; 0 recorded
+- Corpus: 174 defined / 384 desired; 0 recorded
 - Provider runs: 25 total, 25 succeeded, 0 failed
 - Blind listener commits: 6
 - Inter-rater pairwise CER: 50.3%

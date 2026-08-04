@@ -12,6 +12,7 @@
     "replay_fixture": true,
     "warning": "not experimental evidence"
   },
+  "transport_timings_seconds": {},
   "response_latency_seconds": 0.31,
   "audio_duration_seconds": 2.2,
   "estimated_billable_units": 0.03666666666666667,
@@ -30,5 +31,6 @@
     "confidence": 0.8500000000000001,
     "fixture": true
   },
+  "evidence_origin": "constructed_fixture",
   "status": "succeeded"
 }
