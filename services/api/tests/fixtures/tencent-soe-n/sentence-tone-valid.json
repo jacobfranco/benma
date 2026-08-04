@@ -1,0 +1,43 @@
+{
+  "capture_type": "DOCUMENTATION_CONTRACT_EXAMPLE",
+  "live_captured": false,
+  "product": "SOE-N / Smart Oral Evaluation-New Age",
+  "product_documentation_id": 1774,
+  "mode": "sentence",
+  "result": {
+    "SuggestedScore": 86.5,
+    "PronAccuracy": 84.0,
+    "PronFluency": 0.91,
+    "PronCompletion": 1.0,
+    "Words": [
+      {
+        "MemBeginTime": 120,
+        "MemEndTime": 480,
+        "PronAccuracy": 81.0,
+        "PronFluency": 0.94,
+        "ReferenceWord": "生",
+        "Word": "生",
+        "MatchTag": 0,
+        "PhoneInfos": [
+          {
+            "MemBeginTime": 120,
+            "MemEndTime": 240,
+            "PronAccuracy": 88.0,
+            "Phone": "sh",
+            "ReferencePhone": "sh",
+            "MatchTag": 0
+          },
+          {
+            "MemBeginTime": 240,
+            "MemEndTime": 480,
+            "PronAccuracy": 78.0,
+            "Phone": "eng4",
+            "ReferencePhone": "eng1",
+            "MatchTag": 3
+          }
+        ],
+        "Tone": {"Valid": true, "RefTone": 1, "HypothesisTone": 4}
+      }
+    ]
+  }
+}

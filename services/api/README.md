@@ -29,7 +29,8 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
 - `BENMA_DEV_AUTH_ENABLED`: development-only phone login switch.
 - `BENMA_MAX_UPLOAD_BYTES` and `BENMA_MAX_AUDIO_DURATION_SECONDS`: ingest limits.
 - `BENMA_PERCEPTION_PROVIDER`: `disabled`, `replay`, or `openai`.
-- `BENMA_ASSESSMENT_PROVIDER`: `disabled`, `replay`, or `azure`.
+- `BENMA_ASSESSMENT_PROVIDER`: `disabled`, `replay`, `azure`, `tencent_sentence`,
+  `tencent_pinyin`, or `iflytek`.
 - `BENMA_REFERENCE_SPEECH_PROVIDER`: `disabled`, `replay`, or `azure`.
 - `BENMA_ACOUSTIC_PROVIDER`: dependency-free `autocorrelation` or `disabled`.
 - `BENMA_ALIGNMENT_PROVIDER`: `disabled`, development `replay`, or optional `mfa`.
@@ -90,6 +91,8 @@ There are no generic PATCH or DELETE routes for evidence.
 | OpenAI transcription | Yes | Transport contract | No | API key; no prompt is sent |
 | Replay pronunciation | Yes | Yes | Not applicable | Explicit `replay` selection |
 | Azure pronunciation | Yes | Transport/normalization contract | No | Speech key and region |
+| Tencent SOE-N sentence/pinyin | Yes | Auth/mode/normalization contracts | No | SOE-N AppID, SecretId, SecretKey |
+| iFlytek streaming ISE | Yes | Auth/full-dimension/XML contracts | No | AppID, APIKey, APISecret |
 | Replay reference | Yes | Yes | Not applicable | Explicit synthetic selection |
 | Azure reference | Yes | Transport/cache contract | No | Speech key and region |
 | Autocorrelation acoustics | Yes | Synthetic signals + API | Local | No optional runtime |
@@ -103,6 +106,18 @@ Azure evidence explicitly declares tone detection and surface-tone interpretatio
 Developer research tools include `reference_listening_corpus.py`,
 `pronunciation_diagnostic.py`, and the confirmation-gated
 `export_pronunciation_attempt.py`. They never run automatically.
+
+Use `scripts/provider_smoke.py` to test a live known-target provider without the mobile app. It
+validates canonical WAV metadata, refuses missing credentials, prints normalized evidence and
+provenance, and can optionally persist a sanitized live capture:
+
+```bash
+cd services/api
+uv run python scripts/provider_smoke.py tencent_sentence \
+  --sample ../../benchmark/recordings/example.wav --target 生活 --pinyin sheng1 huo2
+```
+
+Documentation examples are never labeled as live captures.
 
 ## Quality and schema
 

@@ -76,7 +76,12 @@ class AssessmentEvidence:
     pronunciation_score: float | None = None
     fluency_score: float | None = None
     completeness_score: float | None = None
+    phone_score: float | None = None
+    tone_score: float | None = None
+    integrity_score: float | None = None
     syllables: list[dict[str, Any]] | None = None
+    audio_quality: dict[str, Any] | None = None
+    provider_error_classifications: list[str] | None = None
     unsupported_capabilities: list[str] | None = None
     evidence_status: str = "live_provider"
 
@@ -87,7 +92,12 @@ class AssessmentEvidence:
             "pronunciation_score",
             "fluency_score",
             "completeness_score",
+            "phone_score",
+            "tone_score",
+            "integrity_score",
             "syllables",
+            "audio_quality",
+            "provider_error_classifications",
             "unsupported_capabilities",
         ):
             value = getattr(self, key)
@@ -101,6 +111,8 @@ class AssessmentProviderResponse:
     evidence: AssessmentEvidence
     raw_payload: object
     provider_version: str | None = None
+    request_configuration: dict[str, Any] | None = None
+    transport_timings_ms: dict[str, int] | None = None
 
 
 class PronunciationAssessmentPort(Protocol):

@@ -151,6 +151,13 @@ class AssessmentRun(UUIDPrimaryKeyMixin, EvidenceMixin, Base):
         ForeignKey("pronunciation_attempts.id"), index=True
     )
     target_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    git_commit_sha: Mapped[str] = mapped_column(String(64), nullable=False, default="undocumented")
+    audio_sha256: Mapped[str | None] = mapped_column(String(64))
+    sample_rate_hz: Mapped[int | None] = mapped_column(Integer)
+    request_configuration: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    transport_timings_ms: Mapped[dict[str, int]] = mapped_column(JSON, default=dict)
+    estimated_billable_units: Mapped[float | None] = mapped_column(Float)
+    estimated_cost_usd: Mapped[float | None] = mapped_column(Float)
 
 
 class AcousticRun(UUIDPrimaryKeyMixin, Base):

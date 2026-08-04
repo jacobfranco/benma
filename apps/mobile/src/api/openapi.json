@@ -243,6 +243,17 @@
             "title": "Adapter Version",
             "type": "string"
           },
+          "audio_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Sha256"
+          },
           "created_at": {
             "format": "date-time",
             "title": "Created At",
@@ -269,6 +280,32 @@
               }
             ],
             "title": "Error Message"
+          },
+          "estimated_billable_units": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estimated Billable Units"
+          },
+          "estimated_cost_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estimated Cost Usd"
+          },
+          "git_commit_sha": {
+            "title": "Git Commit Sha",
+            "type": "string"
           },
           "id": {
             "format": "uuid",
@@ -322,6 +359,22 @@
             ],
             "title": "Provider Version"
           },
+          "request_configuration": {
+            "additionalProperties": true,
+            "title": "Request Configuration",
+            "type": "object"
+          },
+          "sample_rate_hz": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sample Rate Hz"
+          },
           "status": {
             "title": "Status",
             "type": "string"
@@ -329,6 +382,13 @@
           "target_snapshot": {
             "additionalProperties": true,
             "title": "Target Snapshot",
+            "type": "object"
+          },
+          "transport_timings_ms": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Transport Timings Ms",
             "type": "object"
           }
         },
@@ -340,6 +400,13 @@
           "provider_version",
           "adapter_version",
           "target_snapshot",
+          "git_commit_sha",
+          "audio_sha256",
+          "sample_rate_hz",
+          "request_configuration",
+          "transport_timings_ms",
+          "estimated_billable_units",
+          "estimated_cost_usd",
           "normalized_result",
           "latency_ms",
           "created_at",

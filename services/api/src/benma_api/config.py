@@ -11,7 +11,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 Environment = Literal["development", "test", "production"]
 PerceptionProviderName = Literal["replay", "openai", "disabled"]
-AssessmentProviderName = Literal["replay", "azure", "disabled"]
+AssessmentProviderName = Literal[
+    "replay",
+    "azure",
+    "tencent_sentence",
+    "tencent_pinyin",
+    "iflytek",
+    "disabled",
+]
 ReferenceSpeechProviderName = Literal["replay", "azure", "disabled"]
 AcousticProviderName = Literal["autocorrelation", "disabled"]
 AlignmentProviderName = Literal["replay", "mfa", "disabled"]
@@ -41,6 +48,15 @@ class Settings(BaseSettings):
     openai_transcription_model: str = "gpt-4o-transcribe"
     azure_speech_key: SecretStr | None = None
     azure_speech_region: str | None = None
+    tencent_secret_id: SecretStr | None = None
+    tencent_secret_key: SecretStr | None = None
+    tencent_soe_app_id: str | None = None
+    tencent_soe_score_coeff: float = 4.0
+    tencent_soe_timeout_seconds: float = 30.0
+    iflytek_app_id: str | None = None
+    iflytek_api_key: SecretStr | None = None
+    iflytek_api_secret: SecretStr | None = None
+    iflytek_ise_timeout_seconds: float = 45.0
     reference_speech_voice: str = "zh-CN-Xiaochen:DragonHDLatestNeural"
     reference_speech_model_version: str = "DragonHDLatestNeural"
     reference_speech_rate: str = "0%"
@@ -63,6 +79,25 @@ class Settings(BaseSettings):
             not self.azure_speech_key or not self.azure_speech_region
         ):
             raise ValueError("Azure speech key and region are required for the Azure provider")
+        if self.assessment_provider in {"tencent_sentence", "tencent_pinyin"} and (
+            not self.tencent_secret_id
+            or not self.tencent_secret_key
+            or not self.tencent_soe_app_id
+        ):
+            raise ValueError(
+                "Tencent SOE-N SecretId, SecretKey, and AppID are required; "
+                "the legacy Basic product is not supported"
+            )
+        if not 1.0 <= self.tencent_soe_score_coeff <= 4.0:
+            raise ValueError("Tencent SOE-N score coefficient must be between 1.0 and 4.0")
+        if self.tencent_soe_timeout_seconds <= 0 or self.iflytek_ise_timeout_seconds <= 0:
+            raise ValueError("provider timeouts must be positive")
+        if self.assessment_provider == "iflytek" and (
+            not self.iflytek_app_id or not self.iflytek_api_key or not self.iflytek_api_secret
+        ):
+            raise ValueError(
+                "iFlytek streaming ISE AppID, APIKey, and APISecret are required"
+            )
         if self.reference_speech_provider == "azure" and (
             not self.azure_speech_key or not self.azure_speech_region
         ):

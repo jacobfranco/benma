@@ -155,6 +155,13 @@ class AssessmentRunResponse(BaseModel):
     provider_version: str | None
     adapter_version: str
     target_snapshot: dict[str, Any]
+    git_commit_sha: str
+    audio_sha256: str | None
+    sample_rate_hz: int | None
+    request_configuration: dict[str, Any]
+    transport_timings_ms: dict[str, int]
+    estimated_billable_units: float | None
+    estimated_cost_usd: float | None
     normalized_result: dict[str, Any] | None
     latency_ms: int | None
     created_at: datetime

@@ -3,6 +3,8 @@ from __future__ import annotations
 import base64
 import json
 import uuid
+from datetime import UTC, datetime
+from pathlib import Path
 
 import httpx
 import pytest
@@ -17,6 +19,18 @@ from benma_api.speech.providers.azure import AzurePronunciationProvider
 from benma_api.speech.providers.factory import (
     build_assessment_provider,
     build_perception_provider,
+)
+from benma_api.speech.providers.iflytek import (
+    FULL_DIMENSION_ABILITIES,
+    IFLYTEK_ENDPOINT,
+    IflytekIsePronunciationProvider,
+    parse_iflytek_xml,
+)
+from benma_api.speech.providers.tencent import (
+    SOE_N_ENDPOINT,
+    TONE_COMMAND,
+    TencentSoenPronunciationProvider,
+    parse_tencent_result,
 )
 from benma_api.speech.raw_evidence import encode_raw_payload
 
@@ -110,3 +124,182 @@ def test_raw_provider_payload_supports_text_and_non_json_values() -> None:
     assert non_json.json_value is None
     assert non_json.text_value is not None
     assert len(non_json.sha256) == 64
+
+
+def test_tencent_soen_sentence_request_targets_new_age_and_enables_tone() -> None:
+    request = KnownTargetAssessmentInput(
+        attempt_id=uuid.uuid4(),
+        canonical_audio=b"wav",
+        mime_type="audio/wav",
+        target_snapshot={"text": "生活", "pinyin_syllables": ["sheng1", "huo2"]},
+        timeout_seconds=30,
+    )
+    provider = TencentSoenPronunciationProvider(
+        "secret-id", "secret-key", "123456", mode="sentence"
+    )
+    url = provider.signed_url(request, now=1_700_000_000, nonce=7, voice_id="voice-test")
+    assert url.startswith(f"{SOE_N_ENDPOINT}123456?")
+    assert "eval_mode=1" in url
+    assert "server_engine_type=16k_zh" in url
+    assert "F_TDET%3Dtrue" in url
+    assert "secret-key" not in url
+    assert "/soe/api/" in url
+    assert "/soe-b/" not in url
+
+
+def test_tencent_soen_pinyin_mode_keeps_mode_separate() -> None:
+    captured: dict[str, object] = {}
+
+    def exchange(url: str, audio: bytes, timeout: float) -> list[dict[str, object]]:
+        captured.update(url=url, audio=audio, timeout=timeout)
+        return [
+            {"code": 0, "message": "success"},
+            {
+                "code": 0,
+                "result": {
+                    "SuggestedScore": 91,
+                    "PronAccuracy": 89,
+                    "Words": [
+                        {
+                            "Word": "生",
+                            "ReferenceWord": "sheng1",
+                            "PronAccuracy": 88,
+                            "Tone": {"Valid": True, "RefTone": 1, "HypothesisTone": 2},
+                            "PhoneInfos": [],
+                        }
+                    ],
+                },
+            },
+            {"code": 0, "final": 1},
+        ]
+
+    provider = TencentSoenPronunciationProvider(
+        "secret-id", "secret-key", "123456", mode="pinyin", exchange=exchange
+    )
+    result = provider.assess(
+        KnownTargetAssessmentInput(
+            attempt_id=uuid.uuid4(),
+            canonical_audio=b"same-canonical-wav",
+            mime_type="audio/wav",
+            target_snapshot={"text": "生活", "pinyin_syllables": ["sheng1", "huo2"]},
+            timeout_seconds=30,
+        )
+    )
+    assert "eval_mode=8" in str(captured["url"])
+    assert "sheng1+huo2" in str(captured["url"])
+    assert captured["audio"] == b"same-canonical-wav"
+    assert result.request_configuration is not None
+    assert result.request_configuration["mode"] == "pinyin"
+    assert result.evidence.syllables is not None
+    assert result.evidence.syllables[0]["detected_tone"] == 2
+
+
+def test_tencent_invalid_tone_is_missing_not_negative_one() -> None:
+    evidence = parse_tencent_result(
+        {
+            "SuggestedScore": 99,
+            "Words": [
+                {
+                    "Word": "清",
+                    "ReferenceWord": "qing1",
+                    "Tone": {"Valid": False, "RefTone": -1, "HypothesisTone": -1},
+                    "PhoneInfos": [
+                        {
+                            "Phone": "ing1",
+                            "ReferencePhone": "ing1",
+                            "PronAccuracy": 99,
+                            "MemBeginTime": 100,
+                            "MemEndTime": 240,
+                        }
+                    ],
+                }
+            ],
+        }
+    )
+    assert evidence.syllables is not None
+    syllable = evidence.syllables[0]
+    assert syllable["tone_valid"] is False
+    assert "reference_tone" not in syllable
+    assert "detected_tone" not in syllable
+    assert "valid explicit tone hypothesis" in (evidence.unsupported_capabilities or [])
+
+
+def test_tencent_tone_command_is_pinned() -> None:
+    assert TONE_COMMAND == "{::cmd{F_TDET=true}}"
+
+
+def test_iflytek_full_dimension_request_and_auth_do_not_expose_secret() -> None:
+    provider = IflytekIsePronunciationProvider("app-id", "api-key", "api-secret")
+    request = KnownTargetAssessmentInput(
+        attempt_id=uuid.uuid4(),
+        canonical_audio=b"wav",
+        mime_type="audio/wav",
+        target_snapshot={"text": "生活"},
+        timeout_seconds=30,
+    )
+    payload = provider.start_payload(request)
+    business = payload["business"]
+    assert business["ent"] == "cn_vip"
+    assert business["ise_unite"] == "1"
+    assert business["rst"] == "entirety"
+    assert business["extra_ability"] == FULL_DIMENSION_ABILITIES
+    assert business["text"] == "\ufeff生活"
+    url = provider.signed_url(now=datetime(2026, 8, 3, tzinfo=UTC))
+    assert url.startswith(f"{IFLYTEK_ENDPOINT}?")
+    assert "api-secret" not in url
+    assert "api-key" not in url
+
+
+def test_iflytek_fixture_preserves_tone_phone_and_error_structure() -> None:
+    fixture = (
+        Path(__file__).parent
+        / "fixtures"
+        / "iflytek-ise"
+        / "mandarin-full-dimension.xml"
+    ).read_text(encoding="utf-8")
+    evidence, version = parse_iflytek_xml(fixture)
+    assert version == "7,0,0,1024"
+    assert evidence.overall_score == 80
+    assert evidence.phone_score == 82
+    assert evidence.tone_score == 70
+    assert evidence.syllables is not None
+    first = evidence.syllables[0]
+    assert first["pinyin"] == "sheng1"
+    assert first["detected_tone"] == 4
+    assert "tone_error" in first["error_classifications"]
+    second = evidence.syllables[1]
+    assert "initial_error" in second["error_classifications"]
+    assert second["phones"][0]["error_confidence_level"] == 2
+
+
+def test_iflytek_live_wrapper_keeps_identical_audio_and_sanitizes_envelope() -> None:
+    fixture = (
+        Path(__file__).parent
+        / "fixtures"
+        / "iflytek-ise"
+        / "mandarin-full-dimension.xml"
+    ).read_text(encoding="utf-8")
+    captured: dict[str, object] = {}
+
+    def exchange(
+        url: str, start: dict[str, object], audio: bytes, timeout: float
+    ) -> tuple[list[dict[str, object]], str]:
+        captured.update(url=url, start=start, audio=audio, timeout=timeout)
+        return ([{"code": 0, "data": {"status": 2, "data": "sensitive-copy"}}], fixture)
+
+    provider = IflytekIsePronunciationProvider(
+        "app-id", "api-key", "api-secret", exchange=exchange
+    )
+    response = provider.assess(
+        KnownTargetAssessmentInput(
+            attempt_id=uuid.uuid4(),
+            canonical_audio=b"same-canonical-audio",
+            mime_type="audio/wav",
+            target_snapshot={"text": "生活"},
+            timeout_seconds=30,
+        )
+    )
+    assert captured["audio"] == b"same-canonical-audio"
+    assert response.request_configuration is not None
+    assert response.request_configuration["full_dimension_requested"] is True
+    assert "sensitive-copy" not in str(response.raw_payload)

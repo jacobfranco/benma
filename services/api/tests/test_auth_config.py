@@ -91,3 +91,7 @@ def test_live_provider_configuration_never_falls_back() -> None:
         Settings(perception_provider="openai", openai_api_key=None)
     with pytest.raises(ValidationError, match="Azure"):
         Settings(assessment_provider="azure")
+    with pytest.raises(ValidationError, match="legacy Basic"):
+        Settings(assessment_provider="tencent_sentence")
+    with pytest.raises(ValidationError, match="iFlytek streaming"):
+        Settings(assessment_provider="iflytek")

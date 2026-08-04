@@ -53,6 +53,17 @@ export interface components {
         "target_snapshot": {
         [key: string]: unknown;
       };
+        "git_commit_sha": string;
+        "audio_sha256": string | null;
+        "sample_rate_hz": number | null;
+        "request_configuration": {
+        [key: string]: unknown;
+      };
+        "transport_timings_ms": {
+        [key: string]: number;
+      };
+        "estimated_billable_units": number | null;
+        "estimated_cost_usd": number | null;
         "normalized_result": {
         [key: string]: unknown;
       } | null;

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import logging
+import os
+import subprocess
 import time
 import uuid
 
@@ -21,6 +23,24 @@ from benma_api.speech.raw_evidence import encode_raw_payload
 from benma_api.storage.audio_store import AudioObjectStore
 
 logger = logging.getLogger(__name__)
+
+
+def current_git_commit() -> str:
+    configured = os.environ.get("BENMA_GIT_COMMIT_SHA")
+    if configured:
+        return configured[:64]
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=2,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return "undocumented"
+    value = completed.stdout.strip()
+    return value[:64] if value else "undocumented"
 
 
 def target_snapshot(target: PronunciationTarget) -> dict[str, object]:
@@ -83,6 +103,11 @@ class AssessmentService:
                 product=self.provider.product_name,
                 adapter_version=self.provider.adapter_version,
                 target_snapshot=snapshot,
+                git_commit_sha=current_git_commit(),
+                audio_sha256=asset.sha256,
+                sample_rate_hz=asset.sample_rate_hz,
+                request_configuration={},
+                transport_timings_ms={},
                 normalized_result=None,
                 status="failed",
                 error_code=exc.code,
@@ -111,6 +136,11 @@ class AssessmentService:
             provider_version=response.provider_version,
             adapter_version=self.provider.adapter_version,
             target_snapshot=snapshot,
+            git_commit_sha=current_git_commit(),
+            audio_sha256=asset.sha256,
+            sample_rate_hz=asset.sample_rate_hz,
+            request_configuration=response.request_configuration or {},
+            transport_timings_ms=response.transport_timings_ms or {},
             normalized_result=response.evidence.normalized(),
             raw_payload_json=raw.json_value,
             raw_payload_text=raw.text_value,
