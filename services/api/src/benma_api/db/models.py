@@ -224,6 +224,7 @@ class PronunciationInterpretationRun(UUIDPrimaryKeyMixin, Base):
         ForeignKey("pronunciation_attempts.id"), index=True
     )
     interpreter_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    interpreter_configuration: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
     input_evidence_run_ids: Mapped[dict[str, str | None]] = mapped_column(JSON, nullable=False)
     structured_observations: Mapped[list[dict[str, Any]]] = mapped_column(JSON, nullable=False)
     capability_state: Mapped[str] = mapped_column(String(32), nullable=False)

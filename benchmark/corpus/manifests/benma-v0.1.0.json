@@ -23,9 +23,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "correct_control",
         "tone_1",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -47,9 +47,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "correct_control",
         "tone_1",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -71,9 +71,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "correct_control",
         "tone_1",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -98,8 +98,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "deliberate_error",
         "tone_1",
+        "deliberate_error",
         "isolated_tone"
       ],
       "status": "planned"
@@ -122,9 +122,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
+        "isolated_tone",
         "tone_2",
-        "correct_control",
-        "isolated_tone"
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -146,9 +146,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
+        "isolated_tone",
         "tone_2",
-        "correct_control",
-        "isolated_tone"
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -170,9 +170,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
+        "isolated_tone",
         "tone_2",
-        "correct_control",
-        "isolated_tone"
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -197,9 +197,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_2",
         "deliberate_error",
-        "isolated_tone"
+        "isolated_tone",
+        "tone_2"
       ],
       "status": "planned"
     },
@@ -222,8 +222,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "tone_3",
-        "correct_control",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -246,8 +246,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "tone_3",
-        "correct_control",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -270,8 +270,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "tone_3",
-        "correct_control",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -321,8 +321,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "tone_4",
-        "correct_control",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -345,8 +345,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "tone_4",
-        "correct_control",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -369,8 +369,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "tone_4",
-        "correct_control",
-        "isolated_tone"
+        "isolated_tone",
+        "correct_control"
       ],
       "status": "planned"
     },
@@ -395,9 +395,717 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_4",
         "deliberate_error",
+        "tone_4",
         "isolated_tone"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t1-as-t2_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t1-as-t2",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t1-as-t2_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T1",
+        "produced_form": "T2"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t1-as-t2",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t1-as-t3_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t1-as-t3",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t1-as-t3_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T1",
+        "produced_form": "T3"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t1-as-t3",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t1-as-t4_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t1-as-t4",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t1-as-t4_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "妈",
+      "intended_pinyin": [
+        "mā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [
+        "T1"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T1",
+        "produced_form": "T4"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t1-as-t4",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t2-as-t1_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t2-as-t1",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t2-as-t1_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T2",
+        "produced_form": "T1"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t2-as-t1",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t2-as-t3_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t2-as-t3",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t2-as-t3_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T2",
+        "produced_form": "T3"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t2-as-t3",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t2-as-t4_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t2-as-t4",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t2-as-t4_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "麻",
+      "intended_pinyin": [
+        "má"
+      ],
+      "lexical_tones": [
+        2
+      ],
+      "expected_surface_tones": [
+        "T2"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T2",
+        "produced_form": "T4"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t2-as-t4",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t3-as-t1_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t3-as-t1",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t3-as-t1_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T3",
+        "produced_form": "T1"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t3-as-t1",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t3-as-t2_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t3-as-t2",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t3-as-t2_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T3",
+        "produced_form": "T2"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t3-as-t2",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t3-as-t4_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t3-as-t4",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t3-as-t4_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "马",
+      "intended_pinyin": [
+        "mǎ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [
+        "T3"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T3",
+        "produced_form": "T4"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t3-as-t4",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t4-as-t1_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t4-as-t1",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t4-as-t1_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T4",
+        "produced_form": "T1"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t4-as-t1",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t4-as-t2_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t4-as-t2",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t4-as-t2_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T4",
+        "produced_form": "T2"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t4-as-t2",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t4-as-t3_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "tone-t4-as-t3",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_tone-t4-as-t3_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "骂",
+      "intended_pinyin": [
+        "mà"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [
+        "T4"
+      ],
+      "deliberate_error": {
+        "error_type": "wrong_tone",
+        "corrupted_syllable_index": 0,
+        "expected_form": "T4",
+        "produced_form": "T3"
+      },
+      "calibration_mode": "learner_intentional_tone_error",
+      "pair_id": "tone-t4-as-t3",
+      "environmental_condition": "quiet",
+      "tags": [
+        "tone_confusion_balance",
+        "deliberate_error",
+        "paired_calibration"
       ],
       "status": "planned"
     },
@@ -536,8 +1244,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_21",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_21"
       ],
       "status": "planned"
     },
@@ -592,8 +1300,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_23",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_23"
       ],
       "status": "planned"
     },
@@ -620,8 +1328,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_24",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_24"
       ],
       "status": "planned"
     },
@@ -676,8 +1384,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_32",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_32"
       ],
       "status": "planned"
     },
@@ -704,8 +1412,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_33",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_33"
       ],
       "status": "planned"
     },
@@ -732,8 +1440,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_34",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_34"
       ],
       "status": "planned"
     },
@@ -816,8 +1524,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_43",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_43"
       ],
       "status": "planned"
     },
@@ -844,8 +1552,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "pair_44",
-        "tone_pair_matrix"
+        "tone_pair_matrix",
+        "pair_44"
       ],
       "status": "planned"
     },
@@ -1177,8 +1885,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1205,8 +1913,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1233,8 +1941,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1261,8 +1969,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1289,8 +1997,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1317,8 +2025,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1345,8 +2053,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1373,8 +2081,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1401,8 +2109,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1429,8 +2137,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1457,8 +2165,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1485,8 +2193,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "tone_sandhi",
-        "surface_tone"
+        "surface_tone",
+        "tone_sandhi"
       ],
       "status": "planned"
     },
@@ -1507,8 +2215,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "z_zh",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "z_zh"
       ],
       "status": "planned"
     },
@@ -1529,8 +2237,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "c_ch",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "c_ch"
       ],
       "status": "planned"
     },
@@ -1573,8 +2281,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "j_zh",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "j_zh"
       ],
       "status": "planned"
     },
@@ -1639,8 +2347,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "x_s",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "x_s"
       ],
       "status": "planned"
     },
@@ -1683,8 +2391,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "n_ng_en_eng",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "n_ng_en_eng"
       ],
       "status": "planned"
     },
@@ -1727,8 +2435,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "asp_b_p",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "asp_b_p"
       ],
       "status": "planned"
     },
@@ -1771,8 +2479,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "asp_g_k",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "asp_g_k"
       ],
       "status": "planned"
     },
@@ -1793,8 +2501,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "asp_j_q",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "asp_j_q"
       ],
       "status": "planned"
     },
@@ -1815,8 +2523,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "asp_z_c",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "asp_z_c"
       ],
       "status": "planned"
     },
@@ -1857,8 +2565,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "mandarin_r",
-        "initial_final_contrast"
+        "initial_final_contrast",
+        "mandarin_r"
       ],
       "status": "planned"
     },
@@ -1924,6 +2632,776 @@
     },
     {
       "schema_version": "1.0.0",
+      "sample_id": "cal_initial_z_zh_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "早",
+      "intended_pinyin": [
+        "zǎo"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_z_zh",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_z_zh_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "早",
+      "intended_pinyin": [
+        "zǎo"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "zǎo",
+        "produced_form": "zhǎo"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_z_zh",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_zh_z_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "找",
+      "intended_pinyin": [
+        "zhǎo"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_zh_z",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_zh_z_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "找",
+      "intended_pinyin": [
+        "zhǎo"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "zhǎo",
+        "produced_form": "zǎo"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_zh_z",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_c_ch_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "擦",
+      "intended_pinyin": [
+        "cā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_c_ch",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_c_ch_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "擦",
+      "intended_pinyin": [
+        "cā"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "cā",
+        "produced_form": "chā"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_c_ch",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_q_ch_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "七",
+      "intended_pinyin": [
+        "qī"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_q_ch",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_q_ch_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "七",
+      "intended_pinyin": [
+        "qī"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "qī",
+        "produced_form": "chī"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_q_ch",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_s_sh_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "四",
+      "intended_pinyin": [
+        "sì"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_s_sh",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_s_sh_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "四",
+      "intended_pinyin": [
+        "sì"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "sì",
+        "produced_form": "shì"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_s_sh",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_j_zh_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "鸡",
+      "intended_pinyin": [
+        "jī"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_j_zh",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_j_zh_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "鸡",
+      "intended_pinyin": [
+        "jī"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "jī",
+        "produced_form": "zhī"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_j_zh",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_x_s_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "洗",
+      "intended_pinyin": [
+        "xǐ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "initial_x_s",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_initial_x_s_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "洗",
+      "intended_pinyin": [
+        "xǐ"
+      ],
+      "lexical_tones": [
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_initial",
+        "corrupted_syllable_index": 0,
+        "expected_form": "xǐ",
+        "produced_form": "sǐ"
+      },
+      "calibration_mode": "learner_intentional_initial_error",
+      "pair_id": "initial_x_s",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_u_v_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "路",
+      "intended_pinyin": [
+        "lù"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_u_v",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_u_v_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "路",
+      "intended_pinyin": [
+        "lù"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "lù",
+        "produced_form": "lǜ"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_u_v",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_v_u_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "绿",
+      "intended_pinyin": [
+        "lǜ"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_v_u",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_v_u_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "绿",
+      "intended_pinyin": [
+        "lǜ"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "lǜ",
+        "produced_form": "lù"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_v_u",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_en_eng_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "真",
+      "intended_pinyin": [
+        "zhēn"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_en_eng",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_en_eng_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "真",
+      "intended_pinyin": [
+        "zhēn"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "zhēn",
+        "produced_form": "zhēng"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_en_eng",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_eng_en_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "争",
+      "intended_pinyin": [
+        "zhēng"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_eng_en",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_eng_en_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "争",
+      "intended_pinyin": [
+        "zhēng"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "zhēng",
+        "produced_form": "zhēn"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_eng_en",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_in_ing_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "亲",
+      "intended_pinyin": [
+        "qīn"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_in_ing",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_in_ing_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "亲",
+      "intended_pinyin": [
+        "qīn"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "qīn",
+        "produced_form": "qīng"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_in_ing",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_ing_in_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "清",
+      "intended_pinyin": [
+        "qīng"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_ing_in",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_ing_in_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "清",
+      "intended_pinyin": [
+        "qīng"
+      ],
+      "lexical_tones": [
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "qīng",
+        "produced_form": "qīn"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_ing_in",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_an_ang_correct",
+      "corpus_version": "0.1.0",
+      "speaker_category": "learner",
+      "intended_text": "饭",
+      "intended_pinyin": [
+        "fàn"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "learner_correct",
+      "pair_id": "final_an_ang",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "paired_calibration",
+        "correct_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "cal_final_an_ang_error",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "饭",
+      "intended_pinyin": [
+        "fàn"
+      ],
+      "lexical_tones": [
+        4
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "wrong_final",
+        "corrupted_syllable_index": 0,
+        "expected_form": "fàn",
+        "produced_form": "fàng"
+      },
+      "calibration_mode": "learner_intentional_final_error",
+      "pair_id": "final_an_ang",
+      "environmental_condition": "quiet",
+      "tags": [
+        "segmental_calibration",
+        "deliberate_error",
+        "paired_calibration"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
       "sample_id": "sentence_beijing_control",
       "corpus_version": "0.1.0",
       "speaker_category": "native_control",
@@ -1952,9 +3430,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
+        "sentence_corruption",
         "control",
-        "sentence_corruption"
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -1991,9 +3469,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
+        "sentence_corruption",
         "adversarial_context",
-        "wrong_tone",
-        "sentence_corruption"
+        "wrong_tone"
       ],
       "status": "planned"
     },
@@ -2030,9 +3508,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "sentence_corruption",
-        "wrong_initial"
+        "wrong_initial",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2069,9 +3547,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "wrong_final",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2108,9 +3586,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
+        "sentence_corruption",
         "sub_syllable",
-        "sentence_corruption"
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2145,9 +3623,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "sub_word",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2184,9 +3662,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "omission",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2221,9 +3699,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
+        "sentence_corruption",
         "americanized",
-        "sentence_corruption"
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2259,8 +3737,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "bad_prosody",
-        "adversarial_context",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2298,9 +3776,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
+        "sentence_corruption",
         "control",
-        "sentence_corruption"
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2341,9 +3819,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
+        "sentence_corruption",
         "adversarial_context",
-        "wrong_tone",
-        "sentence_corruption"
+        "wrong_tone"
       ],
       "status": "planned"
     },
@@ -2384,9 +3862,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "sentence_corruption",
-        "wrong_initial"
+        "wrong_initial",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2427,9 +3905,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "wrong_final",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2470,9 +3948,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
+        "sentence_corruption",
         "sub_syllable",
-        "sentence_corruption"
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2511,9 +3989,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "sub_word",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2554,9 +4032,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
         "omission",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2595,9 +4073,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "adversarial_context",
+        "sentence_corruption",
         "americanized",
-        "sentence_corruption"
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2637,8 +4115,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "bad_prosody",
-        "adversarial_context",
-        "sentence_corruption"
+        "sentence_corruption",
+        "adversarial_context"
       ],
       "status": "planned"
     },
@@ -2674,9 +4152,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "control",
         "sentence_set",
-        "sentence_corruption"
+        "sentence_corruption",
+        "control"
       ],
       "status": "planned"
     },
@@ -2715,9 +4193,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "wrong_tone",
         "sentence_set",
-        "sentence_corruption"
+        "sentence_corruption",
+        "wrong_tone"
       ],
       "status": "planned"
     },
@@ -2798,8 +4276,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "wrong_final",
-        "sentence_set",
-        "sentence_corruption"
+        "sentence_corruption",
+        "sentence_set"
       ],
       "status": "planned"
     },
@@ -2838,9 +4316,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "sub_syllable",
         "sentence_set",
-        "sentence_corruption"
+        "sentence_corruption",
+        "sub_syllable"
       ],
       "status": "planned"
     },
@@ -2878,8 +4356,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "sub_word",
-        "sentence_set",
-        "sentence_corruption"
+        "sentence_corruption",
+        "sentence_set"
       ],
       "status": "planned"
     },
@@ -2919,8 +4397,8 @@
       "environmental_condition": "quiet",
       "tags": [
         "omission",
-        "sentence_set",
-        "sentence_corruption"
+        "sentence_corruption",
+        "sentence_set"
       ],
       "status": "planned"
     },
@@ -2957,9 +4435,9 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "americanized",
+        "sentence_corruption",
         "sentence_set",
-        "sentence_corruption"
+        "americanized"
       ],
       "status": "planned"
     },
@@ -2996,8 +4474,8 @@
       },
       "environmental_condition": "quiet",
       "tags": [
-        "bad_prosody",
         "sentence_set",
+        "bad_prosody",
         "sentence_corruption"
       ],
       "status": "planned"
@@ -3010,10 +4488,11 @@
       "intended_pinyin": [],
       "lexical_tones": [],
       "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
       "environmental_condition": "silence",
       "tags": [
-        "negative_control",
-        "silence"
+        "silence",
+        "negative_control"
       ],
       "status": "planned"
     },
@@ -3025,10 +4504,11 @@
       "intended_pinyin": [],
       "lexical_tones": [],
       "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
       "environmental_condition": "quiet",
       "tags": [
-        "nonsense",
-        "negative_control"
+        "negative_control",
+        "nonsense"
       ],
       "status": "planned"
     },
@@ -3040,10 +4520,11 @@
       "intended_pinyin": [],
       "lexical_tones": [],
       "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
       "environmental_condition": "quiet",
       "tags": [
-        "nonsense",
-        "negative_control"
+        "negative_control",
+        "nonsense"
       ],
       "status": "planned"
     },
@@ -3056,10 +4537,11 @@
       "intended_pinyin": [],
       "lexical_tones": [],
       "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
       "environmental_condition": "clipped",
       "tags": [
-        "clipped",
-        "negative_control"
+        "negative_control",
+        "clipped"
       ],
       "status": "planned"
     },
@@ -3072,10 +4554,11 @@
       "intended_pinyin": [],
       "lexical_tones": [],
       "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
       "environmental_condition": "low_volume",
       "tags": [
-        "negative_control",
-        "low_volume"
+        "low_volume",
+        "negative_control"
       ],
       "status": "planned"
     },
@@ -3120,8 +4603,8 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "exaggerated",
-        "delivery_control"
+        "delivery_control",
+        "exaggerated"
       ],
       "status": "planned"
     },
@@ -3152,8 +4635,170 @@
       "expected_surface_tones": [],
       "environmental_condition": "quiet",
       "tags": [
-        "delivery_control",
-        "fast"
+        "fast",
+        "delivery_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_omitted_target",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
+      "environmental_condition": "quiet",
+      "tags": [
+        "omitted_speech",
+        "negative_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_unrelated_clear_speech",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
+      "environmental_condition": "quiet",
+      "tags": [
+        "unrelated_speech",
+        "negative_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_distorted_audio",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
+      "environmental_condition": "clipped",
+      "tags": [
+        "negative_control",
+        "distorted_audio"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_mild_babble",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_text": "今天天气很好。",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
+      "environmental_condition": "background_conversation",
+      "tags": [
+        "negative_control",
+        "mild_noise"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "control_nonsense_3",
+      "corpus_version": "0.1.0",
+      "speaker_category": "intentionally_corrupted",
+      "intended_pinyin": [],
+      "lexical_tones": [],
+      "expected_surface_tones": [],
+      "calibration_mode": "negative_control",
+      "environmental_condition": "quiet",
+      "tags": [
+        "mandarin_nonsense",
+        "negative_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "native_nihao",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "你好",
+      "intended_pinyin": [
+        "nǐ",
+        "hǎo"
+      ],
+      "lexical_tones": [
+        3,
+        3
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "native_control",
+      "environmental_condition": "quiet",
+      "tags": [
+        "calibration_control",
+        "native_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "native_zhongguo",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "中国",
+      "intended_pinyin": [
+        "zhōng",
+        "guó"
+      ],
+      "lexical_tones": [
+        1,
+        2
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "native_control",
+      "environmental_condition": "quiet",
+      "tags": [
+        "calibration_control",
+        "native_control"
+      ],
+      "status": "planned"
+    },
+    {
+      "schema_version": "1.0.0",
+      "sample_id": "native_beijing",
+      "corpus_version": "0.1.0",
+      "speaker_category": "native_control",
+      "intended_text": "北京",
+      "intended_pinyin": [
+        "běi",
+        "jīng"
+      ],
+      "lexical_tones": [
+        3,
+        1
+      ],
+      "expected_surface_tones": [],
+      "deliberate_error": {
+        "error_type": "none"
+      },
+      "calibration_mode": "native_control",
+      "environmental_condition": "quiet",
+      "tags": [
+        "calibration_control",
+        "native_control"
       ],
       "status": "planned"
     }

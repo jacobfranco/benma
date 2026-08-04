@@ -11,6 +11,7 @@ from benchmark.models import (
     BlindAnnotationCommit,
     BlindListenerResponse,
     HumanListenerAnnotation,
+    RaterProfile,
     RevealedAnnotationCommit,
     RevealedTargetResponse,
 )
@@ -18,14 +19,21 @@ from benchmark.storage import load_model, write_model
 
 
 def _blind_digest(
-    *, sample_id: str, listener_id: str, randomized_order: int, response: BlindListenerResponse
+    *,
+    sample_id: str,
+    listener_id: str,
+    randomized_order: int,
+    response: BlindListenerResponse,
+    rater_profile: RaterProfile | None,
 ) -> str:
-    payload = {
+    payload: dict[str, object] = {
         "sample_id": sample_id,
         "listener_id": listener_id,
         "randomized_order": randomized_order,
         "response": response.model_dump(mode="json", exclude_none=True),
     }
+    if rater_profile is not None:
+        payload["rater_profile"] = rater_profile.model_dump(mode="json", exclude_none=True)
     canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(canonical.encode()).hexdigest()
 
@@ -38,14 +46,22 @@ def commit_blind(
     listener_id: str,
     randomized_order: int,
     response: BlindListenerResponse,
+    rater_profile: RaterProfile | None = None,
     now: datetime | None = None,
 ) -> BlindAnnotationCommit:
     if path.exists():
         raise FileExistsError("blind responses are immutable; create a new annotation ID")
+    for existing_path in path.parent.glob("*.json"):
+        existing = load_model(existing_path, BlindAnnotationCommit)
+        if existing.sample_id == sample_id and existing.listener_id == listener_id:
+            raise ValueError("this rater already annotated this sample")
+    if rater_profile is not None and rater_profile.rater_id != listener_id:
+        raise ValueError("rater profile ID must match listener ID")
     commit = BlindAnnotationCommit(
         annotation_id=annotation_id,
         sample_id=sample_id,
         listener_id=listener_id,
+        rater_profile=rater_profile,
         randomized_order=randomized_order,
         response=response,
         committed_at=now or datetime.now(UTC),
@@ -54,6 +70,7 @@ def commit_blind(
             listener_id=listener_id,
             randomized_order=randomized_order,
             response=response,
+            rater_profile=rater_profile,
         ),
     )
     write_model(path, commit)
@@ -66,6 +83,7 @@ def verify_blind(commit: BlindAnnotationCommit) -> bool:
         listener_id=commit.listener_id,
         randomized_order=commit.randomized_order,
         response=commit.response,
+        rater_profile=commit.rater_profile,
     )
 
 

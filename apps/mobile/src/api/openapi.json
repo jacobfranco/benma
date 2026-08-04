@@ -684,6 +684,11 @@
             "title": "Input Evidence Run Ids",
             "type": "object"
           },
+          "interpreter_configuration": {
+            "additionalProperties": true,
+            "title": "Interpreter Configuration",
+            "type": "object"
+          },
           "interpreter_version": {
             "title": "Interpreter Version",
             "type": "string"
@@ -706,6 +711,7 @@
           "id",
           "pronunciation_attempt_id",
           "interpreter_version",
+          "interpreter_configuration",
           "input_evidence_run_ids",
           "structured_observations",
           "capability_state",

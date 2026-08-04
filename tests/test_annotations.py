@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from benchmark.annotations import commit_blind, commit_revealed, load_annotation, verify_blind
-from benchmark.models import BlindListenerResponse, RevealedTargetResponse
+from benchmark.models import BlindListenerResponse, RaterProfile, RevealedTargetResponse
 
 
 def blind_response() -> BlindListenerResponse:
@@ -103,3 +103,39 @@ def test_revealed_commit_is_create_only(tmp_path: Path) -> None:
     commit_revealed(blind, reveal, response=revealed_response())
     with pytest.raises(FileExistsError, match="immutable"):
         commit_revealed(blind, reveal, response=revealed_response())
+
+
+def test_listener_cannot_rate_same_sample_twice(tmp_path: Path) -> None:
+    directory = tmp_path / "blind"
+    commit_blind(
+        directory / "first.json",
+        annotation_id="a1",
+        sample_id="sample_1",
+        listener_id="listener_1",
+        randomized_order=0,
+        response=blind_response(),
+    )
+    with pytest.raises(ValueError, match="already annotated"):
+        commit_blind(
+            directory / "second.json",
+            annotation_id="a2",
+            sample_id="sample_1",
+            listener_id="listener_1",
+            randomized_order=1,
+            response=blind_response(),
+        )
+
+
+def test_profile_must_match_listener(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="profile ID"):
+        commit_blind(
+            tmp_path / "blind" / "a1.json",
+            annotation_id="a1",
+            sample_id="sample_1",
+            listener_id="listener_1",
+            randomized_order=0,
+            response=blind_response(),
+            rater_profile=RaterProfile(
+                rater_id="listener_2", native_mandarin_self_report=True
+            ),
+        )

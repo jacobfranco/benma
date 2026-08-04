@@ -119,6 +119,9 @@ export interface components {
         "id": string;
         "pronunciation_attempt_id": string;
         "interpreter_version": string;
+        "interpreter_configuration": {
+        [key: string]: unknown;
+      };
         "input_evidence_run_ids": {
         [key: string]: string | null;
       };

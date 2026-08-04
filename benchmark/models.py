@@ -33,6 +33,69 @@ class SpeakerCategory(StrEnum):
     SYNTHETIC_REFERENCE = "synthetic_reference"
 
 
+class CalibrationMode(StrEnum):
+    LEARNER_CORRECT = "learner_correct"
+    LEARNER_INTENTIONAL_TONE_ERROR = "learner_intentional_tone_error"
+    LEARNER_INTENTIONAL_INITIAL_ERROR = "learner_intentional_initial_error"
+    LEARNER_INTENTIONAL_FINAL_ERROR = "learner_intentional_final_error"
+    NATIVE_CONTROL = "native_control"
+    NEGATIVE_CONTROL = "negative_control"
+    SPONTANEOUS_NATURAL = "spontaneous_natural"
+
+
+class ProviderLifecycle(StrEnum):
+    DOCUMENTED = "documented"
+    IMPLEMENTED = "implemented"
+    FIXTURE_VALIDATED = "fixture_validated"
+    LIVE_VALIDATED = "live_validated"
+    PILOT_EVALUATED = "pilot_evaluated"
+    CALIBRATED = "calibrated"
+    DISQUALIFIED = "disqualified"
+
+
+class CalibrationMaturity(StrEnum):
+    RAW_EVIDENCE = "raw_evidence"
+    EXPERIMENTAL = "experimental"
+    CALIBRATED = "calibrated"
+
+
+class CalibrationScope(StrEnum):
+    NONE = "none"
+    PERSONAL = "personal"
+    PILOT_POPULATION = "pilot_population"
+    GENERAL = "general"
+
+
+class EvidenceOrigin(StrEnum):
+    UNKNOWN = "unknown"
+    LIVE_PROVIDER = "live_provider"
+    LIVE_CAPTURED_SANITIZED = "live_captured_sanitized"
+    DOCUMENTATION_CONTRACT_EXAMPLE = "documentation_contract_example"
+    CONSTRUCTED_FIXTURE = "constructed_fixture"
+    SYNTHETIC_REPLAY = "synthetic_replay"
+
+
+class ListenerRole(StrEnum):
+    ORDINARY_NATIVE_LISTENER = "ordinary_native_listener"
+    LINGUISTICALLY_TRAINED_LISTENER = "linguistically_trained_listener"
+
+
+class SemanticSeverity(StrEnum):
+    TECHNICAL_ONLY = "technical_only"
+    NOTICEABLE_BUT_UNDERSTOOD = "noticeable_but_understood"
+    CONFUSING = "confusing"
+    REQUIRES_REPETITION = "requires_repetition"
+    WRONG_WORD_PERCEIVED = "wrong_word_perceived"
+
+
+class HumanConsensusClass(StrEnum):
+    STRONG_ACCEPT = "strong_accept"
+    ACCEPTABLE_WITH_ERROR = "acceptable_with_error"
+    AMBIGUOUS = "ambiguous"
+    LIKELY_UNINTELLIGIBLE = "likely_unintelligible"
+    INVALID_SAMPLE = "invalid_sample"
+
+
 class ErrorType(StrEnum):
     WRONG_TONE = "wrong_tone"
     WRONG_INITIAL = "wrong_initial"
@@ -86,6 +149,16 @@ class AudioAsset(StrictModel):
     duration_seconds: NonNegative | None = None
 
 
+class RecordingQualityEvidence(StrictModel):
+    clipping: bool | None = None
+    silence_ratio: Probability | None = None
+    voiced_fraction: Probability | None = None
+    level_rms: NonNegative | None = None
+    duration_seconds: NonNegative | None = None
+    status: Literal["usable", "warning", "invalid", "unknown"] = "unknown"
+    source: str = "production_recording_quality"
+
+
 class DeviceMetadata(StrictModel):
     device_name: str | None = None
     microphone: str | None = None
@@ -128,6 +201,9 @@ class BenchmarkSample(StrictModel):
     expected_surface_tones: tuple[str, ...] = ()
     deliberate_error: DeliberateError | None = None
     recording_notes: str | None = None
+    calibration_mode: CalibrationMode | None = None
+    pair_id: str | None = None
+    recording_quality: RecordingQualityEvidence | None = None
     environmental_condition: EnvironmentalCondition = EnvironmentalCondition.QUIET
     tags: frozenset[str] = Field(default_factory=frozenset)
     status: Literal["planned", "recorded", "annotated"] = "planned"
@@ -336,10 +412,14 @@ class ProviderRun(StrictModel):
     product: str
     provider_version: str | None = None
     adapter_version: str
+    git_commit_sha: str | None = None
     timestamp: datetime = Field(default_factory=lambda: datetime.now(UTC))
     benchmark_sample_id: str
     request_mode: RequestMode
     request_configuration: dict[str, JsonValue] = Field(default_factory=dict)
+    audio_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    sample_rate_hz: int | None = Field(default=None, gt=0)
+    transport_timings_seconds: dict[str, NonNegative] = Field(default_factory=dict)
     response_latency_seconds: NonNegative | None = None
     audio_duration_seconds: NonNegative | None = None
     estimated_billable_units: NonNegative | None = None
@@ -352,6 +432,8 @@ class ProviderRun(StrictModel):
         | None
     ) = None
     raw_response: JsonValue | None = None
+    raw_response_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    evidence_origin: EvidenceOrigin = EvidenceOrigin.UNKNOWN
     status: RunStatus
     error: ProviderError | None = None
     context_condition: ContextCondition | None = None
@@ -374,11 +456,19 @@ class BlindListenerResponse(StrictModel):
     notes: str | None = None
 
 
+class RaterProfile(StrictModel):
+    rater_id: str = Field(min_length=3, pattern=r"^[a-zA-Z0-9][a-zA-Z0-9_-]+$")
+    native_mandarin_self_report: bool
+    role: ListenerRole = ListenerRole.ORDINARY_NATIVE_LISTENER
+    region_or_accent_note: str | None = None
+
+
 class BlindAnnotationCommit(StrictModel):
     schema_version: Literal["1.0.0"] = SCHEMA_VERSION
     annotation_id: str
     sample_id: str
     listener_id: str
+    rater_profile: RaterProfile | None = None
     randomized_order: int = Field(ge=0)
     response: BlindListenerResponse
     committed_at: datetime
@@ -393,7 +483,20 @@ class RevealedTargetResponse(StrictModel):
     rhythm_or_prosody_issue: bool
     still_understandable: bool
     severity: Literal["none", "minor", "moderate", "severe"]
+    semantic_severity: SemanticSeverity | None = None
+    perceived_produced_tones: tuple[str, ...] = ()
+    invalid_sample: bool = False
     notes: str | None = None
+
+    @model_validator(mode="after")
+    def affected_indices_are_unique_nonnegative(self) -> RevealedTargetResponse:
+        if any(index < 0 for index in self.affected_syllable_indices):
+            raise ValueError("affected syllable indices must be nonnegative")
+        if len(set(self.affected_syllable_indices)) != len(
+            self.affected_syllable_indices
+        ):
+            raise ValueError("affected syllable indices must be unique")
+        return self
 
 
 class RevealedAnnotationCommit(StrictModel):
@@ -421,3 +524,36 @@ class HumanListenerAnnotation(StrictModel):
             if self.revealed.listener_id != self.blind.listener_id:
                 raise ValueError("annotation stages reference different listeners")
         return self
+
+
+class CalibrationSplitManifest(StrictModel):
+    benchmark_version: str
+    split_version: str
+    strategy: str = "deterministic_stratified_sha256_v1"
+    calibration_sample_ids: tuple[str, ...]
+    held_out_sample_ids: tuple[str, ...]
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+
+    @model_validator(mode="after")
+    def split_is_disjoint(self) -> CalibrationSplitManifest:
+        calibration = set(self.calibration_sample_ids)
+        held_out = set(self.held_out_sample_ids)
+        if calibration & held_out:
+            raise ValueError("calibration and held-out partitions overlap")
+        if len(calibration) != len(self.calibration_sample_ids) or len(held_out) != len(
+            self.held_out_sample_ids
+        ):
+            raise ValueError("split partitions contain duplicate sample IDs")
+        return self
+
+
+class CalibrationRunManifest(StrictModel):
+    benchmark_version: str
+    git_commit_sha: str
+    provider_adapter_versions: dict[str, str]
+    provider_configurations: dict[str, dict[str, JsonValue]]
+    included_sample_ids: tuple[str, ...]
+    excluded_sample_ids: tuple[str, ...]
+    human_annotation_version: str
+    split_version: str | None = None
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(UTC))

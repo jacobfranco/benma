@@ -224,6 +224,7 @@ class InterpretationRunResponse(BaseModel):
     id: uuid.UUID
     pronunciation_attempt_id: uuid.UUID
     interpreter_version: str
+    interpreter_configuration: dict[str, Any]
     input_evidence_run_ids: dict[str, str | None]
     structured_observations: list[dict[str, Any]]
     capability_state: str

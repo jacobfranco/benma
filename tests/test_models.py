@@ -6,6 +6,7 @@ import pytest
 from pydantic import ValidationError
 
 from benchmark.corpus.seed import seed_manifest
+from benchmark.evaluation.calibration import calibration_mode
 from benchmark.models import (
     AudioAsset,
     BenchmarkSample,
@@ -19,6 +20,40 @@ from benchmark.models import (
     UnknownTargetPerceptionRequest,
     UnknownTargetPerceptionResult,
 )
+
+
+def test_seed_has_balanced_paired_calibration_plan() -> None:
+    manifest = seed_manifest()
+    tone_errors = [
+        sample
+        for sample in manifest.samples
+        if "tone_confusion_balance" in sample.tags
+        and sample.sample_id.endswith("_error")
+    ]
+    confusion_pairs = {
+        (
+            sample.deliberate_error.expected_form,
+            sample.deliberate_error.produced_form,
+        )
+        for sample in tone_errors
+        if sample.deliberate_error is not None
+    }
+    assert len(tone_errors) == 12
+    assert len(confusion_pairs) == 12
+    pair_ids = {sample.pair_id for sample in tone_errors}
+    assert all(
+        any(
+            candidate.pair_id == pair_id
+            and calibration_mode(candidate).value == "learner_correct"
+            for candidate in manifest.samples
+        )
+        for pair_id in pair_ids
+    )
+    modes = [calibration_mode(sample) for sample in manifest.samples]
+    assert modes.count("learner_intentional_initial_error") >= 10
+    assert modes.count("learner_intentional_final_error") >= 10
+    assert modes.count("native_control") >= 10
+    assert modes.count("negative_control") >= 10
 
 
 def test_unknown_request_has_no_target_or_context_fields() -> None:

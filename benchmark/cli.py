@@ -4,24 +4,36 @@ from __future__ import annotations
 
 import argparse
 import json
+import secrets
 import tempfile
 from pathlib import Path
 
 from benchmark.acoustics.alignment import MontrealForcedAligner
+from benchmark.acoustics.alignment_comparison import compare_alignment_files
 from benchmark.acoustics.calibration import materialize_acoustic_calibrations
-from benchmark.acoustics.pitch import AutocorrelationPitchAnalyzer, ParselmouthPitchAnalyzer
+from benchmark.acoustics.comparison import compare_pitch_algorithms
+from benchmark.acoustics.pitch import (
+    AutocorrelationPitchAnalyzer,
+    ParselmouthPitchAnalyzer,
+    TorchCrepePitchAnalyzer,
+)
 from benchmark.acoustics.plot import write_diagnostic_svg
+from benchmark.annotation_workbench import AnnotationWorkbench, serve_workbench
 from benchmark.annotations import commit_blind, commit_revealed
 from benchmark.audio import capture_with_ffmpeg, import_recording, play_audio
 from benchmark.corpus.seed import seed_manifest
+from benchmark.evaluation.calibration import create_stratified_split, persist_split
 from benchmark.evaluation.cost import calculate_scenarios, load_catalog
 from benchmark.fixtures import materialize_replay_fixtures
 from benchmark.models import (
     BlindListenerResponse,
     CorpusManifest,
+    ListenerRole,
+    RaterProfile,
     RevealedTargetResponse,
 )
 from benchmark.providers.known_target.azure import AzurePronunciationAdapter
+from benchmark.providers.known_target.captures import import_live_capture
 from benchmark.providers.unknown_target.google import GoogleChirpAdapter
 from benchmark.providers.unknown_target.openai import OpenAITranscriptionAdapter
 from benchmark.reports.generation import generate_report
@@ -146,6 +158,12 @@ def command_annotate_blind(args: argparse.Namespace) -> None:
         listener_id=args.listener_id,
         randomized_order=args.order,
         response=response,
+        rater_profile=RaterProfile(
+            rater_id=args.listener_id,
+            native_mandarin_self_report=args.native_mandarin,
+            role=ListenerRole(args.role),
+            region_or_accent_note=args.region_or_accent,
+        ),
     )
     print(f"blind response committed immutably at {path}")
 
@@ -204,6 +222,7 @@ def command_pronunciation_calibration(args: argparse.Namespace) -> None:
         runs_dir=Path(args.runs),
         annotations_dir=Path(args.annotations),
         output_dir=Path(args.output),
+        split_path=Path(args.split) if args.split else None,
     )
     counts = summary["counts"]
     print(
@@ -211,6 +230,56 @@ def command_pronunciation_calibration(args: argparse.Namespace) -> None:
         f"{'READY' if summary['calibration_ready'] else 'NOT READY'}: "
         f"{counts['real_recordings']}/50 real pilot recordings"
     )
+
+
+def command_create_calibration_split(args: argparse.Namespace) -> None:
+    manifest = load_model(Path(args.manifest), CorpusManifest)
+    recorded = [
+        sample
+        for sample in manifest.samples
+        if sample.audio is not None
+        and sample.speaker_category.value != "synthetic_reference"
+    ]
+    split = create_stratified_split(
+        recorded,
+        benchmark_version=manifest.corpus_version,
+        split_version=args.split_version,
+    )
+    persisted = persist_split(Path(args.output), split)
+    print(
+        f"split {persisted.split_version}: {len(persisted.calibration_sample_ids)} calibration, "
+        f"{len(persisted.held_out_sample_ids)} held out"
+    )
+
+
+def command_import_provider_capture(args: argparse.Namespace) -> None:
+    manifest = load_model(Path(args.manifest), CorpusManifest)
+    sample = _sample(manifest, args.sample_id)
+    run = import_live_capture(Path(args.capture), sample, output_dir=Path(args.output))
+    print(f"imported {run.provider}/{run.product} as {run.run_id}")
+
+
+def _workbench(args: argparse.Namespace) -> AnnotationWorkbench:
+    manifest = load_model(Path(args.manifest), CorpusManifest)
+    return AnnotationWorkbench(manifest, Path(args.annotations), seed=args.seed)
+
+
+def command_annotation_workbench(args: argparse.Namespace) -> None:
+    if args.bind not in {"127.0.0.1", "localhost", "::1"} and not args.allow_network:
+        raise SystemExit("non-loopback bind requires --allow-network")
+    token = args.access_token or secrets.token_urlsafe(24)
+    serve_workbench(_workbench(args), bind=args.bind, port=args.port, access_token=token)
+
+
+def command_export_annotations(args: argparse.Namespace) -> None:
+    destination = Path(args.output)
+    _workbench(args).export_bundle(destination)
+    print(f"exported create-only annotation bundle to {destination}")
+
+
+def command_import_annotations(args: argparse.Namespace) -> None:
+    blind, revealed = _workbench(args).import_bundle(Path(args.bundle))
+    print(f"imported {blind} blind and {revealed} revealed commits")
 
 
 def command_cost(args: argparse.Namespace) -> None:
@@ -227,11 +296,12 @@ def command_schemas(args: argparse.Namespace) -> None:
 
 
 def command_acoustics(args: argparse.Namespace) -> None:
-    analyzer = (
-        ParselmouthPitchAnalyzer()
-        if args.algorithm == "parselmouth"
-        else AutocorrelationPitchAnalyzer()
-    )
+    analyzers = {
+        "autocorrelation": AutocorrelationPitchAnalyzer,
+        "parselmouth": ParselmouthPitchAnalyzer,
+        "torchcrepe": TorchCrepePitchAnalyzer,
+    }
+    analyzer = analyzers[args.algorithm]()
     result = analyzer.analyze(args.audio)
     write_model(Path(args.output_json), result)
     write_diagnostic_svg(Path(args.audio), result, Path(args.output_svg), title=args.title)
@@ -247,6 +317,34 @@ def command_align(args: argparse.Namespace) -> None:
     result = MontrealForcedAligner().align(args.audio, args.transcript)
     write_model(Path(args.output), result)
     print(f"wrote {len(result.words)} alignment intervals")
+
+
+def command_compare_acoustics(args: argparse.Namespace) -> None:
+    report = compare_pitch_algorithms(
+        [Path(path) for path in args.audio],
+        output_dir=Path(args.output),
+        evidence_origin=args.evidence_origin,
+    )
+    print(
+        f"compared {report['audio_count']} audio files; decision: "
+        f"{report['production_decision']}"
+    )
+
+
+def command_compare_alignments(args: argparse.Namespace) -> None:
+    candidates: dict[str, Path] = {}
+    for value in args.candidate:
+        name, separator, path = value.partition("=")
+        if not separator or not name or not path:
+            raise SystemExit("--candidate values must use NAME=PATH")
+        candidates[name] = Path(path)
+    report = compare_alignment_files(
+        Path(args.manual),
+        candidates,
+        output_path=Path(args.output),
+        evidence_origin=args.evidence_origin,
+    )
+    print(f"compared {len(candidates)} alignments; decision: {report['production_decision']}")
 
 
 def command_live(args: argparse.Namespace) -> None:
@@ -299,6 +397,13 @@ def build_parser() -> argparse.ArgumentParser:
     blind.add_argument("--order", type=int, required=True)
     blind.add_argument("--manifest", default=DEFAULT_MANIFEST)
     blind.add_argument("--annotations", default=DEFAULT_ANNOTATIONS)
+    blind.add_argument("--native-mandarin", action="store_true")
+    blind.add_argument(
+        "--role",
+        choices=[role.value for role in ListenerRole],
+        default=ListenerRole.ORDINARY_NATIVE_LISTENER.value,
+    )
+    blind.add_argument("--region-or-accent")
     blind.set_defaults(func=command_annotate_blind)
 
     reveal = commands.add_parser("annotate-reveal")
@@ -327,7 +432,45 @@ def build_parser() -> argparse.ArgumentParser:
     calibration.add_argument("--runs", default=DEFAULT_RUNS)
     calibration.add_argument("--annotations", default=DEFAULT_ANNOTATIONS)
     calibration.add_argument("--output", default=OUTPUTS)
+    calibration.add_argument("--split")
     calibration.set_defaults(func=command_pronunciation_calibration)
+
+    split = commands.add_parser("create-calibration-split")
+    split.add_argument("--split-version", required=True)
+    split.add_argument("--manifest", default=DEFAULT_MANIFEST)
+    split.add_argument("--output", required=True)
+    split.set_defaults(func=command_create_calibration_split)
+
+    capture = commands.add_parser("import-provider-capture")
+    capture.add_argument("capture")
+    capture.add_argument("sample_id")
+    capture.add_argument("--manifest", default=DEFAULT_MANIFEST)
+    capture.add_argument("--output", default=DEFAULT_RUNS)
+    capture.set_defaults(func=command_import_provider_capture)
+
+    workbench = commands.add_parser("annotation-workbench")
+    workbench.add_argument("--manifest", default=DEFAULT_MANIFEST)
+    workbench.add_argument("--annotations", default=DEFAULT_ANNOTATIONS)
+    workbench.add_argument("--seed", default="benma-annotation-v1")
+    workbench.add_argument("--bind", default="127.0.0.1")
+    workbench.add_argument("--port", type=int, default=8765)
+    workbench.add_argument("--access-token")
+    workbench.add_argument("--allow-network", action="store_true")
+    workbench.set_defaults(func=command_annotation_workbench)
+
+    export_annotations = commands.add_parser("export-annotations")
+    export_annotations.add_argument("--output", required=True)
+    export_annotations.add_argument("--manifest", default=DEFAULT_MANIFEST)
+    export_annotations.add_argument("--annotations", default=DEFAULT_ANNOTATIONS)
+    export_annotations.add_argument("--seed", default="benma-annotation-v1")
+    export_annotations.set_defaults(func=command_export_annotations)
+
+    import_annotations = commands.add_parser("import-annotations")
+    import_annotations.add_argument("bundle")
+    import_annotations.add_argument("--manifest", default=DEFAULT_MANIFEST)
+    import_annotations.add_argument("--annotations", default=DEFAULT_ANNOTATIONS)
+    import_annotations.add_argument("--seed", default="benma-annotation-v1")
+    import_annotations.set_defaults(func=command_import_annotations)
 
     cost = commands.add_parser("cost")
     cost.add_argument("--pricing", default=PRICING)
@@ -341,7 +484,9 @@ def build_parser() -> argparse.ArgumentParser:
     acoustics = commands.add_parser("acoustics")
     acoustics.add_argument("audio")
     acoustics.add_argument(
-        "--algorithm", choices=["autocorrelation", "parselmouth"], default="autocorrelation"
+        "--algorithm",
+        choices=["autocorrelation", "parselmouth", "torchcrepe"],
+        default="autocorrelation",
     )
     acoustics.add_argument("--output-json", required=True)
     acoustics.add_argument("--output-svg", required=True)
@@ -357,6 +502,23 @@ def build_parser() -> argparse.ArgumentParser:
     align.add_argument("transcript")
     align.add_argument("--output", required=True)
     align.set_defaults(func=command_align)
+
+    acoustic_comparison = commands.add_parser("compare-acoustics")
+    acoustic_comparison.add_argument("audio", nargs="+")
+    acoustic_comparison.add_argument("--output", required=True)
+    acoustic_comparison.add_argument(
+        "--evidence-origin", choices=["real_recording", "synthetic_test"], required=True
+    )
+    acoustic_comparison.set_defaults(func=command_compare_acoustics)
+
+    alignment_comparison = commands.add_parser("compare-alignments")
+    alignment_comparison.add_argument("--manual", required=True)
+    alignment_comparison.add_argument("--candidate", action="append", required=True)
+    alignment_comparison.add_argument("--output", required=True)
+    alignment_comparison.add_argument(
+        "--evidence-origin", choices=["real_recording", "synthetic_test"], required=True
+    )
+    alignment_comparison.set_defaults(func=command_compare_alignments)
 
     live = commands.add_parser("smoke-live")
     live.add_argument("provider", choices=["openai", "google", "azure"])

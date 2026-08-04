@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from benchmark.models import (
     BenchmarkSample,
+    CalibrationMode,
     CorpusManifest,
     DeliberateError,
     EnvironmentalCondition,
@@ -25,6 +26,8 @@ def _sample(
     error: DeliberateError | None = None,
     tags: tuple[str, ...] = (),
     condition: EnvironmentalCondition = EnvironmentalCondition.QUIET,
+    calibration_mode: CalibrationMode | None = None,
+    pair_id: str | None = None,
 ) -> BenchmarkSample:
     return BenchmarkSample(
         sample_id=sample_id,
@@ -35,6 +38,8 @@ def _sample(
         lexical_tones=tones,
         expected_surface_tones=surface,
         deliberate_error=error,
+        calibration_mode=calibration_mode,
+        pair_id=pair_id,
         tags=frozenset(tags),
         environmental_condition=condition,
     )
@@ -80,6 +85,51 @@ def seed_manifest() -> CorpusManifest:
                 tags=("isolated_tone", f"tone_{isolated_tone}", "deliberate_error"),
             )
         )
+
+    tone_targets = {
+        1: ("妈", "mā"),
+        2: ("麻", "má"),
+        3: ("马", "mǎ"),
+        4: ("骂", "mà"),
+    }
+    for expected_tone in range(1, 5):
+        text, pinyin = tone_targets[expected_tone]
+        for produced_tone in range(1, 5):
+            if expected_tone == produced_tone:
+                continue
+            pair_id = f"tone-t{expected_tone}-as-t{produced_tone}"
+            samples.extend(
+                [
+                    _sample(
+                        f"cal_{pair_id}_correct",
+                        text,
+                        (pinyin,),
+                        (expected_tone,),
+                        surface=(f"T{expected_tone}",),
+                        error=DeliberateError(error_type=ErrorType.NONE),
+                        calibration_mode=CalibrationMode.LEARNER_CORRECT,
+                        pair_id=pair_id,
+                        tags=("paired_calibration", "tone_confusion_balance", "correct_control"),
+                    ),
+                    _sample(
+                        f"cal_{pair_id}_error",
+                        text,
+                        (pinyin,),
+                        (expected_tone,),
+                        surface=(f"T{expected_tone}",),
+                        category=SpeakerCategory.INTENTIONALLY_CORRUPTED,
+                        error=DeliberateError(
+                            error_type=ErrorType.WRONG_TONE,
+                            corrupted_syllable_index=0,
+                            expected_form=f"T{expected_tone}",
+                            produced_form=f"T{produced_tone}",
+                        ),
+                        calibration_mode=CalibrationMode.LEARNER_INTENTIONAL_TONE_ERROR,
+                        pair_id=pair_id,
+                        tags=("paired_calibration", "tone_confusion_balance", "deliberate_error"),
+                    ),
+                ]
+            )
 
     tone_pairs = [
         ("11", "今天", ("jīn", "tiān"), (1, 1), ("T1", "T1")),
@@ -199,6 +249,59 @@ def seed_manifest() -> CorpusManifest:
             )
         )
 
+    segment_calibration = [
+        ("initial_z_zh", ErrorType.WRONG_INITIAL, "早", "zǎo", 3, "zhǎo"),
+        ("initial_zh_z", ErrorType.WRONG_INITIAL, "找", "zhǎo", 3, "zǎo"),
+        ("initial_c_ch", ErrorType.WRONG_INITIAL, "擦", "cā", 1, "chā"),
+        ("initial_q_ch", ErrorType.WRONG_INITIAL, "七", "qī", 1, "chī"),
+        ("initial_s_sh", ErrorType.WRONG_INITIAL, "四", "sì", 4, "shì"),
+        ("initial_j_zh", ErrorType.WRONG_INITIAL, "鸡", "jī", 1, "zhī"),
+        ("initial_x_s", ErrorType.WRONG_INITIAL, "洗", "xǐ", 3, "sǐ"),
+        ("final_u_v", ErrorType.WRONG_FINAL, "路", "lù", 4, "lǜ"),
+        ("final_v_u", ErrorType.WRONG_FINAL, "绿", "lǜ", 4, "lù"),
+        ("final_en_eng", ErrorType.WRONG_FINAL, "真", "zhēn", 1, "zhēng"),
+        ("final_eng_en", ErrorType.WRONG_FINAL, "争", "zhēng", 1, "zhēn"),
+        ("final_in_ing", ErrorType.WRONG_FINAL, "亲", "qīn", 1, "qīng"),
+        ("final_ing_in", ErrorType.WRONG_FINAL, "清", "qīng", 1, "qīn"),
+        ("final_an_ang", ErrorType.WRONG_FINAL, "饭", "fàn", 4, "fàng"),
+    ]
+    for pair_id, error_type, text, pinyin, tone, produced in segment_calibration:
+        mode = (
+            CalibrationMode.LEARNER_INTENTIONAL_INITIAL_ERROR
+            if error_type == ErrorType.WRONG_INITIAL
+            else CalibrationMode.LEARNER_INTENTIONAL_FINAL_ERROR
+        )
+        samples.extend(
+            [
+                _sample(
+                    f"cal_{pair_id}_correct",
+                    text,
+                    (pinyin,),
+                    (tone,),
+                    error=DeliberateError(error_type=ErrorType.NONE),
+                    calibration_mode=CalibrationMode.LEARNER_CORRECT,
+                    pair_id=pair_id,
+                    tags=("paired_calibration", "segmental_calibration", "correct_control"),
+                ),
+                _sample(
+                    f"cal_{pair_id}_error",
+                    text,
+                    (pinyin,),
+                    (tone,),
+                    category=SpeakerCategory.INTENTIONALLY_CORRUPTED,
+                    error=DeliberateError(
+                        error_type=error_type,
+                        corrupted_syllable_index=0,
+                        expected_form=pinyin,
+                        produced_form=produced,
+                    ),
+                    calibration_mode=mode,
+                    pair_id=pair_id,
+                    tags=("paired_calibration", "segmental_calibration", "deliberate_error"),
+                ),
+            ]
+        )
+
     sentences = [
         (
             "beijing",
@@ -296,6 +399,36 @@ def seed_manifest() -> CorpusManifest:
         ),
         ("very_slow", "你好。", EnvironmentalCondition.QUIET, ("delivery_control", "slow")),
         ("fast", "你好。", EnvironmentalCondition.QUIET, ("delivery_control", "fast")),
+        (
+            "omitted_target",
+            "今天天气很好。",
+            EnvironmentalCondition.QUIET,
+            ("negative_control", "omitted_speech"),
+        ),
+        (
+            "unrelated_clear_speech",
+            "今天天气很好。",
+            EnvironmentalCondition.QUIET,
+            ("negative_control", "unrelated_speech"),
+        ),
+        (
+            "distorted_audio",
+            "今天天气很好。",
+            EnvironmentalCondition.CLIPPED,
+            ("negative_control", "distorted_audio"),
+        ),
+        (
+            "mild_babble",
+            "今天天气很好。",
+            EnvironmentalCondition.BACKGROUND_CONVERSATION,
+            ("negative_control", "mild_noise"),
+        ),
+        (
+            "nonsense_3",
+            None,
+            EnvironmentalCondition.QUIET,
+            ("negative_control", "mandarin_nonsense"),
+        ),
     ]
     for control_code, control_text, control_condition, control_tags in controls:
         samples.append(
@@ -304,7 +437,30 @@ def seed_manifest() -> CorpusManifest:
                 control_text,
                 category=SpeakerCategory.INTENTIONALLY_CORRUPTED,
                 condition=control_condition,
+                calibration_mode=(
+                    CalibrationMode.NEGATIVE_CONTROL
+                    if "negative_control" in control_tags
+                    else None
+                ),
                 tags=control_tags,
+            )
+        )
+
+    for code, text, native_pinyin, native_tones in (
+        ("native_nihao", "你好", ("nǐ", "hǎo"), (3, 3)),
+        ("native_zhongguo", "中国", ("zhōng", "guó"), (1, 2)),
+        ("native_beijing", "北京", ("běi", "jīng"), (3, 1)),
+    ):
+        samples.append(
+            _sample(
+                code,
+                text,
+                native_pinyin,
+                native_tones,
+                category=SpeakerCategory.NATIVE_CONTROL,
+                error=DeliberateError(error_type=ErrorType.NONE),
+                calibration_mode=CalibrationMode.NATIVE_CONTROL,
+                tags=("native_control", "calibration_control"),
             )
         )
 

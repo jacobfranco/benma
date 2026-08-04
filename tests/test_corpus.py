@@ -29,7 +29,7 @@ def test_corpus_contains_required_lexical_examples() -> None:
 
 def test_corpus_has_full_pilot_and_eventual_target() -> None:
     manifest = seed_manifest()
-    assert len(manifest.samples) == 114
+    assert len(manifest.samples) == 174
     assert manifest.desired_sample_count == 384
     assert all(sample.status == "planned" and sample.audio is None for sample in manifest.samples)
 

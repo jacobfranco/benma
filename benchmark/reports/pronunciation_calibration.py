@@ -1,16 +1,33 @@
-"""Real-only pronunciation calibration report and readiness gates."""
+"""Real-only, human-supported pronunciation calibration report and truth gates."""
 
 from __future__ import annotations
 
+import hashlib
+import json
+import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
 from benchmark.annotations import load_annotation
+from benchmark.evaluation.calibration import (
+    BinaryObservation,
+    calibration_mode,
+    consensus_for_sample,
+    explore_thresholds,
+    rate_estimate,
+    severity_is_severe,
+)
+from benchmark.evaluation.metrics import quantile
 from benchmark.models import (
     BenchmarkSample,
+    CalibrationMaturity,
+    CalibrationMode,
+    CalibrationRunManifest,
+    CalibrationScope,
+    CalibrationSplitManifest,
     CorpusManifest,
-    ErrorType,
+    EvidenceOrigin,
     HumanListenerAnnotation,
     KnownTargetAssessmentResult,
     ProviderRun,
@@ -18,7 +35,14 @@ from benchmark.models import (
     RunStatus,
     SpeakerCategory,
 )
-from benchmark.storage import load_model, write_json
+from benchmark.providers.status import provider_status_scorecard
+from benchmark.storage import load_model, write_json, write_model
+
+SYNTHETIC_ORIGINS = {
+    EvidenceOrigin.DOCUMENTATION_CONTRACT_EXAMPLE,
+    EvidenceOrigin.CONSTRUCTED_FIXTURE,
+    EvidenceOrigin.SYNTHETIC_REPLAY,
+}
 
 
 def _runs(path: Path) -> list[ProviderRun]:
@@ -35,13 +59,45 @@ def _annotations(path: Path) -> list[HumanListenerAnnotation]:
     ]
 
 
-def _tone(value: str | None) -> str | None:
+def _tone(value: str | int | None) -> str | None:
     if value is None:
         return None
-    digits = [item for item in value if item in "012345"]
+    upper = str(value).upper()
+    if upper in {"UNKNOWN", "INVALID"}:
+        return upper
+    digits = [item for item in upper if item in "012345"]
     if not digits:
         return None
     return "T0" if digits[-1] == "5" else f"T{digits[-1]}"
+
+
+def _provider_identity(run: ProviderRun) -> str:
+    return f"{run.provider}/{run.product}"
+
+
+def _expected_tone(sample: BenchmarkSample, index: int, reference: str | None) -> str | None:
+    if index < len(sample.expected_surface_tones):
+        expected = _tone(sample.expected_surface_tones[index])
+        if expected is not None:
+            return expected
+    if index < len(sample.lexical_tones):
+        return _tone(sample.lexical_tones[index])
+    return _tone(reference)
+
+
+def _real_run(run: ProviderRun) -> bool:
+    if run.evidence_origin in SYNTHETIC_ORIGINS:
+        return False
+    raw = run.raw_response
+    return not (
+        isinstance(raw, dict)
+        and (
+            raw.get("synthetic")
+            or raw.get("fixture")
+            or raw.get("capture_type")
+            in {"DOCUMENTATION_CONTRACT_EXAMPLE", "CONSTRUCTED_FIXTURE", "SYNTHETIC_REPLAY"}
+        )
+    )
 
 
 def _human_consensus(
@@ -50,176 +106,320 @@ def _human_consensus(
     grouped: dict[str, list[HumanListenerAnnotation]] = defaultdict(list)
     for annotation in annotations:
         grouped[annotation.blind.sample_id].append(annotation)
-    result: dict[str, dict[str, Any]] = {}
-    for sample_id, items in grouped.items():
-        if sample_id not in samples:
-            continue
-        revealed = [item.revealed for item in items if item.revealed is not None]
-        result[sample_id] = {
-            "listener_count": len(items),
-            "understood_first_pass": {
-                "yes": sum(item.blind.response.understood_first_pass for item in items),
-                "total": len(items),
-            },
-            "would_request_repetition": {
-                "yes": sum(item.blind.response.would_request_repetition for item in items),
-                "total": len(items),
-            },
-            "tone_issue": {
-                "yes": sum(item.response.tone_problem for item in revealed),
-                "total": len(revealed),
-            },
-            "initial_issue": {
-                "yes": sum(item.response.initial_problem for item in revealed),
-                "total": len(revealed),
-            },
-            "final_issue": {
-                "yes": sum(item.response.final_problem for item in revealed),
-                "total": len(revealed),
-            },
-            "individual_annotations": [item.model_dump(mode="json") for item in items],
-        }
-    return result
-
-
-def _score_distributions(
-    runs: list[ProviderRun], samples: dict[str, BenchmarkSample]
-) -> dict[str, dict[str, list[float]]]:
-    distributions: dict[str, dict[str, list[float]]] = defaultdict(
-        lambda: defaultdict(list)
-    )
-    for run in runs:
-        result = run.normalized_result
-        sample = samples.get(run.benchmark_sample_id)
-        if not isinstance(result, KnownTargetAssessmentResult) or sample is None:
-            continue
-        score = (
-            result.pronunciation_score
-            if result.pronunciation_score is not None
-            else result.overall_score
-        )
-        if score is None:
-            continue
-        group = (
-            "native_control"
-            if sample.speaker_category == SpeakerCategory.NATIVE_CONTROL
-            else "meaningful_error"
-            if sample.deliberate_error
-            and sample.deliberate_error.error_type != ErrorType.NONE
-            else "acceptable_learner"
-        )
-        distributions[run.provider][group].append(score)
     return {
-        provider: {group: values for group, values in groups.items()}
-        for provider, groups in distributions.items()
+        sample_id: consensus_for_sample(samples[sample_id], items)
+        for sample_id, items in grouped.items()
+        if sample_id in samples
     }
 
 
-def _tone_metrics(
+def _sample_group(sample: BenchmarkSample, human: dict[str, Any] | None) -> str:
+    mode = calibration_mode(sample)
+    if mode == CalibrationMode.NATIVE_CONTROL:
+        return "native_control"
+    if mode == CalibrationMode.NEGATIVE_CONTROL:
+        return "negative_control"
+    if human and severity_is_severe(
+        human.get("semantic_severity"), human.get("consensus_class")
+    ):
+        return "severe_error"
+    if human and human["tone_issue"]["majority"] is True:
+        return "technical_tone_error"
+    if human and (
+        human["initial_issue"]["majority"] is True
+        or human["final_issue"]["majority"] is True
+    ):
+        return "technical_segment_error"
+    if mode == CalibrationMode.LEARNER_CORRECT:
+        return "learner_acceptable"
+    return "other_real"
+
+
+def _score_distributions(
+    runs: list[ProviderRun],
+    samples: dict[str, BenchmarkSample],
+    consensus: dict[str, dict[str, Any]],
+) -> dict[str, dict[str, dict[str, list[float]]]]:
+    distributions: dict[str, dict[str, dict[str, list[float]]]] = defaultdict(
+        lambda: defaultdict(lambda: defaultdict(list))
+    )
+    for run in runs:
+        provider_result = run.normalized_result
+        sample = samples.get(run.benchmark_sample_id)
+        if not isinstance(provider_result, KnownTargetAssessmentResult) or sample is None:
+            continue
+        group = _sample_group(sample, consensus.get(sample.sample_id))
+        identity = _provider_identity(run)
+        for field in ("overall_score", "pronunciation_score", "fluency_score"):
+            score = getattr(provider_result, field)
+            if score is not None:
+                distributions[identity][field][group].append(score)
+        for syllable in provider_result.syllables:
+            if syllable.tone_score is not None:
+                distributions[identity]["tone_score"][group].append(syllable.tone_score)
+            for phone in syllable.phones:
+                if phone.score is not None:
+                    distributions[identity]["phone_score"][group].append(phone.score)
+    return {
+        identity: {
+            field: dict(groups) for field, groups in fields.items()
+        }
+        for identity, fields in distributions.items()
+    }
+
+
+def _provider_metrics(
     runs: list[ProviderRun],
     samples: dict[str, BenchmarkSample],
     consensus: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
+    counters: dict[str, Counter[str]] = defaultdict(Counter)
     confusion: dict[str, dict[str, Counter[str]]] = defaultdict(
         lambda: defaultdict(Counter)
     )
-    false_accept: dict[str, list[bool]] = defaultdict(list)
-    false_reject: dict[str, list[bool]] = defaultdict(list)
-    detection: dict[str, list[bool]] = defaultdict(list)
-    diagnosis: dict[str, list[bool]] = defaultdict(list)
     for run in runs:
         if run.status != RunStatus.SUCCEEDED or run.request_mode != RequestMode.KNOWN_TARGET:
             continue
+        provider_result = run.normalized_result
+        sample = samples.get(run.benchmark_sample_id)
+        human = consensus.get(run.benchmark_sample_id)
+        if (
+            not isinstance(provider_result, KnownTargetAssessmentResult)
+            or sample is None
+            or human is None
+            or human["qualifying_native_listener_count"] < 3
+            or human["stage_b_count"] < 3
+            or human["consensus_class"] == "invalid_sample"
+        ):
+            continue
+        identity = _provider_identity(run)
+        mode = calibration_mode(sample)
+        produced = human["human_supported_produced_tones"]
+        affected_tone_indices = set(human["human_supported_tone_error_indices"])
+        any_tone_flag = False
+        any_tone_decision = False
+        for index, syllable in enumerate(provider_result.syllables):
+            expected = _expected_tone(sample, index, syllable.reference_tone)
+            detected = _tone(syllable.detected_tone)
+            actual = produced.get(str(index))
+            matrix_actual = actual or "UNKNOWN"
+            matrix_detected = detected or "UNKNOWN"
+            confusion[identity][matrix_actual][matrix_detected] += 1
+            if detected is not None and expected is not None:
+                any_tone_decision = True
+                any_tone_flag = any_tone_flag or detected != expected
+            human_tone_error = index in affected_tone_indices
+            human_tone_acceptable = human["tone_issue"]["majority"] is False
+            if human_tone_error:
+                if detected is None or expected is None:
+                    counters[identity]["tone_error_abstain"] += 1
+                else:
+                    counters[identity]["tone_error_decisions"] += 1
+                    if detected == expected:
+                        counters[identity]["tone_detection_false_accept"] += 1
+                if actual and actual not in {"UNKNOWN", "INVALID"} and actual != expected:
+                    if detected is None:
+                        counters[identity]["tone_diagnosis_abstain"] += 1
+                    else:
+                        counters[identity]["tone_diagnosis_decisions"] += 1
+                        if detected == expected:
+                            counters[identity]["tone_diagnosis_false_accept"] += 1
+            elif human_tone_acceptable and detected is not None and expected is not None:
+                counters[identity]["acceptable_tone_decisions"] += 1
+                if detected != expected:
+                    counters[identity]["acceptable_tone_false_reject"] += 1
+
+        if mode == CalibrationMode.NATIVE_CONTROL and any_tone_decision:
+            counters[identity]["native_tone_decisions"] += 1
+            if any_tone_flag:
+                counters[identity]["native_tone_false_reject"] += 1
+        if mode == CalibrationMode.LEARNER_CORRECT and any_tone_decision:
+            counters[identity]["learner_correct_tone_decisions"] += 1
+            if any_tone_flag:
+                counters[identity]["learner_correct_tone_false_reject"] += 1
+
+        classifications = {
+            classification.lower()
+            for syllable in provider_result.syllables
+            for classification in syllable.error_classifications
+        }
+        for syllable in provider_result.syllables:
+            classifications.update(
+                phone.error_classification.lower()
+                for phone in syllable.phones
+                if phone.error_classification
+            )
+        for dimension in ("initial", "final"):
+            if human[f"{dimension}_issue"]["majority"] is True:
+                counters[identity][f"{dimension}_error_decisions"] += 1
+                if not any(dimension in classification for classification in classifications):
+                    counters[identity][f"{dimension}_false_accept"] += 1
+
+        if severity_is_severe(
+            human.get("semantic_severity"), human.get("consensus_class")
+        ):
+            counters[identity]["severe_samples"] += 1
+
+    identities = sorted(set(counters) | set(confusion))
+    metrics: dict[str, Any] = {}
+    for identity in identities:
+        count = counters[identity]
+        metrics[identity] = {
+            "tone_detection_false_acceptance": rate_estimate(
+                count["tone_detection_false_accept"], count["tone_error_decisions"]
+            ).normalized(),
+            "tone_error_abstentions": count["tone_error_abstain"],
+            "tone_diagnosis_false_acceptance": rate_estimate(
+                count["tone_diagnosis_false_accept"], count["tone_diagnosis_decisions"]
+            ).normalized(),
+            "tone_diagnosis_abstentions": count["tone_diagnosis_abstain"],
+            "native_tone_false_rejection": rate_estimate(
+                count["native_tone_false_reject"], count["native_tone_decisions"]
+            ).normalized(),
+            "learner_correct_tone_false_rejection": rate_estimate(
+                count["learner_correct_tone_false_reject"],
+                count["learner_correct_tone_decisions"],
+            ).normalized(),
+            "acceptable_tone_false_rejection": rate_estimate(
+                count["acceptable_tone_false_reject"],
+                count["acceptable_tone_decisions"],
+            ).normalized(),
+            "initial_false_acceptance": rate_estimate(
+                count["initial_false_accept"], count["initial_error_decisions"]
+            ).normalized(),
+            "final_false_acceptance": rate_estimate(
+                count["final_false_accept"], count["final_error_decisions"]
+            ).normalized(),
+            "severe_pronunciation_false_acceptance": {
+                "numerator": 0,
+                "denominator": count["severe_samples"],
+                "fraction": None,
+                "reason": "Requires a selected score/reassurance policy; none is promoted.",
+            },
+            "tone_confusion_human_vs_provider": {
+                actual: dict(detected)
+                for actual, detected in confusion[identity].items()
+            },
+        }
+    return metrics
+
+
+def _threshold_search(
+    runs: list[ProviderRun],
+    samples: dict[str, BenchmarkSample],
+    consensus: dict[str, dict[str, Any]],
+    split: CalibrationSplitManifest | None,
+) -> dict[str, Any]:
+    observations: dict[str, list[BinaryObservation]] = defaultdict(list)
+    for run in runs:
         result = run.normalized_result
         sample = samples.get(run.benchmark_sample_id)
-        if not isinstance(result, KnownTargetAssessmentResult) or sample is None:
+        human = consensus.get(run.benchmark_sample_id)
+        if (
+            not isinstance(result, KnownTargetAssessmentResult)
+            or sample is None
+            or human is None
+            or human["qualifying_native_listener_count"] < 3
+            or human["stage_b_count"] < 3
+        ):
             continue
+        majority = human["tone_issue"]["majority"]
+        affected_tone_indices = set(human["human_supported_tone_error_indices"])
+        if majority is None or human["consensus_class"] == "invalid_sample":
+            continue
+        identity = _provider_identity(run)
         for index, syllable in enumerate(result.syllables):
-            actual = None
-            error = sample.deliberate_error
-            if (
-                error is not None
-                and error.error_type == ErrorType.WRONG_TONE
-                and error.corrupted_syllable_index == index
-            ):
-                actual = _tone(error.produced_form)
-            if actual is None and index < len(sample.expected_surface_tones):
-                actual = _tone(sample.expected_surface_tones[index])
-            detected = _tone(syllable.detected_tone)
-            if actual and detected:
-                confusion[run.provider][actual][detected] += 1
-        human = consensus.get(sample.sample_id)
-        error = sample.deliberate_error
-        if error and error.error_type == ErrorType.WRONG_TONE and human:
-            tone_vote = human["tone_issue"]
-            meaningful = tone_vote["total"] >= 3 and tone_vote["yes"] >= 2
-            corrupted_index = error.corrupted_syllable_index
-            evaluated_syllable = (
-                result.syllables[corrupted_index]
-                if corrupted_index is not None and corrupted_index < len(result.syllables)
-                else None
-            )
-            expected = (
-                _tone(sample.expected_surface_tones[corrupted_index])
-                if corrupted_index is not None
-                and corrupted_index < len(sample.expected_surface_tones)
-                else None
-            )
-            detected = _tone(evaluated_syllable.detected_tone) if evaluated_syllable else None
-            actual = _tone(error.produced_form)
-            if meaningful and detected is not None and expected is not None:
-                false_accept[run.provider].append(detected == expected)
-                detection[run.provider].append(detected != expected)
-                if actual is not None:
-                    diagnosis[run.provider].append(detected == actual)
-        if sample.speaker_category == SpeakerCategory.NATIVE_CONTROL:
-            mismatches: list[bool] = []
-            for index, item in enumerate(result.syllables):
-                expected = (
-                    _tone(sample.expected_surface_tones[index])
-                    if index < len(sample.expected_surface_tones)
-                    else _tone(item.reference_tone)
+            if syllable.tone_score is not None:
+                if majority is True and index not in affected_tone_indices:
+                    continue
+                observations[f"{identity}:tone_score"].append(
+                    BinaryObservation(
+                        sample.sample_id,
+                        syllable.tone_score,
+                        index in affected_tone_indices,
+                    )
                 )
-                detected = _tone(item.detected_tone)
-                if detected is not None and expected is not None:
-                    mismatches.append(detected != expected)
-            if mismatches:
-                false_reject[run.provider].append(any(mismatches))
-
-    providers = sorted(
-        set(confusion) | set(false_accept) | set(false_reject) | set(detection) | set(diagnosis)
-    )
-
-    def rate(values: list[bool]) -> float | None:
-        return sum(values) / len(values) if values else None
-
     return {
-        "by_provider": {
-            provider: {
-                "tone_false_acceptance": rate(false_accept[provider]),
-                "tone_false_acceptance_n": len(false_accept[provider]),
-                "native_tone_false_rejection": rate(false_reject[provider]),
-                "native_tone_false_rejection_n": len(false_reject[provider]),
-                "tone_error_detection": rate(detection[provider]),
-                "tone_error_detection_n": len(detection[provider]),
-                "tone_diagnosis": rate(diagnosis[provider]),
-                "tone_diagnosis_n": len(diagnosis[provider]),
-                "tone_confusion": {
-                    actual: dict(detected)
-                    for actual, detected in confusion[provider].items()
-                },
-            }
-            for provider in providers
-        },
-        "method": (
-            "Rates require provider tone hypotheses and at least three listener annotations. "
-            "No provider-score threshold is selected."
-        ),
+        identity: {
+            "selection_policy": "No automatic winner; inspect conservative calibration results.",
+            "candidates": explore_thresholds(items, split=split),
+        }
+        for identity, items in observations.items()
     }
 
 
+def _provider_summary(runs: list[ProviderRun]) -> dict[str, Any]:
+    grouped: dict[str, list[ProviderRun]] = defaultdict(list)
+    for run in runs:
+        grouped[_provider_identity(run)].append(run)
+    return {
+        identity: {
+            "live_run_count": sum(
+                run.status == RunStatus.SUCCEEDED
+                and run.evidence_origin
+                in {EvidenceOrigin.LIVE_PROVIDER, EvidenceOrigin.LIVE_CAPTURED_SANITIZED}
+                for run in provider_runs
+            ),
+            "successes": sum(run.status == RunStatus.SUCCEEDED for run in provider_runs),
+            "failures": sum(run.status == RunStatus.FAILED for run in provider_runs),
+            "p50_latency_seconds": quantile(
+                [
+                    run.response_latency_seconds
+                    for run in provider_runs
+                    if run.response_latency_seconds is not None
+                ],
+                0.5,
+            ),
+            "p95_latency_seconds": quantile(
+                [
+                    run.response_latency_seconds
+                    for run in provider_runs
+                    if run.response_latency_seconds is not None
+                ],
+                0.95,
+            ),
+            "estimated_cost_usd": sum(
+                run.estimated_cost_usd or 0 for run in provider_runs
+            ),
+            "modes": sorted(
+                {
+                    json.dumps(run.request_configuration, sort_keys=True, ensure_ascii=False)
+                    for run in provider_runs
+                }
+            ),
+        }
+        for identity, provider_runs in sorted(grouped.items())
+    }
+
+
+def _git_commit() -> str:
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=2,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return "undocumented"
+    return completed.stdout.strip() or "undocumented"
+
+
+def _raw_hash(run: ProviderRun) -> str:
+    if run.raw_response_sha256:
+        return run.raw_response_sha256
+    encoded = json.dumps(run.raw_response, sort_keys=True, ensure_ascii=False, default=str).encode()
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def generate_pronunciation_calibration(
-    *, manifest_path: Path, runs_dir: Path, annotations_dir: Path, output_dir: Path
+    *,
+    manifest_path: Path,
+    runs_dir: Path,
+    annotations_dir: Path,
+    output_dir: Path,
+    split_path: Path | None = None,
 ) -> dict[str, Any]:
     manifest = load_model(manifest_path, CorpusManifest)
     recorded = [
@@ -229,156 +429,297 @@ def generate_pronunciation_calibration(
         and sample.speaker_category != SpeakerCategory.SYNTHETIC_REFERENCE
     ]
     samples = {sample.sample_id: sample for sample in recorded}
+    all_runs = _runs(runs_dir)
     runs = [
         run
-        for run in _runs(runs_dir)
-        if run.benchmark_sample_id in samples
-        and not (
-            isinstance(run.raw_response, dict)
-            and (run.raw_response.get("synthetic") or run.raw_response.get("fixture"))
-        )
+        for run in all_runs
+        if run.benchmark_sample_id in samples and _real_run(run)
     ]
     annotations = [
         item for item in _annotations(annotations_dir) if item.blind.sample_id in samples
     ]
     consensus = _human_consensus(samples, annotations)
-    error_counts = Counter(
-        sample.deliberate_error.error_type.value
+    mode_counts = Counter(
+        mode.value
         for sample in recorded
-        if sample.deliberate_error
-        and sample.deliberate_error.error_type != ErrorType.NONE
+        if (mode := calibration_mode(sample)) is not None
     )
-    learner_errors = sum(
-        error_counts[item]
-        for item in ("wrong_tone", "wrong_initial", "wrong_final")
-    )
-    native_controls = sum(
-        sample.speaker_category == SpeakerCategory.NATIVE_CONTROL for sample in recorded
-    )
-    negative_controls = sum(
-        bool({"negative_control", "nonsense", "low_confidence"} & sample.tags)
-        for sample in recorded
+    deliberate_errors = sum(
+        mode_counts[mode.value]
+        for mode in (
+            CalibrationMode.LEARNER_INTENTIONAL_TONE_ERROR,
+            CalibrationMode.LEARNER_INTENTIONAL_INITIAL_ERROR,
+            CalibrationMode.LEARNER_INTENTIONAL_FINAL_ERROR,
+        )
     )
     critical = [
         sample
         for sample in recorded
-        if sample.deliberate_error
-        and sample.deliberate_error.error_type
-        in {ErrorType.WRONG_TONE, ErrorType.WRONG_INITIAL, ErrorType.WRONG_FINAL}
+        if calibration_mode(sample)
+        in {
+            CalibrationMode.LEARNER_INTENTIONAL_TONE_ERROR,
+            CalibrationMode.LEARNER_INTENTIONAL_INITIAL_ERROR,
+            CalibrationMode.LEARNER_INTENTIONAL_FINAL_ERROR,
+        }
     ]
-    fully_annotated = sum(
-        consensus.get(sample.sample_id, {}).get("listener_count", 0) >= 3
+    critical_with_three = sum(
+        consensus.get(sample.sample_id, {}).get("qualifying_native_listener_count", 0) >= 3
+        and consensus.get(sample.sample_id, {}).get("stage_b_count", 0) >= 3
         for sample in critical
     )
-    gates = {
+    human_tone_errors = sum(
+        len(item["human_supported_tone_error_indices"])
+        for item in consensus.values()
+        if item["qualifying_native_listener_count"] >= 3
+        and item["stage_b_count"] >= 3
+        and item["consensus_class"] != "invalid_sample"
+    )
+    human_acceptable_tones = sum(
+        len(samples[sample_id].intended_pinyin)
+        for sample_id, item in consensus.items()
+        if item["qualifying_native_listener_count"] >= 3
+        and item["stage_b_count"] >= 3
+        and item["tone_issue"]["majority"] is False
+        and item["consensus_class"] != "invalid_sample"
+    )
+    split = (
+        load_model(split_path, CalibrationSplitManifest)
+        if split_path is not None and split_path.exists()
+        else None
+    )
+    held_out_ready = split is not None and bool(split.held_out_sample_ids)
+    minimum_gates = {
         "learner_deliberate_errors": {
-            "ready": learner_errors >= 30,
-            "actual": learner_errors,
+            "ready": deliberate_errors >= 30,
+            "actual": deliberate_errors,
             "required": 30,
         },
         "tone_errors": {
-            "ready": error_counts["wrong_tone"] >= 10,
-            "actual": error_counts["wrong_tone"],
+            "ready": mode_counts[CalibrationMode.LEARNER_INTENTIONAL_TONE_ERROR.value] >= 10,
+            "actual": mode_counts[CalibrationMode.LEARNER_INTENTIONAL_TONE_ERROR.value],
             "required": 10,
         },
         "initial_errors": {
-            "ready": error_counts["wrong_initial"] >= 10,
-            "actual": error_counts["wrong_initial"],
+            "ready": mode_counts[CalibrationMode.LEARNER_INTENTIONAL_INITIAL_ERROR.value] >= 10,
+            "actual": mode_counts[CalibrationMode.LEARNER_INTENTIONAL_INITIAL_ERROR.value],
             "required": 10,
         },
         "final_errors": {
-            "ready": error_counts["wrong_final"] >= 10,
-            "actual": error_counts["wrong_final"],
+            "ready": mode_counts[CalibrationMode.LEARNER_INTENTIONAL_FINAL_ERROR.value] >= 10,
+            "actual": mode_counts[CalibrationMode.LEARNER_INTENTIONAL_FINAL_ERROR.value],
             "required": 10,
         },
         "native_controls": {
-            "ready": native_controls >= 10,
-            "actual": native_controls,
+            "ready": mode_counts[CalibrationMode.NATIVE_CONTROL.value] >= 10,
+            "actual": mode_counts[CalibrationMode.NATIVE_CONTROL.value],
             "required": 10,
         },
         "negative_controls": {
-            "ready": negative_controls >= 10,
-            "actual": negative_controls,
+            "ready": mode_counts[CalibrationMode.NEGATIVE_CONTROL.value] >= 10,
+            "actual": mode_counts[CalibrationMode.NEGATIVE_CONTROL.value],
             "required": 10,
         },
-        "three_listeners_per_critical_sample": {
-            "ready": bool(critical) and fully_annotated == len(critical),
-            "actual": fully_annotated,
+        "three_native_listeners_per_critical_sample": {
+            "ready": bool(critical) and critical_with_three == len(critical),
+            "actual": critical_with_three,
             "required": len(critical) if critical else 30,
         },
     }
+    stronger_gates = {
+        **minimum_gates,
+        "learner_correct_controls": {
+            "ready": mode_counts[CalibrationMode.LEARNER_CORRECT.value] >= 12,
+            "actual": mode_counts[CalibrationMode.LEARNER_CORRECT.value],
+            "required": 12,
+        },
+    }
+    categorical_tone_gates = {
+        "human_supported_tone_error_syllables": {
+            "ready": human_tone_errors >= 20,
+            "actual": human_tone_errors,
+            "required": 20,
+        },
+        "human_supported_acceptable_tone_syllables": {
+            "ready": human_acceptable_tones >= 20,
+            "actual": human_acceptable_tones,
+            "required": 20,
+        },
+        "critical_rater_coverage": minimum_gates[
+            "three_native_listeners_per_critical_sample"
+        ],
+        "held_out_evaluation": {
+            "ready": held_out_ready,
+            "actual": len(split.held_out_sample_ids) if split else 0,
+            "required": ">=1 persisted held-out partition",
+        },
+        "held_out_validated_threshold": {
+            "ready": False,
+            "actual": 0,
+            "required": "explicit promotion decision after holdout review",
+        },
+    }
+    provider_metrics = _provider_metrics(runs, samples, consensus)
+    threshold_search = _threshold_search(runs, samples, consensus, split)
+    maturity = (
+        CalibrationMaturity.EXPERIMENTAL
+        if runs or any(item["qualifying_native_listener_count"] for item in consensus.values())
+        else CalibrationMaturity.RAW_EVIDENCE
+    )
+    scope = CalibrationScope.NONE
     summary: dict[str, Any] = {
         "data_status": "real_only",
-        "calibration_ready": all(item["ready"] for item in gates.values()),
+        "benchmark_version": manifest.corpus_version,
+        "calibration_maturity": maturity.value,
+        "calibration_scope": scope.value,
+        "calibration_ready": all(item["ready"] for item in minimum_gates.values()),
+        "stronger_paired_pilot_ready": all(item["ready"] for item in stronger_gates.values()),
+        "categorical_tone_judgment_allowed": False,
+        "categorical_tone_judgment_reason": (
+            "No threshold has satisfied real-data, three-rater, calibration-selection, and "
+            "held-out promotion gates."
+        ),
         "counts": {
             "real_recordings": len(recorded),
-            "real_learner_deliberate_errors": learner_errors,
-            "native_controls": native_controls,
-            "negative_controls": negative_controls,
-            "native_listeners": len({item.blind.listener_id for item in annotations}),
-            "annotations": len(annotations),
+            "learner_correct": mode_counts[CalibrationMode.LEARNER_CORRECT.value],
+            "tone_errors": mode_counts[
+                CalibrationMode.LEARNER_INTENTIONAL_TONE_ERROR.value
+            ],
+            "initial_errors": mode_counts[
+                CalibrationMode.LEARNER_INTENTIONAL_INITIAL_ERROR.value
+            ],
+            "final_errors": mode_counts[
+                CalibrationMode.LEARNER_INTENTIONAL_FINAL_ERROR.value
+            ],
+            "native_controls": mode_counts[CalibrationMode.NATIVE_CONTROL.value],
+            "negative_controls": mode_counts[CalibrationMode.NEGATIVE_CONTROL.value],
+            "spontaneous_samples": mode_counts[CalibrationMode.SPONTANEOUS_NATURAL.value],
+            "unique_native_raters": len(
+                {
+                    item.blind.listener_id
+                    for item in annotations
+                    if item.blind.rater_profile
+                    and item.blind.rater_profile.native_mandarin_self_report
+                }
+            ),
+            "stage_a_annotations": len(annotations),
+            "stage_b_annotations": sum(item.revealed is not None for item in annotations),
+            "samples_with_three_native_raters": sum(
+                item["qualifying_native_listener_count"] >= 3 for item in consensus.values()
+            ),
             "known_target_provider_runs": len(runs),
         },
-        "gates": gates,
-        "human_consensus": consensus,
-        "tone_metrics": _tone_metrics(runs, samples, consensus),
-        "score_distributions": _score_distributions(runs, samples),
-        "segmental_metrics": {
-            "initial_false_acceptance": None,
-            "final_false_acceptance": None,
-            "overall_false_acceptance": None,
-            "reason": "Requires real provider evidence joined to three-listener labels.",
+        "audio_quality_exclusions": [
+            sample.sample_id
+            for sample in recorded
+            if sample.recording_quality and sample.recording_quality.status == "invalid"
+        ],
+        "gates": minimum_gates,
+        "gate_sets": {
+            "minimum_existing_pilot": minimum_gates,
+            "stronger_paired_pilot": stronger_gates,
+            "categorical_tone": categorical_tone_gates,
         },
-        "unresolved_conflicts": [],
-        "warning": "Synthetic/replay fixtures are excluded from every count and metric.",
+        "split": split.model_dump(mode="json") if split else None,
+        "human_consensus": consensus,
+        "provider_metrics": provider_metrics,
+        "score_distributions": _score_distributions(runs, samples, consensus),
+        "threshold_search": threshold_search,
+        "providers": _provider_summary(runs),
+        "provider_status_scorecard": provider_status_scorecard(runs),
+        "acoustics": {
+            "real_comparison_status": (
+                "not_run" if not recorded else "tooling_pending_manual_review"
+            ),
+            "production_decision": "keep_autocorrelation_pending_real_comparison",
+        },
+        "alignment": {
+            "real_comparison_status": "not_run" if not recorded else "pending_manual_review",
+            "production_strategy": "provider_timing_and_MFA_remain_provenance-separated",
+        },
+        "warning": (
+            "Synthetic replay, constructed fixtures, documentation examples, and TTS are excluded "
+            "from every headline count and metric. Requested learner error is not ground truth."
+        ),
     }
     output_dir.mkdir(parents=True, exist_ok=True)
     write_json(output_dir / "pronunciation-calibration.json", summary)
+    run_manifest = CalibrationRunManifest(
+        benchmark_version=manifest.corpus_version,
+        git_commit_sha=_git_commit(),
+        provider_adapter_versions={
+            _provider_identity(run): run.adapter_version for run in runs
+        },
+        provider_configurations={
+            _provider_identity(run): run.request_configuration for run in runs
+        },
+        included_sample_ids=tuple(sorted(samples)),
+        excluded_sample_ids=tuple(
+            sorted(
+                sample.sample_id
+                for sample in manifest.samples
+                if sample.sample_id not in samples
+            )
+        ),
+        human_annotation_version="two-stage-v2-native-profile",
+        split_version=split.split_version if split else None,
+    )
+    write_model(output_dir / "pronunciation-calibration.manifest.json", run_manifest)
+    if runs:
+        write_json(
+            output_dir / "pronunciation-provider-raw-hashes.json",
+            {run.run_id: _raw_hash(run) for run in runs},
+        )
     lines = [
         "# Pronunciation calibration",
         "",
-        "**NOT READY**" if not summary["calibration_ready"] else "**PRELIMINARY PILOT READY**",
+        "**NOT READY**"
+        if not summary["categorical_tone_judgment_allowed"]
+        else "**NARROW CALIBRATION READY**",
         "",
         summary["warning"],
         "",
-        "## Real data counts",
+        f"Maturity: `{maturity.value}`. Scope: `{scope.value}`.",
         "",
-        "| Evidence | Actual |",
+        "## Real corpus and human evidence",
+        "",
+        "| Evidence | Count |",
         "|---|---:|",
     ]
     for name, value in summary["counts"].items():
         lines.append(f"| {name.replace('_', ' ')} | {value} |")
-    lines.extend(
-        [
-            "",
-            "## Readiness gates",
-            "",
-            "| Gate | Actual | Required | State |",
-            "|---|---:|---:|---|",
-        ]
-    )
-    for name, gate in gates.items():
-        lines.append(
-            f"| {name.replace('_', ' ')} | {gate['actual']} | {gate['required']} | "
-            f"{'READY' if gate['ready'] else 'NOT READY'} |"
+    lines.extend(["", "## Readiness gates", ""])
+    for section, gates in summary["gate_sets"].items():
+        lines.extend(
+            [
+                f"### {section.replace('_', ' ').title()}",
+                "",
+                "| Gate | Actual | Required | State |",
+                "|---|---:|---:|---|",
+            ]
         )
+        for name, gate in gates.items():
+            lines.append(
+                f"| {name.replace('_', ' ')} | {gate['actual']} | {gate['required']} | "
+                f"{'READY' if gate['ready'] else 'NOT READY'} |"
+            )
+        lines.append("")
     lines.extend(
         [
-            "",
-            "## Calibration results",
+            "## Provider evidence",
             "",
             (
-                "Metrics remain unavailable until real evidence and listener gates are met."
+                "No qualifying real provider runs exist. Fixture parsing is not live validation."
                 if not runs
-                else "See the JSON artifact for per-provider confusion and error metrics."
+                else "Provider metrics, counts, confidence intervals, abstentions, score overlap, "
+                "and exploratory thresholds are in the JSON artifact."
             ),
             "",
-            "Categorical pronunciation calibration remains incomplete."
-            if not summary["calibration_ready"]
-            else (
-                "This small pilot permits only preliminary behavior; "
-                "it is not general validation."
-            ),
+            "## Decision",
+            "",
+            "Categorical pronunciation calibration remains incomplete.",
+            "",
+            "Categorical tone judgment remains disabled. "
+            + summary["categorical_tone_judgment_reason"],
             "",
         ]
     )

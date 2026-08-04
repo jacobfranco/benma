@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import uuid
 from enum import StrEnum
 from typing import Any
@@ -29,6 +30,43 @@ class CapabilityState(StrEnum):
 
 
 INTERPRETER_VERSION = "pronunciation-observations-v1"
+
+
+def interpreter_configuration(settings: Settings) -> dict[str, bool]:
+    return {
+        "enable_experimental_tone_interpretation": (
+            settings.enable_experimental_tone_interpretation
+        ),
+        "enable_categorical_tone_judgment": settings.enable_categorical_tone_judgment,
+    }
+
+
+def diff_observations(
+    baseline: list[dict[str, Any]], replayed: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Produce a stable, reviewable diff without changing stored evidence."""
+    def key(item: dict[str, Any]) -> str:
+        return json.dumps(
+            [item.get("category"), item.get("syllable_index"), item.get("kind")],
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+
+    before = {key(item): item for item in baseline}
+    after = {key(item): item for item in replayed}
+    added = [after[item] for item in sorted(after.keys() - before.keys())]
+    removed = [before[item] for item in sorted(before.keys() - after.keys())]
+    changed = [
+        {"key": item, "before": before[item], "after": after[item]}
+        for item in sorted(before.keys() & after.keys())
+        if before[item] != after[item]
+    ]
+    return {
+        "changed": bool(added or removed or changed),
+        "added": added,
+        "removed": removed,
+        "modified": changed,
+    }
 
 
 def _tone(value: Any) -> int | None:
@@ -268,6 +306,7 @@ class PronunciationInterpretationService:
             "acoustic_run_id": str(acoustic.id) if acoustic else None,
             "alignment_run_id": str(alignment.id) if alignment else None,
         }
+        configuration = interpreter_configuration(self.settings)
         if reuse:
             candidates = self.db.scalars(
                 select(PronunciationInterpretationRun)
@@ -279,7 +318,10 @@ class PronunciationInterpretationService:
                 .order_by(PronunciationInterpretationRun.created_at.desc())
             )
             for candidate in candidates:
-                if candidate.input_evidence_run_ids == evidence_ids:
+                if (
+                    candidate.input_evidence_run_ids == evidence_ids
+                    and candidate.interpreter_configuration == configuration
+                ):
                     return candidate
         observations, capability = interpret_evidence(
             target=target,
@@ -292,6 +334,7 @@ class PronunciationInterpretationService:
             account_id=account_id,
             pronunciation_attempt_id=attempt_id,
             interpreter_version=INTERPRETER_VERSION,
+            interpreter_configuration=configuration,
             input_evidence_run_ids=evidence_ids,
             structured_observations=observations,
             capability_state=capability,

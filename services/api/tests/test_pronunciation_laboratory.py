@@ -13,7 +13,7 @@ from benma_api.config import Settings
 from benma_api.db.models import AcousticRun, AssessmentRun, PronunciationTarget
 from benma_api.pronunciation.acoustics import AutocorrelationAcousticAnalyzer
 from benma_api.pronunciation.alignment import validate_alignment
-from benma_api.pronunciation.interpretation import interpret_evidence
+from benma_api.pronunciation.interpretation import diff_observations, interpret_evidence
 from benma_api.pronunciation.targets import (
     parse_corrected_pinyin,
     parse_mandarin_target,
@@ -191,6 +191,19 @@ def test_interpreter_distinguishes_agreement_conflict_and_acoustic_only() -> Non
     assert third_tone["agreement"] == "inconclusive"
 
 
+def test_interpreter_diff_is_stable_and_non_mutating() -> None:
+    baseline = [{"category": "TONE", "syllable_index": 0, "kind": "tone_unavailable"}]
+    same = diff_observations(baseline, list(baseline))
+    assert same == {"changed": False, "added": [], "removed": [], "modified": []}
+    changed = diff_observations(
+        baseline,
+        [{"category": "TONE", "syllable_index": 0, "kind": "acoustic_observation"}],
+    )
+    assert changed["changed"] is True
+    assert changed["added"] and changed["removed"]
+    assert baseline[0]["kind"] == "tone_unavailable"
+
+
 def test_reference_is_cached_and_owned(
     client: ApiClient, auth_header: dict[str, str]
 ) -> None:
@@ -261,6 +274,10 @@ def test_analysis_orchestrates_separate_evidence_and_is_idempotent(
     assert first["acoustic"]["id"] == second["acoustic"]["id"]
     assert first["alignment"]["id"] == second["alignment"]["id"]
     assert first["interpretation"]["id"] == second["interpretation"]["id"]
+    assert first["interpretation"]["interpreter_configuration"] == {
+        "enable_experimental_tone_interpretation": True,
+        "enable_categorical_tone_judgment": False,
+    }
     rerun = client.post(
         path,
         headers=auth_header,

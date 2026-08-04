@@ -112,6 +112,7 @@ def interpretation_response(
         id=run.id,
         pronunciation_attempt_id=run.pronunciation_attempt_id,
         interpreter_version=run.interpreter_version,
+        interpreter_configuration=run.interpreter_configuration,
         input_evidence_run_ids=run.input_evidence_run_ids,
         structured_observations=run.structured_observations,
         capability_state=run.capability_state,

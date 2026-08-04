@@ -88,6 +88,8 @@ export default function CalibrationCaptureScreen() {
         development_calibration_capture: true,
         prompt_id: prompt.id,
         requested_production: prompt.requestedProduction,
+        requested_production_is_ground_truth: false,
+        evidence_requires_three_native_listener_annotations: true,
         research_exported: false,
       });
       const utterance = await api.uploadUtterance(
@@ -111,7 +113,7 @@ export default function CalibrationCaptureScreen() {
       <Heading>Calibration capture</Heading>
       <Body>
         Development-only capture. Saving keeps production evidence; it does not export anything to
-        the benchmark.
+        the benchmark. The requested production is a recording instruction, not ground truth.
       </Body>
       <View style={styles.progressTrack}>
         <View style={[styles.progress, { width: `${(saved.length / PILOT_PROMPTS.length) * 100}%` }]} />
