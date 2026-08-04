@@ -62,6 +62,13 @@ export default function HomeScreen() {
         <Button label="Open pronunciation" onPress={() => router.push('/pronunciation')} />
       </Card>
       <View style={styles.secondaryActions}>
+        {__DEV__ && (
+          <Button
+            secondary
+            label="Calibration capture (development)"
+            onPress={() => router.push('/calibration')}
+          />
+        )}
         <Button secondary label="History / Development" onPress={() => router.push('/history')} />
         <Button secondary label="Sign out" onPress={() => void signOut()} />
       </View>

@@ -32,6 +32,197 @@
         "title": "AccountResponse",
         "type": "object"
       },
+      "AcousticRunResponse": {
+        "properties": {
+          "algorithm": {
+            "title": "Algorithm",
+            "type": "string"
+          },
+          "algorithm_version": {
+            "title": "Algorithm Version",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Message"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "normalized_result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Result"
+          },
+          "parameters": {
+            "additionalProperties": true,
+            "title": "Parameters",
+            "type": "object"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "utterance_id": {
+            "format": "uuid",
+            "title": "Utterance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "utterance_id",
+          "algorithm",
+          "algorithm_version",
+          "parameters",
+          "normalized_result",
+          "latency_ms",
+          "status",
+          "error_code",
+          "error_message",
+          "created_at"
+        ],
+        "title": "AcousticRunResponse",
+        "type": "object"
+      },
+      "AlignmentRunResponse": {
+        "properties": {
+          "algorithm": {
+            "title": "Algorithm",
+            "type": "string"
+          },
+          "algorithm_version": {
+            "title": "Algorithm Version",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Message"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "normalized_result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Result"
+          },
+          "pronunciation_attempt_id": {
+            "format": "uuid",
+            "title": "Pronunciation Attempt Id",
+            "type": "string"
+          },
+          "quality": {
+            "title": "Quality",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "pronunciation_attempt_id",
+          "algorithm",
+          "algorithm_version",
+          "normalized_result",
+          "quality",
+          "latency_ms",
+          "status",
+          "error_code",
+          "error_message",
+          "created_at"
+        ],
+        "title": "AlignmentRunResponse",
+        "type": "object"
+      },
       "AssessmentRequest": {
         "additionalProperties": false,
         "properties": {
@@ -157,6 +348,48 @@
           "error_message"
         ],
         "title": "AssessmentRunResponse",
+        "type": "object"
+      },
+      "AttemptComparisonRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "first_attempt_id": {
+            "format": "uuid",
+            "title": "First Attempt Id",
+            "type": "string"
+          },
+          "second_attempt_id": {
+            "format": "uuid",
+            "title": "Second Attempt Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "first_attempt_id",
+          "second_attempt_id"
+        ],
+        "title": "AttemptComparisonRequest",
+        "type": "object"
+      },
+      "AttemptComparisonResponse": {
+        "properties": {
+          "disclaimer": {
+            "title": "Disclaimer",
+            "type": "string"
+          },
+          "first": {
+            "$ref": "#/components/schemas/PronunciationResultResponse"
+          },
+          "second": {
+            "$ref": "#/components/schemas/PronunciationResultResponse"
+          }
+        },
+        "required": [
+          "first",
+          "second",
+          "disclaimer"
+        ],
+        "title": "AttemptComparisonResponse",
         "type": "object"
       },
       "AudioAssetResponse": {
@@ -354,6 +587,66 @@
         "title": "ErrorResponse",
         "type": "object"
       },
+      "InterpretationRunResponse": {
+        "properties": {
+          "capability_state": {
+            "title": "Capability State",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "input_evidence_run_ids": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Input Evidence Run Ids",
+            "type": "object"
+          },
+          "interpreter_version": {
+            "title": "Interpreter Version",
+            "type": "string"
+          },
+          "pronunciation_attempt_id": {
+            "format": "uuid",
+            "title": "Pronunciation Attempt Id",
+            "type": "string"
+          },
+          "structured_observations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Structured Observations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "pronunciation_attempt_id",
+          "interpreter_version",
+          "input_evidence_run_ids",
+          "structured_observations",
+          "capability_state",
+          "created_at"
+        ],
+        "title": "InterpretationRunResponse",
+        "type": "object"
+      },
       "PerceptionRunResponse": {
         "properties": {
           "adapter_version": {
@@ -499,6 +792,22 @@
         "title": "PerceptionRunResponse",
         "type": "object"
       },
+      "PinyinCorrectionCreate": {
+        "additionalProperties": false,
+        "properties": {
+          "pinyin": {
+            "maxLength": 500,
+            "minLength": 2,
+            "title": "Pinyin",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pinyin"
+        ],
+        "title": "PinyinCorrectionCreate",
+        "type": "object"
+      },
       "PracticeSessionCreate": {
         "additionalProperties": false,
         "properties": {
@@ -572,6 +881,33 @@
         "title": "PracticeSessionResponse",
         "type": "object"
       },
+      "PronunciationAnalyzeRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "rerun_acoustics": {
+            "default": false,
+            "title": "Rerun Acoustics",
+            "type": "boolean"
+          },
+          "rerun_alignment": {
+            "default": false,
+            "title": "Rerun Alignment",
+            "type": "boolean"
+          },
+          "rerun_provider": {
+            "default": false,
+            "title": "Rerun Provider",
+            "type": "boolean"
+          },
+          "reuse_existing": {
+            "default": true,
+            "title": "Reuse Existing",
+            "type": "boolean"
+          }
+        },
+        "title": "PronunciationAnalyzeRequest",
+        "type": "object"
+      },
       "PronunciationAttemptCreate": {
         "additionalProperties": false,
         "properties": {
@@ -623,6 +959,215 @@
           "created_at"
         ],
         "title": "PronunciationAttemptResponse",
+        "type": "object"
+      },
+      "PronunciationResultResponse": {
+        "properties": {
+          "acoustic": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AcousticRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "alignment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AlignmentRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "assessment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AssessmentRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attempt": {
+            "$ref": "#/components/schemas/PronunciationAttemptResponse"
+          },
+          "capability_policy": {
+            "additionalProperties": true,
+            "title": "Capability Policy",
+            "type": "object"
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InterpretationRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "overall_evidence": {
+            "additionalProperties": true,
+            "title": "Overall Evidence",
+            "type": "object"
+          },
+          "recording_audio_url": {
+            "title": "Recording Audio Url",
+            "type": "string"
+          },
+          "reference_audio": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceSpeechResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "syllables": {
+            "items": {
+              "$ref": "#/components/schemas/PronunciationSyllableResult"
+            },
+            "title": "Syllables",
+            "type": "array"
+          },
+          "target": {
+            "$ref": "#/components/schemas/PronunciationTargetResponse"
+          }
+        },
+        "required": [
+          "attempt",
+          "target",
+          "recording_audio_url",
+          "reference_audio",
+          "overall_evidence",
+          "syllables",
+          "assessment",
+          "acoustic",
+          "alignment",
+          "interpretation",
+          "capability_policy"
+        ],
+        "title": "PronunciationResultResponse",
+        "type": "object"
+      },
+      "PronunciationSyllableResult": {
+        "properties": {
+          "acoustic_evidence": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acoustic Evidence"
+          },
+          "capability_state": {
+            "title": "Capability State",
+            "type": "string"
+          },
+          "characters": {
+            "title": "Characters",
+            "type": "string"
+          },
+          "expected_surface_tone": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Surface Tone"
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpretation"
+          },
+          "lexical_tone": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lexical Tone"
+          },
+          "pinyin": {
+            "title": "Pinyin",
+            "type": "string"
+          },
+          "provider_evidence": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Evidence"
+          },
+          "surface_tone_reason": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Surface Tone Reason",
+            "type": "array"
+          },
+          "syllable_index": {
+            "title": "Syllable Index",
+            "type": "integer"
+          },
+          "timing": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing"
+          }
+        },
+        "required": [
+          "syllable_index",
+          "characters",
+          "pinyin",
+          "lexical_tone",
+          "expected_surface_tone",
+          "surface_tone_reason",
+          "provider_evidence",
+          "acoustic_evidence",
+          "timing",
+          "interpretation",
+          "capability_state"
+        ],
+        "title": "PronunciationSyllableResult",
         "type": "object"
       },
       "PronunciationTargetCreate": {
@@ -681,6 +1226,18 @@
             "title": "Lexical Tones",
             "type": "array"
           },
+          "parent_target_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Target Id"
+          },
           "pinyin_alternatives": {
             "items": {
               "items": {
@@ -702,6 +1259,19 @@
             "title": "Pinyin Syllables",
             "type": "array"
           },
+          "surface_tone_expectation": {
+            "additionalProperties": true,
+            "title": "Surface Tone Expectation",
+            "type": "object"
+          },
+          "syllable_units": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Syllable Units",
+            "type": "array"
+          },
           "target_source": {
             "title": "Target Source",
             "type": "string"
@@ -720,9 +1290,143 @@
           "target_source",
           "pinyin_source",
           "pinyin_alternatives",
+          "syllable_units",
+          "surface_tone_expectation",
+          "parent_target_id",
           "created_at"
         ],
         "title": "PronunciationTargetResponse",
+        "type": "object"
+      },
+      "ReferenceSpeechRequestBody": {
+        "additionalProperties": false,
+        "properties": {
+          "force": {
+            "default": false,
+            "title": "Force",
+            "type": "boolean"
+          },
+          "timeout_seconds": {
+            "default": 30.0,
+            "maximum": 120.0,
+            "minimum": 1.0,
+            "title": "Timeout Seconds",
+            "type": "number"
+          }
+        },
+        "title": "ReferenceSpeechRequestBody",
+        "type": "object"
+      },
+      "ReferenceSpeechResponse": {
+        "properties": {
+          "acoustic_result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acoustic Result"
+          },
+          "audio_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Url"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Message"
+          },
+          "generation_config": {
+            "additionalProperties": true,
+            "title": "Generation Config",
+            "type": "object"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "locale": {
+            "title": "Locale",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "target_id": {
+            "format": "uuid",
+            "title": "Target Id",
+            "type": "string"
+          },
+          "target_snapshot": {
+            "additionalProperties": true,
+            "title": "Target Snapshot",
+            "type": "object"
+          },
+          "voice": {
+            "title": "Voice",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "target_id",
+          "provider",
+          "voice",
+          "locale",
+          "model_version",
+          "generation_config",
+          "target_snapshot",
+          "status",
+          "error_code",
+          "error_message",
+          "audio_url",
+          "acoustic_result",
+          "created_at"
+        ],
+        "title": "ReferenceSpeechResponse",
         "type": "object"
       },
       "UnknownPerceptionRequest": {
@@ -1669,6 +2373,109 @@
         "summary": "Create Pronunciation Attempt"
       }
     },
+    "/v1/pronunciation-attempts/compare": {
+      "post": {
+        "operationId": "compare_pronunciation_attempts_v1_pronunciation_attempts_compare_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttemptComparisonRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptComparisonResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Compare Pronunciation Attempts"
+      }
+    },
     "/v1/pronunciation-attempts/{attempt_id}": {
       "get": {
         "operationId": "get_pronunciation_attempt_v1_pronunciation_attempts__attempt_id__get",
@@ -1772,6 +2579,121 @@
           }
         ],
         "summary": "Get Pronunciation Attempt"
+      }
+    },
+    "/v1/pronunciation-attempts/{attempt_id}/analyze": {
+      "post": {
+        "operationId": "analyze_pronunciation_attempt_v1_pronunciation_attempts__attempt_id__analyze_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "attempt_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Attempt Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PronunciationAnalyzeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PronunciationResultResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Analyze Pronunciation Attempt"
       }
     },
     "/v1/pronunciation-attempts/{attempt_id}/assessments": {
@@ -1887,6 +2809,111 @@
           }
         ],
         "summary": "Create Assessment"
+      }
+    },
+    "/v1/pronunciation-attempts/{attempt_id}/result": {
+      "get": {
+        "operationId": "get_pronunciation_result_v1_pronunciation_attempts__attempt_id__result_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "attempt_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Attempt Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PronunciationResultResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Pronunciation Result"
       }
     },
     "/v1/pronunciation-targets": {
@@ -2095,6 +3122,448 @@
           }
         ],
         "summary": "Get Pronunciation Target"
+      }
+    },
+    "/v1/pronunciation-targets/{target_id}/attempts": {
+      "get": {
+        "operationId": "list_pronunciation_attempts_v1_pronunciation_targets__target_id__attempts_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "target_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Target Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PronunciationResultResponse"
+                  },
+                  "title": "Response List Pronunciation Attempts V1 Pronunciation Targets  Target Id  Attempts Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Pronunciation Attempts"
+      }
+    },
+    "/v1/pronunciation-targets/{target_id}/pinyin-corrections": {
+      "post": {
+        "operationId": "correct_pronunciation_target_v1_pronunciation_targets__target_id__pinyin_corrections_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "target_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Target Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PinyinCorrectionCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PronunciationTargetResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Correct Pronunciation Target"
+      }
+    },
+    "/v1/pronunciation-targets/{target_id}/reference-speech": {
+      "post": {
+        "operationId": "create_reference_speech_v1_pronunciation_targets__target_id__reference_speech_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "target_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Target Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReferenceSpeechRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceSpeechResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Reference Speech"
+      }
+    },
+    "/v1/reference-speech/{reference_id}/audio": {
+      "get": {
+        "operationId": "get_reference_speech_audio_v1_reference_speech__reference_id__audio_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reference_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Reference Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Reference Speech Audio"
       }
     },
     "/v1/utterances": {

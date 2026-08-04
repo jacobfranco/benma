@@ -11,6 +11,13 @@ export type PerceptionRun = Schemas['PerceptionRunResponse'];
 export type UserCorrection = Schemas['UserCorrectionResponse'];
 export type PronunciationTarget = Schemas['PronunciationTargetResponse'];
 export type PronunciationAttempt = Schemas['PronunciationAttemptResponse'];
+export type ReferenceSpeech = Schemas['ReferenceSpeechResponse'];
+export type AcousticRun = Schemas['AcousticRunResponse'];
+export type AlignmentRun = Schemas['AlignmentRunResponse'];
+export type InterpretationRun = Schemas['InterpretationRunResponse'];
+export type PronunciationSyllable = Schemas['PronunciationSyllableResult'];
+export type PronunciationResult = Schemas['PronunciationResultResponse'];
+export type AttemptComparison = Schemas['AttemptComparisonResponse'];
 
 export interface SyllableEvidence {
   text?: string;

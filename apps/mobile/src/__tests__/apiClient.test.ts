@@ -52,6 +52,35 @@ describe('API client', () => {
       requestId: 'request-1',
     });
   });
+
+  it('distinguishes reuse from an explicit pronunciation rerun', async () => {
+    const fetchMock = jest.spyOn(globalThis, 'fetch').mockResolvedValue(jsonResponse({}));
+    const client = new BenmaApiClient('http://api.test');
+    await client.analyzePronunciation('attempt-1');
+    await client.analyzePronunciation('attempt-1', true);
+    expect(JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body))).toEqual({
+      reuse_existing: true,
+      rerun_provider: false,
+      rerun_acoustics: false,
+      rerun_alignment: false,
+    });
+    expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toEqual({
+      reuse_existing: false,
+      rerun_provider: true,
+      rerun_acoustics: true,
+      rerun_alignment: true,
+    });
+  });
+
+  it('keeps reference playback authenticated', () => {
+    const client = new BenmaApiClient('http://api.test/');
+    expect(client.authenticatedHeaders()).toBeUndefined();
+    client.setToken('opaque-token');
+    expect(client.authenticatedHeaders()).toEqual({ Authorization: 'Bearer opaque-token' });
+    expect(client.absoluteUrl('/v1/reference-speech/asset/audio')).toBe(
+      'http://api.test/v1/reference-speech/asset/audio',
+    );
+  });
 });
 
 describe('learner error messages', () => {

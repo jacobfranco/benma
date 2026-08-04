@@ -20,6 +20,7 @@ export default function RootLayout() {
         <Stack.Screen name="perception" options={{ title: 'What did I say?' }} />
         <Stack.Screen name="pronunciation" options={{ title: 'Pronunciation' }} />
         <Stack.Screen name="history" options={{ title: 'History / Development' }} />
+        <Stack.Screen name="calibration" options={{ title: 'Calibration Capture' }} />
       </Stack>
     </AuthProvider>
   );

@@ -1,11 +1,14 @@
 import type {
   ApiErrorPayload,
   AssessmentRun,
+  AttemptComparison,
   AuthToken,
   PerceptionRun,
   PracticeSession,
   PronunciationAttempt,
+  PronunciationResult,
   PronunciationTarget,
+  ReferenceSpeech,
   UserCorrection,
   Utterance,
 } from '@/api/types';
@@ -74,10 +77,13 @@ export class BenmaApiClient {
     return this.request('/v1/auth/session', { method: 'DELETE' });
   }
 
-  createPracticeSession(mode: 'perception_test' | 'pronunciation'): Promise<PracticeSession> {
+  createPracticeSession(
+    mode: 'perception_test' | 'pronunciation',
+    metadata: Record<string, unknown> = {},
+  ): Promise<PracticeSession> {
     return this.request('/v1/practice-sessions', {
       method: 'POST',
-      body: JSON.stringify({ mode, metadata: {} }),
+      body: JSON.stringify({ mode, metadata }),
     });
   }
 
@@ -122,6 +128,20 @@ export class BenmaApiClient {
     });
   }
 
+  correctTargetPinyin(targetId: string, pinyin: string): Promise<PronunciationTarget> {
+    return this.request(`/v1/pronunciation-targets/${targetId}/pinyin-corrections`, {
+      method: 'POST',
+      body: JSON.stringify({ pinyin }),
+    });
+  }
+
+  createReferenceSpeech(targetId: string, force = false): Promise<ReferenceSpeech> {
+    return this.request(`/v1/pronunciation-targets/${targetId}/reference-speech`, {
+      method: 'POST',
+      body: JSON.stringify({ force }),
+    });
+  }
+
   createAttempt(utteranceId: string, targetId: string): Promise<PronunciationAttempt> {
     return this.request('/v1/pronunciation-attempts', {
       method: 'POST',
@@ -138,6 +158,47 @@ export class BenmaApiClient {
       method: 'POST',
       body: JSON.stringify({}),
     });
+  }
+
+  analyzePronunciation(
+    attemptId: string,
+    rerun = false,
+  ): Promise<PronunciationResult> {
+    return this.request(`/v1/pronunciation-attempts/${attemptId}/analyze`, {
+      method: 'POST',
+      body: JSON.stringify({
+        reuse_existing: !rerun,
+        rerun_provider: rerun,
+        rerun_acoustics: rerun,
+        rerun_alignment: rerun,
+      }),
+    });
+  }
+
+  getPronunciationResult(attemptId: string): Promise<PronunciationResult> {
+    return this.request(`/v1/pronunciation-attempts/${attemptId}/result`);
+  }
+
+  listPronunciationAttempts(targetId: string): Promise<PronunciationResult[]> {
+    return this.request(`/v1/pronunciation-targets/${targetId}/attempts`);
+  }
+
+  comparePronunciationAttempts(firstAttemptId: string, secondAttemptId: string) {
+    return this.request<AttemptComparison>('/v1/pronunciation-attempts/compare', {
+      method: 'POST',
+      body: JSON.stringify({
+        first_attempt_id: firstAttemptId,
+        second_attempt_id: secondAttemptId,
+      }),
+    });
+  }
+
+  absoluteUrl(path: string): string {
+    return path.startsWith('http') ? path : `${this.baseUrl}${path}`;
+  }
+
+  authenticatedHeaders(): Record<string, string> | undefined {
+    return this.token ? { Authorization: `Bearer ${this.token}` } : undefined;
   }
 
   audioUrl(utterance: Utterance): string {

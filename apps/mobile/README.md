@@ -20,8 +20,12 @@ development build/network configuration if Expo Go policy changes; production sh
 - Home: development authentication, sign-out, and links to the two real workflows and history.
 - What did I say?: record, stop, replay, upload, run target-free perception, retry analysis on the
   same utterance, and append an optional correction while preserving the transcript.
-- Pronunciation: create a target, show provisional pinyin, record/upload, create an attempt, append
-  assessments, show only supported evidence, replay attempts, and record unlimited new attempts.
+- Pronunciation laboratory: prepare or revise pinyin, replay authenticated reference speech,
+  record/analyze repeatedly, inspect lexical and expected surface tones, view confidence-preserving
+  user/reference pitch contours, expand provenance, replay durable history, and compare two attempts
+  without an invented improvement score.
+- Calibration Capture: development-only 50-prompt record/replay/retry/save workflow. Saving does
+  not automatically export production audio into the benchmark.
 - History / Development: reload the account's recent persisted utterances and stream their original
   audio through authenticated requests after an app restart.
 
@@ -33,7 +37,8 @@ the default learner presentation. Synthetic providers add a prominent developmen
 Recorder lifecycle and permission/interruption state live in `useAudioCapture`, not screens.
 Recording uses complete files in the app document directory. Background playback and background
 recording are both disabled in app configuration and runtime audio mode. Streaming PCM, phone-call
-mode, background sessions, and target TTS are deferred.
+mode, background sessions, and live microphone pitch remain deferred. Reference speech is fetched
+from the backend; provider keys never enter the bundle.
 
 The native bearer token is stored in SecureStore, never AsyncStorage. Web development uses browser
 local storage because SecureStore is native-only; web is not a production auth target for this pass.

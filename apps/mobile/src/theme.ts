@@ -10,4 +10,7 @@ export const colors = {
   warningBackground: '#fff1c9',
   warningText: '#674d00',
   diagnostic: '#edf2f1',
+  reference: '#a35f2d',
+  plotBackground: '#f8faf9',
+  plotGrid: '#dce4e1',
 } as const;

@@ -8,6 +8,38 @@ export interface components {
         "created_at": string;
         "updated_at": string;
       };
+    "AcousticRunResponse": {
+        "id": string;
+        "utterance_id": string;
+        "algorithm": string;
+        "algorithm_version": string;
+        "parameters": {
+        [key: string]: unknown;
+      };
+        "normalized_result": {
+        [key: string]: unknown;
+      } | null;
+        "latency_ms": number | null;
+        "status": string;
+        "error_code": string | null;
+        "error_message": string | null;
+        "created_at": string;
+      };
+    "AlignmentRunResponse": {
+        "id": string;
+        "pronunciation_attempt_id": string;
+        "algorithm": string;
+        "algorithm_version": string;
+        "normalized_result": {
+        [key: string]: unknown;
+      } | null;
+        "quality": string;
+        "latency_ms": number | null;
+        "status": string;
+        "error_code": string | null;
+        "error_message": string | null;
+        "created_at": string;
+      };
     "AssessmentRequest": {
         "timeout_seconds"?: number;
       };
@@ -29,6 +61,15 @@ export interface components {
         "status": string;
         "error_code": string | null;
         "error_message": string | null;
+      };
+    "AttemptComparisonRequest": {
+        "first_attempt_id": string;
+        "second_attempt_id": string;
+      };
+    "AttemptComparisonResponse": {
+        "first": components["schemas"]["PronunciationResultResponse"];
+        "second": components["schemas"]["PronunciationResultResponse"];
+        "disclaimer": string;
       };
     "AudioAssetResponse": {
         "id": string;
@@ -63,6 +104,19 @@ export interface components {
     "ErrorResponse": {
         "error": components["schemas"]["ErrorDetail"];
       };
+    "InterpretationRunResponse": {
+        "id": string;
+        "pronunciation_attempt_id": string;
+        "interpreter_version": string;
+        "input_evidence_run_ids": {
+        [key: string]: string | null;
+      };
+        "structured_observations": Array<{
+        [key: string]: unknown;
+      }>;
+        "capability_state": string;
+        "created_at": string;
+      };
     "PerceptionRunResponse": {
         "id": string;
         "utterance_id": string;
@@ -84,6 +138,9 @@ export interface components {
         "error_code": string | null;
         "error_message": string | null;
       };
+    "PinyinCorrectionCreate": {
+        "pinyin": string;
+      };
     "PracticeSessionCreate": {
         "mode": "perception_test" | "pronunciation";
         "metadata"?: {
@@ -100,6 +157,12 @@ export interface components {
         [key: string]: unknown;
       };
       };
+    "PronunciationAnalyzeRequest": {
+        "reuse_existing"?: boolean;
+        "rerun_provider"?: boolean;
+        "rerun_acoustics"?: boolean;
+        "rerun_alignment"?: boolean;
+      };
     "PronunciationAttemptCreate": {
         "utterance_id": string;
         "target_id": string;
@@ -109,6 +172,46 @@ export interface components {
         "utterance_id": string;
         "target_id": string;
         "created_at": string;
+      };
+    "PronunciationResultResponse": {
+        "attempt": components["schemas"]["PronunciationAttemptResponse"];
+        "target": components["schemas"]["PronunciationTargetResponse"];
+        "recording_audio_url": string;
+        "reference_audio": components["schemas"]["ReferenceSpeechResponse"] | null;
+        "overall_evidence": {
+        [key: string]: unknown;
+      };
+        "syllables": Array<components["schemas"]["PronunciationSyllableResult"]>;
+        "assessment": components["schemas"]["AssessmentRunResponse"] | null;
+        "acoustic": components["schemas"]["AcousticRunResponse"] | null;
+        "alignment": components["schemas"]["AlignmentRunResponse"] | null;
+        "interpretation": components["schemas"]["InterpretationRunResponse"] | null;
+        "capability_policy": {
+        [key: string]: unknown;
+      };
+      };
+    "PronunciationSyllableResult": {
+        "syllable_index": number;
+        "characters": string;
+        "pinyin": string;
+        "lexical_tone": number | null;
+        "expected_surface_tone": number | null;
+        "surface_tone_reason": Array<{
+        [key: string]: unknown;
+      }>;
+        "provider_evidence": {
+        [key: string]: unknown;
+      } | null;
+        "acoustic_evidence": {
+        [key: string]: unknown;
+      } | null;
+        "timing": {
+        [key: string]: unknown;
+      } | null;
+        "interpretation": {
+        [key: string]: unknown;
+      } | null;
+        "capability_state": string;
       };
     "PronunciationTargetCreate": {
         "text": string;
@@ -123,6 +226,39 @@ export interface components {
         "target_source": string;
         "pinyin_source": string;
         "pinyin_alternatives": Array<Array<string>>;
+        "syllable_units": Array<{
+        [key: string]: unknown;
+      }>;
+        "surface_tone_expectation": {
+        [key: string]: unknown;
+      };
+        "parent_target_id": string | null;
+        "created_at": string;
+      };
+    "ReferenceSpeechRequestBody": {
+        "force"?: boolean;
+        "timeout_seconds"?: number;
+      };
+    "ReferenceSpeechResponse": {
+        "id": string;
+        "target_id": string;
+        "provider": string;
+        "voice": string;
+        "locale": string;
+        "model_version": string;
+        "generation_config": {
+        [key: string]: unknown;
+      };
+        "target_snapshot": {
+        [key: string]: unknown;
+      };
+        "status": string;
+        "error_code": string | null;
+        "error_message": string | null;
+        "audio_url": string | null;
+        "acoustic_result": {
+        [key: string]: unknown;
+      } | null;
         "created_at": string;
       };
     "UnknownPerceptionRequest": {
