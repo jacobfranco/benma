@@ -28,6 +28,8 @@ from benma_api.speech.providers.factory import (
 from benma_api.speech.providers.iflytek import (
     FULL_DIMENSION_ABILITIES,
     IFLYTEK_ENDPOINT,
+    IFLYTEK_HOST,
+    IFLYTEK_PATH,
     IflytekIsePronunciationProvider,
     parse_iflytek_xml,
 )
@@ -366,6 +368,9 @@ def test_iflytek_full_dimension_request_and_auth_do_not_expose_secret() -> None:
     assert business["extra_ability"] == FULL_DIMENSION_ABILITIES
     assert business["text"] == "\ufeff生活"
     url = provider.signed_url(now=datetime(2026, 8, 3, tzinfo=UTC))
+    assert IFLYTEK_HOST == "ise-api-sg.xf-yun.com"
+    assert IFLYTEK_PATH == "/v2/ise"
+    assert IFLYTEK_ENDPOINT == "wss://ise-api-sg.xf-yun.com/v2/ise"
     assert url.startswith(f"{IFLYTEK_ENDPOINT}?")
     assert "api-secret" not in url
     assert "api-key" not in url

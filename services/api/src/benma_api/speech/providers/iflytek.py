@@ -29,8 +29,8 @@ from benma_api.speech.contracts import (
     KnownTargetAssessmentInput,
 )
 
-IFLYTEK_HOST = "ise-api.xfyun.cn"
-IFLYTEK_PATH = "/v2/open-ise"
+IFLYTEK_HOST = "ise-api-sg.xf-yun.com"
+IFLYTEK_PATH = "/v2/ise"
 IFLYTEK_ENDPOINT = f"wss://{IFLYTEK_HOST}{IFLYTEK_PATH}"
 FULL_DIMENSION_ABILITIES = "syll_phone_err_msg;pitch;multi_dimension"
 Exchange = Callable[[str, dict[str, Any], bytes, float], tuple[list[dict[str, Any]], str]]
@@ -268,7 +268,7 @@ def _live_exchange(
 class IflytekIsePronunciationProvider:
     provider_name = "iflytek_ise"
     product_name = "streaming_mandarin_full_dimension"
-    adapter_version = "1.0.0"
+    adapter_version = "1.0.1"
 
     def __init__(
         self,
