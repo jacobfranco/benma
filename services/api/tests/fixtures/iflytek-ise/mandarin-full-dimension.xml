@@ -7,7 +7,7 @@
           <word beg_pos="0" content="生" end_pos="40" symbol="sheng1">
             <syll beg_pos="0" content="生" dp_message="0" end_pos="40" rec_node_type="paper" symbol="sheng1">
               <phone beg_pos="0" content="sh" dp_message="0" end_pos="14" is_yun="0" perr_level_msg="1" perr_msg="0" rec_node_type="paper" />
-              <phone beg_pos="14" content="eng" dp_message="0" end_pos="40" is_yun="1" mono_tone="TONE4" perr_level_msg="1" perr_msg="2" rec_node_type="paper" />
+              <phone beg_pos="14" content="eng" dp_message="0" end_pos="40" is_yun="1" mono_tone="TONE1" perr_level_msg="1" perr_msg="2" rec_node_type="paper" />
             </syll>
           </word>
           <word beg_pos="40" content="活" end_pos="86" symbol="huo2">

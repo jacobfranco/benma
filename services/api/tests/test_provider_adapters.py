@@ -391,7 +391,8 @@ def test_iflytek_fixture_preserves_tone_phone_and_error_structure() -> None:
     assert evidence.syllables is not None
     first = evidence.syllables[0]
     assert first["pinyin"] == "sheng1"
-    assert first["detected_tone"] == 4
+    assert first["reference_tone"] == 1
+    assert "detected_tone" not in first
     assert "tone_error" in first["error_classifications"]
     second = evidence.syllables[1]
     assert "initial_error" in second["error_classifications"]

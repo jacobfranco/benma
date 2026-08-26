@@ -129,20 +129,23 @@ def parse_iflytek_xml(xml_text: str) -> tuple[AssessmentEvidence, str | None]:
         for syllable in real_syllables:
             phones: list[dict[str, Any]] = []
             errors = _dp_errors(syllable.attrib.get("dp_message"))
-            detected_tone: int | None = None
+            reference_tone: int | None = None
             for phone in syllable.findall("phone"):
                 phone_errors = _phone_error(phone.attrib)
                 errors.extend(phone_errors)
                 provider_errors.update(phone_errors)
-                phone_tone = _tone(phone.attrib.get("mono_tone"))
-                if phone_tone is not None and phone.attrib.get("is_yun") == "1":
-                    detected_tone = phone_tone
+                reference_tone_for_phone = _tone(phone.attrib.get("mono_tone"))
+                if (
+                    reference_tone_for_phone is not None
+                    and phone.attrib.get("is_yun") == "1"
+                ):
+                    reference_tone = reference_tone_for_phone
                 phones.append(
                     {
                         "phone": phone.attrib.get("content"),
                         "is_final": phone.attrib.get("is_yun") == "1",
                         "pronunciation_score": _number(phone.attrib.get("phone_score")),
-                        "detected_tone": phone_tone,
+                        "reference_tone": reference_tone_for_phone,
                         "error_classifications": phone_errors,
                         "error_confidence_level": _integer(
                             phone.attrib.get("perr_level_msg")
@@ -166,8 +169,8 @@ def parse_iflytek_xml(xml_text: str) -> tuple[AssessmentEvidence, str | None]:
                 "timing": _position_span(syllable.attrib),
                 "provider_syllable": dict(syllable.attrib),
             }
-            if detected_tone is not None:
-                normalized["detected_tone"] = detected_tone
+            if reference_tone is not None:
+                normalized["reference_tone"] = reference_tone
             syllables.append(normalized)
 
     attributes = result_node.attrib
@@ -268,7 +271,7 @@ def _live_exchange(
 class IflytekIsePronunciationProvider:
     provider_name = "iflytek_ise"
     product_name = "streaming_mandarin_full_dimension"
-    adapter_version = "1.0.1"
+    adapter_version = "1.0.2"
 
     def __init__(
         self,
