@@ -174,13 +174,31 @@ def parse_iflytek_xml(xml_text: str) -> tuple[AssessmentEvidence, str | None]:
             syllables.append(normalized)
 
     attributes = result_node.attrib
+    accuracy_score = _number(attributes.get("accuracy_score"))
+    other_sentence_scores = [
+        _number(attributes.get(name))
+        for name in (
+            "total_score",
+            "phone_score",
+            "tone_score",
+            "fluency_score",
+            "integrity_score",
+        )
+    ]
+    normalized_pronunciation_score = (
+        None
+        if accuracy_score == 0
+        and any(score is not None and score > 0 for score in other_sentence_scores)
+        else accuracy_score
+    )
+
     outer_version = next(
         (node.attrib.get("version") for node in candidates if node.attrib.get("version")), None
     )
     return (
         AssessmentEvidence(
             overall_score=_number(attributes.get("total_score")),
-            pronunciation_score=_number(attributes.get("accuracy_score")),
+            pronunciation_score=normalized_pronunciation_score,
             fluency_score=_number(attributes.get("fluency_score")),
             completeness_score=_number(attributes.get("integrity_score")),
             phone_score=_number(attributes.get("phone_score")),

@@ -386,6 +386,7 @@ def test_iflytek_fixture_preserves_tone_phone_and_error_structure() -> None:
     evidence, version = parse_iflytek_xml(fixture)
     assert version == "7,0,0,1024"
     assert evidence.overall_score == 80
+    assert evidence.pronunciation_score == 78
     assert evidence.phone_score == 82
     assert evidence.tone_score == 70
     assert evidence.syllables is not None
@@ -397,6 +398,20 @@ def test_iflytek_fixture_preserves_tone_phone_and_error_structure() -> None:
     second = evidence.syllables[1]
     assert "initial_error" in second["error_classifications"]
     assert second["phones"][0]["error_confidence_level"] == 2
+
+
+def test_iflytek_zero_accuracy_is_unavailable_when_other_scores_are_populated() -> None:
+    xml = """<xml_result><read_sentence version="1">
+    <read_sentence accuracy_score="0.000000" total_score="67.4"
+      fluency_score="80" integrity_score="100" phone_score="75" tone_score="100">
+    </read_sentence></read_sentence></xml_result>"""
+
+    evidence, _ = parse_iflytek_xml(xml)
+
+    assert evidence.overall_score == 67.4
+    assert evidence.pronunciation_score is None
+    assert evidence.phone_score == 75
+    assert evidence.tone_score == 100
 
 
 def test_iflytek_live_wrapper_keeps_identical_audio_and_sanitizes_envelope() -> None:
