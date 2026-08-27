@@ -18,3 +18,4 @@ benchmark/corpus/recordings/canonical/*
 !benchmark/corpus/recordings/canonical/.gitkeep
 benchmark/reports/outputs/runs/*.json
 benchmark/reports/outputs/plots/*.svg
+benchmark/corpus/provider-captures/
