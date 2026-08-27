@@ -598,6 +598,125 @@
         "title": "Body_create_utterance_v1_utterances_post",
         "type": "object"
       },
+      "ContextualInterpretationCreate": {
+        "additionalProperties": false,
+        "properties": {
+          "context_snapshot": {
+            "additionalProperties": true,
+            "title": "Context Snapshot",
+            "type": "object"
+          }
+        },
+        "title": "ContextualInterpretationCreate",
+        "type": "object"
+      },
+      "ContextualInterpretationRunResponse": {
+        "properties": {
+          "clarification_needed": {
+            "title": "Clarification Needed",
+            "type": "boolean"
+          },
+          "context_snapshot": {
+            "additionalProperties": true,
+            "title": "Context Snapshot",
+            "type": "object"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "inferred_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inferred Text"
+          },
+          "interpreter": {
+            "title": "Interpreter",
+            "type": "string"
+          },
+          "interpreter_configuration": {
+            "additionalProperties": true,
+            "title": "Interpreter Configuration",
+            "type": "object"
+          },
+          "interpreter_version": {
+            "title": "Interpreter Version",
+            "type": "string"
+          },
+          "perception_run_id": {
+            "format": "uuid",
+            "title": "Perception Run Id",
+            "type": "string"
+          },
+          "uncertainty": {
+            "$ref": "#/components/schemas/ContextualInterpretationUncertainty"
+          }
+        },
+        "required": [
+          "id",
+          "perception_run_id",
+          "interpreter",
+          "interpreter_version",
+          "interpreter_configuration",
+          "context_snapshot",
+          "inferred_text",
+          "uncertainty",
+          "clarification_needed",
+          "created_at"
+        ],
+        "title": "ContextualInterpretationRunResponse",
+        "type": "object"
+      },
+      "ContextualInterpretationUncertainty": {
+        "additionalProperties": false,
+        "properties": {
+          "alternatives": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "title": "Alternatives",
+            "type": "array"
+          },
+          "level": {
+            "default": "unknown",
+            "enum": [
+              "unknown",
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Level",
+            "type": "string"
+          },
+          "rationale": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rationale"
+          }
+        },
+        "title": "ContextualInterpretationUncertainty",
+        "type": "object"
+      },
       "DevAuthRequest": {
         "additionalProperties": false,
         "properties": {
@@ -1839,6 +1958,111 @@
         "summary": "Delete Auth Session"
       }
     },
+    "/v1/contextual-interpretations/{run_id}": {
+      "get": {
+        "operationId": "get_contextual_interpretation_v1_contextual_interpretations__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContextualInterpretationRunResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Contextual Interpretation"
+      }
+    },
     "/v1/dev/auth": {
       "post": {
         "operationId": "dev_auth_v1_dev_auth_post",
@@ -2133,6 +2357,121 @@
           }
         ],
         "summary": "Get Perception"
+      }
+    },
+    "/v1/perceptions/{run_id}/contextual-interpretations": {
+      "post": {
+        "operationId": "create_contextual_interpretation_v1_perceptions__run_id__contextual_interpretations_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContextualInterpretationCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContextualInterpretationRunResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Contextual Interpretation"
       }
     },
     "/v1/practice-sessions": {

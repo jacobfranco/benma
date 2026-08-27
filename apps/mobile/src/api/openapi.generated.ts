@@ -103,6 +103,32 @@ export interface components {
         "file": string;
         "practice_session_id"?: string | null;
       };
+    "ContextualInterpretationCreate": {
+        "context_snapshot"?: {
+        [key: string]: unknown;
+      };
+      };
+    "ContextualInterpretationRunResponse": {
+        "id": string;
+        "perception_run_id": string;
+        "interpreter": string;
+        "interpreter_version": string;
+        "interpreter_configuration": {
+        [key: string]: unknown;
+      };
+        "context_snapshot": {
+        [key: string]: unknown;
+      };
+        "inferred_text": string | null;
+        "uncertainty": components["schemas"]["ContextualInterpretationUncertainty"];
+        "clarification_needed": boolean;
+        "created_at": string;
+      };
+    "ContextualInterpretationUncertainty": {
+        "level"?: "unknown" | "low" | "medium" | "high";
+        "rationale"?: string | null;
+        "alternatives"?: Array<string>;
+      };
     "DevAuthRequest": {
         "phone_number": string;
       };

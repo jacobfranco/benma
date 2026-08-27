@@ -12,15 +12,21 @@ Utterance
       ├── AssessmentRun       known-target evaluator evidence
       └── AcousticRun         independent measurements
 
-Interpretation               contextual guess; references PerceptionRun
+ContextualInterpretationRun  contextual guess; references PerceptionRun
 UserCorrection               asserted intent; references Utterance
 ErrorEvent                   derived diagnosis; cites one or more evidence runs
 ```
 
-An `Interpretation` may say context makes 北京 likely even if the perception transcript was 背景.
-It may not update that transcript. A `UserCorrection` may record “I intended 北京”; it may not
-rewrite the earlier raw response. Rerunning a provider creates a new versioned run. Deleting a raw
-response to save space would break auditability; retention policy should archive/encrypt instead.
+A `ContextualInterpretationRun` may say context makes 北京 likely even if the perception transcript
+was 背景. It snapshots its semantic context and uncertainty, and may mark that clarification is
+needed. It may not update that transcript. A `UserCorrection` may record “I intended 北京”; it may
+not rewrite the earlier raw response. Rerunning a provider creates a new versioned run. Deleting a
+raw response to save space would break auditability; retention policy should archive/encrypt
+instead.
+
+The contextual interpreter receives the perceived transcript and an allowlisted snapshot of
+normalized perception evidence. Raw provider payloads remain on the perception run's audit path
+and never enter contextual interpreter input.
 
 ## Initial ports
 
@@ -42,4 +48,3 @@ A provider replacement is a configuration/adapter change after it passes the fro
 better on relevant independent dimensions. It must not require migrating historical raw results
 into a new vendor shape. Threshold/normalization changes are versioned interpretations over old
 evidence, not destructive rewrites.
-

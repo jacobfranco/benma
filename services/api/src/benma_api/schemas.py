@@ -91,6 +91,29 @@ class PerceptionRunResponse(BaseModel):
     error_message: str | None
 
 
+class ContextualInterpretationUncertainty(StrictRequest):
+    level: Literal["unknown", "low", "medium", "high"] = "unknown"
+    rationale: str | None = Field(default=None, max_length=1000)
+    alternatives: list[str] = Field(default_factory=list, max_length=10)
+
+
+class ContextualInterpretationCreate(StrictRequest):
+    context_snapshot: dict[str, Any] = Field(default_factory=dict)
+
+
+class ContextualInterpretationRunResponse(BaseModel):
+    id: uuid.UUID
+    perception_run_id: uuid.UUID
+    interpreter: str
+    interpreter_version: str
+    interpreter_configuration: dict[str, Any]
+    context_snapshot: dict[str, Any]
+    inferred_text: str | None
+    uncertainty: ContextualInterpretationUncertainty
+    clarification_needed: bool
+    created_at: datetime
+
+
 class UserCorrectionCreate(StrictRequest):
     intended_text: str = Field(min_length=1, max_length=500)
     perception_run_id: uuid.UUID | None = None

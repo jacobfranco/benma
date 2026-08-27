@@ -20,9 +20,15 @@ from benma_api.auth.service import (
     revoke_session,
 )
 from benma_api.config import Settings, get_request_settings
+from benma_api.contextual_interpretation.contracts import ContextualInterpretationPort
+from benma_api.contextual_interpretation.repository import (
+    SqlContextualInterpretationRepository,
+)
+from benma_api.contextual_interpretation.service import ContextualInterpretationService
 from benma_api.db.models import (
     AssessmentRun,
     AudioAsset,
+    ContextualInterpretationRun,
     PerceptionRun,
     PracticeSession,
     PronunciationAttempt,
@@ -32,7 +38,12 @@ from benma_api.db.models import (
     Utterance,
 )
 from benma_api.db.session import get_db
-from benma_api.errors import AuthorizationError, InvalidAudioError, InvalidTargetError
+from benma_api.errors import (
+    AnalysisUnsupportedError,
+    AuthorizationError,
+    InvalidAudioError,
+    InvalidTargetError,
+)
 from benma_api.perception.repository import SqlPerceptionRepository
 from benma_api.perception.service import PerceptionService
 from benma_api.pronunciation.laboratory import PronunciationLaboratoryService
@@ -46,6 +57,8 @@ from benma_api.schemas import (
     AttemptComparisonResponse,
     AudioAssetResponse,
     AuthTokenResponse,
+    ContextualInterpretationCreate,
+    ContextualInterpretationRunResponse,
     DevAuthRequest,
     PerceptionRunResponse,
     PinyinCorrectionCreate,
@@ -72,6 +85,10 @@ from benma_api.storage.audio_store import AudioObjectStore, get_audio_store
 
 router = APIRouter()
 dev_router = APIRouter()
+
+
+def get_contextual_interpreter() -> ContextualInterpretationPort:
+    raise AnalysisUnsupportedError("contextual interpretation provider is not configured")
 
 
 def audio_response(asset: AudioAsset) -> AudioAssetResponse:
@@ -132,6 +149,23 @@ def perception_response(run: PerceptionRun) -> PerceptionRunResponse:
         status=run.status,
         error_code=run.error_code,
         error_message=run.error_message,
+    )
+
+
+def contextual_interpretation_response(
+    run: ContextualInterpretationRun,
+) -> ContextualInterpretationRunResponse:
+    return ContextualInterpretationRunResponse(
+        id=run.id,
+        perception_run_id=run.perception_run_id,
+        interpreter=run.interpreter,
+        interpreter_version=run.interpreter_version,
+        interpreter_configuration=run.interpreter_configuration,
+        context_snapshot=run.context_snapshot,
+        inferred_text=run.inferred_text,
+        uncertainty=run.uncertainty,
+        clarification_needed=run.clarification_needed,
+        created_at=run.created_at,
     )
 
 
@@ -336,6 +370,48 @@ async def get_perception(
     if run is None or run.account_id != auth.account_id:
         raise AuthorizationError("perception run was not found")
     return perception_response(run)
+
+
+@router.post(
+    "/v1/perceptions/{run_id}/contextual-interpretations",
+    response_model=ContextualInterpretationRunResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_contextual_interpretation(
+    run_id: uuid.UUID,
+    body: ContextualInterpretationCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
+) -> ContextualInterpretationRunResponse:
+    service = ContextualInterpretationService(SqlContextualInterpretationRepository(db))
+    run = await run_bounded_speech_work(
+        settings,
+        partial(
+            service.run,
+            account_id=auth.account_id,
+            perception_run_id=run_id,
+            context_snapshot=body.context_snapshot,
+            interpreter=interpreter,
+        ),
+    )
+    return contextual_interpretation_response(run)
+
+
+@router.get(
+    "/v1/contextual-interpretations/{run_id}",
+    response_model=ContextualInterpretationRunResponse,
+)
+async def get_contextual_interpretation(
+    run_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> ContextualInterpretationRunResponse:
+    run = db.get(ContextualInterpretationRun, run_id)
+    if run is None or run.account_id != auth.account_id:
+        raise AuthorizationError("contextual interpretation run was not found")
+    return contextual_interpretation_response(run)
 
 
 @router.post(

@@ -8,6 +8,7 @@ from typing import Any
 
 from sqlalchemy import (
     JSON,
+    Boolean,
     DateTime,
     Float,
     ForeignKey,
@@ -144,6 +145,22 @@ class PerceptionRun(UUIDPrimaryKeyMixin, EvidenceMixin, Base):
     provider_uncertainty: Mapped[Any | None] = mapped_column(JSON)
 
 
+class ContextualInterpretationRun(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "contextual_interpretation_runs"
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
+    perception_run_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("perception_runs.id"), index=True
+    )
+    interpreter: Mapped[str] = mapped_column(String(128), nullable=False)
+    interpreter_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    interpreter_configuration: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    context_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    inferred_text: Mapped[str | None] = mapped_column(Text)
+    uncertainty: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    clarification_needed: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
 class AssessmentRun(UUIDPrimaryKeyMixin, EvidenceMixin, Base):
     __tablename__ = "assessment_runs"
     account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
@@ -252,6 +269,7 @@ class UserCorrection(UUIDPrimaryKeyMixin, Base):
 
 APPEND_ONLY_MODELS = (
     PerceptionRun,
+    ContextualInterpretationRun,
     AssessmentRun,
     AcousticRun,
     ReferenceSpeechAsset,

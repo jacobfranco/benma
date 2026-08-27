@@ -25,6 +25,9 @@ from benma_api.speech.providers.openai import (
 )
 
 FORBIDDEN = {
+    "context_snapshot",
+    "correction",
+    "corrections",
     "target",
     "target_text",
     "intended_text",
@@ -32,6 +35,7 @@ FORBIDDEN = {
     "context",
     "prompt",
     "conversation_history",
+    "semantic_context",
 }
 
 

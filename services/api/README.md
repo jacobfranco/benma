@@ -66,6 +66,8 @@ GET    /v1/utterances/{id}
 GET    /v1/utterances/{id}/audio
 POST   /v1/utterances/{id}/perceptions
 GET    /v1/perceptions/{id}
+POST   /v1/perceptions/{id}/contextual-interpretations
+GET    /v1/contextual-interpretations/{id}
 POST   /v1/utterances/{id}/corrections
 POST   /v1/pronunciation-targets
 POST   /v1/pronunciation-targets/{id}/pinyin-corrections

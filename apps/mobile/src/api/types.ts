@@ -8,6 +8,7 @@ export type PracticeSession = Schemas['PracticeSessionResponse'];
 export type AudioAsset = Schemas['AudioAssetResponse'];
 export type Utterance = Schemas['UtteranceResponse'];
 export type PerceptionRun = Schemas['PerceptionRunResponse'];
+export type ContextualInterpretationRun = Schemas['ContextualInterpretationRunResponse'];
 export type UserCorrection = Schemas['UserCorrectionResponse'];
 export type PronunciationTarget = Schemas['PronunciationTargetResponse'];
 export type PronunciationAttempt = Schemas['PronunciationAttemptResponse'];

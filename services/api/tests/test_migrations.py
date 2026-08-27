@@ -19,14 +19,21 @@ def test_migrations_upgrade_empty_database_and_downgrade(
     config = Config(str(Path(__file__).parents[1] / "alembic.ini"))
     command.upgrade(config, "head")
     engine = create_engine(f"sqlite:///{database}")
+    inspector = inspect(engine)
     assert {
         "accounts",
         "audio_assets",
         "utterances",
         "perception_runs",
+        "contextual_interpretation_runs",
         "assessment_runs",
         "user_corrections",
-    }.issubset(inspect(engine).get_table_names())
+    }.issubset(inspector.get_table_names())
+    contextual_columns = {
+        column["name"]: column
+        for column in inspector.get_columns("contextual_interpretation_runs")
+    }
+    assert contextual_columns["inferred_text"]["nullable"] is True
     command.check(config)
     command.downgrade(config, "base")
     assert inspect(engine).get_table_names() == ["alembic_version"]
