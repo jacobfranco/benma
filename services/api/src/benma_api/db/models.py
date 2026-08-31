@@ -13,6 +13,7 @@ from sqlalchemy import (
     DateTime,
     Float,
     ForeignKey,
+    ForeignKeyConstraint,
     Index,
     Integer,
     String,
@@ -31,6 +32,14 @@ def utcnow() -> datetime:
 class Account(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "accounts"
     status: Mapped[str] = mapped_column(String(32), default="active", nullable=False)
+
+
+class Conversation(UUIDPrimaryKeyMixin, TimestampMixin, Base):
+    __tablename__ = "conversations"
+    __table_args__ = (
+        UniqueConstraint("id", "account_id", name="uq_conversations_id_account_id"),
+    )
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
 
 
 class AuthIdentity(UUIDPrimaryKeyMixin, Base):
@@ -170,6 +179,57 @@ class ContextualInterpretationRun(UUIDPrimaryKeyMixin, Base):
     inferred_text: Mapped[str | None] = mapped_column(Text)
     uncertainty: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
     clarification_needed: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class ConversationTurn(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "conversation_turns"
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["conversation_id", "account_id"],
+            ["conversations.id", "conversations.account_id"],
+            name="fk_conversation_turns_conversation_account",
+        ),
+        UniqueConstraint(
+            "conversation_id",
+            "sequence_number",
+            name="uq_conversation_turns_conversation_sequence",
+        ),
+        UniqueConstraint(
+            "perception_run_id",
+            name="uq_conversation_turns_perception_run_id",
+        ),
+        UniqueConstraint(
+            "contextual_interpretation_run_id",
+            name="uq_conversation_turns_contextual_interpretation_run_id",
+        ),
+        CheckConstraint(
+            "sequence_number > 0",
+            name="ck_conversation_turn_sequence_positive",
+        ),
+        CheckConstraint(
+            "(role = 'assistant' AND assistant_text IS NOT NULL AND "
+            "length(trim(assistant_text)) > 0 AND utterance_id IS NULL AND "
+            "perception_run_id IS NULL AND contextual_interpretation_run_id IS NULL) OR "
+            "(role = 'user' AND assistant_text IS NULL AND utterance_id IS NOT NULL AND "
+            "perception_run_id IS NOT NULL)",
+            name="ck_conversation_turn_role_evidence",
+        ),
+    )
+    conversation_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    account_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    sequence_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    role: Mapped[str] = mapped_column(String(16), nullable=False)
+    assistant_text: Mapped[str | None] = mapped_column(Text)
+    utterance_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("utterances.id"), index=True
+    )
+    perception_run_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("perception_runs.id"), index=True
+    )
+    contextual_interpretation_run_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("contextual_interpretation_runs.id"), index=True
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 

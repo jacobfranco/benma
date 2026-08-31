@@ -26,10 +26,14 @@ from benma_api.contextual_interpretation.repository import (
     SqlContextualInterpretationRepository,
 )
 from benma_api.contextual_interpretation.service import ContextualInterpretationService
+from benma_api.conversation.context import resolved_turn_text
+from benma_api.conversation.repository import SqlConversationRepository
+from benma_api.conversation.service import ConversationService
 from benma_api.db.models import (
     AssessmentRun,
     AudioAsset,
     ContextualInterpretationRun,
+    ConversationTurn,
     PerceptionRun,
     PracticeSession,
     PronunciationAttempt,
@@ -59,6 +63,9 @@ from benma_api.schemas import (
     AuthTokenResponse,
     ContextualInterpretationCreate,
     ContextualInterpretationRunResponse,
+    ConversationCreate,
+    ConversationResponse,
+    ConversationTurnResponse,
     DevAuthRequest,
     PerceptionRunResponse,
     PinyinCorrectionCreate,
@@ -73,6 +80,7 @@ from benma_api.schemas import (
     ReferenceSpeechRequestBody,
     ReferenceSpeechResponse,
     UnknownPerceptionRequest,
+    UserConversationTurnCreate,
     UserCorrectionCreate,
     UserCorrectionResponse,
     UtteranceResponse,
@@ -87,7 +95,7 @@ router = APIRouter()
 dev_router = APIRouter()
 
 
-def get_contextual_interpreter(
+async def get_contextual_interpreter(
     settings: Settings = Depends(get_request_settings),
 ) -> ContextualInterpretationPort:
     return build_contextual_interpreter(settings)
@@ -131,6 +139,48 @@ def practice_response(practice: PracticeSession) -> PracticeSessionResponse:
         started_at=practice.started_at,
         ended_at=practice.ended_at,
         metadata=practice.session_metadata,
+    )
+
+
+def conversation_turn_response(
+    db: Session, turn: ConversationTurn
+) -> ConversationTurnResponse:
+    perception = (
+        db.get(PerceptionRun, turn.perception_run_id)
+        if turn.perception_run_id is not None
+        else None
+    )
+    interpretation = (
+        db.get(ContextualInterpretationRun, turn.contextual_interpretation_run_id)
+        if turn.contextual_interpretation_run_id is not None
+        else None
+    )
+    if perception is not None and (
+        perception.account_id != turn.account_id
+        or perception.utterance_id != turn.utterance_id
+    ):
+        raise RuntimeError("conversation turn has mismatched perception evidence")
+    if interpretation is not None and (
+        interpretation.account_id != turn.account_id
+        or interpretation.perception_run_id != turn.perception_run_id
+    ):
+        raise RuntimeError("conversation turn has mismatched contextual evidence")
+    return ConversationTurnResponse(
+        id=turn.id,
+        conversation_id=turn.conversation_id,
+        account_id=turn.account_id,
+        sequence_number=turn.sequence_number,
+        role=turn.role,
+        assistant_text=turn.assistant_text,
+        resolved_text=resolved_turn_text(
+            turn,
+            perception=perception,
+            interpretation=interpretation,
+        ),
+        utterance_id=turn.utterance_id,
+        perception_run_id=turn.perception_run_id,
+        contextual_interpretation_run_id=turn.contextual_interpretation_run_id,
+        created_at=turn.created_at,
     )
 
 
@@ -225,6 +275,81 @@ async def delete_auth_session(
 ) -> Response:
     revoke_session(db, auth)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@router.post(
+    "/v1/conversations",
+    response_model=ConversationResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_conversation(
+    body: ConversationCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> ConversationResponse:
+    del body
+    conversation = ConversationService(db).create(account_id=auth.account_id)
+    return ConversationResponse.model_validate(conversation)
+
+
+@router.get("/v1/conversations/{conversation_id}", response_model=ConversationResponse)
+async def get_conversation(
+    conversation_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> ConversationResponse:
+    conversation = SqlConversationRepository(db).load_conversation(
+        auth.account_id, conversation_id
+    )
+    if conversation is None:
+        raise AuthorizationError("conversation was not found")
+    return ConversationResponse.model_validate(conversation)
+
+
+@router.get(
+    "/v1/conversations/{conversation_id}/turns",
+    response_model=list[ConversationTurnResponse],
+)
+async def list_conversation_turns(
+    conversation_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> list[ConversationTurnResponse]:
+    repository = SqlConversationRepository(db)
+    conversation = repository.load_conversation(auth.account_id, conversation_id)
+    if conversation is None:
+        raise AuthorizationError("conversation was not found")
+    return [
+        conversation_turn_response(db, turn)
+        for turn in repository.list_turns(auth.account_id, conversation.id)
+    ]
+
+
+@router.post(
+    "/v1/conversations/{conversation_id}/user-turns",
+    response_model=ConversationTurnResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_user_conversation_turn(
+    conversation_id: uuid.UUID,
+    body: UserConversationTurnCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
+) -> ConversationTurnResponse:
+    turn = await run_bounded_speech_work(
+        settings,
+        partial(
+            ConversationService(db).add_user_turn,
+            account_id=auth.account_id,
+            conversation_id=conversation_id,
+            utterance_id=body.utterance_id,
+            perception_run_id=body.perception_run_id,
+            interpreter=interpreter,
+        ),
+    )
+    return conversation_turn_response(db, turn)
 
 
 @router.post(

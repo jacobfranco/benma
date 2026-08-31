@@ -24,6 +24,8 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
         "utterances",
         "perception_runs",
         "contextual_interpretation_runs",
+        "conversations",
+        "conversation_turns",
         "assessment_runs",
         "user_corrections",
     }.issubset(inspector.get_table_names())
@@ -35,6 +37,31 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
     assert any(
         str(constraint["name"]).endswith("ck_contextual_interpretation_decision")
         for constraint in inspector.get_check_constraints("contextual_interpretation_runs")
+    )
+    conversation_columns = {
+        column["name"]: column for column in inspector.get_columns("conversations")
+    }
+    assert {"id", "account_id", "created_at", "updated_at"} == set(
+        conversation_columns
+    )
+    turn_columns = {
+        column["name"]: column for column in inspector.get_columns("conversation_turns")
+    }
+    assert {
+        "id",
+        "conversation_id",
+        "account_id",
+        "sequence_number",
+        "role",
+        "assistant_text",
+        "utterance_id",
+        "perception_run_id",
+        "contextual_interpretation_run_id",
+        "created_at",
+    } == set(turn_columns)
+    assert any(
+        str(constraint["name"]).endswith("ck_conversation_turn_role_evidence")
+        for constraint in inspector.get_check_constraints("conversation_turns")
     )
     command.check(config)
     command.downgrade(config, "base")

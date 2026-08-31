@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import dataclasses
 import uuid
 
@@ -62,7 +63,10 @@ def configured_contextual_interpreter(client: ApiClient):  # type: ignore[no-unt
                 clarification_needed=clarification_needed,
             )
 
-    client.app.dependency_overrides[get_contextual_interpreter] = Interpreter
+    async def override_interpreter() -> Interpreter:
+        return Interpreter()
+
+    client.app.dependency_overrides[get_contextual_interpreter] = override_interpreter
     yield
     client.app.dependency_overrides.pop(get_contextual_interpreter, None)
 
@@ -191,7 +195,11 @@ def test_contextual_interpretation_request_cannot_replace_raw_transcript(
 
 def test_contextual_interpreter_is_explicitly_unconfigured_by_default() -> None:
     with pytest.raises(AnalysisUnsupportedError, match="not configured"):
-        get_contextual_interpreter(Settings(contextual_interpretation_provider="disabled"))
+        asyncio.run(
+            get_contextual_interpreter(
+                Settings(contextual_interpretation_provider="disabled")
+            )
+        )
 
 
 @pytest.mark.parametrize(

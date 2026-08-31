@@ -130,6 +130,26 @@ export interface components {
         "rationale"?: string | null;
         "alternatives"?: Array<string>;
       };
+    "ConversationCreate": {};
+    "ConversationResponse": {
+        "id": string;
+        "account_id": string;
+        "created_at": string;
+        "updated_at": string;
+      };
+    "ConversationTurnResponse": {
+        "id": string;
+        "conversation_id": string;
+        "account_id": string;
+        "sequence_number": number;
+        "role": "user" | "assistant";
+        "assistant_text": string | null;
+        "resolved_text": string | null;
+        "utterance_id": string | null;
+        "perception_run_id": string | null;
+        "contextual_interpretation_run_id": string | null;
+        "created_at": string;
+      };
     "DevAuthRequest": {
         "phone_number": string;
       };
@@ -305,6 +325,10 @@ export interface components {
     "UnknownPerceptionRequest": {
         "language_hint"?: string;
         "timeout_seconds"?: number;
+      };
+    "UserConversationTurnCreate": {
+        "utterance_id": string;
+        "perception_run_id": string;
       };
     "UserCorrectionCreate": {
         "intended_text": string;

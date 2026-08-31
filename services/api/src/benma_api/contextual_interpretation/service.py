@@ -59,22 +59,41 @@ class ContextualInterpretationService:
         interpreter: ContextualInterpretationPort,
     ) -> ContextualInterpretationRun:
         """Execute an abstract interpreter over downstream-only inputs and append its evidence."""
+        run = self.build_run(
+            account_id=account_id,
+            perception_run_id=perception_run_id,
+            context_snapshot=context_snapshot,
+            interpreter=interpreter,
+        )
+        self.repository.append_run(run)
+        return run
+
+    def build_run(
+        self,
+        *,
+        account_id: uuid.UUID,
+        perception_run_id: uuid.UUID,
+        context_snapshot: dict[str, Any],
+        interpreter: ContextualInterpretationPort,
+    ) -> ContextualInterpretationRun:
+        """Execute interpretation and construct, but do not persist, its evidence run."""
         perception = self._load_perception(account_id, perception_run_id)
         assert perception.transcript is not None
+        used_context_snapshot = deepcopy(context_snapshot)
         interpreter_input = ContextualInterpretationInput(
             perception_run_id=perception.id,
             perceived_transcript=perception.transcript,
             perception_evidence_snapshot=perception_evidence_snapshot(perception),
-            context_snapshot=deepcopy(context_snapshot),
+            context_snapshot=deepcopy(used_context_snapshot),
         )
         evidence = interpreter.interpret(interpreter_input)
         validate_contextual_interpretation_evidence(
             evidence,
             perceived_transcript=perception.transcript,
         )
-        return self._append(
+        return self._build_run(
             perception=perception,
-            context_snapshot=interpreter_input.context_snapshot,
+            context_snapshot=used_context_snapshot,
             evidence=evidence,
             interpreter=interpreter.interpreter_name,
             interpreter_version=interpreter.interpreter_version,
@@ -91,7 +110,7 @@ class ContextualInterpretationService:
             raise AnalysisUnsupportedError("perception run has no transcript to interpret")
         return perception
 
-    def _append(
+    def _build_run(
         self,
         *,
         perception: PerceptionRun,
@@ -113,5 +132,4 @@ class ContextualInterpretationService:
             uncertainty=deepcopy(evidence.uncertainty),
             clarification_needed=evidence.clarification_needed,
         )
-        self.repository.append_run(run)
         return run

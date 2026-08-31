@@ -32,6 +32,37 @@ class AccountResponse(BaseModel):
     updated_at: datetime
 
 
+class ConversationCreate(StrictRequest):
+    pass
+
+
+class ConversationResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    account_id: uuid.UUID
+    created_at: datetime
+    updated_at: datetime
+
+
+class UserConversationTurnCreate(StrictRequest):
+    utterance_id: uuid.UUID
+    perception_run_id: uuid.UUID
+
+
+class ConversationTurnResponse(BaseModel):
+    id: uuid.UUID
+    conversation_id: uuid.UUID
+    account_id: uuid.UUID
+    sequence_number: int
+    role: Literal["user", "assistant"]
+    assistant_text: str | None
+    resolved_text: str | None
+    utterance_id: uuid.UUID | None
+    perception_run_id: uuid.UUID | None
+    contextual_interpretation_run_id: uuid.UUID | None
+    created_at: datetime
+
+
 class PracticeSessionCreate(StrictRequest):
     mode: Literal["perception_test", "pronunciation"]
     metadata: dict[str, Any] = Field(default_factory=dict)

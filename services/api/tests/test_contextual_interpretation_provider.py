@@ -259,7 +259,10 @@ def test_openai_api_failure_uses_benma_error_envelope_without_secret(
         )
 
     interpreter = _interpreter(httpx.MockTransport(rejected), api_key=secret)
-    client.app.dependency_overrides[get_contextual_interpreter] = lambda: interpreter
+    async def override_interpreter() -> OpenAIContextualInterpreter:
+        return interpreter
+
+    client.app.dependency_overrides[get_contextual_interpreter] = override_interpreter
     perception = client.post(
         f"/v1/utterances/{uploaded_utterance['id']}/perceptions",
         headers=auth_header,

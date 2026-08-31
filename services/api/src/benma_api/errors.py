@@ -33,6 +33,11 @@ class InvalidTargetError(BenmaError):
     status_code = 422
 
 
+class InvalidConversationTurnError(BenmaError):
+    code = "invalid_conversation_turn"
+    status_code = 422
+
+
 class ProviderUnavailableError(BenmaError):
     code = "provider_unavailable"
     status_code = 503

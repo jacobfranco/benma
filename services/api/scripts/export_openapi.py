@@ -58,6 +58,8 @@ def ts_type(schema: dict[str, Any]) -> str:
             members.append("    [key: string]: unknown;")
         elif isinstance(additional, dict):
             members.append(f"    [key: string]: {ts_type(additional)};")
+        if not members:
+            return "{}"
         return "{\n" + "\n".join(members) + "\n  }"
     if schema_type == "string":
         return "string"
