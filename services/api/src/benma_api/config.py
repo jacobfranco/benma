@@ -23,6 +23,7 @@ ReferenceSpeechProviderName = Literal["replay", "azure", "disabled"]
 AcousticProviderName = Literal["autocorrelation", "disabled"]
 AlignmentProviderName = Literal["replay", "mfa", "disabled"]
 ContextualInterpretationProviderName = Literal["openai", "disabled"]
+AssistantGenerationProviderName = Literal["openai", "disabled"]
 OpenAIReasoningEffort = Literal["none", "low", "medium", "high"]
 
 
@@ -47,12 +48,17 @@ class Settings(BaseSettings):
     acoustic_provider: AcousticProviderName = "autocorrelation"
     alignment_provider: AlignmentProviderName = "disabled"
     contextual_interpretation_provider: ContextualInterpretationProviderName = "disabled"
+    assistant_generation_provider: AssistantGenerationProviderName = "disabled"
     openai_api_key: SecretStr | None = None
     openai_transcription_model: str = "gpt-4o-transcribe"
     openai_contextual_interpretation_model: str = "gpt-5.6-terra"
     openai_contextual_interpretation_reasoning_effort: OpenAIReasoningEffort = "medium"
     contextual_interpretation_timeout_seconds: float = 30.0
     contextual_interpretation_version: str = "contextual-decision-v1"
+    openai_assistant_generation_model: str = "gpt-5.6-terra"
+    openai_assistant_generation_reasoning_effort: OpenAIReasoningEffort = "medium"
+    assistant_generation_timeout_seconds: float = 30.0
+    assistant_generation_policy_version: str = "free-talk-generation-v1"
     azure_speech_key: SecretStr | None = None
     azure_speech_region: str | None = None
     tencent_secret_id: SecretStr | None = None
@@ -83,6 +89,7 @@ class Settings(BaseSettings):
         if (
             self.perception_provider == "openai"
             or self.contextual_interpretation_provider == "openai"
+            or self.assistant_generation_provider == "openai"
         ) and not self.openai_api_key:
             raise ValueError("BENMA_OPENAI_API_KEY is required for the OpenAI provider")
         if self.contextual_interpretation_timeout_seconds <= 0:
@@ -91,6 +98,12 @@ class Settings(BaseSettings):
             raise ValueError("OpenAI contextual interpretation model cannot be empty")
         if not self.contextual_interpretation_version.strip():
             raise ValueError("contextual interpretation version cannot be empty")
+        if self.assistant_generation_timeout_seconds <= 0:
+            raise ValueError("assistant generation timeout must be positive")
+        if not self.openai_assistant_generation_model.strip():
+            raise ValueError("OpenAI assistant generation model cannot be empty")
+        if not self.assistant_generation_policy_version.strip():
+            raise ValueError("assistant generation policy version cannot be empty")
         if self.assessment_provider == "azure" and (
             not self.azure_speech_key or not self.azure_speech_region
         ):

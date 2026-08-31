@@ -60,7 +60,31 @@ class ConversationTurnResponse(BaseModel):
     utterance_id: uuid.UUID | None
     perception_run_id: uuid.UUID | None
     contextual_interpretation_run_id: uuid.UUID | None
+    assistant_generation_run_id: uuid.UUID | None
     created_at: datetime
+
+
+class AssistantGenerationRunResponse(BaseModel):
+    id: uuid.UUID
+    account_id: uuid.UUID
+    conversation_id: uuid.UUID
+    triggering_user_turn_id: uuid.UUID
+    provider: str
+    product: str
+    provider_version: str | None
+    adapter_version: str
+    model: str
+    generator_version: str
+    generator_configuration: dict[str, Any]
+    generation_type: Literal["reply", "clarification"]
+    input_snapshot: dict[str, Any]
+    generated_text: str | None
+    normalized_result: dict[str, Any] | None
+    latency_ms: int | None
+    created_at: datetime
+    status: str
+    error_code: str | None
+    error_message: str | None
 
 
 class PracticeSessionCreate(StrictRequest):

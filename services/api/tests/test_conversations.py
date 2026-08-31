@@ -8,7 +8,15 @@ import pytest
 from conftest import ApiClient
 from sqlalchemy.orm import Session, sessionmaker
 
-from benma_api.api.routes import get_contextual_interpreter
+from benma_api.api.routes import (
+    get_assistant_response_generator,
+    get_contextual_interpreter,
+)
+from benma_api.assistant_generation.contracts import (
+    AssistantGenerationProviderResponse,
+    AssistantResponseGenerationEvidence,
+    AssistantResponseGenerationInput,
+)
 from benma_api.contextual_interpretation.contracts import (
     ContextualInterpretationEvidence,
     ContextualInterpretationInput,
@@ -61,11 +69,51 @@ class RecordingInterpreter:
         )
 
 
+class RecordingGenerator:
+    provider_name = "recording-generator"
+    product_name = "test-conversation"
+    adapter_version = "1"
+    generator_version = "conversation-test-v1"
+
+    def __init__(self) -> None:
+        self.generator_configuration = {"model": "recording-model", "temperature": 0}
+        self.requests: list[AssistantResponseGenerationInput] = []
+
+    def generate(
+        self, request: AssistantResponseGenerationInput
+    ) -> AssistantGenerationProviderResponse:
+        self.requests.append(deepcopy(request))
+        text = (
+            "你能再说清楚一点吗？"
+            if request.generation_type == "clarification"
+            else f"收到：{request.resolved_semantic_text}"
+        )
+        return AssistantGenerationProviderResponse(
+            evidence=AssistantResponseGenerationEvidence(
+                generation_type=request.generation_type,
+                generated_text=text,
+                clarification_alternatives_used=tuple(
+                    candidate
+                    for candidate in request.clarification_alternatives
+                    if candidate in text
+                ),
+            ),
+            raw_payload={"fixture": text},
+            provider_version="recording-provider-v1",
+        )
+
+
 def use_interpreter(client: ApiClient, interpreter: RecordingInterpreter) -> None:
     async def override() -> RecordingInterpreter:
         return interpreter
 
+    generator = RecordingGenerator()
+
+    async def override_generator() -> RecordingGenerator:
+        return generator
+
     client.app.dependency_overrides[get_contextual_interpreter] = override
+    client.app.dependency_overrides[get_assistant_response_generator] = override_generator
 
 
 def create_conversation(client: ApiClient, headers: dict[str, str]) -> dict[str, object]:
@@ -246,6 +294,7 @@ def test_preserve_and_infer_produce_ordered_resolved_history_without_mutation(
         "turns": [
             {"role": "assistant", "text": "你今天要去超市吗?"},
             {"role": "user", "text": "我想卖水果。"},
+            {"role": "assistant", "text": "收到：我想卖水果。"},
         ],
     }
     with session_factory() as db:
@@ -322,7 +371,10 @@ def test_clarification_turn_is_explicitly_unresolved_in_later_context(
 
     assert unresolved["resolved_text"] is None
     snapshot = interpreter.requests[1].context_snapshot
-    assert snapshot["turns"] == [{"role": "user", "unresolved": True}]
+    assert snapshot["turns"] == [
+        {"role": "user", "unresolved": True},
+        {"role": "assistant", "text": "你能再说清楚一点吗？"},
+    ]
     assert "绝不能悄悄当作已解决" not in json.dumps(snapshot, ensure_ascii=False)
 
 
@@ -413,6 +465,7 @@ def test_context_excludes_raw_pronunciation_corrections_and_current_inference(
         "turns": [
             {"role": "assistant", "text": "你今天要去超市吗?"},
             {"role": "user", "text": "先前的真实语义。"},
+            {"role": "assistant", "text": "收到：先前的真实语义。"},
         ],
     }
     assert "RAW_PROVIDER_PAYLOAD_MUST_NOT_LEAK" not in serialized

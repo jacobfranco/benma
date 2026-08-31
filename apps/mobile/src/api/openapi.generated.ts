@@ -73,6 +73,34 @@ export interface components {
         "error_code": string | null;
         "error_message": string | null;
       };
+    "AssistantGenerationRunResponse": {
+        "id": string;
+        "account_id": string;
+        "conversation_id": string;
+        "triggering_user_turn_id": string;
+        "provider": string;
+        "product": string;
+        "provider_version": string | null;
+        "adapter_version": string;
+        "model": string;
+        "generator_version": string;
+        "generator_configuration": {
+        [key: string]: unknown;
+      };
+        "generation_type": "reply" | "clarification";
+        "input_snapshot": {
+        [key: string]: unknown;
+      };
+        "generated_text": string | null;
+        "normalized_result": {
+        [key: string]: unknown;
+      } | null;
+        "latency_ms": number | null;
+        "created_at": string;
+        "status": string;
+        "error_code": string | null;
+        "error_message": string | null;
+      };
     "AttemptComparisonRequest": {
         "first_attempt_id": string;
         "second_attempt_id": string;
@@ -148,6 +176,7 @@ export interface components {
         "utterance_id": string | null;
         "perception_run_id": string | null;
         "contextual_interpretation_run_id": string | null;
+        "assistant_generation_run_id": string | null;
         "created_at": string;
       };
     "DevAuthRequest": {

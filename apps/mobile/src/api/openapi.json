@@ -417,6 +417,168 @@
         "title": "AssessmentRunResponse",
         "type": "object"
       },
+      "AssistantGenerationRunResponse": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "adapter_version": {
+            "title": "Adapter Version",
+            "type": "string"
+          },
+          "conversation_id": {
+            "format": "uuid",
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Message"
+          },
+          "generated_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated Text"
+          },
+          "generation_type": {
+            "enum": [
+              "reply",
+              "clarification"
+            ],
+            "title": "Generation Type",
+            "type": "string"
+          },
+          "generator_configuration": {
+            "additionalProperties": true,
+            "title": "Generator Configuration",
+            "type": "object"
+          },
+          "generator_version": {
+            "title": "Generator Version",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "input_snapshot": {
+            "additionalProperties": true,
+            "title": "Input Snapshot",
+            "type": "object"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "normalized_result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Result"
+          },
+          "product": {
+            "title": "Product",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Version"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "triggering_user_turn_id": {
+            "format": "uuid",
+            "title": "Triggering User Turn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "account_id",
+          "conversation_id",
+          "triggering_user_turn_id",
+          "provider",
+          "product",
+          "provider_version",
+          "adapter_version",
+          "model",
+          "generator_version",
+          "generator_configuration",
+          "generation_type",
+          "input_snapshot",
+          "generated_text",
+          "normalized_result",
+          "latency_ms",
+          "created_at",
+          "status",
+          "error_code",
+          "error_message"
+        ],
+        "title": "AssistantGenerationRunResponse",
+        "type": "object"
+      },
       "AttemptComparisonRequest": {
         "additionalProperties": false,
         "properties": {
@@ -772,6 +934,18 @@
             "title": "Account Id",
             "type": "string"
           },
+          "assistant_generation_run_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assistant Generation Run Id"
+          },
           "assistant_text": {
             "anyOf": [
               {
@@ -869,6 +1043,7 @@
           "utterance_id",
           "perception_run_id",
           "contextual_interpretation_run_id",
+          "assistant_generation_run_id",
           "created_at"
         ],
         "title": "ConversationTurnResponse",
@@ -2048,6 +2223,111 @@
           }
         },
         "summary": "Health"
+      }
+    },
+    "/v1/assistant-generations/{run_id}": {
+      "get": {
+        "operationId": "get_assistant_generation_v1_assistant_generations__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssistantGenerationRunResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Assistant Generation"
       }
     },
     "/v1/auth/session": {

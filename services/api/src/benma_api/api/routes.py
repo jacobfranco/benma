@@ -12,6 +12,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from benma_api.api.blocking import run_bounded_speech_work
+from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
+from benma_api.assistant_generation.factory import build_assistant_response_generator
 from benma_api.audio.service import AudioIngestService
 from benma_api.auth.service import (
     AuthContext,
@@ -31,6 +33,7 @@ from benma_api.conversation.repository import SqlConversationRepository
 from benma_api.conversation.service import ConversationService
 from benma_api.db.models import (
     AssessmentRun,
+    AssistantGenerationRun,
     AudioAsset,
     ContextualInterpretationRun,
     ConversationTurn,
@@ -57,6 +60,7 @@ from benma_api.schemas import (
     AccountResponse,
     AssessmentRequest,
     AssessmentRunResponse,
+    AssistantGenerationRunResponse,
     AttemptComparisonRequest,
     AttemptComparisonResponse,
     AudioAssetResponse,
@@ -99,6 +103,12 @@ async def get_contextual_interpreter(
     settings: Settings = Depends(get_request_settings),
 ) -> ContextualInterpretationPort:
     return build_contextual_interpreter(settings)
+
+
+async def get_assistant_response_generator(
+    settings: Settings = Depends(get_request_settings),
+) -> AssistantResponseGenerationPort:
+    return build_assistant_response_generator(settings)
 
 
 def audio_response(asset: AudioAsset) -> AudioAssetResponse:
@@ -155,6 +165,11 @@ def conversation_turn_response(
         if turn.contextual_interpretation_run_id is not None
         else None
     )
+    generation = (
+        db.get(AssistantGenerationRun, turn.assistant_generation_run_id)
+        if turn.assistant_generation_run_id is not None
+        else None
+    )
     if perception is not None and (
         perception.account_id != turn.account_id
         or perception.utterance_id != turn.utterance_id
@@ -165,6 +180,12 @@ def conversation_turn_response(
         or interpretation.perception_run_id != turn.perception_run_id
     ):
         raise RuntimeError("conversation turn has mismatched contextual evidence")
+    if generation is not None and (
+        generation.account_id != turn.account_id
+        or generation.conversation_id != turn.conversation_id
+        or generation.generated_text != turn.assistant_text
+    ):
+        raise RuntimeError("conversation turn has mismatched assistant generation evidence")
     return ConversationTurnResponse(
         id=turn.id,
         conversation_id=turn.conversation_id,
@@ -180,7 +201,35 @@ def conversation_turn_response(
         utterance_id=turn.utterance_id,
         perception_run_id=turn.perception_run_id,
         contextual_interpretation_run_id=turn.contextual_interpretation_run_id,
+        assistant_generation_run_id=turn.assistant_generation_run_id,
         created_at=turn.created_at,
+    )
+
+
+def assistant_generation_response(
+    run: AssistantGenerationRun,
+) -> AssistantGenerationRunResponse:
+    return AssistantGenerationRunResponse(
+        id=run.id,
+        account_id=run.account_id,
+        conversation_id=run.conversation_id,
+        triggering_user_turn_id=run.triggering_user_turn_id,
+        provider=run.provider,
+        product=run.product,
+        provider_version=run.provider_version,
+        adapter_version=run.adapter_version,
+        model=run.model,
+        generator_version=run.generator_version,
+        generator_configuration=run.generator_configuration,
+        generation_type=run.generation_type,
+        input_snapshot=run.input_snapshot,
+        generated_text=run.generated_text,
+        normalized_result=run.normalized_result,
+        latency_ms=run.latency_ms,
+        created_at=run.created_at,
+        status=run.status,
+        error_code=run.error_code,
+        error_message=run.error_message,
     )
 
 
@@ -337,6 +386,9 @@ async def create_user_conversation_turn(
     db: Session = Depends(get_db),
     settings: Settings = Depends(get_request_settings),
     interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
+    generator: AssistantResponseGenerationPort = Depends(
+        get_assistant_response_generator
+    ),
 ) -> ConversationTurnResponse:
     turn = await run_bounded_speech_work(
         settings,
@@ -347,9 +399,25 @@ async def create_user_conversation_turn(
             utterance_id=body.utterance_id,
             perception_run_id=body.perception_run_id,
             interpreter=interpreter,
+            generator=generator,
         ),
     )
     return conversation_turn_response(db, turn)
+
+
+@router.get(
+    "/v1/assistant-generations/{run_id}",
+    response_model=AssistantGenerationRunResponse,
+)
+async def get_assistant_generation(
+    run_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> AssistantGenerationRunResponse:
+    run = db.get(AssistantGenerationRun, run_id)
+    if run is None or run.account_id != auth.account_id:
+        raise AuthorizationError("assistant generation run was not found")
+    return assistant_generation_response(run)
 
 
 @router.post(

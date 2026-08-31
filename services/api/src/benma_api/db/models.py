@@ -182,6 +182,35 @@ class ContextualInterpretationRun(UUIDPrimaryKeyMixin, Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
+class AssistantGenerationRun(UUIDPrimaryKeyMixin, EvidenceMixin, Base):
+    __tablename__ = "assistant_generation_runs"
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["conversation_id", "account_id"],
+            ["conversations.id", "conversations.account_id"],
+            name="fk_assistant_generation_runs_conversation_account",
+        ),
+        CheckConstraint(
+            "generation_type IN ('reply', 'clarification') AND "
+            "status IN ('succeeded', 'failed') AND "
+            "((status = 'succeeded' AND generated_text IS NOT NULL AND "
+            "length(trim(generated_text)) > 0 AND error_code IS NULL AND "
+            "error_message IS NULL) OR "
+            "(status = 'failed' AND generated_text IS NULL AND error_code IS NOT NULL))",
+            name="ck_assistant_generation_result",
+        ),
+    )
+    account_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    conversation_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    triggering_user_turn_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    model: Mapped[str] = mapped_column(String(128), nullable=False)
+    generator_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    generator_configuration: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    generation_type: Mapped[str] = mapped_column(String(16), nullable=False)
+    input_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    generated_text: Mapped[str | None] = mapped_column(Text)
+
+
 class ConversationTurn(UUIDPrimaryKeyMixin, Base):
     __tablename__ = "conversation_turns"
     __table_args__ = (
@@ -203,6 +232,10 @@ class ConversationTurn(UUIDPrimaryKeyMixin, Base):
             "contextual_interpretation_run_id",
             name="uq_conversation_turns_contextual_interpretation_run_id",
         ),
+        UniqueConstraint(
+            "assistant_generation_run_id",
+            name="uq_conversation_turns_assistant_generation_run_id",
+        ),
         CheckConstraint(
             "sequence_number > 0",
             name="ck_conversation_turn_sequence_positive",
@@ -212,7 +245,7 @@ class ConversationTurn(UUIDPrimaryKeyMixin, Base):
             "length(trim(assistant_text)) > 0 AND utterance_id IS NULL AND "
             "perception_run_id IS NULL AND contextual_interpretation_run_id IS NULL) OR "
             "(role = 'user' AND assistant_text IS NULL AND utterance_id IS NOT NULL AND "
-            "perception_run_id IS NOT NULL)",
+            "perception_run_id IS NOT NULL AND assistant_generation_run_id IS NULL)",
             name="ck_conversation_turn_role_evidence",
         ),
     )
@@ -229,6 +262,9 @@ class ConversationTurn(UUIDPrimaryKeyMixin, Base):
     )
     contextual_interpretation_run_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("contextual_interpretation_runs.id"), index=True
+    )
+    assistant_generation_run_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("assistant_generation_runs.id"), index=True
     )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
@@ -342,6 +378,7 @@ class UserCorrection(UUIDPrimaryKeyMixin, Base):
 APPEND_ONLY_MODELS = (
     PerceptionRun,
     ContextualInterpretationRun,
+    AssistantGenerationRun,
     AssessmentRun,
     AcousticRun,
     ReferenceSpeechAsset,

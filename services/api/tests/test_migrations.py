@@ -25,7 +25,8 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
         "perception_runs",
         "contextual_interpretation_runs",
         "conversations",
-        "conversation_turns",
+            "conversation_turns",
+            "assistant_generation_runs",
         "assessment_runs",
         "user_corrections",
     }.issubset(inspector.get_table_names())
@@ -57,11 +58,45 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
         "utterance_id",
         "perception_run_id",
         "contextual_interpretation_run_id",
+        "assistant_generation_run_id",
         "created_at",
     } == set(turn_columns)
     assert any(
         str(constraint["name"]).endswith("ck_conversation_turn_role_evidence")
         for constraint in inspector.get_check_constraints("conversation_turns")
+    )
+    generation_columns = {
+        column["name"]: column
+        for column in inspector.get_columns("assistant_generation_runs")
+    }
+    assert {
+        "id",
+        "account_id",
+        "conversation_id",
+        "triggering_user_turn_id",
+        "provider",
+        "product",
+        "provider_version",
+        "adapter_version",
+        "model",
+        "generator_version",
+        "generator_configuration",
+        "generation_type",
+        "input_snapshot",
+        "generated_text",
+        "normalized_result",
+        "raw_payload_json",
+        "raw_payload_text",
+        "raw_payload_sha256",
+        "latency_ms",
+        "created_at",
+        "status",
+        "error_code",
+        "error_message",
+    } == set(generation_columns)
+    assert any(
+        str(constraint["name"]).endswith("ck_assistant_generation_result")
+        for constraint in inspector.get_check_constraints("assistant_generation_runs")
     )
     command.check(config)
     command.downgrade(config, "base")

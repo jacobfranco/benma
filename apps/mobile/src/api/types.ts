@@ -9,6 +9,7 @@ export type AudioAsset = Schemas['AudioAssetResponse'];
 export type Utterance = Schemas['UtteranceResponse'];
 export type PerceptionRun = Schemas['PerceptionRunResponse'];
 export type ContextualInterpretationRun = Schemas['ContextualInterpretationRunResponse'];
+export type AssistantGenerationRun = Schemas['AssistantGenerationRunResponse'];
 export type Conversation = Schemas['ConversationResponse'];
 export type ConversationTurn = Schemas['ConversationTurnResponse'];
 export type UserCorrection = Schemas['UserCorrectionResponse'];

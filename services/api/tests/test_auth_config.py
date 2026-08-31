@@ -104,6 +104,12 @@ def test_live_provider_configuration_never_falls_back() -> None:
             contextual_interpretation_provider="openai",
             openai_api_key=None,
         )
+    with pytest.raises(ValidationError, match="OPENAI"):
+        Settings(
+            _env_file=None,
+            assistant_generation_provider="openai",
+            openai_api_key=None,
+        )
     with pytest.raises(ValidationError, match="Azure"):
         Settings(_env_file=None, assessment_provider="azure")
     with pytest.raises(ValidationError, match="legacy Basic"):

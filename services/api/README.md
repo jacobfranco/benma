@@ -39,6 +39,11 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
   `BENMA_OPENAI_CONTEXTUAL_INTERPRETATION_REASONING_EFFORT`, and
   `BENMA_CONTEXTUAL_INTERPRETATION_TIMEOUT_SECONDS`: live interpreter controls.
 - `BENMA_CONTEXTUAL_INTERPRETATION_VERSION`: persisted interpreter-policy metadata.
+- `BENMA_ASSISTANT_GENERATION_PROVIDER`: `disabled` or `openai`.
+- `BENMA_OPENAI_ASSISTANT_GENERATION_MODEL`,
+  `BENMA_OPENAI_ASSISTANT_GENERATION_REASONING_EFFORT`, and
+  `BENMA_ASSISTANT_GENERATION_TIMEOUT_SECONDS`: live response-generation controls.
+- `BENMA_ASSISTANT_GENERATION_POLICY_VERSION`: persisted generation-policy metadata.
 - `BENMA_ENABLE_EXPERIMENTAL_TONE_INTERPRETATION`: factual evidence agreement language.
 - `BENMA_ENABLE_CATEGORICAL_TONE_JUDGMENT`: intentionally rejected until calibrated.
 
@@ -63,6 +68,11 @@ GET    /health
 POST   /v1/dev/auth
 GET    /v1/me
 DELETE /v1/auth/session
+POST   /v1/conversations
+GET    /v1/conversations/{id}
+GET    /v1/conversations/{id}/turns
+POST   /v1/conversations/{id}/user-turns
+GET    /v1/assistant-generations/{id}
 POST   /v1/practice-sessions
 GET    /v1/practice-sessions/{id}
 POST   /v1/utterances
@@ -90,6 +100,13 @@ POST   /v1/pronunciation-attempts/compare
 
 There are no generic PATCH or DELETE routes for evidence.
 
+Clarification generation receives an explicit `clarification_alternatives` allowlist derived only
+from persisted contextual-interpretation alternatives. Structured provider output must declare
+every candidate phrase it uses, and Benma rejects non-allowlisted declarations and undeclared
+quotation-delimited phrases. This deliberately catches obvious candidate injection; it cannot
+prove that arbitrary unquoted natural language contains no implicit candidate phrase, so the
+provider prompt also requires an open question whenever the allowlist is empty.
+
 ## Providers
 
 | Adapter | Implementation | Fixture-tested | Live-tested in this repository | Runtime requirement |
@@ -103,6 +120,7 @@ There are no generic PATCH or DELETE routes for evidence.
 | Replay reference | Yes | Yes | Not applicable | Explicit synthetic selection |
 | Azure reference | Yes | Transport/cache contract | No | Speech key and region |
 | OpenAI contextual interpretation | Yes | Strict-schema transport contract | Optional smoke command | API key |
+| OpenAI assistant generation | Yes | Strict-schema transport contract | Optional smoke command | API key |
 | Autocorrelation acoustics | Yes | Synthetic signals + API | Local | No optional runtime |
 | MFA alignment | Experimental | Parser/sanity fixtures | No | MFA 3.x models and CLI |
 | Disabled ports | Yes | Yes | Not applicable | Explicit `disabled` selection |
@@ -113,7 +131,7 @@ Azure evidence explicitly declares tone detection and surface-tone interpretatio
 
 Developer research tools include `reference_listening_corpus.py`,
 `pronunciation_diagnostic.py`, `provider_bakeoff.py`, `replay_interpreter.py`, the generic
-`contextual_interpretation_smoke.py`, and the confirmation-gated
+`contextual_interpretation_smoke.py`, `assistant_generation_smoke.py`, and the confirmation-gated
 `export_pronunciation_attempt.py`. They never run automatically.
 
 The contextual smoke command accepts representative downstream inputs and prints only normalized
@@ -137,6 +155,14 @@ uv run python scripts/provider_smoke.py tencent_sentence \
 ```
 
 Documentation examples are never labeled as live captures.
+
+The assistant-generation smoke command exercises the infer, clarify, and preserve Free Talk
+generation contracts without persisting captures or adding phrase-specific production logic:
+
+```bash
+cd services/api
+uv run python scripts/assistant_generation_smoke.py
+```
 
 `provider_bakeoff.py` invokes all four implemented configurations against identical canonical
 bytes and writes an audio-hash manifest. `replay_interpreter.py --output PATH` compares the current

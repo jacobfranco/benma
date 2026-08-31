@@ -6,6 +6,9 @@ import uuid
 
 from sqlalchemy.orm import Session
 
+from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
+from benma_api.assistant_generation.repository import SqlAssistantGenerationRepository
+from benma_api.assistant_generation.service import AssistantGenerationService
 from benma_api.contextual_interpretation.contracts import ContextualInterpretationPort
 from benma_api.contextual_interpretation.repository import (
     SqlContextualInterpretationRepository,
@@ -62,6 +65,7 @@ class ConversationService:
         utterance_id: uuid.UUID,
         perception_run_id: uuid.UUID,
         interpreter: ContextualInterpretationPort,
+        generator: AssistantResponseGenerationPort,
     ) -> ConversationTurn:
         conversation = self._load_for_append(account_id, conversation_id)
         evidence = self.repository.load_user_evidence(
@@ -106,6 +110,28 @@ class ConversationService:
         )
         conversation.updated_at = utcnow()
         self.db.add(turn)
+        self.db.flush()
+
+        generation_run = AssistantGenerationService(
+            SqlAssistantGenerationRepository(self.db)
+        ).run(
+            account_id=account_id,
+            conversation_id=conversation.id,
+            triggering_user_turn_id=turn.id,
+            generator=generator,
+        )
+        self.db.flush()
+        assert generation_run.generated_text is not None
+        assistant_turn = ConversationTurn(
+            conversation_id=conversation.id,
+            account_id=account_id,
+            sequence_number=sequence_number + 1,
+            role="assistant",
+            assistant_text=generation_run.generated_text,
+            assistant_generation_run_id=generation_run.id,
+        )
+        conversation.updated_at = utcnow()
+        self.db.add(assistant_turn)
         self.db.commit()
         return turn
 
