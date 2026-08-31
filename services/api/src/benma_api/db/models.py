@@ -264,7 +264,11 @@ class ConversationTurn(UUIDPrimaryKeyMixin, Base):
         ForeignKey("contextual_interpretation_runs.id"), index=True
     )
     assistant_generation_run_id: Mapped[uuid.UUID | None] = mapped_column(
-        ForeignKey("assistant_generation_runs.id"), index=True
+        ForeignKey(
+            "assistant_generation_runs.id",
+            name="fk_conversation_turns_assistant_generation",
+        ),
+        index=True,
     )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 

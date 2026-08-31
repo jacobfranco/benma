@@ -90,7 +90,7 @@ def upgrade() -> None:
             sa.Column("assistant_generation_run_id", sa.Uuid(), nullable=True)
         )
         batch_op.create_foreign_key(
-            "fk_conversation_turns_assistant_generation_run_id_assistant_generation_runs",
+            "fk_conversation_turns_assistant_generation",
             "assistant_generation_runs",
             ["assistant_generation_run_id"],
             ["id"],
@@ -133,7 +133,7 @@ def downgrade() -> None:
             type_="unique",
         )
         batch_op.drop_constraint(
-            "fk_conversation_turns_assistant_generation_run_id_assistant_generation_runs",
+            "fk_conversation_turns_assistant_generation",
             type_="foreignkey",
         )
         batch_op.drop_column("assistant_generation_run_id")
