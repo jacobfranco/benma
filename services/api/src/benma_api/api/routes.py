@@ -21,6 +21,7 @@ from benma_api.auth.service import (
 )
 from benma_api.config import Settings, get_request_settings
 from benma_api.contextual_interpretation.contracts import ContextualInterpretationPort
+from benma_api.contextual_interpretation.factory import build_contextual_interpreter
 from benma_api.contextual_interpretation.repository import (
     SqlContextualInterpretationRepository,
 )
@@ -39,7 +40,6 @@ from benma_api.db.models import (
 )
 from benma_api.db.session import get_db
 from benma_api.errors import (
-    AnalysisUnsupportedError,
     AuthorizationError,
     InvalidAudioError,
     InvalidTargetError,
@@ -87,8 +87,10 @@ router = APIRouter()
 dev_router = APIRouter()
 
 
-def get_contextual_interpreter() -> ContextualInterpretationPort:
-    raise AnalysisUnsupportedError("contextual interpretation provider is not configured")
+def get_contextual_interpreter(
+    settings: Settings = Depends(get_request_settings),
+) -> ContextualInterpretationPort:
+    return build_contextual_interpreter(settings)
 
 
 def audio_response(asset: AudioAsset) -> AudioAssetResponse:
@@ -162,6 +164,7 @@ def contextual_interpretation_response(
         interpreter_version=run.interpreter_version,
         interpreter_configuration=run.interpreter_configuration,
         context_snapshot=run.context_snapshot,
+        decision=run.decision,
         inferred_text=run.inferred_text,
         uncertainty=run.uncertainty,
         clarification_needed=run.clarification_needed,

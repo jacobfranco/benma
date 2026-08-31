@@ -45,7 +45,16 @@ def test_dev_auth_reuses_account(client: ApiClient) -> None:
 
 
 def test_dev_auth_route_is_absent_when_disabled() -> None:
-    client = ApiClient(create_app(Settings(environment="test", database_url="sqlite://")))
+    client = ApiClient(
+        create_app(
+            Settings(
+                _env_file=None,
+                environment="test",
+                database_url="sqlite://",
+                dev_auth_enabled=False,
+            )
+        )
+    )
     response = client.post("/v1/dev/auth", json={"phone_number": "+12025550123"})
     assert response.status_code == 404
     assert response.json()["error"]["code"] == "not_found"
@@ -83,15 +92,21 @@ def test_invalid_token_is_stable_auth_error(client: ApiClient) -> None:
 
 def test_production_refuses_dev_auth() -> None:
     with pytest.raises(ValidationError, match="development authentication"):
-        Settings(environment="production", dev_auth_enabled=True)
+        Settings(_env_file=None, environment="production", dev_auth_enabled=True)
 
 
 def test_live_provider_configuration_never_falls_back() -> None:
     with pytest.raises(ValidationError, match="OPENAI"):
-        Settings(perception_provider="openai", openai_api_key=None)
+        Settings(_env_file=None, perception_provider="openai", openai_api_key=None)
+    with pytest.raises(ValidationError, match="OPENAI"):
+        Settings(
+            _env_file=None,
+            contextual_interpretation_provider="openai",
+            openai_api_key=None,
+        )
     with pytest.raises(ValidationError, match="Azure"):
-        Settings(assessment_provider="azure")
+        Settings(_env_file=None, assessment_provider="azure")
     with pytest.raises(ValidationError, match="legacy Basic"):
-        Settings(assessment_provider="tencent_sentence")
+        Settings(_env_file=None, assessment_provider="tencent_sentence")
     with pytest.raises(ValidationError, match="iFlytek streaming"):
-        Settings(assessment_provider="iflytek")
+        Settings(_env_file=None, assessment_provider="iflytek")

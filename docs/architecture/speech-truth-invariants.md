@@ -20,6 +20,13 @@ with a target, contextual guess, normalized correction, or more plausible senten
 utterance and may reference a run, but it never updates that run. UI must show “what Benma heard”
 and “what you meant” as distinct statements.
 
+## Rule 3a — semantic context travels only downstream
+
+The permitted flow is audio-only perception to immutable perception evidence to contextual
+interpretation. Context may support a downstream `preserve`, `infer`, or `clarify` decision, but it
+never enters `UnknownTargetPerceptionInput`, a perception-provider request, or a mutation of a
+`PerceptionRun`.
+
 ## Rule 4 — reruns create evidence
 
 Each provider invocation creates a new `PerceptionRun` or `AssessmentRun`, including failures.

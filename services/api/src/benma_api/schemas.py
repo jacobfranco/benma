@@ -108,6 +108,7 @@ class ContextualInterpretationRunResponse(BaseModel):
     interpreter_version: str
     interpreter_configuration: dict[str, Any]
     context_snapshot: dict[str, Any]
+    decision: Literal["preserve", "infer", "clarify"]
     inferred_text: str | None
     uncertainty: ContextualInterpretationUncertainty
     clarification_needed: bool

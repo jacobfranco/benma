@@ -28,6 +28,21 @@ The contextual interpreter receives the perceived transcript and an allowlisted 
 normalized perception evidence. Raw provider payloads remain on the perception run's audit path
 and never enter contextual interpreter input.
 
+The boundary is deliberately one-way:
+
+```text
+audio-only perception
+    ->
+immutable PerceptionRun + normalized perception evidence snapshot
+    ->
+contextual interpretation (preserve | infer | clarify)
+```
+
+Semantic context is introduced only at the last step. It must never travel backward into the
+unknown-target perception request, provider prompt, vocabulary hints, or persisted perception
+evidence. A contextual decision appends a new run; even an `infer` decision cannot update its source
+`PerceptionRun`.
+
 ## Initial ports
 
 - `PerceptionPort(UnknownTargetPerceptionRequest) -> PerceptionRun`

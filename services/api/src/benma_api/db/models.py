@@ -9,6 +9,7 @@ from typing import Any
 from sqlalchemy import (
     JSON,
     Boolean,
+    CheckConstraint,
     DateTime,
     Float,
     ForeignKey,
@@ -147,6 +148,16 @@ class PerceptionRun(UUIDPrimaryKeyMixin, EvidenceMixin, Base):
 
 class ContextualInterpretationRun(UUIDPrimaryKeyMixin, Base):
     __tablename__ = "contextual_interpretation_runs"
+    __table_args__ = (
+        CheckConstraint(
+            "decision IN ('preserve', 'infer', 'clarify') AND "
+            "((decision = 'clarify' AND clarification_needed) OR "
+            "(decision IN ('preserve', 'infer') AND NOT clarification_needed)) AND "
+            "(decision != 'infer' OR "
+            "(inferred_text IS NOT NULL AND length(trim(inferred_text)) > 0))",
+            name="ck_contextual_interpretation_decision",
+        ),
+    )
     account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
     perception_run_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("perception_runs.id"), index=True
@@ -155,6 +166,7 @@ class ContextualInterpretationRun(UUIDPrimaryKeyMixin, Base):
     interpreter_version: Mapped[str] = mapped_column(String(64), nullable=False)
     interpreter_configuration: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
     context_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    decision: Mapped[str] = mapped_column(String(16), nullable=False)
     inferred_text: Mapped[str | None] = mapped_column(Text)
     uncertainty: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
     clarification_needed: Mapped[bool] = mapped_column(Boolean, nullable=False)

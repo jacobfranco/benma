@@ -10,6 +10,7 @@ from benma_api.contextual_interpretation.contracts import (
     ContextualInterpretationEvidence,
     ContextualInterpretationInput,
     ContextualInterpretationPort,
+    validate_contextual_interpretation_evidence,
 )
 from benma_api.contextual_interpretation.repository import (
     ContextualInterpretationRepository,
@@ -60,17 +61,20 @@ class ContextualInterpretationService:
         """Execute an abstract interpreter over downstream-only inputs and append its evidence."""
         perception = self._load_perception(account_id, perception_run_id)
         assert perception.transcript is not None
-        evidence = interpreter.interpret(
-            ContextualInterpretationInput(
-                perception_run_id=perception.id,
-                perceived_transcript=perception.transcript,
-                perception_evidence_snapshot=perception_evidence_snapshot(perception),
-                context_snapshot=context_snapshot,
-            )
+        interpreter_input = ContextualInterpretationInput(
+            perception_run_id=perception.id,
+            perceived_transcript=perception.transcript,
+            perception_evidence_snapshot=perception_evidence_snapshot(perception),
+            context_snapshot=deepcopy(context_snapshot),
+        )
+        evidence = interpreter.interpret(interpreter_input)
+        validate_contextual_interpretation_evidence(
+            evidence,
+            perceived_transcript=perception.transcript,
         )
         return self._append(
             perception=perception,
-            context_snapshot=context_snapshot,
+            context_snapshot=interpreter_input.context_snapshot,
             evidence=evidence,
             interpreter=interpreter.interpreter_name,
             interpreter_version=interpreter.interpreter_version,
@@ -102,10 +106,11 @@ class ContextualInterpretationService:
             perception_run_id=perception.id,
             interpreter=interpreter,
             interpreter_version=interpreter_version,
-            interpreter_configuration=interpreter_configuration,
-            context_snapshot=context_snapshot,
+            interpreter_configuration=deepcopy(interpreter_configuration),
+            context_snapshot=deepcopy(context_snapshot),
+            decision=evidence.decision,
             inferred_text=evidence.inferred_text,
-            uncertainty=evidence.uncertainty,
+            uncertainty=deepcopy(evidence.uncertainty),
             clarification_needed=evidence.clarification_needed,
         )
         self.repository.append_run(run)

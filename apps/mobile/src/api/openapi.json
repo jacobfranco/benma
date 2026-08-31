@@ -626,6 +626,15 @@
             "title": "Created At",
             "type": "string"
           },
+          "decision": {
+            "enum": [
+              "preserve",
+              "infer",
+              "clarify"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
           "id": {
             "format": "uuid",
             "title": "Id",
@@ -671,6 +680,7 @@
           "interpreter_version",
           "interpreter_configuration",
           "context_snapshot",
+          "decision",
           "inferred_text",
           "uncertainty",
           "clarification_needed",

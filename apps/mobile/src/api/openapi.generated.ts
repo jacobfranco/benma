@@ -119,6 +119,7 @@ export interface components {
         "context_snapshot": {
         [key: string]: unknown;
       };
+        "decision": "preserve" | "infer" | "clarify";
         "inferred_text": string | null;
         "uncertainty": components["schemas"]["ContextualInterpretationUncertainty"];
         "clarification_needed": boolean;

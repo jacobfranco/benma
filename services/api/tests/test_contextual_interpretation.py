@@ -9,6 +9,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session, sessionmaker
 
 from benma_api.api.routes import get_contextual_interpreter
+from benma_api.config import Settings
 from benma_api.contextual_interpretation.contracts import (
     ContextualInterpretationEvidence,
     ContextualInterpretationInput,
@@ -39,8 +40,18 @@ def configured_contextual_interpreter(client: ApiClient):  # type: ignore[no-unt
             self, request: ContextualInterpretationInput
         ) -> ContextualInterpretationEvidence:
             clarification_needed = request.context_snapshot.get("ambiguous") is True
+            preserve = request.context_snapshot.get("preserve") is True
             return ContextualInterpretationEvidence(
-                inferred_text=None if clarification_needed else "我明天想去北京。",
+                decision=(
+                    "clarify" if clarification_needed else "preserve" if preserve else "infer"
+                ),
+                inferred_text=(
+                    None
+                    if clarification_needed
+                    else request.perceived_transcript
+                    if preserve
+                    else "我明天想去北京。"
+                ),
                 uncertainty={
                     "level": "high" if clarification_needed else "medium",
                     "rationale": "Context makes 北京 more plausible than 背景.",
@@ -73,14 +84,15 @@ def create_perception(
 def interpretation_body(
     *,
     clarification_needed: bool = False,
+    preserve: bool = False,
 ) -> dict[str, object]:
     context_snapshot: dict[str, object] = {
-        "recent_turns": [
-            {"speaker": "assistant", "text": "你明天想去哪个城市?"}
-        ]
+        "recent_turns": [{"speaker": "assistant", "text": "你明天想去哪个城市?"}]
     }
     if clarification_needed:
         context_snapshot["ambiguous"] = True
+    if preserve:
+        context_snapshot["preserve"] = True
     return {
         "context_snapshot": context_snapshot,
     }
@@ -103,6 +115,7 @@ def test_contextual_interpretation_preserves_perception_and_can_differ(
     interpretation = response.json()
     assert perception["transcript"] == "我明天想去背景。"
     assert interpretation["perception_run_id"] == perception["id"]
+    assert interpretation["decision"] == "infer"
     assert interpretation["inferred_text"] == "我明天想去北京。"
     assert interpretation["inferred_text"] != perception["transcript"]
 
@@ -133,9 +146,28 @@ def test_contextual_interpretation_can_request_clarification(
     )
 
     assert response.status_code == 201
+    assert response.json()["decision"] == "clarify"
     assert response.json()["inferred_text"] is None
     assert response.json()["clarification_needed"] is True
     assert response.json()["uncertainty"]["level"] == "high"
+
+
+def test_contextual_interpretation_can_preserve(
+    client: ApiClient,
+    auth_header: dict[str, str],
+    uploaded_utterance: dict[str, object],
+) -> None:
+    perception = create_perception(client, auth_header, uploaded_utterance)
+    response = client.post(
+        f"/v1/perceptions/{perception['id']}/contextual-interpretations",
+        headers=auth_header,
+        json=interpretation_body(preserve=True),
+    )
+
+    assert response.status_code == 201
+    assert response.json()["decision"] == "preserve"
+    assert response.json()["inferred_text"] == perception["transcript"]
+    assert response.json()["clarification_needed"] is False
 
 
 def test_contextual_interpretation_request_cannot_replace_raw_transcript(
@@ -159,7 +191,30 @@ def test_contextual_interpretation_request_cannot_replace_raw_transcript(
 
 def test_contextual_interpreter_is_explicitly_unconfigured_by_default() -> None:
     with pytest.raises(AnalysisUnsupportedError, match="not configured"):
-        get_contextual_interpreter()
+        get_contextual_interpreter(Settings(contextual_interpretation_provider="disabled"))
+
+
+@pytest.mark.parametrize(
+    ("decision", "inferred_text", "clarification_needed"),
+    [
+        ("infer", None, False),
+        ("infer", "我想买水果。", True),
+        ("preserve", "我想卖水果。", True),
+        ("clarify", None, False),
+    ],
+)
+def test_invalid_decision_combinations_are_rejected(
+    decision: str,
+    inferred_text: str | None,
+    clarification_needed: bool,
+) -> None:
+    with pytest.raises(ValueError):
+        ContextualInterpretationEvidence(
+            decision=decision,  # type: ignore[arg-type]
+            inferred_text=inferred_text,
+            uncertainty={"level": "unknown", "rationale": None, "alternatives": []},
+            clarification_needed=clarification_needed,
+        )
 
 
 def test_interpreter_receives_normalized_uncertainty_without_semantic_leakage(
@@ -194,6 +249,7 @@ def test_interpreter_receives_normalized_uncertainty_without_semantic_leakage(
             assert isinstance(tokens, list)
             tokens[0]["logprob"] = 0
             return ContextualInterpretationEvidence(
+                decision="infer",
                 inferred_text="我明天想去北京。",
                 uncertainty={"level": "low", "rationale": None, "alternatives": []},
                 clarification_needed=False,
@@ -225,9 +281,7 @@ def test_interpreter_receives_normalized_uncertainty_without_semantic_leakage(
         )
         db.add(uncertain_perception)
         db.commit()
-        run = ContextualInterpretationService(
-            SqlContextualInterpretationRepository(db)
-        ).run(
+        run = ContextualInterpretationService(SqlContextualInterpretationRepository(db)).run(
             account_id=perception.account_id,
             perception_run_id=uncertain_perception.id,
             context_snapshot={"topic": "travel"},
@@ -240,9 +294,7 @@ def test_interpreter_receives_normalized_uncertainty_without_semantic_leakage(
             {"token": "背景", "logprob": -2.4}
         ]
 
-    unknown_fields = {
-        field.name for field in dataclasses.fields(UnknownTargetPerceptionInput)
-    }
+    unknown_fields = {field.name for field in dataclasses.fields(UnknownTargetPerceptionInput)}
     assert unknown_fields == {
         "utterance_id",
         "canonical_audio",
@@ -284,9 +336,7 @@ def test_contextual_interpretation_ownership_matches_perception_api(
         headers=auth_header,
         json=interpretation_body(),
     ).json()
-    other_auth = client.post(
-        "/v1/dev/auth", json={"phone_number": "+12025550124"}
-    ).json()
+    other_auth = client.post("/v1/dev/auth", json={"phone_number": "+12025550124"}).json()
     other = {"Authorization": f"Bearer {other_auth['token']}"}
 
     cross_account_create = client.post(

@@ -34,6 +34,11 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
 - `BENMA_REFERENCE_SPEECH_PROVIDER`: `disabled`, `replay`, or `azure`.
 - `BENMA_ACOUSTIC_PROVIDER`: dependency-free `autocorrelation` or `disabled`.
 - `BENMA_ALIGNMENT_PROVIDER`: `disabled`, development `replay`, or optional `mfa`.
+- `BENMA_CONTEXTUAL_INTERPRETATION_PROVIDER`: `disabled` or `openai`.
+- `BENMA_OPENAI_CONTEXTUAL_INTERPRETATION_MODEL`,
+  `BENMA_OPENAI_CONTEXTUAL_INTERPRETATION_REASONING_EFFORT`, and
+  `BENMA_CONTEXTUAL_INTERPRETATION_TIMEOUT_SECONDS`: live interpreter controls.
+- `BENMA_CONTEXTUAL_INTERPRETATION_VERSION`: persisted interpreter-policy metadata.
 - `BENMA_ENABLE_EXPERIMENTAL_TONE_INTERPRETATION`: factual evidence agreement language.
 - `BENMA_ENABLE_CATEGORICAL_TONE_JUDGMENT`: intentionally rejected until calibrated.
 
@@ -97,6 +102,7 @@ There are no generic PATCH or DELETE routes for evidence.
 | iFlytek streaming ISE | Yes | Auth/full-dimension/XML contracts | No | AppID, APIKey, APISecret |
 | Replay reference | Yes | Yes | Not applicable | Explicit synthetic selection |
 | Azure reference | Yes | Transport/cache contract | No | Speech key and region |
+| OpenAI contextual interpretation | Yes | Strict-schema transport contract | Optional smoke command | API key |
 | Autocorrelation acoustics | Yes | Synthetic signals + API | Local | No optional runtime |
 | MFA alignment | Experimental | Parser/sanity fixtures | No | MFA 3.x models and CLI |
 | Disabled ports | Yes | Yes | Not applicable | Explicit `disabled` selection |
@@ -106,8 +112,19 @@ when present, are retained as provider-native uncertainty rather than converted 
 Azure evidence explicitly declares tone detection and surface-tone interpretation unsupported.
 
 Developer research tools include `reference_listening_corpus.py`,
-`pronunciation_diagnostic.py`, `provider_bakeoff.py`, `replay_interpreter.py`, and the confirmation-gated
+`pronunciation_diagnostic.py`, `provider_bakeoff.py`, `replay_interpreter.py`, the generic
+`contextual_interpretation_smoke.py`, and the confirmation-gated
 `export_pronunciation_attempt.py`. They never run automatically.
+
+The contextual smoke command accepts representative downstream inputs and prints only normalized
+decision evidence and non-secret interpreter metadata; it does not save provider captures:
+
+```bash
+cd services/api
+uv run python scripts/contextual_interpretation_smoke.py \
+  --perceived '我想卖水果。' \
+  --context-json '{"situation":"discussing buying fruit at a supermarket"}'
+```
 
 Use `scripts/provider_smoke.py` to test a live known-target provider without the mobile app. It
 validates canonical WAV metadata, refuses missing credentials, prints normalized evidence and

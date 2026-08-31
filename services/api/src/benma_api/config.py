@@ -22,6 +22,8 @@ AssessmentProviderName = Literal[
 ReferenceSpeechProviderName = Literal["replay", "azure", "disabled"]
 AcousticProviderName = Literal["autocorrelation", "disabled"]
 AlignmentProviderName = Literal["replay", "mfa", "disabled"]
+ContextualInterpretationProviderName = Literal["openai", "disabled"]
+OpenAIReasoningEffort = Literal["none", "low", "medium", "high"]
 
 
 class Settings(BaseSettings):
@@ -44,8 +46,13 @@ class Settings(BaseSettings):
     reference_speech_provider: ReferenceSpeechProviderName = "disabled"
     acoustic_provider: AcousticProviderName = "autocorrelation"
     alignment_provider: AlignmentProviderName = "disabled"
+    contextual_interpretation_provider: ContextualInterpretationProviderName = "disabled"
     openai_api_key: SecretStr | None = None
     openai_transcription_model: str = "gpt-4o-transcribe"
+    openai_contextual_interpretation_model: str = "gpt-5.6-terra"
+    openai_contextual_interpretation_reasoning_effort: OpenAIReasoningEffort = "medium"
+    contextual_interpretation_timeout_seconds: float = 30.0
+    contextual_interpretation_version: str = "contextual-decision-v1"
     azure_speech_key: SecretStr | None = None
     azure_speech_region: str | None = None
     tencent_secret_id: SecretStr | None = None
@@ -73,8 +80,17 @@ class Settings(BaseSettings):
             raise ValueError("development authentication cannot be enabled in production")
         if self.max_upload_bytes <= 0 or self.max_audio_duration_seconds <= 0:
             raise ValueError("audio limits must be positive")
-        if self.perception_provider == "openai" and not self.openai_api_key:
+        if (
+            self.perception_provider == "openai"
+            or self.contextual_interpretation_provider == "openai"
+        ) and not self.openai_api_key:
             raise ValueError("BENMA_OPENAI_API_KEY is required for the OpenAI provider")
+        if self.contextual_interpretation_timeout_seconds <= 0:
+            raise ValueError("contextual interpretation timeout must be positive")
+        if not self.openai_contextual_interpretation_model.strip():
+            raise ValueError("OpenAI contextual interpretation model cannot be empty")
+        if not self.contextual_interpretation_version.strip():
+            raise ValueError("contextual interpretation version cannot be empty")
         if self.assessment_provider == "azure" and (
             not self.azure_speech_key or not self.azure_speech_region
         ):
