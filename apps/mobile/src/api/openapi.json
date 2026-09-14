@@ -579,6 +579,177 @@
         "title": "AssistantGenerationRunResponse",
         "type": "object"
       },
+      "AssistantSpeechCreate": {
+        "additionalProperties": false,
+        "properties": {},
+        "title": "AssistantSpeechCreate",
+        "type": "object"
+      },
+      "AssistantSpeechRunResponse": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "adapter_version": {
+            "title": "Adapter Version",
+            "type": "string"
+          },
+          "assistant_generation_run_id": {
+            "format": "uuid",
+            "title": "Assistant Generation Run Id",
+            "type": "string"
+          },
+          "assistant_turn_id": {
+            "format": "uuid",
+            "title": "Assistant Turn Id",
+            "type": "string"
+          },
+          "audio_asset": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AudioAssetResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "audio_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Url"
+          },
+          "conversation_id": {
+            "format": "uuid",
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Message"
+          },
+          "generation_configuration": {
+            "additionalProperties": true,
+            "title": "Generation Configuration",
+            "type": "object"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "locale": {
+            "title": "Locale",
+            "type": "string"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "product": {
+            "title": "Product",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Version"
+          },
+          "status": {
+            "enum": [
+              "succeeded",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "text_snapshot": {
+            "title": "Text Snapshot",
+            "type": "string"
+          },
+          "voice": {
+            "title": "Voice",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "account_id",
+          "conversation_id",
+          "assistant_generation_run_id",
+          "assistant_turn_id",
+          "provider",
+          "product",
+          "provider_version",
+          "adapter_version",
+          "model",
+          "voice",
+          "locale",
+          "generation_configuration",
+          "text_snapshot",
+          "audio_asset",
+          "audio_url",
+          "latency_ms",
+          "status",
+          "error_code",
+          "error_message",
+          "created_at"
+        ],
+        "title": "AssistantSpeechRunResponse",
+        "type": "object"
+      },
       "AttemptComparisonRequest": {
         "additionalProperties": false,
         "properties": {
@@ -946,6 +1117,16 @@
             ],
             "title": "Assistant Generation Run Id"
           },
+          "assistant_speech": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AssistantSpeechRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "assistant_text": {
             "anyOf": [
               {
@@ -1044,6 +1225,7 @@
           "perception_run_id",
           "contextual_interpretation_run_id",
           "assistant_generation_run_id",
+          "assistant_speech",
           "created_at"
         ],
         "title": "ConversationTurnResponse",
@@ -1103,6 +1285,144 @@
           "error"
         ],
         "title": "ErrorResponse",
+        "type": "object"
+      },
+      "FreeTalkTurnResponse": {
+        "description": "Backward-compatible user turn plus the server-created assistant result.",
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "assistant_generation_run_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assistant Generation Run Id"
+          },
+          "assistant_speech": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AssistantSpeechRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "assistant_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assistant Text"
+          },
+          "assistant_turn": {
+            "$ref": "#/components/schemas/ConversationTurnResponse"
+          },
+          "contextual_interpretation_run_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contextual Interpretation Run Id"
+          },
+          "conversation_id": {
+            "format": "uuid",
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "perception_run_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Perception Run Id"
+          },
+          "resolved_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved Text"
+          },
+          "role": {
+            "enum": [
+              "user",
+              "assistant"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "sequence_number": {
+            "title": "Sequence Number",
+            "type": "integer"
+          },
+          "utterance_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Utterance Id"
+          }
+        },
+        "required": [
+          "id",
+          "conversation_id",
+          "account_id",
+          "sequence_number",
+          "role",
+          "assistant_text",
+          "resolved_text",
+          "utterance_id",
+          "perception_run_id",
+          "contextual_interpretation_run_id",
+          "assistant_generation_run_id",
+          "assistant_speech",
+          "created_at",
+          "assistant_turn"
+        ],
+        "title": "FreeTalkTurnResponse",
         "type": "object"
       },
       "InterpretationRunResponse": {
@@ -2330,6 +2650,329 @@
         "summary": "Get Assistant Generation"
       }
     },
+    "/v1/assistant-generations/{run_id}/speech": {
+      "post": {
+        "operationId": "create_assistant_speech_v1_assistant_generations__run_id__speech_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssistantSpeechCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssistantSpeechRunResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Assistant Speech"
+      }
+    },
+    "/v1/assistant-speeches/{run_id}": {
+      "get": {
+        "operationId": "get_assistant_speech_v1_assistant_speeches__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssistantSpeechRunResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Assistant Speech"
+      }
+    },
+    "/v1/assistant-speeches/{run_id}/audio": {
+      "get": {
+        "operationId": "get_assistant_speech_audio_v1_assistant_speeches__run_id__audio_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Assistant Speech Audio"
+      }
+    },
     "/v1/auth/session": {
       "delete": {
         "operationId": "delete_auth_session_v1_auth_session_delete",
@@ -2868,7 +3511,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConversationTurnResponse"
+                  "$ref": "#/components/schemas/FreeTalkTurnResponse"
                 }
               }
             },

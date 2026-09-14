@@ -26,7 +26,8 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
         "contextual_interpretation_runs",
         "conversations",
             "conversation_turns",
-            "assistant_generation_runs",
+        "assistant_generation_runs",
+        "assistant_speech_runs",
         "assessment_runs",
         "user_corrections",
     }.issubset(inspector.get_table_names())
@@ -97,6 +98,36 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
     assert any(
         str(constraint["name"]).endswith("ck_assistant_generation_result")
         for constraint in inspector.get_check_constraints("assistant_generation_runs")
+    )
+    speech_columns = {
+        column["name"]: column
+        for column in inspector.get_columns("assistant_speech_runs")
+    }
+    assert {
+        "id",
+        "account_id",
+        "conversation_id",
+        "assistant_generation_run_id",
+        "assistant_turn_id",
+        "audio_asset_id",
+        "provider",
+        "product",
+        "provider_version",
+        "adapter_version",
+        "model",
+        "voice",
+        "locale",
+        "generation_configuration",
+        "text_snapshot",
+        "latency_ms",
+        "status",
+        "error_code",
+        "error_message",
+        "created_at",
+    } == set(speech_columns)
+    assert any(
+        str(constraint["name"]).endswith("ck_assistant_speech_result")
+        for constraint in inspector.get_check_constraints("assistant_speech_runs")
     )
     command.check(config)
     command.downgrade(config, "base")

@@ -14,6 +14,9 @@ from sqlalchemy.orm import Session
 from benma_api.api.blocking import run_bounded_speech_work
 from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
 from benma_api.assistant_generation.factory import build_assistant_response_generator
+from benma_api.assistant_speech.factory import build_assistant_speech_provider
+from benma_api.assistant_speech.repository import SqlAssistantSpeechRepository
+from benma_api.assistant_speech.service import AssistantSpeechService
 from benma_api.audio.service import AudioIngestService
 from benma_api.auth.service import (
     AuthContext,
@@ -34,6 +37,7 @@ from benma_api.conversation.service import ConversationService
 from benma_api.db.models import (
     AssessmentRun,
     AssistantGenerationRun,
+    AssistantSpeechRun,
     AudioAsset,
     ContextualInterpretationRun,
     ConversationTurn,
@@ -61,6 +65,8 @@ from benma_api.schemas import (
     AssessmentRequest,
     AssessmentRunResponse,
     AssistantGenerationRunResponse,
+    AssistantSpeechCreate,
+    AssistantSpeechRunResponse,
     AttemptComparisonRequest,
     AttemptComparisonResponse,
     AudioAssetResponse,
@@ -71,6 +77,7 @@ from benma_api.schemas import (
     ConversationResponse,
     ConversationTurnResponse,
     DevAuthRequest,
+    FreeTalkTurnResponse,
     PerceptionRunResponse,
     PinyinCorrectionCreate,
     PracticeSessionCreate,
@@ -93,6 +100,7 @@ from benma_api.speech.providers.factory import (
     build_assessment_provider,
     build_perception_provider,
 )
+from benma_api.speech.synthesis import SpeechSynthesisPort
 from benma_api.storage.audio_store import AudioObjectStore, get_audio_store
 
 router = APIRouter()
@@ -109,6 +117,12 @@ async def get_assistant_response_generator(
     settings: Settings = Depends(get_request_settings),
 ) -> AssistantResponseGenerationPort:
     return build_assistant_response_generator(settings)
+
+
+async def get_assistant_speech_provider(
+    settings: Settings = Depends(get_request_settings),
+) -> SpeechSynthesisPort:
+    return build_assistant_speech_provider(settings)
 
 
 def audio_response(asset: AudioAsset) -> AudioAssetResponse:
@@ -170,6 +184,11 @@ def conversation_turn_response(
         if turn.assistant_generation_run_id is not None
         else None
     )
+    speech = (
+        SqlAssistantSpeechRepository(db).latest_for_turn(turn.account_id, turn.id)
+        if turn.role == "assistant"
+        else None
+    )
     if perception is not None and (
         perception.account_id != turn.account_id
         or perception.utterance_id != turn.utterance_id
@@ -186,6 +205,14 @@ def conversation_turn_response(
         or generation.generated_text != turn.assistant_text
     ):
         raise RuntimeError("conversation turn has mismatched assistant generation evidence")
+    if speech is not None and (
+        speech.account_id != turn.account_id
+        or speech.conversation_id != turn.conversation_id
+        or speech.assistant_generation_run_id != turn.assistant_generation_run_id
+        or speech.assistant_turn_id != turn.id
+        or speech.text_snapshot != turn.assistant_text
+    ):
+        raise RuntimeError("conversation turn has mismatched assistant speech evidence")
     return ConversationTurnResponse(
         id=turn.id,
         conversation_id=turn.conversation_id,
@@ -202,7 +229,41 @@ def conversation_turn_response(
         perception_run_id=turn.perception_run_id,
         contextual_interpretation_run_id=turn.contextual_interpretation_run_id,
         assistant_generation_run_id=turn.assistant_generation_run_id,
+        assistant_speech=(assistant_speech_response(db, speech) if speech else None),
         created_at=turn.created_at,
+    )
+
+
+def assistant_speech_response(
+    db: Session, run: AssistantSpeechRun
+) -> AssistantSpeechRunResponse:
+    audio = db.get(AudioAsset, run.audio_asset_id) if run.audio_asset_id else None
+    if audio is not None and audio.account_id != run.account_id:
+        raise RuntimeError("assistant speech has mismatched audio evidence")
+    if (run.status == "succeeded") != (audio is not None):
+        raise RuntimeError("assistant speech status does not match audio evidence")
+    return AssistantSpeechRunResponse(
+        id=run.id,
+        account_id=run.account_id,
+        conversation_id=run.conversation_id,
+        assistant_generation_run_id=run.assistant_generation_run_id,
+        assistant_turn_id=run.assistant_turn_id,
+        provider=run.provider,
+        product=run.product,
+        provider_version=run.provider_version,
+        adapter_version=run.adapter_version,
+        model=run.model,
+        voice=run.voice,
+        locale=run.locale,
+        generation_configuration=run.generation_configuration,
+        text_snapshot=run.text_snapshot,
+        audio_asset=audio_response(audio) if audio else None,
+        audio_url=(f"/v1/assistant-speeches/{run.id}/audio" if audio else None),
+        latency_ms=run.latency_ms,
+        status=run.status,
+        error_code=run.error_code,
+        error_message=run.error_message,
+        created_at=run.created_at,
     )
 
 
@@ -376,7 +437,7 @@ async def list_conversation_turns(
 
 @router.post(
     "/v1/conversations/{conversation_id}/user-turns",
-    response_model=ConversationTurnResponse,
+    response_model=FreeTalkTurnResponse,
     status_code=status.HTTP_201_CREATED,
 )
 async def create_user_conversation_turn(
@@ -389,8 +450,10 @@ async def create_user_conversation_turn(
     generator: AssistantResponseGenerationPort = Depends(
         get_assistant_response_generator
     ),
-) -> ConversationTurnResponse:
-    turn = await run_bounded_speech_work(
+    speech_provider: SpeechSynthesisPort = Depends(get_assistant_speech_provider),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> FreeTalkTurnResponse:
+    result = await run_bounded_speech_work(
         settings,
         partial(
             ConversationService(db).add_user_turn,
@@ -400,9 +463,16 @@ async def create_user_conversation_turn(
             perception_run_id=body.perception_run_id,
             interpreter=interpreter,
             generator=generator,
+            speech_provider=speech_provider,
+            store=store,
+            settings=settings,
         ),
     )
-    return conversation_turn_response(db, turn)
+    user_response = conversation_turn_response(db, result.user_turn)
+    return FreeTalkTurnResponse(
+        **user_response.model_dump(),
+        assistant_turn=conversation_turn_response(db, result.assistant_turn),
+    )
 
 
 @router.get(
@@ -418,6 +488,75 @@ async def get_assistant_generation(
     if run is None or run.account_id != auth.account_id:
         raise AuthorizationError("assistant generation run was not found")
     return assistant_generation_response(run)
+
+
+@router.post(
+    "/v1/assistant-generations/{run_id}/speech",
+    response_model=AssistantSpeechRunResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_assistant_speech(
+    run_id: uuid.UUID,
+    body: AssistantSpeechCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    provider: SpeechSynthesisPort = Depends(get_assistant_speech_provider),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> AssistantSpeechRunResponse:
+    del body
+    run = await run_bounded_speech_work(
+        settings,
+        partial(
+            AssistantSpeechService(
+                SqlAssistantSpeechRepository(db), store, settings
+            ).run,
+            account_id=auth.account_id,
+            assistant_generation_run_id=run_id,
+            provider=provider,
+        ),
+    )
+    return assistant_speech_response(db, run)
+
+
+@router.get(
+    "/v1/assistant-speeches/{run_id}",
+    response_model=AssistantSpeechRunResponse,
+)
+async def get_assistant_speech(
+    run_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> AssistantSpeechRunResponse:
+    run = db.get(AssistantSpeechRun, run_id)
+    if run is None or run.account_id != auth.account_id:
+        raise AuthorizationError("assistant speech run was not found")
+    return assistant_speech_response(db, run)
+
+
+@router.get("/v1/assistant-speeches/{run_id}/audio")
+async def get_assistant_speech_audio(
+    run_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> Response:
+    run = db.get(AssistantSpeechRun, run_id)
+    if (
+        run is None
+        or run.account_id != auth.account_id
+        or run.status != "succeeded"
+        or run.audio_asset_id is None
+    ):
+        raise AuthorizationError("assistant speech was not found")
+    asset = db.get(AudioAsset, run.audio_asset_id)
+    if asset is None or asset.account_id != auth.account_id:
+        raise AuthorizationError("assistant speech audio was not found")
+    return Response(
+        content=store.read(asset.storage_key),
+        media_type=asset.mime_type,
+        headers={"Cache-Control": "private, max-age=31536000, immutable"},
+    )
 
 
 @router.post(

@@ -273,6 +273,50 @@ class ConversationTurn(UUIDPrimaryKeyMixin, Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
+class AssistantSpeechRun(UUIDPrimaryKeyMixin, Base):
+    __tablename__ = "assistant_speech_runs"
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["conversation_id", "account_id"],
+            ["conversations.id", "conversations.account_id"],
+            name="fk_assistant_speech_runs_conversation_account",
+        ),
+        CheckConstraint(
+            "status IN ('succeeded', 'failed') AND "
+            "length(trim(text_snapshot)) > 0 AND "
+            "((status = 'succeeded' AND audio_asset_id IS NOT NULL AND "
+            "error_code IS NULL AND error_message IS NULL) OR "
+            "(status = 'failed' AND audio_asset_id IS NULL AND error_code IS NOT NULL))",
+            name="ck_assistant_speech_result",
+        ),
+    )
+    account_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    conversation_id: Mapped[uuid.UUID] = mapped_column(index=True)
+    assistant_generation_run_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("assistant_generation_runs.id"), index=True
+    )
+    assistant_turn_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("conversation_turns.id"), index=True
+    )
+    audio_asset_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("audio_assets.id"), index=True
+    )
+    provider: Mapped[str] = mapped_column(String(64), nullable=False)
+    product: Mapped[str] = mapped_column(String(128), nullable=False)
+    provider_version: Mapped[str | None] = mapped_column(String(64))
+    adapter_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    model: Mapped[str] = mapped_column(String(128), nullable=False)
+    voice: Mapped[str] = mapped_column(String(160), nullable=False)
+    locale: Mapped[str] = mapped_column(String(32), nullable=False)
+    generation_configuration: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    text_snapshot: Mapped[str] = mapped_column(Text, nullable=False)
+    latency_ms: Mapped[int | None] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(String(32), nullable=False)
+    error_code: Mapped[str | None] = mapped_column(String(64))
+    error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
 class AssessmentRun(UUIDPrimaryKeyMixin, EvidenceMixin, Base):
     __tablename__ = "assessment_runs"
     account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
@@ -383,6 +427,7 @@ APPEND_ONLY_MODELS = (
     PerceptionRun,
     ContextualInterpretationRun,
     AssistantGenerationRun,
+    AssistantSpeechRun,
     AssessmentRun,
     AcousticRun,
     ReferenceSpeechAsset,

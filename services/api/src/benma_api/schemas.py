@@ -61,6 +61,7 @@ class ConversationTurnResponse(BaseModel):
     perception_run_id: uuid.UUID | None
     contextual_interpretation_run_id: uuid.UUID | None
     assistant_generation_run_id: uuid.UUID | None
+    assistant_speech: AssistantSpeechRunResponse | None
     created_at: datetime
 
 
@@ -111,6 +112,40 @@ class AudioAssetResponse(BaseModel):
     channels: int | None
     sample_width_bits: int | None
     duration_seconds: float | None
+
+
+class AssistantSpeechCreate(StrictRequest):
+    pass
+
+
+class AssistantSpeechRunResponse(BaseModel):
+    id: uuid.UUID
+    account_id: uuid.UUID
+    conversation_id: uuid.UUID
+    assistant_generation_run_id: uuid.UUID
+    assistant_turn_id: uuid.UUID
+    provider: str
+    product: str
+    provider_version: str | None
+    adapter_version: str
+    model: str
+    voice: str
+    locale: str
+    generation_configuration: dict[str, Any]
+    text_snapshot: str
+    audio_asset: AudioAssetResponse | None
+    audio_url: str | None
+    latency_ms: int | None
+    status: Literal["succeeded", "failed"]
+    error_code: str | None
+    error_message: str | None
+    created_at: datetime
+
+
+class FreeTalkTurnResponse(ConversationTurnResponse):
+    """Backward-compatible user turn plus the server-created assistant result."""
+
+    assistant_turn: ConversationTurnResponse
 
 
 class UtteranceResponse(BaseModel):

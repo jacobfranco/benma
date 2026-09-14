@@ -10,102 +10,31 @@ import struct
 import unicodedata
 import uuid
 import wave
-from dataclasses import dataclass
-from typing import Protocol
-from xml.sax.saxutils import escape
 
-import httpx
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from benma_api.audio.service import inspect_audio, sha256_bytes
 from benma_api.config import Settings
 from benma_api.db.models import AudioAsset, PronunciationTarget, ReferenceSpeechAsset
-from benma_api.errors import (
-    AnalysisUnsupportedError,
-    AuthorizationError,
-    BenmaError,
-    ProviderMalformedResponseError,
-    ProviderRejectedError,
-    ProviderTimeoutError,
-    ProviderUnavailableError,
-)
+from benma_api.errors import AuthorizationError, BenmaError
 from benma_api.pronunciation.acoustics import AutocorrelationAcousticAnalyzer
 from benma_api.pronunciation.service import target_snapshot
+from benma_api.speech.synthesis import (
+    AzureSpeechSynthesisProvider,
+    DisabledSpeechSynthesisProvider,
+    SpeechSynthesisPort,
+    SpeechSynthesisRequest,
+    SpeechSynthesisResponse,
+)
 from benma_api.storage.audio_store import AudioObjectStore
 
-
-@dataclass(frozen=True, slots=True)
-class ReferenceSpeechRequest:
-    text: str
-    locale: str
-    voice: str
-    model_version: str
-    rate: str
-    timeout_seconds: float
-
-
-@dataclass(frozen=True, slots=True)
-class ReferenceSpeechResponse:
-    audio: bytes
-    mime_type: str
-    provider_version: str
-    evidence_status: str
-
-
-class ReferenceSpeechPort(Protocol):
-    provider_name: str
-    adapter_version: str
-
-    def synthesize(self, request: ReferenceSpeechRequest) -> ReferenceSpeechResponse: ...
-
-
-class AzureReferenceSpeechProvider:
-    provider_name = "azure_speech"
-    adapter_version = "1.0.0"
-
-    def __init__(self, key: str, region: str) -> None:
-        self.key = key
-        self.region = region
-
-    def synthesize(self, request: ReferenceSpeechRequest) -> ReferenceSpeechResponse:
-        ssml = (
-            f'<speak version="1.0" xml:lang="{escape(request.locale)}">'
-            f'<voice name="{escape(request.voice)}">'
-            f'<prosody rate="{escape(request.rate)}">{escape(request.text)}</prosody>'
-            "</voice></speak>"
-        )
-        try:
-            response = httpx.post(
-                f"https://{self.region}.tts.speech.microsoft.com/cognitiveservices/v1",
-                headers={
-                    "Ocp-Apim-Subscription-Key": self.key,
-                    "Content-Type": "application/ssml+xml",
-                    "X-Microsoft-OutputFormat": "riff-24khz-16bit-mono-pcm",
-                    "User-Agent": "benma-reference-speech/1.0",
-                },
-                content=ssml.encode(),
-                timeout=request.timeout_seconds,
-            )
-        except httpx.TimeoutException as exc:
-            raise ProviderTimeoutError("Azure reference speech timed out", retryable=True) from exc
-        except httpx.HTTPError as exc:
-            raise ProviderUnavailableError(
-                "Azure reference speech is unavailable", retryable=True
-            ) from exc
-        if response.status_code >= 400:
-            raise ProviderRejectedError(
-                f"Azure rejected reference speech with HTTP {response.status_code}",
-                retryable=response.status_code >= 500,
-            )
-        if not response.content.startswith(b"RIFF"):
-            raise ProviderMalformedResponseError("Azure reference speech was not PCM WAV")
-        return ReferenceSpeechResponse(
-            audio=response.content,
-            mime_type="audio/wav",
-            provider_version=request.model_version,
-            evidence_status="live_provider",
-        )
+# Compatibility names keep the pronunciation-facing API stable while the implementation is
+# shared with conversational speech.
+ReferenceSpeechRequest = SpeechSynthesisRequest
+ReferenceSpeechResponse = SpeechSynthesisResponse
+ReferenceSpeechPort = SpeechSynthesisPort
+AzureReferenceSpeechProvider = AzureSpeechSynthesisProvider
 
 
 def _synthetic_reference_wav(tones: list[int | None]) -> bytes:
@@ -142,6 +71,7 @@ def _synthetic_reference_wav(tones: list[int | None]) -> bytes:
 
 class ReplayReferenceSpeechProvider:
     provider_name = "replay"
+    product_name = "synthetic_reference_speech"
     adapter_version = "1.0.0"
 
     def __init__(self, tones: list[int | None]) -> None:
@@ -157,15 +87,6 @@ class ReplayReferenceSpeechProvider:
         )
 
 
-class DisabledReferenceSpeechProvider:
-    provider_name = "disabled"
-    adapter_version = "1.0.0"
-
-    def synthesize(self, request: ReferenceSpeechRequest) -> ReferenceSpeechResponse:
-        del request
-        raise AnalysisUnsupportedError("reference speech is not configured")
-
-
 def build_reference_provider(
     settings: Settings, target: PronunciationTarget
 ) -> ReferenceSpeechPort:
@@ -174,10 +95,10 @@ def build_reference_provider(
     if settings.reference_speech_provider == "azure":
         assert settings.azure_speech_key is not None
         assert settings.azure_speech_region is not None
-        return AzureReferenceSpeechProvider(
+        return AzureSpeechSynthesisProvider(
             settings.azure_speech_key.get_secret_value(), settings.azure_speech_region
         )
-    return DisabledReferenceSpeechProvider()
+    return DisabledSpeechSynthesisProvider()
 
 
 def _cache_key(target: PronunciationTarget, settings: Settings, provider: str) -> str:

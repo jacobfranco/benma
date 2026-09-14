@@ -20,6 +20,7 @@ AssessmentProviderName = Literal[
     "disabled",
 ]
 ReferenceSpeechProviderName = Literal["replay", "azure", "disabled"]
+AssistantSpeechProviderName = Literal["azure", "disabled"]
 AcousticProviderName = Literal["autocorrelation", "disabled"]
 AlignmentProviderName = Literal["replay", "mfa", "disabled"]
 ContextualInterpretationProviderName = Literal["openai", "disabled"]
@@ -45,6 +46,7 @@ class Settings(BaseSettings):
     perception_provider: PerceptionProviderName = "disabled"
     assessment_provider: AssessmentProviderName = "disabled"
     reference_speech_provider: ReferenceSpeechProviderName = "disabled"
+    assistant_speech_provider: AssistantSpeechProviderName = "disabled"
     acoustic_provider: AcousticProviderName = "autocorrelation"
     alignment_provider: AlignmentProviderName = "disabled"
     contextual_interpretation_provider: ContextualInterpretationProviderName = "disabled"
@@ -59,6 +61,11 @@ class Settings(BaseSettings):
     openai_assistant_generation_reasoning_effort: OpenAIReasoningEffort = "medium"
     assistant_generation_timeout_seconds: float = 30.0
     assistant_generation_policy_version: str = "free-talk-generation-v1"
+    assistant_speech_voice: str = "zh-CN-Xiaochen:DragonHDLatestNeural"
+    assistant_speech_locale: str = "zh-CN"
+    assistant_speech_model_version: str = "DragonHDLatestNeural"
+    assistant_speech_rate: str = "0%"
+    assistant_speech_timeout_seconds: float = 30.0
     azure_speech_key: SecretStr | None = None
     azure_speech_region: str | None = None
     tencent_secret_id: SecretStr | None = None
@@ -104,6 +111,18 @@ class Settings(BaseSettings):
             raise ValueError("OpenAI assistant generation model cannot be empty")
         if not self.assistant_generation_policy_version.strip():
             raise ValueError("assistant generation policy version cannot be empty")
+        if self.assistant_speech_timeout_seconds <= 0:
+            raise ValueError("assistant speech timeout must be positive")
+        if not all(
+            value.strip()
+            for value in (
+                self.assistant_speech_voice,
+                self.assistant_speech_locale,
+                self.assistant_speech_model_version,
+                self.assistant_speech_rate,
+            )
+        ):
+            raise ValueError("assistant speech configuration cannot contain empty values")
         if self.assessment_provider == "azure" and (
             not self.azure_speech_key or not self.azure_speech_region
         ):
@@ -131,6 +150,10 @@ class Settings(BaseSettings):
             not self.azure_speech_key or not self.azure_speech_region
         ):
             raise ValueError("Azure speech key and region are required for reference speech")
+        if self.assistant_speech_provider == "azure" and (
+            not self.azure_speech_key or not self.azure_speech_region
+        ):
+            raise ValueError("Azure speech key and region are required for assistant speech")
         if self.enable_categorical_tone_judgment:
             raise ValueError(
                 "categorical tone judgment cannot be enabled before calibration policy exists"

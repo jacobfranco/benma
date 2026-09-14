@@ -6,12 +6,13 @@ from copy import deepcopy
 from typing import Any
 
 import pytest
-from conftest import ApiClient
+from conftest import ApiClient, wav_bytes
 from sqlalchemy import select
 from sqlalchemy.orm import Session, sessionmaker
 
 from benma_api.api.routes import (
     get_assistant_response_generator,
+    get_assistant_speech_provider,
     get_contextual_interpreter,
 )
 from benma_api.assistant_generation.contracts import (
@@ -26,6 +27,8 @@ from benma_api.contextual_interpretation.contracts import (
 from benma_api.db.models import (
     AssessmentRun,
     AssistantGenerationRun,
+    AssistantSpeechRun,
+    AudioAsset,
     ConversationTurn,
     PerceptionRun,
     PronunciationAttempt,
@@ -34,6 +37,7 @@ from benma_api.db.models import (
     Utterance,
 )
 from benma_api.errors import ProviderTimeoutError
+from benma_api.speech.synthesis import SpeechSynthesisRequest, SpeechSynthesisResponse
 
 
 class SequencedInterpreter:
@@ -108,6 +112,37 @@ class SequencedGenerator:
             raw_payload={"provider_output": text, "request_id": "fixture-provider-id"},
             provider_version="fixture-provider-v2",
         )
+
+
+class RecordingSpeechProvider:
+    provider_name = "assistant-speech-test-provider"
+    product_name = "fixture-synthesis"
+    adapter_version = "fixture-adapter-v1"
+
+    def __init__(self, *, error: Exception | None = None) -> None:
+        self.error = error
+        self.requests: list[SpeechSynthesisRequest] = []
+
+    def synthesize(self, request: SpeechSynthesisRequest) -> SpeechSynthesisResponse:
+        self.requests.append(deepcopy(request))
+        if self.error is not None:
+            raise self.error
+        return SpeechSynthesisResponse(
+            audio=wav_bytes(),
+            mime_type="audio/wav",
+            provider_version="fixture-speech-model-v2",
+            evidence_status="fixture_replay",
+        )
+
+
+def use_speech_provider(
+    client: ApiClient, provider: RecordingSpeechProvider
+) -> RecordingSpeechProvider:
+    async def override() -> RecordingSpeechProvider:
+        return provider
+
+    client.app.dependency_overrides[get_assistant_speech_provider] = override
+    return provider
 
 
 def configure_free_talk(
@@ -327,6 +362,7 @@ def test_generation_input_excludes_raw_payload_pronunciation_and_correction_trut
         decisions=["clarify"],
         outputs=["你刚才说什么？"],
     )
+    speech = use_speech_provider(client, RecordingSpeechProvider())
     conversation = create_conversation(client, auth_header)
     perception_id = append_perception(
         session_factory,
@@ -390,6 +426,13 @@ def test_generation_input_excludes_raw_payload_pronunciation_and_correction_trut
     assert "HIDDEN_CORRECTION_TRUTH" not in serialized
     assert "HIDDEN_PRONUNCIATION" not in serialized
     assert "HIDDEN_TARGET_SNAPSHOT" not in serialized
+    assert len(speech.requests) == 1
+    speech_input = repr(speech.requests[0])
+    assert speech.requests[0].text == "你刚才说什么？"
+    assert "RAW_PROVIDER_SECRET_MARKER" not in speech_input
+    assert "HIDDEN_CORRECTION_TRUTH" not in speech_input
+    assert "HIDDEN_PRONUNCIATION" not in speech_input
+    assert "HIDDEN_TARGET_SNAPSHOT" not in speech_input
 
 
 def test_failed_generation_is_persisted_without_an_assistant_turn(
@@ -511,3 +554,282 @@ def test_generation_input_rejects_contradictory_semantics(
             clarification_alternatives=(),
             generation_type=generation_type,  # type: ignore[arg-type]
         )
+
+
+@pytest.mark.parametrize(
+    ("decision", "transcript", "assistant_text"),
+    [
+        ("infer", "我想卖水果。", "好呀，你想买什么水果？"),
+        ("clarify", "不清楚。", "你是想说什么？"),
+        ("preserve", "我们明天聊。", "可以啊，早点休息吧。"),
+    ],
+)
+def test_free_talk_persists_playable_speech_for_exact_generated_text(
+    client: ApiClient,
+    auth_header: dict[str, str],
+    uploaded_utterance: dict[str, object],
+    session_factory: sessionmaker[Session],
+    decision: str,
+    transcript: str,
+    assistant_text: str,
+) -> None:
+    configure_free_talk(client, decisions=[decision], outputs=[assistant_text])
+    provider = use_speech_provider(client, RecordingSpeechProvider())
+    conversation = create_conversation(client, auth_header)
+    perception_id = append_perception(
+        session_factory,
+        utterance_id=uploaded_utterance["id"],
+        transcript=transcript,
+    )
+
+    response = add_user_turn(
+        client,
+        auth_header,
+        conversation_id=conversation["id"],
+        utterance_id=uploaded_utterance["id"],
+        perception_run_id=perception_id,
+    )
+
+    assistant = response["assistant_turn"]
+    speech = assistant["assistant_speech"]
+    assert assistant["assistant_text"] == assistant_text
+    assert speech["status"] == "succeeded"
+    assert speech["text_snapshot"] == assistant_text
+    assert speech["assistant_generation_run_id"] == assistant[
+        "assistant_generation_run_id"
+    ]
+    assert speech["assistant_turn_id"] == assistant["id"]
+    assert speech["provider"] == provider.provider_name
+    assert speech["product"] == provider.product_name
+    assert speech["provider_version"] == "fixture-speech-model-v2"
+    assert speech["voice"] == "zh-CN-Xiaochen:DragonHDLatestNeural"
+    assert speech["locale"] == "zh-CN"
+    assert speech["audio_asset"]["kind"] == "assistant_speech"
+    assert provider.requests == [
+        SpeechSynthesisRequest(
+            text=assistant_text,
+            locale="zh-CN",
+            voice="zh-CN-Xiaochen:DragonHDLatestNeural",
+            model_version="DragonHDLatestNeural",
+            rate="0%",
+            timeout_seconds=30.0,
+        )
+    ]
+
+    audio = client.get(speech["audio_url"], headers=auth_header)
+    assert audio.status_code == 200
+    assert audio.headers["content-type"] == "audio/wav"
+    assert audio.content.startswith(b"RIFF")
+    with session_factory() as db:
+        generation = db.get(
+            AssistantGenerationRun,
+            uuid.UUID(str(assistant["assistant_generation_run_id"])),
+        )
+        persisted_speech = db.get(AssistantSpeechRun, uuid.UUID(str(speech["id"])))
+        assert generation is not None and generation.generated_text == assistant_text
+        assert persisted_speech is not None
+        assert persisted_speech.text_snapshot == generation.generated_text
+        audio_asset = db.get(AudioAsset, persisted_speech.audio_asset_id)
+        assert audio_asset is not None
+        assert audio_asset.storage_key.startswith(
+            f"{conversation['account_id']}/assistant/"
+        )
+
+
+def test_speech_failure_preserves_text_and_retry_appends_evidence(
+    client: ApiClient,
+    auth_header: dict[str, str],
+    uploaded_utterance: dict[str, object],
+    session_factory: sessionmaker[Session],
+) -> None:
+    assistant_text = "文字必须保留下来。"
+    configure_free_talk(
+        client,
+        decisions=["preserve"],
+        outputs=[assistant_text],
+    )
+    failed_provider = use_speech_provider(
+        client,
+        RecordingSpeechProvider(
+            error=ProviderTimeoutError("safe speech timeout", retryable=True)
+        ),
+    )
+    conversation = create_conversation(client, auth_header)
+    perception_id = append_perception(
+        session_factory,
+        utterance_id=uploaded_utterance["id"],
+        transcript="你好。",
+    )
+
+    initial = add_user_turn(
+        client,
+        auth_header,
+        conversation_id=conversation["id"],
+        utterance_id=uploaded_utterance["id"],
+        perception_run_id=perception_id,
+    )
+    assistant = initial["assistant_turn"]
+    failed = assistant["assistant_speech"]
+    assert assistant["assistant_text"] == assistant_text
+    assert failed["status"] == "failed"
+    assert failed["error_code"] == "provider_timeout"
+    assert failed["text_snapshot"] == assistant_text
+    assert failed["audio_asset"] is None
+    assert failed["audio_url"] is None
+
+    successful_provider = use_speech_provider(client, RecordingSpeechProvider())
+    rejected_text = client.post(
+        f"/v1/assistant-generations/{assistant['assistant_generation_run_id']}/speech",
+        headers=auth_header,
+        json={"text": "client rewrite attempt"},
+    )
+    assert rejected_text.status_code == 422
+    assert successful_provider.requests == []
+    retry = client.post(
+        f"/v1/assistant-generations/{assistant['assistant_generation_run_id']}/speech",
+        headers=auth_header,
+        json={},
+    )
+    assert retry.status_code == 201, retry.text
+    succeeded = retry.json()
+    assert succeeded["id"] != failed["id"]
+    assert succeeded["status"] == "succeeded"
+    assert succeeded["text_snapshot"] == assistant_text
+    assert successful_provider.requests[0].text == assistant_text
+    assert failed_provider.requests[0].text == assistant_text
+
+    listed = client.get(
+        f"/v1/conversations/{conversation['id']}/turns", headers=auth_header
+    ).json()
+    assert listed[1]["assistant_text"] == assistant_text
+    assert listed[1]["assistant_speech"]["id"] == succeeded["id"]
+    assert listed[1]["assistant_speech"]["audio_url"] is not None
+    with session_factory() as db:
+        generation = db.get(
+            AssistantGenerationRun,
+            uuid.UUID(str(assistant["assistant_generation_run_id"])),
+        )
+        runs = list(
+            db.scalars(
+                select(AssistantSpeechRun)
+                .where(
+                    AssistantSpeechRun.assistant_generation_run_id
+                    == uuid.UUID(str(assistant["assistant_generation_run_id"]))
+                )
+                .order_by(AssistantSpeechRun.created_at.asc())
+            )
+        )
+        assert generation is not None and generation.generated_text == assistant_text
+        assert [run.status for run in runs] == ["failed", "succeeded"]
+        assert runs[0].id == uuid.UUID(str(failed["id"]))
+        assert runs[0].error_code == "provider_timeout"
+
+
+def test_failed_speech_does_not_change_text_history(
+    client: ApiClient,
+    auth_header: dict[str, str],
+    uploaded_utterance: dict[str, object],
+    session_factory: sessionmaker[Session],
+) -> None:
+    first_text = "第一条文字回复。"
+    second_text = "第二条文字回复。"
+    interpreter, generator = configure_free_talk(
+        client,
+        decisions=["preserve", "preserve"],
+        outputs=[first_text, second_text],
+    )
+    use_speech_provider(
+        client,
+        RecordingSpeechProvider(
+            error=ProviderTimeoutError("speech unavailable", retryable=True)
+        ),
+    )
+    conversation = create_conversation(client, auth_header)
+    first_perception = append_perception(
+        session_factory,
+        utterance_id=uploaded_utterance["id"],
+        transcript="第一句。",
+    )
+    second_perception = append_perception(
+        session_factory,
+        utterance_id=uploaded_utterance["id"],
+        transcript="第二句。",
+    )
+    for perception_id in (first_perception, second_perception):
+        add_user_turn(
+            client,
+            auth_header,
+            conversation_id=conversation["id"],
+            utterance_id=uploaded_utterance["id"],
+            perception_run_id=perception_id,
+        )
+
+    assert interpreter.requests[1].context_snapshot["turns"] == [
+        {"role": "user", "text": "第一句。"},
+        {"role": "assistant", "text": first_text},
+    ]
+    assert generator.requests[1].conversation_context_snapshot["turns"][-1] == {
+        "role": "assistant",
+        "text": first_text,
+    }
+    turns = client.get(
+        f"/v1/conversations/{conversation['id']}/turns", headers=auth_header
+    ).json()
+    assert [turn["role"] for turn in turns] == ["user", "assistant", "user", "assistant"]
+    assert [turn["assistant_text"] for turn in turns if turn["role"] == "assistant"] == [
+        first_text,
+        second_text,
+    ]
+    assert all(
+        turn["assistant_speech"]["status"] == "failed"
+        for turn in turns
+        if turn["role"] == "assistant"
+    )
+
+
+def test_speech_provenance_is_append_only_and_non_disclosing(
+    client: ApiClient,
+    auth_header: dict[str, str],
+    uploaded_utterance: dict[str, object],
+    session_factory: sessionmaker[Session],
+) -> None:
+    configure_free_talk(client, decisions=["preserve"], outputs=["你好呀！"])
+    use_speech_provider(client, RecordingSpeechProvider())
+    conversation = create_conversation(client, auth_header)
+    perception_id = append_perception(
+        session_factory,
+        utterance_id=uploaded_utterance["id"],
+        transcript="你好。",
+    )
+    result = add_user_turn(
+        client,
+        auth_header,
+        conversation_id=conversation["id"],
+        utterance_id=uploaded_utterance["id"],
+        perception_run_id=perception_id,
+    )
+    speech = result["assistant_turn"]["assistant_speech"]
+    speech_id = uuid.UUID(str(speech["id"]))
+    generation_id = result["assistant_turn"]["assistant_generation_run_id"]
+
+    with session_factory() as db:
+        run = db.get(AssistantSpeechRun, speech_id)
+        assert run is not None
+        run.text_snapshot = "rewritten"
+        with pytest.raises(ValueError, match="append-only"):
+            db.commit()
+
+    other_auth = client.post(
+        "/v1/dev/auth", json={"phone_number": "+12025550186"}
+    ).json()
+    other_headers = {"Authorization": f"Bearer {other_auth['token']}"}
+    hidden_run = client.get(f"/v1/assistant-speeches/{speech_id}", headers=other_headers)
+    hidden_audio = client.get(speech["audio_url"], headers=other_headers)
+    hidden_retry = client.post(
+        f"/v1/assistant-generations/{generation_id}/speech",
+        headers=other_headers,
+        json={},
+    )
+    for hidden in (hidden_run, hidden_audio, hidden_retry):
+        assert hidden.status_code == 404
+        assert hidden.json()["error"]["code"] == "authorization_error"

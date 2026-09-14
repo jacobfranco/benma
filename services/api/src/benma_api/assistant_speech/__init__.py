@@ -1,0 +1,1 @@
+"""Persisted conversational assistant speech."""

@@ -101,6 +101,32 @@ export interface components {
         "error_code": string | null;
         "error_message": string | null;
       };
+    "AssistantSpeechCreate": {};
+    "AssistantSpeechRunResponse": {
+        "id": string;
+        "account_id": string;
+        "conversation_id": string;
+        "assistant_generation_run_id": string;
+        "assistant_turn_id": string;
+        "provider": string;
+        "product": string;
+        "provider_version": string | null;
+        "adapter_version": string;
+        "model": string;
+        "voice": string;
+        "locale": string;
+        "generation_configuration": {
+        [key: string]: unknown;
+      };
+        "text_snapshot": string;
+        "audio_asset": components["schemas"]["AudioAssetResponse"] | null;
+        "audio_url": string | null;
+        "latency_ms": number | null;
+        "status": "succeeded" | "failed";
+        "error_code": string | null;
+        "error_message": string | null;
+        "created_at": string;
+      };
     "AttemptComparisonRequest": {
         "first_attempt_id": string;
         "second_attempt_id": string;
@@ -177,6 +203,7 @@ export interface components {
         "perception_run_id": string | null;
         "contextual_interpretation_run_id": string | null;
         "assistant_generation_run_id": string | null;
+        "assistant_speech": components["schemas"]["AssistantSpeechRunResponse"] | null;
         "created_at": string;
       };
     "DevAuthRequest": {
@@ -190,6 +217,22 @@ export interface components {
       };
     "ErrorResponse": {
         "error": components["schemas"]["ErrorDetail"];
+      };
+    "FreeTalkTurnResponse": {
+        "id": string;
+        "conversation_id": string;
+        "account_id": string;
+        "sequence_number": number;
+        "role": "user" | "assistant";
+        "assistant_text": string | null;
+        "resolved_text": string | null;
+        "utterance_id": string | null;
+        "perception_run_id": string | null;
+        "contextual_interpretation_run_id": string | null;
+        "assistant_generation_run_id": string | null;
+        "assistant_speech": components["schemas"]["AssistantSpeechRunResponse"] | null;
+        "created_at": string;
+        "assistant_turn": components["schemas"]["ConversationTurnResponse"];
       };
     "InterpretationRunResponse": {
         "id": string;

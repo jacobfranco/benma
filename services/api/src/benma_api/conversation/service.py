@@ -3,12 +3,16 @@
 from __future__ import annotations
 
 import uuid
+from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
 
 from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
 from benma_api.assistant_generation.repository import SqlAssistantGenerationRepository
 from benma_api.assistant_generation.service import AssistantGenerationService
+from benma_api.assistant_speech.repository import SqlAssistantSpeechRepository
+from benma_api.assistant_speech.service import AssistantSpeechService
+from benma_api.config import Settings
 from benma_api.contextual_interpretation.contracts import ContextualInterpretationPort
 from benma_api.contextual_interpretation.repository import (
     SqlContextualInterpretationRepository,
@@ -22,6 +26,14 @@ from benma_api.errors import (
     AuthorizationError,
     InvalidConversationTurnError,
 )
+from benma_api.speech.synthesis import SpeechSynthesisPort
+from benma_api.storage.audio_store import AudioObjectStore
+
+
+@dataclass(frozen=True, slots=True)
+class FreeTalkTurnResult:
+    user_turn: ConversationTurn
+    assistant_turn: ConversationTurn
 
 
 class ConversationService:
@@ -66,7 +78,10 @@ class ConversationService:
         perception_run_id: uuid.UUID,
         interpreter: ContextualInterpretationPort,
         generator: AssistantResponseGenerationPort,
-    ) -> ConversationTurn:
+        speech_provider: SpeechSynthesisPort,
+        store: AudioObjectStore,
+        settings: Settings,
+    ) -> FreeTalkTurnResult:
         conversation = self._load_for_append(account_id, conversation_id)
         evidence = self.repository.load_user_evidence(
             account_id,
@@ -132,8 +147,16 @@ class ConversationService:
         )
         conversation.updated_at = utcnow()
         self.db.add(assistant_turn)
+        # The complete text conversation is durable before optional spoken rendering begins.
         self.db.commit()
-        return turn
+        AssistantSpeechService(
+            SqlAssistantSpeechRepository(self.db), store, settings
+        ).run(
+            account_id=account_id,
+            assistant_generation_run_id=generation_run.id,
+            provider=speech_provider,
+        )
+        return FreeTalkTurnResult(user_turn=turn, assistant_turn=assistant_turn)
 
     def _load_for_append(
         self, account_id: uuid.UUID, conversation_id: uuid.UUID

@@ -44,6 +44,11 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
   `BENMA_OPENAI_ASSISTANT_GENERATION_REASONING_EFFORT`, and
   `BENMA_ASSISTANT_GENERATION_TIMEOUT_SECONDS`: live response-generation controls.
 - `BENMA_ASSISTANT_GENERATION_POLICY_VERSION`: persisted generation-policy metadata.
+- `BENMA_ASSISTANT_SPEECH_PROVIDER`: `disabled` or `azure`.
+- `BENMA_ASSISTANT_SPEECH_VOICE`, `BENMA_ASSISTANT_SPEECH_LOCALE`,
+  `BENMA_ASSISTANT_SPEECH_MODEL_VERSION`, `BENMA_ASSISTANT_SPEECH_RATE`, and
+  `BENMA_ASSISTANT_SPEECH_TIMEOUT_SECONDS`: conversational Mandarin rendering controls, persisted
+  independently from pronunciation reference configuration.
 - `BENMA_ENABLE_EXPERIMENTAL_TONE_INTERPRETATION`: factual evidence agreement language.
 - `BENMA_ENABLE_CATEGORICAL_TONE_JUDGMENT`: intentionally rejected until calibrated.
 
@@ -73,6 +78,9 @@ GET    /v1/conversations/{id}
 GET    /v1/conversations/{id}/turns
 POST   /v1/conversations/{id}/user-turns
 GET    /v1/assistant-generations/{id}
+POST   /v1/assistant-generations/{id}/speech
+GET    /v1/assistant-speeches/{id}
+GET    /v1/assistant-speeches/{id}/audio
 POST   /v1/practice-sessions
 GET    /v1/practice-sessions/{id}
 POST   /v1/utterances
@@ -100,6 +108,13 @@ POST   /v1/pronunciation-attempts/compare
 
 There are no generic PATCH or DELETE routes for evidence.
 
+The Free Talk user-turn response retains the created user turn fields and includes the generated
+`assistant_turn`. Assistant turns expose the latest append-only speech attempt, including its
+status, provenance, audio metadata, and authenticated playback URL. Text and generation evidence
+are committed before speech synthesis; a failed speech attempt therefore returns usable assistant
+text with explicit failure metadata. Retrying the generation-scoped speech route appends evidence
+and never accepts client-supplied text.
+
 Clarification generation receives an explicit `clarification_alternatives` allowlist derived only
 from persisted contextual-interpretation alternatives. Structured provider output must declare
 every candidate phrase it uses, and Benma rejects non-allowlisted declarations and undeclared
@@ -121,6 +136,7 @@ provider prompt also requires an open question whenever the allowlist is empty.
 | Azure reference | Yes | Transport/cache contract | No | Speech key and region |
 | OpenAI contextual interpretation | Yes | Strict-schema transport contract | Optional smoke command | API key |
 | OpenAI assistant generation | Yes | Strict-schema transport contract | Optional smoke command | API key |
+| Azure assistant speech | Yes | Transport/persistence contract | Optional smoke command | Speech key and region |
 | Autocorrelation acoustics | Yes | Synthetic signals + API | Local | No optional runtime |
 | MFA alignment | Experimental | Parser/sanity fixtures | No | MFA 3.x models and CLI |
 | Disabled ports | Yes | Yes | Not applicable | Explicit `disabled` selection |
@@ -162,6 +178,15 @@ generation contracts without persisting captures or adding phrase-specific produ
 ```bash
 cd services/api
 uv run python scripts/assistant_generation_smoke.py
+```
+
+The assistant-speech smoke command renders the fixed Mandarin validation corpus through Azure,
+persists each result in a temporary database/object store, validates playable WAV structure, and
+prints only non-secret metadata and hashes. Temporary audio is removed on exit:
+
+```bash
+cd services/api
+uv run python scripts/assistant_speech_smoke.py
 ```
 
 `provider_bakeoff.py` invokes all four implemented configurations against identical canonical
