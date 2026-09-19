@@ -1098,6 +1098,78 @@
         "title": "ConversationResponse",
         "type": "object"
       },
+      "ConversationStreamEvent": {
+        "description": "One NDJSON event. Meaning progress is provisional until complete commits.",
+        "properties": {
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "generation_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generation Ms"
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ContextualInterpretationRunResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "interpretation_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpretation Ms"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FreeTalkTurnResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": {
+            "enum": [
+              "interpretation",
+              "complete",
+              "error"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ConversationStreamEvent",
+        "type": "object"
+      },
       "ConversationTurnResponse": {
         "properties": {
           "account_id": {
@@ -1165,6 +1237,33 @@
             "title": "Id",
             "type": "string"
           },
+          "interpretation_decision": {
+            "anyOf": [
+              {
+                "enum": [
+                  "preserve",
+                  "infer",
+                  "clarify"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpretation Decision"
+          },
+          "perceived_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Perceived Text"
+          },
           "perception_run_id": {
             "anyOf": [
               {
@@ -1221,6 +1320,8 @@
           "role",
           "assistant_text",
           "resolved_text",
+          "perceived_text",
+          "interpretation_decision",
           "utterance_id",
           "perception_run_id",
           "contextual_interpretation_run_id",
@@ -1245,6 +1346,71 @@
           "phone_number"
         ],
         "title": "DevAuthRequest",
+        "type": "object"
+      },
+      "DisplayContour": {
+        "properties": {
+          "baseline_hz": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baseline Hz"
+          },
+          "maximum_semitones": {
+            "default": 3,
+            "title": "Maximum Semitones",
+            "type": "number"
+          },
+          "method": {
+            "default": "local-hampel-median-no-interpolation-v1",
+            "title": "Method",
+            "type": "string"
+          },
+          "minimum_semitones": {
+            "default": -3,
+            "title": "Minimum Semitones",
+            "type": "number"
+          },
+          "rejected_points": {
+            "default": 0,
+            "title": "Rejected Points",
+            "type": "integer"
+          },
+          "segments": {
+            "items": {
+              "items": {
+                "$ref": "#/components/schemas/DisplayPitchPoint"
+              },
+              "type": "array"
+            },
+            "title": "Segments",
+            "type": "array"
+          }
+        },
+        "title": "DisplayContour",
+        "type": "object"
+      },
+      "DisplayPitchPoint": {
+        "properties": {
+          "normalized_semitones": {
+            "title": "Normalized Semitones",
+            "type": "number"
+          },
+          "timestamp_seconds": {
+            "title": "Timestamp Seconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "timestamp_seconds",
+          "normalized_semitones"
+        ],
+        "title": "DisplayPitchPoint",
         "type": "object"
       },
       "ErrorDetail": {
@@ -1285,6 +1451,28 @@
           "error"
         ],
         "title": "ErrorResponse",
+        "type": "object"
+      },
+      "ExpectedTonePoint": {
+        "properties": {
+          "height": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Height",
+            "type": "number"
+          },
+          "position": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Position",
+            "type": "number"
+          }
+        },
+        "required": [
+          "position",
+          "height"
+        ],
+        "title": "ExpectedTonePoint",
         "type": "object"
       },
       "FreeTalkTurnResponse": {
@@ -1358,6 +1546,33 @@
             "title": "Id",
             "type": "string"
           },
+          "interpretation_decision": {
+            "anyOf": [
+              {
+                "enum": [
+                  "preserve",
+                  "infer",
+                  "clarify"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpretation Decision"
+          },
+          "perceived_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Perceived Text"
+          },
           "perception_run_id": {
             "anyOf": [
               {
@@ -1414,6 +1629,8 @@
           "role",
           "assistant_text",
           "resolved_text",
+          "perceived_text",
+          "interpretation_decision",
           "utterance_id",
           "perception_run_id",
           "contextual_interpretation_run_id",
@@ -1489,6 +1706,609 @@
           "created_at"
         ],
         "title": "InterpretationRunResponse",
+        "type": "object"
+      },
+      "MeasuredPitchPoint": {
+        "properties": {
+          "f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "F0 Hz"
+          },
+          "normalized_semitones": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Semitones"
+          },
+          "timestamp_seconds": {
+            "minimum": 0.0,
+            "title": "Timestamp Seconds",
+            "type": "number"
+          },
+          "voicing_probability": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voicing Probability"
+          }
+        },
+        "required": [
+          "timestamp_seconds"
+        ],
+        "title": "MeasuredPitchPoint",
+        "type": "object"
+      },
+      "ObservedContour": {
+        "properties": {
+          "classification": {
+            "default": "unclear",
+            "enum": [
+              "1-like",
+              "2-like",
+              "3-like",
+              "4-like",
+              "neutral-like",
+              "unclear"
+            ],
+            "title": "Classification",
+            "type": "string"
+          },
+          "confidence": {
+            "default": "low",
+            "enum": [
+              "moderate",
+              "low"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "features": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Features",
+            "type": "object"
+          },
+          "reason": {
+            "default": "timing_unavailable",
+            "title": "Reason",
+            "type": "string"
+          },
+          "voiced_coverage": {
+            "default": 0,
+            "title": "Voiced Coverage",
+            "type": "number"
+          }
+        },
+        "title": "ObservedContour",
+        "type": "object"
+      },
+      "PerceivedAnalysisCreate": {
+        "additionalProperties": false,
+        "description": "Only the path's persisted perception ID supplies analysis input.",
+        "properties": {},
+        "title": "PerceivedAnalysisCreate",
+        "type": "object"
+      },
+      "PerceivedAnalysisData": {
+        "properties": {
+          "alignment_error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alignment Error Code"
+          },
+          "alignment_latency_ms": {
+            "title": "Alignment Latency Ms",
+            "type": "integer"
+          },
+          "alignment_status": {
+            "enum": [
+              "aligned",
+              "partial",
+              "unavailable",
+              "synthetic"
+            ],
+            "title": "Alignment Status",
+            "type": "string"
+          },
+          "display_contour": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DisplayContour"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "duration_seconds": {
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "evidence_status": {
+            "enum": [
+              "synthetic_replay",
+              "recorded_audio"
+            ],
+            "title": "Evidence Status",
+            "type": "string"
+          },
+          "expected_tone_basis": {
+            "default": "schematic_lexical_tones",
+            "enum": [
+              "schematic_lexical_tones",
+              "conservative_surface_tones"
+            ],
+            "title": "Expected Tone Basis",
+            "type": "string"
+          },
+          "measured_pitch": {
+            "items": {
+              "$ref": "#/components/schemas/MeasuredPitchPoint"
+            },
+            "title": "Measured Pitch",
+            "type": "array"
+          },
+          "observations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Observations",
+            "type": "array"
+          },
+          "pitch_latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pitch Latency Ms"
+          },
+          "pitch_status": {
+            "enum": [
+              "available",
+              "unavailable"
+            ],
+            "title": "Pitch Status",
+            "type": "string"
+          },
+          "quality_issues": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Quality Issues",
+            "type": "array"
+          },
+          "syllables": {
+            "items": {
+              "$ref": "#/components/schemas/PerceivedSyllable"
+            },
+            "title": "Syllables",
+            "type": "array"
+          },
+          "timing_coverage": {
+            "default": 0,
+            "title": "Timing Coverage",
+            "type": "number"
+          },
+          "timing_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Evidence Id"
+          },
+          "timing_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Source"
+          },
+          "timings_ms": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Timings Ms",
+            "type": "object"
+          },
+          "unresolved_spans": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Unresolved Spans",
+            "type": "array"
+          },
+          "voiced_fraction": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voiced Fraction"
+          }
+        },
+        "required": [
+          "syllables",
+          "measured_pitch",
+          "duration_seconds",
+          "voiced_fraction",
+          "pitch_status",
+          "alignment_status",
+          "alignment_error_code",
+          "quality_issues",
+          "observations",
+          "pitch_latency_ms",
+          "alignment_latency_ms",
+          "evidence_status"
+        ],
+        "title": "PerceivedAnalysisData",
+        "type": "object"
+      },
+      "PerceivedReadingResponse": {
+        "properties": {
+          "alignment_reference_text": {
+            "title": "Alignment Reference Text",
+            "type": "string"
+          },
+          "perception_run_id": {
+            "format": "uuid",
+            "title": "Perception Run Id",
+            "type": "string"
+          },
+          "reading_version": {
+            "title": "Reading Version",
+            "type": "string"
+          },
+          "surface_version": {
+            "title": "Surface Version",
+            "type": "string"
+          },
+          "syllables": {
+            "items": {
+              "$ref": "#/components/schemas/PerceivedSyllable"
+            },
+            "title": "Syllables",
+            "type": "array"
+          },
+          "unresolved_spans": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Unresolved Spans",
+            "type": "array"
+          }
+        },
+        "required": [
+          "perception_run_id",
+          "alignment_reference_text",
+          "reading_version",
+          "surface_version",
+          "syllables",
+          "unresolved_spans"
+        ],
+        "title": "PerceivedReadingResponse",
+        "type": "object"
+      },
+      "PerceivedSpeechAnalysisResponse": {
+        "properties": {
+          "alignment_reference_text": {
+            "title": "Alignment Reference Text",
+            "type": "string"
+          },
+          "analyzer_version": {
+            "title": "Analyzer Version",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PerceivedAnalysisData"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "latency_ms": {
+            "title": "Latency Ms",
+            "type": "integer"
+          },
+          "perception_run_id": {
+            "format": "uuid",
+            "title": "Perception Run Id",
+            "type": "string"
+          },
+          "reference_kind": {
+            "const": "perceived_text",
+            "default": "perceived_text",
+            "title": "Reference Kind",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "succeeded",
+              "partial",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "utterance_id": {
+            "format": "uuid",
+            "title": "Utterance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "perception_run_id",
+          "utterance_id",
+          "alignment_reference_text",
+          "analyzer_version",
+          "status",
+          "error_code",
+          "latency_ms",
+          "created_at",
+          "data"
+        ],
+        "title": "PerceivedSpeechAnalysisResponse",
+        "type": "object"
+      },
+      "PerceivedSyllable": {
+        "properties": {
+          "alternatives": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Alternatives",
+            "type": "array"
+          },
+          "character_end": {
+            "title": "Character End",
+            "type": "integer"
+          },
+          "character_start": {
+            "title": "Character Start",
+            "type": "integer"
+          },
+          "characters": {
+            "title": "Characters",
+            "type": "string"
+          },
+          "display_contour": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DisplayContour"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "end_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Seconds"
+          },
+          "expected_surface_shape": {
+            "items": {
+              "$ref": "#/components/schemas/ExpectedTonePoint"
+            },
+            "title": "Expected Surface Shape",
+            "type": "array"
+          },
+          "expected_surface_tone": {
+            "anyOf": [
+              {
+                "enum": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Surface Tone"
+          },
+          "expected_tone": {
+            "items": {
+              "$ref": "#/components/schemas/ExpectedTonePoint"
+            },
+            "title": "Expected Tone",
+            "type": "array"
+          },
+          "index": {
+            "title": "Index",
+            "type": "integer"
+          },
+          "lexical_tone": {
+            "anyOf": [
+              {
+                "enum": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lexical Tone"
+          },
+          "observed_contour": {
+            "$ref": "#/components/schemas/ObservedContour"
+          },
+          "pinyin": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pinyin"
+          },
+          "reading_source": {
+            "enum": [
+              "perception_token",
+              "phrase",
+              "grammar",
+              "dictionary",
+              "unresolved"
+            ],
+            "title": "Reading Source",
+            "type": "string"
+          },
+          "resolution_confidence": {
+            "default": "unresolved",
+            "enum": [
+              "high",
+              "unresolved"
+            ],
+            "title": "Resolution Confidence",
+            "type": "string"
+          },
+          "start_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Seconds"
+          },
+          "surface_rule": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Surface Rule"
+          },
+          "surface_rule_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Surface Rule Version"
+          },
+          "timing_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Evidence Id"
+          },
+          "timing_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Source"
+          }
+        },
+        "required": [
+          "index",
+          "character_start",
+          "character_end",
+          "characters",
+          "pinyin",
+          "lexical_tone",
+          "reading_source",
+          "alternatives",
+          "expected_tone"
+        ],
+        "title": "PerceivedSyllable",
         "type": "object"
       },
       "PerceptionRunResponse": {
@@ -1845,6 +2665,16 @@
             "title": "Capability Policy",
             "type": "object"
           },
+          "display_contour": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DisplayContour"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "interpretation": {
             "anyOf": [
               {
@@ -1923,6 +2753,16 @@
             "title": "Characters",
             "type": "string"
           },
+          "display_contour": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DisplayContour"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "expected_surface_tone": {
             "anyOf": [
               {
@@ -1956,6 +2796,9 @@
               }
             ],
             "title": "Lexical Tone"
+          },
+          "observed_contour": {
+            "$ref": "#/components/schemas/ObservedContour"
           },
           "pinyin": {
             "title": "Pinyin",
@@ -3596,6 +4439,122 @@
         "summary": "Create User Conversation Turn"
       }
     },
+    "/v1/conversations/{conversation_id}/user-turns/stream": {
+      "post": {
+        "description": "Authoritative progress without splitting the atomic conversation transaction.",
+        "operationId": "stream_user_conversation_turn_v1_conversations__conversation_id__user_turns_stream_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "conversation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Conversation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserConversationTurnCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationStreamEvent"
+                }
+              }
+            },
+            "description": "One ConversationStreamEvent JSON object per line."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Stream User Conversation Turn"
+      }
+    },
     "/v1/dev/auth": {
       "post": {
         "operationId": "dev_auth_v1_dev_auth_post",
@@ -3785,6 +4744,111 @@
           }
         ],
         "summary": "Me"
+      }
+    },
+    "/v1/perceived-speech-analyses/{analysis_id}": {
+      "get": {
+        "operationId": "get_perceived_speech_analysis_v1_perceived_speech_analyses__analysis_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "analysis_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Analysis Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PerceivedSpeechAnalysisResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Perceived Speech Analysis"
       }
     },
     "/v1/perceptions/{run_id}": {
@@ -4005,6 +5069,227 @@
           }
         ],
         "summary": "Create Contextual Interpretation"
+      }
+    },
+    "/v1/perceptions/{run_id}/readings": {
+      "get": {
+        "description": "Deterministic text-only projection; never waits for audio analysis or meaning.",
+        "operationId": "get_perceived_readings_v1_perceptions__run_id__readings_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PerceivedReadingResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Perceived Readings"
+      }
+    },
+    "/v1/perceptions/{run_id}/speech-analysis": {
+      "post": {
+        "operationId": "analyze_perceived_speech_v1_perceptions__run_id__speech_analysis_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PerceivedAnalysisCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PerceivedSpeechAnalysisResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Analyze Perceived Speech"
       }
     },
     "/v1/practice-sessions": {
@@ -5812,6 +7097,112 @@
           }
         ],
         "summary": "Get Utterance"
+      }
+    },
+    "/v1/utterances/{utterance_id}/acoustics": {
+      "post": {
+        "description": "Target-independent raw evidence, never a pronunciation or tone assessment.",
+        "operationId": "analyze_utterance_acoustics_v1_utterances__utterance_id__acoustics_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "utterance_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Utterance Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcousticRunResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication failed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Resource unavailable to account"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid request or audio"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider rejected or malformed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider unavailable"
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider timeout"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Analyze Utterance Acoustics"
       }
     },
     "/v1/utterances/{utterance_id}/audio": {

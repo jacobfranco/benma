@@ -46,6 +46,7 @@ class PerceptionService:
             timeout_seconds=timeout_seconds,
         )
         started = time.perf_counter()
+        configuration = getattr(self.provider, "request_configuration", None)
         try:
             response = self.provider.perceive(request)
         except BenmaError as exc:
@@ -55,7 +56,8 @@ class PerceptionService:
                 provider=self.provider.provider_name,
                 product=self.provider.product_name,
                 adapter_version=self.provider.adapter_version,
-                normalized_result=None,
+                normalized_result={"request_configuration": configuration}
+                if configuration is not None else None,
                 status="failed",
                 error_code=exc.code,
                 error_message=exc.message,
@@ -85,7 +87,10 @@ class PerceptionService:
             transcript=evidence.transcript,
             alternatives=evidence.alternatives,
             provider_uncertainty=evidence.provider_uncertainty,
-            normalized_result=evidence.normalized(),
+            normalized_result={
+                **evidence.normalized(),
+                **({"request_configuration": configuration} if configuration is not None else {}),
+            },
             raw_payload_json=raw.json_value,
             raw_payload_text=raw.text_value,
             raw_payload_sha256=raw.sha256,

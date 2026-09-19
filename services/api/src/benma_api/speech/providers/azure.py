@@ -21,6 +21,49 @@ from benma_api.speech.contracts import (
 )
 
 
+def request_azure_speech(
+    *, audio: bytes, key: str, region: str, config: dict[str, Any], timeout_seconds: float,
+) -> dict[str, Any]:
+    """Shared transport only. Each caller separately defines its evidence semantics."""
+    encoded = base64.b64encode(
+        json.dumps(config, ensure_ascii=False, separators=(",", ":")).encode()
+    ).decode()
+    url = (
+        f"https://{region}.stt.speech.microsoft.com/speech/recognition/"
+        "conversation/cognitiveservices/v1?language=zh-CN&format=detailed"
+    )
+    try:
+        response = httpx.post(
+            url,
+            headers={
+                "Ocp-Apim-Subscription-Key": key,
+                "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
+                "Pronunciation-Assessment": encoded,
+                "Accept": "application/json",
+            },
+            content=audio,
+            timeout=timeout_seconds,
+        )
+    except httpx.TimeoutException as exc:
+        raise ProviderTimeoutError("Azure assessment timed out", retryable=True) from exc
+    except httpx.HTTPError as exc:
+        raise ProviderUnavailableError(
+            "Azure assessment is unavailable", retryable=True
+        ) from exc
+    if response.status_code >= 400:
+        raise ProviderRejectedError(
+            f"Azure rejected assessment with HTTP {response.status_code}",
+            retryable=response.status_code >= 500,
+        )
+    try:
+        raw: Any = response.json()
+        if not isinstance(raw, dict):
+            raise TypeError("response is not an object")
+    except (ValueError, TypeError) as exc:
+        raise ProviderMalformedResponseError("Azure returned invalid JSON evidence") from exc
+    return raw
+
+
 class AzurePronunciationProvider:
     provider_name = "azure_speech"
     product_name = "pronunciation_assessment_zh-CN"
@@ -40,42 +83,15 @@ class AzurePronunciationProvider:
             "EnableMiscue": True,
             "PhonemeAlphabet": "SAPI",
         }
-        encoded = base64.b64encode(
-            json.dumps(config, ensure_ascii=False, separators=(",", ":")).encode()
-        ).decode()
-        url = (
-            f"https://{self.region}.stt.speech.microsoft.com/speech/recognition/"
-            "conversation/cognitiveservices/v1?language=zh-CN&format=detailed"
+        raw = request_azure_speech(
+            audio=request.canonical_audio, key=self.key, region=self.region,
+            config=config, timeout_seconds=request.timeout_seconds,
         )
         try:
-            response = httpx.post(
-                url,
-                headers={
-                    "Ocp-Apim-Subscription-Key": self.key,
-                    "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
-                    "Pronunciation-Assessment": encoded,
-                    "Accept": "application/json",
-                },
-                content=request.canonical_audio,
-                timeout=request.timeout_seconds,
-            )
-        except httpx.TimeoutException as exc:
-            raise ProviderTimeoutError("Azure assessment timed out", retryable=True) from exc
-        except httpx.HTTPError as exc:
-            raise ProviderUnavailableError(
-                "Azure assessment is unavailable", retryable=True
-            ) from exc
-        if response.status_code >= 400:
-            raise ProviderRejectedError(
-                f"Azure rejected assessment with HTTP {response.status_code}",
-                retryable=response.status_code >= 500,
-            )
-        try:
-            raw: Any = response.json()
             best = raw["NBest"][0]
             if not isinstance(best, dict):
                 raise TypeError("Azure NBest item is not an object")
-        except (ValueError, KeyError, IndexError, TypeError) as exc:
+        except (KeyError, IndexError, TypeError) as exc:
             raise ProviderMalformedResponseError("Azure response has no assessment") from exc
 
         nested_assessment = best.get("PronunciationAssessment")

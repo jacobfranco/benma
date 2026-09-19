@@ -260,7 +260,6 @@ export default function PronunciationScreen() {
             <>
               {reference.generation_config.evidence_status === 'synthetic_replay' && <FixtureBanner />}
               <PlaybackButton
-                headers={api.authenticatedHeaders()}
                 label="▶ Native reference"
                 uri={api.absoluteUrl(reference.audio_url)}
               />
@@ -360,13 +359,11 @@ export default function PronunciationScreen() {
             <View style={styles.abButtons}>
               {result.reference_audio?.audio_url && (
                 <PlaybackButton
-                  headers={api.authenticatedHeaders()}
                   label="▶ Reference"
                   uri={api.absoluteUrl(result.reference_audio.audio_url)}
                 />
               )}
               <PlaybackButton
-                headers={api.authenticatedHeaders()}
                 label="▶ Mine"
                 uri={api.absoluteUrl(result.recording_audio_url)}
               />
@@ -426,7 +423,6 @@ export default function PronunciationScreen() {
                   </Pressable>
                 </View>
                 <PlaybackButton
-                  headers={api.authenticatedHeaders()}
                   label={`▶ Play attempt ${index + 1}`}
                   uri={api.absoluteUrl(attempt.recording_audio_url)}
                 />
@@ -447,7 +443,6 @@ export default function PronunciationScreen() {
                 Attempt {history.findIndex((item) => item.attempt.id === attempt.attempt.id) + 1}
               </Text>
               <PlaybackButton
-                headers={api.authenticatedHeaders()}
                 label="▶ Play"
                 uri={api.absoluteUrl(attempt.recording_audio_url)}
               />

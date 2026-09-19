@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native';
 
 import { useAuth } from '@/auth/AuthProvider';
+import { DEVELOPMENT_PHONE_NUMBER } from '@/auth/development';
 import { Body, Button, Card, ErrorMessage, Heading, Screen } from '@/components/Ui';
 import { colors } from '@/theme';
 
 export default function HomeScreen() {
   const { state, signIn, signOut } = useAuth();
-  const [phone, setPhone] = useState('+1');
+  const [phone, setPhone] = useState(DEVELOPMENT_PHONE_NUMBER);
 
   if (state.phase === 'loading') {
     return (
@@ -30,7 +31,7 @@ export default function HomeScreen() {
             autoComplete="tel"
             keyboardType="phone-pad"
             onChangeText={setPhone}
-            placeholder="+1 202 555 0123"
+            placeholder={DEVELOPMENT_PHONE_NUMBER}
             style={styles.input}
             value={phone}
           />
@@ -47,19 +48,17 @@ export default function HomeScreen() {
 
   return (
     <Screen>
-      <Heading>Practice what was actually said.</Heading>
-      <Body>
-        Benma keeps provider perception, pronunciation evidence, and your later correction separate.
-      </Body>
+      <Heading>Speak Mandarin with Benma.</Heading>
+      <Body>Talk freely or take time to practice a phrase.</Body>
       <Card>
-        <Heading>What did I say?</Heading>
-        <Body>Record arbitrary Mandarin. No intended sentence or context is sent to perception.</Body>
-        <Button label="Open perception" onPress={() => router.push('/perception')} />
+        <Heading>Conversation</Heading>
+        <Body>Speak, see what Benma heard, and hear a reply.</Body>
+        <Button label="Open Conversation" onPress={() => router.push('/conversation')} />
       </Card>
       <Card>
-        <Heading>Pronunciation</Heading>
-        <Body>Enter a known target, record attempts, and inspect only supported evaluator evidence.</Body>
-        <Button label="Open pronunciation" onPress={() => router.push('/pronunciation')} />
+        <Heading>Practice</Heading>
+        <Body>See your tone contour, or practice a target phrase.</Body>
+        <Button label="Open Practice" onPress={() => router.push('/practice')} />
       </Card>
       <View style={styles.secondaryActions}>
         {__DEV__ && (

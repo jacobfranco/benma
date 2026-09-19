@@ -23,6 +23,12 @@ class JsonFormatter(logging.Formatter):
             "provider",
             "status",
             "status_code",
+            "reading_ms",
+            "pitch_ms",
+            "alignment_ms",
+            "contour_ms",
+            "persistence_commit_ms",
+            "total_ms",
         ):
             value = getattr(record, field, None)
             if value is not None:

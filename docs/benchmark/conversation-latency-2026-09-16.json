@@ -1,0 +1,977 @@
+{
+  "date": "2026-09-16",
+  "paid_requests": 68,
+  "data": "fixed synthetic text only; no production audio or conversation reads",
+  "runs": {
+    "draft": {
+      "models": {
+        "interpretation": "gpt-5.6-terra",
+        "generation": "gpt-5.6-terra"
+      },
+      "cases": [
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation_ms": 9987,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "我们可以一起睡觉。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The same words form a clear, idiomatic intended meaning when the adverbial phrase 一起 precedes 睡觉; the perceived order is a plausible word-order near miss.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": false,
+          "generation_ms": 2127,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好啊，不过先把事情都忙完，再舒服地一起睡一觉。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "medium",
+          "expected_decision": "infer",
+          "interpretation_ms": 3812,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "你好，今天我们聊聊周末吧。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "“周谋”在此语境中不自然，而“周末”与“今天我们聊聊……”构成常见且连贯的话题表达，且属于近音识别歧义。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2290,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好呀！你这个周末有什么安排吗？还是想聊聊怎么过得轻松一点？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "medium",
+          "expected_decision": "clarify",
+          "interpretation_ms": 2970,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "high",
+              "rationale": "“那里” could refer to either the library or the swimming pool mentioned in context.",
+              "alternatives": [
+                "去图书馆",
+                "去游泳馆"
+              ]
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": true,
+          "generation_ms": 1716,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想去图书馆还是去游泳馆？",
+            "clarification_alternatives_used": [
+              "去图书馆",
+              "去游泳馆"
+            ]
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation_ms": 5914,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript is coherent and directly answers the prior question.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2281,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，特别是天气好的时候。散完步再喝杯咖啡，感觉很放松。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "low",
+          "expected_decision": "preserve",
+          "interpretation_ms": 1952,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript is coherent and plausibly means “we can sleep together”; no downstream context supports a different intended phrasing.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1453,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好呀，不过我现在还不困。你困了吗？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "low",
+          "expected_decision": "infer",
+          "interpretation_ms": 5565,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "你好，今天我们聊聊周谋吧。",
+            "uncertainty": {
+              "level": "medium",
+              "rationale": "“周谋”可能是人名或特定称谓；没有下游语境支持替换为其他词。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": false,
+          "generation_ms": 1448,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "你好呀，可以啊。你想聊周谋的哪一方面？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "low",
+          "expected_decision": "clarify",
+          "interpretation_ms": 4043,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "明天我们去那里吧。",
+            "uncertainty": {
+              "level": "medium",
+              "rationale": "The utterance is coherent, though “那里” does not identify which of the two previously offered destinations is meant.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": false,
+          "generation_ms": 1827,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好啊，那明天就去那里吧！",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "low",
+          "expected_decision": "preserve",
+          "interpretation_ms": 1905,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript is coherent and directly answers the preceding question.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2102,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，尤其是天气好的时候。走一走会觉得很放松。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "none",
+          "expected_decision": "preserve",
+          "interpretation_ms": 2168,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript is understandable as an unusual but plausible word order; no downstream context supports a specific alternative.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2478,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "哈哈，听起来你已经很困了。早点休息吧，晚安～",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "none",
+          "expected_decision": "infer",
+          "interpretation_ms": 2274,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "你好，今天我们聊聊周谋吧。",
+            "uncertainty": {
+              "level": "medium",
+              "rationale": "“周谋”可能是人名、主题名或专有名词；缺少上下文不足以支持替换。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": false,
+          "generation_ms": 1847,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好呀，周谋是你认识的人，还是想聊某个话题？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "none",
+          "expected_decision": "clarify",
+          "interpretation_ms": 2198,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "明天我们去那里吧。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The perceived transcript is coherent and plausibly refers to one of the locations just mentioned, without requiring a specific interpretation.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": false,
+          "generation_ms": 1550,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好啊，那我们明天去图书馆吧。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "none",
+          "expected_decision": "preserve",
+          "interpretation_ms": 1873,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript is coherent and directly answers the prior question about weekend activities.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2220,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，尤其是天气好的时候。走一走、看看树和花，感觉很放松。你一般喜欢一个人去，还是和朋友一起去？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        }
+      ],
+      "limitations": "One sample per case/effort, not a quality guarantee.",
+      "prompt_version": "initial draft, before preserve precedence and reference ambiguity rules"
+    },
+    "combined_prototype": {
+      "prompt_version": "contextual-interpretation-2026-09-16-v3",
+      "combined": true,
+      "models": {
+        "interpretation": "gpt-5.6-terra",
+        "generation": "gpt-5.6-terra"
+      },
+      "cases": [
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "该转写虽语序不常见，但语义连贯且没有上下文中的未解指代需要消歧。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "combined_ms": 3680,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "可以呀，不过我现在还不太困，你困了吗？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "medium",
+          "expected_decision": "infer",
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "你好，今天我们聊聊周谋吧。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "该转写语义连贯，且没有上下文支持另一种更强的解读。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": false,
+          "combined_ms": 2406,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好呀，你想聊周谋的哪一方面？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "medium",
+          "expected_decision": "clarify",
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "high",
+              "rationale": "“那里”可能指向图书馆或游泳馆两个不同的先前选项，当前语境无法确定。",
+              "alternatives": [
+                "图书馆",
+                "游泳馆"
+              ]
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": true,
+          "combined_ms": 3198,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想去图书馆还是游泳馆？",
+            "clarification_alternatives_used": [
+              "图书馆",
+              "游泳馆"
+            ]
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "该转写与上下文问题直接对应，语义清晰且可行动。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "combined_ms": 2559,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，特别是天气好的时候。你一般喜欢早上去还是傍晚去？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        }
+      ],
+      "limitations": "One sample per case/effort, not a quality guarantee."
+    },
+    "explicit_context": {
+      "prompt_version": "contextual-interpretation-2026-09-16-v3",
+      "combined": false,
+      "models": {
+        "interpretation": "gpt-5.6-terra",
+        "generation": "gpt-5.6-terra"
+      },
+      "cases": [
+        {
+          "case": "context-supported-near-miss",
+          "effort": "medium",
+          "expected_decision": "infer",
+          "interpretation_ms": 2607,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "我周末喜欢去公园散步。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The prior turn contrasts 公园 and 河边; “公元散步” is a plausible homophone/recognition ambiguity, while 公园 is strongly supported by context.",
+              "alternatives": [
+                "我周末喜欢去公园散步。"
+              ]
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2379,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "公园散步挺舒服的！你喜欢早上去，还是傍晚去？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "context-supported-near-miss",
+          "effort": "low",
+          "expected_decision": "infer",
+          "interpretation_ms": 2591,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "我周末喜欢去公园散步。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "Prior context contrasts 公园 and 河边; 公元 is a plausible homophone/recognition ambiguity, and 公园 is the strongly supported intended meaning.",
+              "alternatives": [
+                "我周末喜欢去公园散步。"
+              ]
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2356,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "挺好的，公园里空气好，走走也很放松。你一般喜欢一个人去，还是跟朋友一起去？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "context-supported-near-miss",
+          "effort": "none",
+          "expected_decision": "infer",
+          "interpretation_ms": 8314,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "我周末喜欢去公园散步。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "上文明确讨论“公园还是河边”，且“去公园散步”是强支持的常见搭配；“公元”与此语境的近音差异可合理视为语音或识别歧义。",
+              "alternatives": [
+                "我周末喜欢去公园散步。"
+              ]
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2698,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "挺好的，去公园散步很放松。你一般喜欢早上去还是傍晚去？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        }
+      ],
+      "limitations": "One sample per case/effort, not a quality guarantee."
+    },
+    "v3_policy": {
+      "models": {
+        "interpretation": "gpt-5.6-terra",
+        "generation": "gpt-5.6-terra"
+      },
+      "cases": [
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation_ms": 2693,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript conveys a coherent, plausible utterance; its word order is unusual but does not create an actionable ambiguity without contextual evidence.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1776,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "哈哈，听起来你已经很困了。那就早点休息吧，晚安～",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "medium",
+          "expected_decision": "infer",
+          "interpretation_ms": 3041,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "high",
+              "rationale": "“周谋”在没有任何 prior context 的情况下可能是姓名或近音表达；其指向会影响后续话题，无法负责任地确定。",
+              "alternatives": []
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": false,
+          "generation_ms": 1588,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想聊什么？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "medium",
+          "expected_decision": "clarify",
+          "interpretation_ms": 2991,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "low",
+              "rationale": "“那里” could refer to either the library or the swimming pool from the prior turn, and the choice affects the next action.",
+              "alternatives": [
+                "去图书馆",
+                "去游泳馆"
+              ]
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": true,
+          "generation_ms": 1333,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想去图书馆还是去游泳馆？",
+            "clarification_alternatives_used": [
+              "去图书馆",
+              "去游泳馆"
+            ]
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation_ms": 2039,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The perceived transcript is coherent, plausible, and directly answers the prior question about weekend activities.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2007,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，尤其是天气好的时候。走一走、看看树和花，感觉很放松。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "low",
+          "expected_decision": "preserve",
+          "interpretation_ms": 2763,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript conveys a coherent, actionable meaning; no contextual evidence supports a different intended phrase.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2020,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "哈哈，可以啊，不过先把该做的事做完，再好好睡一觉。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "low",
+          "expected_decision": "infer",
+          "interpretation_ms": 4121,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "你好，今天我们聊聊周末吧。",
+            "uncertainty": {
+              "level": "medium",
+              "rationale": "在缺少支持“周谋”为特定人名或主题的上下文时，“今天我们聊聊周末吧”是更强且自然的语义读法；“周谋”仍作为原始感知证据保留。",
+              "alternatives": [
+                "周末"
+              ]
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 3875,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好呀！你这个周末有什么安排吗？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "low",
+          "expected_decision": "clarify",
+          "interpretation_ms": 2332,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "low",
+              "rationale": "“那里” could refer to either the library or the swimming pool in the immediately preceding options, and choosing one would affect the response.",
+              "alternatives": [
+                "图书馆",
+                "游泳馆"
+              ]
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": true,
+          "generation_ms": 1977,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想去图书馆还是游泳馆？",
+            "clarification_alternatives_used": [
+              "图书馆",
+              "游泳馆"
+            ]
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "low",
+          "expected_decision": "preserve",
+          "interpretation_ms": 1641,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript is coherent and directly answers the prior question.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1768,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，尤其是天气好的时候。走一走、看看树和花，感觉很放松。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "none",
+          "expected_decision": "preserve",
+          "interpretation_ms": 5581,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript conveys a coherent, plausible utterance despite unusual word order, and there is no contextual evidence supporting a different intended meaning.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1828,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "可以啊，不过我现在还不困。你困了吗？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "none",
+          "expected_decision": "infer",
+          "interpretation_ms": 2294,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "high",
+              "rationale": "“周谋”缺少可用的对话上下文来确定是人名、话题名，还是与其他近音词的识别歧义。继续会有答错话题的风险。",
+              "alternatives": []
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": false,
+          "generation_ms": 1478,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想聊什么？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "none",
+          "expected_decision": "clarify",
+          "interpretation_ms": 2173,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "high",
+              "rationale": "“那里” could refer to either the library or the swimming pool, and the context does not resolve which destination is intended.",
+              "alternatives": [
+                "去图书馆",
+                "去游泳馆"
+              ]
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": true,
+          "generation_ms": 1180,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想去图书馆还是去游泳馆？",
+            "clarification_alternatives_used": [
+              "去图书馆",
+              "去游泳馆"
+            ]
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "none",
+          "expected_decision": "preserve",
+          "interpretation_ms": 2235,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "转写内容清晰、语义连贯，并直接回答了前文关于周末喜好的问题。",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1983,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，尤其是天气好的时候。走一走会觉得很放松。你一般喜欢一个人去，还是和朋友一起去？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        }
+      ],
+      "limitations": "One sample per case/effort, not a quality guarantee.",
+      "prompt_version": "contextual-interpretation-2026-09-16-v3"
+    },
+    "final_policy": {
+      "prompt_version": "contextual-interpretation-2026-09-16-v4",
+      "combined": false,
+      "models": {
+        "interpretation": "gpt-5.6-terra",
+        "generation": "gpt-5.6-terra"
+      },
+      "cases": [
+        {
+          "case": "coherent-odd-grammar",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation_ms": 2685,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我们可以睡觉一起。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The transcript has a clear actionable meaning despite unusual word order.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 2391,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "好啊，不过我现在还不太困。你想先聊会儿天，还是直接休息？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "single-reading-near-miss",
+          "effort": "medium",
+          "expected_decision": "infer",
+          "interpretation_ms": 2709,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "medium",
+              "rationale": "“周谋” could be a name or a near-homophone, but no conversation context supports a single intended referent.",
+              "alternatives": []
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": false,
+          "generation_ms": 2068,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想聊谁呀？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "ambiguous-reference",
+          "effort": "medium",
+          "expected_decision": "clarify",
+          "interpretation_ms": 2235,
+          "interpretation": {
+            "decision": "clarify",
+            "inferred_text": null,
+            "uncertainty": {
+              "level": "high",
+              "rationale": "“那里” could refer to either the library or the swimming pool mentioned previously, and the context does not resolve which destination is intended.",
+              "alternatives": [
+                "去图书馆",
+                "去游泳馆"
+              ]
+            },
+            "clarification_needed": true
+          },
+          "semantic_pass": true,
+          "generation_ms": 1761,
+          "generation": {
+            "generation_type": "clarification",
+            "generated_text": "你想去图书馆还是去游泳馆？",
+            "clarification_alternatives_used": [
+              "去图书馆",
+              "去游泳馆"
+            ]
+          },
+          "generation_contract_pass": true
+        },
+        {
+          "case": "follow-up",
+          "effort": "medium",
+          "expected_decision": "preserve",
+          "interpretation_ms": 1800,
+          "interpretation": {
+            "decision": "preserve",
+            "inferred_text": "我周末喜欢去公园散步。你呢？",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The perceived transcript is clear and directly answers the question, then asks a reciprocal question.",
+              "alternatives": []
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1845,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "我也喜欢去公园散步，尤其是天气好的时候。走一走会觉得很放松。",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        }
+      ],
+      "limitations": "One sample per case/effort, not a quality guarantee."
+    },
+    "final_explicit_context": {
+      "prompt_version": "contextual-interpretation-2026-09-16-v4",
+      "combined": false,
+      "models": {
+        "interpretation": "gpt-5.6-terra",
+        "generation": "gpt-5.6-terra"
+      },
+      "cases": [
+        {
+          "case": "context-supported-near-miss",
+          "effort": "medium",
+          "expected_decision": "infer",
+          "interpretation_ms": 3391,
+          "interpretation": {
+            "decision": "infer",
+            "inferred_text": "我周末喜欢去公园散步。",
+            "uncertainty": {
+              "level": "low",
+              "rationale": "The prior question explicitly contrasts 公园 and 河边, and 去公园散步 is the strongly supported reading of the homophonous perceived token 公元.",
+              "alternatives": [
+                "我周末喜欢去公园散步。"
+              ]
+            },
+            "clarification_needed": false
+          },
+          "semantic_pass": true,
+          "generation_ms": 1750,
+          "generation": {
+            "generation_type": "reply",
+            "generated_text": "挺好的，公园里空气比较好，也很放松。你一般喜欢一个人去，还是跟朋友一起？",
+            "clarification_alternatives_used": []
+          },
+          "generation_contract_pass": true
+        }
+      ],
+      "limitations": "One sample per case/effort, not a quality guarantee."
+    }
+  }
+}

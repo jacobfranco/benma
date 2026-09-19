@@ -132,7 +132,10 @@ class AudioIngestService:
             raise InvalidAudioError("audio upload is empty")
         if len(data) > self.settings.max_upload_bytes:
             raise InvalidAudioError("audio upload exceeds the configured size limit")
-        extension = MIME_EXTENSIONS.get(mime_type.casefold())
+        # MediaRecorder includes codec parameters (e.g. audio/webm;codecs=opus).
+        # Keep the same media-type allowlist and inspect the actual container below.
+        mime_type = mime_type.split(";", 1)[0].strip().casefold()
+        extension = MIME_EXTENSIONS.get(mime_type)
         if extension is None:
             raise InvalidAudioError("audio MIME type is not permitted")
         if practice_session_id is not None:

@@ -348,6 +348,39 @@ class AcousticRun(UUIDPrimaryKeyMixin, Base):
     error_message: Mapped[str | None] = mapped_column(Text)
 
 
+class PerceivedSpeechAnalysis(UUIDPrimaryKeyMixin, Base):
+    """Audio conditioned on immutable perception, never an intended target."""
+
+    __tablename__ = "perceived_speech_analyses"
+    __table_args__ = (
+        UniqueConstraint(
+            "perception_run_id", "configuration_sha256",
+            name="uq_perceived_analysis_perception_configuration",
+        ),
+        CheckConstraint(
+            "status IN ('succeeded', 'partial', 'failed')",
+            name="ck_perceived_analysis_status",
+        ),
+    )
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id"), index=True)
+    utterance_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("utterances.id"), index=True)
+    perception_run_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("perception_runs.id"), index=True
+    )
+    audio_asset_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("audio_assets.id"))
+    acoustic_run_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("acoustic_runs.id"))
+    audio_sha256: Mapped[str] = mapped_column(String(64), nullable=False)
+    alignment_reference_text: Mapped[str] = mapped_column(Text, nullable=False)
+    analyzer_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    configuration_sha256: Mapped[str] = mapped_column(String(64), nullable=False)
+    configuration: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    result: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
+    latency_ms: Mapped[int] = mapped_column(Integer, nullable=False)
+    status: Mapped[str] = mapped_column(String(32), nullable=False)
+    error_code: Mapped[str | None] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
 class ReferenceSpeechAsset(UUIDPrimaryKeyMixin, Base):
     __tablename__ = "reference_speech_assets"
     __table_args__ = (
@@ -424,6 +457,7 @@ class UserCorrection(UUIDPrimaryKeyMixin, Base):
 
 
 APPEND_ONLY_MODELS = (
+    PerceivedSpeechAnalysis,
     PerceptionRun,
     ContextualInterpretationRun,
     AssistantGenerationRun,

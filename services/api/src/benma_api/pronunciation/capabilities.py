@@ -21,9 +21,7 @@ def pronunciation_provider_statuses() -> list[dict[str, Any]]:
 def pronunciation_capability_policy(settings: Settings) -> dict[str, Any]:
     return {
         "tone_interpretation": (
-            "experimental"
-            if settings.enable_experimental_tone_interpretation
-            else "raw_evidence"
+            "experimental" if settings.enable_experimental_tone_interpretation else "raw_evidence"
         ),
         "categorical_tone_judgment": "unavailable",
         "reference_contour_role": "visual_example_not_grading_truth",

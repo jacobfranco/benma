@@ -44,6 +44,22 @@ def test_dev_auth_reuses_account(client: ApiClient) -> None:
     assert first["token"] != second["token"]
 
 
+@pytest.mark.parametrize("phone_number", ["+1", "+12345"])
+def test_dev_auth_rejects_incomplete_phone_number(
+    client: ApiClient, session_factory: sessionmaker[Session], phone_number: str
+) -> None:
+    response = client.post("/v1/dev/auth", json={"phone_number": phone_number})
+    assert response.status_code == 422
+    error = response.json()["error"]
+    assert error["code"] == "validation_error"
+    detail = next(item for item in error["details"] if item["loc"] == ["body", "phone_number"])
+    assert detail["type"] == "string_too_short"
+    assert detail["ctx"]["min_length"] == 7
+    with session_factory() as db:
+        assert db.scalar(select(AuthIdentity)) is None
+        assert db.scalar(select(AuthSession)) is None
+
+
 def test_dev_auth_route_is_absent_when_disabled() -> None:
     client = ApiClient(
         create_app(

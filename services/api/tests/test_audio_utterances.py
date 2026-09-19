@@ -31,9 +31,31 @@ def test_valid_upload_canonicalizes_and_hashes(
     assert client.get(uploaded_utterance["audio_url"], headers=auth_header).content == wav_bytes()
 
 
+def test_browser_mime_parameters_preserve_bytes_and_canonicalization(
+    client: ApiClient, auth_header: dict[str, str]
+) -> None:
+    payload = wav_bytes()
+    response = client.post(
+        "/v1/utterances",
+        headers=auth_header,
+        files={"file": ("recording.wav", payload, "audio/wav;codecs=pcm")},
+    )
+    assert response.status_code == 201
+    utterance = response.json()
+    assert utterance["original_audio"]["mime_type"] == "audio/wav"
+    assert utterance["canonical_audio"]["mime_type"] == "audio/wav"
+    assert utterance["canonical_audio"]["sample_rate_hz"] == 16000
+    assert client.get(utterance["audio_url"], headers=auth_header).content == payload
+
+
 @pytest.mark.parametrize(
     ("payload", "content_type"),
-    [(b"", "audio/wav"), (b"not audio", "audio/wav"), (b"anything", "text/plain")],
+    [
+        (b"", "audio/wav"),
+        (b"not audio", "audio/wav"),
+        (b"anything", "text/plain"),
+        (b"anything", "text/plain;codecs=opus"),
+    ],
 )
 def test_invalid_audio_is_rejected(
     client: ApiClient,

@@ -44,9 +44,7 @@ def test_azure_synthesis_uses_exact_escaped_text_and_pcm_wav_contract() -> None:
     )
     result = provider.synthesize(request("好呀，<水果&朋友>？"))
 
-    assert captured["url"] == (
-        "https://eastus.tts.speech.microsoft.com/cognitiveservices/v1"
-    )
+    assert captured["url"] == ("https://eastus.tts.speech.microsoft.com/cognitiveservices/v1")
     assert captured["authorization"] == "speech-test-key"
     assert captured["format"] == "riff-24khz-16bit-mono-pcm"
     assert "好呀，&lt;水果&amp;朋友&gt;？" in str(captured["body"])
@@ -108,10 +106,32 @@ def test_reference_and_assistant_domains_share_only_azure_transport_adapter() ->
 def test_assistant_speech_configuration_is_fail_fast() -> None:
     with pytest.raises(ValidationError, match="Azure speech key and region"):
         Settings(
+            azure_alignment_enabled=False,
+            alignment_provider="disabled",
             environment="test",
             assistant_speech_provider="azure",
             azure_speech_key=None,
             azure_speech_region=None,
         )
     with pytest.raises(ValidationError, match="assistant speech timeout"):
-        Settings(environment="test", assistant_speech_timeout_seconds=0)
+        Settings(
+            azure_alignment_enabled=False,
+            alignment_provider="disabled",
+            environment="test",
+            assistant_speech_timeout_seconds=0,
+        )
+
+
+def test_conversation_flash_default_does_not_change_pronunciation_reference() -> None:
+    settings = Settings(_env_file=None, environment="test")
+    assert settings.assistant_speech_voice == "zh-CN-Xiaochen:DragonHDFlashLatestNeural"
+    assert settings.assistant_speech_model_version == "DragonHDFlashLatestNeural"
+    assert settings.reference_speech_voice == "zh-CN-Xiaochen:DragonHDLatestNeural"
+    assert settings.reference_speech_model_version == "DragonHDLatestNeural"
+    overridden = Settings(
+        _env_file=None,
+        assistant_speech_voice="custom-voice",
+        assistant_speech_model_version="custom-model",
+    )
+    assert overridden.assistant_speech_voice == "custom-voice"
+    assert overridden.assistant_speech_model_version == "custom-model"

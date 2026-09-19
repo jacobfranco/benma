@@ -1,4 +1,4 @@
-import { pitchDots } from '@/components/PitchPlot';
+import { pitchDots, pitchSegments } from '@/components/PitchPlot';
 
 describe('pitch plot geometry', () => {
   it('omits unvoiced points instead of drawing a fake contour', () => {
@@ -22,4 +22,11 @@ describe('pitch plot geometry', () => {
       pitchDots([{ timestamp_seconds: 0.1, normalized_semitones: null }], 200, 100),
     ).toEqual([]);
   });
+});
+
+it('groups continuous samples into lines and keeps explicit and temporal gaps', () => {
+  const points = [0, .01, .02, .25, .26].map(t => ({ timestamp_seconds: t, normalized_semitones: t }));
+  expect(pitchSegments(points).map((s: unknown[]) => s.length)).toEqual([3, 2]);
+  const withGap = [points[0]!, { timestamp_seconds: .005, normalized_semitones: null }, points[1]!];
+  expect(pitchSegments(withGap).map((s: unknown[]) => s.length)).toEqual([1, 1]);
 });

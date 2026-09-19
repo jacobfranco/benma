@@ -191,6 +191,14 @@ export interface components {
         "created_at": string;
         "updated_at": string;
       };
+    "ConversationStreamEvent": {
+        "type": "interpretation" | "complete" | "error";
+        "interpretation"?: components["schemas"]["ContextualInterpretationRunResponse"] | null;
+        "result"?: components["schemas"]["FreeTalkTurnResponse"] | null;
+        "interpretation_ms"?: number | null;
+        "generation_ms"?: number | null;
+        "error_code"?: string | null;
+      };
     "ConversationTurnResponse": {
         "id": string;
         "conversation_id": string;
@@ -199,6 +207,8 @@ export interface components {
         "role": "user" | "assistant";
         "assistant_text": string | null;
         "resolved_text": string | null;
+        "perceived_text": string | null;
+        "interpretation_decision": "preserve" | "infer" | "clarify" | null;
         "utterance_id": string | null;
         "perception_run_id": string | null;
         "contextual_interpretation_run_id": string | null;
@@ -209,6 +219,18 @@ export interface components {
     "DevAuthRequest": {
         "phone_number": string;
       };
+    "DisplayContour": {
+        "segments"?: Array<Array<components["schemas"]["DisplayPitchPoint"]>>;
+        "baseline_hz"?: number | null;
+        "minimum_semitones"?: number;
+        "maximum_semitones"?: number;
+        "rejected_points"?: number;
+        "method"?: string;
+      };
+    "DisplayPitchPoint": {
+        "timestamp_seconds": number;
+        "normalized_semitones": number;
+      };
     "ErrorDetail": {
         "code": string;
         "message": string;
@@ -218,6 +240,10 @@ export interface components {
     "ErrorResponse": {
         "error": components["schemas"]["ErrorDetail"];
       };
+    "ExpectedTonePoint": {
+        "position": number;
+        "height": number;
+      };
     "FreeTalkTurnResponse": {
         "id": string;
         "conversation_id": string;
@@ -226,6 +252,8 @@ export interface components {
         "role": "user" | "assistant";
         "assistant_text": string | null;
         "resolved_text": string | null;
+        "perceived_text": string | null;
+        "interpretation_decision": "preserve" | "infer" | "clarify" | null;
         "utterance_id": string | null;
         "perception_run_id": string | null;
         "contextual_interpretation_run_id": string | null;
@@ -249,6 +277,92 @@ export interface components {
       }>;
         "capability_state": string;
         "created_at": string;
+      };
+    "MeasuredPitchPoint": {
+        "timestamp_seconds": number;
+        "f0_hz"?: number | null;
+        "normalized_semitones"?: number | null;
+        "voicing_probability"?: number | null;
+      };
+    "ObservedContour": {
+        "classification"?: "1-like" | "2-like" | "3-like" | "4-like" | "neutral-like" | "unclear";
+        "confidence"?: "moderate" | "low";
+        "reason"?: string;
+        "voiced_coverage"?: number;
+        "features"?: {
+        [key: string]: number;
+      };
+      };
+    "PerceivedAnalysisCreate": {};
+    "PerceivedAnalysisData": {
+        "display_contour"?: components["schemas"]["DisplayContour"] | null;
+        "timings_ms"?: {
+        [key: string]: number;
+      };
+        "syllables": Array<components["schemas"]["PerceivedSyllable"]>;
+        "measured_pitch": Array<components["schemas"]["MeasuredPitchPoint"]>;
+        "duration_seconds": number;
+        "voiced_fraction": number | null;
+        "pitch_status": "available" | "unavailable";
+        "alignment_status": "aligned" | "partial" | "unavailable" | "synthetic";
+        "timing_source"?: string | null;
+        "timing_evidence_id"?: string | null;
+        "timing_coverage"?: number;
+        "unresolved_spans"?: Array<{
+        [key: string]: unknown;
+      }>;
+        "alignment_error_code": string | null;
+        "quality_issues": Array<string>;
+        "observations": Array<string>;
+        "pitch_latency_ms": number | null;
+        "alignment_latency_ms": number;
+        "expected_tone_basis"?: "schematic_lexical_tones" | "conservative_surface_tones";
+        "evidence_status": "synthetic_replay" | "recorded_audio";
+      };
+    "PerceivedReadingResponse": {
+        "perception_run_id": string;
+        "alignment_reference_text": string;
+        "reading_version": string;
+        "surface_version": string;
+        "syllables": Array<components["schemas"]["PerceivedSyllable"]>;
+        "unresolved_spans": Array<{
+        [key: string]: unknown;
+      }>;
+      };
+    "PerceivedSpeechAnalysisResponse": {
+        "id": string;
+        "perception_run_id": string;
+        "utterance_id": string;
+        "alignment_reference_text": string;
+        "reference_kind"?: string;
+        "analyzer_version": string;
+        "status": "succeeded" | "partial" | "failed";
+        "error_code": string | null;
+        "latency_ms": number;
+        "created_at": string;
+        "data": components["schemas"]["PerceivedAnalysisData"];
+      };
+    "PerceivedSyllable": {
+        "index": number;
+        "character_start": number;
+        "character_end": number;
+        "characters": string;
+        "pinyin": string | null;
+        "lexical_tone": 0 | 1 | 2 | 3 | 4 | null;
+        "expected_surface_tone"?: 0 | 1 | 2 | 3 | 4 | null;
+        "expected_surface_shape"?: Array<components["schemas"]["ExpectedTonePoint"]>;
+        "surface_rule"?: string | null;
+        "surface_rule_version"?: string | null;
+        "timing_source"?: string | null;
+        "timing_evidence_id"?: string | null;
+        "reading_source": "perception_token" | "phrase" | "grammar" | "dictionary" | "unresolved";
+        "resolution_confidence"?: "high" | "unresolved";
+        "display_contour"?: components["schemas"]["DisplayContour"] | null;
+        "observed_contour"?: components["schemas"]["ObservedContour"];
+        "alternatives": Array<string>;
+        "start_seconds"?: number | null;
+        "end_seconds"?: number | null;
+        "expected_tone": Array<components["schemas"]["ExpectedTonePoint"]>;
       };
     "PerceptionRunResponse": {
         "id": string;
@@ -307,6 +421,7 @@ export interface components {
         "created_at": string;
       };
     "PronunciationResultResponse": {
+        "display_contour"?: components["schemas"]["DisplayContour"] | null;
         "attempt": components["schemas"]["PronunciationAttemptResponse"];
         "target": components["schemas"]["PronunciationTargetResponse"];
         "recording_audio_url": string;
@@ -324,6 +439,8 @@ export interface components {
       };
       };
     "PronunciationSyllableResult": {
+        "display_contour"?: components["schemas"]["DisplayContour"] | null;
+        "observed_contour"?: components["schemas"]["ObservedContour"];
         "syllable_index": number;
         "characters": string;
         "pinyin": string;

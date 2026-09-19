@@ -1,0 +1,1214 @@
+{
+  "date": "2026-09-18",
+  "scope": "Local user-authorized evaluation; no raw recordings or provider payloads",
+  "new_provider_calls_on_resume": 0,
+  "prior_provider_calls": {
+    "transcription": 15,
+    "azure_alignment": 3
+  },
+  "asr_bakeoff": [
+    {
+      "arm": "A",
+      "model": "gpt-4o-transcribe",
+      "profile": "language-hint-v0",
+      "text": "你好",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 2509,
+      "clip": "clip-1"
+    },
+    {
+      "arm": "B",
+      "model": "gpt-4o-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 1463,
+      "clip": "clip-1"
+    },
+    {
+      "arm": "C",
+      "model": "gpt-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好。",
+      "language": [
+        {
+          "code": "zh"
+        }
+      ],
+      "han_ratio": 1.0,
+      "latency_ms": 2181,
+      "clip": "clip-1"
+    },
+    {
+      "arm": "A",
+      "model": "gpt-4o-transcribe",
+      "profile": "language-hint-v0",
+      "text": "Neal zaigan shima",
+      "language": null,
+      "han_ratio": 0.0,
+      "latency_ms": 1357,
+      "clip": "clip-2"
+    },
+    {
+      "arm": "B",
+      "model": "gpt-4o-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "那宰刚什么。",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 1467,
+      "clip": "clip-2"
+    },
+    {
+      "arm": "C",
+      "model": "gpt-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好，在干什么？",
+      "language": [
+        {
+          "code": "zh"
+        }
+      ],
+      "han_ratio": 1.0,
+      "latency_ms": 788,
+      "clip": "clip-2"
+    },
+    {
+      "arm": "A",
+      "model": "gpt-4o-transcribe",
+      "profile": "language-hint-v0",
+      "text": "Neal Zaidanşma",
+      "language": null,
+      "han_ratio": 0.0,
+      "latency_ms": 836,
+      "clip": "clip-3"
+    },
+    {
+      "arm": "B",
+      "model": "gpt-4o-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你要宰干什么",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 1341,
+      "clip": "clip-3"
+    },
+    {
+      "arm": "C",
+      "model": "gpt-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好，在干什么？",
+      "language": [
+        {
+          "code": "zh"
+        }
+      ],
+      "han_ratio": 1.0,
+      "latency_ms": 1850,
+      "clip": "clip-3"
+    },
+    {
+      "arm": "A",
+      "model": "gpt-4o-transcribe",
+      "profile": "language-hint-v0",
+      "text": "你好，今天我们聊聊周末吧。",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 784,
+      "clip": "clip-4"
+    },
+    {
+      "arm": "B",
+      "model": "gpt-4o-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好，今天我们聊聊周末吧。",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 1790,
+      "clip": "clip-4"
+    },
+    {
+      "arm": "C",
+      "model": "gpt-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好，今天我们聊聊什么吧。",
+      "language": [
+        {
+          "code": "zh"
+        }
+      ],
+      "han_ratio": 1.0,
+      "latency_ms": 853,
+      "clip": "clip-4"
+    },
+    {
+      "arm": "A",
+      "model": "gpt-4o-transcribe",
+      "profile": "language-hint-v0",
+      "text": "你好，今天我",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 701,
+      "clip": "clip-5"
+    },
+    {
+      "arm": "B",
+      "model": "gpt-4o-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好，今天我",
+      "language": null,
+      "han_ratio": 1.0,
+      "latency_ms": 1255,
+      "clip": "clip-5"
+    },
+    {
+      "arm": "C",
+      "model": "gpt-transcribe",
+      "profile": "mandarin-verbatim-v1",
+      "text": "你好，呃，今天我。",
+      "language": [
+        {
+          "code": "zh"
+        }
+      ],
+      "han_ratio": 1.0,
+      "latency_ms": 892,
+      "clip": "clip-5"
+    }
+  ],
+  "pitch_bakeoff": [
+    {
+      "clip": "clip-1",
+      "duration": 1.74,
+      "tracks": {
+        "current": {
+          "metrics": {
+            "voiced": 92,
+            "adjacent_octave_jumps": 6,
+            "max_jump_st": 28.58,
+            "median_hz": 118.1
+          },
+          "latency_ms": 509.7
+        },
+        "unwrap": {
+          "metrics": {
+            "voiced": 92,
+            "adjacent_octave_jumps": 1,
+            "max_jump_st": 28.58,
+            "median_hz": 118.1
+          },
+          "latency_ms": 0.1
+        },
+        "praat": {
+          "metrics": {
+            "voiced": 81,
+            "adjacent_octave_jumps": 1,
+            "max_jump_st": 15.31,
+            "median_hz": 115.6
+          },
+          "latency_ms": 1.7
+        }
+      }
+    },
+    {
+      "clip": "clip-2",
+      "duration": 1.86,
+      "tracks": {
+        "current": {
+          "metrics": {
+            "voiced": 104,
+            "adjacent_octave_jumps": 3,
+            "max_jump_st": 27.86,
+            "median_hz": 110.3
+          },
+          "latency_ms": 558.7
+        },
+        "unwrap": {
+          "metrics": {
+            "voiced": 104,
+            "adjacent_octave_jumps": 1,
+            "max_jump_st": 27.86,
+            "median_hz": 102.2
+          },
+          "latency_ms": 0.1
+        },
+        "praat": {
+          "metrics": {
+            "voiced": 89,
+            "adjacent_octave_jumps": 0,
+            "max_jump_st": 1.99,
+            "median_hz": 109.9
+          },
+          "latency_ms": 2.1
+        }
+      }
+    },
+    {
+      "clip": "clip-3",
+      "duration": 2.22,
+      "tracks": {
+        "current": {
+          "metrics": {
+            "voiced": 106,
+            "adjacent_octave_jumps": 8,
+            "max_jump_st": 17.69,
+            "median_hz": 103.6
+          },
+          "latency_ms": 659.9
+        },
+        "unwrap": {
+          "metrics": {
+            "voiced": 106,
+            "adjacent_octave_jumps": 1,
+            "max_jump_st": 17.69,
+            "median_hz": 56.9
+          },
+          "latency_ms": 0.1
+        },
+        "praat": {
+          "metrics": {
+            "voiced": 105,
+            "adjacent_octave_jumps": 1,
+            "max_jump_st": 12.67,
+            "median_hz": 101.8
+          },
+          "latency_ms": 2.5
+        }
+      }
+    },
+    {
+      "clip": "clip-4",
+      "duration": 5.4,
+      "tracks": {
+        "current": {
+          "metrics": {
+            "voiced": 283,
+            "adjacent_octave_jumps": 1,
+            "max_jump_st": 25.85,
+            "median_hz": 112.7
+          },
+          "latency_ms": 1664.0
+        },
+        "unwrap": {
+          "metrics": {
+            "voiced": 283,
+            "adjacent_octave_jumps": 0,
+            "max_jump_st": 25.85,
+            "median_hz": 112.7
+          },
+          "latency_ms": 0.1
+        },
+        "praat": {
+          "metrics": {
+            "voiced": 277,
+            "adjacent_octave_jumps": 0,
+            "max_jump_st": 1.23,
+            "median_hz": 112.1
+          },
+          "latency_ms": 3.5
+        }
+      }
+    },
+    {
+      "clip": "clip-5",
+      "duration": 8.428875,
+      "tracks": {
+        "current": {
+          "metrics": {
+            "voiced": 421,
+            "adjacent_octave_jumps": 7,
+            "max_jump_st": 41.57,
+            "median_hz": 129.0
+          },
+          "latency_ms": 2578.5
+        },
+        "unwrap": {
+          "metrics": {
+            "voiced": 421,
+            "adjacent_octave_jumps": 3,
+            "max_jump_st": 49.91,
+            "median_hz": 131.1
+          },
+          "latency_ms": 0.2
+        },
+        "praat": {
+          "metrics": {
+            "voiced": 748,
+            "adjacent_octave_jumps": 3,
+            "max_jump_st": 38.89,
+            "median_hz": 60.3
+          },
+          "latency_ms": 4.0
+        }
+      }
+    }
+  ],
+  "real_analyses_saved_azure": [
+    {
+      "duration_seconds": 1.74,
+      "perceived_text": "你好。",
+      "han_ratio": 1.0,
+      "provider": "openai",
+      "model": "gpt-4o-transcribe",
+      "analysis_status": "succeeded",
+      "timing_source": "azure_sapi_syllable",
+      "timing_coverage": 1.0,
+      "timing_status": "aligned",
+      "acoustic_tracker": "praat_autocorrelation",
+      "acoustic_version": "1.1.0-parselmouth-0.4.7-praat-6.1.38",
+      "syllables": [
+        {
+          "characters": "你",
+          "pinyin": "nǐ",
+          "lexical_tone": 3,
+          "expected_surface_tone": 2,
+          "surface_rule": "third_tone_pair",
+          "start_seconds": 0.59,
+          "end_seconds": 1.17,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "2-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.724,
+            "features": {
+              "duration_seconds": 0.58,
+              "raw_voiced_frames": 42.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.786,
+              "start_st": -0.3505,
+              "end_st": 1.9056,
+              "change_st": 2.2561,
+              "range_st": 2.6391,
+              "minimum_position": 0.25,
+              "path_length_st": 3.0221,
+              "frame_path_length_st": 5.8927
+            }
+          }
+        },
+        {
+          "characters": "好",
+          "pinyin": "hǎo",
+          "lexical_tone": 3,
+          "expected_surface_tone": 3,
+          "surface_rule": "third_tone_pair_final",
+          "start_seconds": 1.18,
+          "end_seconds": 1.71,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "tracker_instability",
+            "voiced_coverage": 0.698,
+            "features": {
+              "duration_seconds": 0.53,
+              "raw_voiced_frames": 38.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 15.3104
+            }
+          }
+        }
+      ],
+      "latencies_ms": {
+        "asr": 1629,
+        "acoustic": 46,
+        "alignment": 1,
+        "analysis": 14,
+        "reading_resolution": 3.55,
+        "surface_resolution": 0.077,
+        "display_contour": 0.962,
+        "contour_slicing": 0.036,
+        "quality_gate_and_classification": 0.212,
+        "quality_gate": 0.15,
+        "observed_classification": 0.048,
+        "contour_processing_classification": 1.475,
+        "persistence_flush": 0.033
+      },
+      "validation_wall_ms": 85.28,
+      "original_alignment_provider_ms": 892,
+      "alignment_transport": "saved_live_response",
+      "new_provider_calls": 0
+    },
+    {
+      "duration_seconds": 5.4,
+      "perceived_text": "你好，今天我们聊聊周末吧。",
+      "han_ratio": 1.0,
+      "provider": "openai",
+      "model": "gpt-4o-transcribe",
+      "analysis_status": "succeeded",
+      "timing_source": "azure_sapi_syllable",
+      "timing_coverage": 1.0,
+      "timing_status": "aligned",
+      "acoustic_tracker": "praat_autocorrelation",
+      "acoustic_version": "1.1.0-parselmouth-0.4.7-praat-6.1.38",
+      "syllables": [
+        {
+          "characters": "你",
+          "pinyin": "nǐ",
+          "lexical_tone": 3,
+          "expected_surface_tone": 2,
+          "surface_rule": "third_tone_pair",
+          "start_seconds": 0.77,
+          "end_seconds": 1.22,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "insufficient_voicing",
+            "voiced_coverage": 0.467,
+            "features": {
+              "duration_seconds": 0.45,
+              "raw_voiced_frames": 21.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.7097
+            }
+          }
+        },
+        {
+          "characters": "好",
+          "pinyin": "hǎo",
+          "lexical_tone": 3,
+          "expected_surface_tone": 3,
+          "surface_rule": "third_tone_pair_final",
+          "start_seconds": 1.23,
+          "end_seconds": 1.59,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.722,
+            "features": {
+              "duration_seconds": 0.36,
+              "raw_voiced_frames": 26.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.4635,
+              "start_st": -0.9239,
+              "end_st": -0.9412,
+              "change_st": -0.0173,
+              "range_st": 0.3267,
+              "minimum_position": 0.25,
+              "path_length_st": 0.6707,
+              "frame_path_length_st": 1.9226
+            }
+          }
+        },
+        {
+          "characters": "今",
+          "pinyin": "jīn",
+          "lexical_tone": 1,
+          "expected_surface_tone": 1,
+          "surface_rule": "unchanged",
+          "start_seconds": 1.62,
+          "end_seconds": 1.89,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "ambiguous_shape",
+            "voiced_coverage": 0.593,
+            "features": {
+              "duration_seconds": 0.27,
+              "raw_voiced_frames": 16.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.4746,
+              "start_st": 0.8559,
+              "end_st": -0.8439,
+              "change_st": -1.6998,
+              "range_st": 1.6998,
+              "minimum_position": 1.0,
+              "path_length_st": 1.6998,
+              "frame_path_length_st": 2.8582
+            }
+          }
+        },
+        {
+          "characters": "天",
+          "pinyin": "tiān",
+          "lexical_tone": 1,
+          "expected_surface_tone": 1,
+          "surface_rule": "unchanged",
+          "start_seconds": 1.9,
+          "end_seconds": 2.27,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.784,
+            "features": {
+              "duration_seconds": 0.37,
+              "raw_voiced_frames": 29.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.2282,
+              "start_st": 1.2528,
+              "end_st": 0.5494,
+              "change_st": -0.7034,
+              "range_st": 0.9328,
+              "minimum_position": 0.75,
+              "path_length_st": 1.1623,
+              "frame_path_length_st": 1.753
+            }
+          }
+        },
+        {
+          "characters": "我",
+          "pinyin": "wǒ",
+          "lexical_tone": 3,
+          "expected_surface_tone": 3,
+          "surface_rule": "unchanged",
+          "start_seconds": 2.28,
+          "end_seconds": 2.48,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 1.0,
+            "features": {
+              "duration_seconds": 0.2,
+              "raw_voiced_frames": 20.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.1421,
+              "start_st": 0.4629,
+              "end_st": 0.2176,
+              "change_st": -0.2453,
+              "range_st": 0.4075,
+              "minimum_position": 0.75,
+              "path_length_st": 0.5697,
+              "frame_path_length_st": 0.687
+            }
+          }
+        },
+        {
+          "characters": "们",
+          "pinyin": "men",
+          "lexical_tone": 0,
+          "expected_surface_tone": 0,
+          "surface_rule": "lexical_neutral",
+          "start_seconds": 2.49,
+          "end_seconds": 3.12,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.683,
+            "features": {
+              "duration_seconds": 0.63,
+              "raw_voiced_frames": 43.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.2561,
+              "start_st": 0.2714,
+              "end_st": -0.188,
+              "change_st": -0.4594,
+              "range_st": 0.4594,
+              "minimum_position": 1.0,
+              "path_length_st": 0.518,
+              "frame_path_length_st": 2.1351
+            }
+          }
+        },
+        {
+          "characters": "聊",
+          "pinyin": "liáo",
+          "lexical_tone": 2,
+          "expected_surface_tone": 2,
+          "surface_rule": "unchanged",
+          "start_seconds": 3.28,
+          "end_seconds": 3.91,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "4-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.603,
+            "features": {
+              "duration_seconds": 0.63,
+              "raw_voiced_frames": 38.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.7942,
+              "start_st": 2.4457,
+              "end_st": -0.3309,
+              "change_st": -2.7767,
+              "range_st": 2.7767,
+              "minimum_position": 1.0,
+              "path_length_st": 2.7767,
+              "frame_path_length_st": 6.1992
+            }
+          }
+        },
+        {
+          "characters": "聊",
+          "pinyin": "liáo",
+          "lexical_tone": 2,
+          "expected_surface_tone": 2,
+          "surface_rule": "unchanged",
+          "start_seconds": 3.92,
+          "end_seconds": 4.29,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 1.0,
+            "features": {
+              "duration_seconds": 0.37,
+              "raw_voiced_frames": 37.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.1773,
+              "start_st": -0.2543,
+              "end_st": -0.6524,
+              "change_st": -0.3981,
+              "range_st": 0.3981,
+              "minimum_position": 1.0,
+              "path_length_st": 0.3981,
+              "frame_path_length_st": 1.2246
+            }
+          }
+        },
+        {
+          "characters": "周",
+          "pinyin": "zhōu",
+          "lexical_tone": 1,
+          "expected_surface_tone": 1,
+          "surface_rule": "unchanged",
+          "start_seconds": 4.3,
+          "end_seconds": 4.44,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.786,
+            "features": {
+              "duration_seconds": 0.14,
+              "raw_voiced_frames": 11.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.27,
+              "start_st": 0.5578,
+              "end_st": -0.3854,
+              "change_st": -0.9432,
+              "range_st": 0.9432,
+              "minimum_position": 1.0,
+              "path_length_st": 0.9432,
+              "frame_path_length_st": 1.1483
+            }
+          }
+        },
+        {
+          "characters": "末",
+          "pinyin": "mò",
+          "lexical_tone": 4,
+          "expected_surface_tone": 4,
+          "surface_rule": "unchanged",
+          "start_seconds": 4.45,
+          "end_seconds": 4.55,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "insufficient_voicing",
+            "voiced_coverage": 1.0,
+            "features": {
+              "duration_seconds": 0.1,
+              "raw_voiced_frames": 10.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.7068
+            }
+          }
+        },
+        {
+          "characters": "吧",
+          "pinyin": "ba",
+          "lexical_tone": 0,
+          "expected_surface_tone": 0,
+          "surface_rule": "lexical_neutral",
+          "start_seconds": 4.56,
+          "end_seconds": 4.94,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "insufficient_voicing",
+            "voiced_coverage": 0.368,
+            "features": {
+              "duration_seconds": 0.38,
+              "raw_voiced_frames": 14.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.4145
+            }
+          }
+        }
+      ],
+      "latencies_ms": {
+        "asr": 2211,
+        "acoustic": 72,
+        "alignment": 1,
+        "analysis": 9,
+        "reading_resolution": 0.467,
+        "surface_resolution": 1.062,
+        "display_contour": 1.918,
+        "contour_slicing": 0.141,
+        "quality_gate_and_classification": 0.691,
+        "quality_gate": 0.477,
+        "observed_classification": 0.188,
+        "contour_processing_classification": 3.248,
+        "persistence_flush": 0.022
+      },
+      "validation_wall_ms": 19.778,
+      "original_alignment_provider_ms": 1119,
+      "alignment_transport": "saved_live_response",
+      "new_provider_calls": 0
+    },
+    {
+      "duration_seconds": 8.428875,
+      "perceived_text": "你好，今天我",
+      "han_ratio": 1.0,
+      "provider": "openai",
+      "model": "gpt-4o-transcribe",
+      "analysis_status": "succeeded",
+      "timing_source": "azure_sapi_syllable",
+      "timing_coverage": 1.0,
+      "timing_status": "aligned",
+      "acoustic_tracker": "praat_autocorrelation",
+      "acoustic_version": "1.1.0-parselmouth-0.4.7-praat-6.1.38",
+      "syllables": [
+        {
+          "characters": "你",
+          "pinyin": "nǐ",
+          "lexical_tone": 3,
+          "expected_surface_tone": 2,
+          "surface_rule": "third_tone_pair",
+          "start_seconds": 0.95,
+          "end_seconds": 1.26,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.71,
+            "features": {
+              "duration_seconds": 0.31,
+              "raw_voiced_frames": 22.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.3894,
+              "start_st": 0.6571,
+              "end_st": -0.1831,
+              "change_st": -0.8402,
+              "range_st": 1.2963,
+              "minimum_position": 1.0,
+              "path_length_st": 1.7524,
+              "frame_path_length_st": 2.6058
+            }
+          }
+        },
+        {
+          "characters": "好",
+          "pinyin": "hǎo",
+          "lexical_tone": 3,
+          "expected_surface_tone": 3,
+          "surface_rule": "third_tone_pair_final",
+          "start_seconds": 1.27,
+          "end_seconds": 1.72,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.667,
+            "features": {
+              "duration_seconds": 0.45,
+              "raw_voiced_frames": 30.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.4849,
+              "start_st": -1.5878,
+              "end_st": -1.8632,
+              "change_st": -0.2753,
+              "range_st": 0.2955,
+              "minimum_position": 1.0,
+              "path_length_st": 0.3965,
+              "frame_path_length_st": 2.6129
+            }
+          }
+        },
+        {
+          "characters": "今",
+          "pinyin": "jīn",
+          "lexical_tone": 1,
+          "expected_surface_tone": 1,
+          "surface_rule": "unchanged",
+          "start_seconds": 3.29,
+          "end_seconds": 3.66,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "low_frequency_contamination",
+            "voiced_coverage": 0.459,
+            "features": {
+              "duration_seconds": 0.37,
+              "raw_voiced_frames": 20.0,
+              "contaminated_fraction": 0.15,
+              "maximum_tracker_jump_st": 14.2231
+            }
+          }
+        },
+        {
+          "characters": "天",
+          "pinyin": "tiān",
+          "lexical_tone": 1,
+          "expected_surface_tone": 1,
+          "surface_rule": "unchanged",
+          "start_seconds": 3.67,
+          "end_seconds": 4.28,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "1-like",
+            "confidence": "moderate",
+            "reason": "acoustic_shape_only",
+            "voiced_coverage": 0.656,
+            "features": {
+              "duration_seconds": 0.61,
+              "raw_voiced_frames": 40.0,
+              "contaminated_fraction": 0.0,
+              "maximum_tracker_jump_st": 0.5745,
+              "start_st": 1.1353,
+              "end_st": 0.5385,
+              "change_st": -0.5967,
+              "range_st": 0.9828,
+              "minimum_position": 0.75,
+              "path_length_st": 1.3689,
+              "frame_path_length_st": 3.8592
+            }
+          }
+        },
+        {
+          "characters": "我",
+          "pinyin": "wǒ",
+          "lexical_tone": 3,
+          "expected_surface_tone": 3,
+          "surface_rule": "unchanged",
+          "start_seconds": 4.84,
+          "end_seconds": 5.73,
+          "timing_source": "azure_sapi_syllable",
+          "observed_contour": {
+            "classification": "unclear",
+            "confidence": "low",
+            "reason": "low_frequency_contamination",
+            "voiced_coverage": 0.0,
+            "features": {
+              "duration_seconds": 0.89,
+              "raw_voiced_frames": 61.0,
+              "contaminated_fraction": 1.0,
+              "maximum_tracker_jump_st": 0.5786
+            }
+          }
+        }
+      ],
+      "latencies_ms": {
+        "asr": 1710,
+        "acoustic": 109,
+        "alignment": 1,
+        "analysis": 7,
+        "reading_resolution": 0.227,
+        "surface_resolution": 0.031,
+        "display_contour": 1.284,
+        "contour_slicing": 0.052,
+        "quality_gate_and_classification": 0.422,
+        "quality_gate": 0.334,
+        "observed_classification": 0.075,
+        "contour_processing_classification": 2.016,
+        "persistence_flush": 0.024
+      },
+      "validation_wall_ms": 13.991,
+      "original_alignment_provider_ms": 1503,
+      "alignment_transport": "saved_live_response",
+      "new_provider_calls": 0
+    }
+  ],
+  "browser_fixture_only": {
+    "chromium": "153.0.8010.36",
+    "ungatedStopToChartMs": 378.67250199999944,
+    "analysisUiFrameUpperBoundMs": 88.33308699999998,
+    "layout": {
+      "before": {
+        "x": 309,
+        "y": 348,
+        "width": 822,
+        "height": 270
+      },
+      "afterReply": {
+        "x": 309,
+        "y": 348,
+        "width": 822,
+        "height": 270
+      },
+      "afterAnalysis": {
+        "x": 309,
+        "y": 348,
+        "width": 822,
+        "height": 270
+      },
+      "replyBeforeAnalysis": {
+        "x": 309,
+        "y": 732,
+        "width": 822,
+        "height": 14
+      },
+      "replyAfterAnalysis": {
+        "x": 309,
+        "y": 732,
+        "width": 822,
+        "height": 14
+      },
+      "stableNode": true,
+      "narrowBefore": {
+        "x": 39,
+        "y": 500,
+        "width": 312,
+        "height": 270
+      },
+      "narrowAfter": {
+        "x": 39,
+        "y": 500,
+        "width": 312,
+        "height": 270
+      }
+    },
+    "latencies": [
+      {
+        "path": "/v1/dev/auth",
+        "ms": 2.793452000000002
+      },
+      {
+        "path": "/v1/conversations",
+        "ms": 3.30007999999998
+      },
+      {
+        "path": "/v1/conversations",
+        "ms": 0.7614019999998618
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 128.69015800000034
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 12.989160000000084
+      },
+      {
+        "path": "/v1/perceptions/:id/readings",
+        "ms": 8.850633000000016
+      },
+      {
+        "path": "/v1/conversations/:id/user-turns/stream",
+        "ms": 89.06630899999982
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "ms": 131.1471959999999
+      },
+      {
+        "path": "/v1/assistant-generations/:id/speech",
+        "ms": 49.12448200000017
+      },
+      {
+        "path": "/v1/assistant-speeches/:id/audio",
+        "ms": 5.869139000000359
+      },
+      {
+        "path": "/v1/utterances/:id/audio",
+        "ms": 8.090455999999904
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 121.81661900000017
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 13.528167000000394
+      },
+      {
+        "path": "/v1/conversations/:id/user-turns/stream",
+        "ms": 10.656489999999394
+      },
+      {
+        "path": "/v1/perceptions/:id/readings",
+        "ms": 11.108223999999609
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "ms": 69.91826800000035
+      },
+      {
+        "path": "/v1/assistant-generations/:id/speech",
+        "ms": 52.379329000000325
+      },
+      {
+        "path": "/v1/assistant-speeches/:id/audio",
+        "ms": 5.39888400000018
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 121.28212600000006
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 12.883775000000242
+      },
+      {
+        "path": "/v1/perceptions/:id/readings",
+        "ms": 6.329026999999769
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "ms": 58.91641600000003
+      },
+      {
+        "path": "/v1/utterances/:id/audio",
+        "ms": 13.258931000000302
+      },
+      {
+        "path": "/v1/pronunciation-targets",
+        "ms": 2.3900720000001456
+      },
+      {
+        "path": "/v1/pronunciation-targets/:id/reference-speech",
+        "ms": 11.771931999999651
+      },
+      {
+        "path": "/v1/reference-speech/:id/audio",
+        "ms": 13.094310000000405
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 125.16784700000062
+      },
+      {
+        "path": "/v1/pronunciation-attempts",
+        "ms": 8.471285999999964
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 17.224272000001292
+      },
+      {
+        "path": "/v1/pronunciation-attempts/:id/analyze",
+        "ms": 70.11848499999905
+      },
+      {
+        "path": "/v1/auth/session",
+        "ms": 8.794724999999744
+      }
+    ],
+    "analysisStages": [
+      {
+        "wall": 3,
+        "reading_resolution": 0.315,
+        "surface_resolution": 0.048,
+        "display_contour": 0.57,
+        "contour_slicing": 0,
+        "quality_gate_and_classification": 0,
+        "contour_processing_classification": 0.652,
+        "persistence_flush": 0.021,
+        "pitch": 29,
+        "alignment": 0
+      },
+      {
+        "wall": 52,
+        "reading_resolution": 0.202,
+        "surface_resolution": 0.052,
+        "display_contour": 0.776,
+        "contour_slicing": 0,
+        "quality_gate_and_classification": 0,
+        "contour_processing_classification": 0.871,
+        "persistence_flush": 1.207,
+        "pitch": 47,
+        "alignment": 0
+      },
+      {
+        "wall": 3,
+        "reading_resolution": 0.193,
+        "surface_resolution": 0.048,
+        "display_contour": 0.839,
+        "contour_slicing": 0,
+        "quality_gate_and_classification": 0,
+        "contour_processing_classification": 0.947,
+        "persistence_flush": 0.018,
+        "pitch": 28,
+        "alignment": 0
+      }
+    ],
+    "cleanup": {
+      "live": 0,
+      "tracks": 0,
+      "stored": false
+    },
+    "pageErrors": []
+  },
+  "fresh_acoustic_analysis_first_pass": {
+    "nihao": {
+      "acoustic_ms": 46,
+      "analysis_ms": 62,
+      "request_wall_ms": 128.034
+    },
+    "longer": {
+      "acoustic_ms": 72,
+      "analysis_ms": 83,
+      "request_wall_ms": 91.378
+    },
+    "incomplete": {
+      "acoustic_ms": 109,
+      "analysis_ms": 119,
+      "request_wall_ms": 126.312
+    }
+  },
+  "focused_browser_render": {
+    "scope": "UI rendering only; saved real analysis in mocked responses, fake microphone, fixture API",
+    "nihao": {
+      "expected": [
+        2,
+        3
+      ],
+      "mine": [
+        "2-like",
+        "unclear"
+      ],
+      "reason": "tracker_instability"
+    },
+    "nonHanHeight": 93,
+    "pageErrors": []
+  },
+  "validation": {
+    "api_tests": 290,
+    "postgres_races": 2,
+    "mobile_web_tests": 185,
+    "jest_suites": 20,
+    "benchmark_tests": 96,
+    "ruff": "passed",
+    "strict_mypy": "71 files passed",
+    "typescript": "passed",
+    "eslint": "passed",
+    "exports": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "expo_online_dependency_check": "passed",
+    "schema_parity": "no new upgrade operations",
+    "openapi_idempotent": true,
+    "secret_scan": "passed",
+    "git_diff_check": "passed",
+    "physical_chromium_mic": "not performed",
+    "physical_iphone": "not performed"
+  },
+  "expo_patch_versions": {
+    "expo": "57.0.24",
+    "@expo/metro-runtime": "57.0.16",
+    "expo-constants": "57.0.19",
+    "expo-router": "57.0.22"
+  }
+}

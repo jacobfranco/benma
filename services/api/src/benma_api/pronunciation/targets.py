@@ -14,6 +14,8 @@ from typing import Any, Literal
 from pypinyin import Style, pinyin
 from pypinyin.contrib.tone_convert import to_tone, to_tone3
 
+from benma_api.pronunciation.surface import SURFACE_VERSION, surface_expectations
+
 Tone = Literal[0, 1, 2, 3, 4]
 
 
@@ -38,80 +40,42 @@ def _numeric_syllable(value: str) -> tuple[str, int | None]:
 
 
 def _surface_tones(text: str, lexical: list[int | None]) -> dict[str, Any]:
-    surface = list(lexical)
-    rules: list[dict[str, Any]] = []
-    status = "resolved"
-    notes: list[str] = []
-
-    # Only the canonical two-syllable case is deterministic without a prosodic parser.
-    if len(surface) == 2 and surface == [3, 3]:
-        surface[0] = 2
-        rules.append(
-            {
-                "type": "THIRD_TONE_SANDHI",
-                "syllable_index": 0,
-                "lexical_tone": 3,
-                "expected_surface_tone": 2,
-                "confidence": "high",
-            }
-        )
-    elif len(surface) > 2 and any(
-        surface[index : index + 2] == [3, 3] for index in range(len(surface) - 1)
-    ):
-        status = "context_dependent"
-        notes.append("Longer third-tone sequences require prosodic grouping.")
-
-    characters = list(text)
-    if len(characters) == len(surface):
-        for index, character in enumerate(characters):
-            following = surface[index + 1] if index + 1 < len(surface) else None
-            if character == "不" and lexical[index] == 4 and following == 4:
-                surface[index] = 2
-                rules.append(
-                    {
-                        "type": "BU_BEFORE_TONE_FOUR",
-                        "syllable_index": index,
-                        "lexical_tone": 4,
-                        "expected_surface_tone": 2,
-                        "confidence": "high",
-                    }
-                )
-            if character == "一" and lexical[index] == 1 and following in {1, 2, 3, 4}:
-                expected = 2 if following == 4 else 4
-                surface[index] = expected
-                rules.append(
-                    {
-                        "type": "YI_CONTEXTUAL_ALTERNATION",
-                        "syllable_index": index,
-                        "lexical_tone": 1,
-                        "expected_surface_tone": expected,
-                        "confidence": "high",
-                    }
-                )
-    elif "一" in text or "不" in text:
-        status = "context_dependent"
-        notes.append("Character-to-syllable mapping is not one-to-one for a contextual rule.")
-
-    for index, tone in enumerate(lexical):
-        if tone == 0:
-            rules.append(
-                {
-                    "type": "NEUTRAL_TONE_TARGET",
-                    "syllable_index": index,
-                    "lexical_tone": 0,
-                    "expected_surface_tone": 0,
-                    "confidence": "high",
-                    "shape_grading": "unavailable",
-                }
-            )
-
+    offsets = [i for i, c in enumerate(text) if re.fullmatch(r"[\u3400-\u4dbf\u4e00-\u9fff]", c)]
+    if len(offsets) != len(lexical):
+        return {
+            "lexical_tones": lexical,
+            "expected_surface_tones": None,
+            "status": "context_dependent",
+            "rules": [],
+            "notes": ["Mapping unresolved"],
+            "engine": SURFACE_VERSION,
+            "capability_state": "experimental",
+        }
+    expectations = surface_expectations(text, offsets, lexical)
+    resolved = all(e.tone is not None for e in expectations)
+    names = {
+        "third_tone_pair": "THIRD_TONE_SANDHI",
+        "bu_before_fourth": "BU_BEFORE_TONE_FOUR",
+        "yi_quantity": "YI_CONTEXTUAL_ALTERNATION",
+        "lexical_neutral": "NEUTRAL_TONE_TARGET",
+    }
     return {
         "lexical_tones": lexical,
-        "expected_surface_tones": surface if status == "resolved" else None,
-        "status": status,
-        "rules": rules,
-        "notes": notes,
-        "engine": "benma-surface-tone-v1",
+        "expected_surface_tones": [e.tone for e in expectations] if resolved else None,
+        "status": "resolved" if resolved else "context_dependent",
+        "rules": [
+            {
+                "type": names.get(e.rule, e.rule),
+                "syllable_index": i,
+                "lexical_tone": lexical[i],
+                "expected_surface_tone": e.tone,
+                "confidence": "high" if e.tone is not None else "unresolved",
+            }
+            for i, e in enumerate(expectations)
+            if e.rule != "unchanged"
+        ],
+        "notes": [] if resolved else ["Prosodic or grammatical grouping is unresolved."],
+        "engine": SURFACE_VERSION,
         "capability_state": "experimental",
     }
 
@@ -136,6 +100,10 @@ def parse_mandarin_target(text: str) -> ParsedTarget:
     display: list[str] = []
     for index, group in enumerate(tone3_groups):
         numeric, tone = _numeric_syllable(group[0])
+        if text[index : index + 1] == "一" and numeric in {"yi2", "yi4", "yi5"}:
+            numeric, tone = "yi1", 1
+        elif text[index : index + 1] == "不" and numeric in {"bu2", "bu5"}:
+            numeric, tone = "bu4", 4
         selected.append(numeric)
         tones.append(tone)
         alternatives.append([_numeric_syllable(item)[0] for item in group])

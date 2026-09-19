@@ -291,3 +291,43 @@ def test_openai_rejection_retryability_is_status_based() -> None:
 
     assert error.value.retryable is True
     assert "quota detail" not in error.value.message
+
+
+@pytest.mark.parametrize(
+    ("perceived", "context", "decision", "inferred", "alternatives"),
+    [
+        ("我周末喜欢去公元散步。", {"turns": [{"role": "assistant", "text": "公园还是河边"}]},
+         "infer", "我周末喜欢去公园散步。", []),
+        ("明天去那里。", {"turns": [{"role": "assistant", "text": "图书馆还是游泳馆"}]},
+         "clarify", None, ["图书馆", "游泳馆"]),
+        ("我们可以睡觉一起。", {"turns": []}, "preserve", "我们可以睡觉一起。", []),
+    ],
+)
+def test_general_policy_paths_keep_perception_separate(
+    perceived: str, context: dict[str, Any], decision: str,
+    inferred: str | None, alternatives: list[str],
+) -> None:
+    """Adapter contract regression; live semantic results are in the bounded benchmark."""
+    captured: list[dict[str, Any]] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        body = json.loads(request.content)
+        captured.append(body)
+        return httpx.Response(200, json=_provider_response({
+            "decision": decision, "inferred_text": inferred,
+            "uncertainty": {"level": "low", "rationale": None, "alternatives": alternatives},
+            "clarification_needed": decision == "clarify",
+        }))
+
+    request = _request(perceived=perceived, context=context)
+    result = _interpreter(httpx.MockTransport(handler)).interpret(request)
+    assert result.decision == decision
+    assert request.perceived_transcript == perceived
+    assert json.loads(captured[0]["input"])["perceived_transcript"] == perceived
+    policy = captured[0]["instructions"]
+    assert "one reading clearly dominates" in policy
+    assert "never infer merely to" in policy
+    assert "two different prior options requires clarify" in policy
+    assert "only candidate" in policy
+    # The policy is general; these Mandarin case phrases are exclusively input data.
+    assert perceived not in policy

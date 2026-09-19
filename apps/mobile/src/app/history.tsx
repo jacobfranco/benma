@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { api } from '../api/client';
 import { errorMessage } from '../api/errors';
 import type { Utterance } from '../api/types';
-import { useAuth } from '../auth/AuthProvider';
 import { PlaybackButton } from '../audio/PlaybackButton';
 import {
   Body,
@@ -17,7 +16,6 @@ import {
 } from '../components/Ui';
 
 export default function HistoryScreen() {
-  const { state } = useAuth();
   const [utterances, setUtterances] = useState<Utterance[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -52,9 +50,6 @@ export default function HistoryScreen() {
     };
   }, []);
 
-  const headers =
-    state.phase === 'signed_in' ? { Authorization: `Bearer ${state.token}` } : undefined;
-
   return (
     <Screen>
       <Heading>History / Development</Heading>
@@ -66,7 +61,6 @@ export default function HistoryScreen() {
         <Card key={utterance.id}>
           <Body>Recording {utterances.length - index}</Body>
           <PlaybackButton
-            headers={headers}
             label="Play saved recording"
             uri={api.audioUrl(utterance)}
           />

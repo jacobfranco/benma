@@ -59,10 +59,17 @@ export function AuthProvider({ children }: PropsWithChildren) {
   });
 
   useEffect(() => {
+    let active = true;
     void tokenStorage.get().then((token) => {
+      if (!active) return;
       api.setToken(token);
       dispatch({ type: 'RESTORED', token });
+    }).catch(() => {
+      if (!active) return;
+      api.setToken(null);
+      dispatch({ type: 'FAILED', message: 'Saved session unavailable. Please sign in again.' });
     });
+    return () => { active = false; };
   }, []);
 
   const signIn = useCallback(async (phoneNumber: string) => {
@@ -80,10 +87,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const signOut = useCallback(async () => {
     try {
       await api.revokeSession();
+    } catch {
+      // Local logout still succeeds if the server is unreachable.
     } finally {
       api.setToken(null);
-      await tokenStorage.clear();
-      dispatch({ type: 'SIGNED_OUT' });
+      try { await tokenStorage.clear(); dispatch({ type: 'SIGNED_OUT' }); }
+      catch { dispatch({ type: 'FAILED', message: 'Signed out. Browser storage could not be cleared; clear site data before sharing this device.' }); }
     }
   }, []);
 

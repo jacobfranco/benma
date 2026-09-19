@@ -16,6 +16,7 @@ dependencies = [
   "psycopg[binary]>=3.2,<4",
   "pydantic-settings>=2.10,<3",
   "pypinyin>=0.55,<1",
+  "praat-parselmouth>=0.4.7,<0.5",
   "python-multipart>=0.0.20,<1",
   "sqlalchemy>=2.0.41,<3",
   "uvicorn[standard]>=0.35,<1",
@@ -49,10 +50,13 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 "src/benma_api/auth/service.py" = ["B008"]
 "scripts/assistant_generation_smoke.py" = ["RUF001"]
 "scripts/assistant_speech_smoke.py" = ["RUF001"]
+"scripts/conversation_latency.py" = ["RUF001"]
 "tests/test_assistant_generation.py" = ["RUF001"]
 "tests/test_assistant_generation_provider.py" = ["RUF001"]
 "tests/test_assistant_speech_provider.py" = ["RUF001"]
 "tests/test_conversations.py" = ["RUF001"]
+"tests/test_speech_concurrency.py" = ["RUF001"]
+"tests/test_perceived_speech.py" = ["RUF001"]
 
 [tool.mypy]
 python_version = "3.12"
@@ -61,5 +65,5 @@ files = ["src/benma_api"]
 plugins = ["pydantic.mypy", "sqlalchemy.ext.mypy.plugin"]
 
 [[tool.mypy.overrides]]
-module = ["phonenumbers.*", "pypinyin.*"]
+module = ["phonenumbers.*", "pypinyin.*", "parselmouth.*"]
 ignore_missing_imports = true

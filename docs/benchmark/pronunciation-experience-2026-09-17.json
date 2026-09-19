@@ -1,0 +1,400 @@
+{
+  "scope": "unpaid synthetic/local measurements; see development/pronunciation-learner-experience.md",
+  "microbenchmark": {
+    "reading_cold_ms": 3.182,
+    "reading_warm_ms": 0.131,
+    "pitch_before_ms": 4754.509,
+    "pitch_after_ms": 1123.458,
+    "display_filter_ms": 2.085,
+    "classify_11_synthetic_slices_ms": 0.618,
+    "raw_f0_identical": true,
+    "frames": 357,
+    "fixture_duration_seconds": 3.6
+  },
+  "service": {
+    "reading_ms": 3.2218500000453787,
+    "pitch_ms": 1162,
+    "alignment_ms": 0,
+    "contour_ms": 2.574493999418337,
+    "persistence_commit_ms": 1.343,
+    "total_ms": 1173.396,
+    "asgi_request_total_ms": 1181.869,
+    "persisted_reuse_request_ms": 5.697,
+    "stage_ms": {
+      "reading_resolution": 3.222,
+      "contour_processing_classification": 2.574,
+      "persistence_flush": 1.954
+    },
+    "evidence": "3.6-second generated harmonic, synthetic perception and replay alignment; SQLite ASGI transport"
+  },
+  "browser": {
+    "chromium": "153.0.8010.36",
+    "stopToChartMs": 1097.109481,
+    "ungatedStopToChartMs": 739.3175839999994,
+    "analysisUiFrameUpperBoundMs": 61.04308500000025,
+    "layout": {
+      "before": {
+        "x": 309,
+        "y": 348,
+        "width": 822,
+        "height": 270
+      },
+      "afterReply": {
+        "x": 309,
+        "y": 348,
+        "width": 822,
+        "height": 270
+      },
+      "afterAnalysis": {
+        "x": 309,
+        "y": 348,
+        "width": 822,
+        "height": 270
+      },
+      "replyBeforeAnalysis": {
+        "x": 309,
+        "y": 732,
+        "width": 822,
+        "height": 14
+      },
+      "replyAfterAnalysis": {
+        "x": 309,
+        "y": 732,
+        "width": 822,
+        "height": 14
+      },
+      "stableNode": true,
+      "narrowBefore": {
+        "x": 39,
+        "y": 500,
+        "width": 312,
+        "height": 270
+      },
+      "narrowAfter": {
+        "x": 39,
+        "y": 500,
+        "width": 312,
+        "height": 270
+      }
+    },
+    "latencies": [
+      {
+        "path": "/v1/dev/auth",
+        "ms": 2.6751230000000987
+      },
+      {
+        "path": "/v1/conversations",
+        "ms": 0.9028430000000753
+      },
+      {
+        "path": "/v1/conversations",
+        "ms": 0.8349539999999251
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 124.9340360000001
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 5.955229000000145
+      },
+      {
+        "path": "/v1/conversations/:id/user-turns/stream",
+        "ms": 79.71836200000007
+      },
+      {
+        "path": "/v1/assistant-generations/:id/speech",
+        "ms": 95.84667899999977
+      },
+      {
+        "path": "/v1/assistant-speeches/:id/audio",
+        "ms": 102.55163399999992
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "ms": 589.2181529999998
+      },
+      {
+        "path": "/v1/utterances/:id/audio",
+        "ms": 4.891866000000846
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 128.02149700000064
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 6.389654999999948
+      },
+      {
+        "path": "/v1/conversations/:id/user-turns/stream",
+        "ms": 9.310934000000088
+      },
+      {
+        "path": "/v1/assistant-generations/:id/speech",
+        "ms": 312.89806599999974
+      },
+      {
+        "path": "/v1/assistant-speeches/:id/audio",
+        "ms": 98.48185000000012
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "ms": 476.17647399999987
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 120.68891500000063
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 6.120589000000109
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "ms": 491.15252800000053
+      },
+      {
+        "path": "/v1/utterances/:id/audio",
+        "ms": 8.095234000000346
+      },
+      {
+        "path": "/v1/pronunciation-targets",
+        "ms": 2.2137190000012197
+      },
+      {
+        "path": "/v1/pronunciation-targets/:id/reference-speech",
+        "ms": 7.8793989999994665
+      },
+      {
+        "path": "/v1/reference-speech/:id/audio",
+        "ms": 28.345608999999968
+      },
+      {
+        "path": "/v1/utterances",
+        "ms": 123.41627599999993
+      },
+      {
+        "path": "/v1/pronunciation-attempts",
+        "ms": 9.2667849999998
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "ms": 10.184720000001107
+      },
+      {
+        "path": "/v1/pronunciation-attempts/:id/analyze",
+        "ms": 445.25822000000153
+      },
+      {
+        "path": "/v1/auth/session",
+        "ms": 12.257869000000937
+      }
+    ],
+    "analysisStages": [
+      {
+        "wall": 470,
+        "reading_resolution": 0.194,
+        "contour_processing_classification": 1.129,
+        "persistence_flush": 1.018,
+        "pitch": 466,
+        "alignment": 0
+      },
+      {
+        "wall": 457,
+        "reading_resolution": 0.208,
+        "contour_processing_classification": 1.136,
+        "persistence_flush": 1.347,
+        "pitch": 452,
+        "alignment": 0
+      },
+      {
+        "wall": 432,
+        "reading_resolution": 0.2,
+        "contour_processing_classification": 1.032,
+        "persistence_flush": 0.899,
+        "pitch": 428,
+        "alignment": 0
+      }
+    ],
+    "uploads": [
+      {
+        "status": 201,
+        "id": "441d0a53-9cdb-495b-a64c-743fe32cbfc6",
+        "kind": "original",
+        "mime_type": "audio/webm",
+        "sha256": "16c50ba1cb69d740671ca5c4cc7b6e734bfa0f957e9d39162b32d7bb02debd05",
+        "size_bytes": 24446,
+        "sample_rate_hz": 48000,
+        "channels": 1,
+        "sample_width_bits": null,
+        "duration_seconds": 1.44
+      },
+      {
+        "status": 201,
+        "id": "57a72929-bfea-485e-aac1-ae582e205931",
+        "kind": "original",
+        "mime_type": "audio/webm",
+        "sha256": "39b0a61abc218f646c9c2113fee510dfd2a81ec511c45091cff5cc1cc49d61c1",
+        "size_bytes": 23480,
+        "sample_rate_hz": 48000,
+        "channels": 1,
+        "sample_width_bits": null,
+        "duration_seconds": 1.38
+      },
+      {
+        "status": 201,
+        "id": "9d38ba16-8333-4a5f-9dc6-a881b551f07a",
+        "kind": "original",
+        "mime_type": "audio/webm",
+        "sha256": "b527acbb4746a3df27deed6e4c0f03d68e7301a7d4b37fac93a49ee30d789d01",
+        "size_bytes": 23480,
+        "sample_rate_hz": 48000,
+        "channels": 1,
+        "sample_width_bits": null,
+        "duration_seconds": 1.38
+      },
+      {
+        "status": 201,
+        "id": "4c0bbe31-1183-4c58-ad6d-e445c1081c3b",
+        "kind": "original",
+        "mime_type": "audio/webm",
+        "sha256": "e5cd24a57a1976571b42bcd4abf63c5f45b5c64a59835d753fa807c64d395585",
+        "size_bytes": 23480,
+        "sample_rate_hz": 48000,
+        "channels": 1,
+        "sample_width_bits": null,
+        "duration_seconds": 1.38
+      }
+    ],
+    "downloads": 5,
+    "events": [
+      {
+        "path": "/v1/dev/auth",
+        "status": 200
+      },
+      {
+        "path": "/v1/conversations",
+        "status": 201
+      },
+      {
+        "path": "/v1/conversations",
+        "status": 201
+      },
+      {
+        "path": "/v1/utterances",
+        "status": 201
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "status": 201
+      },
+      {
+        "path": "/v1/conversations/:id/user-turns/stream",
+        "status": 200
+      },
+      {
+        "path": "/v1/assistant-generations/:id/speech",
+        "status": 201
+      },
+      {
+        "path": "/v1/assistant-speeches/:id/audio",
+        "status": 200
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "status": 200
+      },
+      {
+        "path": "/v1/utterances/:id/audio",
+        "status": 200
+      },
+      {
+        "path": "/v1/utterances",
+        "status": 201
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "status": 201
+      },
+      {
+        "path": "/v1/conversations/:id/user-turns/stream",
+        "status": 200
+      },
+      {
+        "path": "/v1/assistant-generations/:id/speech",
+        "status": 201
+      },
+      {
+        "path": "/v1/assistant-speeches/:id/audio",
+        "status": 200
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "status": 200
+      },
+      {
+        "path": "/v1/utterances",
+        "status": 201
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "status": 201
+      },
+      {
+        "path": "/v1/perceptions/:id/speech-analysis",
+        "status": 200
+      },
+      {
+        "path": "/v1/utterances/:id/audio",
+        "status": 200
+      },
+      {
+        "path": "/v1/pronunciation-targets",
+        "status": 201
+      },
+      {
+        "path": "/v1/pronunciation-targets/:id/reference-speech",
+        "status": 200
+      },
+      {
+        "path": "/v1/reference-speech/:id/audio",
+        "status": 200
+      },
+      {
+        "path": "/v1/utterances",
+        "status": 201
+      },
+      {
+        "path": "/v1/pronunciation-attempts",
+        "status": 201
+      },
+      {
+        "path": "/v1/utterances/:id/perceptions",
+        "status": 201
+      },
+      {
+        "path": "/v1/pronunciation-attempts/:id/analyze",
+        "status": 200
+      },
+      {
+        "path": "/v1/auth/session",
+        "status": 204
+      }
+    ],
+    "cleanup": {
+      "live": 0,
+      "tracks": 0,
+      "stored": false
+    },
+    "pageErrors": []
+  },
+  "real_microphone_capture": {
+    "realDeviceCapture": true,
+    "bytes": 15752,
+    "mimeType": "audio/webm;codecs=opus",
+    "sampleRate": 48000,
+    "channels": 1,
+    "spokenMandarinValidation": false
+  }
+}

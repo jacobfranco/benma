@@ -32,8 +32,13 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
 - `BENMA_ASSESSMENT_PROVIDER`: `disabled`, `replay`, `azure`, `tencent_sentence`,
   `tencent_pinyin`, or `iflytek`.
 - `BENMA_REFERENCE_SPEECH_PROVIDER`: `disabled`, `replay`, or `azure`.
-- `BENMA_ACOUSTIC_PROVIDER`: dependency-free `autocorrelation` or `disabled`.
-- `BENMA_ALIGNMENT_PROVIDER`: `disabled`, development `replay`, or optional `mfa`.
+- `BENMA_ACOUSTIC_PROVIDER`: `praat` (default), dependency-free `autocorrelation`, or `disabled`.
+- `BENMA_ALIGNMENT_PROVIDER`: `auto` (default), `azure`, `mfa`, `replay`, or `disabled`.
+  Auto uses Azure only with `BENMA_AZURE_ALIGNMENT_ENABLED=true` and configured credentials;
+  explicit `azure` also opts in. Disabled never requests Azure timing. The current local `.env`
+  opts into Azure timing; `.env.example` keeps paid timing off until explicitly enabled.
+- `BENMA_ALIGNMENT_TIMEOUT_SECONDS`: 12 by default. Azure short-audio timing supports up to 30s;
+  longer recordings retain text and pitch with timing unavailable.
 - `BENMA_CONTEXTUAL_INTERPRETATION_PROVIDER`: `disabled` or `openai`.
 - `BENMA_OPENAI_CONTEXTUAL_INTERPRETATION_MODEL`,
   `BENMA_OPENAI_CONTEXTUAL_INTERPRETATION_REASONING_EFFORT`, and
@@ -54,6 +59,31 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
 
 The application refuses production startup with development auth enabled and refuses configured
 live providers without their required credentials. It never silently selects replay.
+
+## Development web CORS
+
+In `development`, browser requests are allowed from `http://localhost:8081` and
+`http://127.0.0.1:8081`. Add other exact frontend origins through a JSON array in the API's
+`services/api/.env`, then restart the API. For example, for the current Expo LAN address:
+
+```dotenv
+BENMA_CORS_ALLOWED_ORIGINS=["http://192.168.68.59:8081"]
+```
+
+Use the origin of the **Expo page in the browser**, including its port, rather than the API URL.
+This LAN address is an example, not a built-in allowlist entry. HTTPS origins are also supported.
+Paths, query strings, fragments, embedded credentials, and wildcard origins are rejected.
+Host names and default ports are normalized; a trailing root slash is optional.
+
+`test` and `production` have no implicit origins: only `BENMA_CORS_ALLOWED_ORIGINS` entries apply.
+Keep it empty in production unless cross-origin browser access is intended. The middleware permits
+GET, POST, and DELETE, handles OPTIONS preflight without authentication, and allows Authorization
+and Content-Type plus the browser's standard safelisted headers. Only development exposes the
+existing Server-Timing response header. Cookie credentials and wildcard matching remain disabled.
+
+CORS does not grant API access: protected routes still require a valid bearer token, and development
+auth remains unavailable in production. Requests without an Origin header (including native/API
+clients) continue through the existing routes unchanged.
 
 ## Audio lifecycle
 
@@ -77,6 +107,7 @@ POST   /v1/conversations
 GET    /v1/conversations/{id}
 GET    /v1/conversations/{id}/turns
 POST   /v1/conversations/{id}/user-turns
+POST   /v1/conversations/{id}/user-turns/stream
 GET    /v1/assistant-generations/{id}
 POST   /v1/assistant-generations/{id}/speech
 GET    /v1/assistant-speeches/{id}
@@ -88,6 +119,10 @@ GET    /v1/utterances
 GET    /v1/utterances/{id}
 GET    /v1/utterances/{id}/audio
 POST   /v1/utterances/{id}/perceptions
+POST   /v1/utterances/{id}/acoustics
+POST   /v1/perceptions/{id}/speech-analysis
+GET    /v1/perceived-speech-analyses/{id}
+GET    /v1/perceptions/{id}/readings
 GET    /v1/perceptions/{id}
 POST   /v1/perceptions/{id}/contextual-interpretations
 GET    /v1/contextual-interpretations/{id}
@@ -108,12 +143,49 @@ POST   /v1/pronunciation-attempts/compare
 
 There are no generic PATCH or DELETE routes for evidence.
 
-The Free Talk user-turn response retains the created user turn fields and includes the generated
-`assistant_turn`. Assistant turns expose the latest append-only speech attempt, including its
-status, provenance, audio metadata, and authenticated playback URL. Text and generation evidence
-are committed before speech synthesis; a failed speech attempt therefore returns usable assistant
-text with explicit failure metadata. Retrying the generation-scoped speech route appends evidence
-and never accepts client-supplied text.
+The Conversation user-turn response includes immutable `perceived_text`, the explicit
+`interpretation_decision`, downstream `resolved_text`, and the persisted `assistant_turn`.
+It returns text without invoking TTS or constructing a speech provider. The client then POSTs `{}`
+to `/v1/assistant-generations/{id}/speech`; the server loads its exact persisted text. Every speech
+attempt appends evidence, including failures. Listing turns exposes the latest attempt. The client
+can keep talking after voice failure and can request another speech attempt without providing text.
+Development responses expose numeric interpretation/generation timings in `Server-Timing`;
+production responses omit this development header.
+
+The `/user-turns/stream` variant emits typed NDJSON interpretation progress and the committed
+reply through the same service transaction; it does not combine the two model calls. Progress is
+provisional until persistence succeeds, and response failures reconcile from durable turns.
+`POST /perceptions/{id}/speech-analysis` receives only `{}`. It uses the exact persisted perceived
+transcript as an alignment reference, independently of meaning/generation. It appends a
+`PerceivedSpeechAnalysis` tied to the audio and `AcousticRun`, never a `PronunciationTarget`.
+Structured pitch, separate lexical/surface-tone expectations, readings, timing, and availability markers feed the shared
+mobile chart. Unavailable alignment or uncertain readings do not suppress measured pitch.
+See [semantics, provenance, and limitations](../../docs/development/perceived-speech-analysis.md).
+
+The [2026-09-18 evidence report](../../docs/development/perception-alignment-pitch-2026-09-18.md)
+documents the fixed server-owned Mandarin transcription profile, exact-text Azure offsets,
+Praat quality gates, and real 你好 results. Raw acoustics start alongside ASR; PostgreSQL locks
+make warmup and foreground requests reuse the same versioned acoustic evidence. Readings can
+load before alignment, and neither optional branch blocks the assistant response.
+
+Read-only development diagnostics (latest utterance, or supply `--utterance-id UUID`):
+
+```sh
+uv run python -m benma_api.pronunciation.diagnostic
+```
+
+This command makes no provider requests. It prints only the local transcript, readings,
+lexical/surface tones, real spans, quality metrics, Mine labels and recorded stage latencies.
+Optional analysis has a separate bounded worker budget from upload/perception/TTS. Known-target
+analysis prepares owned inputs on one database session, computes provider/acoustic/alignment
+branches concurrently, then persists exact evidence IDs on that same session. PostgreSQL
+`FOR NO KEY UPDATE` serializes utterance analysis reuse without blocking perception FK inserts.
+See the [implemented DAG and validation report](../../docs/development/speech-concurrency-playback.md).
+
+Conversational speech defaults to `zh-CN-Xiaochen:DragonHDFlashLatestNeural`, configurable through
+`BENMA_ASSISTANT_SPEECH_VOICE` and `BENMA_ASSISTANT_SPEECH_MODEL_VERSION`. Pronunciation reference
+speech retains its separate DragonHD default. OpenAI model/effort defaults remain unchanged after
+the small [latency evaluation](../../docs/development/conversation-practice.md).
 
 Clarification generation receives an explicit `clarification_alternatives` allowlist derived only
 from persisted contextual-interpretation alternatives. Structured provider output must declare

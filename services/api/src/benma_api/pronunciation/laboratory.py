@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 
 from sqlalchemy import select
@@ -18,17 +20,27 @@ from benma_api.db.models import (
     PronunciationTarget,
     ReferenceSpeechAsset,
 )
-from benma_api.errors import AuthorizationError, BenmaError
+from benma_api.errors import AuthorizationError
 from benma_api.pronunciation.acoustics import (
     AcousticAnalysisService,
-    AutocorrelationAcousticAnalyzer,
-    DisabledAcousticAnalyzer,
+    build_acoustic_analyzer,
 )
-from benma_api.pronunciation.alignment import AlignmentService, build_aligner
+from benma_api.pronunciation.alignment import (
+    AlignmentService,
+    build_aligner,
+    syllable_labels_match,
+    validate_alignment,
+)
 from benma_api.pronunciation.capabilities import pronunciation_capability_policy
+from benma_api.pronunciation.contours import (
+    classify_contour,
+    display_contour,
+    simplify_display,
+    syllable_contour,
+)
 from benma_api.pronunciation.interpretation import PronunciationInterpretationService
 from benma_api.pronunciation.reference import ReferenceSpeechService
-from benma_api.pronunciation.service import AssessmentService
+from benma_api.pronunciation.service import AssessmentService, log_assessment
 from benma_api.schemas import (
     AcousticRunResponse,
     AlignmentRunResponse,
@@ -42,6 +54,9 @@ from benma_api.schemas import (
 )
 from benma_api.speech.providers.factory import build_assessment_provider
 from benma_api.storage.audio_store import AudioObjectStore
+
+# Bounded pure provider work; ORM access and all commits stay on the caller thread.
+ANALYSIS_WORKERS = ThreadPoolExecutor(max_workers=3, thread_name_prefix="speech-analysis")
 
 
 def _latest[RunT](db: Session, model: type[RunT], *criteria: Any) -> RunT | None:
@@ -68,7 +83,14 @@ def reference_response(asset: ReferenceSpeechAsset) -> ReferenceSpeechResponse:
             if asset.status == "succeeded" and asset.audio_asset_id
             else None
         ),
-        acoustic_result=asset.acoustic_result,
+        acoustic_result={
+            **asset.acoustic_result,
+            "display_contour": simplify_display(
+                display_contour(asset.acoustic_result.get("f0", []))
+            ).model_dump(mode="json"),
+        }
+        if asset.acoustic_result
+        else None,
         created_at=asset.created_at,
     )
 
@@ -170,9 +192,7 @@ def _pitch_slice(
         start = float(unit["start_seconds"])
         end = float(unit["end_seconds"])
         selected = [
-            point
-            for point in points
-            if start <= float(point.get("timestamp_seconds", -1)) <= end
+            point for point in points if start <= float(point.get("timestamp_seconds", -1)) <= end
         ]
     values = [
         float(point["normalized_semitones"])
@@ -209,7 +229,19 @@ class PronunciationLaboratoryService:
         rerun_acoustics: bool,
         rerun_alignment: bool,
     ) -> PronunciationResultResponse:
-        attempt = self._attempt(account_id, attempt_id)
+        started = time.perf_counter()
+        # Lock through the final interpretation commit. Duplicate analyze requests
+        # recheck reuse after the first transaction, before any provider submission.
+        attempt = self.db.scalar(
+            select(PronunciationAttempt)
+            .where(
+                PronunciationAttempt.id == attempt_id,
+                PronunciationAttempt.account_id == account_id,
+            )
+            .with_for_update()
+        )
+        if attempt is None:
+            raise AuthorizationError("pronunciation attempt was not found")
         assessment = None
         if reuse_existing and not rerun_provider:
             assessment = _latest(
@@ -219,49 +251,61 @@ class PronunciationLaboratoryService:
                 AssessmentRun.pronunciation_attempt_id == attempt_id,
                 AssessmentRun.status == "succeeded",
             )
-        if assessment is None:
-            try:
-                assessment = AssessmentService(
-                    self.db, self.store, build_assessment_provider(self.settings)
-                ).run(account_id=account_id, attempt_id=attempt_id, timeout_seconds=30)
-            except BenmaError:
-                assessment = _latest(
-                    self.db,
-                    AssessmentRun,
-                    AssessmentRun.account_id == account_id,
-                    AssessmentRun.pronunciation_attempt_id == attempt_id,
-                )
-
-        analyzer = (
-            AutocorrelationAcousticAnalyzer()
-            if self.settings.acoustic_provider == "autocorrelation"
-            else DisabledAcousticAnalyzer()
+        assessment_work = (
+            None
+            if assessment
+            else AssessmentService(
+                self.db, self.store, build_assessment_provider(self.settings)
+            ).prepare(account_id=account_id, attempt_id=attempt_id, timeout_seconds=30)
         )
-        acoustic = AcousticAnalysisService(self.db, self.store, analyzer).run(
+        analyzer = build_acoustic_analyzer(self.settings)
+        acoustic_work = AcousticAnalysisService(self.db, self.store, analyzer).prepare(
             account_id=account_id,
             utterance_id=attempt.utterance_id,
             reuse=reuse_existing and not rerun_acoustics,
         )
-        alignment = AlignmentService(
+        alignment_work = AlignmentService(
             self.db, self.store, build_aligner(self.settings)
-        ).run(
+        ).prepare(
             account_id=account_id,
             attempt_id=attempt_id,
             reuse=reuse_existing and not rerun_alignment,
         )
-        PronunciationInterpretationService(self.db, self.settings).run(
+        # Only immutable requests, bytes/paths, and provider configuration enter
+        # workers. Completion order never selects the evidence used for derivation.
+        assessment_future = ANALYSIS_WORKERS.submit(assessment_work) if assessment_work else None
+        acoustic_future = ANALYSIS_WORKERS.submit(acoustic_work)
+        alignment_future = ANALYSIS_WORKERS.submit(alignment_work)
+        if assessment_future:
+            assessment, _ = assessment_future.result()
+            self.db.add(assessment)
+        acoustic = acoustic_future.result()
+        alignment = alignment_future.result()
+        self.db.add_all([acoustic, alignment])
+        self.db.flush()
+        derived = PronunciationInterpretationService(self.db, self.settings).run(
             account_id=account_id,
             attempt_id=attempt_id,
             assessment=assessment,
             acoustic=acoustic,
             alignment=alignment,
-            reuse=reuse_existing
-            and not (rerun_provider or rerun_acoustics or rerun_alignment),
+            reuse=reuse_existing and not (rerun_provider or rerun_acoustics or rerun_alignment),
         )
-        return self.result(account_id=account_id, attempt_id=attempt_id)
+        self.db.commit()  # Also release locks when an existing interpretation was reused.
+        if assessment_future and assessment is not None:
+            log_assessment(assessment)
+        result = self.result(
+            account_id=account_id, attempt_id=attempt_id, interpretation_id=derived.id
+        )
+        result.overall_evidence["analysis_wall_ms"] = round((time.perf_counter() - started) * 1000)
+        return result
 
     def result(
-        self, *, account_id: uuid.UUID, attempt_id: uuid.UUID
+        self,
+        *,
+        account_id: uuid.UUID,
+        attempt_id: uuid.UUID,
+        interpretation_id: uuid.UUID | None = None,
     ) -> PronunciationResultResponse:
         attempt = self._attempt(account_id, attempt_id)
         target = self.db.get(PronunciationTarget, attempt.target_id)
@@ -291,6 +335,42 @@ class PronunciationLaboratoryService:
             PronunciationInterpretationRun.account_id == account_id,
             PronunciationInterpretationRun.pronunciation_attempt_id == attempt_id,
         )
+        if interpretation_id is not None:
+            interpretation = self.db.get(PronunciationInterpretationRun, interpretation_id)
+            if (
+                interpretation is None
+                or interpretation.account_id != account_id
+                or interpretation.pronunciation_attempt_id != attempt_id
+            ):
+                raise AuthorizationError("pronunciation interpretation was not found")
+        if interpretation is not None:
+            evidence = interpretation.input_evidence_run_ids
+            assessment = (
+                self.db.get(AssessmentRun, uuid.UUID(evidence["assessment_run_id"]))
+                if evidence.get("assessment_run_id")
+                else None
+            )
+            acoustic = (
+                self.db.get(AcousticRun, uuid.UUID(evidence["acoustic_run_id"]))
+                if evidence.get("acoustic_run_id")
+                else None
+            )
+            alignment = (
+                self.db.get(AlignmentRun, uuid.UUID(evidence["alignment_run_id"]))
+                if evidence.get("alignment_run_id")
+                else None
+            )
+            if any(
+                run is not None and run.account_id != account_id
+                for run in (assessment, acoustic, alignment)
+            ):
+                raise AuthorizationError("pronunciation evidence was not found")
+            if (
+                (assessment is not None and assessment.pronunciation_attempt_id != attempt_id)
+                or (acoustic is not None and acoustic.utterance_id != attempt.utterance_id)
+                or (alignment is not None and alignment.pronunciation_attempt_id != attempt_id)
+            ):
+                raise AuthorizationError("pronunciation evidence lineage was not found")
         reference = self.db.scalar(
             select(ReferenceSpeechAsset)
             .where(
@@ -313,7 +393,41 @@ class PronunciationLaboratoryService:
         observations = interpretation.structured_observations if interpretation else []
         expectation = target.surface_tone_expectation or {}
         surface = expectation.get("expected_surface_tones")
-        surface_tones = surface if isinstance(surface, list) else target.lexical_tones
+        surface_tones = surface if isinstance(surface, list) else [None] * len(target.lexical_tones)
+        raw_pitch = (acoustic.normalized_result or {}).get("f0", []) if acoustic else []
+        display = display_contour(raw_pitch)
+        timing_usable = bool(
+            alignment
+            and alignment.normalized_result
+            and alignment.normalized_result.get("quality", {}).get(
+                "usable_for_syllable_visualization"
+            )
+            and alignment.normalized_result.get("evidence_status") != "synthetic_replay"
+        )
+        characters = [str(unit.get("characters", "")) for unit in target.syllable_units]
+        timing_usable = timing_usable and syllable_labels_match(
+            alignment_units, characters, target.pinyin_syllables
+        )
+        # Reuse real provider syllable/one-character word timestamps when forced
+        # alignment is absent. Multi-character word spans are never partitioned.
+        if not timing_usable and assessment and assessment.normalized_result and acoustic:
+            provider_units = [
+                {"label": item.get("text", ""), **item["timing"], "source": "assessment"}
+                for item in assessment_syllables
+                if isinstance(item, dict)
+                and isinstance(item.get("timing"), dict)
+                and isinstance(item["timing"].get("start_seconds"), (int, float))
+                and isinstance(item["timing"].get("end_seconds"), (int, float))
+            ]
+            duration = (acoustic.normalized_result or {}).get("duration_seconds", 0)
+            if (
+                assessment.normalized_result.get("evidence_status") != "synthetic_replay"
+                and syllable_labels_match(provider_units, characters, target.pinyin_syllables)
+                and validate_alignment(
+                    provider_units, target_count=len(characters), duration_seconds=duration
+                )["usable_for_syllable_visualization"]
+            ):
+                alignment_units, timing_usable = provider_units, True
         syllables: list[PronunciationSyllableResult] = []
         for index, pinyin in enumerate(target.pinyin_syllables):
             unit = target.syllable_units[index] if index < len(target.syllable_units) else {}
@@ -331,12 +445,28 @@ class PronunciationLaboratoryService:
                 (item for item in observations if item.get("syllable_index") == index), None
             )
             rules = [
-                rule
-                for rule in expectation.get("rules", [])
-                if rule.get("syllable_index") == index
+                rule for rule in expectation.get("rules", []) if rule.get("syllable_index") == index
             ]
+            slice_display = (
+                syllable_contour(display, timing["start_seconds"], timing["end_seconds"])
+                if timing_usable and isinstance(timing, dict)
+                else None
+            )
             syllables.append(
                 PronunciationSyllableResult(
+                    display_contour=simplify_display(slice_display) if slice_display else None,
+                    **(
+                        {
+                            "observed_contour": classify_contour(
+                                slice_display,
+                                timing["start_seconds"],
+                                timing["end_seconds"],
+                                raw=raw_pitch,
+                            )
+                        }
+                        if slice_display is not None and isinstance(timing, dict)
+                        else {}
+                    ),
                     syllable_index=index,
                     characters=str(unit.get("characters", target.text[index : index + 1])),
                     pinyin=pinyin,
@@ -372,7 +502,7 @@ class PronunciationLaboratoryService:
                 if acoustic and acoustic.normalized_result
                 else None
             ),
-            "pipeline_latency_ms": sum(
+            "provider_compute_sum_ms": sum(
                 value
                 for value in (
                     assessment.latency_ms if assessment else None,
@@ -383,6 +513,7 @@ class PronunciationLaboratoryService:
             ),
         }
         return PronunciationResultResponse(
+            display_contour=simplify_display(display),
             attempt=PronunciationAttemptResponse.model_validate(attempt),
             target=PronunciationTargetResponse.model_validate(target),
             recording_audio_url=f"/v1/utterances/{attempt.utterance_id}/audio",
@@ -392,9 +523,7 @@ class PronunciationLaboratoryService:
             assessment=assessment_response(assessment) if assessment else None,
             acoustic=acoustic_response(acoustic) if acoustic else None,
             alignment=alignment_response(alignment) if alignment else None,
-            interpretation=(
-                interpretation_response(interpretation) if interpretation else None
-            ),
+            interpretation=(interpretation_response(interpretation) if interpretation else None),
             capability_policy=pronunciation_capability_policy(self.settings),
         )
 

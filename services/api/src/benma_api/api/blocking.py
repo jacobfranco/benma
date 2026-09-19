@@ -9,6 +9,7 @@ from anyio import CapacityLimiter, to_thread
 from benma_api.config import Settings
 
 BLOCKING_SPEECH_LIMITER = CapacityLimiter(2)
+OPTIONAL_ANALYSIS_LIMITER = CapacityLimiter(2)
 
 
 async def run_bounded_speech_work[ResultT](
@@ -24,3 +25,12 @@ async def run_bounded_speech_work[ResultT](
     if settings.environment == "test":
         return operation()
     return await to_thread.run_sync(operation, limiter=BLOCKING_SPEECH_LIMITER)
+
+
+async def run_bounded_analysis_work[ResultT](
+    settings: Settings, operation: Callable[[], ResultT]
+) -> ResultT:
+    """Optional feedback cannot occupy the upload/perception/TTS worker budget."""
+    if settings.environment == "test":
+        return operation()
+    return await to_thread.run_sync(operation, limiter=OPTIONAL_ANALYSIS_LIMITER)

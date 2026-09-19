@@ -204,9 +204,7 @@ def test_interpreter_diff_is_stable_and_non_mutating() -> None:
     assert baseline[0]["kind"] == "tone_unavailable"
 
 
-def test_reference_is_cached_and_owned(
-    client: ApiClient, auth_header: dict[str, str]
-) -> None:
+def test_reference_is_cached_and_owned(client: ApiClient, auth_header: dict[str, str]) -> None:
     target = client.post(
         "/v1/pronunciation-targets", headers=auth_header, json={"text": "生活"}
     ).json()
@@ -220,9 +218,7 @@ def test_reference_is_cached_and_owned(
     audio = client.get(first["audio_url"], headers=auth_header)
     assert audio.status_code == 200 and audio.content.startswith(b"RIFF")
     other = client.post("/v1/dev/auth", json={"phone_number": "+12025550129"}).json()
-    denied = client.get(
-        first["audio_url"], headers={"Authorization": f"Bearer {other['token']}"}
-    )
+    denied = client.get(first["audio_url"], headers={"Authorization": f"Bearer {other['token']}"})
     assert denied.status_code == 404
     forced = client.post(path, headers=auth_header, json={"force": True}).json()
     assert forced["id"] != first["id"]
@@ -301,9 +297,7 @@ def test_analysis_orchestrates_separate_evidence_and_is_idempotent(
     assert first["syllables"][0]["interpretation"] is None or (
         first["syllables"][0]["interpretation"]["kind"] == "invalid_audio"
     )
-    history = client.get(
-        f"/v1/pronunciation-targets/{target['id']}/attempts", headers=auth_header
-    )
+    history = client.get(f"/v1/pronunciation-targets/{target['id']}/attempts", headers=auth_header)
     assert history.status_code == 200 and len(history.json()) == 1
 
 
@@ -340,7 +334,74 @@ def test_invalid_correction_and_unknown_reference_are_safe(
         json={"pinyin": "sheng huo"},
     )
     assert invalid.status_code == 422
-    missing = client.get(
-        f"/v1/reference-speech/{uuid.uuid4()}/audio", headers=auth_header
-    )
+    missing = client.get(f"/v1/reference-speech/{uuid.uuid4()}/audio", headers=auth_header)
     assert missing.status_code == 404
+
+
+def test_target_reuses_exact_provider_timing_for_shape_without_fabricating_surface_tone(
+    client,
+    auth_header,
+    uploaded_utterance,
+    monkeypatch,
+):
+    from test_readings_contours import raw_contour
+
+    from benma_api.speech.contracts import AssessmentEvidence, AssessmentProviderResponse
+    from benma_api.speech.providers.replay import ReplayPronunciationProvider
+
+    raw = raw_contour([0] * 15)
+    monkeypatch.setattr(
+        AutocorrelationAcousticAnalyzer,
+        "analyze",
+        lambda *_: {
+            "f0": raw,
+            "mobile_f0": raw,
+            "duration_seconds": 0.15,
+            "recording_quality": {"status": "usable", "issues": []},
+        },
+    )
+    monkeypatch.setattr(
+        ReplayPronunciationProvider,
+        "assess",
+        lambda *_: AssessmentProviderResponse(
+            evidence=AssessmentEvidence(
+                pronunciation_score=79,
+                evidence_status="live_provider",
+                syllables=[{"text": "末", "timing": {"start_seconds": 0, "end_seconds": 0.15}}],
+            ),
+            raw_payload={"fixture": True},
+        ),
+    )
+    target = client.post(
+        "/v1/pronunciation-targets", headers=auth_header, json={"text": "末"}
+    ).json()
+    attempt = client.post(
+        "/v1/pronunciation-attempts",
+        headers=auth_header,
+        json={"utterance_id": uploaded_utterance["id"], "target_id": target["id"]},
+    ).json()
+    result = client.post(
+        f"/v1/pronunciation-attempts/{attempt['id']}/analyze", headers=auth_header, json={}
+    ).json()
+    syllable = result["syllables"][0]
+    assert syllable["timing"]["source"] == "assessment"
+    assert syllable["observed_contour"]["classification"] == "1-like"
+    assert syllable["lexical_tone"] == 4
+    assert result["assessment"]["normalized_result"]["pronunciation_score"] == 79
+
+
+def test_unmodeled_surface_tone_is_not_silently_lexical(client, auth_header, uploaded_utterance):
+    target = client.post(
+        "/v1/pronunciation-targets", headers=auth_header, json={"text": "我很好"}
+    ).json()
+    attempt = client.post(
+        "/v1/pronunciation-attempts",
+        headers=auth_header,
+        json={"utterance_id": uploaded_utterance["id"], "target_id": target["id"]},
+    ).json()
+    result = client.post(
+        f"/v1/pronunciation-attempts/{attempt['id']}/analyze", headers=auth_header, json={}
+    ).json()
+    assert [s["lexical_tone"] for s in result["syllables"]] == [3, 3, 3]
+    assert all(s["expected_surface_tone"] is None for s in result["syllables"])
+    assert all(s["observed_contour"]["classification"] == "unclear" for s in result["syllables"])

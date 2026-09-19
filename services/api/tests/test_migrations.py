@@ -23,6 +23,7 @@ def test_migrations_upgrade_empty_database_and_downgrade(tmp_path: Path, monkeyp
         "audio_assets",
         "utterances",
         "perception_runs",
+        "perceived_speech_analyses",
         "contextual_interpretation_runs",
         "conversations",
             "conversation_turns",

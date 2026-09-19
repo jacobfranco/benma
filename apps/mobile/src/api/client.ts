@@ -1,9 +1,22 @@
+import { mediaFetch, readAudioResponse } from '@/audio/audioTransport';
+import { createRecordingUploadSource } from '@/audio/recordingUploadSource';
+import { resetAudioSession } from '@/audio/session';
+import type { AudioDownload } from '@/audio/useCachedAudio';
 import type {
   ApiErrorPayload,
+  AcousticRun,
   AssessmentRun,
+  AssistantSpeechRun,
   AttemptComparison,
   AuthToken,
+  Conversation,
+  ConversationTurn,
+  ConversationStreamEvent,
+  ContextualInterpretationRun,
+  FreeTalkTurn,
   PerceptionRun,
+  PerceivedSpeechAnalysis,
+  PerceivedReadings,
   PracticeSession,
   PronunciationAttempt,
   PronunciationResult,
@@ -14,6 +27,8 @@ import type {
 } from '@/api/types';
 
 const DEFAULT_BASE_URL = 'http://127.0.0.1:8000';
+
+type FetchImplementation = (input: string, init?: RequestInit) => Promise<Response>;
 
 export class ApiError extends Error {
   constructor(
@@ -36,14 +51,30 @@ export class BenmaApiClient {
   }
 
   setToken(token: string | null): void {
+    const changed = this.token !== token;
     this.token = token;
+    if (changed) resetAudioSession();
   }
 
-  private async request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  private async request<T>(
+    path: string,
+    init: RequestInit = {},
+    fetchImplementation: FetchImplementation = globalThis.fetch,
+  ): Promise<T> {
+    const response = await this.fetchResponse(path, init, fetchImplementation);
+    if (response.status === 204) return undefined as T;
+    return (await response.json()) as T;
+  }
+
+  private async fetchResponse(
+    path: string,
+    init: RequestInit = {},
+    fetchImplementation: FetchImplementation = globalThis.fetch,
+  ): Promise<Response> {
     const headers = new Headers(init.headers);
     if (this.token) headers.set('Authorization', `Bearer ${this.token}`);
     if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type', 'application/json');
-    const response = await fetch(`${this.baseUrl}${path}`, { ...init, headers });
+    const response = await fetchImplementation(`${this.baseUrl}${path}`, { ...init, headers });
     if (!response.ok) {
       let payload: ApiErrorPayload | null = null;
       try {
@@ -52,14 +83,20 @@ export class BenmaApiClient {
         // Stable fallback below; never expose a provider response body.
       }
       throw new ApiError(
-        payload?.error.code ?? 'internal_failure',
-        payload?.error.message ?? `Request failed with HTTP ${response.status}`,
-        payload?.error.retryable ?? response.status >= 500,
-        payload?.error.request_id,
+        payload?.error?.code ?? 'internal_failure',
+        payload?.error?.message ?? `Request failed with HTTP ${response.status}`,
+        payload?.error?.retryable ?? response.status >= 500,
+        payload?.error?.request_id,
       );
     }
-    if (response.status === 204) return undefined as T;
-    return (await response.json()) as T;
+    if (__DEV__) {
+      const timing = response.headers?.get('Server-Timing');
+      // Allow only known metric names and numeric values into development logs.
+      for (const match of timing?.matchAll(/(interpretation|generation);dur=(\d+(?:\.\d+)?)/g) ?? []) {
+        console.info(`[speech timing] ${match[1]} ms:`, Number(match[2]));
+      }
+    }
+    return response;
   }
 
   devAuth(phoneNumber: string): Promise<AuthToken> {
@@ -90,13 +127,15 @@ export class BenmaApiClient {
   async uploadUtterance(
     uri: string,
     mimeType: string,
-    practiceSessionId: string,
+    practiceSessionId?: string,
   ): Promise<Utterance> {
-    const body = new FormData();
-    const extension = mimeType === 'audio/webm' ? 'webm' : 'm4a';
-    body.append('file', { uri, name: `recording.${extension}`, type: mimeType } as unknown as Blob);
-    body.append('practice_session_id', practiceSessionId);
-    return this.request('/v1/utterances', { method: 'POST', body });
+    const source = await createRecordingUploadSource(uri, mimeType);
+    try {
+      if (practiceSessionId) source.body.append('practice_session_id', practiceSessionId);
+      return await this.request('/v1/utterances', { method: 'POST', body: source.body }, source.fetch);
+    } finally {
+      source.release();
+    }
   }
 
   listUtterances(): Promise<Utterance[]> {
@@ -108,6 +147,112 @@ export class BenmaApiClient {
       method: 'POST',
       body: JSON.stringify({}),
     });
+  }
+
+  analyzePerceivedSpeech(perceptionId: string): Promise<PerceivedSpeechAnalysis> {
+    return this.request(`/v1/perceptions/${perceptionId}/speech-analysis`, {
+      method: 'POST', body: JSON.stringify({}),
+    });
+  }
+
+  getPerceivedSpeechAnalysis(analysisId: string): Promise<PerceivedSpeechAnalysis> {
+    return this.request(`/v1/perceived-speech-analyses/${analysisId}`);
+  }
+
+  getPerceivedReadings(perceptionId: string): Promise<PerceivedReadings> {
+    return this.request(`/v1/perceptions/${perceptionId}/readings`);
+  }
+
+  analyzeAcoustics(utteranceId: string): Promise<AcousticRun> {
+    return this.request(`/v1/utterances/${utteranceId}/acoustics`, { method: 'POST' });
+  }
+
+  createConversation(): Promise<Conversation> {
+    return this.request('/v1/conversations', {
+      method: 'POST',
+      body: JSON.stringify({}),
+    });
+  }
+
+  listConversationTurns(conversationId: string): Promise<ConversationTurn[]> {
+    return this.request(`/v1/conversations/${conversationId}/turns`);
+  }
+
+  async addConversationUserTurn(
+    conversationId: string,
+    utteranceId: string,
+    perceptionRunId: string,
+    onInterpretation?: (interpretation: ContextualInterpretationRun) => void,
+  ): Promise<FreeTalkTurn> {
+    if (onInterpretation) {
+      const response = await this.fetchResponse(`/v1/conversations/${conversationId}/user-turns/stream`, {
+        method: 'POST',
+        body: JSON.stringify({ utterance_id: utteranceId, perception_run_id: perceptionRunId }),
+      }, mediaFetch);
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error('Conversation progress unavailable');
+      const decoder = new TextDecoder();
+      let buffer = '';
+      try {
+        while (true) {
+          const chunk = await reader.read();
+          buffer += decoder.decode(chunk.value, { stream: !chunk.done });
+          let boundary: number;
+          while ((boundary = buffer.indexOf('\n')) >= 0) {
+            const line = buffer.slice(0, boundary);
+            buffer = buffer.slice(boundary + 1);
+            if (!line.trim()) continue;
+            const event = JSON.parse(line) as ConversationStreamEvent;
+            if (__DEV__) {
+              if (typeof event.interpretation_ms === 'number') console.info('[speech timing] interpretation server compute ms:', event.interpretation_ms);
+              if (typeof event.generation_ms === 'number') console.info('[speech timing] generation server compute ms:', event.generation_ms);
+            }
+            if (event.type === 'interpretation' && event.interpretation?.perception_run_id === perceptionRunId) {
+              onInterpretation(event.interpretation);
+            } else if (event.type === 'complete' && event.result?.perception_run_id === perceptionRunId) {
+              return event.result;
+            } else if (event.type === 'error') {
+              throw new Error('Conversation response unavailable');
+            }
+          }
+          if (chunk.done) throw new Error('Conversation progress ended before completion');
+        }
+      } finally { await reader.cancel().catch(() => {}); }
+    }
+    return this.request(`/v1/conversations/${conversationId}/user-turns`, {
+      method: 'POST',
+      body: JSON.stringify({
+        utterance_id: utteranceId,
+        perception_run_id: perceptionRunId,
+      }),
+    });
+  }
+
+  createAssistantSpeech(generationId: string): Promise<AssistantSpeechRun> {
+    return this.request(`/v1/assistant-generations/${generationId}/speech`, {
+      method: 'POST', body: JSON.stringify({}),
+    });
+  }
+
+  protectedAudioPath(uri: string): string {
+    const path = uri.startsWith(`${this.baseUrl}/`) ? uri.slice(this.baseUrl.length) : uri;
+    if (!/^\/v1\/(assistant-speeches|reference-speech|utterances)\/[A-Za-z0-9_-]{1,128}\/audio$/.test(path)) {
+      throw new Error('Invalid protected audio path');
+    }
+    return path;
+  }
+
+  downloadAssistantSpeech(path: string): Promise<Uint8Array> {
+    return this.downloadAudio(path);
+  }
+
+  async downloadAudio(path: string): Promise<Uint8Array> {
+    return (await this.downloadAudioFile(path)).bytes;
+  }
+
+  async downloadAudioFile(path: string): Promise<AudioDownload> {
+    const response = await this.fetchResponse(this.protectedAudioPath(path), {}, mediaFetch);
+    return readAudioResponse(response);
   }
 
   createCorrection(

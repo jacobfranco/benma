@@ -106,8 +106,10 @@ def test_perception_service_only_loads_canonical_audio() -> None:
     assert runs[0].transcript == "你好"
 
 
+@pytest.mark.parametrize("transcript", ["你好", "你好，今天我……", "Neal zaigan shima"])  # noqa: RUF001
 def test_openai_adapter_serialization_has_no_semantic_hints(
     monkeypatch: pytest.MonkeyPatch,
+    transcript: str,
 ) -> None:
     captured: dict[str, object] = {}
 
@@ -115,7 +117,7 @@ def test_openai_adapter_serialization_has_no_semantic_hints(
         status_code = 200
 
         def json(self) -> dict[str, object]:
-            return {"text": "你好", "logprobs": [{"token": "你", "logprob": -0.2}]}
+            return {"text": transcript, "logprobs": [{"token": "你", "logprob": -0.2}]}
 
     def fake_post(url: str, **kwargs: object) -> Response:
         captured["url"] = url
@@ -124,17 +126,23 @@ def test_openai_adapter_serialization_has_no_semantic_hints(
 
     monkeypatch.setattr(httpx, "post", fake_post)
     provider = OpenAITranscriptionProvider("test-key")
-    provider.perceive(
+    response = provider.perceive(
         UnknownTargetPerceptionInput(uuid.uuid4(), b"wav", "audio/wav", "zh", 30)
     )
+    assert response.evidence.transcript == transcript
+    assert response.evidence.detected_language is None
     data = captured["data"]
     assert isinstance(data, dict)
-    assert set(data).isdisjoint(FORBIDDEN)
+    from benma_api.speech.providers.openai import MANDARIN_POLICY
+
+    assert data["prompt"] == MANDARIN_POLICY
+    assert (set(data) - {"prompt"}).isdisjoint(FORBIDDEN)
     assert set(openai_form_fields("gpt-4o-transcribe", "zh")) == {
         "model",
         "language",
         "response_format",
         "include[]",
+        "prompt",
     }
 
 
@@ -192,7 +200,9 @@ def test_provider_failure_is_persisted(
         assert asset is not None
         with pytest.raises(ProviderUnavailableError):
             PerceptionService(
-                SqlPerceptionRepository(db), MemoryStore(), FailingProvider()  # type: ignore[arg-type]
+                SqlPerceptionRepository(db),
+                MemoryStore(),
+                FailingProvider(),  # type: ignore[arg-type]
             ).run(
                 account_id=asset.account_id,
                 utterance_id=uuid.UUID(str(uploaded_utterance["id"])),

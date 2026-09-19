@@ -411,13 +411,15 @@ def test_generation_input_excludes_raw_payload_pronunciation_and_correction_trut
         )
         db.commit()
 
-    add_user_turn(
+    created = add_user_turn(
         client,
         auth_header,
         conversation_id=conversation["id"],
         utterance_id=uploaded_utterance["id"],
         perception_run_id=perception_id,
     )
+
+    request_speech(client, auth_header, created["assistant_turn"])
 
     serialized = json.dumps(generator.requests[0].snapshot(), ensure_ascii=False)
     assert "我想卖水果。" in serialized
@@ -591,7 +593,13 @@ def test_free_talk_persists_playable_speech_for_exact_generated_text(
     )
 
     assistant = response["assistant_turn"]
-    speech = assistant["assistant_speech"]
+    assert assistant["assistant_speech"] is None
+    assert provider.requests == []
+    with session_factory() as db:
+        assert list(db.scalars(select(AssistantSpeechRun))) == []
+    speech = request_speech(client, auth_header, assistant)
+    assert response["perceived_text"] == transcript
+    assert response["interpretation_decision"] == decision
     assert assistant["assistant_text"] == assistant_text
     assert speech["status"] == "succeeded"
     assert speech["text_snapshot"] == assistant_text
@@ -602,15 +610,15 @@ def test_free_talk_persists_playable_speech_for_exact_generated_text(
     assert speech["provider"] == provider.provider_name
     assert speech["product"] == provider.product_name
     assert speech["provider_version"] == "fixture-speech-model-v2"
-    assert speech["voice"] == "zh-CN-Xiaochen:DragonHDLatestNeural"
+    assert speech["voice"] == "zh-CN-Xiaochen:DragonHDFlashLatestNeural"
     assert speech["locale"] == "zh-CN"
     assert speech["audio_asset"]["kind"] == "assistant_speech"
     assert provider.requests == [
         SpeechSynthesisRequest(
             text=assistant_text,
             locale="zh-CN",
-            voice="zh-CN-Xiaochen:DragonHDLatestNeural",
-            model_version="DragonHDLatestNeural",
+            voice="zh-CN-Xiaochen:DragonHDFlashLatestNeural",
+            model_version="DragonHDFlashLatestNeural",
             rate="0%",
             timeout_seconds=30.0,
         )
@@ -669,7 +677,9 @@ def test_speech_failure_preserves_text_and_retry_appends_evidence(
         perception_run_id=perception_id,
     )
     assistant = initial["assistant_turn"]
-    failed = assistant["assistant_speech"]
+    assert assistant["assistant_speech"] is None
+    assert failed_provider.requests == []
+    failed = request_speech(client, auth_header, assistant)
     assert assistant["assistant_text"] == assistant_text
     assert failed["status"] == "failed"
     assert failed["error_code"] == "provider_timeout"
@@ -756,13 +766,15 @@ def test_failed_speech_does_not_change_text_history(
         transcript="第二句。",
     )
     for perception_id in (first_perception, second_perception):
-        add_user_turn(
+        created = add_user_turn(
             client,
             auth_header,
             conversation_id=conversation["id"],
             utterance_id=uploaded_utterance["id"],
             perception_run_id=perception_id,
         )
+
+        request_speech(client, auth_header, created["assistant_turn"])
 
     assert interpreter.requests[1].context_snapshot["turns"] == [
         {"role": "user", "text": "第一句。"},
@@ -808,7 +820,7 @@ def test_speech_provenance_is_append_only_and_non_disclosing(
         utterance_id=uploaded_utterance["id"],
         perception_run_id=perception_id,
     )
-    speech = result["assistant_turn"]["assistant_speech"]
+    speech = request_speech(client, auth_header, result["assistant_turn"])
     speech_id = uuid.UUID(str(speech["id"]))
     generation_id = result["assistant_turn"]["assistant_generation_run_id"]
 
@@ -833,3 +845,14 @@ def test_speech_provenance_is_append_only_and_non_disclosing(
     for hidden in (hidden_run, hidden_audio, hidden_retry):
         assert hidden.status_code == 404
         assert hidden.json()["error"]["code"] == "authorization_error"
+
+
+def request_speech(
+    client: ApiClient, headers: dict[str, str], assistant: dict[str, Any]
+) -> dict[str, Any]:
+    response = client.post(
+        f"/v1/assistant-generations/{assistant['assistant_generation_run_id']}/speech",
+        headers=headers, json={},
+    )
+    assert response.status_code == 201, response.text
+    return response.json()

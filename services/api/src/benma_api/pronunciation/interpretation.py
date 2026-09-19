@@ -45,6 +45,7 @@ def diff_observations(
     baseline: list[dict[str, Any]], replayed: list[dict[str, Any]]
 ) -> dict[str, Any]:
     """Produce a stable, reviewable diff without changing stored evidence."""
+
     def key(item: dict[str, Any]) -> str:
         return json.dumps(
             [item.get("category"), item.get("syllable_index"), item.get("kind")],
@@ -176,9 +177,7 @@ def interpret_evidence(
 
     for index, lexical in enumerate(target.lexical_tones):
         expected_tone = (
-            _tone(expected_tones[index])
-            if index < len(expected_tones)
-            else _tone(lexical)
+            _tone(expected_tones[index]) if index < len(expected_tones) else _tone(lexical)
         )
         provider = provider_syllables[index] if index < len(provider_syllables) else {}
         provider_tone = _tone(provider.get("detected_tone")) if isinstance(provider, dict) else None
@@ -201,9 +200,7 @@ def interpret_evidence(
         if provider_tone is not None and provider_tone != expected_tone and experimental:
             contour_directions = {1: "level", 2: "rising", 4: "falling"}
             expected_direction = (
-                contour_directions.get(expected_tone)
-                if expected_tone is not None
-                else None
+                contour_directions.get(expected_tone) if expected_tone is not None else None
             )
             provider_direction = contour_directions.get(provider_tone)
             agreement = (

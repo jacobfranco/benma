@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import time
 import uuid
+from collections.abc import Callable
 from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
@@ -10,9 +12,6 @@ from sqlalchemy.orm import Session
 from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
 from benma_api.assistant_generation.repository import SqlAssistantGenerationRepository
 from benma_api.assistant_generation.service import AssistantGenerationService
-from benma_api.assistant_speech.repository import SqlAssistantSpeechRepository
-from benma_api.assistant_speech.service import AssistantSpeechService
-from benma_api.config import Settings
 from benma_api.contextual_interpretation.contracts import ContextualInterpretationPort
 from benma_api.contextual_interpretation.repository import (
     SqlContextualInterpretationRepository,
@@ -20,20 +19,20 @@ from benma_api.contextual_interpretation.repository import (
 from benma_api.contextual_interpretation.service import ContextualInterpretationService
 from benma_api.conversation.context import ConversationContextBuilder
 from benma_api.conversation.repository import SqlConversationRepository
-from benma_api.db.models import Conversation, ConversationTurn, utcnow
+from benma_api.db.models import ContextualInterpretationRun, Conversation, ConversationTurn, utcnow
 from benma_api.errors import (
     AnalysisUnsupportedError,
     AuthorizationError,
     InvalidConversationTurnError,
 )
-from benma_api.speech.synthesis import SpeechSynthesisPort
-from benma_api.storage.audio_store import AudioObjectStore
 
 
 @dataclass(frozen=True, slots=True)
 class FreeTalkTurnResult:
     user_turn: ConversationTurn
     assistant_turn: ConversationTurn
+    interpretation_ms: int
+    generation_ms: int
 
 
 class ConversationService:
@@ -78,9 +77,7 @@ class ConversationService:
         perception_run_id: uuid.UUID,
         interpreter: ContextualInterpretationPort,
         generator: AssistantResponseGenerationPort,
-        speech_provider: SpeechSynthesisPort,
-        store: AudioObjectStore,
-        settings: Settings,
+        on_interpretation: Callable[[ContextualInterpretationRun, int], None] | None = None,
     ) -> FreeTalkTurnResult:
         conversation = self._load_for_append(account_id, conversation_id)
         evidence = self.repository.load_user_evidence(
@@ -104,6 +101,7 @@ class ConversationService:
             conversation=conversation,
             before_sequence_number=sequence_number,
         )
+        started = time.perf_counter()
         interpretation = ContextualInterpretationService(
             SqlContextualInterpretationRepository(self.db)
         ).build_run(
@@ -112,8 +110,11 @@ class ConversationService:
             context_snapshot=context_snapshot,
             interpreter=interpreter,
         )
+        interpretation_ms = round((time.perf_counter() - started) * 1000)
         self.db.add(interpretation)
         self.db.flush()
+        if on_interpretation is not None:
+            on_interpretation(interpretation, interpretation_ms)
         turn = ConversationTurn(
             conversation_id=conversation.id,
             account_id=account_id,
@@ -127,9 +128,7 @@ class ConversationService:
         self.db.add(turn)
         self.db.flush()
 
-        generation_run = AssistantGenerationService(
-            SqlAssistantGenerationRepository(self.db)
-        ).run(
+        generation_run = AssistantGenerationService(SqlAssistantGenerationRepository(self.db)).run(
             account_id=account_id,
             conversation_id=conversation.id,
             triggering_user_turn_id=turn.id,
@@ -147,20 +146,17 @@ class ConversationService:
         )
         conversation.updated_at = utcnow()
         self.db.add(assistant_turn)
-        # The complete text conversation is durable before optional spoken rendering begins.
+        # Return durable text immediately. Speech is an independent, retryable request
+        # against this persisted generation, never client-supplied text.
         self.db.commit()
-        AssistantSpeechService(
-            SqlAssistantSpeechRepository(self.db), store, settings
-        ).run(
-            account_id=account_id,
-            assistant_generation_run_id=generation_run.id,
-            provider=speech_provider,
+        return FreeTalkTurnResult(
+            user_turn=turn,
+            assistant_turn=assistant_turn,
+            interpretation_ms=interpretation_ms,
+            generation_ms=generation_run.latency_ms or 0,
         )
-        return FreeTalkTurnResult(user_turn=turn, assistant_turn=assistant_turn)
 
-    def _load_for_append(
-        self, account_id: uuid.UUID, conversation_id: uuid.UUID
-    ) -> Conversation:
+    def _load_for_append(self, account_id: uuid.UUID, conversation_id: uuid.UUID) -> Conversation:
         conversation = self.repository.load_conversation(
             account_id, conversation_id, for_update=True
         )

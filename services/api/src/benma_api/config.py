@@ -6,7 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal, Self
 
-from pydantic import SecretStr, model_validator
+from pydantic import AnyHttpUrl, Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 Environment = Literal["development", "test", "production"]
@@ -21,11 +21,12 @@ AssessmentProviderName = Literal[
 ]
 ReferenceSpeechProviderName = Literal["replay", "azure", "disabled"]
 AssistantSpeechProviderName = Literal["azure", "disabled"]
-AcousticProviderName = Literal["autocorrelation", "disabled"]
-AlignmentProviderName = Literal["replay", "mfa", "disabled"]
+AcousticProviderName = Literal["praat", "autocorrelation", "disabled"]
+AlignmentProviderName = Literal["auto", "azure", "replay", "mfa", "disabled"]
 ContextualInterpretationProviderName = Literal["openai", "disabled"]
 AssistantGenerationProviderName = Literal["openai", "disabled"]
 OpenAIReasoningEffort = Literal["none", "low", "medium", "high"]
+DEVELOPMENT_CORS_ORIGINS = ("http://localhost:8081", "http://127.0.0.1:8081")
 
 
 class Settings(BaseSettings):
@@ -37,6 +38,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://benma:benma@localhost:5432/benma"
     audio_storage_dir: Path = Path("var/audio")
     dev_auth_enabled: bool = False
+    cors_allowed_origins: list[AnyHttpUrl] = Field(default_factory=list)
     session_ttl_days: int = 30
     max_upload_bytes: int = 15 * 1024 * 1024
     max_audio_duration_seconds: float = 120.0
@@ -47,8 +49,11 @@ class Settings(BaseSettings):
     assessment_provider: AssessmentProviderName = "disabled"
     reference_speech_provider: ReferenceSpeechProviderName = "disabled"
     assistant_speech_provider: AssistantSpeechProviderName = "disabled"
-    acoustic_provider: AcousticProviderName = "autocorrelation"
-    alignment_provider: AlignmentProviderName = "disabled"
+    acoustic_provider: AcousticProviderName = "praat"
+    alignment_provider: AlignmentProviderName = "auto"
+    # Explicit paid timing opt-in. Possessing a TTS/assessment credential is insufficient.
+    azure_alignment_enabled: bool = False
+    alignment_timeout_seconds: float = 12.0
     contextual_interpretation_provider: ContextualInterpretationProviderName = "disabled"
     assistant_generation_provider: AssistantGenerationProviderName = "disabled"
     openai_api_key: SecretStr | None = None
@@ -61,9 +66,9 @@ class Settings(BaseSettings):
     openai_assistant_generation_reasoning_effort: OpenAIReasoningEffort = "medium"
     assistant_generation_timeout_seconds: float = 30.0
     assistant_generation_policy_version: str = "free-talk-generation-v1"
-    assistant_speech_voice: str = "zh-CN-Xiaochen:DragonHDLatestNeural"
+    assistant_speech_voice: str = "zh-CN-Xiaochen:DragonHDFlashLatestNeural"
     assistant_speech_locale: str = "zh-CN"
-    assistant_speech_model_version: str = "DragonHDLatestNeural"
+    assistant_speech_model_version: str = "DragonHDFlashLatestNeural"
     assistant_speech_rate: str = "0%"
     assistant_speech_timeout_seconds: float = 30.0
     azure_speech_key: SecretStr | None = None
@@ -87,8 +92,37 @@ class Settings(BaseSettings):
     enable_experimental_tone_interpretation: bool = True
     enable_categorical_tone_judgment: bool = False
 
+    @field_validator("cors_allowed_origins")
+    @classmethod
+    def validate_cors_origins(cls, origins: list[AnyHttpUrl]) -> list[AnyHttpUrl]:
+        for origin in origins:
+            if (
+                not origin.host
+                or "*" in origin.host
+                or origin.username is not None
+                or origin.password is not None
+                or origin.path not in (None, "", "/")
+                or origin.query is not None
+                or origin.fragment is not None
+            ):
+                raise ValueError("CORS origins must contain only an HTTP(S) scheme, host, and port")
+        return origins
+
+    @property
+    def effective_cors_origins(self) -> list[str]:
+        defaults = DEVELOPMENT_CORS_ORIGINS if self.environment == "development" else ()
+        # URL validation normalizes host/default ports; an Origin header has no trailing slash.
+        configured = [str(origin).removesuffix("/") for origin in self.cors_allowed_origins]
+        return list(dict.fromkeys([*defaults, *configured]))
+
     @model_validator(mode="after")
     def validate_environment(self) -> Self:
+        if self.alignment_timeout_seconds <= 0:
+            raise ValueError("alignment timeout must be positive")
+        if (self.alignment_provider == "azure" or self.azure_alignment_enabled) and (
+            not self.azure_speech_key or not self.azure_speech_region
+        ):
+            raise ValueError("Azure credentials are required for explicitly enabled timing")
         if self.environment == "production" and self.dev_auth_enabled:
             raise ValueError("development authentication cannot be enabled in production")
         if self.max_upload_bytes <= 0 or self.max_audio_duration_seconds <= 0:

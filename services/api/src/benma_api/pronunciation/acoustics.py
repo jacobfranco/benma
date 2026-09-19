@@ -3,17 +3,21 @@
 from __future__ import annotations
 
 import math
+import operator
 import statistics
 import struct
 import time
 import uuid
 import wave
+from collections.abc import Callable
+from itertools import accumulate
 from pathlib import Path
 from typing import Any, Protocol
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from benma_api.config import Settings
 from benma_api.db.models import AcousticRun, AudioAsset, Utterance
 from benma_api.errors import AnalysisUnsupportedError, AuthorizationError, InvalidAudioError
 from benma_api.storage.audio_store import AudioObjectStore
@@ -48,7 +52,7 @@ def _downsample(points: list[dict[str, Any]], maximum: int = 240) -> list[dict[s
 
     if len(points) <= maximum:
         return points
-    bucket_size = math.ceil(len(points) / max(1, maximum // 3))
+    bucket_size = math.ceil(len(points) / max(1, maximum // 5))
     selected: list[dict[str, Any]] = []
     for start in range(0, len(points), bucket_size):
         bucket = points[start : start + bucket_size]
@@ -61,8 +65,9 @@ def _downsample(points: list[dict[str, Any]], maximum: int = 240) -> list[dict[s
                     max(voiced, key=lambda item: item["normalized_semitones"]),
                 )
             )
-        elif bucket:
-            candidates.append(bucket[len(bucket) // 2])
+        unvoiced = [item for item in bucket if item["normalized_semitones"] is None]
+        if unvoiced:
+            candidates.append(unvoiced[0])
         selected.extend(candidates)
     by_time = {item["timestamp_seconds"]: item for item in selected}
     return [by_time[key] for key in sorted(by_time)][:maximum]
@@ -70,7 +75,7 @@ def _downsample(points: list[dict[str, Any]], maximum: int = 240) -> list[dict[s
 
 class AutocorrelationAcousticAnalyzer:
     algorithm_name = "normalized_autocorrelation"
-    algorithm_version = "2.0.0"
+    algorithm_version = "2.2.0"
 
     def __init__(
         self,
@@ -95,23 +100,28 @@ class AutocorrelationAcousticAnalyzer:
         hop_length = max(1, round(rate * self.parameters["hop_seconds"]))
         min_lag = max(1, int(rate / self.parameters["fmax_hz"]))
         max_lag = min(frame_length - 2, int(rate / self.parameters["fmin_hz"]))
+        window = [
+            0.54 - 0.46 * math.cos(2 * math.pi * index / (frame_length - 1))
+            for index in range(frame_length)
+        ]
         raw_points: list[dict[str, Any]] = []
         for offset in range(0, max(0, len(samples) - frame_length + 1), hop_length):
             frame = samples[offset : offset + frame_length]
             mean = statistics.fmean(frame)
-            centered = [
-                (value - mean)
-                * (0.54 - 0.46 * math.cos(2 * math.pi * index / (frame_length - 1)))
-                for index, value in enumerate(frame)
-            ]
+            centered = [(value - mean) * window[index] for index, value in enumerate(frame)]
             energy = math.sqrt(statistics.fmean(value * value for value in centered))
             best_correlation = -1.0
             best_lag = min_lag
+            # Prefix energies replace repeated Python sums at every lag. Same
+            # normalized correlation; no resampling, new decoder, or F0 correction.
+            energies = [0.0, *accumulate(value * value for value in centered)]
             for lag in range(min_lag, max_lag + 1):
                 left = centered[:-lag]
                 right = centered[lag:]
-                numerator = sum(a * b for a, b in zip(left, right, strict=True))
-                denominator = math.sqrt(sum(a * a for a in left) * sum(b * b for b in right))
+                numerator = sum(map(operator.mul, left, right))
+                denominator = math.sqrt(
+                    max(0.0, energies[frame_length - lag] * (energies[-1] - energies[lag]))
+                )
                 correlation = numerator / denominator if denominator > 1e-12 else 0.0
                 if correlation > best_correlation:
                     best_correlation = correlation
@@ -126,109 +136,221 @@ class AutocorrelationAcousticAnalyzer:
                     "energy_rms": round(energy, 6),
                 }
             )
-        voiced_hz = [item["f0_hz"] for item in raw_points if item["f0_hz"] is not None]
-        median_hz = statistics.median(voiced_hz) if voiced_hz else None
-        log_values = [math.log(value) for value in voiced_hz]
-        mean_log = statistics.fmean(log_values) if log_values else None
-        std_log = statistics.pstdev(log_values) if len(log_values) > 1 else 0.0
-        points: list[dict[str, Any]] = []
-        for point in raw_points:
-            f0 = point["f0_hz"]
-            normalized = (
-                round(12 * math.log2(f0 / median_hz), 4)
-                if f0 is not None and median_hz is not None
-                else None
-            )
-            points.append(
-                {
-                    **point,
-                    "normalized_semitones": normalized,
-                    "z_log_f0": (
-                        round((math.log(f0) - mean_log) / std_log, 4)
-                        if f0 is not None
-                        and mean_log is not None
-                        and std_log is not None
-                        and std_log > 1e-9
-                        else (0.0 if f0 is not None else None)
-                    ),
-                }
-            )
-        normalized_values = [
-            item["normalized_semitones"]
-            for item in points
-            if item["normalized_semitones"] is not None
-        ]
-        pitch_change = (
-            normalized_values[-1] - normalized_values[0]
-            if len(normalized_values) >= 2
+        return acoustic_result(rate, samples, raw_points)
+
+
+def acoustic_result(
+    rate: int,
+    samples: list[float],
+    raw_points: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Common normalization/quality fields, without altering measurement-source samples."""
+    voiced_hz = [item["f0_hz"] for item in raw_points if item["f0_hz"] is not None]
+    median_hz = statistics.median(voiced_hz) if voiced_hz else None
+    log_values = [math.log(value) for value in voiced_hz]
+    mean_log = statistics.fmean(log_values) if log_values else None
+    std_log = statistics.pstdev(log_values) if len(log_values) > 1 else 0.0
+    points: list[dict[str, Any]] = []
+    for point in raw_points:
+        f0 = point["f0_hz"]
+        normalized = (
+            round(12 * math.log2(f0 / median_hz), 4)
+            if f0 is not None and median_hz is not None
             else None
         )
-        rms = math.sqrt(statistics.fmean(value * value for value in samples))
-        clipping_fraction = sum(abs(value) >= 0.98 for value in samples) / len(samples)
-        voiced_fraction = len(voiced_hz) / len(points) if points else 0.0
-        silence_fraction = (
-            sum(float(point["energy_rms"]) < 0.003 for point in raw_points) / len(raw_points)
-            if raw_points
-            else 1.0
-        )
-        quality_issues: list[str] = []
-        if rms < 0.005:
-            quality_issues.append("too_quiet")
-        if clipping_fraction > 0.02:
-            quality_issues.append("clipping")
-        if voiced_fraction < 0.15:
-            quality_issues.append("low_voiced_fraction")
-        if silence_fraction > 0.7:
-            quality_issues.append("excessive_silence")
-        return {
-            "timestamps_unit": "seconds",
-            "sample_rate_hz": rate,
-            "duration_seconds": round(len(samples) / rate, 4),
-            "f0": points,
-            "mobile_f0": _downsample(points),
-            "downsampling": {
-                "method": "min_max_bucket_with_gap_preservation",
-                "maximum_points": 240,
-                "full_resolution_points": len(points),
-            },
-            "normalization": {
-                "method": "semitones_relative_to_voiced_utterance_median_and_z_log_f0",
-                "scope": "utterance_local",
-                "baseline_hz": round(median_hz, 3) if median_hz is not None else None,
-                "speaker_range_claim": "unavailable",
-            },
-            "contour_features": {
-                "start_pitch_semitones": normalized_values[0] if normalized_values else None,
-                "end_pitch_semitones": normalized_values[-1] if normalized_values else None,
-                "change_semitones": round(pitch_change, 4) if pitch_change is not None else None,
-                "minimum_semitones": min(normalized_values) if normalized_values else None,
-                "maximum_semitones": max(normalized_values) if normalized_values else None,
-                "range_semitones": (
-                    round(max(normalized_values) - min(normalized_values), 4)
-                    if normalized_values
-                    else None
+        points.append(
+            {
+                **point,
+                "normalized_semitones": normalized,
+                "z_log_f0": (
+                    round((math.log(f0) - mean_log) / std_log, 4)
+                    if f0 is not None
+                    and mean_log is not None
+                    and std_log is not None
+                    and std_log > 1e-9
+                    else (0.0 if f0 is not None else None)
                 ),
-                "voiced_fraction": round(voiced_fraction, 4),
-            },
-            "recording_quality": {
-                "status": "invalid_for_interpretation" if quality_issues else "usable",
-                "issues": quality_issues,
-                "rms": round(rms, 6),
-                "clipping_fraction": round(clipping_fraction, 6),
-                "silence_fraction": round(silence_fraction, 6),
-            },
-            "capability_state": "raw_evidence",
-            "limitations": [
-                "Autocorrelation can double or halve pitch and is not a Mandarin tone judge.",
-                "Utterance-local normalization does not establish a speaker's pitch range.",
-                "Low-confidence and unvoiced frames remain absent rather than interpolated.",
-            ],
+            }
+        )
+    normalized_values = [
+        item["normalized_semitones"] for item in points if item["normalized_semitones"] is not None
+    ]
+    pitch_change = (
+        normalized_values[-1] - normalized_values[0] if len(normalized_values) >= 2 else None
+    )
+    rms = math.sqrt(statistics.fmean(value * value for value in samples))
+    clipping_fraction = sum(abs(value) >= 0.98 for value in samples) / len(samples)
+    voiced_fraction = len(voiced_hz) / len(points) if points else 0.0
+    silence_fraction = (
+        sum(float(point["energy_rms"]) < 0.003 for point in raw_points) / len(raw_points)
+        if raw_points
+        else 1.0
+    )
+    quality_issues: list[str] = []
+    if rms < 0.005:
+        quality_issues.append("too_quiet")
+    if clipping_fraction > 0.02:
+        quality_issues.append("clipping")
+    if voiced_fraction < 0.15:
+        quality_issues.append("low_voiced_fraction")
+    if silence_fraction > 0.7:
+        quality_issues.append("excessive_silence")
+    return {
+        "timestamps_unit": "seconds",
+        "sample_rate_hz": rate,
+        "duration_seconds": round(len(samples) / rate, 4),
+        "f0": points,
+        "mobile_f0": _downsample(points),
+        "downsampling": {
+            "method": "min_max_bucket_with_gap_preservation",
+            "maximum_points": 240,
+            "full_resolution_points": len(points),
+        },
+        "normalization": {
+            "method": "semitones_relative_to_voiced_utterance_median_and_z_log_f0",
+            "scope": "utterance_local",
+            "baseline_hz": round(median_hz, 3) if median_hz is not None else None,
+            "speaker_range_claim": "unavailable",
+        },
+        "contour_features": {
+            "start_pitch_semitones": normalized_values[0] if normalized_values else None,
+            "end_pitch_semitones": normalized_values[-1] if normalized_values else None,
+            "change_semitones": round(pitch_change, 4) if pitch_change is not None else None,
+            "minimum_semitones": min(normalized_values) if normalized_values else None,
+            "maximum_semitones": max(normalized_values) if normalized_values else None,
+            "range_semitones": (
+                round(max(normalized_values) - min(normalized_values), 4)
+                if normalized_values
+                else None
+            ),
+            "voiced_fraction": round(voiced_fraction, 4),
+        },
+        "recording_quality": {
+            "status": "invalid_for_interpretation" if quality_issues else "usable",
+            "issues": quality_issues,
+            "rms": round(rms, 6),
+            "clipping_fraction": round(clipping_fraction, 6),
+            "silence_fraction": round(silence_fraction, 6),
+        },
+        "capability_state": "raw_evidence",
+        "limitations": [
+            "Autocorrelation can double or halve pitch and is not a Mandarin tone judge.",
+            "Utterance-local normalization does not establish a speaker's pitch range.",
+            "Low-confidence and unvoiced frames remain absent rather than interpolated.",
+        ],
+    }
+
+
+class PraatAcousticAnalyzer:
+    algorithm_name = "praat_autocorrelation"
+
+    def __init__(self) -> None:
+        import parselmouth
+
+        self.algorithm_version = (
+            f"1.1.0-parselmouth-{parselmouth.VERSION}-praat-{parselmouth.PRAAT_VERSION}"
+        )
+        self.parameters: dict[str, Any] = {
+            "pitch_floor": 50.0,
+            "pitch_ceiling": 550.0,
+            "time_step": 0.01,
+            "octave_jump_cost": 0.5,
+            "voicing_threshold": 0.45,
+            "energy_gate": "bounded-recording-noise-floor-v1",
+            "quality_gate": "spectral-and-filter-disagreement-v1",
         }
+
+    def analyze(self, path: Path) -> dict[str, Any]:
+        import numpy as np
+        import parselmouth
+        from parselmouth.praat import call
+
+        rate, samples = _pcm16_mono(path)
+        sound = parselmouth.Sound(str(path))
+        values = sound.values[0]
+        width, hop = round(rate * 0.04), round(rate * 0.01)
+        energies = [
+            float(np.sqrt(np.mean(values[i : i + width] ** 2)))
+            for i in range(0, max(1, len(values) - width + 1), hop)
+        ]
+        # Gate periodic background energy without assigning it a pitch. Capped
+        # relative to peak RMS so continuous quiet speech is not its own noise floor.
+        floor = float(np.quantile(energies, 0.1))
+        threshold = max(0.003, min(3 * floor, max(energies) * 0.15))
+        points: list[dict[str, Any]] = []
+        if len(samples) / rate >= 0.06:
+            pitch_parameters = {
+                k: v for k, v in self.parameters.items() if k not in {"energy_gate", "quality_gate"}
+            }
+            pitch = sound.to_pitch_ac(**pitch_parameters)
+            # A second track detects susceptibility to low-frequency contamination.
+            # It NEVER replaces the measured F0 or repairs an octave choice.
+            filtered = call(sound, "Filter (pass Hann band)", 70, 0, 20)
+            comparison = filtered.to_pitch_ac(**pitch_parameters)
+            for timestamp, hz, strength, check_hz in zip(
+                pitch.xs(),
+                pitch.selected_array["frequency"],
+                pitch.selected_array["strength"],
+                comparison.selected_array["frequency"],
+                strict=True,
+            ):
+                center = round(float(timestamp) * rate)
+                frame = values[max(0, center - width // 2) : center + width // 2]
+                rms = float(np.sqrt(np.mean(frame**2)))
+                spectral_width = round(rate * 0.1)
+                spectral = values[
+                    max(0, center - spectral_width // 2) : center + spectral_width // 2
+                ]
+                power = (
+                    np.abs(np.fft.rfft((spectral - spectral.mean()) * np.hanning(len(spectral))))
+                    ** 2
+                )
+                frequencies = np.fft.rfftfreq(len(spectral), 1 / rate)
+                low_fraction = float(
+                    power[(frequencies >= 40) & (frequencies <= 80)].sum()
+                    / max(1e-12, power[(frequencies >= 40) & (frequencies <= 4000)].sum())
+                )
+                disagreement = abs(12 * math.log2(hz / check_hz)) if hz > 0 and check_hz > 0 else 0
+                contaminated = bool(
+                    hz > 0 and ((hz < 80 and low_fraction > 0.7) or disagreement > 6)
+                )
+                points.append(
+                    {
+                        "timestamp_seconds": round(float(timestamp), 4),
+                        "f0_hz": round(float(hz), 3) if hz > 0 and rms >= threshold else None,
+                        "tracker_f0_hz": round(float(hz), 3) if hz > 0 else None,
+                        "voicing_probability": round(min(1.0, max(0.0, float(strength))), 4),
+                        "energy_rms": round(rms, 6),
+                        "energy_gated": bool(hz > 0 and rms < threshold),
+                        "low_frequency_energy_fraction": round(low_fraction, 4),
+                        "comparison_f0_hz": round(float(check_hz), 3) if check_hz > 0 else None,
+                        "filter_disagreement_st": round(disagreement, 3),
+                        "quality_usable": not contaminated,
+                    }
+                )
+        result = acoustic_result(rate, samples, points)
+        result["energy_gate"] = {"threshold_rms": threshold, "noise_floor_rms": floor}
+        result["limitations"] = [
+            "Praat reduces but cannot eliminate octave errors or creaky-voice ambiguity.",
+            "The original tracker frequency remains stored alongside the energy-gated F0.",
+            "Filtered-track disagreement flags ambiguous evidence; it never substitutes a pitch.",
+            "Utterance-relative pitch is not a lexical-tone or intended-target correctness score.",
+        ]
+        return result
+
+
+def build_acoustic_analyzer(settings: Settings) -> AcousticAnalysisPort:
+    if settings.acoustic_provider == "praat":
+        return PraatAcousticAnalyzer()
+    if settings.acoustic_provider == "autocorrelation":
+        return AutocorrelationAcousticAnalyzer()
+    return DisabledAcousticAnalyzer()
 
 
 class DisabledAcousticAnalyzer:
     algorithm_name = "disabled"
     algorithm_version = "1.0.0"
+
     def __init__(self) -> None:
         self.parameters: dict[str, Any] = {}
 
@@ -248,54 +370,76 @@ class AcousticAnalysisService:
     def run(
         self, *, account_id: uuid.UUID, utterance_id: uuid.UUID, reuse: bool = True
     ) -> AcousticRun:
-        utterance = self.db.get(Utterance, utterance_id)
+        run = self.prepare(account_id=account_id, utterance_id=utterance_id, reuse=reuse)()
+        self.db.add(run)
+        self.db.commit()
+        return run
+
+    def prepare(
+        self, *, account_id: uuid.UUID, utterance_id: uuid.UUID, reuse: bool = True
+    ) -> Callable[[], AcousticRun]:
+        # Every entry point, including prepared laboratory work, must hold this
+        # lock until persistence. NO KEY UPDATE permits concurrent perception FKs.
+        utterance = self.db.scalar(
+            select(Utterance)
+            .where(Utterance.id == utterance_id, Utterance.account_id == account_id)
+            .with_for_update(key_share=True)
+        )
         if utterance is None or utterance.account_id != account_id:
             raise AuthorizationError("utterance was not found")
         if reuse:
-            existing = self.db.scalar(
+            candidates = self.db.scalars(
                 select(AcousticRun)
                 .where(
                     AcousticRun.account_id == account_id,
                     AcousticRun.utterance_id == utterance_id,
                     AcousticRun.algorithm == self.analyzer.algorithm_name,
                     AcousticRun.algorithm_version == self.analyzer.algorithm_version,
-                    AcousticRun.status == "succeeded",
                 )
                 .order_by(AcousticRun.created_at.desc())
             )
-            if existing is not None:
-                return existing
+            for existing in candidates:
+                if existing.parameters == self.analyzer.parameters:
+                    return lambda: existing
         asset = self.db.get(AudioAsset, utterance.canonical_audio_asset_id)
         if asset is None or asset.account_id != account_id:
             raise AuthorizationError("canonical audio was not found")
-        started = time.perf_counter()
-        try:
-            result = self.analyzer.analyze(self.store.path_for_processing(asset.storage_key))
-            run = AcousticRun(
-                account_id=account_id,
-                utterance_id=utterance_id,
-                algorithm=self.analyzer.algorithm_name,
-                algorithm_version=self.analyzer.algorithm_version,
-                parameters=self.analyzer.parameters,
-                normalized_result=result,
-                latency_ms=round((time.perf_counter() - started) * 1000),
-                status="succeeded",
-            )
-            self.db.add(run)
-            self.db.commit()
-            return run
-        except (AnalysisUnsupportedError, InvalidAudioError) as exc:
-            run = AcousticRun(
-                account_id=account_id,
-                utterance_id=utterance_id,
-                algorithm=self.analyzer.algorithm_name,
-                algorithm_version=self.analyzer.algorithm_version,
-                parameters=self.analyzer.parameters,
-                latency_ms=round((time.perf_counter() - started) * 1000),
-                status="failed",
-                error_code=exc.code,
-                error_message=exc.message,
-            )
-            self.db.add(run)
-            self.db.commit()
-            return run
+        audio_path = self.store.path_for_processing(asset.storage_key)
+
+        analyzer = self.analyzer
+
+        def compute() -> AcousticRun:
+            started = time.perf_counter()
+            try:
+                result = analyzer.analyze(audio_path)
+                run = AcousticRun(
+                    account_id=account_id,
+                    utterance_id=utterance_id,
+                    algorithm=analyzer.algorithm_name,
+                    algorithm_version=analyzer.algorithm_version,
+                    parameters=analyzer.parameters,
+                    normalized_result=result,
+                    latency_ms=round((time.perf_counter() - started) * 1000),
+                    status="succeeded",
+                )
+                return run
+            except Exception as caught:
+                exc = (
+                    caught
+                    if isinstance(caught, (AnalysisUnsupportedError, InvalidAudioError))
+                    else AnalysisUnsupportedError("Analysis unavailable")
+                )
+                run = AcousticRun(
+                    account_id=account_id,
+                    utterance_id=utterance_id,
+                    algorithm=analyzer.algorithm_name,
+                    algorithm_version=analyzer.algorithm_version,
+                    parameters=analyzer.parameters,
+                    latency_ms=round((time.perf_counter() - started) * 1000),
+                    status="failed",
+                    error_code=exc.code,
+                    error_message=exc.message,
+                )
+                return run
+
+        return compute

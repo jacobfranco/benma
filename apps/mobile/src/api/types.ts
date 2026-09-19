@@ -12,6 +12,8 @@ export type ContextualInterpretationRun = Schemas['ContextualInterpretationRunRe
 export type AssistantGenerationRun = Schemas['AssistantGenerationRunResponse'];
 export type Conversation = Schemas['ConversationResponse'];
 export type ConversationTurn = Schemas['ConversationTurnResponse'];
+export type FreeTalkTurn = Schemas['FreeTalkTurnResponse'];
+export type ConversationStreamEvent = Schemas['ConversationStreamEvent'];
 export type UserCorrection = Schemas['UserCorrectionResponse'];
 export type PronunciationTarget = Schemas['PronunciationTargetResponse'];
 export type PronunciationAttempt = Schemas['PronunciationAttemptResponse'];
@@ -47,3 +49,12 @@ export interface NormalizedAssessment {
 export type AssessmentRun = Omit<Schemas['AssessmentRunResponse'], 'normalized_result'> & {
   normalized_result: NormalizedAssessment | null;
 };
+
+export type AssistantSpeechRun = Schemas['AssistantSpeechRunResponse'];
+
+export type PerceivedSpeechAnalysis = Schemas['PerceivedSpeechAnalysisResponse'];
+export type PerceivedReadings = Schemas['PerceivedReadingResponse'];
+export type PerceivedSyllable = Schemas['PerceivedSyllable'];
+
+export type DisplayContour = Schemas['DisplayContour'];
+export type ObservedContour = Schemas['ObservedContour'];

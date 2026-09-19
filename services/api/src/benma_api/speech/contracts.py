@@ -27,6 +27,7 @@ class PerceptionEvidence:
     provider_uncertainty: Any | None
     detected_language: str | None
     evidence_status: str
+    detected_languages: list[dict[str, Any]] | None = None
 
     def normalized(self) -> dict[str, Any]:
         result: dict[str, Any] = {
@@ -39,6 +40,7 @@ class PerceptionEvidence:
             "segments",
             "provider_uncertainty",
             "detected_language",
+            "detected_languages",
         ):
             value = getattr(self, key)
             if value is not None:

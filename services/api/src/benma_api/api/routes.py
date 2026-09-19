@@ -2,16 +2,21 @@
 
 from __future__ import annotations
 
+import asyncio
+import threading
 import uuid
+from collections.abc import AsyncIterator
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import suppress
 from functools import partial
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, File, Form, UploadFile, status
-from fastapi.responses import Response
+from fastapi.responses import Response, StreamingResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from benma_api.api.blocking import run_bounded_speech_work
+from benma_api.api.blocking import run_bounded_analysis_work, run_bounded_speech_work
 from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
 from benma_api.assistant_generation.factory import build_assistant_response_generator
 from benma_api.assistant_speech.factory import build_assistant_speech_provider
@@ -41,6 +46,7 @@ from benma_api.db.models import (
     AudioAsset,
     ContextualInterpretationRun,
     ConversationTurn,
+    PerceivedSpeechAnalysis,
     PerceptionRun,
     PracticeSession,
     PronunciationAttempt,
@@ -52,16 +58,28 @@ from benma_api.db.models import (
 from benma_api.db.session import get_db
 from benma_api.errors import (
     AuthorizationError,
+    BenmaError,
     InvalidAudioError,
     InvalidTargetError,
 )
 from benma_api.perception.repository import SqlPerceptionRepository
 from benma_api.perception.service import PerceptionService
-from benma_api.pronunciation.laboratory import PronunciationLaboratoryService
+from benma_api.pronunciation.acoustics import (
+    AcousticAnalysisService,
+    build_acoustic_analyzer,
+)
+from benma_api.pronunciation.laboratory import PronunciationLaboratoryService, acoustic_response
+from benma_api.pronunciation.perceived import (
+    PerceivedSpeechAnalysisService,
+    analysis_response,
+    reading_response,
+)
 from benma_api.pronunciation.service import AssessmentService
 from benma_api.pronunciation.targets import parse_corrected_pinyin, parse_mandarin_target
+from benma_api.pronunciation.warmup import start_acoustic_warmup
 from benma_api.schemas import (
     AccountResponse,
+    AcousticRunResponse,
     AssessmentRequest,
     AssessmentRunResponse,
     AssistantGenerationRunResponse,
@@ -75,9 +93,13 @@ from benma_api.schemas import (
     ContextualInterpretationRunResponse,
     ConversationCreate,
     ConversationResponse,
+    ConversationStreamEvent,
     ConversationTurnResponse,
     DevAuthRequest,
     FreeTalkTurnResponse,
+    PerceivedAnalysisCreate,
+    PerceivedReadingResponse,
+    PerceivedSpeechAnalysisResponse,
     PerceptionRunResponse,
     PinyinCorrectionCreate,
     PracticeSessionCreate,
@@ -105,6 +127,7 @@ from benma_api.storage.audio_store import AudioObjectStore, get_audio_store
 
 router = APIRouter()
 dev_router = APIRouter()
+CONVERSATION_WORKERS = ThreadPoolExecutor(max_workers=2, thread_name_prefix="conversation")
 
 
 async def get_contextual_interpreter(
@@ -166,9 +189,7 @@ def practice_response(practice: PracticeSession) -> PracticeSessionResponse:
     )
 
 
-def conversation_turn_response(
-    db: Session, turn: ConversationTurn
-) -> ConversationTurnResponse:
+def conversation_turn_response(db: Session, turn: ConversationTurn) -> ConversationTurnResponse:
     perception = (
         db.get(PerceptionRun, turn.perception_run_id)
         if turn.perception_run_id is not None
@@ -190,8 +211,7 @@ def conversation_turn_response(
         else None
     )
     if perception is not None and (
-        perception.account_id != turn.account_id
-        or perception.utterance_id != turn.utterance_id
+        perception.account_id != turn.account_id or perception.utterance_id != turn.utterance_id
     ):
         raise RuntimeError("conversation turn has mismatched perception evidence")
     if interpretation is not None and (
@@ -220,6 +240,8 @@ def conversation_turn_response(
         sequence_number=turn.sequence_number,
         role=turn.role,
         assistant_text=turn.assistant_text,
+        perceived_text=perception.transcript if perception else None,
+        interpretation_decision=interpretation.decision if interpretation else None,
         resolved_text=resolved_turn_text(
             turn,
             perception=perception,
@@ -234,9 +256,7 @@ def conversation_turn_response(
     )
 
 
-def assistant_speech_response(
-    db: Session, run: AssistantSpeechRun
-) -> AssistantSpeechRunResponse:
+def assistant_speech_response(db: Session, run: AssistantSpeechRun) -> AssistantSpeechRunResponse:
     audio = db.get(AudioAsset, run.audio_asset_id) if run.audio_asset_id else None
     if audio is not None and audio.account_id != run.account_id:
         raise RuntimeError("assistant speech has mismatched audio evidence")
@@ -369,9 +389,7 @@ async def dev_auth(
     settings: Settings = Depends(get_request_settings),
 ) -> AuthTokenResponse:
     account, auth_session, token = create_dev_session(db, settings, body.phone_number)
-    return AuthTokenResponse(
-        token=token, expires_at=auth_session.expires_at, account_id=account.id
-    )
+    return AuthTokenResponse(token=token, expires_at=auth_session.expires_at, account_id=account.id)
 
 
 @router.get("/v1/me", response_model=AccountResponse)
@@ -408,9 +426,7 @@ async def get_conversation(
     auth: AuthContext = Depends(get_auth_context),
     db: Session = Depends(get_db),
 ) -> ConversationResponse:
-    conversation = SqlConversationRepository(db).load_conversation(
-        auth.account_id, conversation_id
-    )
+    conversation = SqlConversationRepository(db).load_conversation(auth.account_id, conversation_id)
     if conversation is None:
         raise AuthorizationError("conversation was not found")
     return ConversationResponse.model_validate(conversation)
@@ -443,15 +459,12 @@ async def list_conversation_turns(
 async def create_user_conversation_turn(
     conversation_id: uuid.UUID,
     body: UserConversationTurnCreate,
+    response: Response,
     auth: AuthContext = Depends(get_auth_context),
     db: Session = Depends(get_db),
     settings: Settings = Depends(get_request_settings),
     interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
-    generator: AssistantResponseGenerationPort = Depends(
-        get_assistant_response_generator
-    ),
-    speech_provider: SpeechSynthesisPort = Depends(get_assistant_speech_provider),
-    store: AudioObjectStore = Depends(get_audio_store),
+    generator: AssistantResponseGenerationPort = Depends(get_assistant_response_generator),
 ) -> FreeTalkTurnResponse:
     result = await run_bounded_speech_work(
         settings,
@@ -463,15 +476,123 @@ async def create_user_conversation_turn(
             perception_run_id=body.perception_run_id,
             interpreter=interpreter,
             generator=generator,
-            speech_provider=speech_provider,
-            store=store,
-            settings=settings,
         ),
     )
+    if settings.environment == "development":
+        response.headers["Server-Timing"] = (
+            f"interpretation;dur={result.interpretation_ms},generation;dur={result.generation_ms}"
+        )
     user_response = conversation_turn_response(db, result.user_turn)
     return FreeTalkTurnResponse(
         **user_response.model_dump(),
         assistant_turn=conversation_turn_response(db, result.assistant_turn),
+    )
+
+
+@router.post(
+    "/v1/conversations/{conversation_id}/user-turns/stream",
+    response_model=ConversationStreamEvent,
+    response_class=StreamingResponse,
+    responses={
+        200: {
+            "description": "One ConversationStreamEvent JSON object per line.",
+            "content": {
+                "application/x-ndjson": {
+                    "schema": {"$ref": "#/components/schemas/ConversationStreamEvent"},
+                }
+            },
+        }
+    },
+)
+async def stream_user_conversation_turn(
+    conversation_id: uuid.UUID,
+    body: UserConversationTurnCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
+    generator: AssistantResponseGenerationPort = Depends(get_assistant_response_generator),
+) -> StreamingResponse:
+    """Authoritative progress without splitting the atomic conversation transaction."""
+    account_id = auth.account_id
+    repository = SqlConversationRepository(db)
+    if repository.load_conversation(account_id, conversation_id) is None:
+        raise AuthorizationError("conversation was not found")
+    if (
+        repository.load_user_evidence(
+            account_id, utterance_id=body.utterance_id, perception_run_id=body.perception_run_id
+        )
+        is None
+    ):
+        raise AuthorizationError("utterance or perception run was not found")
+    bind = db.get_bind()
+    db.rollback()  # End the read-only preflight before opening the worker's session.
+
+    async def events() -> AsyncIterator[str]:
+        loop = asyncio.get_running_loop()
+        queue: asyncio.Queue[ConversationStreamEvent | None] = asyncio.Queue()
+        disconnected = threading.Event()
+
+        def deliver(event: ConversationStreamEvent | None) -> None:
+            if not disconnected.is_set():
+                # The request may have ended; the authorized transaction may finish.
+                with suppress(RuntimeError):
+                    loop.call_soon_threadsafe(queue.put_nowait, event)
+
+        def work() -> None:
+            # The worker owns this session for its whole lifetime. A disconnect
+            # never closes another thread's transaction or repeats provider calls.
+            try:
+                with Session(bind=bind, expire_on_commit=False) as worker_db:
+                    result = ConversationService(worker_db).add_user_turn(
+                        account_id=account_id,
+                        conversation_id=conversation_id,
+                        utterance_id=body.utterance_id,
+                        perception_run_id=body.perception_run_id,
+                        interpreter=interpreter,
+                        generator=generator,
+                        on_interpretation=lambda run, elapsed: deliver(
+                            ConversationStreamEvent(
+                                type="interpretation",
+                                interpretation=contextual_interpretation_response(run),
+                                interpretation_ms=elapsed,
+                            )
+                        ),
+                    )
+                    deliver(
+                        ConversationStreamEvent(
+                            type="complete",
+                            result=FreeTalkTurnResponse(
+                                **conversation_turn_response(
+                                    worker_db, result.user_turn
+                                ).model_dump(),
+                                assistant_turn=conversation_turn_response(
+                                    worker_db, result.assistant_turn
+                                ),
+                            ),
+                            generation_ms=result.generation_ms,
+                        )
+                    )
+            except Exception as exc:
+                deliver(
+                    ConversationStreamEvent(
+                        type="error",
+                        error_code=exc.code if isinstance(exc, BenmaError) else "internal_failure",
+                    )
+                )
+            finally:
+                deliver(None)
+
+        CONVERSATION_WORKERS.submit(work)
+        try:
+            while (event := await queue.get()) is not None:
+                yield event.model_dump_json() + "\n"
+        finally:
+            disconnected.set()
+
+    return StreamingResponse(
+        events(),
+        media_type="application/x-ndjson",
+        headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"},
     )
 
 
@@ -508,9 +629,7 @@ async def create_assistant_speech(
     run = await run_bounded_speech_work(
         settings,
         partial(
-            AssistantSpeechService(
-                SqlAssistantSpeechRepository(db), store, settings
-            ).run,
+            AssistantSpeechService(SqlAssistantSpeechRepository(db), store, settings).run,
             account_id=auth.account_id,
             assistant_generation_run_id=run_id,
             provider=provider,
@@ -678,6 +797,14 @@ async def create_perception(
     settings: Settings = Depends(get_request_settings),
     store: AudioObjectStore = Depends(get_audio_store),
 ) -> PerceptionRunResponse:
+    if settings.environment != "test":
+        start_acoustic_warmup(
+            db,
+            store,
+            settings,
+            account_id=auth.account_id,
+            utterance_id=utterance_id,
+        )
     service = PerceptionService(
         SqlPerceptionRepository(db), store, build_perception_provider(settings)
     )
@@ -705,6 +832,78 @@ async def get_perception(
     if run is None or run.account_id != auth.account_id:
         raise AuthorizationError("perception run was not found")
     return perception_response(run)
+
+
+@router.post(
+    "/v1/perceptions/{run_id}/speech-analysis",
+    response_model=PerceivedSpeechAnalysisResponse,
+)
+async def analyze_perceived_speech(
+    run_id: uuid.UUID,
+    body: PerceivedAnalysisCreate,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> PerceivedSpeechAnalysisResponse:
+    service = PerceivedSpeechAnalysisService(db, store, settings)
+    run = await run_bounded_analysis_work(
+        settings,
+        partial(
+            service.run,
+            account_id=auth.account_id,
+            perception_run_id=run_id,
+        ),
+    )
+    return analysis_response(run)
+
+
+@router.get("/v1/perceptions/{run_id}/readings", response_model=PerceivedReadingResponse)
+async def get_perceived_readings(
+    run_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> PerceivedReadingResponse:
+    """Deterministic text-only projection; never waits for audio analysis or meaning."""
+    run = db.get(PerceptionRun, run_id)
+    if run is None or run.account_id != auth.account_id:
+        raise AuthorizationError("perception run was not found")
+    return reading_response(run)
+
+
+@router.get(
+    "/v1/perceived-speech-analyses/{analysis_id}", response_model=PerceivedSpeechAnalysisResponse
+)
+async def get_perceived_speech_analysis(
+    analysis_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+) -> PerceivedSpeechAnalysisResponse:
+    run = db.get(PerceivedSpeechAnalysis, analysis_id)
+    if run is None or run.account_id != auth.account_id:
+        raise AuthorizationError("speech analysis was not found")
+    return analysis_response(run)
+
+
+@router.post("/v1/utterances/{utterance_id}/acoustics", response_model=AcousticRunResponse)
+async def analyze_utterance_acoustics(
+    utterance_id: uuid.UUID,
+    auth: AuthContext = Depends(get_auth_context),
+    db: Session = Depends(get_db),
+    settings: Settings = Depends(get_request_settings),
+    store: AudioObjectStore = Depends(get_audio_store),
+) -> AcousticRunResponse:
+    """Target-independent raw evidence, never a pronunciation or tone assessment."""
+    analyzer = build_acoustic_analyzer(settings)
+    run = await run_bounded_analysis_work(
+        settings,
+        partial(
+            AcousticAnalysisService(db, store, analyzer).run,
+            account_id=auth.account_id,
+            utterance_id=utterance_id,
+        ),
+    )
+    return acoustic_response(run)
 
 
 @router.post(
@@ -765,11 +964,7 @@ async def create_correction(
         raise AuthorizationError("utterance was not found")
     if body.perception_run_id is not None:
         run = db.get(PerceptionRun, body.perception_run_id)
-        if (
-            run is None
-            or run.account_id != auth.account_id
-            or run.utterance_id != utterance_id
-        ):
+        if run is None or run.account_id != auth.account_id or run.utterance_id != utterance_id:
             raise AuthorizationError("perception run was not found")
     correction = UserCorrection(
         account_id=auth.account_id,
@@ -896,9 +1091,7 @@ async def get_reference_speech_audio(
     )
 
 
-@router.get(
-    "/v1/pronunciation-targets/{target_id}", response_model=PronunciationTargetResponse
-)
+@router.get("/v1/pronunciation-targets/{target_id}", response_model=PronunciationTargetResponse)
 async def get_pronunciation_target(
     target_id: uuid.UUID,
     auth: AuthContext = Depends(get_auth_context),
@@ -939,9 +1132,7 @@ async def create_pronunciation_attempt(
     return PronunciationAttemptResponse.model_validate(attempt)
 
 
-@router.get(
-    "/v1/pronunciation-attempts/{attempt_id}", response_model=PronunciationAttemptResponse
-)
+@router.get("/v1/pronunciation-attempts/{attempt_id}", response_model=PronunciationAttemptResponse)
 async def get_pronunciation_attempt(
     attempt_id: uuid.UUID,
     auth: AuthContext = Depends(get_auth_context),
@@ -993,7 +1184,7 @@ async def analyze_pronunciation_attempt(
     store: AudioObjectStore = Depends(get_audio_store),
 ) -> PronunciationResultResponse:
     service = PronunciationLaboratoryService(db, store, settings)
-    return await run_bounded_speech_work(
+    return await run_bounded_analysis_work(
         settings,
         partial(
             service.analyze,

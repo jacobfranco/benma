@@ -47,6 +47,7 @@ mobile-dev:
 
 mobile-check:
 	npm --prefix apps/mobile run validate
+	cd apps/mobile && CI=1 npx expo export --platform web --output-dir /tmp/benma-expo-web-export
 	cd apps/mobile && CI=1 npx expo export --platform android --output-dir /tmp/benma-expo-export
 
 secret-scan:

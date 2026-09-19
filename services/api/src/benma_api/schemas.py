@@ -57,6 +57,8 @@ class ConversationTurnResponse(BaseModel):
     role: Literal["user", "assistant"]
     assistant_text: str | None
     resolved_text: str | None
+    perceived_text: str | None
+    interpretation_decision: Literal["preserve", "infer", "clarify"] | None
     utterance_id: uuid.UUID | None
     perception_run_id: uuid.UUID | None
     contextual_interpretation_run_id: uuid.UUID | None
@@ -203,6 +205,17 @@ class ContextualInterpretationRunResponse(BaseModel):
     uncertainty: ContextualInterpretationUncertainty
     clarification_needed: bool
     created_at: datetime
+
+
+class ConversationStreamEvent(BaseModel):
+    """One NDJSON event. Meaning progress is provisional until complete commits."""
+
+    type: Literal["interpretation", "complete", "error"]
+    interpretation: ContextualInterpretationRunResponse | None = None
+    result: FreeTalkTurnResponse | None = None
+    interpretation_ms: int | None = None
+    generation_ms: int | None = None
+    error_code: str | None = None
 
 
 class UserCorrectionCreate(StrictRequest):
@@ -352,7 +365,33 @@ class PronunciationAnalyzeRequest(StrictRequest):
     rerun_alignment: bool = False
 
 
+class DisplayPitchPoint(BaseModel):
+    timestamp_seconds: float
+    normalized_semitones: float
+
+
+class DisplayContour(BaseModel):
+    segments: list[list[DisplayPitchPoint]] = Field(default_factory=list)
+    baseline_hz: float | None = None
+    minimum_semitones: float = -3
+    maximum_semitones: float = 3
+    rejected_points: int = 0
+    method: str = "local-hampel-median-no-interpolation-v1"
+
+
+class ObservedContour(BaseModel):
+    classification: Literal[
+        "1-like", "2-like", "3-like", "4-like", "neutral-like", "unclear"
+    ] = "unclear"
+    confidence: Literal["moderate", "low"] = "low"
+    reason: str = "timing_unavailable"
+    voiced_coverage: float = 0
+    features: dict[str, float] = Field(default_factory=dict)
+
+
 class PronunciationSyllableResult(BaseModel):
+    display_contour: DisplayContour | None = None
+    observed_contour: ObservedContour = Field(default_factory=ObservedContour)
     syllable_index: int
     characters: str
     pinyin: str
@@ -367,6 +406,7 @@ class PronunciationSyllableResult(BaseModel):
 
 
 class PronunciationResultResponse(BaseModel):
+    display_contour: DisplayContour | None = None
     attempt: PronunciationAttemptResponse
     target: PronunciationTargetResponse
     recording_audio_url: str
@@ -400,3 +440,90 @@ class ErrorDetail(BaseModel):
 
 class ErrorResponse(BaseModel):
     error: ErrorDetail
+
+
+class PerceivedAnalysisCreate(StrictRequest):
+    """Only the path's persisted perception ID supplies analysis input."""
+
+
+class MeasuredPitchPoint(BaseModel):
+    timestamp_seconds: float = Field(ge=0, allow_inf_nan=False)
+    f0_hz: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    normalized_semitones: float | None = Field(default=None, allow_inf_nan=False)
+    voicing_probability: float | None = Field(default=None, ge=0, le=1)
+
+
+class ExpectedTonePoint(BaseModel):
+    position: float = Field(ge=0, le=1)
+    height: float = Field(ge=0, le=1)
+
+
+class PerceivedSyllable(BaseModel):
+    index: int
+    character_start: int
+    character_end: int
+    characters: str
+    pinyin: str | None
+    lexical_tone: Literal[0, 1, 2, 3, 4] | None
+    expected_surface_tone: Literal[0, 1, 2, 3, 4] | None = None
+    expected_surface_shape: list[ExpectedTonePoint] = Field(default_factory=list)
+    surface_rule: str | None = None
+    surface_rule_version: str | None = None
+    timing_source: str | None = None
+    timing_evidence_id: str | None = None
+    reading_source: Literal["perception_token", "phrase", "grammar", "dictionary", "unresolved"]
+    resolution_confidence: Literal["high", "unresolved"] = "unresolved"
+    display_contour: DisplayContour | None = None
+    observed_contour: ObservedContour = Field(default_factory=ObservedContour)
+    alternatives: list[str]
+    start_seconds: float | None = None
+    end_seconds: float | None = None
+    expected_tone: list[ExpectedTonePoint]
+
+
+class PerceivedAnalysisData(BaseModel):
+    display_contour: DisplayContour | None = None
+    timings_ms: dict[str, float] = Field(default_factory=dict)
+    syllables: list[PerceivedSyllable]
+    measured_pitch: list[MeasuredPitchPoint]
+    duration_seconds: float
+    voiced_fraction: float | None
+    pitch_status: Literal["available", "unavailable"]
+    alignment_status: Literal["aligned", "partial", "unavailable", "synthetic"]
+    timing_source: str | None = None
+    timing_evidence_id: str | None = None
+    timing_coverage: float = 0
+    unresolved_spans: list[dict[str, Any]] = Field(default_factory=list)
+    alignment_error_code: str | None
+    quality_issues: list[str]
+    observations: list[str]
+    pitch_latency_ms: int | None
+    alignment_latency_ms: int
+    # Canonical lexical shapes are schematic, not reference F0 or surface-tone grades.
+    expected_tone_basis: Literal["schematic_lexical_tones", "conservative_surface_tones"] = (
+        "schematic_lexical_tones"
+    )
+    evidence_status: Literal["synthetic_replay", "recorded_audio"]
+
+
+class PerceivedReadingResponse(BaseModel):
+    perception_run_id: uuid.UUID
+    alignment_reference_text: str
+    reading_version: str
+    surface_version: str
+    syllables: list[PerceivedSyllable]
+    unresolved_spans: list[dict[str, Any]]
+
+
+class PerceivedSpeechAnalysisResponse(BaseModel):
+    id: uuid.UUID
+    perception_run_id: uuid.UUID
+    utterance_id: uuid.UUID
+    alignment_reference_text: str
+    reference_kind: Literal["perceived_text"] = "perceived_text"
+    analyzer_version: str
+    status: Literal["succeeded", "partial", "failed"]
+    error_code: str | None
+    latency_ms: int
+    created_at: datetime
+    data: PerceivedAnalysisData

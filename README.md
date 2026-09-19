@@ -48,12 +48,14 @@ does not create evidence rows.
 
 ## What works
 
-- Unknown target: record, replay, persist original and canonical audio, run perception, preserve
-  what the provider heard, and append an optional user correction without rewriting the run.
-- Known target: enter Chinese text, retain generated pinyin provenance and lexical tones, record
-  unlimited attempts, revise polyphonic readings without overwriting the generated target, replay
-  reference speech, preserve assessment/acoustic/alignment evidence separately, inspect relative
-  pitch and surface-tone expectations, and replay/compare durable attempts.
+- **Conversation:** record Mandarin, immediately see immutable heard text, then distinct inferred
+  meaning when applicable, a transcript-conditioned pitch/tone chart, and a persisted reply. Text returns before
+  optional DragonHDFlash speech is requested and autoplays. Voice failure never erases text.
+- **Practice:** speak freely with a pitch/tone chart and no assistant reply, or prepare a known target and reference voice
+  for the existing pronunciation assessment/acoustic/alignment pipeline. Both states share the
+  Conversation recording/upload/perception foundation and selectable speech evidence UI.
+- The internal perception and pronunciation laboratory routes retain correction, pinyin revision,
+  detailed diagnostics, attempt history, and A/B comparison. They are no longer primary modes.
 - Calibration: capture a paired development pilot, export a selected attempt only through an
   explicit confirmation-gated command, run a tokenized browser annotator with immutable blind and
   revealed stages, compare identical audio across implemented Mandarin providers, persist a held-
@@ -64,8 +66,15 @@ does not create evidence rows.
 - Replay evidence is prominently labeled `synthetic_replay`; live provider failures never fall
   back to replay.
 
-This is not conversation mode and it does not claim human-calibrated correctness, intelligibility,
-or tone grading.
+Conversation remains turn-based, with progressive heard text, server interpretation, and committed
+reply text. It does not stream microphone audio or perform free-speech pronunciation grading.
+The project does not claim human-calibrated correctness, intelligibility,
+or tone grading. Free speech never receives a target-relative accuracy score.
+
+See the [Conversation/Practice milestone report](docs/development/conversation-practice.md)
+for measured provider latency, checks, remaining physical validation, and changed files.
+The [runtime follow-up report](docs/development/speech-concurrency-playback.md) covers independent
+feedback, concurrent processing, local iOS playback, and the next physical acceptance run.
 
 ## Validation
 
@@ -90,7 +99,15 @@ no live provider credentials are used.
 - [Speech-provider calibration decision](docs/adr/0004-speech-provider-calibration-and-truth-gates.md)
 - [Benchmark guide](docs/benchmark/running.md)
 - [API guide](services/api/README.md)
-- [Mobile guide](apps/mobile/README.md)
+- [Mobile and Chromium guide](apps/mobile/README.md)
+- [Cross-platform audit and validation](docs/testing/web-compatibility.md)
 
 Provider selection remains provisional. The checked-in benchmark and development replay results
 are fixtures, not vendor-selection evidence.
+
+See [perceived text, alignment references, and intended targets](docs/development/perceived-speech-analysis.md)
+for the current analysis contract and physical acceptance checklist.
+
+The [checkpoint acceptance record](docs/testing/pronunciation-manual-acceptance.md#checkpoint-acceptance--2026-09-18)
+documents completed real-human Chromium testing, deliberately conservative Mine/Unclear feedback,
+and deferred calibration, UX polish, physical latency and iPhone acceptance.

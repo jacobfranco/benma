@@ -2,6 +2,7 @@ import type { PropsWithChildren, ReactNode } from 'react';
 import {
   ActivityIndicator,
   Pressable,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -32,15 +33,15 @@ export function Heading({ children }: PropsWithChildren) {
 }
 
 export function Chinese({ children }: PropsWithChildren) {
-  return <Text style={styles.chinese}>{children}</Text>;
+  return <Text selectable style={styles.chinese}>{children}</Text>;
 }
 
 export function Pinyin({ children }: PropsWithChildren) {
-  return <Text style={styles.pinyin}>{children}</Text>;
+  return <Text selectable style={styles.pinyin}>{children}</Text>;
 }
 
 export function Body({ children }: PropsWithChildren) {
-  return <Text style={styles.body}>{children}</Text>;
+  return <Text selectable style={styles.body}>{children}</Text>;
 }
 
 export function ErrorMessage({ message }: { message: string | null }) {
@@ -81,11 +82,8 @@ export function Button({
         (disabled || loading) && styles.disabled,
       ]}
     >
-      {loading ? (
-        <ActivityIndicator color={secondary ? colors.primary : '#fff'} />
-      ) : (
-        <Text style={[styles.buttonText, secondary && styles.secondaryButtonText]}>{label}</Text>
-      )}
+      {loading && <ActivityIndicator color={secondary ? colors.primary : '#fff'} />}
+      <Text style={[styles.buttonText, secondary && styles.secondaryButtonText]}>{label}</Text>
     </Pressable>
   );
 }
@@ -116,7 +114,8 @@ export function EvidenceRow({ label, value }: { label: string; value: unknown })
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
-  screen: { padding: 20, paddingBottom: 48, gap: 16 },
+  screen: { padding: 20, paddingBottom: 48, gap: 16,
+    ...(Platform.OS === 'web' ? { width: '100%', maxWidth: 900, alignSelf: 'center' } as const : {}) },
   card: {
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -131,6 +130,8 @@ const styles = StyleSheet.create({
   body: { color: colors.secondary, fontSize: 16, lineHeight: 24 },
   error: { color: colors.danger, fontSize: 15, lineHeight: 21 },
   button: {
+    flexDirection: 'row',
+    gap: 10,
     minHeight: 52,
     borderRadius: 12,
     paddingHorizontal: 18,
