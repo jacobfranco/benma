@@ -29,7 +29,17 @@ class CapabilityState(StrEnum):
     CALIBRATED = "calibrated"
 
 
-INTERPRETER_VERSION = "pronunciation-observations-v1"
+INTERPRETER_VERSION = "pronunciation-observations-v1.2-fixture-boundary"
+
+
+def has_live_assessment(assessment: AssessmentRun | None) -> bool:
+    """Completion alone is not evidence: replay/unknown provenance fails closed."""
+    return bool(
+        assessment
+        and assessment.status == "succeeded"
+        and assessment.provider != "replay"
+        and (assessment.normalized_result or {}).get("evidence_status") == "live_provider"
+    )
 
 
 def interpreter_configuration(settings: Settings) -> dict[str, bool]:
@@ -160,7 +170,7 @@ def interpret_evidence(
         return observations, CapabilityState.RAW_EVIDENCE
 
     assessment_result = (
-        assessment.normalized_result if assessment and assessment.status == "succeeded" else None
+        assessment.normalized_result if assessment and has_live_assessment(assessment) else None
     )
     provider_syllables = (
         assessment_result.get("syllables", []) if isinstance(assessment_result, dict) else []
@@ -197,7 +207,21 @@ def interpret_evidence(
             "f0_direction": direction,
             "f0_change_semitones": change,
         }
-        if provider_tone is not None and provider_tone != expected_tone and experimental:
+        if expected_tone == 0:
+            observations.append(
+                {
+                    **base,
+                    "kind": "neutral_context_observation",
+                    "agreement": "not_calibrated",
+                    "message": (
+                        "Neutral tone has context-dependent pitch. "
+                        + (f"Measured pitch moved {direction}. " if direction else "")
+                        + "Observed shape is not a correctness judgment."
+                    ),
+                    "capability_state": CapabilityState.RAW_EVIDENCE,
+                }
+            )
+        elif provider_tone is not None and provider_tone != expected_tone and experimental:
             contour_directions = {1: "level", 2: "rising", 4: "falling"}
             expected_direction = (
                 contour_directions.get(expected_tone) if expected_tone is not None else None

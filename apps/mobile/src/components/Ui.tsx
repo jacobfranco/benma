@@ -48,10 +48,10 @@ export function ErrorMessage({ message }: { message: string | null }) {
   return message ? <Text style={styles.error}>{message}</Text> : null;
 }
 
-export function FixtureBanner() {
+export function FixtureBanner({ message = 'Development fixture — not real speech evaluation.' }: { message?: string }) {
   return (
     <View style={styles.fixture} accessibilityRole="alert">
-      <Text style={styles.fixtureText}>Development fixture — not real speech evaluation.</Text>
+      <Text style={styles.fixtureText}>{message}</Text>
     </View>
   );
 }

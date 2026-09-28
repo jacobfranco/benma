@@ -129,7 +129,11 @@ def test_alignment_sanity_checks_suppress_bad_boundaries() -> None:
 
 
 def _interpret(
-    provider_tone: int | None, pitch: list[float], *, expected_tone: int = 2
+    provider_tone: int | None,
+    pitch: list[float],
+    *,
+    expected_tone: int = 2,
+    synthetic: bool = False,
 ) -> dict[str, object]:
     target = PronunciationTarget(
         text="麻",
@@ -151,7 +155,8 @@ def _interpret(
         adapter_version="1",
         target_snapshot={},
         normalized_result={
-            "syllables": ([{"detected_tone": provider_tone}] if provider_tone else [])
+            "syllables": ([{"detected_tone": provider_tone}] if provider_tone else []),
+            "evidence_status": "synthetic_replay" if synthetic else "live_provider",
         },
         status="succeeded",
     )
@@ -176,6 +181,15 @@ def _interpret(
         settings=Settings(environment="test"),
     )
     return observations[0]
+
+
+def test_fixture_tone_cannot_issue_a_provider_judgment():
+    real = _interpret(4, [-2.0, 2.0])
+    synthetic = _interpret(4, [-2.0, 2.0], synthetic=True)
+    assert real["kind"] == "conflict"
+    assert synthetic["kind"] == "acoustic_observation"
+    assert synthetic["observed_provider_tone"] is None
+    assert synthetic["f0_direction"] == real["f0_direction"] == "rising"
 
 
 def test_interpreter_distinguishes_agreement_conflict_and_acoustic_only() -> None:
@@ -349,6 +363,9 @@ def test_target_reuses_exact_provider_timing_for_shape_without_fabricating_surfa
     from benma_api.speech.contracts import AssessmentEvidence, AssessmentProviderResponse
     from benma_api.speech.providers.replay import ReplayPronunciationProvider
 
+    # Simulated live adapter provenance for this timing-fallback test. A replay
+    # adapter cannot authorize grading just by claiming live payload status.
+    monkeypatch.setattr(ReplayPronunciationProvider, "provider_name", "test-live")
     raw = raw_contour([0] * 15)
     monkeypatch.setattr(
         AutocorrelationAcousticAnalyzer,
@@ -405,3 +422,30 @@ def test_unmodeled_surface_tone_is_not_silently_lexical(client, auth_header, upl
     assert [s["lexical_tone"] for s in result["syllables"]] == [3, 3, 3]
     assert all(s["expected_surface_tone"] is None for s in result["syllables"])
     assert all(s["observed_contour"]["classification"] == "unclear" for s in result["syllables"])
+
+
+def test_neutral_provider_shape_is_not_a_fixed_contour_mismatch() -> None:
+    observation = _interpret(4, [2.0, -2.0], expected_tone=0)
+    assert observation["kind"] == "neutral_context_observation"
+    assert observation["observed_provider_tone"] == 4
+    assert observation["f0_direction"] == "falling"
+    assert "context-dependent" in str(observation["message"])
+    assert "Tone 0" not in str(observation["message"])
+
+
+def test_assessment_provenance_fails_closed():
+    from benma_api.pronunciation.interpretation import has_live_assessment
+
+    for provider, status, evidence, accepted in [
+        ("azure", "succeeded", "live_provider", True),
+        ("replay", "succeeded", "live_provider", False),
+        ("azure", "succeeded", "synthetic_replay", False),
+        ("azure", "succeeded", None, False),
+        ("azure", "failed", "live_provider", False),
+    ]:
+        row = AssessmentRun(
+            provider=provider,
+            status=status,
+            normalized_result={"evidence_status": evidence, "pronunciation_score": 79},
+        )
+        assert has_live_assessment(row) is accepted

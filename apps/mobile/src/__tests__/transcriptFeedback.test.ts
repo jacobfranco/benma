@@ -110,3 +110,21 @@ it('preserves a non-Han transcript in a compact fallback, without empty syllable
   expect(renderer.root.findByProps({ testID: 'pronunciation-section' }).props.style.minHeight).toBe(0);
   await act(async () => renderer.unmount());
 });
+
+
+it.each(['1-like', '2-like', '3-like', '4-like'] as const)('shows neutral expectation independently of observed %s', async classification => {
+  let renderer!: ReactTestRenderer;
+  await act(async () => { renderer = create(React.createElement(SpeechEvidence, {
+    heard: '吗', analysis: { utteranceId: 'u', state: 'ready', perceived: {
+      ...perceivedAnalysis, data: { ...perceivedAnalysis.data, syllables: [{ ...perceivedAnalysis.data.syllables[0]!,
+        characters: '吗', pinyin: 'ma', lexical_tone: 0, expected_tone: [], expected_surface_tone: 0,
+        expected_surface_shape: [], observed_contour: { classification, confidence: 'low' } }] },
+    } },
+  })); });
+  const tree = JSON.stringify(renderer.toJSON());
+  expect(tree).toContain('Neutral tone');
+  expect(tree).toContain('Context-dependent');
+  expect(tree).toContain(`Tone ${classification}`);
+  expect(tree).not.toMatch(/incorrect|mismatch|varies|Neutral · 0/);
+  await act(async () => renderer.unmount());
+});

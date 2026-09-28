@@ -1,0 +1,1508 @@
+[
+  {
+    "target": "骂",
+    "expected": 4,
+    "display": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.8902,
+            "normalized_semitones": 6.312
+          },
+          {
+            "timestamp_seconds": 0.9002,
+            "normalized_semitones": 4.8932
+          },
+          {
+            "timestamp_seconds": 0.9103,
+            "normalized_semitones": 3.7964
+          },
+          {
+            "timestamp_seconds": 0.9203,
+            "normalized_semitones": 3.5341
+          },
+          {
+            "timestamp_seconds": 0.9603,
+            "normalized_semitones": 3.2637
+          }
+        ],
+        [
+          {
+            "timestamp_seconds": 0.9902,
+            "normalized_semitones": 0.0
+          },
+          {
+            "timestamp_seconds": 1.0102,
+            "normalized_semitones": -0.1278
+          },
+          {
+            "timestamp_seconds": 1.0802,
+            "normalized_semitones": 0.235
+          },
+          {
+            "timestamp_seconds": 1.1302,
+            "normalized_semitones": -1.7108
+          },
+          {
+            "timestamp_seconds": 1.1502,
+            "normalized_semitones": -1.8335
+          },
+          {
+            "timestamp_seconds": 1.1703,
+            "normalized_semitones": -2.5574
+          },
+          {
+            "timestamp_seconds": 1.1902,
+            "normalized_semitones": -4.4231
+          }
+        ]
+      ],
+      "baseline_hz": 123.44,
+      "minimum_semitones": -5.4231,
+      "maximum_semitones": 7.312,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    },
+    "observed": {
+      "classification": "4-like",
+      "confidence": "low",
+      "reason": "coherent_short_gap",
+      "voiced_coverage": 0.558,
+      "features": {
+        "gap_count": 1.0,
+        "longest_gap_seconds": 0.0299,
+        "discontinuous_gap_count": 1.0,
+        "first_retained_seconds": 0.8902,
+        "last_retained_seconds": 1.1902,
+        "alignment_start_seconds": 0.8,
+        "alignment_end_seconds": 1.32,
+        "full_span_coverage": 0.5579,
+        "duration_seconds": 0.52,
+        "raw_voiced_frames": 29.0,
+        "retained_display_frames": 29.0,
+        "voiced_duration_seconds": 0.2901,
+        "active_core_duration_seconds": 0.31,
+        "active_core_coverage": 0.9358,
+        "boundary_tolerant_coverage": 0.9358,
+        "leading_padding_seconds": 0.0902,
+        "trailing_padding_seconds": 0.1198,
+        "contaminated_fraction": 0.0,
+        "first_raw_voiced_seconds": 0.8902,
+        "last_raw_voiced_seconds": 1.1902,
+        "maximum_tracker_jump_st": 3.2637,
+        "large_jump_count": 0.0,
+        "large_jump_fraction": 0.0,
+        "longest_unstable_run": 0.0,
+        "octave_like_jump_count": 0.0,
+        "retained_after_filter_count": 29.0,
+        "instability_density_per_second": 0.0,
+        "unexplained_large_jump_count": 0.0,
+        "isolated_filtered_glitch": 0.0,
+        "tracker_instability_rejected": 0.0,
+        "raw_filtered_disagreement_mean_st": 0.0087,
+        "maximum_retained_jump_st": 3.2637,
+        "coherent_short_gap": 1.0,
+        "bin_1_st": 3.7964,
+        "bin_2_st": 1.6319,
+        "bin_3_st": 0.0643,
+        "bin_4_st": -0.657,
+        "bin_5_st": -2.3555,
+        "bin_1_seconds": 0.9103,
+        "bin_2_seconds": 0.9752,
+        "bin_3_seconds": 1.0452,
+        "bin_4_seconds": 1.1052,
+        "bin_5_seconds": 1.1653,
+        "local_residual_p90_st": 0.5484,
+        "raw_local_residual_p90_st": 0.5484,
+        "start_st": 3.7964,
+        "end_st": -2.3555,
+        "change_st": -6.1519,
+        "range_st": 6.1519,
+        "minimum_position": 1.0,
+        "pre_minimum_fall_st": 6.1519,
+        "post_minimum_recovery_st": 0.0,
+        "path_length_st": 6.1519,
+        "frame_path_length_st": 11.4607,
+        "core_bin_1_st": 3.7964,
+        "core_bin_2_st": 1.6319,
+        "core_bin_3_st": 0.0643,
+        "core_bin_4_st": -0.657,
+        "core_bin_5_st": -2.3555,
+        "core_bin_1_seconds": 0.9103,
+        "core_bin_2_seconds": 0.9752,
+        "core_bin_3_seconds": 1.0452,
+        "core_bin_4_seconds": 1.1052,
+        "core_bin_5_seconds": 1.1653,
+        "first_reliable_core_seconds": 0.8902,
+        "last_reliable_core_seconds": 1.1902,
+        "reliable_core_duration_seconds": 0.31,
+        "reliable_core_frames": 29.0,
+        "reliable_core_coverage": 0.9358,
+        "onset_transient_magnitude_st": 0.0,
+        "stable_start_st": 3.7964,
+        "stable_end_st": -2.3555,
+        "core_change_st": -6.1519,
+        "full_change_st": -6.1519,
+        "onset_core_candidate": 0.0,
+        "short_fall_candidate": 0.0
+      }
+    },
+    "full": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.8902,
+            "normalized_semitones": 6.312
+          },
+          {
+            "timestamp_seconds": 0.9002,
+            "normalized_semitones": 4.8932
+          },
+          {
+            "timestamp_seconds": 0.9103,
+            "normalized_semitones": 3.7964
+          },
+          {
+            "timestamp_seconds": 0.9203,
+            "normalized_semitones": 3.5341
+          },
+          {
+            "timestamp_seconds": 0.9303,
+            "normalized_semitones": 3.5137
+          },
+          {
+            "timestamp_seconds": 0.9403,
+            "normalized_semitones": 3.5014
+          },
+          {
+            "timestamp_seconds": 0.9503,
+            "normalized_semitones": 3.3492
+          },
+          {
+            "timestamp_seconds": 0.9603,
+            "normalized_semitones": 3.2637
+          }
+        ],
+        [
+          {
+            "timestamp_seconds": 0.9902,
+            "normalized_semitones": 0.0
+          },
+          {
+            "timestamp_seconds": 1.0002,
+            "normalized_semitones": -0.1278
+          },
+          {
+            "timestamp_seconds": 1.0102,
+            "normalized_semitones": -0.1278
+          },
+          {
+            "timestamp_seconds": 1.0202,
+            "normalized_semitones": -0.0323
+          },
+          {
+            "timestamp_seconds": 1.0302,
+            "normalized_semitones": 0.0219
+          },
+          {
+            "timestamp_seconds": 1.0402,
+            "normalized_semitones": 0.0528
+          },
+          {
+            "timestamp_seconds": 1.0502,
+            "normalized_semitones": 0.0758
+          },
+          {
+            "timestamp_seconds": 1.0602,
+            "normalized_semitones": 0.1461
+          },
+          {
+            "timestamp_seconds": 1.0702,
+            "normalized_semitones": 0.235
+          },
+          {
+            "timestamp_seconds": 1.0802,
+            "normalized_semitones": 0.235
+          },
+          {
+            "timestamp_seconds": 1.0902,
+            "normalized_semitones": -0.0416
+          },
+          {
+            "timestamp_seconds": 1.1002,
+            "normalized_semitones": -0.4736
+          },
+          {
+            "timestamp_seconds": 1.1102,
+            "normalized_semitones": -0.8404
+          },
+          {
+            "timestamp_seconds": 1.1202,
+            "normalized_semitones": -1.2514
+          },
+          {
+            "timestamp_seconds": 1.1302,
+            "normalized_semitones": -1.7108
+          },
+          {
+            "timestamp_seconds": 1.1402,
+            "normalized_semitones": -1.7982
+          },
+          {
+            "timestamp_seconds": 1.1502,
+            "normalized_semitones": -1.8335
+          },
+          {
+            "timestamp_seconds": 1.1603,
+            "normalized_semitones": -2.1535
+          },
+          {
+            "timestamp_seconds": 1.1703,
+            "normalized_semitones": -2.5574
+          },
+          {
+            "timestamp_seconds": 1.1803,
+            "normalized_semitones": -3.4587
+          },
+          {
+            "timestamp_seconds": 1.1902,
+            "normalized_semitones": -4.4231
+          }
+        ]
+      ],
+      "baseline_hz": 123.44,
+      "minimum_semitones": -5.4231,
+      "maximum_semitones": 7.312,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    }
+  },
+  {
+    "target": "妈",
+    "expected": 1,
+    "display": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.4843,
+            "normalized_semitones": 3.0069
+          },
+          {
+            "timestamp_seconds": 0.5043,
+            "normalized_semitones": 0.5715
+          },
+          {
+            "timestamp_seconds": 0.5443,
+            "normalized_semitones": -0.4991
+          },
+          {
+            "timestamp_seconds": 0.5743,
+            "normalized_semitones": -2.1706
+          },
+          {
+            "timestamp_seconds": 0.5843,
+            "normalized_semitones": -2.2695
+          },
+          {
+            "timestamp_seconds": 0.5943,
+            "normalized_semitones": -2.2695
+          },
+          {
+            "timestamp_seconds": 0.6143,
+            "normalized_semitones": -1.8123
+          },
+          {
+            "timestamp_seconds": 0.6343,
+            "normalized_semitones": -0.8565
+          },
+          {
+            "timestamp_seconds": 0.6543,
+            "normalized_semitones": -0.7684
+          },
+          {
+            "timestamp_seconds": 0.6843,
+            "normalized_semitones": -0.2313
+          },
+          {
+            "timestamp_seconds": 0.7343,
+            "normalized_semitones": 0.2241
+          },
+          {
+            "timestamp_seconds": 0.7843,
+            "normalized_semitones": 0.0196
+          },
+          {
+            "timestamp_seconds": 0.8443,
+            "normalized_semitones": 0.6628
+          },
+          {
+            "timestamp_seconds": 0.9443,
+            "normalized_semitones": 0.2879
+          },
+          {
+            "timestamp_seconds": 1.0143,
+            "normalized_semitones": -1.1279
+          },
+          {
+            "timestamp_seconds": 1.0343,
+            "normalized_semitones": -1.8634
+          },
+          {
+            "timestamp_seconds": 1.0543,
+            "normalized_semitones": -1.7551
+          }
+        ]
+      ],
+      "baseline_hz": 117.804,
+      "minimum_semitones": -3.2695,
+      "maximum_semitones": 4.0069,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    },
+    "observed": {
+      "classification": "1-like",
+      "confidence": "moderate",
+      "reason": "acoustic_shape_only",
+      "voiced_coverage": 0.69,
+      "features": {
+        "gap_count": 0.0,
+        "longest_gap_seconds": 0.0,
+        "discontinuous_gap_count": 0.0,
+        "first_retained_seconds": 0.4843,
+        "last_retained_seconds": 1.0543,
+        "alignment_start_seconds": 0.37,
+        "alignment_end_seconds": 1.21,
+        "full_span_coverage": 0.6905,
+        "duration_seconds": 0.84,
+        "raw_voiced_frames": 58.0,
+        "retained_display_frames": 58.0,
+        "voiced_duration_seconds": 0.58,
+        "active_core_duration_seconds": 0.58,
+        "active_core_coverage": 1.0,
+        "boundary_tolerant_coverage": 1.0,
+        "leading_padding_seconds": 0.1143,
+        "trailing_padding_seconds": 0.1457,
+        "contaminated_fraction": 0.0,
+        "first_raw_voiced_seconds": 0.4843,
+        "last_raw_voiced_seconds": 1.0543,
+        "maximum_tracker_jump_st": 1.2904,
+        "large_jump_count": 0.0,
+        "large_jump_fraction": 0.0,
+        "longest_unstable_run": 0.0,
+        "octave_like_jump_count": 0.0,
+        "retained_after_filter_count": 58.0,
+        "instability_density_per_second": 0.0,
+        "unexplained_large_jump_count": 0.0,
+        "isolated_filtered_glitch": 0.0,
+        "tracker_instability_rejected": 0.0,
+        "raw_filtered_disagreement_mean_st": 0.0053,
+        "maximum_retained_jump_st": 1.2903,
+        "coherent_short_gap": 0.0,
+        "bin_1_st": -0.2756,
+        "bin_2_st": -0.7847,
+        "bin_3_st": 0.1546,
+        "bin_4_st": 0.5314,
+        "bin_5_st": -0.9229,
+        "bin_1_seconds": 0.5343,
+        "bin_2_seconds": 0.6493,
+        "bin_3_seconds": 0.7643,
+        "bin_4_seconds": 0.8793,
+        "bin_5_seconds": 0.9993,
+        "local_residual_p90_st": 0.0989,
+        "raw_local_residual_p90_st": 0.0989,
+        "start_st": -0.2756,
+        "end_st": -0.9229,
+        "change_st": -0.6473,
+        "range_st": 1.4544,
+        "minimum_position": 1.0,
+        "pre_minimum_fall_st": 0.6473,
+        "post_minimum_recovery_st": 0.0,
+        "path_length_st": 3.2795,
+        "frame_path_length_st": 11.2746,
+        "core_bin_1_st": -0.2756,
+        "core_bin_2_st": -0.7847,
+        "core_bin_3_st": 0.1546,
+        "core_bin_4_st": 0.5314,
+        "core_bin_5_st": -0.9229,
+        "core_bin_1_seconds": 0.5343,
+        "core_bin_2_seconds": 0.6493,
+        "core_bin_3_seconds": 0.7643,
+        "core_bin_4_seconds": 0.8793,
+        "core_bin_5_seconds": 0.9993,
+        "first_reliable_core_seconds": 0.4843,
+        "last_reliable_core_seconds": 1.0543,
+        "reliable_core_duration_seconds": 0.58,
+        "reliable_core_frames": 58.0,
+        "reliable_core_coverage": 1.0,
+        "onset_transient_magnitude_st": 0.0,
+        "stable_start_st": -0.2756,
+        "stable_end_st": -0.9229,
+        "core_change_st": -0.6473,
+        "full_change_st": -0.6473,
+        "onset_core_candidate": 0.0,
+        "short_fall_candidate": 0.0
+      }
+    },
+    "full": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.4843,
+            "normalized_semitones": 3.0069
+          },
+          {
+            "timestamp_seconds": 0.4943,
+            "normalized_semitones": 1.8618
+          },
+          {
+            "timestamp_seconds": 0.5043,
+            "normalized_semitones": 0.5715
+          },
+          {
+            "timestamp_seconds": 0.5143,
+            "normalized_semitones": 0.3557
+          },
+          {
+            "timestamp_seconds": 0.5243,
+            "normalized_semitones": 0.0602
+          },
+          {
+            "timestamp_seconds": 0.5343,
+            "normalized_semitones": -0.2756
+          },
+          {
+            "timestamp_seconds": 0.5443,
+            "normalized_semitones": -0.4991
+          },
+          {
+            "timestamp_seconds": 0.5543,
+            "normalized_semitones": -0.9401
+          },
+          {
+            "timestamp_seconds": 0.5643,
+            "normalized_semitones": -1.6865
+          },
+          {
+            "timestamp_seconds": 0.5743,
+            "normalized_semitones": -2.1706
+          },
+          {
+            "timestamp_seconds": 0.5843,
+            "normalized_semitones": -2.2695
+          },
+          {
+            "timestamp_seconds": 0.5943,
+            "normalized_semitones": -2.2695
+          },
+          {
+            "timestamp_seconds": 0.6043,
+            "normalized_semitones": -2.0734
+          },
+          {
+            "timestamp_seconds": 0.6143,
+            "normalized_semitones": -1.8123
+          },
+          {
+            "timestamp_seconds": 0.6243,
+            "normalized_semitones": -1.3226
+          },
+          {
+            "timestamp_seconds": 0.6343,
+            "normalized_semitones": -0.8565
+          },
+          {
+            "timestamp_seconds": 0.6443,
+            "normalized_semitones": -0.801
+          },
+          {
+            "timestamp_seconds": 0.6543,
+            "normalized_semitones": -0.7684
+          },
+          {
+            "timestamp_seconds": 0.6643,
+            "normalized_semitones": -0.6289
+          },
+          {
+            "timestamp_seconds": 0.6743,
+            "normalized_semitones": -0.3985
+          },
+          {
+            "timestamp_seconds": 0.6843,
+            "normalized_semitones": -0.2313
+          },
+          {
+            "timestamp_seconds": 0.6943,
+            "normalized_semitones": -0.1665
+          },
+          {
+            "timestamp_seconds": 0.7043,
+            "normalized_semitones": -0.0895
+          },
+          {
+            "timestamp_seconds": 0.7143,
+            "normalized_semitones": 0.0464
+          },
+          {
+            "timestamp_seconds": 0.7243,
+            "normalized_semitones": 0.1928
+          },
+          {
+            "timestamp_seconds": 0.7343,
+            "normalized_semitones": 0.2241
+          },
+          {
+            "timestamp_seconds": 0.7443,
+            "normalized_semitones": 0.2241
+          },
+          {
+            "timestamp_seconds": 0.7543,
+            "normalized_semitones": 0.0915
+          },
+          {
+            "timestamp_seconds": 0.7643,
+            "normalized_semitones": 0.0084
+          },
+          {
+            "timestamp_seconds": 0.7743,
+            "normalized_semitones": 0.0084
+          },
+          {
+            "timestamp_seconds": 0.7843,
+            "normalized_semitones": 0.0196
+          },
+          {
+            "timestamp_seconds": 0.7943,
+            "normalized_semitones": 0.1546
+          },
+          {
+            "timestamp_seconds": 0.8043,
+            "normalized_semitones": 0.325
+          },
+          {
+            "timestamp_seconds": 0.8143,
+            "normalized_semitones": 0.4459
+          },
+          {
+            "timestamp_seconds": 0.8243,
+            "normalized_semitones": 0.54
+          },
+          {
+            "timestamp_seconds": 0.8343,
+            "normalized_semitones": 0.6345
+          },
+          {
+            "timestamp_seconds": 0.8443,
+            "normalized_semitones": 0.6628
+          },
+          {
+            "timestamp_seconds": 0.8543,
+            "normalized_semitones": 0.6628
+          },
+          {
+            "timestamp_seconds": 0.8643,
+            "normalized_semitones": 0.6017
+          },
+          {
+            "timestamp_seconds": 0.8743,
+            "normalized_semitones": 0.5574
+          },
+          {
+            "timestamp_seconds": 0.8843,
+            "normalized_semitones": 0.5228
+          },
+          {
+            "timestamp_seconds": 0.8943,
+            "normalized_semitones": 0.4941
+          },
+          {
+            "timestamp_seconds": 0.9043,
+            "normalized_semitones": 0.4779
+          },
+          {
+            "timestamp_seconds": 0.9143,
+            "normalized_semitones": 0.4625
+          },
+          {
+            "timestamp_seconds": 0.9243,
+            "normalized_semitones": 0.4151
+          },
+          {
+            "timestamp_seconds": 0.9343,
+            "normalized_semitones": 0.3544
+          },
+          {
+            "timestamp_seconds": 0.9443,
+            "normalized_semitones": 0.2879
+          },
+          {
+            "timestamp_seconds": 0.9543,
+            "normalized_semitones": 0.1594
+          },
+          {
+            "timestamp_seconds": 0.9643,
+            "normalized_semitones": -0.0177
+          },
+          {
+            "timestamp_seconds": 0.9743,
+            "normalized_semitones": -0.2813
+          },
+          {
+            "timestamp_seconds": 0.9843,
+            "normalized_semitones": -0.5491
+          },
+          {
+            "timestamp_seconds": 0.9943,
+            "normalized_semitones": -0.8032
+          },
+          {
+            "timestamp_seconds": 1.0043,
+            "normalized_semitones": -1.0427
+          },
+          {
+            "timestamp_seconds": 1.0143,
+            "normalized_semitones": -1.1279
+          },
+          {
+            "timestamp_seconds": 1.0243,
+            "normalized_semitones": -1.4899
+          },
+          {
+            "timestamp_seconds": 1.0343,
+            "normalized_semitones": -1.8634
+          },
+          {
+            "timestamp_seconds": 1.0443,
+            "normalized_semitones": -1.8634
+          },
+          {
+            "timestamp_seconds": 1.0543,
+            "normalized_semitones": -1.7551
+          }
+        ]
+      ],
+      "baseline_hz": 117.804,
+      "minimum_semitones": -3.2695,
+      "maximum_semitones": 4.0069,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    }
+  },
+  {
+    "target": "马",
+    "expected": 3,
+    "display": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.5324,
+            "normalized_semitones": 1.7511
+          },
+          {
+            "timestamp_seconds": 0.5624,
+            "normalized_semitones": 0.3951
+          },
+          {
+            "timestamp_seconds": 0.5724,
+            "normalized_semitones": 0.1574
+          },
+          {
+            "timestamp_seconds": 0.6624,
+            "normalized_semitones": -0.9891
+          },
+          {
+            "timestamp_seconds": 0.6724,
+            "normalized_semitones": -1.5064
+          },
+          {
+            "timestamp_seconds": 0.7424,
+            "normalized_semitones": -1.1039
+          },
+          {
+            "timestamp_seconds": 0.7524,
+            "normalized_semitones": -0.7271
+          },
+          {
+            "timestamp_seconds": 0.7724,
+            "normalized_semitones": -0.5212
+          },
+          {
+            "timestamp_seconds": 0.7924,
+            "normalized_semitones": -0.0742
+          },
+          {
+            "timestamp_seconds": 0.8124,
+            "normalized_semitones": 1.2819
+          },
+          {
+            "timestamp_seconds": 0.8324,
+            "normalized_semitones": 1.9262
+          },
+          {
+            "timestamp_seconds": 0.8824,
+            "normalized_semitones": 1.8439
+          },
+          {
+            "timestamp_seconds": 0.9124,
+            "normalized_semitones": 1.5401
+          },
+          {
+            "timestamp_seconds": 0.9424,
+            "normalized_semitones": 0.3047
+          },
+          {
+            "timestamp_seconds": 0.9524,
+            "normalized_semitones": -0.8952
+          },
+          {
+            "timestamp_seconds": 0.9724,
+            "normalized_semitones": -0.8407
+          },
+          {
+            "timestamp_seconds": 0.9824,
+            "normalized_semitones": 0.0191
+          },
+          {
+            "timestamp_seconds": 0.9924,
+            "normalized_semitones": 1.4403
+          },
+          {
+            "timestamp_seconds": 1.0124,
+            "normalized_semitones": 1.3598
+          }
+        ]
+      ],
+      "baseline_hz": 105.884,
+      "minimum_semitones": -3.0,
+      "maximum_semitones": 3.0,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    },
+    "observed": {
+      "classification": "unclear",
+      "confidence": "low",
+      "reason": "ambiguous_shape",
+      "voiced_coverage": 0.681,
+      "features": {
+        "gap_count": 0.0,
+        "longest_gap_seconds": 0.0,
+        "discontinuous_gap_count": 0.0,
+        "first_retained_seconds": 0.5324,
+        "last_retained_seconds": 1.0124,
+        "alignment_start_seconds": 0.45,
+        "alignment_end_seconds": 1.17,
+        "full_span_coverage": 0.6806,
+        "duration_seconds": 0.72,
+        "raw_voiced_frames": 49.0,
+        "retained_display_frames": 49.0,
+        "voiced_duration_seconds": 0.49,
+        "active_core_duration_seconds": 0.49,
+        "active_core_coverage": 1.0,
+        "boundary_tolerant_coverage": 1.0,
+        "leading_padding_seconds": 0.0824,
+        "trailing_padding_seconds": 0.1476,
+        "contaminated_fraction": 0.0,
+        "first_raw_voiced_seconds": 0.5324,
+        "last_raw_voiced_seconds": 1.0124,
+        "maximum_tracker_jump_st": 1.4212,
+        "large_jump_count": 0.0,
+        "large_jump_fraction": 0.0,
+        "longest_unstable_run": 0.0,
+        "octave_like_jump_count": 0.0,
+        "retained_after_filter_count": 49.0,
+        "instability_density_per_second": 0.0,
+        "unexplained_large_jump_count": 0.0,
+        "isolated_filtered_glitch": 0.0,
+        "tracker_instability_rejected": 0.0,
+        "raw_filtered_disagreement_mean_st": 0.0122,
+        "maximum_retained_jump_st": 1.4212,
+        "coherent_short_gap": 0.0,
+        "bin_1_st": 0.1574,
+        "bin_2_st": -1.1528,
+        "bin_3_st": -0.5714,
+        "bin_4_st": 1.8583,
+        "bin_5_st": 0.4466,
+        "bin_1_seconds": 0.5724,
+        "bin_2_seconds": 0.6674,
+        "bin_3_seconds": 0.7674,
+        "bin_4_seconds": 0.8674,
+        "bin_5_seconds": 0.9674,
+        "local_residual_p90_st": 0.0646,
+        "raw_local_residual_p90_st": 0.1598,
+        "start_st": 0.1574,
+        "end_st": 0.4466,
+        "change_st": 0.2893,
+        "range_st": 3.0111,
+        "minimum_position": 0.25,
+        "pre_minimum_fall_st": 1.3102,
+        "post_minimum_recovery_st": 1.5995,
+        "path_length_st": 5.7331,
+        "frame_path_length_st": 11.9721,
+        "core_bin_1_st": 0.1574,
+        "core_bin_2_st": -1.1528,
+        "core_bin_3_st": -0.5714,
+        "core_bin_4_st": 1.8583,
+        "core_bin_5_st": 0.4466,
+        "core_bin_1_seconds": 0.5724,
+        "core_bin_2_seconds": 0.6674,
+        "core_bin_3_seconds": 0.7674,
+        "core_bin_4_seconds": 0.8674,
+        "core_bin_5_seconds": 0.9674,
+        "first_reliable_core_seconds": 0.5324,
+        "last_reliable_core_seconds": 1.0124,
+        "reliable_core_duration_seconds": 0.49,
+        "reliable_core_frames": 49.0,
+        "reliable_core_coverage": 1.0,
+        "onset_transient_magnitude_st": 0,
+        "stable_start_st": 0.1574,
+        "stable_end_st": 0.4466,
+        "core_change_st": 0.2893,
+        "full_change_st": 0.2893,
+        "onset_core_candidate": 0.0,
+        "short_fall_candidate": 0.0
+      }
+    },
+    "full": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.5324,
+            "normalized_semitones": 1.7511
+          },
+          {
+            "timestamp_seconds": 0.5424,
+            "normalized_semitones": 1.3732
+          },
+          {
+            "timestamp_seconds": 0.5524,
+            "normalized_semitones": 0.8227
+          },
+          {
+            "timestamp_seconds": 0.5624,
+            "normalized_semitones": 0.3951
+          },
+          {
+            "timestamp_seconds": 0.5724,
+            "normalized_semitones": 0.1574
+          },
+          {
+            "timestamp_seconds": 0.5824,
+            "normalized_semitones": 0.0
+          },
+          {
+            "timestamp_seconds": 0.5924,
+            "normalized_semitones": -0.0992
+          },
+          {
+            "timestamp_seconds": 0.6024,
+            "normalized_semitones": -0.1578
+          },
+          {
+            "timestamp_seconds": 0.6124,
+            "normalized_semitones": -0.244
+          },
+          {
+            "timestamp_seconds": 0.6224,
+            "normalized_semitones": -0.3582
+          },
+          {
+            "timestamp_seconds": 0.6324,
+            "normalized_semitones": -0.5102
+          },
+          {
+            "timestamp_seconds": 0.6424,
+            "normalized_semitones": -0.7085
+          },
+          {
+            "timestamp_seconds": 0.6524,
+            "normalized_semitones": -0.8776
+          },
+          {
+            "timestamp_seconds": 0.6624,
+            "normalized_semitones": -0.9891
+          },
+          {
+            "timestamp_seconds": 0.6724,
+            "normalized_semitones": -1.5064
+          },
+          {
+            "timestamp_seconds": 0.6824,
+            "normalized_semitones": -1.5064
+          },
+          {
+            "timestamp_seconds": 0.6924,
+            "normalized_semitones": -1.4418
+          },
+          {
+            "timestamp_seconds": 0.7024,
+            "normalized_semitones": -1.3857
+          },
+          {
+            "timestamp_seconds": 0.7124,
+            "normalized_semitones": -1.3166
+          },
+          {
+            "timestamp_seconds": 0.7224,
+            "normalized_semitones": -1.2422
+          },
+          {
+            "timestamp_seconds": 0.7324,
+            "normalized_semitones": -1.1545
+          },
+          {
+            "timestamp_seconds": 0.7424,
+            "normalized_semitones": -1.1039
+          },
+          {
+            "timestamp_seconds": 0.7524,
+            "normalized_semitones": -0.7271
+          },
+          {
+            "timestamp_seconds": 0.7624,
+            "normalized_semitones": -0.6215
+          },
+          {
+            "timestamp_seconds": 0.7724,
+            "normalized_semitones": -0.5212
+          },
+          {
+            "timestamp_seconds": 0.7824,
+            "normalized_semitones": -0.2236
+          },
+          {
+            "timestamp_seconds": 0.7924,
+            "normalized_semitones": -0.0742
+          },
+          {
+            "timestamp_seconds": 0.8024,
+            "normalized_semitones": 0.6426
+          },
+          {
+            "timestamp_seconds": 0.8124,
+            "normalized_semitones": 1.2819
+          },
+          {
+            "timestamp_seconds": 0.8224,
+            "normalized_semitones": 1.7013
+          },
+          {
+            "timestamp_seconds": 0.8324,
+            "normalized_semitones": 1.9262
+          },
+          {
+            "timestamp_seconds": 0.8424,
+            "normalized_semitones": 1.9485
+          },
+          {
+            "timestamp_seconds": 0.8524,
+            "normalized_semitones": 1.9485
+          },
+          {
+            "timestamp_seconds": 0.8624,
+            "normalized_semitones": 1.912
+          },
+          {
+            "timestamp_seconds": 0.8724,
+            "normalized_semitones": 1.8727
+          },
+          {
+            "timestamp_seconds": 0.8824,
+            "normalized_semitones": 1.8439
+          },
+          {
+            "timestamp_seconds": 0.8924,
+            "normalized_semitones": 1.6819
+          },
+          {
+            "timestamp_seconds": 0.9024,
+            "normalized_semitones": 1.6271
+          },
+          {
+            "timestamp_seconds": 0.9124,
+            "normalized_semitones": 1.5401
+          },
+          {
+            "timestamp_seconds": 0.9224,
+            "normalized_semitones": 1.0808
+          },
+          {
+            "timestamp_seconds": 0.9324,
+            "normalized_semitones": 0.5886
+          },
+          {
+            "timestamp_seconds": 0.9424,
+            "normalized_semitones": 0.3047
+          },
+          {
+            "timestamp_seconds": 0.9524,
+            "normalized_semitones": -0.8952
+          },
+          {
+            "timestamp_seconds": 0.9624,
+            "normalized_semitones": -0.8952
+          },
+          {
+            "timestamp_seconds": 0.9724,
+            "normalized_semitones": -0.8407
+          },
+          {
+            "timestamp_seconds": 0.9824,
+            "normalized_semitones": 0.0191
+          },
+          {
+            "timestamp_seconds": 0.9924,
+            "normalized_semitones": 1.4403
+          },
+          {
+            "timestamp_seconds": 1.0024,
+            "normalized_semitones": 1.4403
+          },
+          {
+            "timestamp_seconds": 1.0124,
+            "normalized_semitones": 1.3598
+          }
+        ]
+      ],
+      "baseline_hz": 105.884,
+      "minimum_semitones": -3.0,
+      "maximum_semitones": 3.0,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    }
+  },
+  {
+    "target": "骂",
+    "expected": 4,
+    "display": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.523,
+            "normalized_semitones": 1.1388
+          },
+          {
+            "timestamp_seconds": 0.573,
+            "normalized_semitones": 0.0937
+          },
+          {
+            "timestamp_seconds": 0.603,
+            "normalized_semitones": -0.0574
+          },
+          {
+            "timestamp_seconds": 0.613,
+            "normalized_semitones": -0.5279
+          },
+          {
+            "timestamp_seconds": 0.653,
+            "normalized_semitones": -0.7519
+          }
+        ]
+      ],
+      "baseline_hz": 101.895,
+      "minimum_semitones": -3.0,
+      "maximum_semitones": 3.0,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    },
+    "observed": {
+      "classification": "unclear",
+      "confidence": "low",
+      "reason": "ambiguous_shape",
+      "voiced_coverage": 0.326,
+      "features": {
+        "gap_count": 0.0,
+        "longest_gap_seconds": 0.0,
+        "discontinuous_gap_count": 0.0,
+        "first_retained_seconds": 0.523,
+        "last_retained_seconds": 0.653,
+        "alignment_start_seconds": 0.43,
+        "alignment_end_seconds": 0.86,
+        "full_span_coverage": 0.3256,
+        "duration_seconds": 0.43,
+        "raw_voiced_frames": 14.0,
+        "retained_display_frames": 14.0,
+        "voiced_duration_seconds": 0.14,
+        "active_core_duration_seconds": 0.14,
+        "active_core_coverage": 1.0,
+        "boundary_tolerant_coverage": 0.7487,
+        "leading_padding_seconds": 0.093,
+        "trailing_padding_seconds": 0.197,
+        "contaminated_fraction": 0.0,
+        "first_raw_voiced_seconds": 0.523,
+        "last_raw_voiced_seconds": 0.653,
+        "maximum_tracker_jump_st": 0.4705,
+        "large_jump_count": 0.0,
+        "large_jump_fraction": 0.0,
+        "longest_unstable_run": 0.0,
+        "octave_like_jump_count": 0.0,
+        "retained_after_filter_count": 14.0,
+        "instability_density_per_second": 0.0,
+        "unexplained_large_jump_count": 0.0,
+        "isolated_filtered_glitch": 0.0,
+        "tracker_instability_rejected": 0.0,
+        "raw_filtered_disagreement_mean_st": 0.0069,
+        "maximum_retained_jump_st": 0.4705,
+        "coherent_short_gap": 0.0,
+        "bin_1_st": 1.0557,
+        "bin_2_st": 0.5503,
+        "bin_3_st": 0.0073,
+        "bin_4_st": -0.5279,
+        "bin_5_st": -0.7519,
+        "bin_1_seconds": 0.528,
+        "bin_2_seconds": 0.553,
+        "bin_3_seconds": 0.583,
+        "bin_4_seconds": 0.613,
+        "bin_5_seconds": 0.643,
+        "local_residual_p90_st": 0.085,
+        "raw_local_residual_p90_st": 0.1342,
+        "start_st": 1.0557,
+        "end_st": -0.7519,
+        "change_st": -1.8076,
+        "range_st": 1.8076,
+        "minimum_position": 1.0,
+        "pre_minimum_fall_st": 1.8076,
+        "post_minimum_recovery_st": 0.0,
+        "path_length_st": 1.8076,
+        "frame_path_length_st": 1.8907,
+        "core_bin_1_st": 1.0557,
+        "core_bin_2_st": 0.5503,
+        "core_bin_3_st": 0.0073,
+        "core_bin_4_st": -0.5279,
+        "core_bin_5_st": -0.7519,
+        "core_bin_1_seconds": 0.528,
+        "core_bin_2_seconds": 0.553,
+        "core_bin_3_seconds": 0.583,
+        "core_bin_4_seconds": 0.613,
+        "core_bin_5_seconds": 0.643,
+        "first_reliable_core_seconds": 0.523,
+        "last_reliable_core_seconds": 0.653,
+        "reliable_core_duration_seconds": 0.14,
+        "reliable_core_frames": 14.0,
+        "reliable_core_coverage": 1.0,
+        "onset_transient_magnitude_st": 0,
+        "stable_start_st": 1.0557,
+        "stable_end_st": -0.7519,
+        "core_change_st": -1.8076,
+        "full_change_st": -1.8076,
+        "onset_core_candidate": 0.0,
+        "short_fall_candidate": 0.0
+      }
+    },
+    "full": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.523,
+            "normalized_semitones": 1.1388
+          },
+          {
+            "timestamp_seconds": 0.533,
+            "normalized_semitones": 0.9726
+          },
+          {
+            "timestamp_seconds": 0.543,
+            "normalized_semitones": 0.8026
+          },
+          {
+            "timestamp_seconds": 0.553,
+            "normalized_semitones": 0.5503
+          },
+          {
+            "timestamp_seconds": 0.563,
+            "normalized_semitones": 0.2997
+          },
+          {
+            "timestamp_seconds": 0.573,
+            "normalized_semitones": 0.0937
+          },
+          {
+            "timestamp_seconds": 0.583,
+            "normalized_semitones": 0.0073
+          },
+          {
+            "timestamp_seconds": 0.593,
+            "normalized_semitones": -0.0073
+          },
+          {
+            "timestamp_seconds": 0.603,
+            "normalized_semitones": -0.0574
+          },
+          {
+            "timestamp_seconds": 0.613,
+            "normalized_semitones": -0.5279
+          },
+          {
+            "timestamp_seconds": 0.623,
+            "normalized_semitones": -0.6004
+          },
+          {
+            "timestamp_seconds": 0.633,
+            "normalized_semitones": -0.618
+          },
+          {
+            "timestamp_seconds": 0.643,
+            "normalized_semitones": -0.7519
+          },
+          {
+            "timestamp_seconds": 0.653,
+            "normalized_semitones": -0.7519
+          }
+        ]
+      ],
+      "baseline_hz": 101.895,
+      "minimum_semitones": -3.0,
+      "maximum_semitones": 3.0,
+      "rejected_points": 0,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    }
+  },
+  {
+    "target": "天",
+    "expected": 1,
+    "display": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.6547,
+            "normalized_semitones": 1.834
+          },
+          {
+            "timestamp_seconds": 0.6747,
+            "normalized_semitones": 0.3016
+          },
+          {
+            "timestamp_seconds": 0.6947,
+            "normalized_semitones": -0.5841
+          },
+          {
+            "timestamp_seconds": 0.7047,
+            "normalized_semitones": -0.5841
+          },
+          {
+            "timestamp_seconds": 0.7247,
+            "normalized_semitones": -0.287
+          },
+          {
+            "timestamp_seconds": 0.7647,
+            "normalized_semitones": -0.2241
+          },
+          {
+            "timestamp_seconds": 0.7847,
+            "normalized_semitones": 0.151
+          },
+          {
+            "timestamp_seconds": 0.8347,
+            "normalized_semitones": 0.2033
+          },
+          {
+            "timestamp_seconds": 0.8747,
+            "normalized_semitones": -0.1599
+          },
+          {
+            "timestamp_seconds": 0.8947,
+            "normalized_semitones": 0.3496
+          }
+        ]
+      ],
+      "baseline_hz": 125.116,
+      "minimum_semitones": -3.0,
+      "maximum_semitones": 3.0,
+      "rejected_points": 1,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    },
+    "observed": {
+      "classification": "1-like",
+      "confidence": "low",
+      "reason": "sustained_level_after_onset",
+      "voiced_coverage": 0.481,
+      "features": {
+        "gap_count": 0.0,
+        "longest_gap_seconds": 0.0,
+        "discontinuous_gap_count": 0.0,
+        "first_retained_seconds": 0.6547,
+        "last_retained_seconds": 0.8947,
+        "alignment_start_seconds": 0.51,
+        "alignment_end_seconds": 1.03,
+        "full_span_coverage": 0.4808,
+        "duration_seconds": 0.52,
+        "raw_voiced_frames": 25.0,
+        "retained_display_frames": 25.0,
+        "voiced_duration_seconds": 0.25,
+        "active_core_duration_seconds": 0.25,
+        "active_core_coverage": 1.0,
+        "boundary_tolerant_coverage": 1.0,
+        "leading_padding_seconds": 0.1447,
+        "trailing_padding_seconds": 0.1253,
+        "contaminated_fraction": 0.0,
+        "first_raw_voiced_seconds": 0.6547,
+        "last_raw_voiced_seconds": 0.8947,
+        "maximum_tracker_jump_st": 0.8254,
+        "large_jump_count": 0.0,
+        "large_jump_fraction": 0.0,
+        "longest_unstable_run": 0.0,
+        "octave_like_jump_count": 0.0,
+        "retained_after_filter_count": 25.0,
+        "instability_density_per_second": 0.0,
+        "unexplained_large_jump_count": 0.0,
+        "isolated_filtered_glitch": 0.0,
+        "tracker_instability_rejected": 0.0,
+        "raw_filtered_disagreement_mean_st": 0.005,
+        "maximum_retained_jump_st": 0.8254,
+        "coherent_short_gap": 0.0,
+        "bin_1_st": 0.3016,
+        "bin_2_st": -0.287,
+        "bin_3_st": 0.0,
+        "bin_4_st": 0.1894,
+        "bin_5_st": -0.0334,
+        "bin_1_seconds": 0.6747,
+        "bin_2_seconds": 0.7247,
+        "bin_3_seconds": 0.7747,
+        "bin_4_seconds": 0.8247,
+        "bin_5_seconds": 0.8747,
+        "local_residual_p90_st": 0.2475,
+        "raw_local_residual_p90_st": 0.2475,
+        "start_st": 0.3016,
+        "end_st": -0.0334,
+        "change_st": -0.335,
+        "range_st": 0.5886,
+        "minimum_position": 0.25,
+        "pre_minimum_fall_st": 0.5886,
+        "post_minimum_recovery_st": 0.2536,
+        "path_length_st": 1.2878,
+        "frame_path_length_st": 4.0782,
+        "core_bin_1_st": -0.3958,
+        "core_bin_2_st": -0.2321,
+        "core_bin_3_st": 0.0755,
+        "core_bin_4_st": 0.1894,
+        "core_bin_5_st": -0.0334,
+        "core_bin_1_seconds": 0.6897,
+        "core_bin_2_seconds": 0.7347,
+        "core_bin_3_seconds": 0.7797,
+        "core_bin_4_seconds": 0.8247,
+        "core_bin_5_seconds": 0.8747,
+        "first_reliable_core_seconds": 0.6747,
+        "last_reliable_core_seconds": 0.8947,
+        "reliable_core_duration_seconds": 0.23,
+        "reliable_core_frames": 23.0,
+        "reliable_core_coverage": 1.0,
+        "onset_transient_magnitude_st": 2.2298,
+        "stable_start_st": -0.3958,
+        "stable_end_st": -0.0334,
+        "core_change_st": 0.3624,
+        "full_change_st": -0.335,
+        "onset_core_candidate": 1.0,
+        "short_fall_candidate": 0.0
+      }
+    },
+    "full": {
+      "segments": [
+        [
+          {
+            "timestamp_seconds": 0.6547,
+            "normalized_semitones": 1.834
+          },
+          {
+            "timestamp_seconds": 0.6647,
+            "normalized_semitones": 1.127
+          },
+          {
+            "timestamp_seconds": 0.6747,
+            "normalized_semitones": 0.3016
+          },
+          {
+            "timestamp_seconds": 0.6847,
+            "normalized_semitones": -0.2075
+          },
+          {
+            "timestamp_seconds": 0.6947,
+            "normalized_semitones": -0.5841
+          },
+          {
+            "timestamp_seconds": 0.7047,
+            "normalized_semitones": -0.5841
+          },
+          {
+            "timestamp_seconds": 0.7147,
+            "normalized_semitones": -0.4453
+          },
+          {
+            "timestamp_seconds": 0.7247,
+            "normalized_semitones": -0.287
+          },
+          {
+            "timestamp_seconds": 0.7347,
+            "normalized_semitones": -0.2321
+          },
+          {
+            "timestamp_seconds": 0.7447,
+            "normalized_semitones": -0.2241
+          },
+          {
+            "timestamp_seconds": 0.7547,
+            "normalized_semitones": -0.2241
+          },
+          {
+            "timestamp_seconds": 0.7647,
+            "normalized_semitones": -0.2241
+          },
+          {
+            "timestamp_seconds": 0.7747,
+            "normalized_semitones": 0.0
+          },
+          {
+            "timestamp_seconds": 0.7847,
+            "normalized_semitones": 0.151
+          },
+          {
+            "timestamp_seconds": 0.7947,
+            "normalized_semitones": 0.1722
+          },
+          {
+            "timestamp_seconds": 0.8047,
+            "normalized_semitones": 0.18
+          },
+          {
+            "timestamp_seconds": 0.8147,
+            "normalized_semitones": 0.1894
+          },
+          {
+            "timestamp_seconds": 0.8247,
+            "normalized_semitones": 0.2033
+          },
+          {
+            "timestamp_seconds": 0.8347,
+            "normalized_semitones": 0.2033
+          },
+          {
+            "timestamp_seconds": 0.8447,
+            "normalized_semitones": 0.1522
+          },
+          {
+            "timestamp_seconds": 0.8547,
+            "normalized_semitones": -0.0334
+          },
+          {
+            "timestamp_seconds": 0.8647,
+            "normalized_semitones": -0.1599
+          },
+          {
+            "timestamp_seconds": 0.8747,
+            "normalized_semitones": -0.1599
+          },
+          {
+            "timestamp_seconds": 0.8847,
+            "normalized_semitones": 0.1021
+          },
+          {
+            "timestamp_seconds": 0.8947,
+            "normalized_semitones": 0.3496
+          }
+        ]
+      ],
+      "baseline_hz": 125.116,
+      "minimum_semitones": -3.0,
+      "maximum_semitones": 3.0,
+      "rejected_points": 1,
+      "method": "local-hampel-short-island-no-interpolation-v2.1"
+    }
+  }
+]

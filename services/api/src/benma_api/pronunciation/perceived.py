@@ -449,7 +449,12 @@ class PerceivedSpeechAnalysisService:
                 timings["quality_gate_and_classification"] += (
                     time.perf_counter() - classify_started
                 ) * 1000
-                syllable.display_contour = simplify_display(syllable.display_contour)
+                syllable.display_contour = simplify_display(
+                    syllable.display_contour,
+                    preserve_seconds=syllable.observed_contour.features.get(
+                        "first_reliable_core_seconds"
+                    ),
+                )
         display = simplify_display(display)
         timings["contour_processing_classification"] = (
             time.perf_counter() - processing_started

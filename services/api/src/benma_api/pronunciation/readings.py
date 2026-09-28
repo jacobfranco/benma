@@ -12,13 +12,15 @@ from pypinyin import Style, pinyin
 from pypinyin.contrib.tone_convert import to_tone3
 from pypinyin.phrases_dict import phrases_dict
 
-READING_VERSION = "exact-text-lexical-context-v3"
+READING_VERSION = "exact-text-lexical-context-v3.1"
 ReadingSource = Literal["phrase", "grammar", "dictionary", "unresolved"]
 # Reviewed contemporary Mandarin defaults; the dictionary also lists historical
 # variants. This is deliberately NOT a generic first-dictionary-reading fallback.
 DOMINANT = {"聊": "liao2", "末": "mo4", "去": "qu4", "一": "yi1", "不": "bu4"}
 # Citation readings, including lexical neutral tones. No sandhi substitutions.
+LEXICAL_NEUTRAL_READINGS = {"妈妈": ("ma1", "ma5")}
 SUPPLEMENT = {
+    **LEXICAL_NEUTRAL_READINGS,
     "很好": ("hen3", "hao3"),
     "聊聊": ("liao2", "liao2"),
     "聊天": ("liao2", "tian1"),

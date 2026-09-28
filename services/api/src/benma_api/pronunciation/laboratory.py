@@ -5,6 +5,7 @@ from __future__ import annotations
 import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
+from datetime import UTC
 from typing import Any
 
 from sqlalchemy import select
@@ -38,9 +39,13 @@ from benma_api.pronunciation.contours import (
     simplify_display,
     syllable_contour,
 )
-from benma_api.pronunciation.interpretation import PronunciationInterpretationService
+from benma_api.pronunciation.interpretation import (
+    PronunciationInterpretationService,
+    has_live_assessment,
+)
 from benma_api.pronunciation.reference import ReferenceSpeechService
 from benma_api.pronunciation.service import AssessmentService, log_assessment
+from benma_api.pronunciation.timing import resolve_target_timing
 from benma_api.schemas import (
     AcousticRunResponse,
     AlignmentRunResponse,
@@ -380,9 +385,10 @@ class PronunciationLaboratoryService:
             )
             .order_by(ReferenceSpeechAsset.created_at.desc())
         )
+        live_assessment = has_live_assessment(assessment)
         assessment_syllables = (
             assessment.normalized_result.get("syllables", [])
-            if assessment and assessment.normalized_result
+            if assessment and assessment.normalized_result and live_assessment
             else []
         )
         alignment_units = (
@@ -391,23 +397,37 @@ class PronunciationLaboratoryService:
             else []
         )
         observations = interpretation.structured_observations if interpretation else []
+        if not live_assessment:
+            # Historical immutable runs remain available as raw provenance, but
+            # their fixture-derived observations cannot become learner evidence.
+            observations = [o for o in observations if o.get("observed_provider_tone") is None]
         expectation = target.surface_tone_expectation or {}
         surface = expectation.get("expected_surface_tones")
         surface_tones = surface if isinstance(surface, list) else [None] * len(target.lexical_tones)
         raw_pitch = (acoustic.normalized_result or {}).get("f0", []) if acoustic else []
         display = display_contour(raw_pitch)
-        timing_usable = bool(
-            alignment
-            and alignment.normalized_result
-            and alignment.normalized_result.get("quality", {}).get(
-                "usable_for_syllable_visualization"
-            )
-            and alignment.normalized_result.get("evidence_status") != "synthetic_replay"
-        )
         characters = [str(unit.get("characters", "")) for unit in target.syllable_units]
-        timing_usable = timing_usable and syllable_labels_match(
-            alignment_units, characters, target.pinyin_syllables
+        timing_resolution = resolve_target_timing(
+            alignment.normalized_result or {} if alignment else {},
+            status=alignment.status if alignment else "unavailable",
+            characters=characters,
+            readings=target.pinyin_syllables,
+            acoustic=acoustic.normalized_result or {} if acoustic else {},
         )
+        timing_resolution.update(
+            {
+                "source_record_type": "AlignmentRun",
+                "source_record_id": str(alignment.id) if alignment else None,
+                "available_at": alignment.created_at.isoformat() if alignment else None,
+                "acoustics_before_timing": bool(
+                    acoustic
+                    and alignment
+                    and acoustic.created_at.replace(tzinfo=UTC)
+                    < alignment.created_at.replace(tzinfo=UTC)
+                ),
+            }
+        )
+        timing_usable = bool(timing_resolution["accepted"])
         # Reuse real provider syllable/one-character word timestamps when forced
         # alignment is absent. Multi-character word spans are never partitioned.
         if not timing_usable and assessment and assessment.normalized_result and acoustic:
@@ -428,6 +448,16 @@ class PronunciationLaboratoryService:
                 )["usable_for_syllable_visualization"]
             ):
                 alignment_units, timing_usable = provider_units, True
+                timing_resolution.update(
+                    {
+                        "accepted": True,
+                        "reason": "validated_assessment_span",
+                        "source_record_type": "AssessmentRun",
+                        "source_record_id": str(assessment.id),
+                        "available_at": assessment.created_at.isoformat(),
+                        "sources": ["assessment"],
+                    }
+                )
         syllables: list[PronunciationSyllableResult] = []
         for index, pinyin in enumerate(target.pinyin_syllables):
             unit = target.syllable_units[index] if index < len(target.syllable_units) else {}
@@ -452,18 +482,25 @@ class PronunciationLaboratoryService:
                 if timing_usable and isinstance(timing, dict)
                 else None
             )
+            measured = (
+                classify_contour(
+                    slice_display, timing["start_seconds"], timing["end_seconds"], raw=raw_pitch
+                )
+                if slice_display is not None and isinstance(timing, dict)
+                else None
+            )
             syllables.append(
                 PronunciationSyllableResult(
-                    display_contour=simplify_display(slice_display) if slice_display else None,
+                    display_contour=simplify_display(
+                        slice_display,
+                        preserve_seconds=measured.features.get("first_reliable_core_seconds")
+                        if measured
+                        else None,
+                    )
+                    if slice_display
+                    else None,
                     **(
-                        {
-                            "observed_contour": classify_contour(
-                                slice_display,
-                                timing["start_seconds"],
-                                timing["end_seconds"],
-                                raw=raw_pitch,
-                            )
-                        }
+                        {"observed_contour": measured}
                         if slice_display is not None and isinstance(timing, dict)
                         else {}
                     ),
@@ -496,6 +533,7 @@ class PronunciationLaboratoryService:
         }
         overall = {
             "statuses": statuses,
+            "timing_resolution": timing_resolution,
             "provider_scores": assessment.normalized_result if assessment else None,
             "recording_quality": (
                 acoustic.normalized_result.get("recording_quality")
@@ -513,7 +551,8 @@ class PronunciationLaboratoryService:
             ),
         }
         return PronunciationResultResponse(
-            display_contour=simplify_display(display),
+            # More detail promises every retained frame and measured gap.
+            display_contour=display,
             attempt=PronunciationAttemptResponse.model_validate(attempt),
             target=PronunciationTargetResponse.model_validate(target),
             recording_audio_url=f"/v1/utterances/{attempt.utterance_id}/audio",

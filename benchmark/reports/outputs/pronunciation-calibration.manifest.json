@@ -1,6 +1,6 @@
 {
   "benchmark_version": "0.1.0",
-  "git_commit_sha": "b3ab72c20786d370a9e754424ba7187f5658a7ce",
+  "git_commit_sha": "a8bdfab3d00365c00e1a10881e8999df63f2823c",
   "provider_adapter_versions": {},
   "provider_configurations": {},
   "included_sample_ids": [],
@@ -181,5 +181,5 @@
     "tone_pair_44"
   ],
   "human_annotation_version": "two-stage-v2-native-profile",
-  "timestamp": "2026-09-19T01:39:25.900009Z"
+  "timestamp": "2026-09-24T18:13:47.655456Z"
 }

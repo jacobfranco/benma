@@ -10,7 +10,7 @@ import time
 import uuid
 import wave
 from collections.abc import Callable
-from itertools import accumulate
+from itertools import accumulate, pairwise
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -241,6 +241,65 @@ def acoustic_result(
     }
 
 
+def reject_terminal_octave_ambiguity(points: list[dict[str, Any]], threshold: float) -> None:
+    """Exclude one short fading terminal octave branch; never manufacture a pitch.
+
+    Requires measured energy decay, weak/missing alternate candidates, a coherent
+    preceding region and a following loss of usable voicing. Interior changes,
+    strong alternatives, sustained low pitch and repeated chaos are not repaired.
+    Raw F0/candidates survive. The classifier still sees the unresolved raw jump.
+    """
+    voiced = [i for i, p in enumerate(points) if p.get("f0_hz")]
+    jumps = [
+        (a, b)
+        for a, b in pairwise(voiced)
+        if 0 < points[b]["timestamp_seconds"] - points[a]["timestamp_seconds"] <= 0.03
+        and abs(12 * math.log2(points[b]["f0_hz"] / points[a]["f0_hz"])) > 6
+    ]
+    if len(jumps) != 1:
+        return
+    a, b = jumps[0]
+    before, first = points[a], points[b]
+    jump = 12 * math.log2(first["f0_hz"] / before["f0_hz"])
+    if not -13 <= jump <= -11 or not before.get("quality_usable", True):
+        return
+    preceding = points[max(0, a - 4) : a + 1]
+    if len(preceding) < 5 or any(
+        not p.get("f0_hz") or not p.get("quality_usable") for p in preceding
+    ):
+        return
+    tail = []
+    for point in points[b:]:
+        if not point.get("f0_hz") or not point.get("quality_usable", True):
+            break
+        tail.append(point)
+    if not tail or tail[-1]["timestamp_seconds"] - first["timestamp_seconds"] > 0.08:
+        return
+    if first["energy_rms"] > before["energy_rms"] * 0.8 or tail[-1]["energy_rms"] > threshold * 1.2:
+        return
+    for point in tail:
+        if abs(12 * math.log2(point["f0_hz"] / first["f0_hz"])) > 1.5:
+            return
+        candidates = point.get("pitch_candidates")
+        if candidates is None:
+            return
+        if any(
+            c["frequency_hz"] > 0
+            and abs(12 * math.log2(c["frequency_hz"] / (2 * point["f0_hz"]))) < 1
+            and c["strength"] >= 0.45
+            for c in candidates
+        ):
+            return
+    # A later speech region would make this an interior event, not a terminal tail.
+    if any(p.get("f0_hz") and p.get("quality_usable") for p in points[b + len(tail) :]):
+        return
+    for point in tail:
+        point["low_frequency_contaminated"] = False
+        point["quality_usable"] = False
+        point["selected_f0_hz"] = None
+        point["selection_reason"] = "terminal_octave_ambiguity_no_supported_alternative"
+
+
 class PraatAcousticAnalyzer:
     algorithm_name = "praat_autocorrelation"
 
@@ -248,13 +307,18 @@ class PraatAcousticAnalyzer:
         import parselmouth
 
         self.algorithm_version = (
-            f"1.1.0-parselmouth-{parselmouth.VERSION}-praat-{parselmouth.PRAAT_VERSION}"
+            f"1.2.0-parselmouth-{parselmouth.VERSION}-praat-{parselmouth.PRAAT_VERSION}"
         )
         self.parameters: dict[str, Any] = {
             "pitch_floor": 50.0,
             "pitch_ceiling": 550.0,
             "time_step": 0.01,
             "octave_jump_cost": 0.5,
+            "octave_cost": 0.01,
+            "voiced_unvoiced_cost": 0.14,
+            "silence_threshold": 0.03,
+            "max_number_of_candidates": 15,
+            "very_accurate": False,
             "voicing_threshold": 0.45,
             "energy_gate": "bounded-recording-noise-floor-v1",
             "quality_gate": "spectral-and-filter-disagreement-v1",
@@ -287,12 +351,14 @@ class PraatAcousticAnalyzer:
             # It NEVER replaces the measured F0 or repairs an octave choice.
             filtered = call(sound, "Filter (pass Hann band)", 70, 0, 20)
             comparison = filtered.to_pitch_ac(**pitch_parameters)
-            for timestamp, hz, strength, check_hz in zip(
-                pitch.xs(),
-                pitch.selected_array["frequency"],
-                pitch.selected_array["strength"],
-                comparison.selected_array["frequency"],
-                strict=True,
+            for frame_index, (timestamp, hz, strength, check_hz) in enumerate(
+                zip(
+                    pitch.xs(),
+                    pitch.selected_array["frequency"],
+                    pitch.selected_array["strength"],
+                    comparison.selected_array["frequency"],
+                    strict=True,
+                )
             ):
                 center = round(float(timestamp) * rate)
                 frame = values[max(0, center - width // 2) : center + width // 2]
@@ -326,9 +392,37 @@ class PraatAcousticAnalyzer:
                         "comparison_f0_hz": round(float(check_hz), 3) if check_hz > 0 else None,
                         "filter_disagreement_st": round(disagreement, 3),
                         "quality_usable": not contaminated,
+                        "low_frequency_contaminated": contaminated,
+                        "selected_f0_hz": round(float(hz), 3)
+                        if hz > 0 and rms >= threshold and not contaminated
+                        else None,
+                        "selection_reason": "low_frequency_contamination"
+                        if contaminated
+                        else "below_energy_gate"
+                        if rms < threshold
+                        else "praat_selected",
+                        "pitch_candidates": [
+                            {
+                                "frequency_hz": round(float(c.frequency), 3),
+                                "strength": round(float(c.strength), 4),
+                            }
+                            for c in pitch[frame_index].candidates
+                            if 0 < c.frequency <= self.parameters["pitch_ceiling"]
+                        ],
                     }
                 )
+        reject_terminal_octave_ambiguity(points, threshold)
         result = acoustic_result(rate, samples, points)
+        result["channel_count"] = 1
+        result["selection"] = {
+            "version": "bounded-terminal-ambiguity-v1",
+            "repaired_frame_count": 0,
+            "artifact_rejected_frame_count": sum(
+                p["selection_reason"] == "terminal_octave_ambiguity_no_supported_alternative"
+                for p in points
+            ),
+            "policy": "reject_unsupported_terminal_branch_never_unwrap",
+        }
         result["energy_gate"] = {"threshold_rms": threshold, "noise_floor_rms": floor}
         result["limitations"] = [
             "Praat reduces but cannot eliminate octave errors or creaky-voice ambiguity.",

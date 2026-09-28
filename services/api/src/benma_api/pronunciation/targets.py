@@ -14,6 +14,7 @@ from typing import Any, Literal
 from pypinyin import Style, pinyin
 from pypinyin.contrib.tone_convert import to_tone, to_tone3
 
+from benma_api.pronunciation.readings import LEXICAL_NEUTRAL_READINGS
 from benma_api.pronunciation.surface import SURFACE_VERSION, surface_expectations
 
 Tone = Literal[0, 1, 2, 3, 4]
@@ -93,6 +94,11 @@ def parse_mandarin_target(text: str) -> ParsedTarget:
         heteronym=True,
         neutral_tone_with_five=True,
     )
+    # Reviewed lexical words only; no general reduplication neutralization.
+    for word, readings in LEXICAL_NEUTRAL_READINGS.items():
+        for match in re.finditer(re.escape(word), text):
+            if len(tone3_groups) == len(text):
+                tone3_groups[match.start() : match.end()] = [[reading] for reading in readings]
     selected: list[str] = []
     tones: list[int | None] = []
     alternatives: list[list[str]] = []

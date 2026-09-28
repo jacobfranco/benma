@@ -24,6 +24,15 @@ export function pitchDots(points: PitchPoint[], width: number, height: number, d
     confidence: p.voicing_probability ?? 1 }));
 }
 
+// Display coordinates only: preserve measured timestamps and every segment boundary.
+export function contourGeometry(segments: PitchPoint[][], width: number, height: number,
+  domain: [number, number], start: number, end: number, fitVoiced = false): Dot[][] {
+  const points = segments.flat().filter(p => Number.isFinite(p.timestamp_seconds) && Number.isFinite(p.normalized_semitones));
+  const first = fitVoiced && points.length ? Math.min(...points.map(p => p.timestamp_seconds!)) : start;
+  const last = fitVoiced && points.length ? Math.max(...points.map(p => p.timestamp_seconds!)) : end;
+  return segments.map(segment => pitchDots(segment, width, height, last, domain, first));
+}
+
 // Legacy evidence keeps explicit gaps. New analyses supply server-filtered segments.
 export function pitchSegments(points: PitchPoint[]): PitchPoint[][] {
   const segments: PitchPoint[][] = [];
@@ -58,9 +67,9 @@ export function ContourLines({ segments, color = colors.primary }: { segments: D
 }
 
 export function PitchPlot({ user, reference = [], display, referenceDisplay, regions = [], compact = false,
-  durationSeconds = 0, startSeconds = 0 }: {
+  durationSeconds = 0, startSeconds = 0, fitVoiced = false, fixedDisplayDomain = false }: {
   user: PitchPoint[]; reference?: PitchPoint[]; display?: DisplayContour | null | undefined; referenceDisplay?: DisplayContour | null | undefined;
-  regions?: Region[]; compact?: boolean; durationSeconds?: number; startSeconds?: number;
+  fixedDisplayDomain?: boolean; regions?: Region[]; compact?: boolean; durationSeconds?: number; startSeconds?: number; fitVoiced?: boolean;
 }) {
   const [width, setWidth] = useState(0);
   const height = compact ? 46 : 136;
@@ -69,11 +78,11 @@ export function PitchPlot({ user, reference = [], display, referenceDisplay, reg
   const all = [...segments.flat(), ...referenceSegments.flat()];
   const duration = Math.max(durationSeconds, ...regions.map(r => r.end_seconds),
     ...all.map(p => p.timestamp_seconds ?? 0), startSeconds + .001);
-  const domain: [number, number] = [Math.min(display?.minimum_semitones ?? -3,
+  const domain: [number, number] = fixedDisplayDomain ? [display?.minimum_semitones ?? -4, display?.maximum_semitones ?? 4] : [Math.min(display?.minimum_semitones ?? -3,
     ...all.map(p => (p.normalized_semitones ?? 0)-1)),
   Math.max(display?.maximum_semitones ?? 3, ...all.map(p => (p.normalized_semitones ?? 0)+1))];
-  const geometry = (items: PitchPoint[][]) => items.map(s => pitchDots(s, width-8, height-8, duration, domain, startSeconds)
-    .map(p => ({ ...p, x: p.x+4, y: p.y+4 })));
+  const geometry = (items: PitchPoint[][]) => contourGeometry(items, width-8, height-8, domain, startSeconds, duration, fitVoiced)
+    .map(segment => segment.map(p => ({ ...p, x: p.x+4, y: p.y+4 })));
   if (!all.length) return <View style={{ height }}><Text style={styles.empty}>No clear pitch</Text></View>;
   return <View>
     {!compact && <View style={styles.legend}>

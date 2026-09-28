@@ -184,3 +184,133 @@ def test_duplicate_analysis_and_context_insertion_are_independent(store, monkeyp
         with engine.begin() as connection:
             connection.execute(text(f'DROP SCHEMA "{schema}" CASCADE'))
         engine.dispose()
+
+
+@pytest.mark.skipif(os.getenv("BENMA_TEST_POSTGRES") != "1", reason="opt-in local PostgreSQL check")
+@pytest.mark.parametrize("warmup", [False, True])
+def test_known_target_padding_reconciliation_is_single_flight(store, monkeypatch, warmup, settings):
+    import json
+    from pathlib import Path
+
+    from conftest import wav_bytes
+
+    from benma_api.db.models import AlignmentRun, PronunciationAttempt, PronunciationTarget
+    from benma_api.pronunciation.alignment import AlignmentResponse
+    from benma_api.pronunciation.laboratory import PronunciationLaboratoryService
+    from benma_api.pronunciation.targets import parse_mandarin_target
+
+    row = json.loads((Path(__file__).parent / "fixtures/phone_upstream_evidence.json").read_text())[
+        1
+    ]
+    engine = create_engine(Settings().database_url)
+    schema = "benma_target_test_" + uuid.uuid4().hex
+    translated = engine.execution_options(schema_translate_map={None: schema})
+    factory = sessionmaker(translated, expire_on_commit=False)
+    release, entered = threading.Event(), threading.Event()
+    analyzer = Mock(algorithm_name="test-pitch", algorithm_version="1", parameters={})
+    aligner = Mock(algorithm_name="test-alignment", algorithm_version="1")
+    aligner.align.return_value = AlignmentResponse(row["alignment"]["units"], {}, "live_provider")
+
+    def compute(_):
+        entered.set()
+        assert release.wait(5)
+        return {
+            **row["acoustic"],
+            "mobile_f0": row["acoustic"]["f0"],
+            "recording_quality": {"status": "usable", "issues": []},
+        }
+
+    analyzer.analyze.side_effect = compute
+    monkeypatch.setattr(
+        "benma_api.pronunciation.laboratory.build_acoustic_analyzer", lambda _: analyzer
+    )
+    monkeypatch.setattr(
+        "benma_api.pronunciation.warmup.build_acoustic_analyzer", lambda _: analyzer
+    )
+    monkeypatch.setattr("benma_api.pronunciation.laboratory.build_aligner", lambda _: aligner)
+    store.put("test/padding.wav", wav_bytes(2.2059))
+    with engine.begin() as conn:
+        conn.execute(text(f'CREATE SCHEMA "{schema}"'))
+    try:
+        Base.metadata.create_all(translated)
+        with factory() as db:
+            account = Account()
+            db.add(account)
+            db.flush()
+            asset = AudioAsset(
+                account_id=account.id,
+                storage_key="test/padding.wav",
+                kind="canonical",
+                mime_type="audio/wav",
+                sha256="0" * 64,
+                size_bytes=0,
+                duration_seconds=2.2059,
+                sample_rate_hz=16000,
+            )
+            db.add(asset)
+            db.flush()
+            utterance = Utterance(
+                account_id=account.id,
+                original_audio_asset_id=asset.id,
+                canonical_audio_asset_id=asset.id,
+            )
+            parsed = parse_mandarin_target("嘛")
+            target = PronunciationTarget(
+                account_id=account.id,
+                text="嘛",
+                target_source="manual",
+                pinyin_source=parsed.provenance,
+                display_pinyin=parsed.display_pinyin,
+                pinyin_syllables=parsed.pinyin_syllables,
+                lexical_tones=parsed.lexical_tones,
+                pinyin_alternatives=parsed.alternatives,
+                syllable_units=parsed.syllable_units,
+                surface_tone_expectation=parsed.surface_tone_expectation,
+            )
+            db.add_all([utterance, target])
+            db.flush()
+            attempt = PronunciationAttempt(
+                account_id=account.id, utterance_id=utterance.id, target_id=target.id
+            )
+            db.add(attempt)
+            db.commit()
+            aid, uid, pid = account.id, utterance.id, attempt.id
+
+        def analyze():
+            with factory() as db:
+                return PronunciationLaboratoryService(db, store, settings).analyze(
+                    account_id=aid,
+                    attempt_id=pid,
+                    reuse_existing=True,
+                    rerun_provider=False,
+                    rerun_acoustics=False,
+                    rerun_alignment=False,
+                )
+
+        warm = None
+        if warmup:
+            with factory() as db:
+                warm = start_acoustic_warmup(db, store, settings, account_id=aid, utterance_id=uid)
+            assert warm is not None and entered.wait(3)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            first = pool.submit(analyze)
+            assert entered.wait(3)
+            second = pool.submit(analyze)
+            release.set()
+            a, b = first.result(10), second.result(10)
+        assert a.acoustic.id == b.acoustic.id
+        assert a.alignment.id == b.alignment.id
+        assert a.interpretation.id == b.interpretation.id
+        if warm:
+            assert warm.result(5) == a.acoustic.id
+        assert a.overall_evidence["timing_resolution"]["accepted"]
+        assert a.syllables[0].observed_contour.features["raw_voiced_frames"] > 0
+        assert analyzer.analyze.call_count == aligner.align.call_count == 1
+        with factory() as db:
+            assert db.scalar(select(func.count()).select_from(AcousticRun)) == 1
+            assert db.scalar(select(func.count()).select_from(AlignmentRun)) == 1
+    finally:
+        release.set()
+        with engine.begin() as conn:
+            conn.execute(text(f'DROP SCHEMA "{schema}" CASCADE'))
+        engine.dispose()

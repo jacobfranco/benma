@@ -32,7 +32,7 @@ beforeEach(async () => {
   jest.spyOn(api, 'createAttempt').mockResolvedValue({ id: 'attempt' } as never);
   jest.spyOn(api, 'analyzePronunciation').mockResolvedValue({
     attempt: { id: 'attempt' }, target: { text: '你好', display_pinyin: 'nǐ hǎo' },
-    assessment: { normalized_result: { pronunciation_score: 79 } },
+    assessment: { status: 'succeeded', normalized_result: { pronunciation_score: 79, evidence_status: 'live_provider' } },
     syllables: [], overall_evidence: {}, recording_audio_url: '/v1/utterances/utterance/audio',
   } as never);
   jest.spyOn(api, 'createTarget').mockResolvedValue({ id: 'target', text: '你好', display_pinyin: 'nǐ hǎo', pinyin_syllables: ['ni3', 'hao3'] } as never);
@@ -68,6 +68,8 @@ it('target Practice prepares a reference, then invokes existing known-target ass
   expect(api.analyzePronunciation).toHaveBeenCalledWith('attempt');
   expect(api.addConversationUserTurn).not.toHaveBeenCalled();
   expect(JSON.stringify(renderer.toJSON())).toContain('Experimental pronunciation analysis');
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Pronunciation accuracy vs target: 79 (experimental)');
+  await press('More detail');
   expect(JSON.stringify(renderer.toJSON())).toContain('Pronunciation accuracy vs target: 79 (experimental)');
   expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
 });
@@ -131,4 +133,81 @@ it('optional target-analysis failure leaves heard speech and the next recording 
   expect(JSON.stringify(renderer.toJSON())).toContain('Speech analysis unavailable');
   await press('Tap to speak');
   expect(renderer.root.findByProps({ accessibilityLabel: 'Stop recording' })).toBeTruthy();
+});
+
+it('retains one prepared target through three completed turns and rerenders; changes explicitly', async () => {
+  await press('Add a target phrase');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
+  await press('Prepare target');
+  for (let i = 0; i < 3; i++) {
+    await record();
+    await act(async () => renderer.update(React.createElement(PracticeScreen)));
+    expect(JSON.stringify(renderer.toJSON())).toContain('Target active');
+  }
+  expect(api.createAttempt).toHaveBeenCalledTimes(3);
+  expect(jest.mocked(api.createAttempt).mock.calls.map(call => call[1])).toEqual(['target', 'target', 'target']);
+  expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
+  await press('Change target');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Tap to speak' }).props.disabled).toBe(true);
+  await press('Clear target · use free practice');
+  await record();
+  expect(api.analyzePerceivedSpeech).toHaveBeenCalledTimes(1);
+});
+
+it('changing 嘛 to 麻 records against the visible new target and retains it for repeats', async () => {
+  jest.mocked(api.createTarget)
+    .mockResolvedValueOnce({ id: 'neutral', text: '嘛', display_pinyin: 'ma', pinyin_syllables: ['ma5'] } as never)
+    .mockResolvedValueOnce({ id: 'rising', text: '麻', display_pinyin: 'má', pinyin_syllables: ['ma2'] } as never);
+  await press('Add a target phrase');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('嘛'));
+  await press('Prepare target');
+  await record();
+  expect(api.createAttempt).toHaveBeenLastCalledWith('utterance', 'neutral');
+  await press('Change target');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Tap to speak' }).props.disabled).toBe(true);
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('麻'));
+  await press('Prepare target');
+  expect(api.createTarget).toHaveBeenLastCalledWith('麻');
+  expect(renderer.root.findByProps({ children: '麻' })).toBeTruthy();
+  for (let i = 0; i < 2; i++) {
+    await record();
+    expect(api.createAttempt).toHaveBeenLastCalledWith('utterance', 'rising');
+  }
+  expect(jest.mocked(api.createAttempt).mock.calls.map(call => call[1])).toEqual(['neutral', 'rising', 'rising']);
+});
+
+it('renders persisted attempt identity independently of the currently prepared target', async () => {
+  jest.mocked(api.analyzePronunciation).mockResolvedValue({
+    attempt: { id: 'attempt' }, target: { id: 'persisted-neutral', text: '嘛', display_pinyin: 'ma' },
+    syllables: [], overall_evidence: {}, recording_audio_url: '/v1/utterances/utterance/audio',
+  } as never);
+  await press('Add a target phrase');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
+  await press('Prepare target');
+  await record();
+  expect(api.createAttempt).toHaveBeenCalledWith('utterance', 'target');
+  expect(JSON.stringify(renderer.toJSON())).toContain('嘛');
+  await press('More detail');
+  expect(JSON.stringify(renderer.toJSON())).toContain('persisted-neutral');
+});
+
+it.each(['synthetic_replay', 'unknown'])('never presents a %s provider score as real assessment', async evidence_status => {
+  jest.mocked(api.analyzePronunciation).mockResolvedValue({
+    attempt: { id: 'attempt' }, target: { text: '妈', display_pinyin: 'mā' },
+    assessment: { normalized_result: { pronunciation_score: 79, evidence_status } },
+    syllables: [{ syllable_index: 0, characters: '妈', expected_surface_tone: 1,
+      observed_contour: { classification: '1-like', confidence: 'moderate', reason: 'acoustic_shape_only' } }],
+    overall_evidence: {}, recording_audio_url: '/v1/utterances/utterance/audio',
+  } as never);
+  await press('Add a target phrase');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('妈'));
+  await press('Prepare target'); await record();
+  expect(JSON.stringify(renderer.toJSON())).toContain('Good');
+  await press('More detail');
+  const tree = JSON.stringify(renderer.toJSON());
+  expect(tree).not.toContain('Pronunciation accuracy vs target: 79');
+  if (evidence_status === 'synthetic_replay') {
+    expect(tree).toContain('Provider assessment is a development fixture');
+    expect(tree).toContain('excluded from learner evaluation');
+  }
 });

@@ -1,0 +1,1672 @@
+[
+  {
+    "utterance_id": "4bf0e5af-b0a2-4cde-9fe5-8595e1030983",
+    "start": 1.21,
+    "end": 1.76,
+    "expected": "1-like",
+    "raw": [
+      {
+        "timestamp_seconds": 1.21,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.22,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.23,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.24,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.25,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.26,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.27,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.28,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.29,
+        "f0_hz": 181.79,
+        "voicing_probability": 0.8134,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.3,
+        "f0_hz": 175.898,
+        "voicing_probability": 0.8726,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.31,
+        "f0_hz": 169.214,
+        "voicing_probability": 0.8962,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.32,
+        "f0_hz": 161.748,
+        "voicing_probability": 0.8732,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.33,
+        "f0_hz": 155.536,
+        "voicing_probability": 0.9003,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.34,
+        "f0_hz": 152.089,
+        "voicing_probability": 0.9563,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.35,
+        "f0_hz": 150.31,
+        "voicing_probability": 0.9699,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.36,
+        "f0_hz": 148.872,
+        "voicing_probability": 0.9755,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.37,
+        "f0_hz": 148.427,
+        "voicing_probability": 0.9732,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.38,
+        "f0_hz": 150.156,
+        "voicing_probability": 0.7102,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.39,
+        "f0_hz": 149.692,
+        "voicing_probability": 0.6724,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.4,
+        "f0_hz": 148.966,
+        "voicing_probability": 0.8102,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.41,
+        "f0_hz": 148.397,
+        "voicing_probability": 0.9256,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.42,
+        "f0_hz": 147.917,
+        "voicing_probability": 0.9602,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.43,
+        "f0_hz": 147.632,
+        "voicing_probability": 0.9573,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.44,
+        "f0_hz": 147.549,
+        "voicing_probability": 0.9765,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.45,
+        "f0_hz": 147.496,
+        "voicing_probability": 0.9918,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.46,
+        "f0_hz": 147.28,
+        "voicing_probability": 0.9855,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.47,
+        "f0_hz": 146.845,
+        "voicing_probability": 0.9772,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.48,
+        "f0_hz": 146.254,
+        "voicing_probability": 0.9499,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.49,
+        "f0_hz": 145.366,
+        "voicing_probability": 0.8288,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.5,
+        "f0_hz": 143.386,
+        "voicing_probability": 0.597,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.51,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.52,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.53,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.54,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.55,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.56,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.57,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.58,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.59,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.6,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.61,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.62,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.63,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.64,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.65,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.66,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.67,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.68,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.69,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.7,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.71,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.72,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.73,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.74,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.75,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      }
+    ]
+  },
+  {
+    "utterance_id": "e64c4f8f-d69b-4245-b38f-e32c2a1b4424",
+    "start": 1.1,
+    "end": 1.9,
+    "expected": "3-like",
+    "raw": [
+      {
+        "timestamp_seconds": 1.1,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.11,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.12,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.13,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.14,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.15,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.16,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.17,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.18,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.19,
+        "f0_hz": 148.274,
+        "voicing_probability": 0.703,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.2,
+        "f0_hz": 145.348,
+        "voicing_probability": 0.8806,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.21,
+        "f0_hz": 143.408,
+        "voicing_probability": 0.9192,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.22,
+        "f0_hz": 141.571,
+        "voicing_probability": 0.9266,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.23,
+        "f0_hz": 139.599,
+        "voicing_probability": 0.9197,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.24,
+        "f0_hz": 137.113,
+        "voicing_probability": 0.9121,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.25,
+        "f0_hz": 135.158,
+        "voicing_probability": 0.9052,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.26,
+        "f0_hz": 133.59,
+        "voicing_probability": 0.9109,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.27,
+        "f0_hz": 132.327,
+        "voicing_probability": 0.9214,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.28,
+        "f0_hz": 131.539,
+        "voicing_probability": 0.9317,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.29,
+        "f0_hz": 129.847,
+        "voicing_probability": 0.9287,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.3,
+        "f0_hz": 128.953,
+        "voicing_probability": 0.9162,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.31,
+        "f0_hz": 126.547,
+        "voicing_probability": 0.9045,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.32,
+        "f0_hz": 124.316,
+        "voicing_probability": 0.8847,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.33,
+        "f0_hz": 123.647,
+        "voicing_probability": 0.8065,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.34,
+        "f0_hz": 122.863,
+        "voicing_probability": 0.7977,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.35,
+        "f0_hz": 122.576,
+        "voicing_probability": 0.8752,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.36,
+        "f0_hz": 122.35,
+        "voicing_probability": 0.9222,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.37,
+        "f0_hz": 122.281,
+        "voicing_probability": 0.9142,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.38,
+        "f0_hz": 122.834,
+        "voicing_probability": 0.876,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.39,
+        "f0_hz": 124.745,
+        "voicing_probability": 0.8508,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.4,
+        "f0_hz": 125.432,
+        "voicing_probability": 0.8508,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.41,
+        "f0_hz": 123.531,
+        "voicing_probability": 0.7654,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.42,
+        "f0_hz": 120.626,
+        "voicing_probability": 0.7755,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.43,
+        "f0_hz": 118.776,
+        "voicing_probability": 0.8221,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.44,
+        "f0_hz": 117.3,
+        "voicing_probability": 0.8747,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.45,
+        "f0_hz": 116.415,
+        "voicing_probability": 0.916,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.46,
+        "f0_hz": 115.575,
+        "voicing_probability": 0.874,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.47,
+        "f0_hz": 114.548,
+        "voicing_probability": 0.8274,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.48,
+        "f0_hz": 113.596,
+        "voicing_probability": 0.7688,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.49,
+        "f0_hz": 112.357,
+        "voicing_probability": 0.7364,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.5,
+        "f0_hz": 111.622,
+        "voicing_probability": 0.8428,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.51,
+        "f0_hz": 111.684,
+        "voicing_probability": 0.9229,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.52,
+        "f0_hz": 111.855,
+        "voicing_probability": 0.9321,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.53,
+        "f0_hz": 111.54,
+        "voicing_probability": 0.8696,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.54,
+        "f0_hz": 110.376,
+        "voicing_probability": 0.832,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.55,
+        "f0_hz": 109.657,
+        "voicing_probability": 0.8772,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.56,
+        "f0_hz": 109.152,
+        "voicing_probability": 0.8605,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.57,
+        "f0_hz": 108.195,
+        "voicing_probability": 0.8671,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.58,
+        "f0_hz": 107.243,
+        "voicing_probability": 0.8967,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.59,
+        "f0_hz": 106.728,
+        "voicing_probability": 0.8936,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.6,
+        "f0_hz": 106.356,
+        "voicing_probability": 0.8674,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.61,
+        "f0_hz": 106.107,
+        "voicing_probability": 0.8624,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.62,
+        "f0_hz": 106.173,
+        "voicing_probability": 0.889,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.63,
+        "f0_hz": 106.817,
+        "voicing_probability": 0.8899,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.64,
+        "f0_hz": 107.579,
+        "voicing_probability": 0.9229,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.65,
+        "f0_hz": 107.923,
+        "voicing_probability": 0.938,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.66,
+        "f0_hz": 108.486,
+        "voicing_probability": 0.9229,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.67,
+        "f0_hz": 109.742,
+        "voicing_probability": 0.864,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.68,
+        "f0_hz": 111.67,
+        "voicing_probability": 0.8263,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.69,
+        "f0_hz": 113.952,
+        "voicing_probability": 0.8177,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.7,
+        "f0_hz": 116.542,
+        "voicing_probability": 0.7415,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.71,
+        "f0_hz": 119.96,
+        "voicing_probability": 0.6251,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.72,
+        "f0_hz": 123.153,
+        "voicing_probability": 0.5126,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.73,
+        "f0_hz": 133.355,
+        "voicing_probability": 0.5034,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.74,
+        "f0_hz": 137.741,
+        "voicing_probability": 0.6978,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.75,
+        "f0_hz": 139.043,
+        "voicing_probability": 0.5965,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.76,
+        "f0_hz": 155.453,
+        "voicing_probability": 0.5676,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.77,
+        "f0_hz": 155.062,
+        "voicing_probability": 0.743,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.78,
+        "f0_hz": 155.226,
+        "voicing_probability": 0.7171,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.79,
+        "f0_hz": 161.605,
+        "voicing_probability": 0.591,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.8,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.81,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.82,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.83,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.84,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.85,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.86,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.87,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.88,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.89,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      }
+    ]
+  },
+  {
+    "utterance_id": "338b4758-5828-40ca-95b3-d5ee7eb30112",
+    "start": 1.72,
+    "end": 2.71,
+    "expected": "3-like",
+    "raw": [
+      {
+        "timestamp_seconds": 1.72,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.73,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.74,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.75,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.76,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.77,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.78,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.79,
+        "f0_hz": 142.795,
+        "voicing_probability": 0.6015,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.8,
+        "f0_hz": 135.568,
+        "voicing_probability": 0.6506,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.81,
+        "f0_hz": 130.227,
+        "voicing_probability": 0.7341,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.82,
+        "f0_hz": 130.32,
+        "voicing_probability": 0.7739,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.83,
+        "f0_hz": 124.558,
+        "voicing_probability": 0.8142,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.84,
+        "f0_hz": 123.639,
+        "voicing_probability": 0.8215,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.85,
+        "f0_hz": 120.849,
+        "voicing_probability": 0.8059,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.86,
+        "f0_hz": 118.973,
+        "voicing_probability": 0.7589,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.87,
+        "f0_hz": 118.622,
+        "voicing_probability": 0.6121,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.88,
+        "f0_hz": 119.568,
+        "voicing_probability": 0.5187,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.89,
+        "f0_hz": 119.155,
+        "voicing_probability": 0.6034,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.9,
+        "f0_hz": 117.381,
+        "voicing_probability": 0.6891,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.91,
+        "f0_hz": 115.42,
+        "voicing_probability": 0.7767,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.92,
+        "f0_hz": 114.022,
+        "voicing_probability": 0.752,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.93,
+        "f0_hz": 111.18,
+        "voicing_probability": 0.7306,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.94,
+        "f0_hz": 109.1,
+        "voicing_probability": 0.7917,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.95,
+        "f0_hz": 107.442,
+        "voicing_probability": 0.796,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.96,
+        "f0_hz": 106.585,
+        "voicing_probability": 0.7356,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.97,
+        "f0_hz": 104.105,
+        "voicing_probability": 0.7667,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.98,
+        "f0_hz": 103.342,
+        "voicing_probability": 0.8308,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.99,
+        "f0_hz": 102.382,
+        "voicing_probability": 0.8879,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.0,
+        "f0_hz": 101.838,
+        "voicing_probability": 0.9605,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.01,
+        "f0_hz": 101.611,
+        "voicing_probability": 0.9727,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.02,
+        "f0_hz": 101.711,
+        "voicing_probability": 0.9697,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.03,
+        "f0_hz": 102.14,
+        "voicing_probability": 0.9621,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.04,
+        "f0_hz": 102.57,
+        "voicing_probability": 0.9602,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.05,
+        "f0_hz": 103.107,
+        "voicing_probability": 0.9424,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.06,
+        "f0_hz": 103.906,
+        "voicing_probability": 0.953,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.07,
+        "f0_hz": 104.371,
+        "voicing_probability": 0.9597,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.08,
+        "f0_hz": 104.648,
+        "voicing_probability": 0.932,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.09,
+        "f0_hz": 105.138,
+        "voicing_probability": 0.8916,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.1,
+        "f0_hz": 105.229,
+        "voicing_probability": 0.8484,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.11,
+        "f0_hz": 104.53,
+        "voicing_probability": 0.8869,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.12,
+        "f0_hz": 104.183,
+        "voicing_probability": 0.9555,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.13,
+        "f0_hz": 103.979,
+        "voicing_probability": 0.9688,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.14,
+        "f0_hz": 103.781,
+        "voicing_probability": 0.9662,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.15,
+        "f0_hz": 103.74,
+        "voicing_probability": 0.9705,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.16,
+        "f0_hz": 103.671,
+        "voicing_probability": 0.9631,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.17,
+        "f0_hz": 103.566,
+        "voicing_probability": 0.9273,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.18,
+        "f0_hz": 104.139,
+        "voicing_probability": 0.8626,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.19,
+        "f0_hz": 105.309,
+        "voicing_probability": 0.8777,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.2,
+        "f0_hz": 105.428,
+        "voicing_probability": 0.9202,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.21,
+        "f0_hz": 105.245,
+        "voicing_probability": 0.9307,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.22,
+        "f0_hz": 105.193,
+        "voicing_probability": 0.9426,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.23,
+        "f0_hz": 105.176,
+        "voicing_probability": 0.9623,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.24,
+        "f0_hz": 105.363,
+        "voicing_probability": 0.9658,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.25,
+        "f0_hz": 105.613,
+        "voicing_probability": 0.9543,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.26,
+        "f0_hz": 105.723,
+        "voicing_probability": 0.9437,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.27,
+        "f0_hz": 105.665,
+        "voicing_probability": 0.9124,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.28,
+        "f0_hz": 105.634,
+        "voicing_probability": 0.8508,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.29,
+        "f0_hz": 106.018,
+        "voicing_probability": 0.8324,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.3,
+        "f0_hz": 106.317,
+        "voicing_probability": 0.8687,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.31,
+        "f0_hz": 106.187,
+        "voicing_probability": 0.8931,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.32,
+        "f0_hz": 106.162,
+        "voicing_probability": 0.9038,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.33,
+        "f0_hz": 106.322,
+        "voicing_probability": 0.852,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.34,
+        "f0_hz": 106.509,
+        "voicing_probability": 0.8421,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.35,
+        "f0_hz": 106.998,
+        "voicing_probability": 0.872,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.36,
+        "f0_hz": 107.66,
+        "voicing_probability": 0.8908,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.37,
+        "f0_hz": 108.428,
+        "voicing_probability": 0.8827,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.38,
+        "f0_hz": 109.341,
+        "voicing_probability": 0.8822,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.39,
+        "f0_hz": 110.251,
+        "voicing_probability": 0.8831,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.4,
+        "f0_hz": 111.468,
+        "voicing_probability": 0.8914,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.41,
+        "f0_hz": 113.04,
+        "voicing_probability": 0.8438,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.42,
+        "f0_hz": 115.322,
+        "voicing_probability": 0.8119,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.43,
+        "f0_hz": 118.086,
+        "voicing_probability": 0.7423,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.44,
+        "f0_hz": 121.221,
+        "voicing_probability": 0.6412,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.45,
+        "f0_hz": 125.904,
+        "voicing_probability": 0.5041,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.46,
+        "f0_hz": 131.944,
+        "voicing_probability": 0.564,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.47,
+        "f0_hz": 138.545,
+        "voicing_probability": 0.6698,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.48,
+        "f0_hz": 143.686,
+        "voicing_probability": 0.7995,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.49,
+        "f0_hz": 147.703,
+        "voicing_probability": 0.8257,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.5,
+        "f0_hz": 151.736,
+        "voicing_probability": 0.7982,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.51,
+        "f0_hz": 155.468,
+        "voicing_probability": 0.7125,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.52,
+        "f0_hz": 160.493,
+        "voicing_probability": 0.6296,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.53,
+        "f0_hz": 166.217,
+        "voicing_probability": 0.698,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.54,
+        "f0_hz": 171.296,
+        "voicing_probability": 0.783,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.55,
+        "f0_hz": 173.461,
+        "voicing_probability": 0.8099,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.56,
+        "f0_hz": 174.164,
+        "voicing_probability": 0.7553,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.57,
+        "f0_hz": 173.901,
+        "voicing_probability": 0.6866,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.58,
+        "f0_hz": 170.315,
+        "voicing_probability": 0.6236,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.59,
+        "f0_hz": 171.307,
+        "voicing_probability": 0.4877,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.6,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.61,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.62,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.63,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.64,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.65,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.66,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.67,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.68,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.69,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 2.7,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      }
+    ]
+  },
+  {
+    "utterance_id": "02701fde-5dae-49d5-8c61-0d0ea21b8537",
+    "start": 1.38,
+    "end": 1.77,
+    "expected": "4-like",
+    "raw": [
+      {
+        "timestamp_seconds": 1.385,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.395,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.405,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.415,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.425,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.435,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.445,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.455,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.465,
+        "f0_hz": 127.313,
+        "voicing_probability": 0.5917,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.475,
+        "f0_hz": 120.286,
+        "voicing_probability": 0.7563,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.485,
+        "f0_hz": 118.233,
+        "voicing_probability": 0.8877,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.495,
+        "f0_hz": 117.243,
+        "voicing_probability": 0.9014,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.505,
+        "f0_hz": 116.941,
+        "voicing_probability": 0.8788,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.515,
+        "f0_hz": 117.768,
+        "voicing_probability": 0.7322,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.525,
+        "f0_hz": 117.301,
+        "voicing_probability": 0.6681,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.535,
+        "f0_hz": 116.363,
+        "voicing_probability": 0.7243,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.545,
+        "f0_hz": 114.938,
+        "voicing_probability": 0.6467,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.555,
+        "f0_hz": 112.209,
+        "voicing_probability": 0.5974,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.565,
+        "f0_hz": 109.729,
+        "voicing_probability": 0.5695,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.575,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.585,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.595,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.605,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.615,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.625,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.635,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.645,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.655,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.665,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.675,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.685,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.695,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.705,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.715,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.725,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.735,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.745,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.755,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      },
+      {
+        "timestamp_seconds": 1.765,
+        "f0_hz": null,
+        "voicing_probability": 0.0,
+        "quality_usable": true
+      }
+    ]
+  }
+]
