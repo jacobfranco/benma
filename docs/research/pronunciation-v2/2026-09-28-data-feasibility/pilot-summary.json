@@ -1,0 +1,34 @@
+{
+  "acquisition_stopped_reason": null,
+  "eligible_metadata_rows": 516,
+  "eligible_not_in_local_pilot": 502,
+  "accepted": 14,
+  "download_ledger": {
+    "files": 14,
+    "bytes": 1297498
+  },
+  "tones": {
+    "1": 4,
+    "2": 3,
+    "3": 5,
+    "4": 2
+  },
+  "speakers": {
+    "commons:wyverald": 1,
+    "lingualibre:Q1431140": 4,
+    "lingualibre:Q1573006": 4,
+    "lingualibre:Q1832": 1,
+    "lingualibre:Q1845": 1,
+    "lingualibre:Q301531": 3
+  },
+  "licenses": {
+    "CC BY 2.0": 1,
+    "CC0-1.0": 13
+  },
+  "native_status": {
+    "UNKNOWN": 14
+  },
+  "download_rejections": {
+    "download_cap_or_offline": 502
+  }
+}

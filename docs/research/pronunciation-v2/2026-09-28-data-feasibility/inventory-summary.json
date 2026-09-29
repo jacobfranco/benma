@@ -1,0 +1,230 @@
+{
+  "access_date": "2026-09-28",
+  "unique_inventory_pages": 9363,
+  "single_character_candidates": 1710,
+  "green_single_character_candidates": 717,
+  "metadata_eligible": 516,
+  "metadata_rejected": 8847,
+  "eligible_tones": {
+    "1": 118,
+    "2": 110,
+    "3": 120,
+    "4": 168
+  },
+  "eligible_speakers": {
+    "commons:wyverald": 1,
+    "lingualibre:Q1431140": 60,
+    "lingualibre:Q1573006": 49,
+    "lingualibre:Q1832": 1,
+    "lingualibre:Q1845": 1,
+    "lingualibre:Q301531": 60,
+    "shtooka:wei-gao": 343,
+    "shtooka:yue-tan": 1
+  },
+  "inventory_sources": {
+    "lingua_libre_commons": {
+      "file_pages": 4126,
+      "api_license_distribution": {
+        "CC0": 1145,
+        "CC BY-SA 4.0": 2980,
+        "CC BY 4.0": 1
+      },
+      "license_policy_passes_in_inventory": {
+        "CC0-1.0": 1275,
+        "CC BY 4.0": 1
+      },
+      "uploader_accounts": 21,
+      "duplicate_sha1_extra_files": 0,
+      "single_character_candidates": 867
+    },
+    "other_commons": {
+      "file_pages": 5237,
+      "api_license_distribution": {
+        "CC BY-SA 3.0": 463,
+        "CC BY 3.0": 7,
+        "Public domain": 96,
+        "CC BY-SA 2.5": 6,
+        "CC BY 2.5": 19,
+        "CC BY-SA 2.0 uk": 20,
+        "CC BY 2.0 uk": 1,
+        "GFDL": 3,
+        "CC BY 2.0 fr": 926,
+        "CC BY 2.0": 1,
+        "CC BY-SA 3.0 us": 3598,
+        "CC0": 18,
+        "CC BY-SA 4.0": 77,
+        "FAL": 1,
+        "unknown": 1
+      },
+      "license_policy_passes_in_inventory": {
+        "CC BY 3.0": 7,
+        "CC BY 2.5": 19,
+        "CC BY 2.0 uk": 1,
+        "CC BY 2.0 fr": 926,
+        "CC BY 2.0": 1,
+        "CC0-1.0": 18
+      },
+      "uploader_accounts": 109,
+      "duplicate_sha1_extra_files": 0,
+      "single_character_candidates": 843
+    }
+  },
+  "inventory_sha1_duplicate_groups": 0,
+  "inventory_sha1_duplicate_extra_files": 0,
+  "accepted": 14,
+  "readiness": {
+    "pipeline_smoke_ready": true,
+    "exploratory_experiment_ready": false,
+    "stronger_generalization_ready": false,
+    "threshold_scope": "Proposed data readiness gates, not statistical power or production guarantees"
+  },
+  "downloaded_files_on_disk": 14,
+  "audio_bytes_on_disk": 1297498,
+  "pilot_tones": {
+    "1": 4,
+    "2": 3,
+    "3": 5,
+    "4": 2
+  },
+  "pilot_licenses": {
+    "CC BY 2.0": 1,
+    "CC0-1.0": 13
+  },
+  "pilot_sources": {
+    "lingua_libre_commons": 13,
+    "wikimedia_commons": 1
+  },
+  "pilot_native_status": {
+    "UNKNOWN": 14
+  },
+  "speakers": [
+    {
+      "speaker_id": "commons:wyverald",
+      "speaker_name": "Xudong Yang",
+      "clips": 1,
+      "tone_counts": {
+        "1": 1
+      },
+      "native_status": {
+        "UNKNOWN": 1
+      },
+      "recorder_ids": [
+        "named-recorder:Xudong Yang"
+      ]
+    },
+    {
+      "speaker_id": "lingualibre:Q1431140",
+      "speaker_name": "CanonNi",
+      "clips": 4,
+      "tone_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "native_status": {
+        "UNKNOWN": 4
+      },
+      "recorder_ids": [
+        "commons-user:CanonNi"
+      ]
+    },
+    {
+      "speaker_id": "lingualibre:Q1573006",
+      "speaker_name": "Levi Highway",
+      "clips": 4,
+      "tone_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "native_status": {
+        "UNKNOWN": 4
+      },
+      "recorder_ids": [
+        "commons-user:列维劳德"
+      ]
+    },
+    {
+      "speaker_id": "lingualibre:Q1832",
+      "speaker_name": "Wang Cheng",
+      "clips": 1,
+      "tone_counts": {
+        "3": 1
+      },
+      "native_status": {
+        "UNKNOWN": 1
+      },
+      "recorder_ids": [
+        "commons-user:Yug"
+      ]
+    },
+    {
+      "speaker_id": "lingualibre:Q1845",
+      "speaker_name": "Jun Da",
+      "clips": 1,
+      "tone_counts": {
+        "3": 1
+      },
+      "native_status": {
+        "UNKNOWN": 1
+      },
+      "recorder_ids": [
+        "commons-user:Yug"
+      ]
+    },
+    {
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "clips": 3,
+      "tone_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "native_status": {
+        "UNKNOWN": 3
+      },
+      "recorder_ids": [
+        "commons-user:Luilui6666"
+      ]
+    }
+  ],
+  "largest_speaker_share": 0.2857142857142857,
+  "median_clips_per_speaker": 2.0,
+  "rejection_primary_counts": {
+    "sharealike_deferred": 4674,
+    "metadata_insufficient": 40,
+    "unknown_license_or_pd_basis": 19,
+    "multi_syllable": 569,
+    "unknown_pronunciation": 9,
+    "speaker_unknown": 1,
+    "metadata_dictionary_conflict": 2,
+    "ambiguous_reading": 189,
+    "not_single_character_candidate": 3259,
+    "not_audio": 6,
+    "license_restrictions": 79
+  },
+  "rejection_all_reason_counts": {
+    "sharealike_deferred": 4674,
+    "metadata_insufficient": 715,
+    "speaker_unknown": 775,
+    "label_unresolved": 725,
+    "unknown_license_or_pd_basis": 19,
+    "not_audio": 48,
+    "multi_syllable": 3679,
+    "unknown_pronunciation": 10,
+    "metadata_dictionary_conflict": 3,
+    "ambiguous_reading": 447,
+    "not_single_character_candidate": 3259,
+    "license_restrictions": 79
+  },
+  "snapshot_sha256": {
+    "commons-metadata.jsonl": "3f6eee5cc0b23524fb22c3b93f80b7bf55ef6d7e45bd79654064893d345de85b",
+    "categories.json": "010e721d4f8f6a4998a4e0ffac7ee54a1fb0a2d6df0cd0b576454cd4246dff5d",
+    "candidate-evidence.jsonl": "31bd676c452e2893a33a4b1ed48e4dad704d669fd0f9b04b4cd6d6a7c505f46d",
+    "selected.jsonl": "10cf0d989272890c21e11455e8db087727518c3e73a09b695364dad345bff38b",
+    "rejected.jsonl": "5299d3d591c7f972f0af3413d6f75bda2adcf7295dd12139fd8013de5467579a"
+  }
+}

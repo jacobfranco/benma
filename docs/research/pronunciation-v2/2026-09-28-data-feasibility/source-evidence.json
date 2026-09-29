@@ -1,0 +1,30 @@
+{
+  "access_date": "2026-09-28",
+  "ompal": {
+    "repository_commit": "c3aaa9e892e4b1c2a25b637401f52f6e35b53e74",
+    "tree_url": "https://api.github.com/repos/phantomhsieh/OMPAL-corpus/git/trees/c3aaa9e892e4b1c2a25b637401f52f6e35b53e74?recursive=1",
+    "wav_files": 1850,
+    "wav_bytes": 345523674,
+    "speaker_folders": 49,
+    "native_files": 82,
+    "native_speakers": 3
+  },
+  "local_evidence_sha256": {
+    "speaker-template-evidence.json": "db48246114ce2ed4092eaff1cdb4dbc68a5096eea69519a9fa92ac7651726d45",
+    "speaker-users.json": "da2b297664e7a9b33900fa59ffd3dea58ffc3fba6745352ddd9f66976ca664d0",
+    "fsi-rights.png": "a53997f959cc6839976a4cd51c8882ed840bd363808101410a3d5c7e3102541d",
+    "ll-gallery-data.json": "f23d3f1237aefa945ca25b6ad15abe50dc1909df9e296783ed3630fe2dc7b06c",
+    "fsi-resource.txt": "887ce11f95b0dd584579e4e0ec361173adc201e92a480f9991749e950467a54f",
+    "fsi-orientation.txt": "189c88559959f0c137726a732ef24ef2f5611e272f1280331f8c2f0e327d0a47",
+    "fsi-orientation.pdf": "344781532e4dbf44c4f58101c289a098d4dbcc9daa7c10fa844952bf550fbd7d",
+    "fsi-resource.pdf": "c04864b94c84e532bbb09d1fcb64bbee95f028d17b92d0377f90b70244f763f0",
+    "ll-gallery-js.txt": "ba9e264d5a076583b91fad538f3a65e0cd2dede8324713098974ee86ad177b75",
+    "ll-samples.json": "4d5b0be53ad7679f7bdc46bfd7f82b894c1bd39917b4c22ba5a24ce086b007ee",
+    "fsi-index.txt": "37eb9687deac0ceea9f3c1d69846f29daab53361d010a864db79418b181f00b1",
+    "ll-js.txt": "7e556f4d81550bf9f0e70d32eddbeb35d85726c4515d4da4e1f50e6ea65fbd35",
+    "ompal-tree.txt": "4f8b89873e86b9d8b09403712aa98fedd00a89c78b17812fb1da0b40b384e0e1",
+    "ll-api.txt": "4deb97267ac642b0c7288b4399639ed0ee1c8969737f647cccb634d0972aff36",
+    "ll-gallery.txt": "711c14e2df7e78bb959965e43bd4da6ae3998c6b8d922da3d8bc8bd97dc604ba",
+    "ll-home.txt": "711c14e2df7e78bb959965e43bd4da6ae3998c6b8d922da3d8bc8bd97dc604ba"
+  }
+}
