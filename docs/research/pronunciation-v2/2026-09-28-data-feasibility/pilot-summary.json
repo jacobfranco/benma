@@ -1,34 +1,37 @@
 {
   "acquisition_stopped_reason": null,
   "eligible_metadata_rows": 516,
-  "eligible_not_in_local_pilot": 502,
-  "accepted": 14,
+  "eligible_not_in_local_pilot": 16,
+  "accepted": 500,
   "download_ledger": {
-    "files": 14,
-    "bytes": 1297498
+    "files": 500,
+    "bytes": 19066224
   },
   "tones": {
-    "1": 4,
-    "2": 3,
-    "3": 5,
-    "4": 2
+    "1": 118,
+    "2": 110,
+    "3": 120,
+    "4": 152
   },
   "speakers": {
     "commons:wyverald": 1,
-    "lingualibre:Q1431140": 4,
-    "lingualibre:Q1573006": 4,
+    "lingualibre:Q1431140": 60,
+    "lingualibre:Q1573006": 49,
     "lingualibre:Q1832": 1,
     "lingualibre:Q1845": 1,
-    "lingualibre:Q301531": 3
+    "lingualibre:Q301531": 60,
+    "shtooka:wei-gao": 327,
+    "shtooka:yue-tan": 1
   },
   "licenses": {
     "CC BY 2.0": 1,
-    "CC0-1.0": 13
+    "CC0-1.0": 171,
+    "CC BY 2.0 fr": 328
   },
   "native_status": {
-    "UNKNOWN": 14
+    "UNKNOWN": 500
   },
   "download_rejections": {
-    "download_cap_or_offline": 502
+    "download_cap_or_offline": 16
   }
 }
