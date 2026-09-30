@@ -1,0 +1,138 @@
+{
+  "all_native_statuses": {
+    "UNKNOWN": 500
+  },
+  "audit_sample_count": 38,
+  "cached_evidence_sha256": "31bd676c452e2893a33a4b1ed48e4dad704d669fd0f9b04b4cd6d6a7c505f46d",
+  "corpus_manifest_sha256": "fcdacce34f9894356fa9549b9fb3d06ffb1d4427bed5153f996f9ad736e42b43",
+  "decoded_files": 500,
+  "duplicates": {
+    "audio_sha256": [],
+    "decoded_pcm_sha256": [],
+    "local_path": [],
+    "source_asset_id": [],
+    "source_sha1": []
+  },
+  "duration_range_seconds": [
+    0.6,
+    1.65
+  ],
+  "flagged_assets": [
+    "commons:3052537",
+    "commons:3052714",
+    "commons:3053212"
+  ],
+  "groups": {
+    "commons:wyverald": {
+      "clips": 1,
+      "embedded_speakers": {
+        "ABSENT": 1
+      },
+      "tones": {
+        "1": 1
+      }
+    },
+    "lingualibre:Q1431140": {
+      "clips": 60,
+      "embedded_speakers": {
+        "ABSENT": 60
+      },
+      "tones": {
+        "1": 15,
+        "2": 12,
+        "3": 9,
+        "4": 24
+      }
+    },
+    "lingualibre:Q1573006": {
+      "clips": 49,
+      "embedded_speakers": {
+        "ABSENT": 49
+      },
+      "tones": {
+        "1": 7,
+        "2": 11,
+        "3": 14,
+        "4": 17
+      }
+    },
+    "lingualibre:Q1832": {
+      "clips": 1,
+      "embedded_speakers": {
+        "ABSENT": 1
+      },
+      "tones": {
+        "3": 1
+      }
+    },
+    "lingualibre:Q1845": {
+      "clips": 1,
+      "embedded_speakers": {
+        "ABSENT": 1
+      },
+      "tones": {
+        "3": 1
+      }
+    },
+    "lingualibre:Q301531": {
+      "clips": 60,
+      "embedded_speakers": {
+        "ABSENT": 60
+      },
+      "tones": {
+        "1": 11,
+        "2": 15,
+        "3": 13,
+        "4": 21
+      }
+    },
+    "shtooka:wei-gao": {
+      "clips": 327,
+      "embedded_speakers": {
+        "Tan": 1,
+        "Wei Gao": 326
+      },
+      "tones": {
+        "1": 84,
+        "2": 72,
+        "3": 81,
+        "4": 90
+      }
+    },
+    "shtooka:yue-tan": {
+      "clips": 1,
+      "embedded_speakers": {
+        "Tan": 1
+      },
+      "tones": {
+        "3": 1
+      }
+    }
+  },
+  "issue_counts": {
+    "embedded_pinyin_unmarked_or_unparseable": 1,
+    "embedded_sharealike_vs_selected_license_unresolved": 2,
+    "embedded_speaker_conflicts_with_wei_gao_group": 1,
+    "embedded_text_differs_from_manifest": 1
+  },
+  "label_contract": "Lexical labels; not listening-audited surface-tone gold",
+  "listening_performed": false,
+  "local_files_in_audio_directory": 500,
+  "manifest_rows": 500,
+  "model_work_started": false,
+  "proposed_partition_counts_only": {
+    "auxiliary": 4,
+    "test": 60,
+    "train": 387,
+    "validation": 49
+  },
+  "split_frozen": false,
+  "status": "STOP_BEFORE_TRAINING",
+  "test_metrics_opened": false,
+  "tones": {
+    "1": 118,
+    "2": 110,
+    "3": 120,
+    "4": 152
+  }
+}
