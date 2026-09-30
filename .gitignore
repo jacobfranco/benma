@@ -19,3 +19,4 @@ benchmark/corpus/recordings/canonical/*
 benchmark/reports/outputs/runs/*.json
 benchmark/reports/outputs/plots/*.svg
 benchmark/corpus/provider-captures/
+docs/research/pronunciation-v2/2026-09-30-luilui-t3-forensics/drawer-payloads/

@@ -1,0 +1,310 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1080" viewBox="0 0 1100 1080"><rect width="100%" height="100%" fill="white"/><style>text{font-family:sans-serif;font-size:12px} .title{font-size:18px;font-weight:bold}</style>
+<text x="35" y="28" fill="#253447" class="title">四 si4 | lexical T4 | wav2vec T4 p=0.990</text>
+<text x="35" y="50" fill="#253447" class="">commons:113935505 | Benma: unclear, low, tracker_instability | research whole-clip timing</text>
+<text x="35" y="70" fill="#253447" class="">Gray dots: pre-energy-gate tracker; blue: raw gated F0; green: retained original F0; pink: missing raw F0.</text>
+<text x="80" y="100" fill="#253447" class="">F0 (Hz). Vertical dotted bounds: selected evidence region; no octave correction.</text>
+<polyline points="80.00,242.00 1050.00,242.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="246" fill="#253447" class="">40</text>
+<text x="70" y="260" fill="#253447" class="">0.00</text>
+<polyline points="80.00,209.00 1050.00,209.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="213.0" fill="#253447" class="">118</text>
+<text x="312.5" y="260" fill="#253447" class="">0.20</text>
+<polyline points="80.00,176.00 1050.00,176.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="180.0" fill="#253447" class="">195</text>
+<text x="555.0" y="260" fill="#253447" class="">0.40</text>
+<polyline points="80.00,143.00 1050.00,143.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="147.0" fill="#253447" class="">272</text>
+<text x="797.5" y="260" fill="#253447" class="">0.60</text>
+<polyline points="80.00,110.00 1050.00,110.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="114" fill="#253447" class="">350</text>
+<text x="1040" y="260" fill="#253447" class="">0.80</text>
+<rect x="114.92" y="110.00" width="352.81" height="132.00" fill="#e8acac" opacity="0.19"/>
+<rect x="771.87" y="110.00" width="243.32" height="132.00" fill="#e8acac" opacity="0.19"/>
+<circle cx="473.81" cy="146.86" r="2" fill="#aaa"/>
+<circle cx="485.98" cy="149.50" r="2" fill="#aaa"/>
+<circle cx="498.14" cy="149.16" r="2" fill="#aaa"/>
+<circle cx="510.31" cy="149.09" r="2" fill="#aaa"/>
+<circle cx="522.47" cy="149.70" r="2" fill="#aaa"/>
+<circle cx="534.64" cy="151.41" r="2" fill="#aaa"/>
+<circle cx="546.80" cy="154.28" r="2" fill="#aaa"/>
+<circle cx="558.97" cy="157.02" r="2" fill="#aaa"/>
+<circle cx="571.14" cy="159.71" r="2" fill="#aaa"/>
+<circle cx="583.30" cy="162.77" r="2" fill="#aaa"/>
+<circle cx="595.47" cy="166.59" r="2" fill="#aaa"/>
+<circle cx="607.63" cy="169.83" r="2" fill="#aaa"/>
+<circle cx="619.80" cy="172.21" r="2" fill="#aaa"/>
+<circle cx="631.97" cy="175.92" r="2" fill="#aaa"/>
+<circle cx="644.13" cy="181.39" r="2" fill="#aaa"/>
+<circle cx="656.30" cy="221.27" r="2" fill="#aaa"/>
+<circle cx="668.46" cy="221.70" r="2" fill="#aaa"/>
+<circle cx="680.63" cy="221.64" r="2" fill="#aaa"/>
+<circle cx="692.79" cy="220.14" r="2" fill="#aaa"/>
+<circle cx="704.96" cy="219.70" r="2" fill="#aaa"/>
+<circle cx="717.13" cy="219.67" r="2" fill="#aaa"/>
+<circle cx="729.29" cy="219.33" r="2" fill="#aaa"/>
+<circle cx="741.46" cy="218.55" r="2" fill="#aaa"/>
+<circle cx="753.62" cy="217.68" r="2" fill="#aaa"/>
+<circle cx="765.79" cy="217.32" r="2" fill="#aaa"/>
+<polyline points="473.81,146.86 485.98,149.50 498.14,149.16 510.31,149.09 522.47,149.70 534.64,151.41 546.80,154.28 558.97,157.02 571.14,159.71 583.30,162.77 595.47,166.59 607.63,169.83 619.80,172.21 631.97,175.92 644.13,181.39 656.30,221.27 668.46,221.70 680.63,221.64 692.79,220.14 704.96,219.70 717.13,219.67 729.29,219.33 741.46,218.55 753.62,217.68 765.79,217.32" fill="none" stroke="#2473b8" stroke-width="1.8"/>
+<circle cx="473.81" cy="146.86" r="2" fill="#2473b8"/>
+<circle cx="485.98" cy="149.50" r="2" fill="#2473b8"/>
+<circle cx="498.14" cy="149.16" r="2" fill="#2473b8"/>
+<circle cx="510.31" cy="149.09" r="2" fill="#2473b8"/>
+<circle cx="522.47" cy="149.70" r="2" fill="#2473b8"/>
+<circle cx="534.64" cy="151.41" r="2" fill="#2473b8"/>
+<circle cx="546.80" cy="154.28" r="2" fill="#2473b8"/>
+<circle cx="558.97" cy="157.02" r="2" fill="#2473b8"/>
+<circle cx="571.14" cy="159.71" r="2" fill="#2473b8"/>
+<circle cx="583.30" cy="162.77" r="2" fill="#2473b8"/>
+<circle cx="595.47" cy="166.59" r="2" fill="#2473b8"/>
+<circle cx="607.63" cy="169.83" r="2" fill="#2473b8"/>
+<circle cx="619.80" cy="172.21" r="2" fill="#2473b8"/>
+<circle cx="631.97" cy="175.92" r="2" fill="#2473b8"/>
+<circle cx="644.13" cy="181.39" r="2" fill="#2473b8"/>
+<circle cx="656.30" cy="221.27" r="2" fill="#2473b8"/>
+<circle cx="668.46" cy="221.70" r="2" fill="#2473b8"/>
+<circle cx="680.63" cy="221.64" r="2" fill="#2473b8"/>
+<circle cx="692.79" cy="220.14" r="2" fill="#2473b8"/>
+<circle cx="704.96" cy="219.70" r="2" fill="#2473b8"/>
+<circle cx="717.13" cy="219.67" r="2" fill="#2473b8"/>
+<circle cx="729.29" cy="219.33" r="2" fill="#2473b8"/>
+<circle cx="741.46" cy="218.55" r="2" fill="#2473b8"/>
+<circle cx="753.62" cy="217.68" r="2" fill="#2473b8"/>
+<circle cx="765.79" cy="217.32" r="2" fill="#2473b8"/>
+<polyline points="473.81,146.86 485.98,149.50 498.14,149.16 510.31,149.09 522.47,149.70 534.64,151.41 546.80,154.28 558.97,157.02 571.14,159.71 583.30,162.77 595.47,166.59 607.63,169.83 619.80,172.21 631.97,175.92 644.13,181.39 656.30,221.27 668.46,221.70 680.63,221.64 692.79,220.14 704.96,219.70 717.13,219.67 729.29,219.33 741.46,218.55 753.62,217.68 765.79,217.32" fill="none" stroke="#178453" stroke-width="1.8"/>
+<circle cx="473.81" cy="146.86" r="2" fill="#178453"/>
+<circle cx="485.98" cy="149.50" r="2" fill="#178453"/>
+<circle cx="498.14" cy="149.16" r="2" fill="#178453"/>
+<circle cx="510.31" cy="149.09" r="2" fill="#178453"/>
+<circle cx="522.47" cy="149.70" r="2" fill="#178453"/>
+<circle cx="534.64" cy="151.41" r="2" fill="#178453"/>
+<circle cx="546.80" cy="154.28" r="2" fill="#178453"/>
+<circle cx="558.97" cy="157.02" r="2" fill="#178453"/>
+<circle cx="571.14" cy="159.71" r="2" fill="#178453"/>
+<circle cx="583.30" cy="162.77" r="2" fill="#178453"/>
+<circle cx="595.47" cy="166.59" r="2" fill="#178453"/>
+<circle cx="607.63" cy="169.83" r="2" fill="#178453"/>
+<circle cx="619.80" cy="172.21" r="2" fill="#178453"/>
+<circle cx="631.97" cy="175.92" r="2" fill="#178453"/>
+<circle cx="644.13" cy="181.39" r="2" fill="#178453"/>
+<circle cx="656.30" cy="221.27" r="2" fill="#178453"/>
+<circle cx="668.46" cy="221.70" r="2" fill="#178453"/>
+<circle cx="680.63" cy="221.64" r="2" fill="#178453"/>
+<circle cx="692.79" cy="220.14" r="2" fill="#178453"/>
+<circle cx="704.96" cy="219.70" r="2" fill="#178453"/>
+<circle cx="717.13" cy="219.67" r="2" fill="#178453"/>
+<circle cx="729.29" cy="219.33" r="2" fill="#178453"/>
+<circle cx="741.46" cy="218.55" r="2" fill="#178453"/>
+<circle cx="753.62" cy="217.68" r="2" fill="#178453"/>
+<circle cx="765.79" cy="217.32" r="2" fill="#178453"/>
+<polyline points="80.00,242.00 80.00,110.00" fill="none" stroke="#555" stroke-width="1.8" stroke-dasharray="5 4"/>
+<polyline points="1050.00,242.00 1050.00,110.00" fill="none" stroke="#555" stroke-width="1.8" stroke-dasharray="5 4"/>
+<text x="80" y="300" fill="#253447" class="">Semitones: blue raw on retained median baseline; green production median-smoothed evidence.</text>
+<polyline points="80.00,442.00 1050.00,442.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="446" fill="#253447" class="">-15.6</text>
+<text x="70" y="460" fill="#253447" class="">0.00</text>
+<polyline points="80.00,409.00 1050.00,409.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="413.0" fill="#253447" class="">-10.2</text>
+<text x="312.5" y="460" fill="#253447" class="">0.20</text>
+<polyline points="80.00,376.00 1050.00,376.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="380.0" fill="#253447" class="">-4.81</text>
+<text x="555.0" y="460" fill="#253447" class="">0.40</text>
+<polyline points="80.00,343.00 1050.00,343.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="347.0" fill="#253447" class="">0.597</text>
+<text x="797.5" y="460" fill="#253447" class="">0.60</text>
+<polyline points="80.00,310.00 1050.00,310.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="314" fill="#253447" class="">6</text>
+<text x="1040" y="460" fill="#253447" class="">0.80</text>
+<rect x="114.92" y="310.00" width="352.81" height="132.00" fill="#e8acac" opacity="0.19"/>
+<rect x="771.87" y="310.00" width="243.32" height="132.00" fill="#e8acac" opacity="0.19"/>
+<polyline points="473.81,319.55 485.98,322.08 498.14,321.75 510.31,321.68 522.47,322.27 534.64,323.93 546.80,326.79 558.97,329.60 571.14,332.42 583.30,335.73 595.47,340.01 607.63,343.79 619.80,346.65 631.97,351.26 644.13,358.46 656.30,434.69 668.46,435.89 680.63,435.71 692.79,431.56 704.96,430.36 717.13,430.30 729.29,429.37 741.46,427.33 753.62,425.07 765.79,424.15" fill="none" stroke="#2473b8" stroke-width="1.8"/>
+<circle cx="473.81" cy="319.55" r="2" fill="#2473b8"/>
+<circle cx="485.98" cy="322.08" r="2" fill="#2473b8"/>
+<circle cx="498.14" cy="321.75" r="2" fill="#2473b8"/>
+<circle cx="510.31" cy="321.68" r="2" fill="#2473b8"/>
+<circle cx="522.47" cy="322.27" r="2" fill="#2473b8"/>
+<circle cx="534.64" cy="323.93" r="2" fill="#2473b8"/>
+<circle cx="546.80" cy="326.79" r="2" fill="#2473b8"/>
+<circle cx="558.97" cy="329.60" r="2" fill="#2473b8"/>
+<circle cx="571.14" cy="332.42" r="2" fill="#2473b8"/>
+<circle cx="583.30" cy="335.73" r="2" fill="#2473b8"/>
+<circle cx="595.47" cy="340.01" r="2" fill="#2473b8"/>
+<circle cx="607.63" cy="343.79" r="2" fill="#2473b8"/>
+<circle cx="619.80" cy="346.65" r="2" fill="#2473b8"/>
+<circle cx="631.97" cy="351.26" r="2" fill="#2473b8"/>
+<circle cx="644.13" cy="358.46" r="2" fill="#2473b8"/>
+<circle cx="656.30" cy="434.69" r="2" fill="#2473b8"/>
+<circle cx="668.46" cy="435.89" r="2" fill="#2473b8"/>
+<circle cx="680.63" cy="435.71" r="2" fill="#2473b8"/>
+<circle cx="692.79" cy="431.56" r="2" fill="#2473b8"/>
+<circle cx="704.96" cy="430.36" r="2" fill="#2473b8"/>
+<circle cx="717.13" cy="430.30" r="2" fill="#2473b8"/>
+<circle cx="729.29" cy="429.37" r="2" fill="#2473b8"/>
+<circle cx="741.46" cy="427.33" r="2" fill="#2473b8"/>
+<circle cx="753.62" cy="425.07" r="2" fill="#2473b8"/>
+<circle cx="765.79" cy="424.15" r="2" fill="#2473b8"/>
+<polyline points="473.81,319.55 485.98,321.75 498.14,321.75 510.31,321.75 522.47,322.27 534.64,323.93 546.80,326.79 558.97,329.60 571.14,332.42 583.30,335.73 595.47,340.01 607.63,343.79 619.80,346.65 631.97,351.26 644.13,358.46 656.30,434.69 668.46,435.71 680.63,435.71 692.79,431.56 704.96,430.36 717.13,430.30 729.29,429.37 741.46,427.33 753.62,425.07 765.79,424.15" fill="none" stroke="#178453" stroke-width="1.8"/>
+<circle cx="473.81" cy="319.55" r="2" fill="#178453"/>
+<circle cx="485.98" cy="321.75" r="2" fill="#178453"/>
+<circle cx="498.14" cy="321.75" r="2" fill="#178453"/>
+<circle cx="510.31" cy="321.75" r="2" fill="#178453"/>
+<circle cx="522.47" cy="322.27" r="2" fill="#178453"/>
+<circle cx="534.64" cy="323.93" r="2" fill="#178453"/>
+<circle cx="546.80" cy="326.79" r="2" fill="#178453"/>
+<circle cx="558.97" cy="329.60" r="2" fill="#178453"/>
+<circle cx="571.14" cy="332.42" r="2" fill="#178453"/>
+<circle cx="583.30" cy="335.73" r="2" fill="#178453"/>
+<circle cx="595.47" cy="340.01" r="2" fill="#178453"/>
+<circle cx="607.63" cy="343.79" r="2" fill="#178453"/>
+<circle cx="619.80" cy="346.65" r="2" fill="#178453"/>
+<circle cx="631.97" cy="351.26" r="2" fill="#178453"/>
+<circle cx="644.13" cy="358.46" r="2" fill="#178453"/>
+<circle cx="656.30" cy="434.69" r="2" fill="#178453"/>
+<circle cx="668.46" cy="435.71" r="2" fill="#178453"/>
+<circle cx="680.63" cy="435.71" r="2" fill="#178453"/>
+<circle cx="692.79" cy="431.56" r="2" fill="#178453"/>
+<circle cx="704.96" cy="430.36" r="2" fill="#178453"/>
+<circle cx="717.13" cy="430.30" r="2" fill="#178453"/>
+<circle cx="729.29" cy="429.37" r="2" fill="#178453"/>
+<circle cx="741.46" cy="427.33" r="2" fill="#178453"/>
+<circle cx="753.62" cy="425.07" r="2" fill="#178453"/>
+<circle cx="765.79" cy="424.15" r="2" fill="#178453"/>
+<text x="80" y="500" fill="#253447" class="">Drawer Mine: purple DASHED = display geometry only (recentered). Orange = canonical reference ONLY.</text>
+<polyline points="80.00,642.00 1050.00,642.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="646" fill="#253447" class="">-14.4</text>
+<text x="70" y="660" fill="#253447" class="">0.00</text>
+<polyline points="80.00,609.00 1050.00,609.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="613.0" fill="#253447" class="">-7.21</text>
+<text x="312.5" y="660" fill="#253447" class="">0.20</text>
+<polyline points="80.00,576.00 1050.00,576.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="580.0" fill="#253447" class="">0</text>
+<text x="555.0" y="660" fill="#253447" class="">0.40</text>
+<polyline points="80.00,543.00 1050.00,543.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="547.0" fill="#253447" class="">7.21</text>
+<text x="797.5" y="660" fill="#253447" class="">0.60</text>
+<polyline points="80.00,510.00 1050.00,510.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="514" fill="#253447" class="">14.4</text>
+<text x="1040" y="660" fill="#253447" class="">0.80</text>
+<rect x="114.92" y="510.00" width="352.81" height="132.00" fill="#e8acac" opacity="0.19"/>
+<rect x="771.87" y="510.00" width="243.32" height="132.00" fill="#e8acac" opacity="0.19"/>
+<polyline points="498.14,557.33 558.97,563.22 619.80,576.00 680.63,642.00 741.46,636.49" fill="none" stroke="#8a42b0" stroke-width="1.8" stroke-dasharray="5 4"/>
+<circle cx="498.14" cy="557.33" r="2" fill="#8a42b0"/>
+<circle cx="558.97" cy="563.22" r="2" fill="#8a42b0"/>
+<circle cx="619.80" cy="576.00" r="2" fill="#8a42b0"/>
+<circle cx="680.63" cy="642.00" r="2" fill="#8a42b0"/>
+<circle cx="741.46" cy="636.49" r="2" fill="#8a42b0"/>
+<polyline points="498.14,562.26 741.46,589.74" fill="none" stroke="#ca7a1b" stroke-width="1.8" stroke-dasharray="5 4"/>
+<text x="80" y="682" fill="#253447" class="">Canonical reference uses arbitrary teaching amplitude; never fitted to audio. Mobile fits Mine horizontally to voiced span.</text>
+<text x="80" y="720" fill="#253447" class="">Energy envelope: 40-ms RMS (black); dashed red = existing energy gate; gray = diagnostic active threshold.</text>
+<polyline points="80.00,830.00 1050.00,830.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="834" fill="#253447" class="">0</text>
+<text x="70" y="848" fill="#253447" class="">0.00</text>
+<polyline points="80.00,805.00 1050.00,805.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="809.0" fill="#253447" class="">0.0469</text>
+<text x="312.5" y="848" fill="#253447" class="">0.20</text>
+<polyline points="80.00,780.00 1050.00,780.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="784.0" fill="#253447" class="">0.0937</text>
+<text x="555.0" y="848" fill="#253447" class="">0.40</text>
+<polyline points="80.00,755.00 1050.00,755.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="759.0" fill="#253447" class="">0.141</text>
+<text x="797.5" y="848" fill="#253447" class="">0.60</text>
+<polyline points="80.00,730.00 1050.00,730.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="734" fill="#253447" class="">0.187</text>
+<text x="1040" y="848" fill="#253447" class="">0.80</text>
+<polyline points="121.00,829.73 133.16,829.70 145.33,829.71 157.50,829.70 169.66,829.77 181.83,829.81 193.99,829.84 206.16,829.87 218.33,829.67 230.49,829.55 242.66,829.41 254.82,829.11 266.99,828.70 279.16,828.17 291.32,827.49 303.49,826.72 315.65,825.88 327.82,825.42 339.98,825.17 352.15,825.05 364.32,825.04 376.48,824.79 388.65,824.37 400.81,824.13 412.98,824.03 425.15,824.08 437.31,824.29 449.48,824.48 461.64,819.50 473.81,808.95 485.98,799.44 498.14,789.59 510.31,780.11 522.47,773.67 534.64,764.61 546.80,754.58 558.97,745.67 571.14,739.58 583.30,739.09 595.47,743.06 607.63,754.72 619.80,768.68 631.97,782.91 644.13,799.51 656.30,806.53 668.46,809.68 680.63,812.74 692.79,815.71 704.96,818.57 717.13,819.63 729.29,819.92 741.46,820.78 753.62,822.22 765.79,823.78 777.96,825.99 790.12,827.80 802.29,828.63 814.45,829.16 826.62,829.26 838.79,829.42 850.95,829.55 863.12,829.58 875.28,829.60 887.45,829.68 899.61,829.71 911.78,829.73 923.95,829.83 936.11,829.81 948.28,829.82 960.44,829.83 972.61,829.83 984.78,829.83 996.94,829.80 1009.11,829.79" fill="none" stroke="#333" stroke-width="1.8"/>
+<polyline points="80.00,828.40 1050.00,828.40" fill="none" stroke="#b04141" stroke-width="1.8" stroke-dasharray="5 4"/>
+<polyline points="80.00,811.82 1050.00,811.82" fill="none" stroke="#999" stroke-width="1.8" stroke-dasharray="5 4"/>
+<text x="80" y="890" fill="#253447" class="">Praat selected-candidate autocorrelation strength (NOT calibrated voice probability or a creak measure).</text>
+<polyline points="80.00,1000.00 1050.00,1000.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="1004" fill="#253447" class="">0</text>
+<text x="70" y="1018" fill="#253447" class="">0.00</text>
+<polyline points="80.00,975.00 1050.00,975.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="979.0" fill="#253447" class="">0.25</text>
+<text x="312.5" y="1018" fill="#253447" class="">0.20</text>
+<polyline points="80.00,950.00 1050.00,950.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="954.0" fill="#253447" class="">0.5</text>
+<text x="555.0" y="1018" fill="#253447" class="">0.40</text>
+<polyline points="80.00,925.00 1050.00,925.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="929.0" fill="#253447" class="">0.75</text>
+<text x="797.5" y="1018" fill="#253447" class="">0.60</text>
+<polyline points="80.00,900.00 1050.00,900.00" fill="none" stroke="#e1e6eb" stroke-width="0.7"/>
+<text x="10" y="904" fill="#253447" class="">1</text>
+<text x="1040" y="1018" fill="#253447" class="">0.80</text>
+<polyline points="121.00,1000.00 133.16,1000.00 145.33,1000.00 157.50,1000.00 169.66,1000.00 181.83,1000.00 193.99,1000.00 206.16,1000.00 218.33,1000.00 230.49,1000.00 242.66,1000.00 254.82,1000.00 266.99,1000.00 279.16,1000.00 291.32,1000.00 303.49,1000.00 315.65,1000.00 327.82,1000.00 339.98,1000.00 352.15,1000.00 364.32,1000.00 376.48,1000.00 388.65,1000.00 400.81,1000.00 412.98,1000.00 425.15,1000.00 437.31,1000.00 449.48,1000.00 461.64,1000.00 473.81,945.11 485.98,917.32 498.14,905.28 510.31,901.65 522.47,901.54 534.64,903.48 546.80,904.48 558.97,904.93 571.14,906.28 583.30,909.32 595.47,910.59 607.63,909.44 619.80,914.22 631.97,923.56 644.13,917.98 656.30,910.66 668.46,917.76 680.63,932.55 692.79,930.52 704.96,908.07 717.13,913.53 729.29,917.07 741.46,918.14 753.62,917.94 765.79,918.12 777.96,1000.00 790.12,1000.00 802.29,1000.00 814.45,1000.00 826.62,1000.00 838.79,1000.00 850.95,1000.00 863.12,1000.00 875.28,1000.00 887.45,1000.00 899.61,1000.00 911.78,1000.00 923.95,1000.00 936.11,1000.00 948.28,1000.00 960.44,1000.00 972.61,1000.00 984.78,1000.00 996.94,1000.00 1009.11,1000.00" fill="none" stroke="#856016" stroke-width="1.8"/>
+<circle cx="121.00" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="133.16" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="145.33" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="157.50" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="169.66" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="181.83" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="193.99" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="206.16" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="218.33" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="230.49" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="242.66" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="254.82" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="266.99" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="279.16" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="291.32" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="303.49" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="315.65" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="327.82" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="339.98" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="352.15" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="364.32" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="376.48" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="388.65" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="400.81" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="412.98" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="425.15" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="437.31" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="449.48" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="461.64" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="473.81" cy="945.11" r="2" fill="#856016"/>
+<circle cx="485.98" cy="917.32" r="2" fill="#856016"/>
+<circle cx="498.14" cy="905.28" r="2" fill="#856016"/>
+<circle cx="510.31" cy="901.65" r="2" fill="#856016"/>
+<circle cx="522.47" cy="901.54" r="2" fill="#856016"/>
+<circle cx="534.64" cy="903.48" r="2" fill="#856016"/>
+<circle cx="546.80" cy="904.48" r="2" fill="#856016"/>
+<circle cx="558.97" cy="904.93" r="2" fill="#856016"/>
+<circle cx="571.14" cy="906.28" r="2" fill="#856016"/>
+<circle cx="583.30" cy="909.32" r="2" fill="#856016"/>
+<circle cx="595.47" cy="910.59" r="2" fill="#856016"/>
+<circle cx="607.63" cy="909.44" r="2" fill="#856016"/>
+<circle cx="619.80" cy="914.22" r="2" fill="#856016"/>
+<circle cx="631.97" cy="923.56" r="2" fill="#856016"/>
+<circle cx="644.13" cy="917.98" r="2" fill="#856016"/>
+<circle cx="656.30" cy="910.66" r="2" fill="#856016"/>
+<circle cx="668.46" cy="917.76" r="2" fill="#856016"/>
+<circle cx="680.63" cy="932.55" r="2" fill="#856016"/>
+<circle cx="692.79" cy="930.52" r="2" fill="#856016"/>
+<circle cx="704.96" cy="908.07" r="2" fill="#856016"/>
+<circle cx="717.13" cy="913.53" r="2" fill="#856016"/>
+<circle cx="729.29" cy="917.07" r="2" fill="#856016"/>
+<circle cx="741.46" cy="918.14" r="2" fill="#856016"/>
+<circle cx="753.62" cy="917.94" r="2" fill="#856016"/>
+<circle cx="765.79" cy="918.12" r="2" fill="#856016"/>
+<circle cx="777.96" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="790.12" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="802.29" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="814.45" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="826.62" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="838.79" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="850.95" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="863.12" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="875.28" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="887.45" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="899.61" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="911.78" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="923.95" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="936.11" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="948.28" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="960.44" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="972.61" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="984.78" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="996.94" cy="1000.00" r="2" fill="#856016"/>
+<circle cx="1009.11" cy="1000.00" r="2" fill="#856016"/>
+<polyline points="80.00,955.00 1050.00,955.00" fill="none" stroke="#999" stroke-width="1.8" stroke-dasharray="5 4"/>
+<text x="940" y="1045" fill="#253447" class="">time (seconds) →</text>
+</svg>

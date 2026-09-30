@@ -1,0 +1,372 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1220" viewBox="0 0 1100 1220"><rect width="100%" height="100%" fill="white"/><style>text{font-family:sans-serif;font-size:12px} .title{font-size:18px;font-weight:bold}</style>
+<text x="35" y="28" fill="#253447" class="title">All 13 T3 versus all 21 T4: descriptive distributions, one speaker</text>
+<text x="35" y="50" fill="#253447" class="">Blue = T3 wav2vec miss; green = T3 wav2vec correct; orange = T4. Black ticks = group medians.</text>
+<text x="30" y="100" fill="#253447" class="">F0 coverage (all tracker frames)</text>
+<text x="30" y="136" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,132.00 1050.00,132.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="844.81" cy="126" r="3.5" fill="#2473b8"><title>你 ni3: 0.4176</title></circle>
+<circle cx="553.01" cy="129" r="3.5" fill="#2473b8"><title>我 wo3: 0.2747</title></circle>
+<circle cx="238.75" cy="132" r="3.5" fill="#2473b8"><title>早 zao3: 0.1209</title></circle>
+<circle cx="976.25" cy="135" r="3.5" fill="#178453"><title>晚 wan3: 0.4819</title></circle>
+<circle cx="705.54" cy="138" r="3.5" fill="#2473b8"><title>五 wu3: 0.3494</title></circle>
+<circle cx="705.54" cy="126" r="3.5" fill="#2473b8"><title>想 xiang3: 0.3494</title></circle>
+<circle cx="575.45" cy="129" r="3.5" fill="#178453"><title>表 biao3: 0.2857</title></circle>
+<circle cx="680.93" cy="132" r="3.5" fill="#2473b8"><title>纸 zhi3: 0.3373</title></circle>
+<circle cx="508.65" cy="135" r="3.5" fill="#2473b8"><title>买 mai3: 0.253</title></circle>
+<circle cx="681.92" cy="138" r="3.5" fill="#2473b8"><title>笔 bi3: 0.3378</title></circle>
+<circle cx="405.89" cy="126" r="3.5" fill="#2473b8"><title>等 deng3: 0.2027</title></circle>
+<circle cx="680.93" cy="129" r="3.5" fill="#2473b8"><title>狗 gou3: 0.3373</title></circle>
+<circle cx="571.51" cy="132" r="3.5" fill="#2473b8"><title>碗 wan3: 0.2838</title></circle>
+<polyline points="680.93,121.00 680.93,143.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="170" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,166.00 1050.00,166.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="582.48" cy="160" r="3.5" fill="#ce8130"><title>叫 jiao4: 0.2892</title></circle>
+<circle cx="755.03" cy="163" r="3.5" fill="#ce8130"><title>段 duan4: 0.3736</title></circle>
+<circle cx="730.15" cy="166" r="3.5" fill="#ce8130"><title>课 ke4: 0.3614</title></circle>
+<circle cx="582.48" cy="169" r="3.5" fill="#ce8130"><title>在 zai4: 0.2892</title></circle>
+<circle cx="620.35" cy="172" r="3.5" fill="#ce8130"><title>二 er4: 0.3077</title></circle>
+<circle cx="681.92" cy="160" r="3.5" fill="#ce8130"><title>四 si4: 0.3378</title></circle>
+<circle cx="582.48" cy="163" r="3.5" fill="#ce8130"><title>做 zuo4: 0.2892</title></circle>
+<circle cx="902.75" cy="166" r="3.5" fill="#ce8130"><title>後 hou4: 0.4459</title></circle>
+<circle cx="459.43" cy="169" r="3.5" fill="#ce8130"><title>再 zai4: 0.2289</title></circle>
+<circle cx="680.93" cy="172" r="3.5" fill="#ce8130"><title>菜 cai4: 0.3373</title></circle>
+<circle cx="927.03" cy="160" r="3.5" fill="#ce8130"><title>面 mian4: 0.4578</title></circle>
+<circle cx="705.54" cy="163" r="3.5" fill="#ce8130"><title>日 ri4: 0.3494</title></circle>
+<circle cx="597.90" cy="166" r="3.5" fill="#ce8130"><title>热 re4: 0.2967</title></circle>
+<circle cx="631.70" cy="169" r="3.5" fill="#ce8130"><title>试 shi4: 0.3133</title></circle>
+<circle cx="732.58" cy="172" r="3.5" fill="#ce8130"><title>卖 mai4: 0.3626</title></circle>
+<circle cx="828.59" cy="160" r="3.5" fill="#ce8130"><title>贵 gui4: 0.4096</title></circle>
+<circle cx="385.60" cy="163" r="3.5" fill="#ce8130"><title>辆 liang4: 0.1928</title></circle>
+<circle cx="350.68" cy="166" r="3.5" fill="#ce8130"><title>辣 la4: 0.1757</title></circle>
+<circle cx="557.87" cy="169" r="3.5" fill="#ce8130"><title>算 suan4: 0.2771</title></circle>
+<circle cx="582.48" cy="172" r="3.5" fill="#ce8130"><title>饿 e4: 0.2892</title></circle>
+<circle cx="620.35" cy="160" r="3.5" fill="#ce8130"><title>就 jiu4: 0.3077</title></circle>
+<polyline points="620.35,155.00 620.35,177.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="196" fill="#253447" class="">0.0848</text>
+<text x="376.25" y="196" fill="#253447" class="">0.193</text>
+<text x="597.5" y="196" fill="#253447" class="">0.301</text>
+<text x="818.75" y="196" fill="#253447" class="">0.41</text>
+<text x="1040" y="196" fill="#253447" class="">0.518</text>
+<text x="30" y="238" fill="#253447" class="">Missing F0 in energy-active frames</text>
+<text x="30" y="274" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,270.00 1050.00,270.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="165.00" cy="264" r="3.5" fill="#2473b8"><title>你 ni3: 0</title></circle>
+<circle cx="461.99" cy="267" r="3.5" fill="#2473b8"><title>我 wo3: 0.2188</title></circle>
+<circle cx="969.55" cy="270" r="3.5" fill="#2473b8"><title>早 zao3: 0.5926</title></circle>
+<circle cx="211.82" cy="273" r="3.5" fill="#178453"><title>晚 wan3: 0.03448</title></circle>
+<circle cx="224.03" cy="276" r="3.5" fill="#2473b8"><title>五 wu3: 0.04348</title></circle>
+<circle cx="226.71" cy="264" r="3.5" fill="#2473b8"><title>想 xiang3: 0.04545</title></circle>
+<circle cx="261.98" cy="267" r="3.5" fill="#178453"><title>表 biao3: 0.07143</title></circle>
+<circle cx="269.44" cy="270" r="3.5" fill="#2473b8"><title>纸 zhi3: 0.07692</title></circle>
+<circle cx="773.61" cy="273" r="3.5" fill="#2473b8"><title>买 mai3: 0.4483</title></circle>
+<circle cx="488.25" cy="276" r="3.5" fill="#2473b8"><title>笔 bi3: 0.2381</title></circle>
+<circle cx="391.28" cy="264" r="3.5" fill="#2473b8"><title>等 deng3: 0.1667</title></circle>
+<circle cx="391.28" cy="267" r="3.5" fill="#2473b8"><title>狗 gou3: 0.1667</title></circle>
+<circle cx="419.56" cy="270" r="3.5" fill="#2473b8"><title>碗 wan3: 0.1875</title></circle>
+<polyline points="391.28,259.00 391.28,281.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="308" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,304.00 1050.00,304.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="269.44" cy="298" r="3.5" fill="#ce8130"><title>叫 jiao4: 0.07692</title></circle>
+<circle cx="165.00" cy="301" r="3.5" fill="#ce8130"><title>段 duan4: 0</title></circle>
+<circle cx="217.22" cy="304" r="3.5" fill="#ce8130"><title>课 ke4: 0.03846</title></circle>
+<circle cx="165.00" cy="307" r="3.5" fill="#ce8130"><title>在 zai4: 0</title></circle>
+<circle cx="461.99" cy="310" r="3.5" fill="#ce8130"><title>二 er4: 0.2188</title></circle>
+<circle cx="165.00" cy="298" r="3.5" fill="#ce8130"><title>四 si4: 0</title></circle>
+<circle cx="165.00" cy="301" r="3.5" fill="#ce8130"><title>做 zuo4: 0</title></circle>
+<circle cx="219.31" cy="304" r="3.5" fill="#ce8130"><title>後 hou4: 0.04</title></circle>
+<circle cx="294.30" cy="307" r="3.5" fill="#ce8130"><title>再 zai4: 0.09524</title></circle>
+<circle cx="224.03" cy="310" r="3.5" fill="#ce8130"><title>菜 cai4: 0.04348</title></circle>
+<circle cx="165.00" cy="298" r="3.5" fill="#ce8130"><title>面 mian4: 0</title></circle>
+<circle cx="165.00" cy="301" r="3.5" fill="#ce8130"><title>日 ri4: 0</title></circle>
+<circle cx="224.03" cy="304" r="3.5" fill="#ce8130"><title>热 re4: 0.04348</title></circle>
+<circle cx="488.25" cy="307" r="3.5" fill="#ce8130"><title>试 shi4: 0.2381</title></circle>
+<circle cx="296.39" cy="310" r="3.5" fill="#ce8130"><title>卖 mai4: 0.09677</title></circle>
+<circle cx="219.31" cy="298" r="3.5" fill="#ce8130"><title>贵 gui4: 0.04</title></circle>
+<circle cx="814.32" cy="301" r="3.5" fill="#ce8130"><title>辆 liang4: 0.4783</title></circle>
+<circle cx="782.12" cy="304" r="3.5" fill="#ce8130"><title>辣 la4: 0.4545</title></circle>
+<circle cx="226.71" cy="307" r="3.5" fill="#ce8130"><title>算 suan4: 0.04545</title></circle>
+<circle cx="426.09" cy="310" r="3.5" fill="#ce8130"><title>饿 e4: 0.1923</title></circle>
+<circle cx="224.03" cy="298" r="3.5" fill="#ce8130"><title>就 jiu4: 0.04348</title></circle>
+<polyline points="224.03,293.00 224.03,315.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="334" fill="#253447" class="">0</text>
+<text x="376.25" y="334" fill="#253447" class="">0.163</text>
+<text x="597.5" y="334" fill="#253447" class="">0.326</text>
+<text x="818.75" y="334" fill="#253447" class="">0.489</text>
+<text x="1040" y="334" fill="#253447" class="">0.652</text>
+<text x="30" y="376" fill="#253447" class="">Median tracked F0 (Hz)</text>
+<text x="30" y="412" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,408.00 1050.00,408.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="401.30" cy="402" r="3.5" fill="#2473b8"><title>你 ni3: 174.5</title></circle>
+<circle cx="328.77" cy="405" r="3.5" fill="#2473b8"><title>我 wo3: 154.8</title></circle>
+<circle cx="238.75" cy="408" r="3.5" fill="#2473b8"><title>早 zao3: 130.4</title></circle>
+<circle cx="365.02" cy="411" r="3.5" fill="#178453"><title>晚 wan3: 164.7</title></circle>
+<circle cx="395.67" cy="414" r="3.5" fill="#2473b8"><title>五 wu3: 173</title></circle>
+<circle cx="377.36" cy="402" r="3.5" fill="#2473b8"><title>想 xiang3: 168</title></circle>
+<circle cx="508.14" cy="405" r="3.5" fill="#178453"><title>表 biao3: 203.5</title></circle>
+<circle cx="453.13" cy="408" r="3.5" fill="#2473b8"><title>纸 zhi3: 188.6</title></circle>
+<circle cx="518.70" cy="411" r="3.5" fill="#2473b8"><title>买 mai3: 206.4</title></circle>
+<circle cx="476.09" cy="414" r="3.5" fill="#2473b8"><title>笔 bi3: 194.8</title></circle>
+<circle cx="525.21" cy="402" r="3.5" fill="#2473b8"><title>等 deng3: 208.1</title></circle>
+<circle cx="976.25" cy="405" r="3.5" fill="#2473b8"><title>狗 gou3: 330.5</title></circle>
+<circle cx="460.93" cy="408" r="3.5" fill="#2473b8"><title>碗 wan3: 190.7</title></circle>
+<polyline points="453.13,397.00 453.13,419.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="446" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,442.00 1050.00,442.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="553.87" cy="436" r="3.5" fill="#ce8130"><title>叫 jiao4: 215.9</title></circle>
+<circle cx="455.53" cy="439" r="3.5" fill="#ce8130"><title>段 duan4: 189.2</title></circle>
+<circle cx="491.93" cy="442" r="3.5" fill="#ce8130"><title>课 ke4: 199.1</title></circle>
+<circle cx="569.58" cy="445" r="3.5" fill="#ce8130"><title>在 zai4: 220.2</title></circle>
+<circle cx="582.22" cy="448" r="3.5" fill="#ce8130"><title>二 er4: 223.6</title></circle>
+<circle cx="509.61" cy="436" r="3.5" fill="#ce8130"><title>四 si4: 203.9</title></circle>
+<circle cx="605.28" cy="439" r="3.5" fill="#ce8130"><title>做 zuo4: 229.8</title></circle>
+<circle cx="743.19" cy="442" r="3.5" fill="#ce8130"><title>後 hou4: 267.3</title></circle>
+<circle cx="633.95" cy="445" r="3.5" fill="#ce8130"><title>再 zai4: 237.6</title></circle>
+<circle cx="610.88" cy="448" r="3.5" fill="#ce8130"><title>菜 cai4: 231.4</title></circle>
+<circle cx="501.35" cy="436" r="3.5" fill="#ce8130"><title>面 mian4: 201.7</title></circle>
+<circle cx="600.40" cy="439" r="3.5" fill="#ce8130"><title>日 ri4: 228.5</title></circle>
+<circle cx="672.79" cy="442" r="3.5" fill="#ce8130"><title>热 re4: 248.2</title></circle>
+<circle cx="497.83" cy="445" r="3.5" fill="#ce8130"><title>试 shi4: 200.7</title></circle>
+<circle cx="571.48" cy="448" r="3.5" fill="#ce8130"><title>卖 mai4: 220.7</title></circle>
+<circle cx="697.63" cy="436" r="3.5" fill="#ce8130"><title>贵 gui4: 254.9</title></circle>
+<circle cx="472.61" cy="439" r="3.5" fill="#ce8130"><title>辆 liang4: 193.9</title></circle>
+<circle cx="691.22" cy="442" r="3.5" fill="#ce8130"><title>辣 la4: 253.2</title></circle>
+<circle cx="613.69" cy="445" r="3.5" fill="#ce8130"><title>算 suan4: 232.1</title></circle>
+<circle cx="559.82" cy="448" r="3.5" fill="#ce8130"><title>饿 e4: 217.5</title></circle>
+<circle cx="725.40" cy="436" r="3.5" fill="#ce8130"><title>就 jiu4: 262.4</title></circle>
+<polyline points="582.22,431.00 582.22,453.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="472" fill="#253447" class="">110</text>
+<text x="376.25" y="472" fill="#253447" class="">170</text>
+<text x="597.5" y="472" fill="#253447" class="">230</text>
+<text x="818.75" y="472" fill="#253447" class="">290</text>
+<text x="1040" y="472" fill="#253447" class="">350</text>
+<text x="30" y="514" fill="#253447" class="">Max tracker jump (st, production definition)</text>
+<text x="30" y="550" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,546.00 1050.00,546.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="204.17" cy="540" r="3.5" fill="#2473b8"><title>你 ni3: 1.286</title></circle>
+<circle cx="719.70" cy="543" r="3.5" fill="#2473b8"><title>我 wo3: 18.21</title></circle>
+<circle cx="561.15" cy="546" r="3.5" fill="#2473b8"><title>早 zao3: 13.01</title></circle>
+<circle cx="735.99" cy="549" r="3.5" fill="#178453"><title>晚 wan3: 18.74</title></circle>
+<circle cx="346.70" cy="552" r="3.5" fill="#2473b8"><title>五 wu3: 5.965</title></circle>
+<circle cx="781.46" cy="540" r="3.5" fill="#2473b8"><title>想 xiang3: 20.24</title></circle>
+<circle cx="721.28" cy="543" r="3.5" fill="#178453"><title>表 biao3: 18.26</title></circle>
+<circle cx="690.38" cy="546" r="3.5" fill="#2473b8"><title>纸 zhi3: 17.25</title></circle>
+<circle cx="408.16" cy="549" r="3.5" fill="#2473b8"><title>买 mai3: 7.982</title></circle>
+<circle cx="807.32" cy="552" r="3.5" fill="#2473b8"><title>笔 bi3: 21.09</title></circle>
+<circle cx="814.08" cy="540" r="3.5" fill="#2473b8"><title>等 deng3: 21.31</title></circle>
+<circle cx="971.32" cy="543" r="3.5" fill="#2473b8"><title>狗 gou3: 26.47</title></circle>
+<circle cx="970.71" cy="546" r="3.5" fill="#2473b8"><title>碗 wan3: 26.45</title></circle>
+<polyline points="721.28,535.00 721.28,557.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="584" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,580.00 1050.00,580.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="186.62" cy="574" r="3.5" fill="#ce8130"><title>叫 jiao4: 0.7099</title></circle>
+<circle cx="232.73" cy="577" r="3.5" fill="#ce8130"><title>段 duan4: 2.223</title></circle>
+<circle cx="261.45" cy="580" r="3.5" fill="#ce8130"><title>课 ke4: 3.166</title></circle>
+<circle cx="185.57" cy="583" r="3.5" fill="#ce8130"><title>在 zai4: 0.6754</title></circle>
+<circle cx="465.46" cy="586" r="3.5" fill="#ce8130"><title>二 er4: 9.864</title></circle>
+<circle cx="545.15" cy="574" r="3.5" fill="#ce8130"><title>四 si4: 12.48</title></circle>
+<circle cx="190.05" cy="577" r="3.5" fill="#ce8130"><title>做 zuo4: 0.8223</title></circle>
+<circle cx="612.85" cy="580" r="3.5" fill="#ce8130"><title>後 hou4: 14.7</title></circle>
+<circle cx="822.15" cy="583" r="3.5" fill="#ce8130"><title>再 zai4: 21.57</title></circle>
+<circle cx="386.03" cy="586" r="3.5" fill="#ce8130"><title>菜 cai4: 7.256</title></circle>
+<circle cx="195.03" cy="574" r="3.5" fill="#ce8130"><title>面 mian4: 0.9859</title></circle>
+<circle cx="206.57" cy="577" r="3.5" fill="#ce8130"><title>日 ri4: 1.365</title></circle>
+<circle cx="669.68" cy="580" r="3.5" fill="#ce8130"><title>热 re4: 16.57</title></circle>
+<circle cx="189.84" cy="583" r="3.5" fill="#ce8130"><title>试 shi4: 0.8154</title></circle>
+<circle cx="248.06" cy="586" r="3.5" fill="#ce8130"><title>卖 mai4: 2.727</title></circle>
+<circle cx="733.11" cy="574" r="3.5" fill="#ce8130"><title>贵 gui4: 18.65</title></circle>
+<circle cx="675.48" cy="577" r="3.5" fill="#ce8130"><title>辆 liang4: 16.76</title></circle>
+<circle cx="184.56" cy="580" r="3.5" fill="#ce8130"><title>辣 la4: 0.6421</title></circle>
+<circle cx="347.84" cy="583" r="3.5" fill="#ce8130"><title>算 suan4: 6.003</title></circle>
+<circle cx="749.12" cy="586" r="3.5" fill="#ce8130"><title>饿 e4: 19.18</title></circle>
+<circle cx="679.59" cy="574" r="3.5" fill="#ce8130"><title>就 jiu4: 16.89</title></circle>
+<polyline points="347.84,569.00 347.84,591.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="610" fill="#253447" class="">0</text>
+<text x="376.25" y="610" fill="#253447" class="">7.26</text>
+<text x="597.5" y="610" fill="#253447" class="">14.5</text>
+<text x="818.75" y="610" fill="#253447" class="">21.8</text>
+<text x="1040" y="610" fill="#253447" class="">29.1</text>
+<text x="30" y="652" fill="#253447" class="">Middle → final third F0 (st)</text>
+<text x="30" y="688" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,684.00 1050.00,684.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="570.04" cy="678" r="3.5" fill="#2473b8"><title>你 ni3: -2.065</title></circle>
+<circle cx="416.55" cy="681" r="3.5" fill="#2473b8"><title>我 wo3: -10.17</title></circle>
+<circle cx="359.67" cy="684" r="3.5" fill="#2473b8"><title>早 zao3: -13.17</title></circle>
+<circle cx="819.59" cy="687" r="3.5" fill="#178453"><title>晚 wan3: 11.11</title></circle>
+<circle cx="639.68" cy="690" r="3.5" fill="#2473b8"><title>五 wu3: 1.612</title></circle>
+<circle cx="486.20" cy="678" r="3.5" fill="#2473b8"><title>想 xiang3: -6.492</title></circle>
+<circle cx="825.92" cy="681" r="3.5" fill="#178453"><title>表 biao3: 11.44</title></circle>
+<circle cx="724.79" cy="684" r="3.5" fill="#2473b8"><title>纸 zhi3: 6.105</title></circle>
+<circle cx="772.06" cy="687" r="3.5" fill="#2473b8"><title>买 mai3: 8.601</title></circle>
+<circle cx="582.34" cy="690" r="3.5" fill="#2473b8"><title>笔 bi3: -1.416</title></circle>
+<circle cx="496.20" cy="678" r="3.5" fill="#2473b8"><title>等 deng3: -5.964</title></circle>
+<circle cx="976.25" cy="681" r="3.5" fill="#2473b8"><title>狗 gou3: 19.38</title></circle>
+<circle cx="238.75" cy="684" r="3.5" fill="#2473b8"><title>碗 wan3: -19.56</title></circle>
+<polyline points="582.34,673.00 582.34,695.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="722" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,718.00 1050.00,718.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="545.64" cy="712" r="3.5" fill="#ce8130"><title>叫 jiao4: -3.354</title></circle>
+<circle cx="576.28" cy="715" r="3.5" fill="#ce8130"><title>段 duan4: -1.736</title></circle>
+<circle cx="605.10" cy="718" r="3.5" fill="#ce8130"><title>课 ke4: -0.2144</title></circle>
+<circle cx="529.49" cy="721" r="3.5" fill="#ce8130"><title>在 zai4: -4.207</title></circle>
+<circle cx="420.02" cy="724" r="3.5" fill="#ce8130"><title>二 er4: -9.986</title></circle>
+<circle cx="377.83" cy="712" r="3.5" fill="#ce8130"><title>四 si4: -12.21</title></circle>
+<circle cx="521.94" cy="715" r="3.5" fill="#ce8130"><title>做 zuo4: -4.605</title></circle>
+<circle cx="815.40" cy="718" r="3.5" fill="#ce8130"><title>後 hou4: 10.89</title></circle>
+<circle cx="283.97" cy="721" r="3.5" fill="#ce8130"><title>再 zai4: -17.17</title></circle>
+<circle cx="658.20" cy="724" r="3.5" fill="#ce8130"><title>菜 cai4: 2.589</title></circle>
+<circle cx="554.41" cy="712" r="3.5" fill="#ce8130"><title>面 mian4: -2.891</title></circle>
+<circle cx="573.76" cy="715" r="3.5" fill="#ce8130"><title>日 ri4: -1.869</title></circle>
+<circle cx="375.85" cy="718" r="3.5" fill="#ce8130"><title>热 re4: -12.32</title></circle>
+<circle cx="599.82" cy="721" r="3.5" fill="#ce8130"><title>试 shi4: -0.4932</title></circle>
+<circle cx="577.92" cy="724" r="3.5" fill="#ce8130"><title>卖 mai4: -1.649</title></circle>
+<circle cx="799.26" cy="712" r="3.5" fill="#ce8130"><title>贵 gui4: 10.04</title></circle>
+<circle cx="830.08" cy="715" r="3.5" fill="#ce8130"><title>辆 liang4: 11.66</title></circle>
+<circle cx="583.41" cy="718" r="3.5" fill="#ce8130"><title>辣 la4: -1.36</title></circle>
+<circle cx="638.94" cy="721" r="3.5" fill="#ce8130"><title>算 suan4: 1.572</title></circle>
+<circle cx="342.92" cy="724" r="3.5" fill="#ce8130"><title>饿 e4: -14.06</title></circle>
+<circle cx="890.16" cy="712" r="3.5" fill="#ce8130"><title>就 jiu4: 14.84</title></circle>
+<polyline points="576.28,707.00 576.28,729.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="748" fill="#253447" class="">-23.4</text>
+<text x="376.25" y="748" fill="#253447" class="">-11.8</text>
+<text x="597.5" y="748" fill="#253447" class="">-0.0877</text>
+<text x="818.75" y="748" fill="#253447" class="">11.6</text>
+<text x="1040" y="748" fill="#253447" class="">23.3</text>
+<text x="30" y="790" fill="#253447" class="">Mean active-frame periodicity</text>
+<text x="30" y="826" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,822.00 1050.00,822.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="1003.16" cy="816" r="3.5" fill="#2473b8"><title>你 ni3: 0.9577</title></circle>
+<circle cx="713.70" cy="819" r="3.5" fill="#2473b8"><title>我 wo3: 0.6964</title></circle>
+<circle cx="241.20" cy="822" r="3.5" fill="#2473b8"><title>早 zao3: 0.2699</title></circle>
+<circle cx="787.42" cy="825" r="3.5" fill="#178453"><title>晚 wan3: 0.763</title></circle>
+<circle cx="953.94" cy="828" r="3.5" fill="#2473b8"><title>五 wu3: 0.9133</title></circle>
+<circle cx="643.24" cy="816" r="3.5" fill="#2473b8"><title>想 xiang3: 0.6328</title></circle>
+<circle cx="629.53" cy="819" r="3.5" fill="#178453"><title>表 biao3: 0.6204</title></circle>
+<circle cx="772.88" cy="822" r="3.5" fill="#2473b8"><title>纸 zhi3: 0.7498</title></circle>
+<circle cx="348.00" cy="825" r="3.5" fill="#2473b8"><title>买 mai3: 0.3663</title></circle>
+<circle cx="594.90" cy="828" r="3.5" fill="#2473b8"><title>笔 bi3: 0.5892</title></circle>
+<circle cx="612.97" cy="816" r="3.5" fill="#2473b8"><title>等 deng3: 0.6055</title></circle>
+<circle cx="560.76" cy="819" r="3.5" fill="#2473b8"><title>狗 gou3: 0.5583</title></circle>
+<circle cx="565.17" cy="822" r="3.5" fill="#2473b8"><title>碗 wan3: 0.5623</title></circle>
+<polyline points="629.53,811.00 629.53,833.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="860" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,856.00 1050.00,856.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="719.94" cy="850" r="3.5" fill="#ce8130"><title>叫 jiao4: 0.702</title></circle>
+<circle cx="878.35" cy="853" r="3.5" fill="#ce8130"><title>段 duan4: 0.845</title></circle>
+<circle cx="807.53" cy="856" r="3.5" fill="#ce8130"><title>课 ke4: 0.7811</title></circle>
+<circle cx="669.36" cy="859" r="3.5" fill="#ce8130"><title>在 zai4: 0.6564</title></circle>
+<circle cx="708.50" cy="862" r="3.5" fill="#ce8130"><title>二 er4: 0.6917</title></circle>
+<circle cx="917.33" cy="850" r="3.5" fill="#ce8130"><title>四 si4: 0.8802</title></circle>
+<circle cx="891.40" cy="853" r="3.5" fill="#ce8130"><title>做 zuo4: 0.8568</title></circle>
+<circle cx="889.62" cy="856" r="3.5" fill="#ce8130"><title>後 hou4: 0.8552</title></circle>
+<circle cx="668.70" cy="859" r="3.5" fill="#ce8130"><title>再 zai4: 0.6558</title></circle>
+<circle cx="713.42" cy="862" r="3.5" fill="#ce8130"><title>菜 cai4: 0.6962</title></circle>
+<circle cx="887.71" cy="850" r="3.5" fill="#ce8130"><title>面 mian4: 0.8535</title></circle>
+<circle cx="984.07" cy="853" r="3.5" fill="#ce8130"><title>日 ri4: 0.9405</title></circle>
+<circle cx="778.34" cy="856" r="3.5" fill="#ce8130"><title>热 re4: 0.7548</title></circle>
+<circle cx="684.82" cy="859" r="3.5" fill="#ce8130"><title>试 shi4: 0.6703</title></circle>
+<circle cx="706.17" cy="862" r="3.5" fill="#ce8130"><title>卖 mai4: 0.6896</title></circle>
+<circle cx="767.48" cy="850" r="3.5" fill="#ce8130"><title>贵 gui4: 0.745</title></circle>
+<circle cx="373.41" cy="853" r="3.5" fill="#ce8130"><title>辆 liang4: 0.3892</title></circle>
+<circle cx="401.30" cy="856" r="3.5" fill="#ce8130"><title>辣 la4: 0.4144</title></circle>
+<circle cx="693.09" cy="859" r="3.5" fill="#ce8130"><title>算 suan4: 0.6778</title></circle>
+<circle cx="655.96" cy="862" r="3.5" fill="#ce8130"><title>饿 e4: 0.6443</title></circle>
+<circle cx="765.71" cy="850" r="3.5" fill="#ce8130"><title>就 jiu4: 0.7434</title></circle>
+<polyline points="719.94,845.00 719.94,867.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="886" fill="#253447" class="">0.201</text>
+<text x="376.25" y="886" fill="#253447" class="">0.401</text>
+<text x="597.5" y="886" fill="#253447" class="">0.601</text>
+<text x="818.75" y="886" fill="#253447" class="">0.8</text>
+<text x="1040" y="886" fill="#253447" class="">1</text>
+<text x="30" y="928" fill="#253447" class="">Retained voiced duration (s)</text>
+<text x="30" y="964" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,960.00 1050.00,960.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="925.39" cy="954" r="3.5" fill="#2473b8"><title>你 ni3: 0.38</title></circle>
+<circle cx="594.78" cy="957" r="3.5" fill="#2473b8"><title>我 wo3: 0.25</title></circle>
+<circle cx="238.75" cy="960" r="3.5" fill="#2473b8"><title>早 zao3: 0.11</title></circle>
+<circle cx="976.25" cy="963" r="3.5" fill="#178453"><title>晚 wan3: 0.4</title></circle>
+<circle cx="696.51" cy="966" r="3.5" fill="#2473b8"><title>五 wu3: 0.29</title></circle>
+<circle cx="671.08" cy="954" r="3.5" fill="#2473b8"><title>想 xiang3: 0.28</title></circle>
+<circle cx="620.22" cy="957" r="3.5" fill="#178453"><title>表 biao3: 0.26</title></circle>
+<circle cx="671.08" cy="960" r="3.5" fill="#2473b8"><title>纸 zhi3: 0.28</title></circle>
+<circle cx="467.63" cy="963" r="3.5" fill="#2473b8"><title>买 mai3: 0.2</title></circle>
+<circle cx="594.78" cy="966" r="3.5" fill="#2473b8"><title>笔 bi3: 0.25</title></circle>
+<circle cx="340.47" cy="954" r="3.5" fill="#2473b8"><title>等 deng3: 0.15</title></circle>
+<circle cx="671.08" cy="957" r="3.5" fill="#2473b8"><title>狗 gou3: 0.28</title></circle>
+<circle cx="493.06" cy="960" r="3.5" fill="#2473b8"><title>碗 wan3: 0.21</title></circle>
+<polyline points="620.22,949.00 620.22,971.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="998" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,994.00 1050.00,994.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="569.35" cy="988" r="3.5" fill="#ce8130"><title>叫 jiao4: 0.24</title></circle>
+<circle cx="772.80" cy="991" r="3.5" fill="#ce8130"><title>段 duan4: 0.32</title></circle>
+<circle cx="721.94" cy="994" r="3.5" fill="#ce8130"><title>课 ke4: 0.3</title></circle>
+<circle cx="569.35" cy="997" r="3.5" fill="#ce8130"><title>在 zai4: 0.24</title></circle>
+<circle cx="671.08" cy="1000" r="3.5" fill="#ce8130"><title>二 er4: 0.28</title></circle>
+<circle cx="594.78" cy="988" r="3.5" fill="#ce8130"><title>四 si4: 0.25</title></circle>
+<circle cx="569.35" cy="991" r="3.5" fill="#ce8130"><title>做 zuo4: 0.24</title></circle>
+<circle cx="798.23" cy="994" r="3.5" fill="#ce8130"><title>後 hou4: 0.33</title></circle>
+<circle cx="442.20" cy="997" r="3.5" fill="#ce8130"><title>再 zai4: 0.19</title></circle>
+<circle cx="671.08" cy="1000" r="3.5" fill="#ce8130"><title>菜 cai4: 0.28</title></circle>
+<circle cx="925.39" cy="988" r="3.5" fill="#ce8130"><title>面 mian4: 0.38</title></circle>
+<circle cx="696.51" cy="991" r="3.5" fill="#ce8130"><title>日 ri4: 0.29</title></circle>
+<circle cx="645.65" cy="994" r="3.5" fill="#ce8130"><title>热 re4: 0.27</title></circle>
+<circle cx="620.22" cy="997" r="3.5" fill="#ce8130"><title>试 shi4: 0.26</title></circle>
+<circle cx="798.23" cy="1000" r="3.5" fill="#ce8130"><title>卖 mai4: 0.33</title></circle>
+<circle cx="798.23" cy="988" r="3.5" fill="#ce8130"><title>贵 gui4: 0.33</title></circle>
+<circle cx="264.18" cy="991" r="3.5" fill="#ce8130"><title>辆 liang4: 0.12</title></circle>
+<circle cx="289.61" cy="994" r="3.5" fill="#ce8130"><title>辣 la4: 0.13</title></circle>
+<circle cx="543.92" cy="997" r="3.5" fill="#ce8130"><title>算 suan4: 0.23</title></circle>
+<circle cx="569.35" cy="1000" r="3.5" fill="#ce8130"><title>饿 e4: 0.24</title></circle>
+<circle cx="671.08" cy="988" r="3.5" fill="#ce8130"><title>就 jiu4: 0.28</title></circle>
+<polyline points="645.65,983.00 645.65,1005.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="1024" fill="#253447" class="">0.081</text>
+<text x="376.25" y="1024" fill="#253447" class="">0.168</text>
+<text x="597.5" y="1024" fill="#253447" class="">0.255</text>
+<text x="818.75" y="1024" fill="#253447" class="">0.342</text>
+<text x="1040" y="1024" fill="#253447" class="">0.429</text>
+<text x="30" y="1066" fill="#253447" class="">Ending / onset active-span RMS</text>
+<text x="30" y="1102" fill="#253447" class="">T3 (n=13)</text>
+<polyline points="165.00,1098.00 1050.00,1098.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="341.72" cy="1092" r="3.5" fill="#2473b8"><title>你 ni3: 0.5988</title></circle>
+<circle cx="242.44" cy="1095" r="3.5" fill="#2473b8"><title>我 wo3: 0.3521</title></circle>
+<circle cx="296.21" cy="1098" r="3.5" fill="#2473b8"><title>早 zao3: 0.4857</title></circle>
+<circle cx="256.01" cy="1101" r="3.5" fill="#178453"><title>晚 wan3: 0.3858</title></circle>
+<circle cx="288.56" cy="1104" r="3.5" fill="#2473b8"><title>五 wu3: 0.4667</title></circle>
+<circle cx="329.81" cy="1092" r="3.5" fill="#2473b8"><title>想 xiang3: 0.5692</title></circle>
+<circle cx="290.05" cy="1095" r="3.5" fill="#178453"><title>表 biao3: 0.4704</title></circle>
+<circle cx="295.30" cy="1098" r="3.5" fill="#2473b8"><title>纸 zhi3: 0.4834</title></circle>
+<circle cx="287.39" cy="1101" r="3.5" fill="#2473b8"><title>买 mai3: 0.4638</title></circle>
+<circle cx="238.75" cy="1104" r="3.5" fill="#2473b8"><title>笔 bi3: 0.3429</title></circle>
+<circle cx="254.71" cy="1092" r="3.5" fill="#2473b8"><title>等 deng3: 0.3826</title></circle>
+<circle cx="262.08" cy="1095" r="3.5" fill="#2473b8"><title>狗 gou3: 0.4009</title></circle>
+<circle cx="388.24" cy="1098" r="3.5" fill="#2473b8"><title>碗 wan3: 0.7144</title></circle>
+<polyline points="288.56,1087.00 288.56,1109.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="30" y="1136" fill="#253447" class="">T4 (n=21)</text>
+<polyline points="165.00,1132.00 1050.00,1132.00" fill="none" stroke="#ddd" stroke-width="0.7"/>
+<circle cx="321.37" cy="1126" r="3.5" fill="#ce8130"><title>叫 jiao4: 0.5482</title></circle>
+<circle cx="270.63" cy="1129" r="3.5" fill="#ce8130"><title>段 duan4: 0.4221</title></circle>
+<circle cx="318.23" cy="1132" r="3.5" fill="#ce8130"><title>课 ke4: 0.5404</title></circle>
+<circle cx="355.66" cy="1135" r="3.5" fill="#ce8130"><title>在 zai4: 0.6334</title></circle>
+<circle cx="239.86" cy="1138" r="3.5" fill="#ce8130"><title>二 er4: 0.3457</title></circle>
+<circle cx="494.50" cy="1126" r="3.5" fill="#ce8130"><title>四 si4: 0.9785</title></circle>
+<circle cx="314.60" cy="1129" r="3.5" fill="#ce8130"><title>做 zuo4: 0.5314</title></circle>
+<circle cx="343.40" cy="1132" r="3.5" fill="#ce8130"><title>後 hou4: 0.603</title></circle>
+<circle cx="427.83" cy="1135" r="3.5" fill="#ce8130"><title>再 zai4: 0.8128</title></circle>
+<circle cx="395.98" cy="1138" r="3.5" fill="#ce8130"><title>菜 cai4: 0.7336</title></circle>
+<circle cx="456.55" cy="1126" r="3.5" fill="#ce8130"><title>面 mian4: 0.8842</title></circle>
+<circle cx="618.91" cy="1129" r="3.5" fill="#ce8130"><title>日 ri4: 1.288</title></circle>
+<circle cx="308.35" cy="1132" r="3.5" fill="#ce8130"><title>热 re4: 0.5159</title></circle>
+<circle cx="976.25" cy="1135" r="3.5" fill="#ce8130"><title>试 shi4: 2.176</title></circle>
+<circle cx="377.18" cy="1138" r="3.5" fill="#ce8130"><title>卖 mai4: 0.6869</title></circle>
+<circle cx="268.75" cy="1126" r="3.5" fill="#ce8130"><title>贵 gui4: 0.4174</title></circle>
+<circle cx="342.30" cy="1129" r="3.5" fill="#ce8130"><title>辆 liang4: 0.6002</title></circle>
+<circle cx="338.83" cy="1132" r="3.5" fill="#ce8130"><title>辣 la4: 0.5916</title></circle>
+<circle cx="440.63" cy="1135" r="3.5" fill="#ce8130"><title>算 suan4: 0.8446</title></circle>
+<circle cx="321.84" cy="1138" r="3.5" fill="#ce8130"><title>饿 e4: 0.5494</title></circle>
+<circle cx="357.06" cy="1126" r="3.5" fill="#ce8130"><title>就 jiu4: 0.6369</title></circle>
+<polyline points="343.40,1121.00 343.40,1143.00" fill="none" stroke="#111" stroke-width="2"/>
+<text x="155" y="1162" fill="#253447" class="">0.16</text>
+<text x="376.25" y="1162" fill="#253447" class="">0.709</text>
+<text x="597.5" y="1162" fill="#253447" class="">1.26</text>
+<text x="818.75" y="1162" fill="#253447" class="">1.81</text>
+<text x="1040" y="1162" fill="#253447" class="">2.36</text>
+</svg>
