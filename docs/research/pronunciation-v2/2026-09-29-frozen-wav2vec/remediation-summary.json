@@ -1,0 +1,67 @@
+{
+  "all_500_hashes_and_decodes_reverified": true,
+  "clean_manifest_sha256": "591d9a501eb5b79bbdcbcd72123a96e7ba2486082314be8e773f1bd194fb9dc5",
+  "corpus_manifest_sha256": "fcdacce34f9894356fa9549b9fb3d06ffb1d4427bed5153f996f9ad736e42b43",
+  "excluded": 5,
+  "group_leakage": false,
+  "groups": {
+    "lingualibre:Q1431140": {
+      "n": 60,
+      "tones": {
+        "1": 15,
+        "2": 12,
+        "3": 9,
+        "4": 24
+      }
+    },
+    "lingualibre:Q1573006": {
+      "n": 49,
+      "tones": {
+        "1": 7,
+        "2": 11,
+        "3": 14,
+        "4": 17
+      }
+    },
+    "lingualibre:Q301531": {
+      "n": 60,
+      "tones": {
+        "1": 11,
+        "2": 15,
+        "3": 13,
+        "4": 21
+      }
+    },
+    "shtooka:wei-gao": {
+      "n": 326,
+      "tones": {
+        "1": 84,
+        "2": 71,
+        "3": 81,
+        "4": 90
+      }
+    }
+  },
+  "included": 495,
+  "licenses": {
+    "CC BY 2.0 fr": 326,
+    "CC0-1.0": 169
+  },
+  "partitions": {
+    "test": 60,
+    "train": 386,
+    "validation": 49
+  },
+  "shtooka_contradictory_names": 0,
+  "shtooka_explicit_wei_gao": 326,
+  "shtooka_unknown_names": 0,
+  "split_manifest_sha256": "1ee5ab2d6bbb6739e461c53949d699cef687d8b6e25412717400889f219e6416",
+  "status": "PASS",
+  "tones": {
+    "1": 117,
+    "2": 109,
+    "3": 117,
+    "4": 152
+  },
+  "unmarked_pinyin_disposition": "explicit_primary_nǎ_T3_resolves_unmarked_tag"
+}

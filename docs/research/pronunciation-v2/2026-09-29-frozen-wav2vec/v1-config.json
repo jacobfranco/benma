@@ -1,0 +1,26 @@
+{
+  "algorithm": "praat_autocorrelation",
+  "parameters": {
+    "energy_gate": "bounded-recording-noise-floor-v1",
+    "max_number_of_candidates": 15,
+    "octave_cost": 0.01,
+    "octave_jump_cost": 0.5,
+    "pitch_ceiling": 550.0,
+    "pitch_floor": 50.0,
+    "quality_gate": "spectral-and-filter-disagreement-v1",
+    "silence_threshold": 0.03,
+    "time_step": 0.01,
+    "very_accurate": false,
+    "voiced_unvoiced_cost": 0.14,
+    "voicing_threshold": 0.45
+  },
+  "preprocessing": "production-equivalent ffmpeg mono 16kHz PCM16; no trimming",
+  "reference": "68057aa",
+  "source_sha256": {
+    "services/api/src/benma_api/pronunciation/acoustics.py": "cdd1fe3014f5a83a80aa4b987ec41c64f1129df88466b1c031cc70e18b3523c3",
+    "services/api/src/benma_api/pronunciation/contours.py": "c13097fb30cd6e321962af8279b4a509e6f0e35783cf42d797bd654256538257",
+    "services/api/src/benma_api/pronunciation/evidence_region.py": "901ace4b75cbaf8f728ef37a5b7797d8a86cc001394ab41ff8f3d347fbdcfcf8"
+  },
+  "span": "whole isolated clip; no text or tone input",
+  "version": "1.2.0-parselmouth-0.4.7-praat-6.1.38"
+}

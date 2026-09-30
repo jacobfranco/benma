@@ -1,0 +1,7 @@
+# Isolated research environment only. Install torch from the official CPU index first.
+torch==2.8.0+cpu
+transformers==4.57.6
+scikit-learn==1.7.2
+numpy==2.3.3
+scipy==1.16.2
+pypinyin==0.55.0

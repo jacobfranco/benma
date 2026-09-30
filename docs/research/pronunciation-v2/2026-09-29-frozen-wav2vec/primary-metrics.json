@@ -1,0 +1,124 @@
+{
+  "locked_config_sha256": "d9fbce75b1cd2a741924241d54d5a68f18edffc7c13687383828486a8f385cc9",
+  "majority": {
+    "accuracy": 0.35,
+    "balanced_accuracy": 0.25,
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        11
+      ],
+      [
+        0,
+        0,
+        0,
+        15
+      ],
+      [
+        0,
+        0,
+        0,
+        13
+      ],
+      [
+        0,
+        0,
+        0,
+        21
+      ]
+    ],
+    "macro_f1": 0.12962962962962962,
+    "n": 60,
+    "per_tone": {
+      "1": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 11
+      },
+      "2": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 15
+      },
+      "3": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 13
+      },
+      "4": {
+        "f1": 0.5185185185185185,
+        "precision": 0.35,
+        "recall": 1.0,
+        "support": 21
+      }
+    }
+  },
+  "majority_class": 4,
+  "primary": {
+    "accuracy": 0.7166666666666667,
+    "balanced_accuracy": 0.7075091575091574,
+    "confusion_matrix": [
+      [
+        11,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        13,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        2,
+        8
+      ],
+      [
+        4,
+        0,
+        0,
+        17
+      ]
+    ],
+    "macro_f1": 0.6610114873438857,
+    "n": 60,
+    "per_tone": {
+      "1": {
+        "f1": 0.7096774193548387,
+        "precision": 0.55,
+        "recall": 1.0,
+        "support": 11
+      },
+      "2": {
+        "f1": 0.9285714285714286,
+        "precision": 1.0,
+        "recall": 0.8666666666666667,
+        "support": 15
+      },
+      "3": {
+        "f1": 0.26666666666666666,
+        "precision": 1.0,
+        "recall": 0.15384615384615385,
+        "support": 13
+      },
+      "4": {
+        "f1": 0.7391304347826086,
+        "precision": 0.68,
+        "recall": 0.8095238095238095,
+        "support": 21
+      }
+    }
+  },
+  "recorded_at": "2026-09-30T01:33:48.007382+00:00",
+  "softmax_calibrated": false,
+  "test_results_sha256": "6d98d99044fc67ad4f25c36ff3380bc596977c1fe916327795c447e7b4070eb0",
+  "uniform_chance_expected_accuracy": 0.25
+}

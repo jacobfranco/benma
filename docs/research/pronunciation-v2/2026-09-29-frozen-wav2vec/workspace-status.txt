@@ -1,0 +1,39 @@
+$ git diff --stat
+ .../2026-09-29-frozen-wav2vec/environment.md       |  79 +++++--
+ .../2026-09-29-frozen-wav2vec/review.md            | 241 ++++++++++++++-------
+ 2 files changed, 231 insertions(+), 89 deletions(-)
+
+$ git status --short
+ M docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/environment.md
+ M docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/review.md
+?? benchmark/pronunciation_v2/README.md
+?? benchmark/pronunciation_v2/features.py
+?? benchmark/pronunciation_v2/model_probe.py
+?? benchmark/pronunciation_v2/remediate.py
+?? benchmark/pronunciation_v2/requirements-lock.txt
+?? benchmark/pronunciation_v2/requirements.txt
+?? benchmark/pronunciation_v2/test_model_probe.py
+?? benchmark/pronunciation_v2/v1_adapter.py
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/artifact-verification.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/checkpoint.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/clean-corpus-manifest.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/confusion-matrix.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/development-extraction.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/error-analysis.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/experiment-config.locked.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/metrics.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/primary-metrics.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/primary-test-opened.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/remediation-summary.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/remediation.md
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/source-group-evaluation.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/source-group-metrics.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/source-group-predictions.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/split-manifest.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/test-extraction.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/test-results.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/v1-comparison.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/v1-config.json
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/v1-results.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/validation-results.csv
+?? docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/workspace-status.txt

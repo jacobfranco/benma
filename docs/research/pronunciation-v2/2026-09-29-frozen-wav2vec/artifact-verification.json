@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "lock_precedes_test_opening": true,
+    "locked_inputs_code_versions_checkpoint_unchanged": true,
+    "no_bad_asset_or_singleton": true,
+    "oof_every_clean_asset_exactly_once": true,
+    "oof_metrics_verified_from_saved_rows": true,
+    "original_manifest_unchanged": true,
+    "primary_membership_exact": true,
+    "primary_metrics_verified_from_saved_rows": true,
+    "primary_prediction_hash_matches_record": true,
+    "production_and_dependency_files_unchanged": true,
+    "same_lock_at_selection_opening_recording": true
+  },
+  "focused_tests_passed": 52,
+  "new_python_ruff_passed": true,
+  "note": "Arithmetic verification of saved predictions only; no model refit or primary test rerun.",
+  "post_test_model_code_changes": false,
+  "primary_test_invocations": 1,
+  "verified_at": "2026-09-30T01:41:12.553210+00:00"
+}

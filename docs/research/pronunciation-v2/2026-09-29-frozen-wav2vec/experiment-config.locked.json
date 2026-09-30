@@ -1,0 +1,78 @@
+{
+  "clean_manifest_sha256": "591d9a501eb5b79bbdcbcd72123a96e7ba2486082314be8e773f1bd194fb9dc5",
+  "corpus_manifest_sha256": "fcdacce34f9894356fa9549b9fb3d06ffb1d4427bed5153f996f9ad736e42b43",
+  "development_features_sha256": "0aad8d7105bb9faae5f019087925c7b7db10fe9baf673df565edb44af6d6cc71",
+  "device": "cpu",
+  "grid": {
+    "C": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "layers": [
+      4,
+      6,
+      8
+    ]
+  },
+  "head": "multinomial logistic regression; L2; lbfgs; unweighted; max_iter=3000; tol=1e-8",
+  "head_sha256": "fea55b9ff42751feb18bb572149a9be940dc0d0c14e79f4773f064521c37906c",
+  "hidden_layer_indexing": "hidden_states[0] pre-transformer; hidden_states[k] output after transformer block k",
+  "hidden_size": 768,
+  "locked_at": "2026-09-30T01:32:26.494750+00:00",
+  "model": {
+    "downloaded_at": "2026-09-30T01:28:30.419134+00:00",
+    "files_sha256": {
+      "README.md": "d633aeaaec1046af8cbacd21039f819304017e1ab6a369c5aff8668f3c35a127",
+      "config.json": "4937977e24d12d1bba70cdce8709c3c04807a8e4ae8ddac4229c48c436ae99ae",
+      "preprocessor_config.json": "b225d617c025463b9e157e06afea8b90dc7078fc70b013c533328423e0486b4a",
+      "pytorch_model.bin": "3249fe98bfc62fcbc26067f724716a6ec49d12c4728a2af1df659013905dff21"
+    },
+    "license": "apache-2.0",
+    "model_id": "facebook/wav2vec2-base",
+    "revision": "0b5b8e868dd84f03fd87d01f9c4ff0f080fecfe8",
+    "snapshot": "/home/jacob/.cache/benma/pronunciation-v2-model/hf/models--facebook--wav2vec2-base/snapshots/0b5b8e868dd84f03fd87d01f9c4ff0f080fecfe8"
+  },
+  "no_expected_tone_text_pinyin_f0_asr_speaker_inputs": true,
+  "normalization": "StandardScaler fitted on training clips only; per feature population variance",
+  "preprocessing": {
+    "attention_implementation": "eager",
+    "attention_mask_to_encoder": false,
+    "augmentation": false,
+    "batch_size": 1,
+    "channels": 1,
+    "decode": "ffmpeg float32 PCM",
+    "dtype": "float32",
+    "pooling": "mean of valid hidden frames only; no padded waveform in encoder",
+    "sample_rate": 16000,
+    "trim": false,
+    "waveform_normalization": "checkpoint feature extractor"
+  },
+  "research_code_sha256": {
+    "features.py": "5dff0d198608d253f39c1e757ffc26e5a6c92250f893de3994f2c46107513bb8",
+    "model_probe.py": "963b339aa126498b48394f3583f9f4037f9fc5bddb4ac10d6bf1b6c13bb269fa",
+    "remediate.py": "447ede67eddafdaea1245be6cf567134bcba1aa284c1fa5d7af99c026ef5d3b7",
+    "v1_adapter.py": "60205636620a658a39a3ac9853c74d8132ecf5740bda68620c3a79264950dfb7"
+  },
+  "seed": 20260929,
+  "selected_C": 0.1,
+  "selected_layer": 8,
+  "selection": "validation macro F1; balanced accuracy; mean T2/T3 recall; smaller C; lower layer; round metrics to 12 decimals",
+  "split_manifest_sha256": "1ee5ab2d6bbb6739e461c53949d699cef687d8b6e25412717400889f219e6416",
+  "test_opened": false,
+  "train_tones": {
+    "1": 99,
+    "2": 83,
+    "3": 90,
+    "4": 114
+  },
+  "validation_results_sha256": "5ce1480a24db2ba67cbc76e5bf5aa6513ddd7790b1b372025689f9e835a31757",
+  "versions": {
+    "huggingface-hub": "0.36.2",
+    "numpy": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.16.2",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.6"
+  }
+}

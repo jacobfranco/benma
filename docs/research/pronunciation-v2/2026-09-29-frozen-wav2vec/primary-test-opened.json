@@ -1,0 +1,5 @@
+{
+  "locked_config_sha256": "d9fbce75b1cd2a741924241d54d5a68f18edffc7c13687383828486a8f385cc9",
+  "opened_at": "2026-09-30T01:33:40.455460+00:00",
+  "policy": "one primary test invocation; no silent retry or post-test model change"
+}
