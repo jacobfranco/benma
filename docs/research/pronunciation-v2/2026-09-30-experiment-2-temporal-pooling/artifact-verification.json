@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-09-30T20:21:58.583469+00:00",
+  "chronological_stages": [
+    "2026-09-30T20:16:18.781293+00:00",
+    "2026-09-30T20:16:35.787153+00:00",
+    "2026-09-30T20:16:50.887107+00:00",
+    "2026-09-30T20:17:04.950121+00:00",
+    "2026-09-30T20:17:37.163935+00:00",
+    "2026-09-30T20:17:44.814510+00:00"
+  ],
+  "identical_AB_ids": true,
+  "locked_source_and_parameters_unchanged": true,
+  "metric_recomputation_passed": true,
+  "no_corrective_rerun": true,
+  "original_386_training_only": true,
+  "passed": true,
+  "prediction_counts": {
+    "development": 49,
+    "development-CanonNi_only": 326,
+    "development-Wei_Gao_only": 109,
+    "fresh-test": 118,
+    "stress": 60
+  },
+  "stress_A_historical_probability_max_absolute_difference": 0.0
+}

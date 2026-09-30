@@ -1,0 +1,41 @@
+{
+  "dimensions": {
+    "A": 768,
+    "B": 2304
+  },
+  "feature_cache": "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-temporal-cache/stress.npz",
+  "feature_cache_sha256": "1c7e0ba8a38f3d3c9bc84ed5f13744bbdbbc50faf886b473051830b0c9c8af45",
+  "first_clip_repeat_bitwise_equal": true,
+  "loading_info": {
+    "error_msgs": [],
+    "mismatched_keys": [],
+    "missing_keys": [],
+    "unexpected_keys": [
+      "project_hid.bias",
+      "project_hid.weight",
+      "project_q.bias",
+      "project_q.weight",
+      "quantizer.codevectors",
+      "quantizer.weight_proj.bias",
+      "quantizer.weight_proj.weight"
+    ]
+  },
+  "max_frames": 52,
+  "min_frames": 39,
+  "n": 60,
+  "no_gradients": true,
+  "peak_rss_mib": 805.48828125,
+  "processor_config": {
+    "_processor_class": null,
+    "do_normalize": true,
+    "feature_extractor_type": "Wav2Vec2FeatureExtractor",
+    "feature_size": 1,
+    "padding_side": "right",
+    "padding_value": 0.0,
+    "return_attention_mask": false,
+    "sampling_rate": 16000
+  },
+  "seconds": 7.632258961995831,
+  "state_hash_after": "7b4d7d625fafe1b6cf291223a3fc91db2d34c4de9196da64faa45936295a1d41",
+  "state_hash_before": "7b4d7d625fafe1b6cf291223a3fc91db2d34c4de9196da64faa45936295a1d41"
+}

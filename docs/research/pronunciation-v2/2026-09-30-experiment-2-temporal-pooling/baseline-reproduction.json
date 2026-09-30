@@ -1,0 +1,79 @@
+{
+  "absolute_tolerance": 1e-10,
+  "authoritative_artifacts": {
+    "/home/jacob/.cache/benma/pronunciation-v2-model/development-features.npz": "0aad8d7105bb9faae5f019087925c7b7db10fe9baf673df565edb44af6d6cc71",
+    "/home/jacob/.cache/benma/pronunciation-v2-model/selected-head.npz": "fea55b9ff42751feb18bb572149a9be940dc0d0c14e79f4773f064521c37906c"
+  },
+  "completed_at": "2026-09-30T20:16:18.781293+00:00",
+  "feature_bitwise_equal": true,
+  "feature_max_absolute_difference": 0.0,
+  "head_max_absolute_differences": {
+    "classes": 0.0,
+    "coef": 0.0,
+    "intercept": 0.0,
+    "mean": 0.0,
+    "scale": 0.0,
+    "var": 0.0
+  },
+  "passed": true,
+  "predictions_identical": true,
+  "probability_max_absolute_difference": 0.0,
+  "validation_metrics": {
+    "accuracy": 0.9591836734693877,
+    "balanced_accuracy": 0.9464285714285714,
+    "confusion_matrix": [
+      [
+        6,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        11,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        13,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        17
+      ]
+    ],
+    "macro_f1": 0.9557692307692308,
+    "n": 49,
+    "per_tone": {
+      "1": {
+        "f1": 0.9230769230769231,
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "support": 7
+      },
+      "2": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 11
+      },
+      "3": {
+        "f1": 0.9285714285714286,
+        "precision": 0.9285714285714286,
+        "recall": 0.9285714285714286,
+        "support": 14
+      },
+      "4": {
+        "f1": 0.9714285714285714,
+        "precision": 0.9444444444444444,
+        "recall": 1.0,
+        "support": 17
+      }
+    }
+  }
+}

@@ -2,6 +2,47 @@
 
 This research harness does not alter production behavior. Corpus audio, checkpoint weights, pooled embeddings, scaler/head arrays and detailed V1 traces stay outside Git. The 2026-09-29 study uses isolated lexical labels with unknown native-Mandarin status; it is not audited surface-tone gold.
 
+## Experiment 2: frozen temporal-pooling comparison
+
+`temporal_pooling.py` implements the separate 2026-09-30 protocol. It does not run
+Experiment 1's selection grid. It verifies the sealed 118-clip manifest and local
+audio before each stage, uses the pinned local checkpoint on CPU FP32, and fixes
+layer 8 / C=0.1. A has 768 whole-mean features; B has 2,304 chronological third-mean
+features with boundaries `(0, N//3, (2*N)//3, N)`. Both fail for fewer than three
+valid frames. Only the original 386 training rows fit either primary head.
+
+The completed run lives in
+`docs/research/pronunciation-v2/2026-09-30-experiment-2-temporal-pooling/`.
+Unlike Experiment 1, this directory retains the two compact fitted `head-*.npz`
+artifacts (scalers and linear coefficients) so the locked heads remain available.
+Audio, model weights and pooled-feature caches stay local and ignored; no hidden
+frame arrays are retained. Existing receipts prevent silently repeating a stage.
+These are the original execution commands, not overwrite instructions:
+
+```sh
+services/api/.venv/bin/python benchmark/pronunciation_v2/evaluation_preflight.py verify
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 benchmark/pronunciation_v2/.venv/bin/python benchmark/pronunciation_v2/temporal_pooling.py develop
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 benchmark/pronunciation_v2/.venv/bin/python benchmark/pronunciation_v2/temporal_pooling.py lock
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 benchmark/pronunciation_v2/.venv/bin/python benchmark/pronunciation_v2/temporal_pooling.py fresh
+# Inspect/report the fresh results before running the known stress set.
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 benchmark/pronunciation_v2/.venv/bin/python benchmark/pronunciation_v2/temporal_pooling.py stress
+```
+
+`develop` first reproduces A against Experiment 1's hash-verified development
+features, selected scaler/head and validation metrics. Failure stops execution.
+It then fits B and the two protocol-defined source diagnostics without selection.
+`lock` hashes code, inputs, environment and fitted parameters before fresh feature
+extraction. `fresh` writes an exclusive opening receipt before extraction, and
+`stress` requires the completed fresh result. Any later corrective run must be
+explicitly documented separately, preserving the original outputs.
+
+Run tests in their existing environments without changing the ML dependency lock:
+
+```sh
+PYTHONPATH=benchmark/pronunciation_v2 benchmark/pronunciation_v2/.venv/bin/python -m unittest test_pilot test_preflight test_model_probe test_temporal_pooling -v
+services/api/.venv/bin/python -m pytest benchmark/pronunciation_v2/test_evaluation_preflight.py -q
+```
+
 ## Environment
 
 Use a separate ignored research virtualenv, never the production API environment for ML installs:

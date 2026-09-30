@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "fresh-test-extraction.json": "407772415d8e5f6ce08f58428eb169451b4d6c6a2404e28da9cc4f9847ab09b9",
+    "fresh-test-opened.json": "ec4d4ec71ea32c0395d0265f93fe2a1eaf4c1edcbaa71ad84278ed46297974b5",
+    "fresh-test-predictions.csv": "81065a92c24256c226b34059b7ac217b3e88e04f1f9ebc9062f2795aab7c3fcb",
+    "fresh-test-results.json": "f77a63f0e3fb67968fec5e49b41eca59195dbe1b5ac60add8440b4278f41011e"
+  },
+  "completed_at": "2026-09-30T20:17:04.950121+00:00"
+}

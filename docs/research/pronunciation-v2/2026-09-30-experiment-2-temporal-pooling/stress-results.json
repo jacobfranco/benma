@@ -1,0 +1,676 @@
+{
+  "A": {
+    "accuracy": 0.7166666666666667,
+    "balanced_accuracy": 0.7075091575091574,
+    "bidirectional_confusions": {
+      "T2<->T3": 0,
+      "T3<->T4": 8
+    },
+    "confusion_matrix": [
+      [
+        11,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        13,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        2,
+        8
+      ],
+      [
+        4,
+        0,
+        0,
+        17
+      ]
+    ],
+    "directed_confusions": {
+      "T2->T3": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "T3->T2": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "T3->T4": {
+        "count": 8,
+        "rate": 0.6153846153846154
+      },
+      "T4->T3": {
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "macro_f1": 0.6610114873438857,
+    "n": 60,
+    "per_tone": {
+      "1": {
+        "f1": 0.7096774193548387,
+        "precision": 0.55,
+        "recall": 1.0,
+        "support": 11
+      },
+      "2": {
+        "f1": 0.9285714285714286,
+        "precision": 1.0,
+        "recall": 0.8666666666666667,
+        "support": 15
+      },
+      "3": {
+        "f1": 0.26666666666666666,
+        "precision": 1.0,
+        "recall": 0.15384615384615385,
+        "support": 13
+      },
+      "4": {
+        "f1": 0.7391304347826086,
+        "precision": 0.68,
+        "recall": 0.8095238095238095,
+        "support": 21
+      }
+    }
+  },
+  "B": {
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.6908424908424908,
+    "bidirectional_confusions": {
+      "T2<->T3": 0,
+      "T3<->T4": 9
+    },
+    "confusion_matrix": [
+      [
+        11,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        12,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        2,
+        9
+      ],
+      [
+        4,
+        0,
+        0,
+        17
+      ]
+    ],
+    "directed_confusions": {
+      "T2->T3": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "T3->T2": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "T3->T4": {
+        "count": 9,
+        "rate": 0.6923076923076923
+      },
+      "T4->T3": {
+        "count": 0,
+        "rate": 0.0
+      }
+    },
+    "macro_f1": 0.6471593075573858,
+    "n": 60,
+    "per_tone": {
+      "1": {
+        "f1": 0.7096774193548387,
+        "precision": 0.55,
+        "recall": 1.0,
+        "support": 11
+      },
+      "2": {
+        "f1": 0.8888888888888888,
+        "precision": 1.0,
+        "recall": 0.8,
+        "support": 15
+      },
+      "3": {
+        "f1": 0.26666666666666666,
+        "precision": 1.0,
+        "recall": 0.15384615384615385,
+        "support": 13
+      },
+      "4": {
+        "f1": 0.723404255319149,
+        "precision": 0.6538461538461539,
+        "recall": 0.8095238095238095,
+        "support": 21
+      }
+    }
+  },
+  "B_minus_A": {
+    "accuracy": -0.01666666666666672,
+    "balanced_accuracy": -0.016666666666666607,
+    "macro_f1": -0.013852179786499885
+  },
+  "T3_cases": [
+    {
+      "A_confidence": 0.969003199361207,
+      "A_correct": false,
+      "A_p_T1": 0.02551546863488152,
+      "A_p_T2": 0.003903606968634379,
+      "A_p_T3": 0.0015777250352770054,
+      "A_p_T4": 0.969003199361207,
+      "A_prediction": 4,
+      "B_confidence": 0.9814404101122337,
+      "B_correct": false,
+      "B_p_T1": 0.015863795644237445,
+      "B_p_T2": 0.0012466341277963444,
+      "B_p_T3": 0.0014491601157325283,
+      "B_p_T4": 0.9814404101122337,
+      "B_prediction": 4,
+      "pinyin": "ni3",
+      "source_asset_id": "commons:113935451",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u4f60",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.47856225273262276,
+      "A_correct": false,
+      "A_p_T1": 0.47856225273262276,
+      "A_p_T2": 0.019501726329943674,
+      "A_p_T3": 0.16774356359119078,
+      "A_p_T4": 0.3341924573462427,
+      "A_prediction": 1,
+      "B_confidence": 0.5461120059902678,
+      "B_correct": false,
+      "B_p_T1": 0.33913060011443485,
+      "B_p_T2": 0.006669545013408236,
+      "B_p_T3": 0.10808784888188912,
+      "B_p_T4": 0.5461120059902678,
+      "B_prediction": 4,
+      "pinyin": "wo3",
+      "source_asset_id": "commons:113935452",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u6211",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.9632611779863199,
+      "A_correct": false,
+      "A_p_T1": 0.014459089998642594,
+      "A_p_T2": 0.00179839776690227,
+      "A_p_T3": 0.020481334248135235,
+      "A_p_T4": 0.9632611779863199,
+      "A_prediction": 4,
+      "B_confidence": 0.9190332803891654,
+      "B_correct": false,
+      "B_p_T1": 0.03597686448403645,
+      "B_p_T2": 0.0016276861196408837,
+      "B_p_T3": 0.043362169007157246,
+      "B_p_T4": 0.9190332803891654,
+      "B_prediction": 4,
+      "pinyin": "zao3",
+      "source_asset_id": "commons:113935453",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u65e9",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.8865126136543119,
+      "A_correct": true,
+      "A_p_T1": 0.030009565412883406,
+      "A_p_T2": 0.012075567245472452,
+      "A_p_T3": 0.8865126136543119,
+      "A_p_T4": 0.07140225368733225,
+      "A_prediction": 3,
+      "B_confidence": 0.7067324954308105,
+      "B_correct": true,
+      "B_p_T1": 0.03967326292293444,
+      "B_p_T2": 0.006155388579317994,
+      "B_p_T3": 0.7067324954308105,
+      "B_p_T4": 0.24743885306693708,
+      "B_prediction": 3,
+      "pinyin": "wan3",
+      "source_asset_id": "commons:113935472",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u665a",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.832169163203037,
+      "A_correct": false,
+      "A_p_T1": 0.1413391878017459,
+      "A_p_T2": 0.005303006376689249,
+      "A_p_T3": 0.021188642618527948,
+      "A_p_T4": 0.832169163203037,
+      "A_prediction": 4,
+      "B_confidence": 0.8721279109145698,
+      "B_correct": false,
+      "B_p_T1": 0.08369949787702646,
+      "B_p_T2": 0.00818616445905019,
+      "B_p_T3": 0.035986426749353546,
+      "B_p_T4": 0.8721279109145698,
+      "B_prediction": 4,
+      "pinyin": "wu3",
+      "source_asset_id": "commons:113935506",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u4e94",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.5033670871136694,
+      "A_correct": false,
+      "A_p_T1": 0.5033670871136694,
+      "A_p_T2": 0.03619912334052214,
+      "A_p_T3": 0.00449898096457576,
+      "A_p_T4": 0.4559348085812327,
+      "A_prediction": 1,
+      "B_confidence": 0.7280668333999949,
+      "B_correct": false,
+      "B_p_T1": 0.7280668333999949,
+      "B_p_T2": 0.036140022668046654,
+      "B_p_T3": 0.040285828913593454,
+      "B_p_T4": 0.19550731501836488,
+      "B_prediction": 1,
+      "pinyin": "xiang3",
+      "source_asset_id": "commons:113935518",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u60f3",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.7545788225502328,
+      "A_correct": true,
+      "A_p_T1": 0.11015585986956346,
+      "A_p_T2": 0.002056229986473253,
+      "A_p_T3": 0.7545788225502328,
+      "A_p_T4": 0.13320908759373057,
+      "A_prediction": 3,
+      "B_confidence": 0.5913259124482471,
+      "B_correct": true,
+      "B_p_T1": 0.13492200279066133,
+      "B_p_T2": 0.000562766888694673,
+      "B_p_T3": 0.5913259124482471,
+      "B_p_T4": 0.27318931787239686,
+      "B_prediction": 3,
+      "pinyin": "biao3",
+      "source_asset_id": "commons:113935548",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u8868",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.9535472332821139,
+      "A_correct": false,
+      "A_p_T1": 0.9535472332821139,
+      "A_p_T2": 0.001430966182099276,
+      "A_p_T3": 0.012457952683462885,
+      "A_p_T4": 0.03256384785232388,
+      "A_prediction": 1,
+      "B_confidence": 0.7000880720641269,
+      "B_correct": false,
+      "B_p_T1": 0.7000880720641269,
+      "B_p_T2": 0.0015979508248720696,
+      "B_p_T3": 0.07099250665613781,
+      "B_p_T4": 0.22732147045486326,
+      "B_prediction": 1,
+      "pinyin": "zhi3",
+      "source_asset_id": "commons:113935556",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u7eb8",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.8593461301195562,
+      "A_correct": false,
+      "A_p_T1": 0.046926151102849256,
+      "A_p_T2": 0.008887298454199314,
+      "A_p_T3": 0.08484042032339523,
+      "A_p_T4": 0.8593461301195562,
+      "A_prediction": 4,
+      "B_confidence": 0.8214576774737441,
+      "B_correct": false,
+      "B_p_T1": 0.07767565569130322,
+      "B_p_T2": 0.0048484305035319565,
+      "B_p_T3": 0.0960182363314208,
+      "B_p_T4": 0.8214576774737441,
+      "B_prediction": 4,
+      "pinyin": "mai3",
+      "source_asset_id": "commons:113935561",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u4e70",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.9489258948835089,
+      "A_correct": false,
+      "A_p_T1": 0.014909547386447085,
+      "A_p_T2": 0.030099295168838178,
+      "A_p_T3": 0.0060652625612058145,
+      "A_p_T4": 0.9489258948835089,
+      "A_prediction": 4,
+      "B_confidence": 0.9709171658847684,
+      "B_correct": false,
+      "B_p_T1": 0.005287013818170335,
+      "B_p_T2": 0.019105214501388114,
+      "B_p_T3": 0.004690605795673167,
+      "B_p_T4": 0.9709171658847684,
+      "B_prediction": 4,
+      "pinyin": "bi3",
+      "source_asset_id": "commons:113935564",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u7b14",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.9893760946256098,
+      "A_correct": false,
+      "A_p_T1": 0.001599544782428049,
+      "A_p_T2": 0.0003258255087960817,
+      "A_p_T3": 0.008698535083166078,
+      "A_p_T4": 0.9893760946256098,
+      "A_prediction": 4,
+      "B_confidence": 0.988629853940798,
+      "B_correct": false,
+      "B_p_T1": 0.002028919745419954,
+      "B_p_T2": 0.0001238689388571111,
+      "B_p_T3": 0.009217357374924963,
+      "B_p_T4": 0.988629853940798,
+      "B_prediction": 4,
+      "pinyin": "deng3",
+      "source_asset_id": "commons:113935570",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u7b49",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.8455758164353191,
+      "A_correct": false,
+      "A_p_T1": 0.13539912743675042,
+      "A_p_T2": 0.0018512879042503123,
+      "A_p_T3": 0.017173768223680216,
+      "A_p_T4": 0.8455758164353191,
+      "A_prediction": 4,
+      "B_confidence": 0.8645375056047042,
+      "B_correct": false,
+      "B_p_T1": 0.08065651946601847,
+      "B_p_T2": 0.0002070900499296751,
+      "B_p_T3": 0.05459888487934767,
+      "B_p_T4": 0.8645375056047042,
+      "B_prediction": 4,
+      "pinyin": "gou3",
+      "source_asset_id": "commons:113935580",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u72d7",
+      "tone": "3"
+    },
+    {
+      "A_confidence": 0.7379659927563229,
+      "A_correct": false,
+      "A_p_T1": 0.002673421065130908,
+      "A_p_T2": 0.001403481589352137,
+      "A_p_T3": 0.25795710458919396,
+      "A_p_T4": 0.7379659927563229,
+      "A_prediction": 4,
+      "B_confidence": 0.9118191210021542,
+      "B_correct": false,
+      "B_p_T1": 0.0011998759495598788,
+      "B_p_T2": 0.0004395367012465192,
+      "B_p_T3": 0.08654146634703926,
+      "B_p_T4": 0.9118191210021542,
+      "B_prediction": 4,
+      "pinyin": "wan3",
+      "source_asset_id": "commons:113935595",
+      "speaker_id": "lingualibre:Q301531",
+      "speaker_name": "Luilui6666",
+      "text": "\u7897",
+      "tone": "3"
+    }
+  ],
+  "T3_subset": {
+    "A": {
+      "correct": 2,
+      "n": 13,
+      "prediction_counts": {
+        "1": 3,
+        "2": 0,
+        "3": 2,
+        "4": 8
+      },
+      "recall": 0.15384615384615385
+    },
+    "B": {
+      "correct": 2,
+      "n": 13,
+      "prediction_counts": {
+        "1": 2,
+        "2": 0,
+        "3": 2,
+        "4": 9
+      },
+      "recall": 0.15384615384615385
+    }
+  },
+  "completed_at": "2026-09-30T20:17:44.813086+00:00",
+  "confidence": "uncalibrated maximum softmax; no rejection threshold",
+  "equal_speaker_mean": {
+    "A": {
+      "accuracy": 0.7166666666666667,
+      "balanced_accuracy": 0.7075091575091574,
+      "macro_f1": 0.6610114873438857
+    },
+    "B": {
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.6908424908424908,
+      "macro_f1": 0.6471593075573858
+    }
+  },
+  "lock_sha256": "ed96d9e35388b44a0f03dd7155a537913bd64cdf07609956ac532aca1b0d2c0d",
+  "paired_correctness": {
+    "A_only_correct": 3,
+    "B_only_correct": 2,
+    "both_correct": 40,
+    "both_wrong": 15
+  },
+  "per_speaker": {
+    "Luilui6666": {
+      "A": {
+        "accuracy": 0.7166666666666667,
+        "balanced_accuracy": 0.7075091575091574,
+        "bidirectional_confusions": {
+          "T2<->T3": 0,
+          "T3<->T4": 8
+        },
+        "confusion_matrix": [
+          [
+            11,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            13,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            2,
+            8
+          ],
+          [
+            4,
+            0,
+            0,
+            17
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T2": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T4": {
+            "count": 8,
+            "rate": 0.6153846153846154
+          },
+          "T4->T3": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "macro_f1": 0.6610114873438857,
+        "n": 60,
+        "per_tone": {
+          "1": {
+            "f1": 0.7096774193548387,
+            "precision": 0.55,
+            "recall": 1.0,
+            "support": 11
+          },
+          "2": {
+            "f1": 0.9285714285714286,
+            "precision": 1.0,
+            "recall": 0.8666666666666667,
+            "support": 15
+          },
+          "3": {
+            "f1": 0.26666666666666666,
+            "precision": 1.0,
+            "recall": 0.15384615384615385,
+            "support": 13
+          },
+          "4": {
+            "f1": 0.7391304347826086,
+            "precision": 0.68,
+            "recall": 0.8095238095238095,
+            "support": 21
+          }
+        }
+      },
+      "B": {
+        "accuracy": 0.7,
+        "balanced_accuracy": 0.6908424908424908,
+        "bidirectional_confusions": {
+          "T2<->T3": 0,
+          "T3<->T4": 9
+        },
+        "confusion_matrix": [
+          [
+            11,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            12,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            9
+          ],
+          [
+            4,
+            0,
+            0,
+            17
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T2": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T4": {
+            "count": 9,
+            "rate": 0.6923076923076923
+          },
+          "T4->T3": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "macro_f1": 0.6471593075573858,
+        "n": 60,
+        "per_tone": {
+          "1": {
+            "f1": 0.7096774193548387,
+            "precision": 0.55,
+            "recall": 1.0,
+            "support": 11
+          },
+          "2": {
+            "f1": 0.8888888888888888,
+            "precision": 1.0,
+            "recall": 0.8,
+            "support": 15
+          },
+          "3": {
+            "f1": 0.26666666666666666,
+            "precision": 1.0,
+            "recall": 0.15384615384615385,
+            "support": 13
+          },
+          "4": {
+            "f1": 0.723404255319149,
+            "precision": 0.6538461538461539,
+            "recall": 0.8095238095238095,
+            "support": 21
+          }
+        }
+      },
+      "B_minus_A": {
+        "accuracy": -0.01666666666666672,
+        "balanced_accuracy": -0.016666666666666607,
+        "macro_f1": -0.013852179786499885
+      },
+      "paired_correctness": {
+        "A_only_correct": 3,
+        "B_only_correct": 2,
+        "both_correct": 40,
+        "both_wrong": 15
+      }
+    }
+  },
+  "scope": "KNOWN / INSPECTED STRESS SET; NOT pristine test data"
+}

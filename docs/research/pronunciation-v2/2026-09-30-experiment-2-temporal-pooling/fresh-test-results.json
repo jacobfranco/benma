@@ -1,0 +1,710 @@
+{
+  "A": {
+    "accuracy": 0.6864406779661016,
+    "balanced_accuracy": 0.6830459770114943,
+    "bidirectional_confusions": {
+      "T2<->T3": 8,
+      "T3<->T4": 17
+    },
+    "confusion_matrix": [
+      [
+        26,
+        0,
+        0,
+        4
+      ],
+      [
+        4,
+        19,
+        4,
+        2
+      ],
+      [
+        2,
+        4,
+        9,
+        14
+      ],
+      [
+        0,
+        0,
+        3,
+        27
+      ]
+    ],
+    "directed_confusions": {
+      "T2->T3": {
+        "count": 4,
+        "rate": 0.13793103448275862
+      },
+      "T3->T2": {
+        "count": 4,
+        "rate": 0.13793103448275862
+      },
+      "T3->T4": {
+        "count": 14,
+        "rate": 0.4827586206896552
+      },
+      "T4->T3": {
+        "count": 3,
+        "rate": 0.1
+      }
+    },
+    "macro_f1": 0.6676944023718218,
+    "n": 118,
+    "per_tone": {
+      "1": {
+        "f1": 0.8387096774193549,
+        "precision": 0.8125,
+        "recall": 0.8666666666666667,
+        "support": 30
+      },
+      "2": {
+        "f1": 0.7307692307692307,
+        "precision": 0.8260869565217391,
+        "recall": 0.6551724137931034,
+        "support": 29
+      },
+      "3": {
+        "f1": 0.4,
+        "precision": 0.5625,
+        "recall": 0.3103448275862069,
+        "support": 29
+      },
+      "4": {
+        "f1": 0.7012987012987013,
+        "precision": 0.574468085106383,
+        "recall": 0.9,
+        "support": 30
+      }
+    }
+  },
+  "B": {
+    "accuracy": 0.6610169491525424,
+    "balanced_accuracy": 0.6574712643678161,
+    "bidirectional_confusions": {
+      "T2<->T3": 8,
+      "T3<->T4": 16
+    },
+    "confusion_matrix": [
+      [
+        25,
+        0,
+        0,
+        5
+      ],
+      [
+        3,
+        15,
+        5,
+        6
+      ],
+      [
+        1,
+        3,
+        11,
+        14
+      ],
+      [
+        1,
+        0,
+        2,
+        27
+      ]
+    ],
+    "directed_confusions": {
+      "T2->T3": {
+        "count": 5,
+        "rate": 0.1724137931034483
+      },
+      "T3->T2": {
+        "count": 3,
+        "rate": 0.10344827586206896
+      },
+      "T3->T4": {
+        "count": 14,
+        "rate": 0.4827586206896552
+      },
+      "T4->T3": {
+        "count": 2,
+        "rate": 0.06666666666666667
+      }
+    },
+    "macro_f1": 0.6495632243556478,
+    "n": 118,
+    "per_tone": {
+      "1": {
+        "f1": 0.8333333333333334,
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "support": 30
+      },
+      "2": {
+        "f1": 0.6382978723404256,
+        "precision": 0.8333333333333334,
+        "recall": 0.5172413793103449,
+        "support": 29
+      },
+      "3": {
+        "f1": 0.46808510638297873,
+        "precision": 0.6111111111111112,
+        "recall": 0.3793103448275862,
+        "support": 29
+      },
+      "4": {
+        "f1": 0.6585365853658537,
+        "precision": 0.5192307692307693,
+        "recall": 0.9,
+        "support": 30
+      }
+    }
+  },
+  "B_minus_A": {
+    "accuracy": -0.025423728813559254,
+    "balanced_accuracy": -0.025574712643678166,
+    "macro_f1": -0.01813117801617392
+  },
+  "completed_at": "2026-09-30T20:17:04.947799+00:00",
+  "confidence": "uncalibrated maximum softmax; no rejection threshold",
+  "equal_speaker_mean": {
+    "A": {
+      "accuracy": 0.6855263157894737,
+      "balanced_accuracy": 0.6796296296296296,
+      "macro_f1": 0.6456801222056752
+    },
+    "B": {
+      "accuracy": 0.6592105263157895,
+      "balanced_accuracy": 0.6537037037037037,
+      "macro_f1": 0.6211237024010591
+    }
+  },
+  "lock_sha256": "ed96d9e35388b44a0f03dd7155a537913bd64cdf07609956ac532aca1b0d2c0d",
+  "paired_correctness": {
+    "A_only_correct": 6,
+    "B_only_correct": 3,
+    "both_correct": 75,
+    "both_wrong": 34
+  },
+  "per_speaker": {
+    "Fake estate": {
+      "A": {
+        "accuracy": 0.631578947368421,
+        "balanced_accuracy": 0.6138888888888889,
+        "bidirectional_confusions": {
+          "T2<->T3": 0,
+          "T3<->T4": 8
+        },
+        "confusion_matrix": [
+          [
+            9,
+            0,
+            0,
+            1
+          ],
+          [
+            3,
+            5,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            10
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T2": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T4": {
+            "count": 8,
+            "rate": 0.8888888888888888
+          },
+          "T4->T3": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "macro_f1": 0.5408902691511387,
+        "n": 38,
+        "per_tone": {
+          "1": {
+            "f1": 0.782608695652174,
+            "precision": 0.6923076923076923,
+            "recall": 0.9,
+            "support": 10
+          },
+          "2": {
+            "f1": 0.7142857142857143,
+            "precision": 1.0,
+            "recall": 0.5555555555555556,
+            "support": 9
+          },
+          "3": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 9
+          },
+          "4": {
+            "f1": 0.6666666666666666,
+            "precision": 0.5,
+            "recall": 1.0,
+            "support": 10
+          }
+        }
+      },
+      "B": {
+        "accuracy": 0.5526315789473685,
+        "balanced_accuracy": 0.5361111111111111,
+        "bidirectional_confusions": {
+          "T2<->T3": 0,
+          "T3<->T4": 8
+        },
+        "confusion_matrix": [
+          [
+            7,
+            0,
+            0,
+            3
+          ],
+          [
+            2,
+            4,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            10
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T2": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T4": {
+            "count": 8,
+            "rate": 0.8888888888888888
+          },
+          "T4->T3": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "macro_f1": 0.4759049773755656,
+        "n": 38,
+        "per_tone": {
+          "1": {
+            "f1": 0.7,
+            "precision": 0.7,
+            "recall": 0.7,
+            "support": 10
+          },
+          "2": {
+            "f1": 0.6153846153846154,
+            "precision": 1.0,
+            "recall": 0.4444444444444444,
+            "support": 9
+          },
+          "3": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 9
+          },
+          "4": {
+            "f1": 0.5882352941176471,
+            "precision": 0.4166666666666667,
+            "recall": 1.0,
+            "support": 10
+          }
+        }
+      },
+      "B_minus_A": {
+        "accuracy": -0.07894736842105254,
+        "balanced_accuracy": -0.07777777777777783,
+        "macro_f1": -0.0649852917755731
+      },
+      "paired_correctness": {
+        "A_only_correct": 3,
+        "B_only_correct": 0,
+        "both_correct": 21,
+        "both_wrong": 14
+      }
+    },
+    "Jouketou": {
+      "A": {
+        "accuracy": 0.825,
+        "balanced_accuracy": 0.825,
+        "bidirectional_confusions": {
+          "T2<->T3": 1,
+          "T3<->T4": 6
+        },
+        "confusion_matrix": [
+          [
+            10,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            3
+          ],
+          [
+            0,
+            0,
+            3,
+            7
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 1,
+            "rate": 0.1
+          },
+          "T3->T2": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T4": {
+            "count": 3,
+            "rate": 0.3
+          },
+          "T4->T3": {
+            "count": 3,
+            "rate": 0.3
+          }
+        },
+        "macro_f1": 0.8285087719298245,
+        "n": 40,
+        "per_tone": {
+          "1": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 10
+          },
+          "2": {
+            "f1": 0.9473684210526315,
+            "precision": 1.0,
+            "recall": 0.9,
+            "support": 10
+          },
+          "3": {
+            "f1": 0.6666666666666666,
+            "precision": 0.6363636363636364,
+            "recall": 0.7,
+            "support": 10
+          },
+          "4": {
+            "f1": 0.7,
+            "precision": 0.7,
+            "recall": 0.7,
+            "support": 10
+          }
+        }
+      },
+      "B": {
+        "accuracy": 0.85,
+        "balanced_accuracy": 0.8500000000000001,
+        "bidirectional_confusions": {
+          "T2<->T3": 1,
+          "T3<->T4": 4
+        },
+        "confusion_matrix": [
+          [
+            10,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            2
+          ],
+          [
+            1,
+            0,
+            2,
+            7
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 1,
+            "rate": 0.1
+          },
+          "T3->T2": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "T3->T4": {
+            "count": 2,
+            "rate": 0.2
+          },
+          "T4->T3": {
+            "count": 2,
+            "rate": 0.2
+          }
+        },
+        "macro_f1": 0.849624060150376,
+        "n": 40,
+        "per_tone": {
+          "1": {
+            "f1": 0.9523809523809523,
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "support": 10
+          },
+          "2": {
+            "f1": 0.9473684210526315,
+            "precision": 1.0,
+            "recall": 0.9,
+            "support": 10
+          },
+          "3": {
+            "f1": 0.7619047619047619,
+            "precision": 0.7272727272727273,
+            "recall": 0.8,
+            "support": 10
+          },
+          "4": {
+            "f1": 0.7368421052631579,
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "support": 10
+          }
+        }
+      },
+      "B_minus_A": {
+        "accuracy": 0.025000000000000022,
+        "balanced_accuracy": 0.025000000000000133,
+        "macro_f1": 0.02111528822055142
+      },
+      "paired_correctness": {
+        "A_only_correct": 0,
+        "B_only_correct": 1,
+        "both_correct": 33,
+        "both_wrong": 6
+      }
+    },
+    "\u96f2\u89d2": {
+      "A": {
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.6,
+        "bidirectional_confusions": {
+          "T2<->T3": 7,
+          "T3<->T4": 3
+        },
+        "confusion_matrix": [
+          [
+            7,
+            0,
+            0,
+            3
+          ],
+          [
+            1,
+            5,
+            3,
+            1
+          ],
+          [
+            1,
+            4,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            10
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 3,
+            "rate": 0.3
+          },
+          "T3->T2": {
+            "count": 4,
+            "rate": 0.4
+          },
+          "T3->T4": {
+            "count": 3,
+            "rate": 0.3
+          },
+          "T4->T3": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "macro_f1": 0.5676413255360624,
+        "n": 40,
+        "per_tone": {
+          "1": {
+            "f1": 0.7368421052631579,
+            "precision": 0.7777777777777778,
+            "recall": 0.7,
+            "support": 10
+          },
+          "2": {
+            "f1": 0.5263157894736842,
+            "precision": 0.5555555555555556,
+            "recall": 0.5,
+            "support": 10
+          },
+          "3": {
+            "f1": 0.26666666666666666,
+            "precision": 0.4,
+            "recall": 0.2,
+            "support": 10
+          },
+          "4": {
+            "f1": 0.7407407407407407,
+            "precision": 0.5882352941176471,
+            "recall": 1.0,
+            "support": 10
+          }
+        }
+      },
+      "B": {
+        "accuracy": 0.575,
+        "balanced_accuracy": 0.575,
+        "bidirectional_confusions": {
+          "T2<->T3": 7,
+          "T3<->T4": 4
+        },
+        "confusion_matrix": [
+          [
+            8,
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            2,
+            4,
+            3
+          ],
+          [
+            0,
+            3,
+            3,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            10
+          ]
+        ],
+        "directed_confusions": {
+          "T2->T3": {
+            "count": 4,
+            "rate": 0.4
+          },
+          "T3->T2": {
+            "count": 3,
+            "rate": 0.3
+          },
+          "T3->T4": {
+            "count": 4,
+            "rate": 0.4
+          },
+          "T4->T3": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "macro_f1": 0.5378420696772357,
+        "n": 40,
+        "per_tone": {
+          "1": {
+            "f1": 0.8421052631578947,
+            "precision": 0.8888888888888888,
+            "recall": 0.8,
+            "support": 10
+          },
+          "2": {
+            "f1": 0.26666666666666666,
+            "precision": 0.4,
+            "recall": 0.2,
+            "support": 10
+          },
+          "3": {
+            "f1": 0.35294117647058826,
+            "precision": 0.42857142857142855,
+            "recall": 0.3,
+            "support": 10
+          },
+          "4": {
+            "f1": 0.6896551724137931,
+            "precision": 0.5263157894736842,
+            "recall": 1.0,
+            "support": 10
+          }
+        }
+      },
+      "B_minus_A": {
+        "accuracy": -0.025000000000000022,
+        "balanced_accuracy": -0.025000000000000022,
+        "macro_f1": -0.0297992558588267
+      },
+      "paired_correctness": {
+        "A_only_correct": 3,
+        "B_only_correct": 2,
+        "both_correct": 21,
+        "both_wrong": 14
+      }
+    }
+  },
+  "scope": "Fresh speaker panel; UNKNOWN native status; lexical targets, not verified realized tones"
+}

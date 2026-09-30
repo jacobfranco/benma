@@ -1,0 +1,8 @@
+{
+  "lock_sha256": "ed96d9e35388b44a0f03dd7155a537913bd64cdf07609956ac532aca1b0d2c0d",
+  "n": 60,
+  "opened_at": "2026-09-30T20:17:37.163935+00:00",
+  "scope": "KNOWN / INSPECTED STRESS SET; NOT pristine test data",
+  "seal_verified_before_evaluation": true,
+  "sealed_manifest_sha256": "7e9ba24601a1199ad07f721e9ca9cb22ef5736095a0fdb2b44091aa143dce75d"
+}

@@ -1,0 +1,74 @@
+{
+  "artifacts_sha256": {
+    "artifact-verification.json": "b61a14e98d76f554a3f4a0c86e7ebddaaae40ca9fe8d965701205df930dfc7f0",
+    "baseline-reproduction.json": "27aca74136422b3181c3ba07bb52e60a8f6eb3731a73b17a71724cf02fd5072c",
+    "comparison.csv": "aa94c6b778cc98e88444e069e11819d0e933a82b5b4606d44f9b5fd9d9c79981",
+    "development-CanonNi_only-predictions.csv": "3f7b32f935c8c5375e0ea841a23f1b9a4acad6e43f0ff3a5fb22b162464f6146",
+    "development-Wei_Gao_only-predictions.csv": "bb69dc05503734356e724dbcba7c32b9713bcf4e7ed15397df279c4ea222faec",
+    "development-extraction.json": "82c8bb61b3112a8a0342f0937e8e01bbe38e2cd0d3a2a964111010990e2f605c",
+    "development-predictions.csv": "abc3c29015677bb0c08a10d62e0bcd87097b4e31d1706daec2dab97aa9ae2054",
+    "development-results.json": "4aa277209a3043154aa557d0e0b4645575c99c8ced69e7763dcea7152d094828",
+    "development-started.json": "dadb7b3cb4cbd62b88fede8414279307c9b05a3d9aa42e6680e1d11b8231eb5b",
+    "environment.md": "4f3140897ed76a954e3f84b8327526ed603c0ff3cc1506ed9bb60f16a2a31c45",
+    "fresh-test-completed.json": "a84f870009a6c888cb67ffaa220ccd608f8a98dcc3b50464baba8f1969109d77",
+    "fresh-test-extraction.json": "407772415d8e5f6ce08f58428eb169451b4d6c6a2404e28da9cc4f9847ab09b9",
+    "fresh-test-opened.json": "ec4d4ec71ea32c0395d0265f93fe2a1eaf4c1edcbaa71ad84278ed46297974b5",
+    "fresh-test-predictions.csv": "81065a92c24256c226b34059b7ac217b3e88e04f1f9ebc9062f2795aab7c3fcb",
+    "fresh-test-results.json": "f77a63f0e3fb67968fec5e49b41eca59195dbe1b5ac60add8440b4278f41011e",
+    "head-A.npz": "d3f1cbe4a6ac7ea7c76b4538805d57cf99a36dd7d14909432725d4bc5cf696c2",
+    "head-B.npz": "7b37391061cf96210d43703ed7e6f38cf3fb16e5ec908ab149c2492d6b0706d6",
+    "lock.json": "ed96d9e35388b44a0f03dd7155a537913bd64cdf07609956ac532aca1b0d2c0d",
+    "review.md": "8079ff4f7d7361b7a5a588320903b69b4d074e6fb528ce7932684d2f63f60877",
+    "stress-completed.json": "ff5fb0b37f46784ed7616053d3be44a1682e914d13333a220ac3e120ac4e1bda",
+    "stress-extraction.json": "1c339b6442c038e33e4abbb7bdc0d91c89cb66a45a71938be6fd6aec39405fd4",
+    "stress-opened.json": "03eb01f386462b01c18b1c96c70ed627532b3d01f6d81f22ce9ed78181cdda05",
+    "stress-predictions.csv": "66028ec3f07f1a083946d097940b37b4678f97ab3f1c7fad52841ba85346062c",
+    "stress-results.json": "eb331e753d648a13bf15d6912aad302e7580b26e47fdf0c888bd898e82d011ce",
+    "training-manifest.csv": "cc48ca1923da8cd322c57a6ec0a954f8c975836a50b193e8bf614331e76e36b9"
+  },
+  "corrective_reruns": [],
+  "created_at": "2026-09-30T20:21:58.586632+00:00",
+  "fresh_speakers_native_status": "UNKNOWN",
+  "git_HEAD": "64ae7e17c92dac0b5db563ff56725fea784a4e3f",
+  "labels": "lexical targets; realized tone unverified",
+  "local_feature_caches": {
+    "development": "8b7c6e964307fb25eca5ee4b7beb4d54a2acbbd1c8f42816d71bfd37020b6fe1",
+    "fresh-test": "bba528c8c29bff42787d53840bd2b8be1eed9a9538b07d2f16e6086e8279f4fc",
+    "stress": "1c7e0ba8a38f3d3c9bc84ed5f13744bbdbbc50faf886b473051830b0c9c8af45"
+  },
+  "lock_sha256": "ed96d9e35388b44a0f03dd7155a537913bd64cdf07609956ac532aca1b0d2c0d",
+  "locked_inputs": {
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/checkpoint.json": "90c7f2901b11473bb74f6271dd37b9a740e28a18b9ab85e8448653f195919a1c",
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/experiment-config.locked.json": "d9fbce75b1cd2a741924241d54d5a68f18edffc7c13687383828486a8f385cc9",
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/split-manifest.csv": "1ee5ab2d6bbb6739e461c53949d699cef687d8b6e25412717400889f219e6416",
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/validation-results.csv": "5ce1480a24db2ba67cbc76e5bf5aa6513ddd7790b1b372025689f9e835a31757",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-preflight/protocol.md": "8009d58b1f8892525b28688b3239ac7abe36c3fd21c5951c2392b41f4cfd1191",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-preflight/seal.json": "decddb5bfc106c030ed2334b5024d7420a0c5efdbd413d49f503c3d43e18e124",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-preflight/sealed-test-manifest.csv": "7e9ba24601a1199ad07f721e9ca9cb22ef5736095a0fdb2b44091aa143dce75d"
+  },
+  "locked_source_code_sha256": {
+    "benchmark/pronunciation_v2/evaluation_preflight.py": "470ee5456564a17a188920ca2daf4858c0e97ce2537b8fdff566c4a4e80b3257",
+    "benchmark/pronunciation_v2/features.py": "5dff0d198608d253f39c1e757ffc26e5a6c92250f893de3994f2c46107513bb8",
+    "benchmark/pronunciation_v2/model_probe.py": "963b339aa126498b48394f3583f9f4037f9fc5bddb4ac10d6bf1b6c13bb269fa",
+    "benchmark/pronunciation_v2/pilot.py": "0a5e8c8f9cbcae14050d02fe0ba83357820669f731f12dee7eec1a22c08300ba",
+    "benchmark/pronunciation_v2/preflight.py": "a379a41fb1c5f238ff2264f31299dd75d8575b1f323079e743eaf66e700e36cb",
+    "benchmark/pronunciation_v2/remediate.py": "447ede67eddafdaea1245be6cf567134bcba1aa284c1fa5d7af99c026ef5d3b7",
+    "benchmark/pronunciation_v2/requirements-lock.txt": "3e8766fb864437eea9215a020bffeca26191b6139c740a646af6e68b925fdcd2",
+    "benchmark/pronunciation_v2/requirements.txt": "c3f484fea8a1898a8747086d9c89174da31525b08fcf4385e5d48c554883ee4a",
+    "benchmark/pronunciation_v2/temporal_pooling.py": "62deb34f9480860382378fc64961ba05968545309b68339bf93badccbcececc9",
+    "benchmark/pronunciation_v2/test_temporal_pooling.py": "b988cd7507d5dd28c4bca17b112104e9ce86e56bfb1d1b673f96be0bb29e5d7c"
+  },
+  "post_result_reporting_code_sha256": {
+    "benchmark/pronunciation_v2/temporal_pooling_report.py": "d13525da5f540ec2057494cf11b063f582324499de855c9051d03a302467e1b1"
+  },
+  "raw_audio_policy": "evaluation-only local/cache-only; no raw audio in curated output",
+  "scientific_code_changed_after_opening": false,
+  "sealed_manifest_sha256": "7e9ba24601a1199ad07f721e9ca9cb22ef5736095a0fdb2b44091aa143dce75d",
+  "validation": {
+    "directory_ruff": "pre-existing report.py:95 formatting/E501 failure",
+    "initial_discovery": "ML environment missing API test dependencies; split suites used",
+    "model_research_tests": 66,
+    "new_source_ruff": "check and format pass",
+    "seal_preflight_tests": 54
+  }
+}

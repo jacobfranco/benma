@@ -1,0 +1,25 @@
+{
+  "inputs": {
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/checkpoint.json": "90c7f2901b11473bb74f6271dd37b9a740e28a18b9ab85e8448653f195919a1c",
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/experiment-config.locked.json": "d9fbce75b1cd2a741924241d54d5a68f18edffc7c13687383828486a8f385cc9",
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/split-manifest.csv": "1ee5ab2d6bbb6739e461c53949d699cef687d8b6e25412717400889f219e6416",
+    "docs/research/pronunciation-v2/2026-09-29-frozen-wav2vec/validation-results.csv": "5ce1480a24db2ba67cbc76e5bf5aa6513ddd7790b1b372025689f9e835a31757",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-preflight/protocol.md": "8009d58b1f8892525b28688b3239ac7abe36c3fd21c5951c2392b41f4cfd1191",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-preflight/seal.json": "decddb5bfc106c030ed2334b5024d7420a0c5efdbd413d49f503c3d43e18e124",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-preflight/sealed-test-manifest.csv": "7e9ba24601a1199ad07f721e9ca9cb22ef5736095a0fdb2b44091aa143dce75d"
+  },
+  "seal_verified": true,
+  "source_code_sha256": {
+    "benchmark/pronunciation_v2/evaluation_preflight.py": "470ee5456564a17a188920ca2daf4858c0e97ce2537b8fdff566c4a4e80b3257",
+    "benchmark/pronunciation_v2/features.py": "5dff0d198608d253f39c1e757ffc26e5a6c92250f893de3994f2c46107513bb8",
+    "benchmark/pronunciation_v2/model_probe.py": "963b339aa126498b48394f3583f9f4037f9fc5bddb4ac10d6bf1b6c13bb269fa",
+    "benchmark/pronunciation_v2/pilot.py": "0a5e8c8f9cbcae14050d02fe0ba83357820669f731f12dee7eec1a22c08300ba",
+    "benchmark/pronunciation_v2/preflight.py": "a379a41fb1c5f238ff2264f31299dd75d8575b1f323079e743eaf66e700e36cb",
+    "benchmark/pronunciation_v2/remediate.py": "447ede67eddafdaea1245be6cf567134bcba1aa284c1fa5d7af99c026ef5d3b7",
+    "benchmark/pronunciation_v2/requirements-lock.txt": "3e8766fb864437eea9215a020bffeca26191b6139c740a646af6e68b925fdcd2",
+    "benchmark/pronunciation_v2/requirements.txt": "c3f484fea8a1898a8747086d9c89174da31525b08fcf4385e5d48c554883ee4a",
+    "benchmark/pronunciation_v2/temporal_pooling.py": "62deb34f9480860382378fc64961ba05968545309b68339bf93badccbcececc9",
+    "benchmark/pronunciation_v2/test_temporal_pooling.py": "b988cd7507d5dd28c4bca17b112104e9ce86e56bfb1d1b673f96be0bb29e5d7c"
+  },
+  "started_at": "2026-09-30T20:15:30.771135+00:00"
+}
