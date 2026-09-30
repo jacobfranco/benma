@@ -1,0 +1,19 @@
+{
+  "blocker": "",
+  "candidate_metadata_unchanged": true,
+  "duplicate_audio_sha256": 0,
+  "duplicate_decoded_pcm_sha256": 0,
+  "duplicate_source_ids": 0,
+  "duplicate_source_sha1": 0,
+  "duplicate_speaker_target_metadata": 0,
+  "no_models_or_predictions_used": true,
+  "no_raw_audio_staged": true,
+  "only_unambiguous_lexical_t1_t4": true,
+  "required_provenance_present": true,
+  "selected": 118,
+  "selection_ids_unchanged": true,
+  "source_and_audio_hash_matches": true,
+  "speaker_disjoint_from_all_previous_corpus_ids": true,
+  "status": "PASS",
+  "verified_decodes": 118
+}

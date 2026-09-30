@@ -1,0 +1,44 @@
+{
+  "blocker": "",
+  "integrity_sha256": "5d05399f3042dccda3298cdce78ad1a07cdcc07e01013d9b44a44b89ef40ef23",
+  "manifest_exists": true,
+  "manifest_sha256": "7e9ba24601a1199ad07f721e9ca9cb22ef5736095a0fdb2b44091aa143dce75d",
+  "model_execution": false,
+  "n": 118,
+  "prediction_access": false,
+  "protocol_sha256": "8009d58b1f8892525b28688b3239ac7abe36c3fd21c5951c2392b41f4cfd1191",
+  "sealed_at": "2026-09-30T19:51:42.219811+00:00",
+  "selection_sha256": "b6becb73aa74367060c9dbc640a9ced9b6cd85a9ca52273f81a590815b94e718",
+  "speaker_counts": {
+    "lingualibre:Q1332695": 40,
+    "lingualibre:Q19614": 40,
+    "lingualibre:Q812770": 38
+  },
+  "speaker_tones": {
+    "lingualibre:Q1332695": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "lingualibre:Q19614": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "lingualibre:Q812770": {
+      "1": 10,
+      "2": 9,
+      "3": 9,
+      "4": 10
+    }
+  },
+  "status": "SEALED",
+  "tone_counts": {
+    "1": 30,
+    "2": 29,
+    "3": 29,
+    "4": 30
+  }
+}
