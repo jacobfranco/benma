@@ -1,0 +1,346 @@
+{
+  "embeddings_computed": false,
+  "frozen_state": {
+    "bootstrap": {
+      "difference": "B - A",
+      "draws": 10000,
+      "method": "linear",
+      "metrics": [
+        "accuracy",
+        "balanced_accuracy",
+        "macro_f1",
+        "equal_speaker_mean_balanced_accuracy"
+      ],
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "rng": "numpy.random.default_rng",
+      "seed": 20261002,
+      "speaker_order": "sorted speaker_id",
+      "unit": "speaker; all clips; with replacement; paired A/B"
+    },
+    "encoder": {
+      "downloaded_at": "2026-09-30T01:28:30.419134+00:00",
+      "files_sha256": {
+        "README.md": "d633aeaaec1046af8cbacd21039f819304017e1ab6a369c5aff8668f3c35a127",
+        "config.json": "4937977e24d12d1bba70cdce8709c3c04807a8e4ae8ddac4229c48c436ae99ae",
+        "preprocessor_config.json": "b225d617c025463b9e157e06afea8b90dc7078fc70b013c533328423e0486b4a",
+        "pytorch_model.bin": "3249fe98bfc62fcbc26067f724716a6ec49d12c4728a2af1df659013905dff21"
+      },
+      "license": "apache-2.0",
+      "model_id": "facebook/wav2vec2-base",
+      "revision": "0b5b8e868dd84f03fd87d01f9c4ff0f080fecfe8",
+      "snapshot": "/home/jacob/.cache/benma/pronunciation-v2-model/hf/models--facebook--wav2vec2-base/snapshots/0b5b8e868dd84f03fd87d01f9c4ff0f080fecfe8"
+    },
+    "environment": {
+      "blas_threads": 1,
+      "device": "cpu",
+      "dtype": "float32",
+      "encoder_torch_threads": 4,
+      "executables_sha256": {
+        "ffmpeg": "2e37495139c8cee4711b7e1475dac11ce54633431c4a025b7b70fa2e6d7ca3c3",
+        "ffprobe": "4493102ef9a9dee472ce68b540ba0fd3d2f714db0de930f299f681c72ec61832",
+        "python": "339de109f072e52523066d97a2b3372e358a10cc00c6a9df62c28a6618061900"
+      },
+      "head_torch_threads": 1,
+      "installed_distributions": [
+        [
+          "Jinja2",
+          "3.1.6"
+        ],
+        [
+          "MarkupSafe",
+          "3.0.3"
+        ],
+        [
+          "PyYAML",
+          "6.0.3"
+        ],
+        [
+          "certifi",
+          "2026.7.22"
+        ],
+        [
+          "charset-normalizer",
+          "3.5.1"
+        ],
+        [
+          "cloudpickle",
+          "3.1.2"
+        ],
+        [
+          "filelock",
+          "3.32.3"
+        ],
+        [
+          "fsspec",
+          "2026.7.0"
+        ],
+        [
+          "hf-xet",
+          "1.6.0"
+        ],
+        [
+          "huggingface_hub",
+          "0.36.2"
+        ],
+        [
+          "idna",
+          "3.20"
+        ],
+        [
+          "joblib",
+          "1.6.0"
+        ],
+        [
+          "mpmath",
+          "1.3.0"
+        ],
+        [
+          "networkx",
+          "3.6.1"
+        ],
+        [
+          "numpy",
+          "2.3.3"
+        ],
+        [
+          "packaging",
+          "26.3"
+        ],
+        [
+          "pypinyin",
+          "0.55.0"
+        ],
+        [
+          "regex",
+          "2026.9.29"
+        ],
+        [
+          "requests",
+          "2.34.2"
+        ],
+        [
+          "safetensors",
+          "0.8.0"
+        ],
+        [
+          "scikit-learn",
+          "1.7.2"
+        ],
+        [
+          "scipy",
+          "1.16.2"
+        ],
+        [
+          "setuptools",
+          "78.1.0"
+        ],
+        [
+          "sympy",
+          "1.14.0"
+        ],
+        [
+          "threadpoolctl",
+          "3.7.0"
+        ],
+        [
+          "tokenizers",
+          "0.22.2"
+        ],
+        [
+          "torch",
+          "2.8.0+cpu"
+        ],
+        [
+          "tqdm",
+          "4.70.1"
+        ],
+        [
+          "transformers",
+          "4.57.6"
+        ],
+        [
+          "typing_extensions",
+          "4.16.0"
+        ],
+        [
+          "urllib3",
+          "2.8.0"
+        ]
+      ],
+      "protocol_environment": {
+        "blas_fit_threads": 1,
+        "device": "cpu",
+        "dtype": "float32",
+        "ffmpeg": "ffmpeg version n9.0.1 Copyright (c) 2000-2026 the FFmpeg developers",
+        "packages": {
+          "certifi": "2026.7.22",
+          "charset-normalizer": "3.5.1",
+          "cloudpickle": "3.1.2",
+          "filelock": "3.32.3",
+          "fsspec": "2026.7.0",
+          "hf-xet": "1.6.0",
+          "huggingface-hub": "0.36.2",
+          "idna": "3.20",
+          "jinja2": "3.1.6",
+          "joblib": "1.6.0",
+          "markupsafe": "3.0.3",
+          "mpmath": "1.3.0",
+          "networkx": "3.6.1",
+          "numpy": "2.3.3",
+          "packaging": "26.3",
+          "pypinyin": "0.55.0",
+          "pyyaml": "6.0.3",
+          "regex": "2026.9.29",
+          "requests": "2.34.2",
+          "safetensors": "0.8.0",
+          "scikit-learn": "1.7.2",
+          "scipy": "1.16.2",
+          "setuptools": "78.1.0",
+          "sympy": "1.14.0",
+          "threadpoolctl": "3.7.0",
+          "tokenizers": "0.22.2",
+          "torch": "2.8.0+cpu",
+          "tqdm": "4.70.1",
+          "transformers": "4.57.6",
+          "typing-extensions": "4.16.0",
+          "urllib3": "2.8.0"
+        },
+        "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+        "python": "3.12.13",
+        "torch_threads": 4,
+        "versions": {
+          "huggingface-hub": "0.36.2",
+          "numpy": "2.3.3",
+          "scikit-learn": "1.7.2",
+          "scipy": "1.16.2",
+          "torch": "2.8.0+cpu",
+          "transformers": "4.57.6"
+        }
+      }
+    },
+    "expected_rows": 720,
+    "expected_speaker_ids": [
+      "sait-ema:A_F001",
+      "sait-ema:A_M001",
+      "sait-ema:F001",
+      "sait-ema:F002",
+      "sait-ema:F003",
+      "sait-ema:F004",
+      "sait-ema:F005",
+      "sait-ema:L_F001",
+      "sait-ema:L_F002",
+      "sait-ema:L_F003",
+      "sait-ema:L_M001",
+      "sait-ema:L_M002",
+      "sait-ema:L_M003",
+      "sait-ema:M001",
+      "sait-ema:M002",
+      "sait-ema:M003",
+      "sait-ema:M004",
+      "sait-ema:M005"
+    ],
+    "frozen_sha256": {
+      "head-linear.npz": "d3f1cbe4a6ac7ea7c76b4538805d57cf99a36dd7d14909432725d4bc5cf696c2",
+      "head-nonlinear.npz": "eb2c29fb7473faac715b93cdb1671134d7c408dc87065166b77e50d630efd28d",
+      "heads.lock.json": "bd6e5b5c3d2a52e2f88c7a3b1b87caa8eb0880136de90b9deeb26f251eb18743",
+      "protocol.lock.json": "f795f15d970043d65592ac9ef7cd3ee4af9b36bf2310de23a840bcf12db08721"
+    },
+    "manifest_sha256": "141a9349da2786b822d6bbb109ff726f97b466bdb0f4548c5a7f1a2874b60490",
+    "metric_definitions": {
+      "accuracy": "correct_count / support",
+      "balanced_accuracy": "unweighted mean of all four recalls; null if any tone absent",
+      "confusion_matrix": "4x4 integer counts; true rows, predicted columns; T1,T2,T3,T4",
+      "correct_count": "trace(confusion_matrix)",
+      "decision_arithmetic": "exact rational counts, no floating-point tolerance",
+      "difference": "B minus A; no rounding before differences or decisions",
+      "directed_confusions": "T2->T3,T3->T2,T3->T4,T4->T3; count / true-tone support",
+      "equal_speaker_mean_balanced_accuracy": "unweighted mean of individual speaker BA",
+      "f1": "2*TP / (true-tone support + predicted-tone count); zero if denominator zero",
+      "macro_f1": "unweighted mean of all four tone F1 scores, including zeros",
+      "precision": "TP / predicted-tone count; zero when denominator is zero",
+      "recall": "TP / true-tone support; null when support is zero"
+    },
+    "nonlinear_arrays_sha256": "d3961629af0f7f91005c60911ea408a3fe1d149db2cc986df231765f35170659",
+    "output_schema_sha256": "55cc7552368828c479882e748b9b6b4ed0e7430d7cacbac4e6947298a0ee9ec5",
+    "output_schema_version": "experiment3-evaluation-v1",
+    "preprocessing": {
+      "attention_implementation": "eager",
+      "attention_mask_to_encoder": false,
+      "augmentation": false,
+      "batch_size": 1,
+      "channels": 1,
+      "decode": "ffmpeg float32 PCM",
+      "dtype": "float32",
+      "pooling": "mean of valid hidden frames only; no padded waveform in encoder",
+      "sample_rate": 16000,
+      "trim": false,
+      "waveform_normalization": "checkpoint feature extractor"
+    },
+    "preprocessing_sha256": "fcb71ec86bd39bcc02f12870adb8142d606f81134caee55d28c192a62e50307f",
+    "promising_rule": {
+      "bootstrap_affects_decision": false,
+      "equal_speaker_mean_ba_non_regression": true,
+      "maximum_speaker_ba_drop": "1/10 (0.10 absolute), inclusive",
+      "maximum_tone_drop": "1/20 (0.05 absolute), inclusive, for precision/recall/F1",
+      "pooled_non_regression": [
+        "accuracy",
+        "balanced_accuracy",
+        "macro_f1"
+      ],
+      "primary": "all 18 speakers and all 720 sealed rows; no exclusions",
+      "strict_improvement": "at least one of accuracy, balanced_accuracy, macro_f1",
+      "subgroups": "SECONDARY_DESCRIPTIVE only; source-declared NATIVE and LEARNER"
+    },
+    "representation": {
+      "dimensions": 768,
+      "eval": true,
+      "gradients": false,
+      "layer": 8,
+      "pooling": "whole-valid-frame mean"
+    },
+    "seal_sha256": "4de7c7d8c5d16409439f449496fe67b1980b798a645bbfcd37963b4527eb6be0",
+    "source_sha256": {
+      "benchmark/pronunciation_v2/acoustic_forensics.py": "d3f33a89103a547577f3f5b3709a1cc0a44f5ad7052069130136c79ce78980d9",
+      "benchmark/pronunciation_v2/acquire.py": "3a770e21fe3af40daeba5040d4abde988aed1b10e83c98d44d9fe468d4aea2b9",
+      "benchmark/pronunciation_v2/error_audit.py": "7502b137a4ab750ab6c4c2be1003873fca55544eaf0dd4866de17dc6f4560f07",
+      "benchmark/pronunciation_v2/evaluate_experiment3.py": "76e0860dfc377cb214cac077f2771a31403072dd011ba36353809fa84d1c0d96",
+      "benchmark/pronunciation_v2/evaluation_preflight.py": "470ee5456564a17a188920ca2daf4858c0e97ce2537b8fdff566c4a4e80b3257",
+      "benchmark/pronunciation_v2/experiment3-output-schema.json": "55cc7552368828c479882e748b9b6b4ed0e7430d7cacbac4e6947298a0ee9ec5",
+      "benchmark/pronunciation_v2/experiment3_metrics.py": "497e981fde2ed958e60c1264761576ddaf7e354603ac9c7996dde2c8c6880fc9",
+      "benchmark/pronunciation_v2/features.py": "5dff0d198608d253f39c1e757ffc26e5a6c92250f893de3994f2c46107513bb8",
+      "benchmark/pronunciation_v2/forensics_plots.py": "698dea7c9ecfd9b86c8e03b182460ab3e29f7401a1a286be5a21c3ebc6cc9f75",
+      "benchmark/pronunciation_v2/model_probe.py": "963b339aa126498b48394f3583f9f4037f9fc5bddb4ac10d6bf1b6c13bb269fa",
+      "benchmark/pronunciation_v2/nonlinear_head.py": "a61d13bbf3e89448b0f0299e0aaf50f68404b938761607358c0c12cfd782f6d8",
+      "benchmark/pronunciation_v2/nonlinear_sources.py": "ca13e4d1f59023036133a8e470b42eb82a1ff063cfcb7dbb05726e298b059263",
+      "benchmark/pronunciation_v2/pilot.py": "0a5e8c8f9cbcae14050d02fe0ba83357820669f731f12dee7eec1a22c08300ba",
+      "benchmark/pronunciation_v2/preflight.py": "a379a41fb1c5f238ff2264f31299dd75d8575b1f323079e743eaf66e700e36cb",
+      "benchmark/pronunciation_v2/public_panel.py": "696223ab920f96579053b23f1ac02a434fdc6cdfee806f02fd2bb4daeab9e158",
+      "benchmark/pronunciation_v2/remediate.py": "447ede67eddafdaea1245be6cf567134bcba1aa284c1fa5d7af99c026ef5d3b7",
+      "benchmark/pronunciation_v2/report.py": "a10a9eda60daabd59cee401a6f736a2c40b9424bef64636ffdc78fe7b8621b88",
+      "benchmark/pronunciation_v2/requirements-lock.txt": "3e8766fb864437eea9215a020bffeca26191b6139c740a646af6e68b925fdcd2",
+      "benchmark/pronunciation_v2/temporal_pooling.py": "62deb34f9480860382378fc64961ba05968545309b68339bf93badccbcececc9",
+      "benchmark/pronunciation_v2/temporal_pooling_report.py": "d13525da5f540ec2057494cf11b063f582324499de855c9051d03a302467e1b1",
+      "benchmark/pronunciation_v2/test_acoustic_forensics.py": "41256b6c1c9d0e1311de5d317be794ab3599d90536900e265d77394fef589055",
+      "benchmark/pronunciation_v2/test_error_audit.py": "959fb2dd40bc34b0005098be022e786330e02bb928c8c63124f64dd9e43bafc0",
+      "benchmark/pronunciation_v2/test_evaluation_preflight.py": "f23ab647efbbe43e21403a5a3ef4e570f9846f80bd286b8fb8872b82422cb627",
+      "benchmark/pronunciation_v2/test_experiment3_evaluation.py": "b6497fafa0072a11bb651c61355a5f1e2127a9665a43fc15783c28457677aaf5",
+      "benchmark/pronunciation_v2/test_model_probe.py": "9f0db0f56e679ba62e03d3b06e5e8ea6c5cd6ae2fef0c574f4e7565d87407ab9",
+      "benchmark/pronunciation_v2/test_nonlinear_head.py": "566443b17bb4d3cdaf5b1fffef3902062039a6c97a2ad0d78435038480b756c0",
+      "benchmark/pronunciation_v2/test_pilot.py": "1757b63c9eac1f564593952e36738366b0707e8263a72f2a1e6cdca76045a0de",
+      "benchmark/pronunciation_v2/test_preflight.py": "fe4ffd9a7a85df194a24ab63ad60b8c116f359e15d2aa16f3cdf6af940926a68",
+      "benchmark/pronunciation_v2/test_public_panel.py": "c4062810aa25b5430924e76688bbf40834475cadf75dc0946434a71ae467df49",
+      "benchmark/pronunciation_v2/test_temporal_pooling.py": "b988cd7507d5dd28c4bca17b112104e9ce86e56bfb1d1b673f96be0bb29e5d7c",
+      "benchmark/pronunciation_v2/v1_adapter.py": "60205636620a658a39a3ac9853c74d8132ecf5740bda68620c3a79264950dfb7",
+      "docs/research/pronunciation-v2/2026-10-01-experiment-3-evaluation/runner-spec.md": "3fc7f350a4cbb36cf2ac18c59327a4c60a283d1dbf4122d5c356f6c995907694",
+      "docs/research/pronunciation-v2/2026-10-01-experiment-3-evaluation/validation.json": "89577bc933c3b7e84e8b472110ce0a843c60dd513ff42b1c3a7c276c95116e47",
+      "pyproject.toml": "d95f847c75ff108058eb0ce05e8a3b1b7df1634fa8e2fd64f8cfe8a9ec0d154e"
+    }
+  },
+  "git_branch": "pronunciation-v2-research",
+  "git_head": "d8b28ff0b91dc103fb920f13be3c9a535a609a41",
+  "locked_at": "2026-10-01T15:13:05.990560+00:00",
+  "test_predictions_opened": false
+}

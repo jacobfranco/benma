@@ -1,0 +1,22 @@
+{
+  "evaluation_command_executed": false,
+  "frozen_sha256": {
+    "head-linear.npz": "d3f1cbe4a6ac7ea7c76b4538805d57cf99a36dd7d14909432725d4bc5cf696c2",
+    "head-nonlinear.npz": "eb2c29fb7473faac715b93cdb1671134d7c408dc87065166b77e50d630efd28d",
+    "heads.lock.json": "bd6e5b5c3d2a52e2f88c7a3b1b87caa8eb0880136de90b9deeb26f251eb18743",
+    "protocol.lock.json": "f795f15d970043d65592ac9ef7cd3ee4af9b36bf2310de23a840bcf12db08721"
+  },
+  "git_branch": "pronunciation-v2-research",
+  "git_head": "d8b28ff0b91dc103fb920f13be3c9a535a609a41",
+  "manifest_sha256": "141a9349da2786b822d6bbb109ff726f97b466bdb0f4548c5a7f1a2874b60490",
+  "model_heads_changed": false,
+  "raw_audio_staged": false,
+  "rows": 720,
+  "runner_lock_sha256": "12f6c27d186ce2698f1e6a4b2eefca938e26eae001db4d460e9ea6cf862d7e70",
+  "runner_locked_at": "2026-10-01T15:13:05.990560+00:00",
+  "sealed_panel_embeddings_computed": false,
+  "source_pcm_verification": "All 720 selected source/file/original-PCM/mono16k-PCM hashes recomputed and matched before and after locking",
+  "status": "VERIFIED_SEALED_UNOPENED",
+  "test_predictions_opened": false,
+  "verified_at": "2026-10-01T15:14:53.460625+00:00"
+}

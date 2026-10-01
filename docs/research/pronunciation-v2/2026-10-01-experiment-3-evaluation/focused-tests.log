@@ -1,0 +1,29 @@
+test_all_nine_conditions_and_ceiling_tie (test_experiment3_evaluation.DecisionTests.test_all_nine_conditions_and_ceiling_tie) ... ok
+test_each_pooled_and_equal_speaker_regression_fails (test_experiment3_evaluation.DecisionTests.test_each_pooled_and_equal_speaker_regression_fails) ... ok
+test_rational_real_counts_allow_exact_tone_drop (test_experiment3_evaluation.DecisionTests.test_rational_real_counts_allow_exact_tone_drop) ... ok
+test_speaker_threshold_exact_and_strictly_above (test_experiment3_evaluation.DecisionTests.test_speaker_threshold_exact_and_strictly_above) ... ok
+test_tone_thresholds_exact_and_strictly_above (test_experiment3_evaluation.DecisionTests.test_tone_thresholds_exact_and_strictly_above) ... ok
+test_exact_composition_synthetic (test_experiment3_evaluation.GateTests.test_exact_composition_synthetic) ... ok
+test_exclusive_files_and_lock_refuse_overwrite (test_experiment3_evaluation.GateTests.test_exclusive_files_and_lock_refuse_overwrite) ... ok
+test_hash_mutation_and_missing_file (test_experiment3_evaluation.GateTests.test_hash_mutation_and_missing_file) ... ok
+test_import_and_verify_have_no_model_imports (test_experiment3_evaluation.GateTests.test_import_and_verify_have_no_model_imports) ... ok
+test_lock_digest_and_every_state_component_fail_closed (test_experiment3_evaluation.GateTests.test_lock_digest_and_every_state_component_fail_closed) ... ok
+test_missing_lock_and_opened_claim_block_before_pcm (test_experiment3_evaluation.GateTests.test_missing_lock_and_opened_claim_block_before_pcm) ... ok
+test_source_and_pcm_verification_tamper (test_experiment3_evaluation.GateTests.test_source_and_pcm_verification_tamper) ... ok
+test_bootstrap_reproducible_and_explicit_speaker_copy_oracle (test_experiment3_evaluation.IdentityBootstrapTests.test_bootstrap_reproducible_and_explicit_speaker_copy_oracle) ... ok
+test_identity_order_missing_duplicate_and_mutation_rejected (test_experiment3_evaluation.IdentityBootstrapTests.test_identity_order_missing_duplicate_and_mutation_rejected) ... ok
+test_probabilities_and_correctness_rejected (test_experiment3_evaluation.IdentityBootstrapTests.test_probabilities_and_correctness_rejected) ... ok
+test_equal_speaker_is_unweighted_and_differences_are_paired (test_experiment3_evaluation.MetricsTests.test_equal_speaker_is_unweighted_and_differences_are_paired) ... ok
+test_invalid_labels (test_experiment3_evaluation.MetricsTests.test_invalid_labels) ... ok
+test_metrics_against_independent_sklearn_oracle (test_experiment3_evaluation.MetricsTests.test_metrics_against_independent_sklearn_oracle) ... ok
+test_paired_categories (test_experiment3_evaluation.MetricsTests.test_paired_categories) ... ok
+test_subgroups_are_secondary_and_cannot_drive_decision (test_experiment3_evaluation.MetricsTests.test_subgroups_are_secondary_and_cannot_drive_decision) ... ok
+test_zero_precision_and_missing_tone_ba (test_experiment3_evaluation.MetricsTests.test_zero_precision_and_missing_tone_ba) ... ok
+test_full_synthetic_schemas_review_and_csv (test_experiment3_evaluation.OutputTests.test_full_synthetic_schemas_review_and_csv) ... ok
+test_future_inference_boundary_with_synthetic_waveforms_only (test_experiment3_evaluation.OutputTests.test_future_inference_boundary_with_synthetic_waveforms_only) ... ok
+test_nonlinear_inference_standardization_matches_frozen_training_policy (test_experiment3_evaluation.OutputTests.test_nonlinear_inference_standardization_matches_frozen_training_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 3.108s
+
+OK

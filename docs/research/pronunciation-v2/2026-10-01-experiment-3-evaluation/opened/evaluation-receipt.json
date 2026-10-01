@@ -1,0 +1,17 @@
+{
+  "artifacts_sha256": {
+    "bootstrap.json": "8700ccbd1e3e5c8dea653b42024700f2ce8e86a4f1f9bc3ddd8b78421c6d734e",
+    "opening-receipt.json": "f723d35b5bdf748216c02fb901808ed85ac75d0f70efcaec71edce1ad723dcf6",
+    "predictions.csv": "107d57f7dbd1fd07d50276e121b4eefe82618f789736e1e1248773f4f6e36abd",
+    "results.json": "a3c1e86325d220fe509a04709884dcdd59052024a7f08e65cfd31bf81867d41d",
+    "review.md": "1e9472514dd8d1af6fc95e4f6566b0bdeef285fc9c326242feb41d1efd2a826d"
+  },
+  "completed_at": "2026-10-01T16:04:36.874246+00:00",
+  "manifest_sha256": "141a9349da2786b822d6bbb109ff726f97b466bdb0f4548c5a7f1a2874b60490",
+  "rows": 720,
+  "runner_lock_sha256": "12f6c27d186ce2698f1e6a4b2eefca938e26eae001db4d460e9ea6cf862d7e70",
+  "schema_version": "experiment3-evaluation-v1",
+  "speakers": 18,
+  "status": "COMPLETE",
+  "test_predictions_opened": true
+}

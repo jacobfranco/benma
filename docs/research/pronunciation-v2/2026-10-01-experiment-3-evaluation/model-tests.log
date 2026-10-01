@@ -1,0 +1,44 @@
+test_audio_loading_resamples_stereo_to_16khz (test_model_probe.FeatureTests.test_audio_loading_resamples_stereo_to_16khz) ... ok
+test_hidden_indices_and_frozen_deterministic_batches (test_model_probe.FeatureTests.test_hidden_indices_and_frozen_deterministic_batches) ... ok
+test_padding_excluded_even_when_hidden_padding_is_nonzero (test_model_probe.FeatureTests.test_padding_excluded_even_when_hidden_padding_is_nonzero) ... ok
+test_lock_detects_changed_split_and_receipt_is_exclusive (test_model_probe.HeadAndFirewallTests.test_lock_detects_changed_split_and_receipt_is_exclusive) ... ok
+test_normalizer_uses_only_training (test_model_probe.HeadAndFirewallTests.test_normalizer_uses_only_training) ... ok
+test_saved_head_matches_multinomial_softmax (test_model_probe.HeadAndFirewallTests.test_saved_head_matches_multinomial_softmax) ... ok
+test_selection_tie_break_and_fixed_metric (test_model_probe.HeadAndFirewallTests.test_selection_tie_break_and_fixed_metric) ... ok
+test_test_cannot_open_without_lock (test_model_probe.HeadAndFirewallTests.test_test_cannot_open_without_lock) ... ok
+test_deterministic_manifest (test_model_probe.RemediationTests.test_deterministic_manifest) ... ok
+test_duplicate_audio_and_bad_asset_rejected (test_model_probe.RemediationTests.test_duplicate_audio_and_bad_asset_rejected) ... ok
+test_known_bad_and_singletons_excluded (test_model_probe.RemediationTests.test_known_bad_and_singletons_excluded) ... ok
+test_no_leakage_and_invalid_tones_rejected (test_model_probe.RemediationTests.test_no_leakage_and_invalid_tones_rejected) ... ok
+test_unmarked_retained_only_with_explicit_primary_record (test_model_probe.RemediationTests.test_unmarked_retained_only_with_explicit_primary_record) ... ok
+test_fixed_config_immutable (test_temporal_pooling.FirewallTests.test_fixed_config_immutable) ... ok
+test_identical_prediction_ids_counts_and_paired_counts (test_temporal_pooling.FirewallTests.test_identical_prediction_ids_counts_and_paired_counts) ... ok
+test_lock_detects_changed_code (test_temporal_pooling.FirewallTests.test_lock_detects_changed_code) ... ok
+test_missing_tone_balanced_accuracy_undefined (test_temporal_pooling.FirewallTests.test_missing_tone_balanced_accuracy_undefined) ... ok
+test_no_lock_means_no_fresh_extraction (test_temporal_pooling.FirewallTests.test_no_lock_means_no_fresh_extraction) ... ok
+test_opening_receipt_precedes_extraction_and_refuses_repeat (test_temporal_pooling.FirewallTests.test_opening_receipt_precedes_extraction_and_refuses_repeat) ... ok
+test_scaler_uses_training_only_and_rejects_evaluation_ids (test_temporal_pooling.FirewallTests.test_scaler_uses_training_only_and_rejects_evaluation_ids) ... ok
+test_seal_failure_blocks_model_access_and_receipt (test_temporal_pooling.FirewallTests.test_seal_failure_blocks_model_access_and_receipt) ... ok
+test_sealed_speakers_and_rows_disjoint (test_temporal_pooling.FirewallTests.test_sealed_speakers_and_rows_disjoint) ... ok
+test_stress_requires_fresh_completion (test_temporal_pooling.FirewallTests.test_stress_requires_fresh_completion) ... ok
+test_deterministic_frozen_single_clip_forward (test_temporal_pooling.PoolingTests.test_deterministic_frozen_single_clip_forward) ... ok
+test_exact_bin_membership_and_dimensions (test_temporal_pooling.PoolingTests.test_exact_bin_membership_and_dimensions) ... ok
+test_fewer_than_three_fails_both_arms (test_temporal_pooling.PoolingTests.test_fewer_than_three_fails_both_arms) ... ok
+test_invalid_hidden_input (test_temporal_pooling.PoolingTests.test_invalid_hidden_input) ... ok
+test_comparison_all_metrics_and_pairing (test_nonlinear_head.HeadTests.test_comparison_all_metrics_and_pairing) ... ok
+test_exact_baseline_config (test_nonlinear_head.HeadTests.test_exact_baseline_config) ... ok
+test_exact_training_rows_and_opened_eval_guard (test_nonlinear_head.HeadTests.test_exact_training_rows_and_opened_eval_guard) ... ok
+test_fixed_seed_and_training_learns_deterministically (test_nonlinear_head.HeadTests.test_fixed_seed_and_training_learns_deterministically) ... ok
+test_reject_bad_features_and_labels (test_nonlinear_head.HeadTests.test_reject_bad_features_and_labels) ... ok
+test_shape_capacity_initialization (test_nonlinear_head.HeadTests.test_shape_capacity_initialization) ... ok
+test_deterministic_selection_ignores_all_prediction_fields (test_nonlinear_head.SourceTests.test_deterministic_selection_ignores_all_prediction_fields) ... ok
+test_immutable_write_does_not_replace_a_seal (test_nonlinear_head.SourceTests.test_immutable_write_does_not_replace_a_seal) ... ok
+test_metadata_auditor_has_no_model_imports (test_nonlinear_head.SourceTests.test_metadata_auditor_has_no_model_imports) ... ok
+test_required_provenance_and_tones (test_nonlinear_head.SourceTests.test_required_provenance_and_tones) ... ok
+test_speaker_disjointness_by_id_and_normalized_alias (test_nonlinear_head.SourceTests.test_speaker_disjointness_by_id_and_normalized_alias) ... ok
+test_tiny_speakers_and_duplicate_targets_cannot_fill_quota (test_nonlinear_head.SourceTests.test_tiny_speakers_and_duplicate_targets_cannot_fill_quota) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 4.419s
+
+OK

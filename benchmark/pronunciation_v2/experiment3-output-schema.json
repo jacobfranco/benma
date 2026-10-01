@@ -1,0 +1,2126 @@
+{
+  "$defs": {
+    "difference": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": -1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "balanced_accuracy": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": -1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "macro_f1": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": -1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "per_tone": {
+          "additionalProperties": false,
+          "properties": {
+            "1": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "precision": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1"
+              ],
+              "type": "object"
+            },
+            "2": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "precision": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1"
+              ],
+              "type": "object"
+            },
+            "3": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "precision": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1"
+              ],
+              "type": "object"
+            },
+            "4": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "precision": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "accuracy",
+        "balanced_accuracy",
+        "macro_f1",
+        "per_tone"
+      ],
+      "type": "object"
+    },
+    "metrics": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "balanced_accuracy": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confusion_matrix": {
+          "items": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "type": "array"
+        },
+        "correct_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "directed_confusions": {
+          "additionalProperties": false,
+          "properties": {
+            "T2->T3": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            },
+            "T3->T2": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            },
+            "T3->T4": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            },
+            "T4->T3": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "T2->T3",
+            "T3->T2",
+            "T3->T4",
+            "T4->T3"
+          ],
+          "type": "object"
+        },
+        "macro_f1": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "per_tone": {
+          "additionalProperties": false,
+          "properties": {
+            "1": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            },
+            "2": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            },
+            "3": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            },
+            "4": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "type": "object"
+        },
+        "support": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "correct_count",
+        "support",
+        "accuracy",
+        "balanced_accuracy",
+        "macro_f1",
+        "per_tone",
+        "confusion_matrix",
+        "directed_confusions"
+      ],
+      "type": "object"
+    },
+    "pair": {
+      "additionalProperties": false,
+      "properties": {
+        "A": {
+          "$ref": "#/$defs/metrics"
+        },
+        "B": {
+          "$ref": "#/$defs/metrics"
+        },
+        "difference_B_minus_A": {
+          "$ref": "#/$defs/difference"
+        },
+        "paired_correctness": {
+          "additionalProperties": false,
+          "properties": {
+            "A_only_correct": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "B_only_correct": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "both_correct": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "both_wrong": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "both_correct",
+            "A_only_correct",
+            "B_only_correct",
+            "both_wrong"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "A",
+        "B",
+        "paired_correctness",
+        "difference_B_minus_A"
+      ],
+      "type": "object"
+    },
+    "primary_metrics": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "balanced_accuracy": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confusion_matrix": {
+          "items": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "type": "array"
+        },
+        "correct_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "directed_confusions": {
+          "additionalProperties": false,
+          "properties": {
+            "T2->T3": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            },
+            "T3->T2": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            },
+            "T3->T4": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            },
+            "T4->T3": {
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "denominator": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "rate": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "count",
+                "denominator",
+                "rate"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "T2->T3",
+            "T3->T2",
+            "T3->T4",
+            "T4->T3"
+          ],
+          "type": "object"
+        },
+        "equal_speaker_mean_balanced_accuracy": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "macro_f1": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "per_tone": {
+          "additionalProperties": false,
+          "properties": {
+            "1": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            },
+            "2": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            },
+            "3": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            },
+            "4": {
+              "additionalProperties": false,
+              "properties": {
+                "f1": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "precision": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "recall": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "support": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "precision",
+                "recall",
+                "f1",
+                "support"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "type": "object"
+        },
+        "support": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "correct_count",
+        "support",
+        "accuracy",
+        "balanced_accuracy",
+        "macro_f1",
+        "per_tone",
+        "confusion_matrix",
+        "directed_confusions",
+        "equal_speaker_mean_balanced_accuracy"
+      ],
+      "type": "object"
+    },
+    "speaker_pair": {
+      "additionalProperties": false,
+      "properties": {
+        "A": {
+          "$ref": "#/$defs/metrics"
+        },
+        "B": {
+          "$ref": "#/$defs/metrics"
+        },
+        "difference_B_minus_A": {
+          "$ref": "#/$defs/difference"
+        },
+        "paired_correctness": {
+          "additionalProperties": false,
+          "properties": {
+            "A_only_correct": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "B_only_correct": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "both_correct": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "both_wrong": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "both_correct",
+            "A_only_correct",
+            "B_only_correct",
+            "both_wrong"
+          ],
+          "type": "object"
+        },
+        "source_declared_speaker_status": {
+          "enum": [
+            "NATIVE",
+            "LEARNER"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_declared_speaker_status",
+        "A",
+        "B",
+        "paired_correctness",
+        "difference_B_minus_A"
+      ],
+      "type": "object"
+    }
+  },
+  "csv": {
+    "columns": [
+      "source_asset_id",
+      "speaker_id",
+      "source_declared_speaker_status",
+      "character",
+      "pinyin",
+      "true_lexical_tone",
+      "A_prediction",
+      "A_T1_probability",
+      "A_T2_probability",
+      "A_T3_probability",
+      "A_T4_probability",
+      "B_prediction",
+      "B_T1_probability",
+      "B_T2_probability",
+      "B_T3_probability",
+      "B_T4_probability",
+      "A_correct",
+      "B_correct"
+    ],
+    "correctness_encoding": "integer 0 or 1",
+    "encoding": "UTF-8",
+    "header": true,
+    "identity_mapping": {
+      "character": "text",
+      "pinyin": "pinyin",
+      "source_asset_id": "source_asset_id",
+      "source_declared_speaker_status": "speaker_native_status",
+      "speaker_id": "speaker_id",
+      "true_lexical_tone": "tone"
+    },
+    "line_terminator": "LF",
+    "order": "exact sealed manifest row order",
+    "probabilities": "uncalibrated; finite [0,1]; sum tolerance 1e-6; no abstention",
+    "rows": 720,
+    "tie_break": "argmax; lowest numbered tone wins exact ties"
+  },
+  "json_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+  "lifecycle": "Exclusive opened/ claim before model access; opening-receipt.json; no automatic retries; completion receipt written last. Missing completion receipt means incomplete; no exclusions or fallback.",
+  "output_directory": "docs/research/pronunciation-v2/2026-10-01-experiment-3-evaluation/opened",
+  "outputs": {
+    "bootstrap.json": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration": {
+          "const": {
+            "difference": "B - A",
+            "draws": 10000,
+            "method": "linear",
+            "metrics": [
+              "accuracy",
+              "balanced_accuracy",
+              "macro_f1",
+              "equal_speaker_mean_balanced_accuracy"
+            ],
+            "percentiles": [
+              2.5,
+              97.5
+            ],
+            "rng": "numpy.random.default_rng",
+            "seed": 20261002,
+            "speaker_order": "sorted speaker_id",
+            "unit": "speaker; all clips; with replacement; paired A/B"
+          }
+        },
+        "differences": {
+          "additionalProperties": false,
+          "properties": {
+            "accuracy": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 10000,
+              "minItems": 10000,
+              "type": "array"
+            },
+            "balanced_accuracy": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 10000,
+              "minItems": 10000,
+              "type": "array"
+            },
+            "equal_speaker_mean_balanced_accuracy": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 10000,
+              "minItems": 10000,
+              "type": "array"
+            },
+            "macro_f1": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 10000,
+              "minItems": 10000,
+              "type": "array"
+            }
+          },
+          "required": [
+            "accuracy",
+            "balanced_accuracy",
+            "macro_f1",
+            "equal_speaker_mean_balanced_accuracy"
+          ],
+          "type": "object"
+        },
+        "interpretation": {
+          "const": "Speaker-bootstrap descriptive uncertainty from only 18 speakers, not population guarantees. Intervals including zero are suggestive, not demonstrated superiority. Bootstrap results do not alter the preregistered decision."
+        },
+        "intervals_95_percent": {
+          "additionalProperties": false,
+          "properties": {
+            "accuracy": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            "balanced_accuracy": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            "equal_speaker_mean_balanced_accuracy": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            "macro_f1": {
+              "items": {
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "accuracy",
+            "balanced_accuracy",
+            "macro_f1",
+            "equal_speaker_mean_balanced_accuracy"
+          ],
+          "type": "object"
+        },
+        "sampled_speaker_indices": {
+          "items": {
+            "items": {
+              "maximum": 17,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 18,
+            "minItems": 18,
+            "type": "array"
+          },
+          "maxItems": 10000,
+          "minItems": 10000,
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "experiment3-evaluation-v1"
+        },
+        "speaker_order": {
+          "const": [
+            "sait-ema:A_F001",
+            "sait-ema:A_M001",
+            "sait-ema:F001",
+            "sait-ema:F002",
+            "sait-ema:F003",
+            "sait-ema:F004",
+            "sait-ema:F005",
+            "sait-ema:L_F001",
+            "sait-ema:L_F002",
+            "sait-ema:L_F003",
+            "sait-ema:L_M001",
+            "sait-ema:L_M002",
+            "sait-ema:L_M003",
+            "sait-ema:M001",
+            "sait-ema:M002",
+            "sait-ema:M003",
+            "sait-ema:M004",
+            "sait-ema:M005"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "configuration",
+        "speaker_order",
+        "sampled_speaker_indices",
+        "differences",
+        "intervals_95_percent",
+        "interpretation"
+      ],
+      "type": "object"
+    },
+    "evaluation-receipt.json": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts_sha256": {
+          "additionalProperties": false,
+          "properties": {
+            "bootstrap.json": {
+              "type": "string"
+            },
+            "opening-receipt.json": {
+              "type": "string"
+            },
+            "predictions.csv": {
+              "type": "string"
+            },
+            "results.json": {
+              "type": "string"
+            },
+            "review.md": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "opening-receipt.json",
+            "predictions.csv",
+            "results.json",
+            "bootstrap.json",
+            "review.md"
+          ],
+          "type": "object"
+        },
+        "completed_at": {
+          "type": "string"
+        },
+        "manifest_sha256": {
+          "const": "141a9349da2786b822d6bbb109ff726f97b466bdb0f4548c5a7f1a2874b60490"
+        },
+        "rows": {
+          "const": 720
+        },
+        "runner_lock_sha256": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "experiment3-evaluation-v1"
+        },
+        "speakers": {
+          "const": 18
+        },
+        "status": {
+          "const": "COMPLETE"
+        },
+        "test_predictions_opened": {
+          "const": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "completed_at",
+        "status",
+        "runner_lock_sha256",
+        "manifest_sha256",
+        "rows",
+        "speakers",
+        "test_predictions_opened",
+        "artifacts_sha256"
+      ],
+      "type": "object"
+    },
+    "predictions.csv": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "A_T1_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "A_T2_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "A_T3_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "A_T4_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "A_correct": {
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer"
+          },
+          "A_prediction": {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer"
+          },
+          "B_T1_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "B_T2_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "B_T3_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "B_T4_probability": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "B_correct": {
+            "enum": [
+              0,
+              1
+            ],
+            "type": "integer"
+          },
+          "B_prediction": {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer"
+          },
+          "character": {
+            "type": "string"
+          },
+          "pinyin": {
+            "type": "string"
+          },
+          "source_asset_id": {
+            "type": "string"
+          },
+          "source_declared_speaker_status": {
+            "enum": [
+              "NATIVE",
+              "LEARNER"
+            ],
+            "type": "string"
+          },
+          "speaker_id": {
+            "type": "string"
+          },
+          "true_lexical_tone": {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer"
+          }
+        },
+        "required": [
+          "source_asset_id",
+          "speaker_id",
+          "source_declared_speaker_status",
+          "character",
+          "pinyin",
+          "true_lexical_tone",
+          "A_prediction",
+          "A_T1_probability",
+          "A_T2_probability",
+          "A_T3_probability",
+          "A_T4_probability",
+          "A_correct",
+          "B_prediction",
+          "B_T1_probability",
+          "B_T2_probability",
+          "B_T3_probability",
+          "B_T4_probability",
+          "B_correct"
+        ],
+        "type": "object"
+      },
+      "maxItems": 720,
+      "minItems": 720,
+      "type": "array"
+    },
+    "results.json": {
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "additionalProperties": false,
+          "properties": {
+            "checks": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "condition": {
+                    "type": "string"
+                  },
+                  "details": {
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "maximum": 1,
+                          "minimum": -1,
+                          "type": "number"
+                        },
+                        {
+                          "additionalProperties": {
+                            "maximum": 1,
+                            "minimum": -1,
+                            "type": "number"
+                          },
+                          "properties": {},
+                          "required": [],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "properties": {},
+                    "required": [],
+                    "type": "object"
+                  },
+                  "passed": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "condition",
+                  "passed",
+                  "details"
+                ],
+                "type": "object"
+              },
+              "maxItems": 9,
+              "minItems": 9,
+              "type": "array"
+            },
+            "failed_conditions": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "interpretation": {
+              "type": "string"
+            },
+            "promising": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "promising",
+            "checks",
+            "failed_conditions",
+            "interpretation"
+          ],
+          "type": "object"
+        },
+        "panel": {
+          "additionalProperties": false,
+          "properties": {
+            "role": {
+              "const": "PRIMARY_ALL_SEALED_ROWS"
+            },
+            "rows": {
+              "const": 720
+            },
+            "speakers": {
+              "const": 18
+            }
+          },
+          "required": [
+            "role",
+            "rows",
+            "speakers"
+          ],
+          "type": "object"
+        },
+        "per_speaker": {
+          "additionalProperties": false,
+          "properties": {
+            "sait-ema:A_F001": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:A_M001": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:F001": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:F002": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:F003": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:F004": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:F005": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:L_F001": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:L_F002": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:L_F003": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:L_M001": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:L_M002": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:L_M003": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:M001": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:M002": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:M003": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:M004": {
+              "$ref": "#/$defs/speaker_pair"
+            },
+            "sait-ema:M005": {
+              "$ref": "#/$defs/speaker_pair"
+            }
+          },
+          "required": [
+            "sait-ema:A_F001",
+            "sait-ema:A_M001",
+            "sait-ema:F001",
+            "sait-ema:F002",
+            "sait-ema:F003",
+            "sait-ema:F004",
+            "sait-ema:F005",
+            "sait-ema:L_F001",
+            "sait-ema:L_F002",
+            "sait-ema:L_F003",
+            "sait-ema:L_M001",
+            "sait-ema:L_M002",
+            "sait-ema:L_M003",
+            "sait-ema:M001",
+            "sait-ema:M002",
+            "sait-ema:M003",
+            "sait-ema:M004",
+            "sait-ema:M005"
+          ],
+          "type": "object"
+        },
+        "primary": {
+          "additionalProperties": false,
+          "properties": {
+            "A": {
+              "$ref": "#/$defs/primary_metrics"
+            },
+            "B": {
+              "$ref": "#/$defs/primary_metrics"
+            },
+            "difference_B_minus_A": {
+              "additionalProperties": false,
+              "properties": {
+                "accuracy": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "balanced_accuracy": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "equal_speaker_mean_balanced_accuracy": {
+                  "maximum": 1,
+                  "minimum": -1,
+                  "type": "number"
+                },
+                "macro_f1": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": -1,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "per_tone": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "1": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "f1": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "precision": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "recall": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "precision",
+                        "recall",
+                        "f1"
+                      ],
+                      "type": "object"
+                    },
+                    "2": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "f1": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "precision": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "recall": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "precision",
+                        "recall",
+                        "f1"
+                      ],
+                      "type": "object"
+                    },
+                    "3": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "f1": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "precision": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "recall": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "precision",
+                        "recall",
+                        "f1"
+                      ],
+                      "type": "object"
+                    },
+                    "4": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "f1": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "precision": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "recall": {
+                          "anyOf": [
+                            {
+                              "maximum": 1,
+                              "minimum": -1,
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "precision",
+                        "recall",
+                        "f1"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "accuracy",
+                "balanced_accuracy",
+                "macro_f1",
+                "per_tone",
+                "equal_speaker_mean_balanced_accuracy"
+              ],
+              "type": "object"
+            },
+            "paired_correctness": {
+              "additionalProperties": false,
+              "properties": {
+                "A_only_correct": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "B_only_correct": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "both_correct": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "both_wrong": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "both_correct",
+                "A_only_correct",
+                "B_only_correct",
+                "both_wrong"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "A",
+            "B",
+            "paired_correctness",
+            "difference_B_minus_A"
+          ],
+          "type": "object"
+        },
+        "schema_version": {
+          "const": "experiment3-evaluation-v1"
+        },
+        "source_declared_status_subgroups": {
+          "additionalProperties": false,
+          "properties": {
+            "LEARNER": {
+              "additionalProperties": false,
+              "properties": {
+                "A": {
+                  "$ref": "#/$defs/metrics"
+                },
+                "B": {
+                  "$ref": "#/$defs/metrics"
+                },
+                "difference_B_minus_A": {
+                  "$ref": "#/$defs/difference"
+                },
+                "paired_correctness": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "A_only_correct": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "B_only_correct": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "both_correct": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "both_wrong": {
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "both_correct",
+                    "A_only_correct",
+                    "B_only_correct",
+                    "both_wrong"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "SECONDARY_DESCRIPTIVE"
+                },
+                "speaker_count": {
+                  "const": 6
+                }
+              },
+              "required": [
+                "role",
+                "speaker_count",
+                "A",
+                "B",
+                "paired_correctness",
+                "difference_B_minus_A"
+              ],
+              "type": "object"
+            },
+            "NATIVE": {
+              "additionalProperties": false,
+              "properties": {
+                "A": {
+                  "$ref": "#/$defs/metrics"
+                },
+                "B": {
+                  "$ref": "#/$defs/metrics"
+                },
+                "difference_B_minus_A": {
+                  "$ref": "#/$defs/difference"
+                },
+                "paired_correctness": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "A_only_correct": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "B_only_correct": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "both_correct": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "both_wrong": {
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "both_correct",
+                    "A_only_correct",
+                    "B_only_correct",
+                    "both_wrong"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "SECONDARY_DESCRIPTIVE"
+                },
+                "speaker_count": {
+                  "const": 12
+                }
+              },
+              "required": [
+                "role",
+                "speaker_count",
+                "A",
+                "B",
+                "paired_correctness",
+                "difference_B_minus_A"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "NATIVE",
+            "LEARNER"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema_version",
+        "panel",
+        "primary",
+        "per_speaker",
+        "source_declared_status_subgroups",
+        "decision"
+      ],
+      "type": "object"
+    },
+    "review.md": {
+      "type": "string"
+    }
+  },
+  "review_template": "Primary coverage, uncalibrated probabilities, all failed rule conditions, mixed-results caveat, speaker-bootstrap uncertainty, secondary source-declared status caveat, complete results JSON and bootstrap intervals. Rendered by review() in hashed runner.",
+  "schema_version": "experiment3-evaluation-v1"
+}

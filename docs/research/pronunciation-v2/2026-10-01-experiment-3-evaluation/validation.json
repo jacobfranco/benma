@@ -1,0 +1,72 @@
+{
+  "additional_broad_checks": [
+    {
+      "command": ".venv/bin/ruff check benchmark/pronunciation_v2",
+      "exit_code": 1,
+      "result": "Pre-existing E501 at unmodified report.py:95 (113 > 100 characters)"
+    },
+    {
+      "command": ".venv/bin/ruff format --check benchmark/pronunciation_v2",
+      "exit_code": 1,
+      "result": "Pre-existing formatting violation at unmodified report.py:95; 29 other files formatted"
+    }
+  ],
+  "checks": [
+    {
+      "command": "benchmark/pronunciation_v2/.venv/bin/python -m unittest discover -s benchmark/pronunciation_v2 -p test_experiment3_evaluation.py -v",
+      "exit_code": 0,
+      "result": "24 passed in 3.108s; synthetic only; no evaluate invocation"
+    },
+    {
+      "command": "PYTHONPATH=benchmark/pronunciation_v2 benchmark/pronunciation_v2/.venv/bin/python -m unittest test_model_probe test_temporal_pooling test_nonlinear_head -v",
+      "exit_code": 0,
+      "result": "39 passed in 4.419s; synthetic model controls and metadata; no sealed test prediction access"
+    },
+    {
+      "command": "PYTHONPATH=benchmark/pronunciation_v2 services/api/.venv/bin/python -m pytest benchmark/pronunciation_v2/test_public_panel.py benchmark/pronunciation_v2/test_pilot.py benchmark/pronunciation_v2/test_preflight.py benchmark/pronunciation_v2/test_evaluation_preflight.py -q",
+      "exit_code": 0,
+      "result": "116 passed in 7.23s"
+    },
+    {
+      "command": ".venv/bin/ruff check benchmark/pronunciation_v2/evaluate_experiment3.py benchmark/pronunciation_v2/experiment3_metrics.py benchmark/pronunciation_v2/test_experiment3_evaluation.py",
+      "exit_code": 0,
+      "result": "All checks passed"
+    },
+    {
+      "command": ".venv/bin/ruff format --check benchmark/pronunciation_v2/evaluate_experiment3.py benchmark/pronunciation_v2/experiment3_metrics.py benchmark/pronunciation_v2/test_experiment3_evaluation.py",
+      "exit_code": 0,
+      "result": "3 files already formatted"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "Clean; tracked changes only because additions remain untracked"
+    },
+    {
+      "command": "git diff --cached --name-only",
+      "exit_code": 0,
+      "result": "Empty index diff; raw SAIT-EMA audio is not staged"
+    },
+    {
+      "command": "git diff --no-index --check /dev/null <each added source/schema/spec file>",
+      "exit_code": 0,
+      "result": "No whitespace errors in untracked additions"
+    }
+  ],
+  "initial_read_only_verification": "VERIFIED_SEALED_UNOPENED; 720 source/file/original-PCM/mono16k-PCM checks passed; final lock repeats verification against final source bytes",
+  "required_checks_passed": true,
+  "sealed_panel_embeddings_computed": false,
+  "test_log_sha256": {
+    "data-tests.log": "c2a3475c2ed440ae032c1326f9c58f6fb7d27e4b16791bd0d4773326c3649b4e",
+    "focused-tests.log": "5d7e9fe6f3e0ef90e282ed14b1d830f255d69ab8ee4c0173056aa072afa5fb41",
+    "model-tests.log": "66ec543571398afe330751e70abbaf74d26b109127368056a903911129b6a74c"
+  },
+  "test_predictions_opened": false,
+  "tested_files_sha256": {
+    "benchmark/pronunciation_v2/evaluate_experiment3.py": "76e0860dfc377cb214cac077f2771a31403072dd011ba36353809fa84d1c0d96",
+    "benchmark/pronunciation_v2/experiment3-output-schema.json": "55cc7552368828c479882e748b9b6b4ed0e7430d7cacbac4e6947298a0ee9ec5",
+    "benchmark/pronunciation_v2/experiment3_metrics.py": "497e981fde2ed958e60c1264761576ddaf7e354603ac9c7996dde2c8c6880fc9",
+    "benchmark/pronunciation_v2/test_experiment3_evaluation.py": "b6497fafa0072a11bb651c61355a5f1e2127a9665a43fc15783c28457677aaf5"
+  },
+  "validated_at": "2026-10-01T15:12:37.028321+00:00"
+}
