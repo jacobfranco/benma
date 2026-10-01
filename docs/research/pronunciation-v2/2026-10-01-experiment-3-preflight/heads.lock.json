@@ -1,0 +1,13 @@
+{
+  "epochs": 200,
+  "evaluation_predictions_opened": false,
+  "heads_sha256": {
+    "head-linear.npz": "d3f1cbe4a6ac7ea7c76b4538805d57cf99a36dd7d14909432725d4bc5cf696c2",
+    "head-nonlinear.npz": "eb2c29fb7473faac715b93cdb1671134d7c408dc87065166b77e50d630efd28d"
+  },
+  "locked_at": "2026-10-01T02:19:55.958563+00:00",
+  "nonlinear_arrays_sha256": "d3961629af0f7f91005c60911ea408a3fe1d149db2cc986df231765f35170659",
+  "protocol_sha256": "f795f15d970043d65592ac9ef7cd3ee4af9b36bf2310de23a840bcf12db08721",
+  "training_loss_first": 1.3613613843917847,
+  "training_loss_last": 0.11381959915161133
+}
