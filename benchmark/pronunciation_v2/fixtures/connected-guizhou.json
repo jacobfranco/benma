@@ -1,0 +1,25 @@
+{
+  "duration_ms": 3000,
+  "provider": "synthetic_fixture",
+  "evidence": {
+    "transcript": "我要去贵州",
+    "evidence_status": "synthetic_fixture"
+  },
+  "raw_response": {
+    "text": "我要去贵州"
+  },
+  "alignment_reference_text": "我要去贵州",
+  "azure_raw": {
+    "NBest": [
+      {
+        "Words": [
+          {
+            "Word": "我要去贵州",
+            "Offset": 1000000,
+            "Duration": 20000000
+          }
+        ]
+      }
+    ]
+  }
+}

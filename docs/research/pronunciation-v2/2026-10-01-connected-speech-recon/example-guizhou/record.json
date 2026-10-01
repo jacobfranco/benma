@@ -1,0 +1,548 @@
+{
+  "schema_version": "connected-speech-v1",
+  "analysis_version": "connected-probe-v1",
+  "recording_id": "connected-guizhou",
+  "audio": {
+    "path": null,
+    "sha256": null,
+    "canonical_sha256": null,
+    "duration_ms": 3000.0,
+    "provenance": "synthetic_fixture"
+  },
+  "mode": "practice",
+  "provider": "synthetic_fixture",
+  "language": "zh-CN",
+  "perception": {
+    "raw_transcript": "我要去贵州",
+    "normalized_transcript": "我要去贵州",
+    "normalization": "identity",
+    "transcript_sha256": "517810c9889265926f053f12b684b36e2e39a9c2e75db4bfefeed1fd2ca20a45",
+    "evidence": {
+      "transcript": "我要去贵州",
+      "evidence_status": "synthetic_fixture"
+    },
+    "raw_response": {
+      "text": "我要去贵州"
+    },
+    "request_configuration": null,
+    "evidence_status": "synthetic_fixture"
+  },
+  "intended_text": "我要去广州",
+  "alignment": {
+    "reference_text": "我要去贵州",
+    "source": "azure_perceived_reference",
+    "evidence_status": "synthetic_fixture",
+    "raw_response": {
+      "NBest": [
+        {
+          "Words": [
+            {
+              "Word": "我要去贵州",
+              "Offset": 1000000,
+              "Duration": 20000000
+            }
+          ]
+        }
+      ]
+    },
+    "issues": [],
+    "words": [
+      {
+        "perceived_text": "我要去贵州",
+        "character_start": 0,
+        "character_end": 5,
+        "timing": {
+          "start_ms": 100.0,
+          "end_ms": 2100.0,
+          "duration_ms": 2000.0
+        },
+        "timing_source": "azure_perceived_reference",
+        "syllable_timing_status": "unresolved",
+        "raw_provider_word": {
+          "text": "我要去贵州",
+          "timing": {
+            "start_seconds": 0.1,
+            "end_seconds": 2.1
+          },
+          "omitted_or_inserted": false,
+          "phones": []
+        }
+      }
+    ]
+  },
+  "acoustics": null,
+  "units": [
+    {
+      "unit_id": "u0",
+      "perceived_text": "我",
+      "character_start": 0,
+      "character_end": 1,
+      "granularity": "han_character_candidate_syllable",
+      "timing": null,
+      "timing_source": null,
+      "timing_confidence": null,
+      "reading": {
+        "pinyin": "wǒ",
+        "lexical_tone": 3,
+        "status": "dictionary",
+        "alternatives": [
+          "wo3"
+        ],
+        "ambiguous": false
+      },
+      "pitch": null,
+      "phones": [],
+      "observed_tone_model": null,
+      "context": {
+        "previous_unit": null,
+        "next_unit": "u1",
+        "window": null
+      },
+      "target_comparison": {
+        "operation": "match",
+        "perceived_offset": 0,
+        "intended_offset": 0,
+        "perceived": "我",
+        "intended": "我",
+        "correspondence": "unique_minimum_edit",
+        "expectation": {
+          "reading": {
+            "pinyin": "wǒ",
+            "lexical_tone": 3,
+            "status": "dictionary",
+            "alternatives": [
+              "wo3"
+            ],
+            "ambiguous": false
+          },
+          "surface_tone": 3,
+          "rule": "unchanged",
+          "version": "exact-text-surface-v1"
+        },
+        "diagnosis": "not_inferred_from_text"
+      },
+      "quality_flags": [
+        "asr_uncertainty_unavailable",
+        "insufficient_voiced_frames",
+        "phone_evidence_unavailable",
+        "syllable_timing_unresolved",
+        "synthetic_fixture_not_recorded_speech",
+        "tone_model_not_integrated"
+      ],
+      "judgment": "INSUFFICIENT EVIDENCE",
+      "abstention_reasons": [
+        "connected_speech_diagnosis_unvalidated",
+        "insufficient_voiced_pitch",
+        "no_reliable_syllable_boundary",
+        "synthetic_evidence"
+      ]
+    },
+    {
+      "unit_id": "u1",
+      "perceived_text": "要",
+      "character_start": 1,
+      "character_end": 2,
+      "granularity": "han_character_candidate_syllable",
+      "timing": null,
+      "timing_source": null,
+      "timing_confidence": null,
+      "reading": {
+        "pinyin": null,
+        "lexical_tone": null,
+        "status": "unresolved",
+        "alternatives": [
+          "yao4",
+          "yao1",
+          "yao3"
+        ],
+        "ambiguous": true
+      },
+      "pitch": null,
+      "phones": [],
+      "observed_tone_model": null,
+      "context": {
+        "previous_unit": "u0",
+        "next_unit": "u2",
+        "window": null
+      },
+      "target_comparison": {
+        "operation": "match",
+        "perceived_offset": 1,
+        "intended_offset": 1,
+        "perceived": "要",
+        "intended": "要",
+        "correspondence": "unique_minimum_edit",
+        "expectation": {
+          "reading": {
+            "pinyin": null,
+            "lexical_tone": null,
+            "status": "unresolved",
+            "alternatives": [
+              "yao4",
+              "yao1",
+              "yao3"
+            ],
+            "ambiguous": true
+          },
+          "surface_tone": null,
+          "rule": "reading_unresolved",
+          "version": "exact-text-surface-v1"
+        },
+        "diagnosis": "not_inferred_from_text"
+      },
+      "quality_flags": [
+        "ambiguous_reading",
+        "asr_uncertainty_unavailable",
+        "insufficient_voiced_frames",
+        "phone_evidence_unavailable",
+        "syllable_timing_unresolved",
+        "synthetic_fixture_not_recorded_speech",
+        "tone_model_not_integrated"
+      ],
+      "judgment": "INSUFFICIENT EVIDENCE",
+      "abstention_reasons": [
+        "ambiguous_reading",
+        "connected_speech_diagnosis_unvalidated",
+        "contextual_expectation_unresolved",
+        "insufficient_voiced_pitch",
+        "no_reliable_syllable_boundary",
+        "synthetic_evidence"
+      ]
+    },
+    {
+      "unit_id": "u2",
+      "perceived_text": "去",
+      "character_start": 2,
+      "character_end": 3,
+      "granularity": "han_character_candidate_syllable",
+      "timing": null,
+      "timing_source": null,
+      "timing_confidence": null,
+      "reading": {
+        "pinyin": "qù",
+        "lexical_tone": 4,
+        "status": "dictionary",
+        "alternatives": [
+          "qu4",
+          "qu1"
+        ],
+        "ambiguous": false
+      },
+      "pitch": null,
+      "phones": [],
+      "observed_tone_model": null,
+      "context": {
+        "previous_unit": "u1",
+        "next_unit": "u3",
+        "window": null
+      },
+      "target_comparison": {
+        "operation": "match",
+        "perceived_offset": 2,
+        "intended_offset": 2,
+        "perceived": "去",
+        "intended": "去",
+        "correspondence": "unique_minimum_edit",
+        "expectation": {
+          "reading": {
+            "pinyin": "qù",
+            "lexical_tone": 4,
+            "status": "dictionary",
+            "alternatives": [
+              "qu4",
+              "qu1"
+            ],
+            "ambiguous": false
+          },
+          "surface_tone": 4,
+          "rule": "unchanged",
+          "version": "exact-text-surface-v1"
+        },
+        "diagnosis": "not_inferred_from_text"
+      },
+      "quality_flags": [
+        "asr_uncertainty_unavailable",
+        "insufficient_voiced_frames",
+        "phone_evidence_unavailable",
+        "syllable_timing_unresolved",
+        "synthetic_fixture_not_recorded_speech",
+        "tone_model_not_integrated"
+      ],
+      "judgment": "INSUFFICIENT EVIDENCE",
+      "abstention_reasons": [
+        "connected_speech_diagnosis_unvalidated",
+        "insufficient_voiced_pitch",
+        "no_reliable_syllable_boundary",
+        "synthetic_evidence"
+      ]
+    },
+    {
+      "unit_id": "u3",
+      "perceived_text": "贵",
+      "character_start": 3,
+      "character_end": 4,
+      "granularity": "han_character_candidate_syllable",
+      "timing": null,
+      "timing_source": null,
+      "timing_confidence": null,
+      "reading": {
+        "pinyin": "guì",
+        "lexical_tone": 4,
+        "status": "dictionary",
+        "alternatives": [
+          "gui4"
+        ],
+        "ambiguous": false
+      },
+      "pitch": null,
+      "phones": [],
+      "observed_tone_model": null,
+      "context": {
+        "previous_unit": "u2",
+        "next_unit": "u4",
+        "window": null
+      },
+      "target_comparison": {
+        "operation": "substitution",
+        "perceived_offset": 3,
+        "intended_offset": 3,
+        "perceived": "贵",
+        "intended": "广",
+        "correspondence": "unique_minimum_edit",
+        "expectation": {
+          "reading": {
+            "pinyin": "guǎng",
+            "lexical_tone": 3,
+            "status": "phrase",
+            "alternatives": [
+              "guang3"
+            ],
+            "ambiguous": false
+          },
+          "surface_tone": 3,
+          "rule": "unchanged",
+          "version": "exact-text-surface-v1"
+        },
+        "diagnosis": "not_inferred_from_text"
+      },
+      "quality_flags": [
+        "asr_uncertainty_unavailable",
+        "insufficient_voiced_frames",
+        "phone_evidence_unavailable",
+        "syllable_timing_unresolved",
+        "synthetic_fixture_not_recorded_speech",
+        "tone_model_not_integrated"
+      ],
+      "judgment": "INSUFFICIENT EVIDENCE",
+      "abstention_reasons": [
+        "connected_speech_diagnosis_unvalidated",
+        "insufficient_voiced_pitch",
+        "no_reliable_syllable_boundary",
+        "synthetic_evidence"
+      ]
+    },
+    {
+      "unit_id": "u4",
+      "perceived_text": "州",
+      "character_start": 4,
+      "character_end": 5,
+      "granularity": "han_character_candidate_syllable",
+      "timing": null,
+      "timing_source": null,
+      "timing_confidence": null,
+      "reading": {
+        "pinyin": "zhōu",
+        "lexical_tone": 1,
+        "status": "dictionary",
+        "alternatives": [
+          "zhou1"
+        ],
+        "ambiguous": false
+      },
+      "pitch": null,
+      "phones": [],
+      "observed_tone_model": null,
+      "context": {
+        "previous_unit": "u3",
+        "next_unit": null,
+        "window": null
+      },
+      "target_comparison": {
+        "operation": "match",
+        "perceived_offset": 4,
+        "intended_offset": 4,
+        "perceived": "州",
+        "intended": "州",
+        "correspondence": "unique_minimum_edit",
+        "expectation": {
+          "reading": {
+            "pinyin": "zhōu",
+            "lexical_tone": 1,
+            "status": "phrase",
+            "alternatives": [
+              "zhou1"
+            ],
+            "ambiguous": false
+          },
+          "surface_tone": 1,
+          "rule": "unchanged",
+          "version": "exact-text-surface-v1"
+        },
+        "diagnosis": "not_inferred_from_text"
+      },
+      "quality_flags": [
+        "asr_uncertainty_unavailable",
+        "insufficient_voiced_frames",
+        "phone_evidence_unavailable",
+        "syllable_timing_unresolved",
+        "synthetic_fixture_not_recorded_speech",
+        "tone_model_not_integrated"
+      ],
+      "judgment": "INSUFFICIENT EVIDENCE",
+      "abstention_reasons": [
+        "connected_speech_diagnosis_unvalidated",
+        "insufficient_voiced_pitch",
+        "no_reliable_syllable_boundary",
+        "synthetic_evidence"
+      ]
+    }
+  ],
+  "text_comparison": [
+    {
+      "operation": "match",
+      "perceived_offset": 0,
+      "intended_offset": 0,
+      "perceived": "我",
+      "intended": "我",
+      "correspondence": "unique_minimum_edit",
+      "expectation": {
+        "reading": {
+          "pinyin": "wǒ",
+          "lexical_tone": 3,
+          "status": "dictionary",
+          "alternatives": [
+            "wo3"
+          ],
+          "ambiguous": false
+        },
+        "surface_tone": 3,
+        "rule": "unchanged",
+        "version": "exact-text-surface-v1"
+      },
+      "diagnosis": "not_inferred_from_text"
+    },
+    {
+      "operation": "match",
+      "perceived_offset": 1,
+      "intended_offset": 1,
+      "perceived": "要",
+      "intended": "要",
+      "correspondence": "unique_minimum_edit",
+      "expectation": {
+        "reading": {
+          "pinyin": null,
+          "lexical_tone": null,
+          "status": "unresolved",
+          "alternatives": [
+            "yao4",
+            "yao1",
+            "yao3"
+          ],
+          "ambiguous": true
+        },
+        "surface_tone": null,
+        "rule": "reading_unresolved",
+        "version": "exact-text-surface-v1"
+      },
+      "diagnosis": "not_inferred_from_text"
+    },
+    {
+      "operation": "match",
+      "perceived_offset": 2,
+      "intended_offset": 2,
+      "perceived": "去",
+      "intended": "去",
+      "correspondence": "unique_minimum_edit",
+      "expectation": {
+        "reading": {
+          "pinyin": "qù",
+          "lexical_tone": 4,
+          "status": "dictionary",
+          "alternatives": [
+            "qu4",
+            "qu1"
+          ],
+          "ambiguous": false
+        },
+        "surface_tone": 4,
+        "rule": "unchanged",
+        "version": "exact-text-surface-v1"
+      },
+      "diagnosis": "not_inferred_from_text"
+    },
+    {
+      "operation": "substitution",
+      "perceived_offset": 3,
+      "intended_offset": 3,
+      "perceived": "贵",
+      "intended": "广",
+      "correspondence": "unique_minimum_edit",
+      "expectation": {
+        "reading": {
+          "pinyin": "guǎng",
+          "lexical_tone": 3,
+          "status": "phrase",
+          "alternatives": [
+            "guang3"
+          ],
+          "ambiguous": false
+        },
+        "surface_tone": 3,
+        "rule": "unchanged",
+        "version": "exact-text-surface-v1"
+      },
+      "diagnosis": "not_inferred_from_text"
+    },
+    {
+      "operation": "match",
+      "perceived_offset": 4,
+      "intended_offset": 4,
+      "perceived": "州",
+      "intended": "州",
+      "correspondence": "unique_minimum_edit",
+      "expectation": {
+        "reading": {
+          "pinyin": "zhōu",
+          "lexical_tone": 1,
+          "status": "phrase",
+          "alternatives": [
+            "zhou1"
+          ],
+          "ambiguous": false
+        },
+        "surface_tone": 1,
+        "rule": "unchanged",
+        "version": "exact-text-surface-v1"
+      },
+      "diagnosis": "not_inferred_from_text"
+    }
+  ],
+  "target_relative_assessment": null,
+  "configuration": {
+    "context_before_ms": 150,
+    "context_after_ms": 150,
+    "reading_version": "exact-text-lexical-context-v3.1",
+    "surface_version": "exact-text-surface-v1",
+    "azure_mapping_version": "zh-CN-sapi-syllable-offsets-v1",
+    "quality_policy": "five_usable_frames_and_half_missing_flags_v1",
+    "text_comparison": "alphanumeric_codepoints_minimum_edit_v1"
+  },
+  "limitations": [
+    "ASR text is what the recognizer heard, not a gold phonetic transcription.",
+    "Reference phone labels and scores do not establish observed phones or tones.",
+    "Every pronunciation judgment abstains pending connected-speech validation.",
+    "No learned tone model or target-relative provider assessment is run in v1.",
+    "Timing is conditionally mapped provider evidence, not validated gold boundaries.",
+    "Non-Han text is retained but has no pronunciation units; no erhua segmentation."
+  ]
+}
