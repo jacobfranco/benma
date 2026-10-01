@@ -1,0 +1,26 @@
+source,speaker_id,raw_prompted_t1,raw_prompted_t2,raw_prompted_t3,raw_prompted_t4,eligible_t1,eligible_t2,eligible_t3,eligible_t4,basis
+MCAE-Monosyllable,mcae:actor1,422,175,396,334,0,0,0,0,Full spreadsheet; intended-neutral-tone filename codes; unique pinyin codes per cell; no character transcript / NC excluded; not model labels
+MCAE-Monosyllable,mcae:actor2,403,292,411,343,0,0,0,0,Full spreadsheet; intended-neutral-tone filename codes; unique pinyin codes per cell; no character transcript / NC excluded; not model labels
+MCAE-Monosyllable,mcae:actor3,416,316,395,384,0,0,0,0,Full spreadsheet; intended-neutral-tone filename codes; unique pinyin codes per cell; no character transcript / NC excluded; not model labels
+MCAE-Monosyllable,mcae:actor4,419,388,418,322,0,0,0,0,Full spreadsheet; intended-neutral-tone filename codes; unique pinyin codes per cell; no character transcript / NC excluded; not model labels
+MCAE-Monosyllable,mcae:actor5,422,415,421,413,0,0,0,0,Full spreadsheet; intended-neutral-tone filename codes; unique pinyin codes per cell; no character transcript / NC excluded; not model labels
+MCAE-Monosyllable,mcae:actor6,419,390,419,382,0,0,0,0,Full spreadsheet; intended-neutral-tone filename codes; unique pinyin codes per cell; no character transcript / NC excluded; not model labels
+Yali-Voice,yali:cheng-ya-li,412,412,412,412,0,0,0,0,Full released metadata.csv syllable strings; no character mapping; pitch processing recorded separately
+SAIT-EMA,sait-ema:A_F001,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:A_M001,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:F001,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:F002,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:F003,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:F004,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:F005,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:L_F001,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:L_F002,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:L_F003,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:L_M001,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:L_M002,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:L_M003,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:M001,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:M002,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:M003,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:M004,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes
+SAIT-EMA,sait-ema:M005,,,,,161,20,13,21,unique lexical targets with existing WAV and matching word-tier; distinct CRC32/size pairs exclude identical source bytes

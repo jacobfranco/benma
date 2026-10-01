@@ -1,0 +1,164 @@
+{
+  "artifacts_sha256": {
+    "candidate-items.csv": "083441caf22841911ad735cbc87943dcbde1237ed92ba8207ae5215779bfcb75",
+    "candidate-sources.csv": "285ffaf0ef1ef6b09b94773f9ca0e9862500c1e03d138ecb42cc675d3024057a",
+    "candidate-speakers.csv": "4398de35e20ebd121d8b9c3e9acc9c08a4fdfc5a7cd330137d849864bbd1f8c0",
+    "environment.md": "052e9396dcdd72beb046632b80d760de1bd99a1e15a0396ec8050fdf8edbbf83",
+    "exclusions.csv": "e2444d14bedc3cef3f852e97c2c8ce443955c29922eb67dee9f0b79becd4012d",
+    "historical-mono16k-index.json": "d032d87870c996a1ea4b9705d3270ec3bb5664bcaa9c5d740a2a1be9e70ab487",
+    "historical-overlap-index.json": "ff68c38f55b34c3b1c4df122331f4653f5a6fbfb76024d4d766da70bdfcc1db0",
+    "promising-source-counts.csv": "dc9f4faf19ae9b52e2c7b3ee6d147ed2dc8be7808f63003e6148fbbfb281cd63",
+    "provenance.json": "260fc5dbb19624cd9ff05a111cf528d96cefb67cbd8a98d2bf302833fc37a7c9",
+    "retrieval-receipts.jsonl": "5204d55734c66dcd4fb033114044715d7ebd554759b13d8e23d92cd4c5aedda0",
+    "review.md": "861583e2e3569d2ad57f5fca2a206f8f07d2b6d4096511b0f1256e5bdf48a2ac",
+    "sealed-test-manifest.csv": "141a9349da2786b822d6bbb109ff726f97b466bdb0f4548c5a7f1a2874b60490",
+    "search-log.md": "6354bb869c04bee789fb4de3cc826ead44554869a2b5a20e124ebe05b16eb031",
+    "selected-source-evidence.jsonl": "7afbabf3002282e0e6c0909ef37e4d199e03cdf948167995f4484f44bdb40f9a",
+    "selection.json": "4199ae7c975d8cd53f1f5d06bc9914799b62c6e4fed8d4db1d83dd9ae660cfc7",
+    "sources.md": "5b27c2dc4af701a50c9273aec744c5f77d2ed91a630ee1b328286ea9537d2331",
+    "validation.json": "cfb16101bf30f2a65d37456f08196f3b9b2719072ad2c3b44d314fc203ca1bde",
+    "web-evidence.jsonl": "2740f6b3b1f9ddde596f0e948ea7355a08123a137e50ccdf6d9ae152415a1383"
+  },
+  "embeddings_computed": false,
+  "evaluation_predictions_opened": false,
+  "frozen_sha256": {
+    "head-linear.npz": "d3f1cbe4a6ac7ea7c76b4538805d57cf99a36dd7d14909432725d4bc5cf696c2",
+    "head-nonlinear.npz": "eb2c29fb7473faac715b93cdb1671134d7c408dc87065166b77e50d630efd28d",
+    "protocol.lock.json": "f795f15d970043d65592ac9ef7cd3ee4af9b36bf2310de23a840bcf12db08721"
+  },
+  "heads_lock_sha256": "bd6e5b5c3d2a52e2f88c7a3b1b87caa8eb0880136de90b9deeb26f251eb18743",
+  "manifest_sha256": "141a9349da2786b822d6bbb109ff726f97b466bdb0f4548c5a7f1a2874b60490",
+  "model_access": false,
+  "raw_audio_staged": false,
+  "rows": 720,
+  "sealed_at": "2026-10-01T14:47:12.221706+00:00",
+  "selection_lock_sha256": "4199ae7c975d8cd53f1f5d06bc9914799b62c6e4fed8d4db1d83dd9ae660cfc7",
+  "selection_rule": "deduplicate source bytes globally and text within speaker; all speakers with >=8 unique targets in every T1-T4 cell; rank by SHA256(source_asset_id UTF-8), then ID; take at most 10 per cell; >=3 speakers; no predictions",
+  "selection_rule_sha256": "3624c8315762236e4da642f34f6f97a2c385e9d8bf219d261cf9bfe1d5190112",
+  "speaker_count": 18,
+  "speaker_status_clip_counts": {
+    "source_declared_learners": 240,
+    "source_declared_native_controls": 480
+  },
+  "speaker_status_counts": {
+    "source_declared_learners": 6,
+    "source_declared_native_controls": 12
+  },
+  "speakers": {
+    "sait-ema:A_F001": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:A_M001": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:F001": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:F002": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:F003": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:F004": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:F005": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:L_F001": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:L_F002": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:L_F003": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:L_M001": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:L_M002": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:L_M003": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:M001": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:M002": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:M003": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:M004": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "sait-ema:M005": {
+      "1": 10,
+      "2": 10,
+      "3": 10,
+      "4": 10
+    }
+  },
+  "status": "SEALED_UNOPENED",
+  "tone_counts": {
+    "1": 180,
+    "2": 180,
+    "3": 180,
+    "4": 180
+  }
+}

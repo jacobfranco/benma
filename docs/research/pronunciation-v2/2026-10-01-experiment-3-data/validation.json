@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "command": "PYTHONPATH=benchmark/pronunciation_v2 services/api/.venv/bin/python -m pytest benchmark/pronunciation_v2/test_public_panel.py benchmark/pronunciation_v2/test_pilot.py benchmark/pronunciation_v2/test_preflight.py benchmark/pronunciation_v2/test_evaluation_preflight.py -q",
+      "exit_code": 0,
+      "result": "116 passed in 7.76s; 0 skipped; 23 new data-tool tests and 93 existing data/preflight tests"
+    },
+    {
+      "command": ".venv/bin/ruff check benchmark/pronunciation_v2/public_panel.py benchmark/pronunciation_v2/test_public_panel.py",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    },
+    {
+      "command": ".venv/bin/ruff format --check benchmark/pronunciation_v2/public_panel.py benchmark/pronunciation_v2/test_public_panel.py",
+      "exit_code": 0,
+      "result": "2 files already formatted"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "No output; added files are untracked, so this Git check covers tracked changes only"
+    }
+  ],
+  "scope": "Data acquisition, lexical labels, selection, integrity and preflight only; no encoder, embeddings, model features, head inference, refit or evaluation",
+  "seal_verification": "Run public_panel.py verify after exclusive seal creation; this pre-seal artifact does not claim a post-seal result"
+}
