@@ -1,0 +1,16 @@
+speaker,tone,n,correct,accuracy,unique_texts,unique_pinyin,text_pinyin,predicted_T1,predicted_T2,predicted_T3,predicted_T4
+Fake estate,all,38,24,0.631578947368421,38,35,丸:wan2;亦:yi4;党:dang3;兜:dou1;割:ge1;吼:hou3;啃:ken3;垫:dian4;嫌:xian2;孔:kong3;宰:zai3;州:zhou1;弦:xian2;挪:nuo2;捞:lao1;掐:qia1;束:shu4;枚:mei2;染:ran3;牵:qian1;犬:quan3;疤:ba1;皆:jie1;眨:zha3;瞪:deng4;砸:za2;竖:shu4;端:duan1;粒:li4;罐:guan4;翼:yi4;耍:shua3;膜:mo2;舱:cang1;贼:zei2;蹦:beng4;迈:mai4;铜:tong2,13,5,0,20
+Fake estate,1,10,9,0.9,10,10,兜:dou1;割:ge1;州:zhou1;捞:lao1;掐:qia1;牵:qian1;疤:ba1;皆:jie1;端:duan1;舱:cang1,9,0,0,1
+Fake estate,2,9,5,0.5555555555555556,9,8,丸:wan2;嫌:xian2;弦:xian2;挪:nuo2;枚:mei2;砸:za2;膜:mo2;贼:zei2;铜:tong2,3,5,0,1
+Fake estate,3,9,0,0.0,9,9,党:dang3;吼:hou3;啃:ken3;孔:kong3;宰:zai3;染:ran3;犬:quan3;眨:zha3;耍:shua3,1,0,0,8
+Fake estate,4,10,10,1.0,10,8,亦:yi4;垫:dian4;束:shu4;瞪:deng4;竖:shu4;粒:li4;罐:guan4;翼:yi4;蹦:beng4;迈:mai4,0,0,0,10
+Jouketou,all,40,33,0.825,40,39,东:dong1;停:ting2;千:qian1;却:que4;向:xiang4;哭:ku1;嘴:zui3;國:guo2;天:tian1;州:zhou1;左:zuo3;带:dai4;床:chuang2;愛:ai4;抓:zhua1;换:huan4;敢:gan3;書:shu1;条:tiao2;棒:bang4;牛:niu2;砸:za2;等:deng3;米:mi3;羊:yang2;老:lao3;腿:tui3;花:hua1;西:xi1;试:shi4;谈:tan2;象:xiang4;赢:ying2;辆:liang4;遍:bian4;雪:xue3;马:ma3;魚:yu2;黑:hei1;鼠:shu3,10,9,11,10
+Jouketou,1,10,10,1.0,10,10,东:dong1;千:qian1;哭:ku1;天:tian1;州:zhou1;抓:zhua1;書:shu1;花:hua1;西:xi1;黑:hei1,10,0,0,0
+Jouketou,2,10,9,0.9,10,10,停:ting2;國:guo2;床:chuang2;条:tiao2;牛:niu2;砸:za2;羊:yang2;谈:tan2;赢:ying2;魚:yu2,0,9,1,0
+Jouketou,3,10,7,0.7,10,10,嘴:zui3;左:zuo3;敢:gan3;等:deng3;米:mi3;老:lao3;腿:tui3;雪:xue3;马:ma3;鼠:shu3,0,0,7,3
+Jouketou,4,10,7,0.7,10,9,却:que4;向:xiang4;带:dai4;愛:ai4;换:huan4;棒:bang4;试:shi4;象:xiang4;辆:liang4;遍:bian4,0,0,3,7
+雲角,all,40,24,0.6,40,39,乳:ru3;二:er4;人:ren2;冻:dong4;口:kou3;吸:xi1;唱:chang4;四:si4;坐:zuo4;孩:hai2;宽:kuan1;小:xiao3;手:shou3;拿:na2;挖:wa1;挠:nao2;挤:ji3;推:tui1;擦:ca1;日:ri4;杀:sha1;林:lin2;根:gen1;死:si3;流:liu2;玩:wan2;男:nan2;短:duan3;窄:zhai3;笑:xiao4;绳:sheng2;翅:chi4;肝:gan1;腹:fu4;腿:tui3;膝:xi1;蛋:dan4;走:zou3;飞:fei1;鼻:bi2,9,9,5,17
+雲角,1,10,7,0.7,10,9,吸:xi1;宽:kuan1;挖:wa1;推:tui1;擦:ca1;杀:sha1;根:gen1;肝:gan1;膝:xi1;飞:fei1,7,0,0,3
+雲角,2,10,5,0.5,10,10,人:ren2;孩:hai2;拿:na2;挠:nao2;林:lin2;流:liu2;玩:wan2;男:nan2;绳:sheng2;鼻:bi2,1,5,3,1
+雲角,3,10,2,0.2,10,10,乳:ru3;口:kou3;小:xiao3;手:shou3;挤:ji3;死:si3;短:duan3;窄:zhai3;腿:tui3;走:zou3,1,4,2,3
+雲角,4,10,10,1.0,10,10,二:er4;冻:dong4;唱:chang4;四:si4;坐:zuo4;日:ri4;笑:xiao4;翅:chi4;腹:fu4;蛋:dan4,0,0,0,10

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; media-src blob:; connect-src 'none'">
+<title>Mandarin realized pronunciation audit</title>
+<style>
+body{font:17px system-ui,sans-serif;max-width:850px;margin:2rem auto;padding:0 1rem;color:#192c35;background:#f6f7f8}
+label,button{display:inline-block;margin:.4rem .4rem .4rem 0} select,input,button,textarea{font:inherit;padding:.4rem}
+article{padding:1.5rem;background:white;border:1px solid #b5c2c9;border-radius:.5rem}
+h2{font-size:2rem}audio,textarea{width:100%}textarea{box-sizing:border-box}#status{min-height:1.5rem}
+</style>
+<h1>Realized pronunciation audit</h1>
+<p>Listen and judge the pronunciation you hear. The displayed character and pinyin are lexical prompts,
+not verified realizations. Labels can bias listening: this audit is prompt-visible.</p>
+<p>Choose the existing <code>experiment-2-preflight/commons</code> audio folder below.
+Audio stays on this computer. No server or internet connection is needed.</p>
+<label>Audio folder <input id="folder" type="file" webkitdirectory multiple></label>
+<label>Or select WAV files <input id="files" type="file" accept=".wav" multiple></label>
+<p><button id="save">Save annotations (JSON)</button><button id="csv">Export CSV</button>
+<label>Restore saved JSON <input id="restore" type="file" accept=".json"></label></p>
+<p>Selections are kept in this browser when storage is available. Save JSON before closing;
+browser storage is not a backup. JSON can be restored here; CSV joins by source asset ID.</p>
+<p id="status" role="status"></p>
+<nav><button id="prev">Previous</button><span id="position"></span><button id="next">Next</button>
+<label>Go to item <input id="goto" type="number" min="1" max="118" value="1"></label></nav>
+<article><h2 id="target"></h2><p id="speaker"></p><audio id="audio" controls preload="none"></audio>
+<p id="audioStatus"></p>
+<label>Realized pronunciation <select id="realized"><option value="">Unannotated</option>
+<option value="T1">Realized T1</option><option value="T2">Realized T2</option>
+<option value="T3">Realized T3</option><option value="T4">Realized T4</option>
+<option value="neutral/other">Neutral / other</option><option value="unclear">Unclear</option>
+<option value="wrong syllable / target mismatch">Wrong syllable / target mismatch</option></select></label>
+<label>Listening certainty (optional) <select id="certainty"><option value=""></option>
+<option>low</option><option>medium</option><option>high</option></select></label>
+<label for="note">Optional note</label><textarea id="note" rows="3"></textarea></article>
+<script id="items" type="application/json">__ITEMS__</script>
+<script>
+'use strict';
+const items = JSON.parse(document.getElementById('items').textContent);
+const $ = id => document.getElementById(id);
+const key = 'benma-exp2-realized-audit-v1';
+const allowed = new Set(Array.from($('realized').options, x => x.value));
+let annotations = {}, position = 0, audioUrls = new Map();
+function status(message) {$('status').textContent = message;}
+function validate(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('Invalid annotations');
+  const ids = new Set(items.map(x => x.source_asset_id));
+  for (const [id, row] of Object.entries(value)) {
+    if (!ids.has(id) || !row || !allowed.has(row.realized_tone) ||
+        !['', 'low', 'medium', 'high'].includes(row.confidence) || typeof row.note !== 'string')
+      throw Error('Unknown identity or invalid annotation');
+  }
+  return value;
+}
+try {annotations = validate(JSON.parse(localStorage.getItem(key) || '{}'));}
+catch {status('No valid browser backup loaded. Restore JSON if you saved a prior session.');}
+function render() {
+  const item = items[position], row = annotations[item.source_asset_id] || {};
+  $('position').textContent = `${position + 1} / ${items.length}`;
+  $('goto').value = position + 1;
+  $('target').textContent = `${item.text} · ${item.pinyin} · lexical T${item.tone}`;
+  $('speaker').textContent = item.speaker_name;
+  $('realized').value = row.realized_tone || '';
+  $('certainty').value = row.confidence || '';
+  $('note').value = row.note || '';
+  const url = audioUrls.get(item.audio_filename);
+  $('audio').pause();
+  $('audio').removeAttribute('src');
+  if (url) $('audio').src = url;
+  $('audio').load();
+  $('audioStatus').textContent = url ? '' : 'Select the local audio folder to play this item.';
+  $('prev').disabled = position === 0; $('next').disabled = position === items.length - 1;
+}
+function store() {
+  annotations[items[position].source_asset_id] = {realized_tone: $('realized').value,
+    confidence: $('certainty').value, note: $('note').value};
+  try {localStorage.setItem(key, JSON.stringify(annotations)); status('Saved in this browser. Export for a durable backup.');}
+  catch {status('Browser storage unavailable. Use Save annotations before closing.');}
+}
+for (const id of ['realized', 'certainty', 'note']) $(id).addEventListener('input', store);
+$('prev').onclick = () => {position = Math.max(0, position - 1); render();};
+$('next').onclick = () => {position = Math.min(items.length - 1, position + 1); render();};
+$('goto').onchange = () => {position = Math.max(0, Math.min(items.length - 1, (Number($('goto').value) || 1) - 1)); render();};
+function loadAudio(event) {
+  for (const url of audioUrls.values()) URL.revokeObjectURL(url);
+  audioUrls = new Map();
+  const wanted = new Set(items.map(x => x.audio_filename));
+  for (const file of event.target.files) if (wanted.has(file.name)) {
+    if (audioUrls.has(file.name)) {status('Duplicate audio filename. Select only the original commons folder.'); return;}
+    audioUrls.set(file.name, URL.createObjectURL(file));
+  }
+  status(`Loaded ${audioUrls.size} / ${items.length} local recordings.`); render();
+}
+$('folder').onchange = loadAudio; $('files').onchange = loadAudio;
+function download(name, text, type) {
+  const url = URL.createObjectURL(new Blob([text], {type})), link = document.createElement('a');
+  link.href = url; link.download = name; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+$('save').onclick = () => download('benma-realized-annotations.json', JSON.stringify({
+  schema: 'benma-exp2-realized-audit-v1', annotations}, null, 2), 'application/json');
+$('restore').onchange = async event => {
+  try {
+    const value = JSON.parse(await event.target.files[0].text());
+    if (value.schema !== key) throw Error('Wrong audit schema');
+    annotations = validate(value.annotations);
+    try {localStorage.setItem(key, JSON.stringify(annotations));} catch { /* explicit export remains available */ }
+    render(); status('Restored annotations.');
+  } catch (error) {status(`Restore failed: ${error.message}`);}
+};
+function csvText() {
+  const fields = ['source_asset_id', 'speaker_id', 'speaker_name', 'text', 'pinyin', 'tone',
+    'realized_tone', 'confidence', 'note'];
+  const quote = value => '"' + String(value ?? '').replaceAll('"', '""') + '"';
+  return [fields, ...items.map(item => {
+    const row = {...item, ...(annotations[item.source_asset_id] || {})};
+    return fields.map(field => row[field]);
+  })].map(row => row.map(quote).join(',')).join('\r\n') + '\r\n';
+}
+$('csv').onclick = () => download('benma-realized-annotations.csv', csvText(), 'text/csv;charset=utf-8');
+render();
+</script></html>

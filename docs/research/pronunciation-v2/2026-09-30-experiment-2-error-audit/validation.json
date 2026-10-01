@@ -1,0 +1,75 @@
+{
+  "scope": "Completion verification using existing deterministic acoustic outputs; no full extraction after continuation request.",
+  "head": "1b40cda7026e06e397394ecc70cbb8a7c44e9c9c",
+  "initial_tests": [
+    {
+      "suite": "test_error_audit + test_acoustic_forensics + test_evaluation_preflight",
+      "passed": 69,
+      "includes_full_131_clip_replay_twice": true
+    },
+    {
+      "suite": "test_pilot + test_preflight + test_model_probe + test_temporal_pooling",
+      "passed": 66
+    },
+    {
+      "suite": "API acoustic_frontend + tone_evidence_region + readings_contours",
+      "passed": 118
+    }
+  ],
+  "initial_total_passed": 253,
+  "final_focused_tests": {
+    "command": "services/api/.venv/bin/python -m pytest -q benchmark/pronunciation_v2/test_error_audit.py -k 'not full_deterministic_replay'",
+    "passed": 6,
+    "deselected": 1,
+    "deselection_reason": "Full deterministic replay already passed; avoid unnecessary full extraction."
+  },
+  "checks": {
+    "fresh_unique_ids": 118,
+    "luilui_t3_unique_ids": 13,
+    "luilui_correct": 2,
+    "lexical_labels_unchanged": true,
+    "saved_A_outputs_unchanged": true,
+    "target_and_prediction_independent_extraction_test": "passed",
+    "artifact_only_summary_and_human_page_regeneration": "byte-identical",
+    "blank_unique_annotation_rows": 118,
+    "hidden_prediction_fields": "absent",
+    "no_raw_audio_or_hidden_arrays_in_report": true,
+    "staged_files": [],
+    "protected_trees_unchanged": true,
+    "git_diff_check": "passed",
+    "untracked_whitespace": "passed",
+    "ruff_check_new_python": "passed",
+    "ruff_format_check_new_python": "passed",
+    "node_syntax": "passed"
+  },
+  "browser": {
+    "command": "node benchmark/pronunciation_v2/error_audit_browser_check.cjs",
+    "result": "passed",
+    "version": "Chromium 153.0.8010.36",
+    "tested": [
+      "118 identities",
+      "navigation",
+      "localStorage persistence",
+      "CSV quoting and unique ID export",
+      "JSON save/restore",
+      "invalid import rejection",
+      "existing local WAV decoding and playback"
+    ],
+    "visual_inspection": "Blank form inspected from /tmp/benma-error-audit-page.png; prompt, speaker, playback and annotation fields only.",
+    "human_annotations": "No actual human annotations collected; temporary synthetic browser test responses removed.",
+    "execution": "Approved execution outside process sandbox after startup socket restriction; local DevTools pipe, no server required."
+  },
+  "test_log_sha256": {
+    "/tmp/benma-error-audit-tests.log": "6cf1d9c46720fa568ad2e25cf2cbea75b8e850b9cb259255158475030661588b",
+    "/tmp/benma-error-audit-model-tests.log": "76de1f77b8f9294ac28abf1f6319019f5f3388ba86644d05d375e8c2aa20bcc2",
+    "/tmp/benma-error-audit-acoustic-tests.log": "d1dfd0534365a4da8b924c491f24187d034db8fcb72675c0ceee7b7cf3eb56ad",
+    "/tmp/benma-error-audit-final-focused-tests.log": "04b6677dc2ce88ecb6ccaa43893b8c17ceefd6b854bbed20f17b0bbf6e5af1a9"
+  },
+  "supplemental_file_sha256": {
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-error-audit/review.md": "41999a7717a9680a466d01b8fd251a6a9c9b97023739812076f0e2a859e8b65b",
+    "docs/research/pronunciation-v2/2026-09-30-experiment-2-error-audit/environment.md": "da2d1c55b688899e0aff0ce5ed2da9a12fec79dd9db367be2cd472a6fc097552",
+    "benchmark/pronunciation_v2/error_audit_browser_check.cjs": "9e86f22c4eb8617fcdeae6e534f12cb42b5503cc93bcb7e270d51817ad5e052c",
+    "benchmark/pronunciation_v2/test_error_audit.py": "959fb2dd40bc34b0005098be022e786330e02bb928c8c63124f64dd9e43bafc0"
+  },
+  "extraction_provenance_sha256": "c48d2a9980b8dac7c2c298cff346bd1bcc2ddfa46a5eb4066f41fbb80d9fb295"
+}
