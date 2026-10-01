@@ -1,0 +1,25 @@
+{
+  "artifacts_sha256": {
+    "candidate-items.csv": "1f7a18d6b0cf5a097bd38a9ba3163f7683497069f3e0aec70580bb93e1b19417",
+    "candidate-speakers.csv": "a9ec1dd77b9e5af2f8f447fef6d2b1a5d6175cebd4ba76f2b34dd7ad74a94e2c",
+    "exclusions.csv": "28dea60a8eb94837944d99f2280298f3e1a6257909400b196a8cd1d79397ea6e"
+  },
+  "audio_downloaded": 0,
+  "audited_items": 1792,
+  "inputs_sha256": {
+    "/home/jacob/.cache/benma/benma-pronunciation-v2-pilot/candidate-evidence.jsonl": "31bd676c452e2893a33a4b1ed48e4dad704d669fd0f9b04b4cd6d6a7c505f46d",
+    "/home/jacob/.cache/benma/benma-pronunciation-v2-pilot/commons-metadata.jsonl": "3f6eee5cc0b23524fb22c3b93f80b7bf55ef6d7e45bd79654064893d345de85b",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/LICENSE": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/README.md": "107d0d7564dcc4256eedf496cf244980543bf3cf9d62955e439e9f612c5a9d45",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/native_scores.json": "c68cc7018a01824281e7312940e0f13a00f8cceeb9f9c9ed9a5cd3e9a50611e1",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/tree.json": "4f8b89873e86b9d8b09403712aa98fedd00a89c78b17812fb1da0b40b384e0e1"
+  },
+  "inventory_pages": 9363,
+  "new_eligible_items": 7,
+  "reason": "no three qualifying independent new speakers",
+  "revision_audits": 1710,
+  "sealed": false,
+  "selected_items": 0,
+  "selection_depends_on_predictions": false,
+  "source_snapshot": "2026-09-28"
+}

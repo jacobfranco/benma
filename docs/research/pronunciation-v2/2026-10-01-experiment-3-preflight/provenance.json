@@ -1,0 +1,94 @@
+{
+  "artifacts_sha256": {
+    "baseline-reproduction.json": "dd525f6e8be53987ec829501e384ee2f1539751c32115908feeb21e0d0e54f36",
+    "baseline-started.json": "99836cd0146d6d69ac7c0ad7f678d542c4f3a2bbefd1fd772fd0301bcb70cc60",
+    "candidate-items.csv": "1f7a18d6b0cf5a097bd38a9ba3163f7683497069f3e0aec70580bb93e1b19417",
+    "candidate-speakers.csv": "a9ec1dd77b9e5af2f8f447fef6d2b1a5d6175cebd4ba76f2b34dd7ad74a94e2c",
+    "exclusions.csv": "28dea60a8eb94837944d99f2280298f3e1a6257909400b196a8cd1d79397ea6e",
+    "head-linear.npz": "d3f1cbe4a6ac7ea7c76b4538805d57cf99a36dd7d14909432725d4bc5cf696c2",
+    "protocol.lock.json": "f795f15d970043d65592ac9ef7cd3ee4af9b36bf2310de23a840bcf12db08721",
+    "protocol.md": "d6ee4882cf72fdc281cba36ff1026761792e74ee27602cb3862829fd29b50e3d",
+    "review.md": "1c557680c46b500e1317048ebd6d5e728e7828a00fbb8c2c272e093909240424",
+    "source-audit.json": "7d6156b7429619e456c29d506a800d319e82fe5343584b10860dbc7f7d5e563c",
+    "sources.md": "2754d905e3e2c2c3b06c17edf0693eeb621afc48d56acdd63a35520caa34b113",
+    "validation.json": "132b9ca9d0d2a1cdd8b35a153343e9c725b1458f9937b48eeca639c30525cfa4"
+  },
+  "baseline_reproduced_bitwise": true,
+  "branch": "pronunciation-v2-research",
+  "candidate_counts": {
+    "audited_items": 1792,
+    "inventory_pages": 9363,
+    "new_eligible_items": 7,
+    "revision_audits": 1710,
+    "selected_items": 0
+  },
+  "commit_or_push": false,
+  "created_at": "2026-10-01T02:12:47.491884+00:00",
+  "cropping": false,
+  "encoder_finetuning": false,
+  "fresh_panel_sealed": false,
+  "fresh_test_predictions_opened": false,
+  "human_realized_tone_listening_required": false,
+  "hyperparameter_sweep": false,
+  "implementation_sha256": {
+    "benchmark/pronunciation_v2/nonlinear_head.py": "a61d13bbf3e89448b0f0299e0aaf50f68404b938761607358c0c12cfd782f6d8",
+    "benchmark/pronunciation_v2/nonlinear_sources.py": "ca13e4d1f59023036133a8e470b42eb82a1ff063cfcb7dbb05726e298b059263",
+    "benchmark/pronunciation_v2/test_nonlinear_head.py": "566443b17bb4d3cdaf5b1fffef3902062039a6c97a2ad0d78435038480b756c0"
+  },
+  "lexical_labels_treated_as_truth": true,
+  "limitations": [
+    "Insufficient fresh speakers; no generalization comparison possible yet",
+    "Source inventory snapshot is bounded and not a live global census",
+    "Public profiles do not guarantee biological identity disjointness",
+    "Historical replay test is HEAD-sensitive; recorded separately in validation.json"
+  ],
+  "luilui_role": "inspected stress diagnostic only",
+  "new_audio_downloads": 0,
+  "new_head_uses_f0": false,
+  "nonlinear_real_data_training": false,
+  "nonlinear_training": "synthetic fixtures only",
+  "opened_118_role": "inspected stress diagnostic only",
+  "production_integration": false,
+  "protocol_lock_sha256": "f795f15d970043d65592ac9ef7cd3ee4af9b36bf2310de23a840bcf12db08721",
+  "protocol_locked_before_real_nonlinear_training": true,
+  "sealed_manifest_sha256": null,
+  "selection_depends_on_predictions": false,
+  "source_inputs_sha256": {
+    "/home/jacob/.cache/benma/benma-pronunciation-v2-pilot/candidate-evidence.jsonl": "31bd676c452e2893a33a4b1ed48e4dad704d669fd0f9b04b4cd6d6a7c505f46d",
+    "/home/jacob/.cache/benma/benma-pronunciation-v2-pilot/commons-metadata.jsonl": "3f6eee5cc0b23524fb22c3b93f80b7bf55ef6d7e45bd79654064893d345de85b",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/LICENSE": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/README.md": "107d0d7564dcc4256eedf496cf244980543bf3cf9d62955e439e9f612c5a9d45",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/native_scores.json": "c68cc7018a01824281e7312940e0f13a00f8cceeb9f9c9ed9a5cd3e9a50611e1",
+    "/home/jacob/benma/benchmark/corpus/recordings/original/experiment-2-preflight/ompal/tree.json": "4f8b89873e86b9d8b09403712aa98fedd00a89c78b17812fb1da0b40b384e0e1"
+  },
+  "starting_git_head": "5574b4bfdb717de18349502fe6fa024c456ede12",
+  "starting_worktree_clean": true,
+  "study_directory_date": "2026-10-01",
+  "temporal_thirds": false,
+  "web_checks": [
+    {
+      "result": "accessible; no explicit Mandarin-native or LL speaker-ID mapping established",
+      "url": "https://commons.wikimedia.org/wiki/User:Shangkuanlc"
+    },
+    {
+      "result": "accessible; self-declared native French and intermediate Chinese; Mandarin-native remains unverified",
+      "url": "https://commons.wikimedia.org/wiki/User:Assassas77"
+    },
+    {
+      "result": "browser tool unavailable",
+      "url": "https://commons.wikimedia.org/wiki/User:Vickylin77amis"
+    },
+    {
+      "result": "browser tool unavailable; pinned cached revision inspected",
+      "url": "https://commons.wikimedia.org/wiki/File:LL-Q727694_(cmn)-Shangkuanlc-门.wav"
+    },
+    {
+      "result": "owner README corroborates corpus native/learner identities and annotation meaning",
+      "url": "https://github.com/phantomhsieh/OMPAL-corpus"
+    },
+    {
+      "result": "search found newer CC0 singleton; not eligible audited/sealed evidence",
+      "url": "https://commons.wikimedia.org/wiki/File:LL-Q9192—Yug—谁.wav"
+    }
+  ]
+}

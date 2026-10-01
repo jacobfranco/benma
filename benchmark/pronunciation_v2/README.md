@@ -86,3 +86,27 @@ Feature caches and the test receipt deliberately refuse silent replacement. Use 
 - StandardScaler fits training features only. Head is unweighted multinomial L2 logistic regression, C in 0.1/1/10. Selection uses macro F1, balanced accuracy, mean T2/T3 recall, then smaller C and lower layer, with metric ties rounded to 12 decimals.
 - Raw softmax is uncalibrated. Max probability >=0.9 is solely an error-report flag, never an acceptance or abstention threshold.
 - The V1 adapter verifies historical code against `68057aa`, uses existing production-equivalent canonical decoding and whole isolated-clip bounds, and supplies no expected tone or text. Coverage and common-subset results accompany its abstentions.
+
+## Experiment 3: nonlinear-head preflight
+
+The preregistered comparison uses the same frozen layer-8 whole-mean features and
+386 training rows. The only nonlinear arm is `768 → 8 → tanh → 4`, trained with
+one seed, full-batch AdamW and exactly 200 epochs. The protocol and receipts are in
+`docs/research/pronunciation-v2/2026-10-01-experiment-3-preflight/`.
+The opened 118 and Luilui are diagnostics; the bounded source audit did not find
+sufficient independent new speakers, so no fresh panel was sealed.
+
+Preflight has locked the protocol, reproduced the linear baseline and exercised
+nonlinear training on synthetic data. The next execution fits and locks the
+nonlinear head on the original training rows, without opening test predictions:
+
+```sh
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 benchmark/pronunciation_v2/.venv/bin/python benchmark/pronunciation_v2/nonlinear_head.py verify
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 benchmark/pronunciation_v2/.venv/bin/python benchmark/pronunciation_v2/nonlinear_head.py develop
+```
+
+`lock`, `reproduce` and the metadata-only `nonlinear_sources.py` audit were already
+run; their outputs refuse replacement. `develop` similarly writes an exclusive
+receipt. Do not delete receipts to disguise a retry. There is no fresh-test command.
+A later evaluation pass must acquire/seal a qualifying panel and lock its runner
+against the protocol, seal and both fitted heads before opening predictions.

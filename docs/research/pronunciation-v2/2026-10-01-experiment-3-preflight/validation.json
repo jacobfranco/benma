@@ -1,0 +1,31 @@
+{
+  "additional_historical_pytest": {
+    "command": "services/api/.venv/bin/python -m pytest benchmark/pronunciation_v2/test_acoustic_forensics.py benchmark/pronunciation_v2/test_error_audit.py -q",
+    "current_head": "5574b4bfdb717de18349502fe6fa024c456ede12",
+    "failed": 1,
+    "failure": "test_full_deterministic_replay: only provenance.json.head differs; both new replays byte-identical",
+    "historical_head": "1b40cda7026e06e397394ecc70cbb8a7c44e9c9c",
+    "passed": 14
+  },
+  "baseline_reproduction": "bitwise exact features, head/scaler, probabilities and predictions",
+  "git_diff_check": "passed",
+  "initial_environment_attempt": {
+    "dependency_changes": false,
+    "reason": "API-dependent forensic/error audit modules require SQLAlchemy absent from research environment; rerun in existing API environment",
+    "result": "80 unittest entries: 78 passed, 2 module import errors"
+  },
+  "legacy_diagnostic_replay": "additional tests performed acoustic/F0 diagnostics on historically opened data in /tmp; no new model predictions or Experiment 3 F0 features",
+  "research_unittest": {
+    "command": "PYTHONPATH=benchmark/pronunciation_v2 benchmark/pronunciation_v2/.venv/bin/python -m unittest test_nonlinear_head test_temporal_pooling test_model_probe test_preflight test_pilot -v",
+    "failed": 0,
+    "new_tests": 12,
+    "passed": 78
+  },
+  "ruff_check": "passed for nonlinear_head.py nonlinear_sources.py test_nonlinear_head.py",
+  "ruff_format_check": "passed for same three files",
+  "seal_pytest": {
+    "command": "services/api/.venv/bin/python -m pytest benchmark/pronunciation_v2/test_evaluation_preflight.py -q",
+    "failed": 0,
+    "passed": 54
+  }
+}
