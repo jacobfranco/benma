@@ -31,6 +31,7 @@ class Reading(EvidenceModel):
     lexical_tone: Literal[0, 1, 2, 3, 4] | None = None
     status: str
     alternatives: list[str] = Field(default_factory=list)
+    context_text: str | None = None
     # Multiple dictionary alternatives may remain even after contextual resolution.
     ambiguous: bool
 
@@ -85,6 +86,17 @@ class Phone(EvidenceModel):
     source: str
     semantics: Literal["reference_label_not_observed_phone"] = "reference_label_not_observed_phone"
     score: float | None = None
+    raw_entry: dict[str, Any] | None = None
+
+
+class ProviderTiming(EvidenceModel):
+    word_index: int
+    grapheme_index: int | None
+    provider_word: str
+    grapheme: str
+    raw_source: str
+    raw_entry: dict[str, Any]
+    validity: Literal["accepted_exact_provider_span"]
 
 
 class Context(EvidenceModel):
@@ -102,6 +114,7 @@ class Unit(EvidenceModel):
     timing: Span | None = None
     timing_source: str | None = None
     timing_confidence: float | None = None
+    provider_timing: ProviderTiming | None = None
     reading: Reading
     pitch: Pitch | None = None
     phones: list[Phone] = Field(default_factory=list)
@@ -141,8 +154,8 @@ class Audio(EvidenceModel):
 
 
 class Record(EvidenceModel):
-    schema_version: Literal["connected-speech-v1"] = "connected-speech-v1"
-    analysis_version: Literal["connected-probe-v1"] = "connected-probe-v1"
+    schema_version: Literal["connected-speech-v1", "connected-speech-v2"] = "connected-speech-v2"
+    analysis_version: Literal["connected-probe-v1", "connected-probe-v2"] = "connected-probe-v2"
     recording_id: str
     audio: Audio
     mode: Literal["free", "practice"]
@@ -157,11 +170,15 @@ class Record(EvidenceModel):
     target_relative_assessment: None = None
     configuration: dict[str, Any]
     limitations: list[str]
+    replay: dict[str, Any] | None = None
+    study_annotations: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def truth_boundary(self):
         import hashlib
 
+        if self.schema_version.rsplit("-", 1)[1] != self.analysis_version.rsplit("-", 1)[1]:
+            raise ValueError("schema and analysis versions must agree")
         text = self.perception.raw_transcript
         if self.perception.normalized_transcript != text or self.alignment.reference_text != text:
             raise ValueError("perception and alignment references must remain exact")

@@ -1,0 +1,11 @@
+{
+  "S01": [
+    "User report: perceived substitutions on a user-reported imperfect attempt; cause unresolved. 进去/说说 are not labeled ASR bugs. Azure scores and Mispronunciation flags are conditioned on the perceived reference; they do not identify an acoustic cause."
+  ],
+  "S02": [
+    "User report: 饭 is a user-reported possible pronunciation issue, not a gold wrong-pronunciation label. Recognition success and reference-conditioned provider scores do not establish correct pronunciation."
+  ],
+  "S13": [
+    "Declared word substitution: intended 广州; user deliberately said 贵州. Perception and alignment retain 贵州. The declared manipulation is not a gold phonetic realization label."
+  ]
+}

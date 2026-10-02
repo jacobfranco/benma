@@ -22,9 +22,7 @@ from benma_api.audio.service import canonicalize, inspect_audio
 from benma_api.config import Settings
 from benma_api.pronunciation.acoustics import PraatAcousticAnalyzer
 from benma_api.pronunciation.azure_alignment import (
-    AZURE_ALIGNMENT_VERSION,
     AZURE_TIMING_CONFIG,
-    azure_syllable_units,
     timing_payload,
 )
 from benma_api.pronunciation.contours import display_contour
@@ -35,6 +33,15 @@ from benma_api.speech.contracts import UnknownTargetPerceptionInput
 from benma_api.speech.providers.azure import request_azure_speech
 from benma_api.speech.providers.factory import build_perception_provider
 
+from benchmark.pronunciation_v2.connected_mapping import (
+    MAPPING_VERSION,
+    contextual_readings,
+    grapheme_candidates,
+    reference_phones,
+)
+from benchmark.pronunciation_v2.connected_mapping import (
+    READING_VERSION as CONTEXT_READING_VERSION,
+)
 from benchmark.pronunciation_v2.connected_schema import (
     Alignment,
     Audio,
@@ -146,24 +153,8 @@ def alignment_evidence(text, evidence, azure_raw, duration_ms):
     readings = perceived_syllables(text, evidence)
     candidates, words, issues = [], [], []
     if azure_raw is not None:
-        try:
-            payload = timing_payload(azure_raw)
-        except Exception as exc:
-            return (
-                readings,
-                {},
-                [],
-                [f"malformed_alignment:{type(exc).__name__}"],
-                "azure_perceived_reference",
-            )
-        provider_words = payload["words"]
+        provider_words, candidates, issues = grapheme_candidates(azure_raw, text)
         source = "azure_perceived_reference"
-        candidates = azure_syllable_units(payload, text, [s.pinyin or "" for s in readings])
-        # Require the complete lexical sequence, including any omitted words.
-        joined = "".join(str(w.get("text", "")) for w in provider_words)
-        if [c for _, c in lexical_chars(joined)] != [c for _, c in lexical_chars(text)]:
-            issues.append("asr_timing_text_conflict")
-            candidates, provider_words = [], []
     else:
         source = "perception_token"
         provider_words = [
@@ -221,7 +212,7 @@ def alignment_evidence(text, evidence, azure_raw, duration_ms):
                 timing=timing,
                 timing_source=source,
                 syllable_timing_status="unresolved",
-                raw_provider_word=word,
+                raw_provider_word=word.get("raw_provider_word", word),
             )
         )
     accepted, previous_end, previous_index = {}, 0, -1
@@ -263,6 +254,7 @@ def alignment_evidence(text, evidence, azure_raw, duration_ms):
         )
         for w in words
     ]
+    readings = contextual_readings(text, evidence, words)
     return readings, accepted, words, sorted(set(issues)), source
 
 
@@ -329,14 +321,23 @@ def build_record(
         span, candidate = timing.get(s.index, (None, {}))
         pitch = pitch_region(acoustics, span)
         phones = []
-        if candidate.get("reference_phone_label"):
-            phones.append(
+        provider_timing = candidate.get("provider_timing")
+        if provider_timing:
+            raw_word = azure_raw["NBest"][0]["Words"][provider_timing["word_index"]]
+            phones = [
                 Phone(
-                    label=candidate["reference_phone_label"],
+                    **phone,
                     timing=span,
                     source="azure_sapi_perceived_reference",
                 )
-            )
+                for phone in reference_phones(raw_word, candidate, s)
+            ]
+        reading = reading_of(s)
+        context_word = next(
+            (w for w in words if w.character_start <= s.character_start < w.character_end), None
+        )
+        if context_word:
+            reading = reading.model_copy(update={"context_text": context_word.perceived_text})
         flags = [
             "timing_available" if span else "syllable_timing_unresolved",
             "reference_phone_available" if phones else "phone_evidence_unavailable",
@@ -386,7 +387,8 @@ def build_record(
                 timing=span,
                 timing_source=candidate.get("source") if span else None,
                 timing_confidence=candidate.get("confidence") if span else None,
-                reading=reading_of(s),
+                reading=reading,
+                provider_timing=provider_timing,
                 pitch=pitch,
                 phones=phones,
                 context=Context(
@@ -449,7 +451,8 @@ def build_record(
             "context_after_ms": context_ms,
             "reading_version": READING_VERSION,
             "surface_version": SURFACE_VERSION,
-            "azure_mapping_version": AZURE_ALIGNMENT_VERSION,
+            "azure_mapping_version": MAPPING_VERSION,
+            "context_reading_version": CONTEXT_READING_VERSION,
             "quality_policy": "five_usable_frames_and_half_missing_flags_v1",
             "text_comparison": "alphanumeric_codepoints_minimum_edit_v1",
         },
@@ -457,7 +460,8 @@ def build_record(
             "ASR text is what the recognizer heard, not a gold phonetic transcription.",
             "Reference phone labels and scores do not establish observed phones or tones.",
             "Every pronunciation judgment abstains pending connected-speech validation.",
-            "No learned tone model or target-relative provider assessment is run in v1.",
+            "No learned tone model or target-relative provider assessment is run "
+            "in this research harness.",
             "Timing is conditionally mapped provider evidence, not validated gold boundaries.",
             "Non-Han text is retained but has no pronunciation units; no erhua segmentation.",
         ],
@@ -469,6 +473,8 @@ def markdown(record: Record) -> str:
         return str(value).replace("|", "\\|").replace("\n", " ")
 
     lines = [f"# Recording {record.recording_id}", "", f"Evidence: {record.audio.provenance}"]
+    if record.study_annotations:
+        lines += ["", "## Study notes", "", *record.study_annotations]
     if record.intended_text is not None:
         lines += ["", "## Intended", "", record.intended_text]
     lines += [
@@ -514,36 +520,50 @@ def markdown(record: Record) -> str:
             "",
             f"## Unit {unit.unit_id}: {unit.perceived_text}",
             "",
-            f"Reading: {unit.reading.pinyin or 'unresolved'}; lexical tone "
+            f"- Timing: {unit.timing.start_ms:g}-{unit.timing.end_ms:g} ms; "
+            f"source {unit.timing_source}."
+            if unit.timing
+            else "- Timing: unresolved.",
+            f"- Reading: {unit.reading.pinyin or 'unresolved'}; lexical tone "
             f"{unit.reading.lexical_tone}; source {unit.reading.status}.",
         ]
+        if unit.reading.context_text:
+            lines.append(f"- Perceived word context: {unit.reading.context_text}.")
         if unit.reading.ambiguous:
-            lines.append(f"Reading alternatives: {', '.join(unit.reading.alternatives)}.")
+            lines.append(f"- Reading alternatives: {', '.join(unit.reading.alternatives)}.")
         if unit.phones:
             lines.append(
-                "Reference phones (not detected sounds): " + ", ".join(p.label for p in unit.phones)
+                "- Reference phones (reference-conditioned, not detected sounds): "
+                + ", ".join(f"{p.label} (score {p.score})" for p in unit.phones)
+            )
+        else:
+            lines.append(
+                "- Reference phones: no accepted unit attachment; raw labels, if supplied, "
+                "remain in alignment evidence (reference-conditioned, not detected sounds)."
             )
         if unit.pitch:
             p = unit.pitch
             lines.append(
-                f"Pitch: {p.usable_frame_count}/{p.frame_count} usable frames; "
+                f"- Observed pitch: {p.usable_frame_count}/{p.frame_count} usable frames; "
                 f"raw F0 missing proportion {p.missing_proportion}."
             )
+        else:
+            lines.append("- Observed pitch: no timed saved acoustic slice available.")
         if unit.target_comparison:
             edit = unit.target_comparison
             lines.append(
-                f"Target relationship: {edit.operation}; intended {edit.intended}; "
+                f"- Target relationship: {edit.operation}; intended {edit.intended}; "
                 f"{edit.correspondence}. No acoustic cause inferred."
             )
             if edit.expectation:
                 exp = edit.expectation
                 lines.append(
-                    f"Expected pronunciation: {exp.reading.pinyin or 'unresolved'}; lexical "
+                    f"- Expected pronunciation: {exp.reading.pinyin or 'unresolved'}; lexical "
                     f"{exp.reading.lexical_tone}, surface {exp.surface_tone} ({exp.rule})."
                 )
         lines += [
-            "Evidence quality: " + ", ".join(unit.quality_flags),
-            f"{unit.judgment}: " + ", ".join(unit.abstention_reasons),
+            "- Evidence quality: " + ", ".join(unit.quality_flags),
+            f"- {unit.judgment}: " + ", ".join(unit.abstention_reasons),
         ]
     deletions = [e for e in record.text_comparison or [] if e.operation == "deletion"]
     if deletions:

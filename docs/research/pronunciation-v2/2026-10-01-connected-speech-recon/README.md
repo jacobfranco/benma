@@ -65,3 +65,7 @@ Azure short-audio alignment is capped at 30 seconds by the existing adapter poli
 14. The next study contains 14 natural or deliberately manipulated attempts; the learner is not asked to supply native gold labels.
 15. The largest immediate bottleneck is **validated perceived-syllable region coverage on real sentence speech**, especially multi-character words, coarticulation, ASR disagreement, and uncertain readings. Conditional mapping already exists; its practical reliability has not been established here.
 16. Next: record the packet, run frozen perception + perceived-reference alignment + Praat, inspect coverage/conflicts/boundaries and known manipulations, then decide whether alignment repair/evaluation is needed. Do not start another tone architecture bakeoff.
+
+## Saved-record mapping continuation
+
+The four real captures are audited and replayed in [the mapping continuation](../2026-10-01-connected-speech-mapping/replay-results.md). Research v2 separates provider grapheme timing from reading resolution: 30/36 → 36/36 timed units, with reading coverage conservatively unchanged at 27/36. The original recon/example artifacts remain historical v1 evidence.

@@ -1,5 +1,7 @@
 # Connected-speech diagnostic schema
 
+This document describes the original v1 contract. See [the v2 architecture and compatibility notes](../2026-10-01-connected-speech-mapping/architecture-update.md) for current replay output; the [archived v1 machine schema](../../../../benchmark/pronunciation_v2/connected-speech-schema-v1.json) preserves the original definition.
+
 Canonical executable definition: [connected_schema.py](../../../../benchmark/pronunciation_v2/connected_schema.py). Published machine contract: [connected-speech-schema.json](../../../../benchmark/pronunciation_v2/connected-speech-schema.json), generated using Pydantic `Record.model_json_schema()`; tests require exact equality and validate record round trips. Unknown structured fields are rejected; provider payloads/acoustic frame dictionaries deliberately allow their native fields. Null means unavailable, not zero, incorrect, or unvoiced.
 
 ## Fields

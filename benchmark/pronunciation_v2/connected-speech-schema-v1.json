@@ -1,0 +1,876 @@
+{
+  "$defs": {
+    "Alignment": {
+      "additionalProperties": false,
+      "properties": {
+        "reference_text": {
+          "title": "Reference Text",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "evidence_status": {
+          "title": "Evidence Status",
+          "type": "string"
+        },
+        "raw_response": {
+          "default": null,
+          "title": "Raw Response"
+        },
+        "issues": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Issues",
+          "type": "array"
+        },
+        "words": {
+          "items": {
+            "$ref": "#/$defs/Word"
+          },
+          "title": "Words",
+          "type": "array"
+        }
+      },
+      "required": [
+        "reference_text",
+        "source",
+        "evidence_status"
+      ],
+      "title": "Alignment",
+      "type": "object"
+    },
+    "Audio": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "canonical_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Canonical Sha256"
+        },
+        "duration_ms": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Ms",
+          "type": "number"
+        },
+        "provenance": {
+          "enum": [
+            "recorded_audio",
+            "synthetic_fixture"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "duration_ms",
+        "provenance"
+      ],
+      "title": "Audio",
+      "type": "object"
+    },
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "previous_unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Previous Unit"
+        },
+        "next_unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Next Unit"
+        },
+        "window": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "previous_unit",
+        "next_unit"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "Expectation": {
+      "additionalProperties": false,
+      "properties": {
+        "reading": {
+          "$ref": "#/$defs/Reading"
+        },
+        "surface_tone": {
+          "anyOf": [
+            {
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Surface Tone"
+        },
+        "rule": {
+          "title": "Rule",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reading",
+        "rule",
+        "version"
+      ],
+      "title": "Expectation",
+      "type": "object"
+    },
+    "Perception": {
+      "additionalProperties": false,
+      "properties": {
+        "raw_transcript": {
+          "title": "Raw Transcript",
+          "type": "string"
+        },
+        "normalized_transcript": {
+          "title": "Normalized Transcript",
+          "type": "string"
+        },
+        "normalization": {
+          "const": "identity",
+          "default": "identity",
+          "title": "Normalization",
+          "type": "string"
+        },
+        "transcript_sha256": {
+          "title": "Transcript Sha256",
+          "type": "string"
+        },
+        "evidence": {
+          "additionalProperties": true,
+          "title": "Evidence",
+          "type": "object"
+        },
+        "raw_response": {
+          "title": "Raw Response"
+        },
+        "request_configuration": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Configuration"
+        },
+        "evidence_status": {
+          "title": "Evidence Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "raw_transcript",
+        "normalized_transcript",
+        "transcript_sha256",
+        "evidence",
+        "raw_response",
+        "evidence_status"
+      ],
+      "title": "Perception",
+      "type": "object"
+    },
+    "Phone": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "timing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "semantics": {
+          "const": "reference_label_not_observed_phone",
+          "default": "reference_label_not_observed_phone",
+          "title": "Semantics",
+          "type": "string"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        }
+      },
+      "required": [
+        "label",
+        "source"
+      ],
+      "title": "Phone",
+      "type": "object"
+    },
+    "Pitch": {
+      "additionalProperties": false,
+      "properties": {
+        "available": {
+          "title": "Available",
+          "type": "boolean"
+        },
+        "frame_count": {
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "voiced_frame_count": {
+          "title": "Voiced Frame Count",
+          "type": "integer"
+        },
+        "usable_frame_count": {
+          "title": "Usable Frame Count",
+          "type": "integer"
+        },
+        "voiced_proportion": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Voiced Proportion"
+        },
+        "active_voiced_proportion": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Active Voiced Proportion"
+        },
+        "missing_proportion": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Missing Proportion"
+        },
+        "frames": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Frames",
+          "type": "array"
+        },
+        "filtered_contour": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Filtered Contour",
+          "type": "array"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "available",
+        "frame_count",
+        "voiced_frame_count",
+        "usable_frame_count",
+        "frames",
+        "filtered_contour",
+        "source"
+      ],
+      "title": "Pitch",
+      "type": "object"
+    },
+    "Reading": {
+      "additionalProperties": false,
+      "properties": {
+        "pinyin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pinyin"
+        },
+        "lexical_tone": {
+          "anyOf": [
+            {
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lexical Tone"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "alternatives": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "ambiguous": {
+          "title": "Ambiguous",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status",
+        "ambiguous"
+      ],
+      "title": "Reading",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "properties": {
+        "start_ms": {
+          "minimum": 0,
+          "title": "Start Ms",
+          "type": "number"
+        },
+        "end_ms": {
+          "exclusiveMinimum": 0,
+          "title": "End Ms",
+          "type": "number"
+        },
+        "duration_ms": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Ms",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_ms",
+        "end_ms",
+        "duration_ms"
+      ],
+      "title": "Span",
+      "type": "object"
+    },
+    "TextEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "operation": {
+          "enum": [
+            "match",
+            "substitution",
+            "insertion",
+            "deletion"
+          ],
+          "title": "Operation",
+          "type": "string"
+        },
+        "perceived_offset": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Perceived Offset"
+        },
+        "intended_offset": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Intended Offset"
+        },
+        "perceived": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Perceived"
+        },
+        "intended": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Intended"
+        },
+        "correspondence": {
+          "enum": [
+            "unique_minimum_edit",
+            "ambiguous_minimum_edit"
+          ],
+          "title": "Correspondence",
+          "type": "string"
+        },
+        "expectation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Expectation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "diagnosis": {
+          "const": "not_inferred_from_text",
+          "default": "not_inferred_from_text",
+          "title": "Diagnosis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation",
+        "perceived_offset",
+        "intended_offset",
+        "perceived",
+        "intended",
+        "correspondence"
+      ],
+      "title": "TextEdit",
+      "type": "object"
+    },
+    "Unit": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "perceived_text": {
+          "title": "Perceived Text",
+          "type": "string"
+        },
+        "character_start": {
+          "title": "Character Start",
+          "type": "integer"
+        },
+        "character_end": {
+          "title": "Character End",
+          "type": "integer"
+        },
+        "granularity": {
+          "const": "han_character_candidate_syllable",
+          "default": "han_character_candidate_syllable",
+          "title": "Granularity",
+          "type": "string"
+        },
+        "timing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "timing_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timing Source"
+        },
+        "timing_confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timing Confidence"
+        },
+        "reading": {
+          "$ref": "#/$defs/Reading"
+        },
+        "pitch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Pitch"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "phones": {
+          "items": {
+            "$ref": "#/$defs/Phone"
+          },
+          "title": "Phones",
+          "type": "array"
+        },
+        "observed_tone_model": {
+          "default": null,
+          "title": "Observed Tone Model",
+          "type": "null"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "target_comparison": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TextEdit"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "quality_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "judgment": {
+          "const": "INSUFFICIENT EVIDENCE",
+          "default": "INSUFFICIENT EVIDENCE",
+          "title": "Judgment",
+          "type": "string"
+        },
+        "abstention_reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Abstention Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "unit_id",
+        "perceived_text",
+        "character_start",
+        "character_end",
+        "reading",
+        "context",
+        "quality_flags",
+        "abstention_reasons"
+      ],
+      "title": "Unit",
+      "type": "object"
+    },
+    "Word": {
+      "additionalProperties": false,
+      "properties": {
+        "perceived_text": {
+          "title": "Perceived Text",
+          "type": "string"
+        },
+        "character_start": {
+          "title": "Character Start",
+          "type": "integer"
+        },
+        "character_end": {
+          "title": "Character End",
+          "type": "integer"
+        },
+        "timing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "timing_source": {
+          "title": "Timing Source",
+          "type": "string"
+        },
+        "syllable_timing_status": {
+          "enum": [
+            "unresolved",
+            "mapped"
+          ],
+          "title": "Syllable Timing Status",
+          "type": "string"
+        },
+        "raw_provider_word": {
+          "additionalProperties": true,
+          "title": "Raw Provider Word",
+          "type": "object"
+        }
+      },
+      "required": [
+        "perceived_text",
+        "character_start",
+        "character_end",
+        "timing_source",
+        "syllable_timing_status",
+        "raw_provider_word"
+      ],
+      "title": "Word",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "connected-speech-v1",
+      "default": "connected-speech-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "analysis_version": {
+      "const": "connected-probe-v1",
+      "default": "connected-probe-v1",
+      "title": "Analysis Version",
+      "type": "string"
+    },
+    "recording_id": {
+      "title": "Recording Id",
+      "type": "string"
+    },
+    "audio": {
+      "$ref": "#/$defs/Audio"
+    },
+    "mode": {
+      "enum": [
+        "free",
+        "practice"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "provider": {
+      "title": "Provider",
+      "type": "string"
+    },
+    "language": {
+      "const": "zh-CN",
+      "default": "zh-CN",
+      "title": "Language",
+      "type": "string"
+    },
+    "perception": {
+      "$ref": "#/$defs/Perception"
+    },
+    "intended_text": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Intended Text"
+    },
+    "alignment": {
+      "$ref": "#/$defs/Alignment"
+    },
+    "acoustics": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Acoustics"
+    },
+    "units": {
+      "items": {
+        "$ref": "#/$defs/Unit"
+      },
+      "title": "Units",
+      "type": "array"
+    },
+    "text_comparison": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/TextEdit"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Text Comparison"
+    },
+    "target_relative_assessment": {
+      "default": null,
+      "title": "Target Relative Assessment",
+      "type": "null"
+    },
+    "configuration": {
+      "additionalProperties": true,
+      "title": "Configuration",
+      "type": "object"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "recording_id",
+    "audio",
+    "mode",
+    "provider",
+    "perception",
+    "alignment",
+    "units",
+    "configuration",
+    "limitations"
+  ],
+  "title": "Record",
+  "type": "object"
+}

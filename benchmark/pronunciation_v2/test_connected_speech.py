@@ -99,10 +99,14 @@ def test_missing_timing_and_no_equal_word_split():
 
 def test_sapi_mapping_and_phone_semantics():
     raw = azure([word("贵州", phones=[phone("gui4", 100, 300), phone("zhou1", 400, 300)])])
+    raw["NBest"][0]["Words"][0]["Syllables"] = [
+        {"Grapheme": "贵", "Offset": 1000000, "Duration": 3000000},
+        {"Grapheme": "州", "Offset": 4000000, "Duration": 3000000},
+    ]
     record = make("贵州", azure_raw=raw)
     assert [u.timing.start_ms for u in record.units] == [100, 400]
     assert record.units[0].phones[0].semantics == "reference_label_not_observed_phone"
-    assert record.units[0].phones[0].score is None
+    assert record.units[0].phones[0].score == 87
     assert record.alignment.raw_response == raw
     assert record.units[0].context.window.start_ms == 0
     assert record.units[1].context.previous_unit == "u0"
@@ -293,7 +297,7 @@ def test_malformed_alignment_preserves_raw_and_perception():
     record = make("贵州", azure_raw=raw)
     assert record.alignment.raw_response == raw
     assert record.perception.raw_transcript == "贵州"
-    assert record.alignment.issues == ["malformed_alignment:ProviderMalformedResponseError"]
+    assert record.alignment.issues == ["malformed_alignment:invalid_words"]
     assert all(u.timing is None for u in record.units)
 
 

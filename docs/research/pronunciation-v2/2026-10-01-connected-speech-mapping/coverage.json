@@ -1,0 +1,411 @@
+[
+  {
+    "study_id": "S01",
+    "recording_id": "cd1b2ccd-7278-47f6-b016-983e929209d0",
+    "source_record_sha256": "f42c076fe5e5a420f21f6bff0a073d9be8b0249a8b1bcbcc3adc05016b1932d4",
+    "audio_sha256": "72bf241c608354034e1c68adef03d0e566af0997d691c24efd6046bf97ca39b1",
+    "canonical_audio_sha256": "1c28a2d174c00ecb917d0e5eaa383fc8964420ac79128e472176a29bea4de262",
+    "perceived_text": "今天天气不错，我们进去说说吧。",
+    "intended_text": "今天天气不错，我们出去走走吧。",
+    "before": {
+      "han_units": 13,
+      "provider_grapheme_timing_available": 13,
+      "timing_accepted": 10,
+      "timing_unresolved": 3,
+      "reading_resolved": 10,
+      "reading_ambiguous": 3,
+      "at_least_five_usable_f0": 8,
+      "heavy_missingness": 7,
+      "zero_usable_f0": 1,
+      "tracker_instability_units": 0,
+      "tracker_instability_frames": 0,
+      "mapping_issue_count": 0
+    },
+    "after": {
+      "han_units": 13,
+      "provider_grapheme_timing_available": 13,
+      "timing_accepted": 13,
+      "timing_unresolved": 0,
+      "reading_resolved": 10,
+      "reading_ambiguous": 3,
+      "at_least_five_usable_f0": 9,
+      "heavy_missingness": 9,
+      "zero_usable_f0": 2,
+      "tracker_instability_units": 0,
+      "tracker_instability_frames": 0,
+      "mapping_issue_count": 0
+    },
+    "mapping_issues": [],
+    "unresolved_readings": [
+      {
+        "unit_id": "u3",
+        "character": "气",
+        "alternatives": [
+          "qi4",
+          "qi3"
+        ],
+        "context": "天气"
+      },
+      {
+        "unit_id": "u10",
+        "character": "说",
+        "alternatives": [
+          "shuo1",
+          "shui4",
+          "yue4"
+        ],
+        "context": "说说"
+      },
+      {
+        "unit_id": "u11",
+        "character": "说",
+        "alternatives": [
+          "shuo1",
+          "shui4",
+          "yue4"
+        ],
+        "context": "说说"
+      }
+    ],
+    "recovered_regions": [
+      {
+        "unit_id": "u3",
+        "character": "气",
+        "timing": {
+          "start_ms": 3210.0,
+          "end_ms": 3460.0,
+          "duration_ms": 250.0
+        },
+        "usable_f0_frames": 0,
+        "total_f0_frames": 25,
+        "quality_flags": [
+          "ambiguous_reading",
+          "asr_uncertainty_available",
+          "heavy_f0_missingness",
+          "insufficient_voiced_frames",
+          "phone_evidence_unavailable",
+          "timing_available",
+          "tone_model_not_integrated"
+        ]
+      },
+      {
+        "unit_id": "u10",
+        "character": "说",
+        "timing": {
+          "start_ms": 5810.0,
+          "end_ms": 5900.0,
+          "duration_ms": 90.0
+        },
+        "usable_f0_frames": 5,
+        "total_f0_frames": 9,
+        "quality_flags": [
+          "ambiguous_reading",
+          "asr_uncertainty_available",
+          "at_least_five_usable_frames",
+          "phone_evidence_unavailable",
+          "timing_available",
+          "tone_model_not_integrated"
+        ]
+      },
+      {
+        "unit_id": "u11",
+        "character": "说",
+        "timing": {
+          "start_ms": 5910.0,
+          "end_ms": 6000.0,
+          "duration_ms": 90.0
+        },
+        "usable_f0_frames": 2,
+        "total_f0_frames": 9,
+        "quality_flags": [
+          "ambiguous_reading",
+          "asr_uncertainty_available",
+          "heavy_f0_missingness",
+          "insufficient_voiced_frames",
+          "phone_evidence_unavailable",
+          "timing_available",
+          "tone_model_not_integrated"
+        ]
+      }
+    ]
+  },
+  {
+    "study_id": "S02",
+    "recording_id": "1c6db97c-80df-4b31-8e63-9e5a2dfe2f12",
+    "source_record_sha256": "bd9559190f2d210b51c2e3e36e82f9d47f419c39076ef16e0d69e6231f475487",
+    "audio_sha256": "31095410cbc7b9c23bfdc0aaaea445d666abff8e82de1ab17720a55d4ab26161",
+    "canonical_audio_sha256": "7d6a60d4535aa3d568723c9fd81072c651bf3c57fd560a75551dc4feb564a870",
+    "perceived_text": "我昨天晚上跟朋友去吃饭。",
+    "intended_text": "我昨天晚上跟朋友去吃饭了。",
+    "before": {
+      "han_units": 11,
+      "provider_grapheme_timing_available": 11,
+      "timing_accepted": 9,
+      "timing_unresolved": 2,
+      "reading_resolved": 9,
+      "reading_ambiguous": 2,
+      "at_least_five_usable_f0": 3,
+      "heavy_missingness": 8,
+      "zero_usable_f0": 3,
+      "tracker_instability_units": 1,
+      "tracker_instability_frames": 5,
+      "mapping_issue_count": 0
+    },
+    "after": {
+      "han_units": 11,
+      "provider_grapheme_timing_available": 11,
+      "timing_accepted": 11,
+      "timing_unresolved": 0,
+      "reading_resolved": 9,
+      "reading_ambiguous": 2,
+      "at_least_five_usable_f0": 3,
+      "heavy_missingness": 10,
+      "zero_usable_f0": 4,
+      "tracker_instability_units": 1,
+      "tracker_instability_frames": 5,
+      "mapping_issue_count": 0
+    },
+    "mapping_issues": [],
+    "unresolved_readings": [
+      {
+        "unit_id": "u4",
+        "character": "上",
+        "alternatives": [
+          "shang4",
+          "shang3"
+        ],
+        "context": "晚上"
+      },
+      {
+        "unit_id": "u9",
+        "character": "吃",
+        "alternatives": [
+          "chi1",
+          "qi1"
+        ],
+        "context": "吃饭"
+      }
+    ],
+    "recovered_regions": [
+      {
+        "unit_id": "u4",
+        "character": "上",
+        "timing": {
+          "start_ms": 2200.0,
+          "end_ms": 2550.0,
+          "duration_ms": 350.0
+        },
+        "usable_f0_frames": 3,
+        "total_f0_frames": 35,
+        "quality_flags": [
+          "ambiguous_reading",
+          "asr_uncertainty_available",
+          "heavy_f0_missingness",
+          "insufficient_voiced_frames",
+          "phone_evidence_unavailable",
+          "timing_available",
+          "tone_model_not_integrated"
+        ]
+      },
+      {
+        "unit_id": "u9",
+        "character": "吃",
+        "timing": {
+          "start_ms": 4430.0,
+          "end_ms": 4810.0,
+          "duration_ms": 380.0
+        },
+        "usable_f0_frames": 0,
+        "total_f0_frames": 38,
+        "quality_flags": [
+          "ambiguous_reading",
+          "asr_uncertainty_available",
+          "heavy_f0_missingness",
+          "insufficient_voiced_frames",
+          "phone_evidence_unavailable",
+          "timing_available",
+          "tone_model_not_integrated"
+        ]
+      }
+    ]
+  },
+  {
+    "study_id": "S03",
+    "recording_id": "4e884f6c-e739-447f-8773-efe84da5573e",
+    "source_record_sha256": "2948d950d05827877fc8c50e718a793e6147a0b695a06cb594df10473b797cdb",
+    "audio_sha256": "677d3e6948f5a6c78bcd00be14a38438ea581aa57836831692dfb60d272f8014",
+    "canonical_audio_sha256": "e99440dafdd4075674dddccdb7165aeca210cc2125615aa634bef76c0e113c47",
+    "perceived_text": "你想买哪种水果?",
+    "intended_text": "你想买哪种水果？",
+    "before": {
+      "han_units": 7,
+      "provider_grapheme_timing_available": 7,
+      "timing_accepted": 6,
+      "timing_unresolved": 1,
+      "reading_resolved": 4,
+      "reading_ambiguous": 3,
+      "at_least_five_usable_f0": 4,
+      "heavy_missingness": 4,
+      "zero_usable_f0": 2,
+      "tracker_instability_units": 0,
+      "tracker_instability_frames": 0,
+      "mapping_issue_count": 0
+    },
+    "after": {
+      "han_units": 7,
+      "provider_grapheme_timing_available": 7,
+      "timing_accepted": 7,
+      "timing_unresolved": 0,
+      "reading_resolved": 4,
+      "reading_ambiguous": 3,
+      "at_least_five_usable_f0": 4,
+      "heavy_missingness": 5,
+      "zero_usable_f0": 3,
+      "tracker_instability_units": 0,
+      "tracker_instability_frames": 0,
+      "mapping_issue_count": 0
+    },
+    "mapping_issues": [],
+    "unresolved_readings": [
+      {
+        "unit_id": "u3",
+        "character": "哪",
+        "alternatives": [
+          "na3",
+          "na5",
+          "ne2",
+          "nuo2",
+          "nai3",
+          "na4",
+          "nie4",
+          "nei3"
+        ],
+        "context": "哪"
+      },
+      {
+        "unit_id": "u4",
+        "character": "种",
+        "alternatives": [
+          "zhong3",
+          "chong2",
+          "zhong4"
+        ],
+        "context": "种"
+      },
+      {
+        "unit_id": "u6",
+        "character": "果",
+        "alternatives": [
+          "guo3",
+          "luo3",
+          "guan4"
+        ],
+        "context": "水果"
+      }
+    ],
+    "recovered_regions": [
+      {
+        "unit_id": "u6",
+        "character": "果",
+        "timing": {
+          "start_ms": 3130.0,
+          "end_ms": 3590.0,
+          "duration_ms": 460.0
+        },
+        "usable_f0_frames": 0,
+        "total_f0_frames": 46,
+        "quality_flags": [
+          "ambiguous_reading",
+          "asr_uncertainty_available",
+          "heavy_f0_missingness",
+          "insufficient_voiced_frames",
+          "phone_evidence_unavailable",
+          "timing_available",
+          "tone_model_not_integrated"
+        ]
+      }
+    ]
+  },
+  {
+    "study_id": "S13",
+    "recording_id": "f7596060-2eb8-4e16-95ec-825b3f7c3c24",
+    "source_record_sha256": "3204a1e29592e7d89a69d82cafb83fde4f7baab29eb1cb74124295969688162c",
+    "audio_sha256": "86b75e32af0999665355b339e320f58435f61868a743f176a515ae542f38a9ee",
+    "canonical_audio_sha256": "d585cdc614afb389d4d7dda0467730dcea028df5e475d130088e63b262e3c951",
+    "perceived_text": "我要去贵州。",
+    "intended_text": "我要去广州。",
+    "before": {
+      "han_units": 5,
+      "provider_grapheme_timing_available": 5,
+      "timing_accepted": 5,
+      "timing_unresolved": 0,
+      "reading_resolved": 4,
+      "reading_ambiguous": 1,
+      "at_least_five_usable_f0": 4,
+      "heavy_missingness": 4,
+      "zero_usable_f0": 1,
+      "tracker_instability_units": 0,
+      "tracker_instability_frames": 0,
+      "mapping_issue_count": 0
+    },
+    "after": {
+      "han_units": 5,
+      "provider_grapheme_timing_available": 5,
+      "timing_accepted": 5,
+      "timing_unresolved": 0,
+      "reading_resolved": 4,
+      "reading_ambiguous": 1,
+      "at_least_five_usable_f0": 4,
+      "heavy_missingness": 4,
+      "zero_usable_f0": 1,
+      "tracker_instability_units": 0,
+      "tracker_instability_frames": 0,
+      "mapping_issue_count": 0
+    },
+    "mapping_issues": [],
+    "unresolved_readings": [
+      {
+        "unit_id": "u1",
+        "character": "要",
+        "alternatives": [
+          "yao4",
+          "yao1",
+          "yao3"
+        ],
+        "context": "要"
+      }
+    ],
+    "recovered_regions": []
+  },
+  {
+    "study_id": "TOTAL",
+    "before": {
+      "han_units": 36,
+      "provider_grapheme_timing_available": 36,
+      "timing_accepted": 30,
+      "timing_unresolved": 6,
+      "reading_resolved": 27,
+      "reading_ambiguous": 9,
+      "at_least_five_usable_f0": 19,
+      "heavy_missingness": 23,
+      "zero_usable_f0": 7,
+      "tracker_instability_units": 1,
+      "tracker_instability_frames": 5,
+      "mapping_issue_count": 0
+    },
+    "after": {
+      "han_units": 36,
+      "provider_grapheme_timing_available": 36,
+      "timing_accepted": 36,
+      "timing_unresolved": 0,
+      "reading_resolved": 27,
+      "reading_ambiguous": 9,
+      "at_least_five_usable_f0": 20,
+      "heavy_missingness": 28,
+      "zero_usable_f0": 10,
+      "tracker_instability_units": 1,
+      "tracker_instability_frames": 5,
+      "mapping_issue_count": 0
+    }
+  }
+]

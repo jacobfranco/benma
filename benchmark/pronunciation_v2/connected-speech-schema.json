@@ -285,6 +285,19 @@
           ],
           "default": null,
           "title": "Score"
+        },
+        "raw_entry": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Entry"
         }
       },
       "required": [
@@ -382,6 +395,59 @@
       "title": "Pitch",
       "type": "object"
     },
+    "ProviderTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "word_index": {
+          "title": "Word Index",
+          "type": "integer"
+        },
+        "grapheme_index": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Grapheme Index"
+        },
+        "provider_word": {
+          "title": "Provider Word",
+          "type": "string"
+        },
+        "grapheme": {
+          "title": "Grapheme",
+          "type": "string"
+        },
+        "raw_source": {
+          "title": "Raw Source",
+          "type": "string"
+        },
+        "raw_entry": {
+          "additionalProperties": true,
+          "title": "Raw Entry",
+          "type": "object"
+        },
+        "validity": {
+          "const": "accepted_exact_provider_span",
+          "title": "Validity",
+          "type": "string"
+        }
+      },
+      "required": [
+        "word_index",
+        "grapheme_index",
+        "provider_word",
+        "grapheme",
+        "raw_source",
+        "raw_entry",
+        "validity"
+      ],
+      "title": "ProviderTiming",
+      "type": "object"
+    },
     "Reading": {
       "additionalProperties": false,
       "properties": {
@@ -426,6 +492,18 @@
           },
           "title": "Alternatives",
           "type": "array"
+        },
+        "context_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Context Text"
         },
         "ambiguous": {
           "title": "Ambiguous",
@@ -620,6 +698,17 @@
           "default": null,
           "title": "Timing Confidence"
         },
+        "provider_timing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ProviderTiming"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "reading": {
           "$ref": "#/$defs/Reading"
         },
@@ -753,14 +842,20 @@
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": "connected-speech-v1",
-      "default": "connected-speech-v1",
+      "default": "connected-speech-v2",
+      "enum": [
+        "connected-speech-v1",
+        "connected-speech-v2"
+      ],
       "title": "Schema Version",
       "type": "string"
     },
     "analysis_version": {
-      "const": "connected-probe-v1",
-      "default": "connected-probe-v1",
+      "default": "connected-probe-v2",
+      "enum": [
+        "connected-probe-v1",
+        "connected-probe-v2"
+      ],
       "title": "Analysis Version",
       "type": "string"
     },
@@ -857,6 +952,26 @@
         "type": "string"
       },
       "title": "Limitations",
+      "type": "array"
+    },
+    "replay": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Replay"
+    },
+    "study_annotations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Study Annotations",
       "type": "array"
     }
   },
