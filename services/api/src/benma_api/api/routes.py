@@ -22,6 +22,8 @@ from benma_api.assistant_generation.factory import build_assistant_response_gene
 from benma_api.assistant_speech.factory import build_assistant_speech_provider
 from benma_api.assistant_speech.repository import SqlAssistantSpeechRepository
 from benma_api.assistant_speech.service import AssistantSpeechService
+from benma_api.audio.presence import require_speech
+from benma_api.audio.presence_service import require_saved_speech
 from benma_api.audio.service import AudioIngestService
 from benma_api.auth.service import (
     AuthContext,
@@ -462,6 +464,7 @@ async def create_user_conversation_turn(
     response: Response,
     auth: AuthContext = Depends(get_auth_context),
     db: Session = Depends(get_db),
+    store: AudioObjectStore = Depends(get_audio_store),
     settings: Settings = Depends(get_request_settings),
     interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
     generator: AssistantResponseGenerationPort = Depends(get_assistant_response_generator),
@@ -476,6 +479,7 @@ async def create_user_conversation_turn(
             perception_run_id=body.perception_run_id,
             interpreter=interpreter,
             generator=generator,
+            store=store,
         ),
     )
     if settings.environment == "development":
@@ -509,6 +513,8 @@ async def stream_user_conversation_turn(
     body: UserConversationTurnCreate,
     auth: AuthContext = Depends(get_auth_context),
     db: Session = Depends(get_db),
+    store: AudioObjectStore = Depends(get_audio_store),
+    settings: Settings = Depends(get_request_settings),
     interpreter: ContextualInterpretationPort = Depends(get_contextual_interpreter),
     generator: AssistantResponseGenerationPort = Depends(get_assistant_response_generator),
 ) -> StreamingResponse:
@@ -524,6 +530,17 @@ async def stream_user_conversation_turn(
         is None
     ):
         raise AuthorizationError("utterance or perception run was not found")
+    utterance = db.get(Utterance, body.utterance_id)
+    assert utterance is not None  # Account-scoped evidence was checked above.
+    asset = db.get(AudioAsset, utterance.canonical_audio_asset_id)
+    if asset is None or asset.account_id != account_id:
+        raise AuthorizationError("canonical audio was not found")
+    perception = db.get(PerceptionRun, body.perception_run_id)
+    assert perception is not None  # Account-scoped evidence was checked above.
+    await run_bounded_speech_work(
+        settings,
+        partial(require_speech, store.read(asset.storage_key), transcript=perception.transcript),
+    )
     bind = db.get_bind()
     db.rollback()  # End the read-only preflight before opening the worker's session.
 
@@ -550,6 +567,7 @@ async def stream_user_conversation_turn(
                         perception_run_id=body.perception_run_id,
                         interpreter=interpreter,
                         generator=generator,
+                        store=store,
                         on_interpretation=lambda run, elapsed: deliver(
                             ConversationStreamEvent(
                                 type="interpretation",
@@ -1112,6 +1130,7 @@ async def create_pronunciation_attempt(
     body: PronunciationAttemptCreate,
     auth: AuthContext = Depends(get_auth_context),
     db: Session = Depends(get_db),
+    store: AudioObjectStore = Depends(get_audio_store),
 ) -> PronunciationAttemptResponse:
     utterance = db.get(Utterance, body.utterance_id)
     target = db.get(PronunciationTarget, body.target_id)
@@ -1122,6 +1141,12 @@ async def create_pronunciation_attempt(
         or target.account_id != auth.account_id
     ):
         raise AuthorizationError("target or utterance was not found")
+    asset = db.get(AudioAsset, utterance.canonical_audio_asset_id)
+    if asset is None or asset.account_id != auth.account_id:
+        raise AuthorizationError("canonical audio was not found")
+    require_saved_speech(
+        db, store.read(asset.storage_key), account_id=auth.account_id, utterance_id=utterance.id
+    )
     attempt = PronunciationAttempt(
         account_id=auth.account_id,
         utterance_id=body.utterance_id,

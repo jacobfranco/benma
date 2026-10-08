@@ -1,0 +1,83 @@
+{
+  "revision": "19e2ec3d494c0797a5ff2a11408ec5838fba6681",
+  "files": [
+    {
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/LICENSE",
+      "bytes": 1090,
+      "sha256": "2e1d0b22e64e0f0937cb213dbe45b0b02c97d278c4db8bae926ae031325b2417"
+    },
+    {
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/README.md",
+      "bytes": 7495,
+      "sha256": "598e12f7f2dcf0f4ad036706ef41c1c345a93908599a6741b52d7145dec0eb0c"
+    },
+    {
+      "file": "setup.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/setup.py",
+      "bytes": 844,
+      "sha256": "5de1d48aee959efe6c97f553fd2d9f2f5033bcb957f2871ae9f350185de0777a"
+    },
+    {
+      "file": "torchcrepe/__init__.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/__init__.py",
+      "bytes": 183,
+      "sha256": "342f0c620521cf2f45da04e3b736258266ddf597858936e436f6bf32c932baea"
+    },
+    {
+      "file": "torchcrepe/decode.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/decode.py",
+      "bytes": 2670,
+      "sha256": "cf3380cf1ece5bc9c73936a7927ad42e224b71b4936366264b24f725c1550522"
+    },
+    {
+      "file": "torchcrepe/core.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/core.py",
+      "bytes": 26368,
+      "sha256": "a94d90e76670322889efedaf86c5812a599f96140535d49b1b4e9e6dc1b05840"
+    },
+    {
+      "file": "torchcrepe/model.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/model.py",
+      "bytes": 4551,
+      "sha256": "028e240a191d5ddb28d0af6febe999b9f692f22459e49bf9c5681c9dfea4bd22"
+    },
+    {
+      "file": "torchcrepe/convert.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/convert.py",
+      "bytes": 1775,
+      "sha256": "f5b10b93e7d5b9b16ec5d590c292c3d31716ba3ed5d3ebca1a3741d19ce37485"
+    },
+    {
+      "file": "torchcrepe/filter.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/filter.py",
+      "bytes": 5685,
+      "sha256": "6ea4c0c0ce42cc2483e820f911ce333d09300304378b7a1af95c87a40f6fd4bd"
+    },
+    {
+      "file": "torchcrepe/load.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/load.py",
+      "bytes": 761,
+      "sha256": "cc0721bd2a23c3949c88e34f4d1c258c2c20d89c37066b3cb741c8ef97fc2860"
+    },
+    {
+      "file": "torchcrepe/loudness.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/loudness.py",
+      "bytes": 2354,
+      "sha256": "06f8dd8a6deb686e86a8094a8e7046426776e35b4cc3e64cda87dcde2a2afc82"
+    },
+    {
+      "file": "torchcrepe/threshold.py",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/threshold.py",
+      "bytes": 4008,
+      "sha256": "eb61be95f3196a273d882886ba3f736288571e19c4f9a6b0d12282d82f96c942"
+    },
+    {
+      "file": "torchcrepe/assets/full.pth",
+      "url": "https://raw.githubusercontent.com/maxrmorrison/torchcrepe/19e2ec3d494c0797a5ff2a11408ec5838fba6681/torchcrepe/assets/full.pth",
+      "bytes": 88991291,
+      "sha256": "133225604dedd2e4005f8bbd1bd0a2ec073ba8b7a6cd31ff6d5edbbfa3539986"
+    }
+  ]
+}

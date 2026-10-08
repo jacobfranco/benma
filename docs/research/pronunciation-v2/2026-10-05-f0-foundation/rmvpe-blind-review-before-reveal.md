@@ -1,0 +1,18 @@
+# Initial six-label visual review, before key or RMVPE aggregate metrics were opened
+
+Single assistant reviewer; candidate families and prior report already known. Fresh A-F permutation was generated without opening the key. Recognizable old contours allow inference of identities, so this is semi-blinded, not an independent blinded experiment. No listening claim, lexical tone score, or new acoustic annotation is made. Panels are ordered A through F, consistently across recordings.
+
+- Direct native: every label follows the two strong harmonic cores. A leaves a gap near .4 s and stops near .85 s, but has irregular low excursions in the weak .7-.85 s tail; no credit for filling ambiguous tail. E/F show high branches; C ends early; D extends a stable pitch through the trailing silence; B descends through weak material.
+- Google old: A and D follow the main speech band where E/F/C often select the low stationary band or leave gaps. A avoids most stationary pre-roll, unlike D, but shows two brief high spikes around 3.5-3.6 s. A is not free of octave errors.
+- take_1/take_3: A avoids E/F's doubled onset and preserves the later rise around 2.5-2.9 / 3.0-3.4 s. D is similarly useful in speech but extends through background. A has early stationary-background fragments in take_1 and a brief downward glitch in take_3. B has strong boundary failures. C misses some otherwise visibly voiced portions.
+- Historical f5dc0cc1: A tracks both visible voiced patches and avoids E's late high branch. F also avoids that branch. A extends slightly into irregular offset material; exact tail F0 remains uncertain. B and D put pitch through broad background; C misses most speech.
+- Long low-register 7787300e: A follows low harmonic cores and leaves most of the long pause empty, but retains small mid-pause islands. Its late low branch needs the existing protected-proxy comparison; no claim of 54-70 Hz safety from this overview. B and D overfill pauses.
+- c95673d3: A covers low voice and descends below neighboring tracks near 2.1 s and the late tail. E/F have short low pieces/gaps there. Whole-file overview alone cannot certify the exact weak lowest register.
+- Synthetic 70 Hz: A/B/C/E/F follow the steady lowest fundamental during excitation. D also follows it but extends into pre/post silence. A has no visible steady-core gap.
+- Weak-fundamental synthetic: A switches from the fundamental to its second harmonic for a long middle interval, then returns. B/E/F remain at the fundamental; C/D stay doubled. A's smooth regular voice is therefore not octave-safe.
+- f3c642b5: A follows the obvious initial voiced patch and a few fragments near .7-.8 s, but offers no convincing recovery of the later sparse/missing interval. E/F show related fragments. B/C/D show background paths later.
+- Original silence: A emits an approximately 300-Hz early run despite no vocal truth; E/F abstain. B/C/D also emit background.
+- Periodic silence: A emits long approximately 120-Hz and 230-Hz islands. These could appear like usable vocal evidence. Other labels track lower periodic background or run continuously; no raw solution is safe.
+- Accidental-silence control: A produces a smooth speech-like path over approximately 1.0-2.7 s. The visible harmonic stack is real acoustic evidence, but the frozen negative role is unchanged. An F0 estimator cannot establish that this is the learner's voice. Do not relabel the control to reward the tracker.
+
+Provisional visual assessment: A gives useful improvements over E/F on several hard speech paths, but known-negative vocal attribution and the weak-fundamental octave switch prevent an unconditional foundation endorsement. Need numeric low-proxy, repeat and threshold measurements before final decision.

@@ -12,6 +12,7 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
+from benma_api.audio.presence import require_speech
 from benma_api.config import Settings
 from benma_api.db.models import AudioAsset, PracticeSession, Utterance
 from benma_api.errors import AuthorizationError, InvalidAudioError
@@ -176,6 +177,7 @@ class AudioIngestService:
             canonical_data = canonicalize(
                 self.store.path_for_processing(original_key), self.settings
             )
+            require_speech(canonical_data)
             self.store.put(canonical_key, canonical_data)
             canonical_meta = inspect_audio(
                 self.store.path_for_processing(canonical_key), self.settings

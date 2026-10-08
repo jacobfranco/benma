@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octave ambiguity · six physical takes and protected low-F0 control</title>
+<style>
+body{font:14px system-ui,sans-serif;margin:20px;color:#18232d;background:#f5f7f9}main{max-width:1500px;margin:auto}
+h1{font-size:22px;margin:8px 0}p{margin:8px 0;line-height:1.45}label{margin-right:16px}select,button{font:inherit;padding:7px;margin:4px}
+canvas{display:block;width:100%;background:white;border:1px solid #c6cdd3;margin:8px 0;box-sizing:border-box}
+.warning{background:#fff2d2;padding:10px;border-left:4px solid #b57900}pre{white-space:pre-wrap;font-size:12px;background:white;padding:10px;max-height:320px;overflow:auto}
+.legend span{margin-right:18px}.raw{color:#345270}.alt{color:#a95700}.before{color:#126c8b}.after{color:#127543}.removed{color:#be253c}
+</style>
+<main>
+<h1>Candidate-aware octave ambiguity · rejected research experiment</h1>
+<p class="warning">Production is unchanged. The frame rule loses protected 54.61 Hz evidence; the complete-run variant preserves it but misses most physical artifacts. No candidate replaces a measured frequency.</p>
+<label>Recording <select id="recording"></select></label>
+<label>Window <select id="window"></select></label>
+<label>Trial <select id="policy"><option value="frame">Frame evidence (unsafe)</option><option value="consensus">Complete-run consensus (insufficient)</option></select></label>
+<button id="all">Whole recording</button>
+<p id="summary"></p>
+<p class="legend"><span class="raw">● raw Praat selection</span><span class="alt">● alternate candidates (opacity = strength)</span><span class="before">━ current selected</span><span class="after">━ experimental selected</span><span class="removed">× excluded only by experiment</span></p>
+<canvas id="waveform" height="95" aria-label="Canonical waveform"></canvas>
+<canvas id="spectrum" height="285" aria-label="Spectrogram with raw selected F0 and alternate candidates"></canvas>
+<canvas id="selected" height="195" aria-label="Before and after selected F0 at exact timestamps"></canvas>
+<canvas id="mine" height="240" aria-label="Before and after Mine using each graph's actual semitone domain"></canvas>
+<p>Hover the selected-track panel for every measured candidate and strength. Spectrogram: 100 ms Hann, 5 ms hop, linear Hz, −60…0 dB relative to this recording. Harmonic energy alone does not prove F0. Zoom windows include 180 ms context. Lines stop at missing measurements; apparent frequency crossings are never interpolated.</p>
+<pre id="inspect">Move over the selected-track panel.</pre>
+</main>
+<script>
+const evidence=__EVIDENCE_JSON__;
+const byId=id=>document.getElementById(id), pad={left:60,right:18,top:28,bottom:26};
+const colors={raw:'#345270',alt:'#bf6400',before:'#126c8b',after:'#127543',removed:'#be253c'};
+let active,begin=0,end=1,lastDraw={},heatmaps=new Map();
+const pick=byId('recording'),windowPick=byId('window'),policy=byId('policy');
+evidence.forEach((r,i)=>pick.add(new Option(`${i<6?'Take '+(i+1):'Protected low-F0'} · ${r.id.slice(0,8)}`,r.id)));
+function setup(canvas){canvas.width=Math.round(canvas.getBoundingClientRect().width);const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.font='12px system-ui';return ctx;}
+function axes(canvas,title,low,high,transform=v=>v){const ctx=setup(canvas),w=canvas.width,h=canvas.height;
+ const x=t=>pad.left+(t-begin)/(end-begin)*(w-pad.left-pad.right),y=v=>h-pad.bottom-(transform(v)-transform(low))/(transform(high)-transform(low))*(h-pad.top-pad.bottom);
+ ctx.fillStyle='#18232d';ctx.fillText(title,8,16);ctx.strokeStyle='#e4e9ed';
+ for(let n=0;n<=8;n++){let t=begin+(end-begin)*n/8;ctx.beginPath();ctx.moveTo(x(t),pad.top);ctx.lineTo(x(t),h-pad.bottom);ctx.stroke();ctx.fillText(t.toFixed(2),x(t)-12,h-7);}
+ for(let n=0;n<=4;n++){let v=transform===Math.log2?2**(Math.log2(low)+(Math.log2(high)-Math.log2(low))*n/4):low+(high-low)*n/4;ctx.beginPath();ctx.moveTo(pad.left,y(v));ctx.lineTo(w-pad.right,y(v));ctx.stroke();ctx.fillText(v.toFixed(1),5,y(v)+4);}
+ return {ctx,x,y,w,h};}
+function heatmap(r){if(heatmaps.has(r.id))return heatmaps.get(r.id);let s=r.spectrogram,c=document.createElement('canvas');c.width=s.width;c.height=s.height;const ctx=c.getContext('2d'),im=ctx.createImageData(s.width,s.height),b=atob(s.pixels);
+ for(let y=0;y<s.height;y++)for(let x=0;x<s.width;x++){let value=b.charCodeAt((s.height-y-1)*s.width+x),i=(y*s.width+x)*4;im.data[i]=255-value*.88;im.data[i+1]=255-value*.80;im.data[i+2]=255-value*.66;im.data[i+3]=255;}ctx.putImageData(im,0,0);heatmaps.set(r.id,c);return c;}
+function dot(g,t,v,color,radius=2,opacity=1){if(t<begin||t>end)return;g.ctx.globalAlpha=opacity;g.ctx.fillStyle=color;g.ctx.beginPath();g.ctx.arc(g.x(t),g.y(v),radius,0,Math.PI*2);g.ctx.fill();g.ctx.globalAlpha=1;}
+function line(g,frames,key,color){let previous=null;g.ctx.strokeStyle=color;g.ctx.lineWidth=1.8;
+ for(const f of frames){let value=f[key];if(value==null){previous=null;continue;}let t=f.timestamp_seconds;if(t<begin||t>end){previous=null;continue;}
+ if(previous&&t-previous.timestamp_seconds<=.045){g.ctx.beginPath();g.ctx.moveTo(g.x(previous.timestamp_seconds),g.y(previous[key]));g.ctx.lineTo(g.x(t),g.y(value));g.ctx.stroke();}dot(g,t,value,color,2);previous=f;}}
+function trialFrames(){if(policy.value==='frame'||!active.summary.consensus)return active.after;let dropped=new Set(active.summary.consensus.rejected_indices);return active.frames.map((f,i)=>({...f,selected_f0_hz:dropped.has(i)?null:f.selected_f0_hz}));}
+function draw(){const r=active,after=trialFrames(),stat=r.summary,mode=policy.value==='consensus'&&stat.consensus_after?'consensus_after':'frame_rule_after',count=after.filter(f=>f.selected_f0_hz!=null).length;
+ byId('summary').textContent=`${r.id} · ${r.duration.toFixed(4)} s · selected ${stat.before.selected_frames} → ${count} · Mine domain ${stat.before.mine_domain.map(v=>v.toFixed(2)).join('…')} → ${stat[mode].mine_domain.map(v=>v.toFixed(2)).join('…')} st · ${begin.toFixed(3)}–${end.toFixed(3)} s`;
+ let g=axes(byId('waveform'),'Canonical waveform (original PCM amplitude)',-1,1);g.ctx.strokeStyle='#345270';for(const [t,lo,hi] of r.waveform){if(t<begin||t>end)continue;g.ctx.beginPath();g.ctx.moveTo(g.x(t),g.y(lo));g.ctx.lineTo(g.x(t),g.y(hi));g.ctx.stroke();}
+ g=axes(byId('spectrum'),'Spectrogram / raw tracker / all retained candidates · Hz',0,1000);const hm=heatmap(r);g.ctx.drawImage(hm,begin/r.duration*hm.width,0,(end-begin)/r.duration*hm.width,hm.height,pad.left,pad.top,g.w-pad.left-pad.right,g.h-pad.top-pad.bottom);
+ for(const f of r.frames){for(const c of f.candidates){if(c.frequency_hz===f.raw_f0_hz)continue;dot(g,f.timestamp_seconds,c.frequency_hz,colors.alt,1.4,Math.max(.2,c.strength));}if(f.raw_f0_hz)dot(g,f.timestamp_seconds,f.raw_f0_hz,colors.raw,2.2);}
+ g=axes(byId('selected'),'Current selected (blue), experimental selected (green), candidates (orange) · log Hz',40,550,Math.log2);
+ for(const f of r.frames)for(const c of f.candidates){if(c.frequency_hz>=40&&c.frequency_hz<=550&&c.frequency_hz!==f.raw_f0_hz)dot(g,f.timestamp_seconds,c.frequency_hz,colors.alt,1.8,Math.max(.18,c.strength*.7));}
+ line(g,r.frames,'selected_f0_hz',colors.before);line(g,after,'selected_f0_hz',colors.after);
+ for(let i=0;i<r.frames.length;i++){let f=r.frames[i];if(f.selected_f0_hz&&!after[i].selected_f0_hz&&f.timestamp_seconds>=begin&&f.timestamp_seconds<=end){g.ctx.strokeStyle=colors.removed;let x=g.x(f.timestamp_seconds),y=g.y(f.selected_f0_hz);g.ctx.beginPath();g.ctx.moveTo(x-4,y-4);g.ctx.lineTo(x+4,y+4);g.ctx.moveTo(x-4,y+4);g.ctx.lineTo(x+4,y-4);g.ctx.stroke();}}
+ lastDraw=g;
+ const canvas=byId('mine'),ctx=setup(canvas),w=canvas.width,h=canvas.height,half=(w-45)/2;
+ for(let side=0;side<2;side++){const info=side?stat[mode]:stat.before,fs=side?after:r.frames,origin=side?half+45:0,dom=info.mine_domain;
+ const x=t=>origin+pad.left+(t-begin)/(end-begin)*(half-pad.left-12),y=v=>h-pad.bottom-(v-dom[0])/(dom[1]-dom[0])*(h-pad.top-pad.bottom);
+ ctx.fillStyle='#18232d';ctx.fillText((side?'Experimental Mine':'Current Mine')+' · '+dom.map(v=>v.toFixed(2)).join('…')+' st',origin+8,16);ctx.strokeStyle='#e4e9ed';
+ for(let n=0;n<=4;n++){let v=dom[0]+(dom[1]-dom[0])*n/4;ctx.beginPath();ctx.moveTo(origin+pad.left,y(v));ctx.lineTo(origin+half-12,y(v));ctx.stroke();ctx.fillText(v.toFixed(1),origin+7,y(v)+4);let t=begin+(end-begin)*n/4;ctx.fillText(t.toFixed(2),x(t)-10,h-7);}
+ // Complete-run view recomputes median smoothing from surviving actual Hz.
+ let points=fs;
+ if(side&&mode==='consensus_after'){points=fs.map(f=>({...f,display_semitones:f.selected_f0_hz?12*Math.log2(f.selected_f0_hz/info.baseline_hz):null}));points=points.map((f,i)=>({...f,display_semitones:i&&i<points.length-1&&[points[i-1],f,points[i+1]].every(p=>p.selected_f0_hz)?[points[i-1].display_semitones,f.display_semitones,points[i+1].display_semitones].sort((a,b)=>a-b)[1]:f.display_semitones}));}
+ line({ctx,x,y},points,'display_semitones',side?colors.after:colors.before);}
+ window.__review={recording:r.id,window:[begin,end],before:stat.before.selected_frames,after:count,policy:policy.value};}
+function choose(){active=evidence.find(r=>r.id===pick.value);windowPick.replaceChildren(new Option('Whole recording','all'));active.windows.forEach(([name,a,b])=>windowPick.add(new Option(`${name} · ${a.toFixed(4)}–${b.toFixed(4)} s`,name)));begin=0;end=active.duration;draw();}
+function chooseWindow(){let win=active.windows.find(w=>w[0]===windowPick.value);begin=win?Math.max(0,win[1]-.18):0;end=win?Math.min(active.duration,win[2]+.18):active.duration;draw();}
+pick.addEventListener('change',choose);windowPick.addEventListener('change',chooseWindow);policy.addEventListener('change',draw);byId('all').onclick=()=>{windowPick.value='all';chooseWindow();};window.addEventListener('resize',draw);
+byId('selected').addEventListener('mousemove',event=>{const box=event.currentTarget.getBoundingClientRect(),t=begin+(event.clientX-box.left-pad.left)/(box.width-pad.left-pad.right)*(end-begin);let f=active.frames.reduce((a,b)=>Math.abs(a.timestamp_seconds-t)<Math.abs(b.timestamp_seconds-t)?a:b);let i=active.frames.indexOf(f),after=trialFrames()[i];byId('inspect').textContent=JSON.stringify({source_frame_index:i,timestamp_seconds:f.timestamp_seconds,raw_tracker_hz:f.raw_f0_hz,current_selected_hz:f.selected_f0_hz,experimental_selected_hz:after.selected_f0_hz,periodicity:f.periodicity,current_exclusions:f.exclusion_reasons,candidates:f.candidates},null,2);});
+window.setReview=(id,event='all',trial='frame')=>{pick.value=id;policy.value=trial;choose();windowPick.value=event;chooseWindow();};choose();
+</script>
+</html>

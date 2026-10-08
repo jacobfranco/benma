@@ -1,0 +1,95 @@
+{
+  "tracker": "pyin",
+  "explicit_initialization_seconds": 2.6600901037454605e-07,
+  "warm_runs": [
+    {
+      "recording": "native_24k",
+      "iteration": 0,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.21971587999723852,
+      "cpu_seconds": 0.21924242699999996,
+      "real_time_factor": 0.20925321904498906,
+      "evidence_sha256": "63bd9667d3f52a2bea03e49f8b69267381838af31b48dea4ad903871b2d26f11"
+    },
+    {
+      "recording": "native_24k",
+      "iteration": 1,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.21889370199642144,
+      "cpu_seconds": 0.21837560299999992,
+      "real_time_factor": 0.20847019237754422,
+      "evidence_sha256": "63bd9667d3f52a2bea03e49f8b69267381838af31b48dea4ad903871b2d26f11"
+    },
+    {
+      "recording": "native_24k",
+      "iteration": 2,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.21997694598394446,
+      "cpu_seconds": 0.21950789800000003,
+      "real_time_factor": 0.20950185331804233,
+      "evidence_sha256": "63bd9667d3f52a2bea03e49f8b69267381838af31b48dea4ad903871b2d26f11"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 0,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.5434112590155564,
+      "cpu_seconds": 0.5422492700000001,
+      "real_time_factor": 0.19026588494318888,
+      "evidence_sha256": "2ce037bc404e7a0364d692ad591de86df17893b3c629290e184fe4702ad46899"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 1,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.5375344549829606,
+      "cpu_seconds": 0.5363800099999998,
+      "real_time_factor": 0.18820822547929555,
+      "evidence_sha256": "2ce037bc404e7a0364d692ad591de86df17893b3c629290e184fe4702ad46899"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 2,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.5449599149869755,
+      "cpu_seconds": 0.543778504,
+      "real_time_factor": 0.19080811956565216,
+      "evidence_sha256": "2ce037bc404e7a0364d692ad591de86df17893b3c629290e184fe4702ad46899"
+    }
+  ],
+  "invariance": {
+    "recording": "f5dc0cc1",
+    "audio_sha256": "a5917bbbb3f969a001f88da190c204dbc19e21089e7fc3eb0c1616229f7819ef",
+    "contexts": [
+      {
+        "transcript": "\u8d35\u5dde",
+        "target": "\u5e7f\u5dde",
+        "pinyin": "gui4 zhou1",
+        "tone": [
+          4,
+          1
+        ]
+      },
+      {
+        "transcript": "\u9b3c\u7ca5",
+        "target": "fake",
+        "pinyin": "nonsense",
+        "tone": [
+          1,
+          4
+        ]
+      },
+      {
+        "transcript": "",
+        "target": null,
+        "character": null,
+        "expected_contour": "fake"
+      }
+    ],
+    "byte_identical": true,
+    "evidence_sha256": "182d254cabf5c66bef630f380385440c3029cc329cd2a63d5afaafa59dd89d99"
+  },
+  "first_inference_seconds": 1.34653506000177,
+  "process_peak_rss_kib": 282140,
+  "median_warm_rtf": 0.1996391559715982
+}

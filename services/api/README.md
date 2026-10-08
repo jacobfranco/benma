@@ -54,7 +54,8 @@ Settings use the `BENMA_` prefix and fail on invalid values. Important controls 
   `BENMA_ASSISTANT_SPEECH_MODEL_VERSION`, `BENMA_ASSISTANT_SPEECH_RATE`, and
   `BENMA_ASSISTANT_SPEECH_TIMEOUT_SECONDS`: conversational Mandarin rendering controls, persisted
   independently from pronunciation reference configuration.
-- `BENMA_ENABLE_EXPERIMENTAL_TONE_INTERPRETATION`: factual evidence agreement language.
+- `BENMA_ENABLE_EXPERIMENTAL_TONE_INTERPRETATION`: defaults to `false`; explicit opt-in
+  for uncalibrated laboratory comparisons. It never enables Tone Graph V2 learner grading.
 - `BENMA_ENABLE_CATEGORICAL_TONE_JUDGMENT`: intentionally rejected until calibrated.
 
 The application refuses production startup with development auth enabled and refuses configured

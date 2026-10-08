@@ -9,6 +9,7 @@ export interface components {
         "updated_at": string;
       };
     "AcousticRunResponse": {
+        "utterance_pitch_track"?: components["schemas"]["UtterancePitchTrack"] | null;
         "id": string;
         "utterance_id": string;
         "algorithm": string;
@@ -295,6 +296,9 @@ export interface components {
       };
     "PerceivedAnalysisCreate": {};
     "PerceivedAnalysisData": {
+        "pitch_track_evidence_id"?: string | null;
+        "tone_graph"?: components["schemas"]["SentencePitchEvidence"] | null;
+        "timing_groups"?: Array<components["schemas"]["PerceivedTimingGroup"]>;
         "display_contour"?: components["schemas"]["DisplayContour"] | null;
         "timings_ms"?: {
         [key: string]: number;
@@ -343,6 +347,9 @@ export interface components {
         "data": components["schemas"]["PerceivedAnalysisData"];
       };
     "PerceivedSyllable": {
+        "tone_comparison_policy"?: string;
+        "pitch_projection"?: components["schemas"]["PitchRegionProjection"] | null;
+        "pitch_eligibility"?: components["schemas"]["PitchInterpretationEligibility"];
         "index": number;
         "character_start": number;
         "character_end": number;
@@ -363,6 +370,19 @@ export interface components {
         "start_seconds"?: number | null;
         "end_seconds"?: number | null;
         "expected_tone": Array<components["schemas"]["ExpectedTonePoint"]>;
+        "observed_gesture": "level" | "rising" | "dipping" | "falling" | "unclear";
+        "observed_confidence": "moderate" | "low";
+      };
+    "PerceivedTimingGroup": {
+        "pitch_projection"?: components["schemas"]["PitchRegionProjection"] | null;
+        "pitch_eligibility"?: components["schemas"]["PitchInterpretationEligibility"];
+        "character_start": number;
+        "character_end": number;
+        "text": string;
+        "start_seconds": number;
+        "end_seconds": number;
+        "source"?: string;
+        "timing_evidence_id": string;
       };
     "PerceptionRunResponse": {
         "id": string;
@@ -387,6 +407,44 @@ export interface components {
       };
     "PinyinCorrectionCreate": {
         "pinyin": string;
+      };
+    "PitchCandidate": {
+        "frequency_hz": number;
+        "strength": number;
+      };
+    "PitchInterpretationEligibility": {
+        "version"?: string;
+        "state"?: "sufficient" | "incomplete" | "unstable" | "insufficient";
+        "reasons"?: Array<string>;
+        "metrics"?: components["schemas"]["PitchSupportMetrics"];
+      };
+    "PitchRegionProjection": {
+        "track_evidence_id": string;
+        "start_seconds"?: number | null;
+        "end_seconds"?: number | null;
+        "timing_source"?: string | null;
+        "timing_evidence_id"?: string | null;
+        "frame_indices"?: Array<number>;
+      };
+    "PitchSupportMetrics": {
+        "raw_voiced_frames"?: number;
+        "selected_frames"?: number;
+        "raw_start_seconds"?: number | null;
+        "raw_end_seconds"?: number | null;
+        "selected_start_seconds"?: number | null;
+        "selected_end_seconds"?: number | null;
+        "retained_fraction"?: number;
+        "early_retained_fraction"?: number;
+        "middle_retained_fraction"?: number;
+        "late_retained_fraction"?: number;
+        "largest_island_seconds"?: number;
+        "selected_islands"?: number;
+        "largest_raw_gap_seconds"?: number;
+        "largest_selected_gap_seconds"?: number;
+        "missing_head_seconds"?: number;
+        "missing_tail_seconds"?: number;
+        "maximum_raw_jump_semitones"?: number;
+        "discontinuities"?: number;
       };
     "PracticeSessionCreate": {
         "mode": "perception_test" | "pronunciation";
@@ -439,6 +497,9 @@ export interface components {
       };
       };
     "PronunciationSyllableResult": {
+        "tone_comparison_policy"?: string;
+        "pitch_projection"?: components["schemas"]["PitchRegionProjection"] | null;
+        "pitch_eligibility"?: components["schemas"]["PitchInterpretationEligibility"];
         "display_contour"?: components["schemas"]["DisplayContour"] | null;
         "observed_contour"?: components["schemas"]["ObservedContour"];
         "syllable_index": number;
@@ -511,6 +572,21 @@ export interface components {
       } | null;
         "created_at": string;
       };
+    "SentencePitchEvidence": {
+        "track_evidence_id"?: string | null;
+        "mine": components["schemas"]["DisplayContour"];
+        "filtered": components["schemas"]["DisplayContour"];
+        "raw": Array<components["schemas"]["TrackerPitchFrame"]>;
+      };
+    "TrackerPitchFrame": {
+        "timestamp_seconds": number;
+        "tracker_f0_hz"?: number | null;
+        "f0_hz"?: number | null;
+        "selected_f0_hz"?: number | null;
+        "retained": boolean;
+        "exclusion_reasons"?: Array<string>;
+        "source_frame_index"?: number | null;
+      };
     "UnknownPerceptionRequest": {
         "language_hint"?: string;
         "timeout_seconds"?: number;
@@ -529,6 +605,34 @@ export interface components {
         "perception_run_id": string | null;
         "intended_text": string;
         "created_at": string;
+      };
+    "UtterancePitchFrame": {
+        "timestamp_seconds": number;
+        "raw_f0_hz"?: number | null;
+        "energy_gated_f0_hz"?: number | null;
+        "analyzer_selected_f0_hz"?: number | null;
+        "selected_f0_hz"?: number | null;
+        "periodicity"?: number | null;
+        "energy_rms"?: number | null;
+        "comparison_f0_hz"?: number | null;
+        "filter_disagreement_st"?: number | null;
+        "candidates"?: Array<components["schemas"]["PitchCandidate"]>;
+        "exclusion_reasons"?: Array<string>;
+        "display_semitones"?: number | null;
+      };
+    "UtterancePitchTrack": {
+        "schema_version"?: string;
+        "evidence_id": string;
+        "audio_sha256": string;
+        "tracker_source": string;
+        "tracker_version": string;
+        "tracker_configuration_json": string;
+        "selection_version": string;
+        "raw_provenance": "native_tracker" | "legacy_energy_gated";
+        "frame_cadence_seconds"?: number | null;
+        "duration_seconds": number;
+        "baseline_hz"?: number | null;
+        "frames": Array<components["schemas"]["UtterancePitchFrame"]>;
       };
     "UtteranceResponse": {
         "id": string;

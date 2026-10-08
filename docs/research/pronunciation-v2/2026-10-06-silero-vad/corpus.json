@@ -1,0 +1,707 @@
+{
+  "version": 1,
+  "selection": "All canonical real/negative/previous native variants in frozen F0 inventory, excluding synthetic voiced signals. Failed unlabelled capture retained as unresolved, not counted as a positive. Six speech excerpts and four previously reviewed nonvoiced padding excerpts.",
+  "unavailable": [
+    "confirmed nonsense/nonlexical speech",
+    "independently labelled noisy speech",
+    "standalone 对/嗯/好/不",
+    "real whisper"
+  ],
+  "entries": [
+    {
+      "id": "6f56aef1",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/6f56aef1.wav",
+      "sha256": "3d76f83ed9ff57af5ebf20aaa83c1ac21b7a8c08734916aba59f2d9ee138c3be",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "6f56aef1-c191-41f8-bb5e-d99b529ee6bf",
+      "transcript": "我昨天晚上朋友去吃饭了。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "5b995fff",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/5b995fff.wav",
+      "sha256": "4f43188ac6f43538b1cd13fab7a115f1e4b6b94c4dbb6f6d207141415d8d3a2a",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "5b995fff-38d4-47c0-ab6f-40f79bb97f0c",
+      "transcript": "我是讲",
+      "source_kind": "capture"
+    },
+    {
+      "id": "7787300e",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy",
+        "sparse_pitch",
+        "low_f0_54_70_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/7787300e.wav",
+      "sha256": "0dd0e4a9dd5ca6bd87a83077ad69f2f8193fbe8b73bbfee49290055630baf3fe",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "7787300e-d43a-48d2-bf1d-121e11761af9",
+      "transcript": "我想买五把雨伞。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "c95673d3",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "low_f0_54_70_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/c95673d3.wav",
+      "sha256": "2cbbdf2874d68e478891309fc69ce2f814ba393003324cd933a5c244ed951c8d",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "c95673d3-ab32-443c-b2cd-49c5f95c8a45",
+      "transcript": "我想买五把雨伞",
+      "source_kind": "capture"
+    },
+    {
+      "id": "c5188fc3",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/c5188fc3.wav",
+      "sha256": "189ce5173001aa7b478a719c8233e89a8ea416a2039b14f10ba7a81121f71621",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "c5188fc3-1f1f-4520-8135-a4f7f65e49ac",
+      "transcript": "这不是我的。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "27ea3b92",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "low_f0_54_70_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/27ea3b92.wav",
+      "sha256": "0f1cde94bc6a9ec5560b038524bb67202affca04a77590c8d3dd8a7e15e83b91",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "27ea3b92-3ce7-4c76-b3d3-0535581a5ab1",
+      "transcript": "这不是我的。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "0f4107fe",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/0f4107fe.wav",
+      "sha256": "d76f1adcaa80df3bff443bb4f3534bd97d3c51d0d7586d813bff3a5fd2e4bb4a",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "0f4107fe-5c8f-49ac-8302-63070cbadfca",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "f3c642b5",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/f3c642b5.wav",
+      "sha256": "6dc1af68387a1ca93096567233d01ab918c40493e49b2c9c6cfcfb7687c1ad8f",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "f3c642b5-ef7b-451a-8e96-ec7e143338d9",
+      "transcript": "我们去吧",
+      "source_kind": "capture"
+    },
+    {
+      "id": "f47fadb3",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/f47fadb3.wav",
+      "sha256": "978db669aa6dfeb1fdf25dc07f2de89034d2c3736d34d4c04b3f8b096a9db1e2",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "f47fadb3-63a6-4445-9c11-3b2170de9343",
+      "transcript": "我们要去贵州。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "a0270cee",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/a0270cee.wav",
+      "sha256": "b50de95b98256488786e9f146ce08afc70cb3c3d5d2629c45cc92057fdfa1fa5",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "a0270cee-2e62-41b3-b266-cec08c185226",
+      "transcript": "我想买五把雨伞。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "silence_original",
+      "label": "negative",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/silence_original.wav",
+      "sha256": "c95cc5554d4f682bb899d12e17509468dc870ade24ea896eb3d98755d05087e4",
+      "provenance": "user-identified no-speech",
+      "perception_id": "de4b999e-a527-4613-8709-618c68716477",
+      "transcript": "现在是下午两点半。",
+      "source_kind": "negative"
+    },
+    {
+      "id": "484e80c0",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/484e80c0.wav",
+      "sha256": "901ce949f0df0426e89b1e4cf91d7a2d33e26455146527de0968f336b295dd22",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "484e80c0-cc41-49ab-9623-ba09d71a7458",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "e59a6350",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/e59a6350.wav",
+      "sha256": "8e1a5cd68783e51ba012233b3df32854296102f523b67207c8702868afa4ef0e",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "e59a6350-6631-43bd-ab64-7f02a6ed377a",
+      "transcript": "我们去吧。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "f5dc0cc1",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/f5dc0cc1.wav",
+      "sha256": "a5917bbbb3f969a001f88da190c204dbc19e21089e7fc3eb0c1616229f7819ef",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "f5dc0cc1-cd1f-4721-918b-9357f33774e1",
+      "transcript": "贵州。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "silence_periodic",
+      "label": "negative",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/silence_periodic.wav",
+      "sha256": "6f8c2f58de72ce69fce08125091c12b6194d517f5e6752fdba556b9f25e789d1",
+      "provenance": "user-identified no-speech",
+      "perception_id": "ab6c16ab-ece9-4d00-a3f9-ca693d103624",
+      "transcript": "其实我不行",
+      "source_kind": "negative"
+    },
+    {
+      "id": "370aa8f4",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/370aa8f4.wav",
+      "sha256": "44e048247ab0b8c31e3040a450196be52fee031fbeb5a1f035be6143be56058c",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "370aa8f4-fe6e-4e44-ba32-4b1e886280f2",
+      "transcript": "我想买五部",
+      "source_kind": "capture"
+    },
+    {
+      "id": "1a927887",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/1a927887.wav",
+      "sha256": "66b6ec23a83c8e96417e1832df7bebb0692f204c1f7ef80208bcc59723eccafc",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "1a927887-320c-4f15-876e-60648b472c8c",
+      "transcript": "我想买五把雨伞。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "5ca771a7",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/5ca771a7.wav",
+      "sha256": "bdfea0fa05fbda85a29f595e9261debfd31d34754d85d918e3a32c0b9a8f8248",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "5ca771a7-ad1f-42a0-b7ee-20babc4a1385",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "209ef0c7",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/209ef0c7.wav",
+      "sha256": "0ed2c58291c4acbe98b56eec67027b8027f9e9ba3995b62ae772695a5771a794",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "209ef0c7-c22b-4e74-af1c-391892040d29",
+      "transcript": "我们去吧。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "87ac7dd1",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/87ac7dd1.wav",
+      "sha256": "9c2c3828fa4362188ff5e1e87f00747f42adda3dba76399e1595191d0bfc48d3",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "87ac7dd1-702e-46af-92f5-652507487d51",
+      "transcript": "贵州",
+      "source_kind": "capture"
+    },
+    {
+      "id": "277e9941",
+      "label": "unresolved",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/277e9941.wav",
+      "sha256": "f2b96f87666e7bafe38f6174b1521249de9243eb011bf0f0cc3143f13499cef1",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "277e9941-1fb3-423f-97cb-3d8063d0951d",
+      "transcript": "",
+      "source_kind": "capture"
+    },
+    {
+      "id": "02927481",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/02927481.wav",
+      "sha256": "78103e205e43b62f973c18df9d104a3b07543dd960dd9a94d7d81cde1cf1f285",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "02927481-5174-478d-a40a-6cece40b98df",
+      "transcript": "我想买五把雨伞。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "90aa0d8d",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/90aa0d8d.wav",
+      "sha256": "35bbdc3316099fbcba03c91cbd140c0133f19c2392befb6508de8e15a807cdf9",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "90aa0d8d-91ed-4f0e-8697-d583a15976d2",
+      "transcript": "我也啊",
+      "source_kind": "capture"
+    },
+    {
+      "id": "e0c56934",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/e0c56934.wav",
+      "sha256": "db12a011c432f27c71fa7ec6a6e94c24c57220ddcaacf92a394649ed4339cdce",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "e0c56934-0bcb-47fd-aab3-a636f45092cb",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "dccf8a63",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "sparse_pitch"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/dccf8a63.wav",
+      "sha256": "d6c6abf9b5e57432033ccb57b9e763623ff68ab09056a01d69b908b331ce34d4",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "dccf8a63-0e0f-4458-82ce-facda812c8e3",
+      "transcript": "我们去吧",
+      "source_kind": "capture"
+    },
+    {
+      "id": "9b1d959a",
+      "label": "positive",
+      "tags": [
+        "ordinary"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/9b1d959a.wav",
+      "sha256": "e5ead05a19f091a0c7294087287d5c3e3b6b0c955fac1e19e034e9911de2b402",
+      "provenance": "existing capture; speaker/playback source not proven by persistence",
+      "perception_id": "9b1d959a-f7ec-453a-8728-1a1c685606e7",
+      "transcript": "贵州。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "human_control",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "confirmed_human"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/human_control.wav",
+      "sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+      "provenance": "user-identified human",
+      "perception_id": "422877d2-558e-4eae-89f2-f5f3c8fb9027",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "google_old",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "tts_phone"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/google_old.wav",
+      "sha256": "bbe264ec0a910fcf76cd3582c4fe4f6b7d137753f8c7f6bc59a8d673202b83cd",
+      "provenance": "user-identified Google playback",
+      "perception_id": "c19a5a74-40ea-42a4-8b77-b360b85c33b6",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "silence_accidental",
+      "label": "negative",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/silence_accidental.wav",
+      "sha256": "fcaf551459dc957c7544e396858395e4214c2447aa23cc577a2f9c5261b28eaf",
+      "provenance": "user-identified no-speech",
+      "perception_id": "7e489fd3-c36d-41f6-a20b-300616ad1a42",
+      "transcript": "我要一个苹果",
+      "source_kind": "negative"
+    },
+    {
+      "id": "take_1",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "tts_phone"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/take_1.wav",
+      "sha256": "44d5c787f03cc42955575beb2d231c42ab0cf7c079d5c4e5b544087b855f0464",
+      "provenance": "clean playback; exact provider/source unencoded",
+      "perception_id": "48c71bb4-913a-4a73-bf28-c76f958282bf",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "take_2",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "tts_phone",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/take_2.wav",
+      "sha256": "93c60936ddedfa7cba1324ecf6be2f53a4c3eecd47460d3cd63dc6bd76df13e1",
+      "provenance": "clean playback; exact provider/source unencoded",
+      "perception_id": "cabf8d61-b782-497d-a00b-7f31636642d7",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "take_3",
+      "label": "positive",
+      "tags": [
+        "ordinary",
+        "tts_phone",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/take_3.wav",
+      "sha256": "47cc17edd56f510676325270fed72a4b018c4eafad9d35c00b3b4a687f58b082",
+      "provenance": "clean playback; exact provider/source unencoded",
+      "perception_id": "0cb79e67-aef4-4ea7-a90f-7c7568fd78a8",
+      "transcript": "我要一个苹果。",
+      "source_kind": "capture"
+    },
+    {
+      "id": "native_16k",
+      "label": "positive",
+      "tags": [
+        "tts_native_like"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/native_16k.wav",
+      "sha256": "88e6b9325b545a1c16e893f18b65b7645d2cfd7ccab7f35fb5df1b6788228fbe",
+      "provenance": "deterministic transform of cached direct digital bytes",
+      "perception_id": null,
+      "transcript": "",
+      "source_kind": "perturbation"
+    },
+    {
+      "id": "native_gain",
+      "label": "positive",
+      "tags": [
+        "tts_native_like",
+        "quiet_gain_control",
+        "quiet_rms_proxy"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/native_gain.wav",
+      "sha256": "58ba2678cef961d7b1cd1f2feab3b45b0316584525e20aaafaa14087f2aa6a82",
+      "provenance": "deterministic transform of cached direct digital bytes",
+      "perception_id": null,
+      "transcript": "",
+      "source_kind": "perturbation"
+    },
+    {
+      "id": "native_bandlimit",
+      "label": "positive",
+      "tags": [
+        "tts_native_like"
+      ],
+      "path": "services/api/var/f0-foundation/audio-links/native_bandlimit.wav",
+      "sha256": "cede6bec755cc8402ec84e67e6af88ec911f466532567be84d932333a18b0e48",
+      "provenance": "deterministic transform of cached direct digital bytes",
+      "perception_id": null,
+      "transcript": "",
+      "source_kind": "perturbation"
+    },
+    {
+      "id": "neg_digital_silence",
+      "label": "negative",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/neg_digital_silence.wav",
+      "sha256": "20eaebffe1816e0ffa6f7f854f5ef4ea80d5349faaf0ce1fec1b713e7fde58fa",
+      "provenance": "deterministic local synthesis",
+      "perception_id": null,
+      "transcript": "",
+      "source_kind": "negative"
+    },
+    {
+      "id": "neg_stationary_noise",
+      "label": "negative",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/neg_stationary_noise.wav",
+      "sha256": "1742c42b636cfdd3753e17e0dac5107dfa0f0542dfab7beb740b2d3fb0dde6c5",
+      "provenance": "deterministic local synthesis",
+      "perception_id": null,
+      "transcript": "",
+      "source_kind": "negative"
+    },
+    {
+      "id": "neg_clicks",
+      "label": "negative",
+      "tags": [],
+      "path": "services/api/var/f0-foundation/audio-links/neg_clicks.wav",
+      "sha256": "c97b2205252bf058fd03260fe8fb68ba71ddcac43cc91dfad7be663ebec1d3bb",
+      "provenance": "deterministic local synthesis",
+      "perception_id": null,
+      "transcript": "",
+      "source_kind": "negative"
+    },
+    {
+      "id": "short_human_a",
+      "label": "positive",
+      "tags": [
+        "short",
+        "confirmed_human"
+      ],
+      "path": "services/api/var/speech-presence/crops/short_human_a.wav",
+      "sha256": "253cbd0284341b426cc170947b9fb353f71065b930d9a979e7f3b0348e3a1b3e",
+      "parent_id": "human_control",
+      "parent_sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+      "interval_seconds": [
+        0.95,
+        1.12
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "short_human_b",
+      "label": "positive",
+      "tags": [
+        "short",
+        "confirmed_human"
+      ],
+      "path": "services/api/var/speech-presence/crops/short_human_b.wav",
+      "sha256": "cbe29744434349bd65cb66ae40ef8c539faaedeb482931498e9e5b707c7cc2e1",
+      "parent_id": "human_control",
+      "parent_sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+      "interval_seconds": [
+        1.46,
+        1.57
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "short_human_c",
+      "label": "positive",
+      "tags": [
+        "short",
+        "confirmed_human"
+      ],
+      "path": "services/api/var/speech-presence/crops/short_human_c.wav",
+      "sha256": "c843d722accad004bfd27e2e8fea4ddd1035e6abf98173825a8ee7c1bbaf0d23",
+      "parent_id": "human_control",
+      "parent_sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+      "interval_seconds": [
+        2,
+        2.2
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "short_native",
+      "label": "positive",
+      "tags": [
+        "short",
+        "tts_native_like"
+      ],
+      "path": "services/api/var/speech-presence/crops/short_native.wav",
+      "sha256": "d8c625540127079ba0b3598d422f0aa25995437a0336f0dbb6a50a39513a00d2",
+      "parent_id": "native_16k",
+      "parent_sha256": "88e6b9325b545a1c16e893f18b65b7645d2cfd7ccab7f35fb5df1b6788228fbe",
+      "interval_seconds": [
+        0.05,
+        0.35
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "low_f0_excerpt",
+      "label": "positive",
+      "tags": [
+        "short",
+        "low_f0_54_70_proxy"
+      ],
+      "path": "services/api/var/speech-presence/crops/low_f0_excerpt.wav",
+      "sha256": "0e07fdb1fabcdd61ee06e912d116b65f96f77d79b2acf731c5c35fe07ae01d6e",
+      "parent_id": "c95673d3",
+      "parent_sha256": "2cbbdf2874d68e478891309fc69ce2f814ba393003324cd933a5c244ed951c8d",
+      "interval_seconds": [
+        1.96,
+        2.22
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "low_f0_excerpt_2",
+      "label": "positive",
+      "tags": [
+        "short",
+        "low_f0_54_70_proxy"
+      ],
+      "path": "services/api/var/speech-presence/crops/low_f0_excerpt_2.wav",
+      "sha256": "4e5ecbca6a5d14854dc63cad6f85e514858819b2e4f71a2adabacb7a9eb2eab6",
+      "parent_id": "27ea3b92",
+      "parent_sha256": "0f1cde94bc6a9ec5560b038524bb67202affca04a77590c8d3dd8a7e15e83b91",
+      "interval_seconds": [
+        2.05,
+        2.32
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "padding_human_head",
+      "label": "negative",
+      "tags": [
+        "padding"
+      ],
+      "path": "services/api/var/speech-presence/crops/padding_human_head.wav",
+      "sha256": "f0830d550baaed1c8adffd7e62dccc95de19425ec1aeb666c17c4c36e3bd4a76",
+      "parent_id": "human_control",
+      "parent_sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+      "interval_seconds": [
+        0.1,
+        0.6
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "padding_human_tail",
+      "label": "negative",
+      "tags": [
+        "padding"
+      ],
+      "path": "services/api/var/speech-presence/crops/padding_human_tail.wav",
+      "sha256": "0b60f7c6966bd2b0fbda7263e645f18ac658abfdf9147c1ad9ef4cf0330f7d8b",
+      "parent_id": "human_control",
+      "parent_sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+      "interval_seconds": [
+        2.55,
+        2.8
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "padding_low_voice",
+      "label": "negative",
+      "tags": [
+        "padding"
+      ],
+      "path": "services/api/var/speech-presence/crops/padding_low_voice.wav",
+      "sha256": "b0871e66d0580d515bbdde8276cc9c98293e85c454e8a21e18efb590fdc7a326",
+      "parent_id": "7787300e",
+      "parent_sha256": "0dd0e4a9dd5ca6bd87a83077ad69f2f8193fbe8b73bbfee49290055630baf3fe",
+      "interval_seconds": [
+        3.6,
+        5.8
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    },
+    {
+      "id": "padding_phone",
+      "label": "negative",
+      "tags": [
+        "padding"
+      ],
+      "path": "services/api/var/speech-presence/crops/padding_phone.wav",
+      "sha256": "5c814cdc25f26e290a2a5ce3f9af4d73189c57ffbb6a4d859e5d675afe5acdd0",
+      "parent_id": "google_old",
+      "parent_sha256": "bbe264ec0a910fcf76cd3582c4fe4f6b7d137753f8c7f6bc59a8d673202b83cd",
+      "interval_seconds": [
+        0.1,
+        1.15
+      ],
+      "provenance": "Exact PCM crop of existing recording; no gain/resampling/synthesis. Voiced/padding intervals from frozen acoustic review; low excerpts enclose saved 54–70 Hz evidence.",
+      "source_kind": "excerpt",
+      "transcript": ""
+    }
+  ]
+}

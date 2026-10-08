@@ -34,17 +34,24 @@ to use another development account. Existing saved sessions continue to restore 
   Recording is available while voice is preparing. Late voice never autoplays over a newer recording.
 - **Practice** (`/practice`): free speech shows perception, measured pitch, and conservative surface-tone expectations; dictionary tones stay separate and no intended-target accuracy is claimed.
   An optional manually prepared target enables reference audio, pinyin revisions, and the existing
-  known-target pronunciation analysis. Reference failure still permits a recording. Free practice
-  also supports replaying the learner recording.
+  known-target attempt persistence. Both modes draw Tone Graph V2 exclusively from perceived-text
+  analysis; target differences are a separate text comparison. Reference failure still permits
+  a recording. Both modes support replaying the learner recording.
 - **Internal tools:** `/perception` and `/pronunciation` retain the old debugging/laboratory flows,
   including corrections, reference/mine playback, pitch diagnostics, history, and A/B comparisons.
   Home offers only Conversation and Practice as primary products. History and calibration remain
   secondary development tools.
 
 Free-speech feedback compares server-returned heard and inferred wording; it never diagnoses a
-pronunciation error from inferred text. The chart compares measured F0 with the tone pattern for the exact persisted heard text. Missing
-syllable timing uses an untimed expected-tone strip; uncertain readings remain visible. Only an
-explicit intended target supports target-relative assessment. Synthetic perception/results retain a fixture banner.
+pronunciation error from inferred text. Tone Graph V2 attaches measured pitch to large perceived-character cells,
+with reference pronunciation explicitly behind character tap for the exact persisted heard text. Word-only timing spans one grouped contour without internal character assignment. Untimed characters
+keep their cells; technical explanation is behind tap and More detail. Silence/no-speech
+returns a concise retry state before successful perception or target assessment; a conservative post-ASR acoustic check also rejects unsupported multi-character claims. More detail exposes
+retained samples; Raw is nested developer detail. Missing pitch stays blank, untimed characters
+remain visible, and uncertain readings never erase timing. Conservative whole-cell tone-gesture states are consistent/different/uncertain for eligible T1/T2/T4 evidence; T3 and neutral remain uncertain. Observed pitch and reference tone are explicit behind tap. No overall pronunciation grade appears in
+these primary flows. Synthetic perception/results retain a fixture banner.
+
+See [Tone Graph V2 semantics, validation, and five-case smoke packet](../../docs/development/tone-graph-v2.md).
 
 ## Audio and session boundaries
 

@@ -1,0 +1,334 @@
+{
+  "input_sample_rate": 24000,
+  "normalized_sample_rate": 16000,
+  "input_samples": 25200,
+  "normalized_samples": 16800,
+  "input_duration_seconds": 1.05,
+  "normalized_duration_seconds": 1.05,
+  "preprocessing": "mono PCM16 / 32768; float32; no gain/DC/filter change; scipy resample_poly only when input is not 16 kHz",
+  "window_samples": 512,
+  "window_seconds": 0.032,
+  "context_samples": 64,
+  "last_chunk_zero_padding_samples": 96,
+  "model_sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
+  "frames": [
+    {
+      "start_sample": 0,
+      "end_sample": 512,
+      "start_seconds": 0.0,
+      "end_seconds": 0.032,
+      "window_end_seconds": 0.032,
+      "probability": 0.023306846618652344
+    },
+    {
+      "start_sample": 512,
+      "end_sample": 1024,
+      "start_seconds": 0.032,
+      "end_seconds": 0.064,
+      "window_end_seconds": 0.064,
+      "probability": 0.5882021188735962
+    },
+    {
+      "start_sample": 1024,
+      "end_sample": 1536,
+      "start_seconds": 0.064,
+      "end_seconds": 0.096,
+      "window_end_seconds": 0.096,
+      "probability": 0.5420499444007874
+    },
+    {
+      "start_sample": 1536,
+      "end_sample": 2048,
+      "start_seconds": 0.096,
+      "end_seconds": 0.128,
+      "window_end_seconds": 0.128,
+      "probability": 0.5297969579696655
+    },
+    {
+      "start_sample": 2048,
+      "end_sample": 2560,
+      "start_seconds": 0.128,
+      "end_seconds": 0.16,
+      "window_end_seconds": 0.16,
+      "probability": 0.637160062789917
+    },
+    {
+      "start_sample": 2560,
+      "end_sample": 3072,
+      "start_seconds": 0.16,
+      "end_seconds": 0.192,
+      "window_end_seconds": 0.192,
+      "probability": 0.6260648965835571
+    },
+    {
+      "start_sample": 3072,
+      "end_sample": 3584,
+      "start_seconds": 0.192,
+      "end_seconds": 0.224,
+      "window_end_seconds": 0.224,
+      "probability": 0.6271576285362244
+    },
+    {
+      "start_sample": 3584,
+      "end_sample": 4096,
+      "start_seconds": 0.224,
+      "end_seconds": 0.256,
+      "window_end_seconds": 0.256,
+      "probability": 0.7896742820739746
+    },
+    {
+      "start_sample": 4096,
+      "end_sample": 4608,
+      "start_seconds": 0.256,
+      "end_seconds": 0.288,
+      "window_end_seconds": 0.288,
+      "probability": 0.9459711313247681
+    },
+    {
+      "start_sample": 4608,
+      "end_sample": 5120,
+      "start_seconds": 0.288,
+      "end_seconds": 0.32,
+      "window_end_seconds": 0.32,
+      "probability": 0.9537961483001709
+    },
+    {
+      "start_sample": 5120,
+      "end_sample": 5632,
+      "start_seconds": 0.32,
+      "end_seconds": 0.352,
+      "window_end_seconds": 0.352,
+      "probability": 0.9667850136756897
+    },
+    {
+      "start_sample": 5632,
+      "end_sample": 6144,
+      "start_seconds": 0.352,
+      "end_seconds": 0.384,
+      "window_end_seconds": 0.384,
+      "probability": 0.9796231389045715
+    },
+    {
+      "start_sample": 6144,
+      "end_sample": 6656,
+      "start_seconds": 0.384,
+      "end_seconds": 0.416,
+      "window_end_seconds": 0.416,
+      "probability": 0.9970229864120483
+    },
+    {
+      "start_sample": 6656,
+      "end_sample": 7168,
+      "start_seconds": 0.416,
+      "end_seconds": 0.448,
+      "window_end_seconds": 0.448,
+      "probability": 0.9983764290809631
+    },
+    {
+      "start_sample": 7168,
+      "end_sample": 7680,
+      "start_seconds": 0.448,
+      "end_seconds": 0.48,
+      "window_end_seconds": 0.48,
+      "probability": 0.999678373336792
+    },
+    {
+      "start_sample": 7680,
+      "end_sample": 8192,
+      "start_seconds": 0.48,
+      "end_seconds": 0.512,
+      "window_end_seconds": 0.512,
+      "probability": 0.9998065233230591
+    },
+    {
+      "start_sample": 8192,
+      "end_sample": 8704,
+      "start_seconds": 0.512,
+      "end_seconds": 0.544,
+      "window_end_seconds": 0.544,
+      "probability": 0.9996579885482788
+    },
+    {
+      "start_sample": 8704,
+      "end_sample": 9216,
+      "start_seconds": 0.544,
+      "end_seconds": 0.576,
+      "window_end_seconds": 0.576,
+      "probability": 0.9993059635162354
+    },
+    {
+      "start_sample": 9216,
+      "end_sample": 9728,
+      "start_seconds": 0.576,
+      "end_seconds": 0.608,
+      "window_end_seconds": 0.608,
+      "probability": 0.9992564916610718
+    },
+    {
+      "start_sample": 9728,
+      "end_sample": 10240,
+      "start_seconds": 0.608,
+      "end_seconds": 0.64,
+      "window_end_seconds": 0.64,
+      "probability": 0.9995627403259277
+    },
+    {
+      "start_sample": 10240,
+      "end_sample": 10752,
+      "start_seconds": 0.64,
+      "end_seconds": 0.672,
+      "window_end_seconds": 0.672,
+      "probability": 0.9995986223220825
+    },
+    {
+      "start_sample": 10752,
+      "end_sample": 11264,
+      "start_seconds": 0.672,
+      "end_seconds": 0.704,
+      "window_end_seconds": 0.704,
+      "probability": 0.9997597932815552
+    },
+    {
+      "start_sample": 11264,
+      "end_sample": 11776,
+      "start_seconds": 0.704,
+      "end_seconds": 0.736,
+      "window_end_seconds": 0.736,
+      "probability": 0.9997791647911072
+    },
+    {
+      "start_sample": 11776,
+      "end_sample": 12288,
+      "start_seconds": 0.736,
+      "end_seconds": 0.768,
+      "window_end_seconds": 0.768,
+      "probability": 0.998786449432373
+    },
+    {
+      "start_sample": 12288,
+      "end_sample": 12800,
+      "start_seconds": 0.768,
+      "end_seconds": 0.8,
+      "window_end_seconds": 0.8,
+      "probability": 0.9992763996124268
+    },
+    {
+      "start_sample": 12800,
+      "end_sample": 13312,
+      "start_seconds": 0.8,
+      "end_seconds": 0.832,
+      "window_end_seconds": 0.832,
+      "probability": 0.9993126392364502
+    },
+    {
+      "start_sample": 13312,
+      "end_sample": 13824,
+      "start_seconds": 0.832,
+      "end_seconds": 0.864,
+      "window_end_seconds": 0.864,
+      "probability": 0.9995622634887695
+    },
+    {
+      "start_sample": 13824,
+      "end_sample": 14336,
+      "start_seconds": 0.864,
+      "end_seconds": 0.896,
+      "window_end_seconds": 0.896,
+      "probability": 0.9996188879013062
+    },
+    {
+      "start_sample": 14336,
+      "end_sample": 14848,
+      "start_seconds": 0.896,
+      "end_seconds": 0.928,
+      "window_end_seconds": 0.928,
+      "probability": 0.9983174204826355
+    },
+    {
+      "start_sample": 14848,
+      "end_sample": 15360,
+      "start_seconds": 0.928,
+      "end_seconds": 0.96,
+      "window_end_seconds": 0.96,
+      "probability": 0.9662477374076843
+    },
+    {
+      "start_sample": 15360,
+      "end_sample": 15872,
+      "start_seconds": 0.96,
+      "end_seconds": 0.992,
+      "window_end_seconds": 0.992,
+      "probability": 0.6318009495735168
+    },
+    {
+      "start_sample": 15872,
+      "end_sample": 16384,
+      "start_seconds": 0.992,
+      "end_seconds": 1.024,
+      "window_end_seconds": 1.024,
+      "probability": 0.20514219999313354
+    },
+    {
+      "start_sample": 16384,
+      "end_sample": 16800,
+      "start_seconds": 1.024,
+      "end_seconds": 1.05,
+      "window_end_seconds": 1.056,
+      "probability": 0.07034620642662048
+    }
+  ],
+  "id": "native_gain",
+  "audio_sha256": "58ba2678cef961d7b1cd1f2feab3b45b0316584525e20aaafaa14087f2aa6a82",
+  "provenance": {
+    "package": "silero-vad",
+    "version": "6.2.3",
+    "upstream_repository": "https://github.com/snakers4/silero-vad",
+    "download": {
+      "package": "silero-vad",
+      "version": "6.2.3",
+      "artifact": {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "ff91344bc524cfe9970eabf27b7ec68e721aa32968079b0012b797803725b529"
+        },
+        "digests": {
+          "blake2b_256": "84ef9099037ed6f180ea33220178df4107112c0ce2bf5fb4d6f6ab19db2844ed",
+          "md5": "ec12fff503efca78b44ea8edee929654",
+          "sha256": "7b7f5436cfcb02fae583a05b512ea96467fd449fe54cb49a5e4f06c51a1e43b8"
+        },
+        "downloads": -1,
+        "filename": "silero_vad-6.2.3-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "ec12fff503efca78b44ea8edee929654",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": ">=3.8",
+        "size": 11317527,
+        "upload_time": "2026-09-23T11:37:20",
+        "upload_time_iso_8601": "2026-09-23T11:37:20.002180Z",
+        "url": "https://files.pythonhosted.org/packages/84/ef/9099037ed6f180ea33220178df4107112c0ce2bf5fb4d6f6ab19db2844ed/silero_vad-6.2.3-py3-none-any.whl",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    },
+    "model": "silero_vad/data/silero_vad.onnx",
+    "model_sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
+    "model_size_bytes": 2327524,
+    "utils_sha256": "15d0f6b3ef9590e22ca2f146e1436f6901da356cb552d3183df4100862b333cb",
+    "license": "MIT",
+    "backend": "onnxruntime",
+    "onnxruntime": "1.23.2",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.3",
+    "python": "3.12.13",
+    "intra_op_threads": 1,
+    "inter_op_threads": 1,
+    "batch_size": 1,
+    "initial_import_and_model_load_ms": 960.1675410012831,
+    "manifest_sha256": "6a335d31ea05680d72e33cb8502ce336118bbe41a19c280be20ef43ee8944aa5",
+    "upstream_opset": 16
+  }
+}

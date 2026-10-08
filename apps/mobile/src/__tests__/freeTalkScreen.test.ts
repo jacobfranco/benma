@@ -164,6 +164,20 @@ describe('Free Talk screen', () => {
     jest.spyOn(api, 'createAssistantSpeech').mockResolvedValue(successfulTurn().assistant_turn.assistant_speech!);
   });
 
+  it('no-speech shows retry copy without a transcript, graph or assistant response', async () => {
+    jest.mocked(api.uploadUtterance).mockRejectedValueOnce({ code: 'no_speech' });
+    const renderer = await renderScreen();
+    await recordAndStop(renderer);
+    expect(JSON.stringify(renderer.toJSON())).toContain("Didn't catch any speech. Try again.");
+    expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(0);
+    expect(api.createPerception).not.toHaveBeenCalled();
+    expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
+    expect(api.addConversationUserTurn).not.toHaveBeenCalled();
+    expect(api.createAssistantSpeech).not.toHaveBeenCalled();
+    expect(button(renderer.root, 'Tap to speak').props.disabled).toBe(false);
+    await act(async () => renderer.unmount());
+  });
+
   it('automatically creates a new persisted conversation and keeps captures temporary', async () => {
     const renderer = await renderScreen();
 
@@ -200,7 +214,7 @@ describe('Free Talk screen', () => {
     expect(rendered).toContain('我想卖水果。');
     expect(rendered).toContain('What Benma heard');
     expect(rendered).toContain('What Benma understood');
-    expect(rendered).toContain('Pronunciation');
+    expect(rendered).toContain('Your pitch');
     expect(rendered).not.toMatch(/provider|logprob|evidence|uncertainty/i);
 
     const userText = renderer.root.findByProps({ children: '我想买水果。' });
@@ -219,19 +233,19 @@ describe('Free Talk screen', () => {
     await recordAndStop(renderer);
     const section = renderer.root.findByProps({ testID: 'pronunciation-section' });
     const placeholder = renderer.root.findByProps({ testID: 'pronunciation-content' });
-    expect(JSON.stringify(renderer.toJSON())).toContain('syllable-skeleton');
+    expect(JSON.stringify(renderer.toJSON())).toContain('sentence-graph-placeholder');
     expect(JSON.stringify(renderer.toJSON())).toContain('Preparing response…');
     await act(async () => { releaseResponse(successfulTurn()); await flush(); });
     expect(renderer.root.findByProps({ testID: 'pronunciation-section' })).toBe(section);
     expect(renderer.root.findByProps({ testID: 'pronunciation-content' })).toBe(placeholder);
-    expect(JSON.stringify(renderer.toJSON())).toContain('syllable-skeleton');
+    expect(JSON.stringify(renderer.toJSON())).toContain('sentence-graph-placeholder');
     expect(JSON.stringify(renderer.toJSON())).toContain('你喜欢什么水果？');
     await act(async () => { releaseAnalysis(perceivedAnalysis); await flush(); });
     expect(renderer.root.findByProps({ testID: 'pronunciation-section' })).toBe(section);
     expect(renderer.root.findByProps({ testID: 'pronunciation-content' })).toBe(placeholder);
     const tree = JSON.stringify(renderer.toJSON());
-    expect(tree).not.toContain('syllable-skeleton');
-    expect(tree.indexOf('Expected and mine by syllable')).toBeLessThan(tree.indexOf('BENMA'));
+    expect(tree).not.toContain('sentence-graph-placeholder');
+    expect(tree.indexOf('Your pitch')).toBeLessThan(tree.indexOf('BENMA'));
     expect(api.analyzePerceivedSpeech).toHaveBeenCalledTimes(1);
     await act(async () => renderer.unmount());
   });

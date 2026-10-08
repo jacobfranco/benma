@@ -1,25 +1,27 @@
 """Azure Mandarin offsets as alignment-only evidence, never free-speech assessment.
 
-The zh-CN SAPI response uses full pinyin syllables in its Phonemes tier. We accept
-one such entry per exact character only when the base reading matches. Tone digits
-are provider reference labels (sometimes sandhi), never measured learner tones.
+Perceived speech uses exact provider Grapheme spans, independent of readings.
+The legacy target-relative path retains SAPI reading matching. Provider reference
+phone labels and tone digits never establish measured learner pronunciation.
 """
 
 from __future__ import annotations
 
 import math
 import re
+from itertools import pairwise
 from typing import TYPE_CHECKING, Any
 
 from pypinyin.contrib.tone_convert import to_tone3
 
 from benma_api.errors import AnalysisUnsupportedError, ProviderMalformedResponseError
+from benma_api.schemas import PerceivedSyllable, PerceivedTimingGroup
 from benma_api.speech.providers.azure import request_azure_speech
 
 if TYPE_CHECKING:
     from benma_api.pronunciation.alignment import AlignmentRequest, AlignmentResponse
 
-AZURE_ALIGNMENT_VERSION = "zh-CN-sapi-syllable-offsets-v1"
+AZURE_ALIGNMENT_VERSION = "zh-CN-exact-grapheme-v2-target-sapi-v1"
 AZURE_TIMING_CONFIG = {
     "GradingSystem": "HundredMark",
     "Granularity": "Phoneme",
@@ -146,6 +148,154 @@ def azure_syllable_units(
     return units
 
 
+def _exact_word_spans(
+    raw: dict[str, Any], reference: str, duration_seconds: float | None
+) -> list[tuple[int, dict[str, Any], list[tuple[int, str]], dict[str, float]]]:
+    """Shared exact-reference/order/bounds checks for character and word evidence."""
+    best = raw.get("NBest")
+    if not isinstance(best, list) or not best or not isinstance(best[0], dict):
+        return []
+    words = best[0].get("Words", [])
+    if not isinstance(words, list) or any(
+        not isinstance(w, dict) or not isinstance(w.get("Word"), str) for w in words
+    ):
+        return []
+    lexical = [(i, c) for i, c in enumerate(reference) if c.isalnum()]
+    if [c for w in words for c in w["Word"] if c.isalnum()] != [c for _, c in lexical]:
+        return []
+    accepted: list[tuple[int, dict[str, Any], list[tuple[int, str]], dict[str, float]]] = []
+    cursor, previous_word_end = 0, 0.0
+    for wi, word in enumerate(words):
+        letters = [c for c in word["Word"] if c.isalnum()]
+        positions = lexical[cursor : cursor + len(letters)]
+        cursor += len(letters)
+        assessment = word.get("PronunciationAssessment")
+        error = (assessment if isinstance(assessment, dict) else {}).get(
+            "ErrorType", word.get("ErrorType")
+        )
+        span = _span(word)
+        if span and (
+            span["start_seconds"] < previous_word_end
+            or not math.isfinite(span["end_seconds"])
+            or (duration_seconds is not None and span["end_seconds"] > duration_seconds)
+        ):
+            return []
+        if span:
+            previous_word_end = span["end_seconds"]
+        if not span or error in {"Omission", "Insertion"} or not letters:
+            continue
+        accepted.append((wi, word, positions, span))
+    return accepted
+
+
+def azure_grapheme_units(
+    raw: dict[str, Any], reference: str, *, duration_seconds: float | None = None
+) -> list[dict[str, Any]]:
+    """Exact provider character spans, independent of reading and reference phones.
+
+    Port of the audited connected-speech mapper. A missing character span stays
+    missing; a conflicting tier rejects its word. Whole-reference mismatch and
+    overlapping word spans fail closed. Audio bounds are checked by the caller.
+    """
+    lexical = [(i, c) for i, c in enumerate(reference) if HAN.fullmatch(c)]
+    indices = {offset: i for i, (offset, _) in enumerate(lexical)}
+    units: list[dict[str, Any]] = []
+    for wi, word, positions, span in _exact_word_spans(raw, reference, duration_seconds):
+        letters = [c for _, c in positions]
+        tier = word.get("Syllables")
+        source = "azure_provider_grapheme"
+        if tier is None or tier == []:
+            if len(letters) != 1 or not HAN.fullmatch(letters[0]):
+                continue
+            tier = [{**word, "Grapheme": letters[0]}]
+            source = "azure_character_word"
+        if (
+            not isinstance(tier, list)
+            or any(not isinstance(g, dict) for g in tier)
+            or [g.get("Grapheme") for g in tier] != letters
+            or any(not HAN.fullmatch(c) for c in letters)
+        ):
+            continue
+        pending: list[dict[str, Any]] = []
+        invalid = False
+        for gi, (g, (offset, character)) in enumerate(zip(tier, positions, strict=True)):
+            timing = _span(g)
+            if timing is None:
+                continue
+            if (
+                not math.isfinite(timing["end_seconds"])
+                or timing["end_seconds"] - timing["start_seconds"] > 3
+                or timing["start_seconds"] < span["start_seconds"] - 0.001
+                or timing["end_seconds"] > span["end_seconds"] + 0.001
+                or (pending and timing["start_seconds"] < pending[-1]["end_seconds"])
+            ):
+                invalid = True
+            pending.append(
+                {
+                    "label": character,
+                    "syllable_index": indices[offset],
+                    "character_start": offset,
+                    "character_end": offset + 1,
+                    **timing,
+                    "source": source,
+                    "provider_word_index": wi,
+                    "provider_grapheme_index": gi if source == "azure_provider_grapheme" else None,
+                }
+            )
+        if not invalid:
+            units.extend(pending)
+    if any(b["start_seconds"] < a["end_seconds"] for a, b in pairwise(units)):
+        return []
+    return units
+
+
+def azure_word_timing_groups(
+    raw: dict[str, Any],
+    reference: str,
+    syllables: list[PerceivedSyllable],
+    *,
+    duration_seconds: float,
+    timing_evidence_id: str,
+) -> list[PerceivedTimingGroup]:
+    """Preserve whole words only when none of their characters owns timing.
+
+    Anonymous syllables and reference phones never enter this transformation.
+    Partially character-timed words retain their trustworthy character evidence;
+    this initial group representation does not overlap it.
+    """
+    groups = []
+    for _, _word, positions, span in _exact_word_spans(raw, reference, duration_seconds):
+        if len(positions) < 2 or any(not HAN.fullmatch(c) for _, c in positions):
+            continue
+        start, end = positions[0][0], positions[-1][0] + 1
+        if end - start != len(positions):
+            continue
+        members = [s for s in syllables if start <= s.character_start < end]
+        if len(members) != len(positions) or any(
+            s.start_seconds is not None or s.end_seconds is not None for s in members
+        ):
+            continue
+        # A token span from another source cannot overlap this word either.
+        if any(
+            s.start_seconds is not None
+            and s.end_seconds is not None
+            and s.start_seconds < span["end_seconds"]
+            and s.end_seconds > span["start_seconds"]
+            for s in syllables
+        ):
+            continue
+        groups.append(
+            PerceivedTimingGroup(
+                character_start=start,
+                character_end=end,
+                text=reference[start:end],
+                **span,
+                timing_evidence_id=timing_evidence_id,
+            )
+        )
+    return groups
+
+
 class AzureSpeechAligner:
     algorithm_name = "azure_speech_alignment_only"
     algorithm_version = AZURE_ALIGNMENT_VERSION
@@ -176,6 +326,14 @@ class AzureSpeechAligner:
             config={**AZURE_TIMING_CONFIG, "ReferenceText": request.reference_text},
             timeout_seconds=min(request.timeout_seconds, self.timeout_seconds),
         )
+        if request.reference_kind == "perceived_text":
+            return AlignmentResponse(
+                units=azure_grapheme_units(
+                    raw, request.reference_text, duration_seconds=request.duration_seconds
+                ),
+                raw_result=raw,
+                evidence_status="live_provider",
+            )
         payload = timing_payload(raw)
         return AlignmentResponse(
             units=azure_syllable_units(payload, request.reference_text, request.pinyin_syllables),

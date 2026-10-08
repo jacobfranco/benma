@@ -1,0 +1,6 @@
+threshold,negative_pitch_frames,negative_frames,speech_emitted,speech_frames,low_proxy_retained,low_proxy_doubled,lowest_retained,lowest_doubled,harmonic_support_retained,harmonic_support_frames
+0.01,496,1947,5112,9043,617,3,11,3,329,329
+0.02,424,1947,4670,9043,617,3,11,3,329,329
+0.03,374,1947,4426,9043,617,3,11,3,329,329
+0.04,358,1947,4262,9043,617,3,11,3,329,329
+0.05,326,1947,4151,9043,617,3,11,3,329,329

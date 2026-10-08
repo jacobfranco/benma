@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sustained high branch — private forensic review</title>
+<style>
+body{font:15px/1.5 system-ui,sans-serif;color:#172b3a;background:#f6f8fa;margin:24px}
+main{max-width:1500px;margin:auto}h1{font-size:24px}h2{font-size:19px;margin-top:28px}
+img{display:block;width:100%;height:auto;background:white;border:1px solid #d6dde3}
+.notice{background:#fff0d4;border-left:4px solid #bc7c00;padding:12px}
+.table{overflow:auto;background:white}table{border-collapse:collapse;font-size:12px}
+td,th{border:1px solid #d6dde3;padding:6px;text-align:left;vertical-align:top}
+th{background:#e8eef3}audio{width:420px;max-width:100%}a{color:#006879}
+</style>
+<main>
+<h1>8d252264 · sustained high branch, 4.1002–4.3402 seconds</h1>
+<p class="notice">Outcome D: acoustically ambiguous. Production is unchanged. The full run does not have a supported continuous half-frequency path. Central frames contain roughly 94 Hz harmonic spacing; the rest is less regular. No lower frequency has been inserted into Mine.</p>
+<p>25 raw frames; 24 production-selected frames; 11 simplified Mine vertices. Half-path coverage: 16/25 within 1 semitone, 8/25 at strength ≥ .45. All 617 protected samples survive the diagnostic, which also misses the target and historical failures. This is not an accepted rule.</p>
+<h2>Private listening crop · 3.8–4.6 seconds</h2>
+<audio controls preload="none" src="private-3.8-4.6.wav"></audio>
+<p>The crop is for human audition. No human listening verdict was obtained during this pass. Waveform/spectral inspection is not a perceptual classification.</p>
+<h2>Target beside protected 54.610 Hz</h2>
+<p>Actual graph domain before = after: −16.1387…23.2874 st. Deletion-only illustration would give −15.7336…3.6293 st, but no safe rule authorizes that deletion. All plots use acoustic time, with no invented character boundaries.</p>
+<a href="comparison.pdf">Download comparison PDF</a>
+<img src="comparison.png" alt="Waveform, spectrum, candidate branches, selected pitch, and actual graph domains beside protected low-F0 control">
+<h2>Spectral and waveform evidence</h2>
+<p>60/100 ms Hann spectra; zero padding adds interpolation, not resolution. Unfiltered lag curves are waveform checks, not another F0 tracker. The protected control also has a stronger doubled spectral component.</p>
+<a href="spectral-periodicity.pdf">Download spectral and periodicity PDF</a>
+<img src="spectral-periodicity.png" alt="Eight representative spectra, lag curves, and short waveforms, including late candidate-poor frames">
+<h2>Original versus canonical</h2>
+<p>Native 44.1 kHz original and 16 kHz canonical agree within 0.014 st. Stereo channels are identical. Re-canonicalized PCM is identical. One weak candidate near the 50 Hz floor differs; the high path and selected support do not.</p>
+<img src="original-comparison.png" alt="Native original and canonical waveform, spectrum and high pitch selections overlaid">
+__FRAME_TABLES__
+<p>“null” means missing; alternatives are measured candidates within 2 st for inspection. The diagnostic uses the stricter 1 st tolerance and explicitly records weak/missing frames. Candidate strength is not a probability of correct F0.</p>
+</main>
+</html>

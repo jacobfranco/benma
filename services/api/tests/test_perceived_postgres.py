@@ -39,6 +39,10 @@ from benma_api.speech.providers.replay import ReplayPerceptionProvider
 @pytest.mark.skipif(os.getenv("BENMA_TEST_POSTGRES") != "1", reason="opt-in local PostgreSQL check")
 @pytest.mark.parametrize("warmup", [False, True])
 def test_duplicate_analysis_and_context_insertion_are_independent(store, monkeypatch, warmup):
+    from conftest import wav_bytes
+
+    canonical = wav_bytes(1.0)
+    store.put("test/recording.wav", canonical)
     settings = Settings()
     engine = create_engine(settings.database_url)
     schema = "benma_analysis_test_" + uuid.uuid4().hex
@@ -113,7 +117,7 @@ def test_duplicate_analysis_and_context_insertion_are_independent(store, monkeyp
                 # Simulated ASR can finish and persist while acoustics are held.
                 assert entered.is_set() and not release.is_set()
                 audio_store = Mock()
-                audio_store.read.return_value = b"fixture audio"
+                audio_store.read.return_value = canonical
                 asr = PerceptionService(
                     SqlPerceptionRepository(db), audio_store, ReplayPerceptionProvider()
                 ).run(

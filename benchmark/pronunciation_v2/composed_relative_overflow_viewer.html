@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mine: centered gesture + overflow</title>
+<style>
+body{font:15px system-ui;margin:24px auto;max-width:1120px;padding:0 20px;color:#233345;background:#f7f9fb}h1{font-size:24px}h2{font-size:18px}section{background:white;border:1px solid #dce2e8;border-radius:10px;padding:16px;margin:16px 0}select,button{font:inherit;padding:7px;margin:4px}svg{display:block;max-width:none;height:auto}section>div{overflow-x:auto}table{border-collapse:collapse;font-size:13px}td,th{padding:6px 12px;border:1px solid #ddd;text-align:left}p{line-height:1.5}.muted{color:#66788c}#inspect{white-space:pre-wrap;font-size:12px} .overflow-rail{stroke-dasharray:3 3} .overflow-arrow{fill:none;stroke-width:2} .boundary{stroke:#a1acb9;stroke-dasharray:2 5} .contour{fill:none;stroke:#7655a7;stroke-width:2} .point{fill:#7655a7} .crossing{fill:white;stroke:#7655a7}
+</style>
+<h1>Mine: timing-unit centering + robust relative overflow</h1>
+<p>Local research only. Pitch gesture within each accepted timing unit. One median per unit, one shared relative scale. Unchanged selected F0 and timing. Height across separate units does not compare absolute register. Dashed edge spans + outward chevrons mean <b>pitch continued beyond graph range</b>; they are duration indicators, not a flat measured contour. Gaps stay gaps. More Detail below preserves exact magnitude.</p>
+<label>Recording <select id="take"></select></label><label>Display policy <select id="policy"><option>mad3</option><option>mad2.5</option><option>mad3.5</option></select></label>
+<p id="status"></p>
+<section><h2>A · Current Mine (actual mobile layout)</h2><div id="current"></div><p id="before"></p>
+<h2>B · Timing-unit centering only</h2><div id="centered"></div><p id="centered-text"></p>
+<h2>C · Timing-unit centering + robust relative domain + overflow</h2><div id="robust"></div><p id="after"></p></section>
+<section id="zoom-section"><h2>Grouped 雨伞 · 3.56–4.87 s · one timing group</h2><p>No individual 雨 / 伞 attribution. All three plots retain the utterance Y scale; only X is enlarged.</p><div id="zoom-current"></div><div id="zoom-centered"></div><div id="zoom"></div><p id="zoom-text"></p></section>
+<section><h2>All accepted timing units</h2><div id="units"></div><h2>Overflow events</h2><div id="events"></div></section>
+<section><h2>More Detail equivalent · complete selected F0 / real time</h2><p>Full min/max, recording-baseline semitones; source hover includes exact Hz. No robust window.</p><div id="detail"></div><h2>Raw · exact tracker points / real time</h2><div id="raw"></div><pre id="inspect">Hover a selected point or overflow event for source evidence.</pre></section>
+<section><h2>Protected low F0 · 7787300e, including 54.610 Hz</h2><div id="low"></div><p id="low-text"></p><h2>Synthetic coherent 70 Hz shape</h2><div id="low-synthetic"></div><h2>Existing coherent 55→220 Hz sweep</h2><div id="sweep"></div><h2>Continuous 100→105→210→220 Hz jump</h2><div id="jump"></div></section>
+<script>
+const evidence=__COMPOSED_JSON__;
+const ns='http://www.w3.org/2000/svg';
+function node(tag,attrs={},parent){const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(parent)parent.append(e);return e;}
+function inspect(e,data){const title=node('title',{},e);title.textContent=JSON.stringify(data);e.addEventListener('pointerenter',()=>document.getElementById('inspect').textContent=JSON.stringify(data,null,2));}
+function draw(id,segments,domain,extent,projection,regions=[],xWindow=null){
+ const host=document.getElementById(id);host.replaceChildren();const width=['current','centered','robust'].includes(id)?extent*96:1000,height=128,left=55,top=22;
+ const svg=node('svg',{viewBox:`0 0 ${width+80} 182`,width:width+80,role:'img','aria-label':id},host);
+ const [xl,xh]=xWindow||[0,extent],x=p=>left+(p-xl)/(xh-xl)*width,y=v=>top+height-(v-domain[0])/(domain[1]-domain[0])*height;
+ for(const value of [domain[0],(domain[0]+domain[1])/2,domain[1]]){node('line',{x1:left,x2:left+width,y1:y(value),y2:y(value),class:'boundary'},svg);node('text',{x:0,y:y(value)+4,'font-size':11,fill:'#66788c'},svg).textContent=value.toFixed(2)+' st';}
+ for(const r of regions){if(r.end<xl||r.start>xh)continue;node('line',{x1:x(r.start),x2:x(r.start),y1:top,y2:top+height,stroke:'#e4e8ef'},svg);node('text',{x:x((r.start+r.end)/2),y:176,'text-anchor':'middle','font-size':13},svg).textContent=r.label;}
+ const paths=projection?projection.paths:segments;
+ for(const seg of paths){if(!seg.length)continue;node('polyline',{points:seg.map(p=>`${x(p.position)},${y(p.normalized_semitones)}`).join(' '),class:'contour'},svg);}
+ for(const seg of segments)for(const p of seg){if(projection&&(p.normalized_semitones<domain[0]||p.normalized_semitones>domain[1]))continue;const dot=node('circle',{cx:x(p.position),cy:y(p.normalized_semitones),r:1.7,class:'point'},svg);inspect(dot,p);}
+ if(projection){for(const c of projection.crossings){node('circle',{cx:x(c.position),cy:y(c.normalized_semitones),r:3,class:'crossing'},svg);}
+ for(const event of projection.events){const edge=event.side==='below'?domain[0]:domain[1],yy=y(edge),dir=event.side==='below'?1:-1;
+  // The dashed rail spans support time; it is never a measured flat line.
+  const a=event.support_start_position,b=event.support_end_position;
+  const g=node('g',{'data-duration':event.duration_seconds,'data-side':event.side,class:'overflow-event'},svg);inspect(g,event);
+  node('line',{x1:x(a),x2:x(b),y1:yy,y2:yy,stroke:'#7655a7','stroke-width':2,class:'overflow-rail'},g);
+  const xx=x(event.start_position);node('path',{d:`M ${xx-4} ${yy-dir*5} L ${xx} ${yy+dir*1} L ${xx+4} ${yy-dir*5}`,stroke:'#7655a7',class:'overflow-arrow'},g);
+  node('line',{x1:x(b),x2:x(b),y1:yy-dir*3,y2:yy+dir*3,stroke:'#7655a7'},g);
+ }}
+}
+function table(id,headers,rows){const host=document.getElementById(id);host.replaceChildren();const t=document.createElement('table');for(const row of [headers,...rows]){const tr=t.insertRow();for(const value of row){const cell=document.createElement(tr.rowIndex===0?'th':'td');cell.textContent=value;tr.append(cell);}}host.append(t);}
+const fmt=v=>v.toFixed(3),ms=v=>(v*1000).toFixed(1)+' ms';
+function review(index){document.getElementById('take').value=index;render();return window.reviewState;}
+function render(){
+ const r=evidence.recordings[+document.getElementById('take').value],policy=document.getElementById('policy').value,p=r.policies[policy],regions=r.layout.proposed.evidenceRegions;
+ document.getElementById('status').textContent=r.id+' · '+r.transcript+(r.units.length?'':' · NO TRUSTWORTHY TIMING: Mine empty');
+ draw('current',r.layout.current.segments,r.current_domain,r.extent,null,regions);draw('centered',r.segments,r.centered_domain,r.extent,null,regions);draw('robust',r.segments,p.domain,r.extent,p,regions);
+ document.getElementById('centered-text').textContent='Full relative domain '+r.centered_domain.map(fmt).join(' … ')+' st';
+ document.getElementById('before').textContent='Current domain '+r.current_domain.map(fmt).join(' … ')+' st';
+ document.getElementById('after').textContent=`${policy}: ${p.domain.map(fmt).join(' … ')} st · ${p.inside_points} inside / ${p.overflow_points} outside · ${p.events.length} events / ${ms(p.overflow_duration_seconds)} · ${(100*p.overflow_support_fraction).toFixed(2)}% selected support outside`;
+ const group=r.units.find(u=>u.grouped);document.getElementById('zoom-section').hidden=!group;
+ if(group){const seg=r.segments.filter(s=>s[0].unit_key===group.key),unit=p.units.find(u=>u.key===group.key);const reg=regions.find(u=>u.label===group.label);const proj={...p,paths:p.paths.filter(s=>s[0].position>=reg.start&&s[0].position<=reg.end),events:unit.events,crossings:p.crossings.filter(c=>c.unit_key===group.key)};
+ draw('zoom-current',r.layout.current.segments.filter(s=>s[0].position>=reg.start&&s[0].position<=reg.end),r.current_domain,r.extent,null,[reg],[reg.start,reg.end]);draw('zoom-centered',seg,r.centered_domain,r.extent,null,[reg],[reg.start,reg.end]);draw('zoom',seg,p.domain,r.extent,proj,[reg],[reg.start,reg.end]);
+ document.getElementById('zoom-text').textContent=`${seg.flat().length} unchanged measurements / ${seg.length} original evidence fragments. Terminal −11.5547 st step at 4.7047→4.7147 s. ${unit.overflow_points} outside points, ${unit.events.length} events, ${ms(unit.overflow_duration_seconds)} support beyond window.`;}
+ table('units',['Unit / accepted time','Center Hz','Relative range st','Outside points','Outside support','Events'],p.units.map(u=>{const a=r.units.find(v=>v.key===u.key);return [u.label+(a.grouped?' (grouped)':'')+` / ${a.start_seconds}–${a.end_seconds}`,u.center_hz?.toFixed(3),u.relative_range?.map(fmt).join(' … '),`${u.overflow_points}/${u.inside_points+u.overflow_points}`,`${ms(u.overflow_duration_seconds)} / ${(100*u.overflow_support_fraction).toFixed(1)}%`,u.events.length];}));
+ table('events',['Unit','Side','Crossing/endpoint time','Support duration','Selected samples'],p.events.map(e=>[r.units.find(u=>u.key===e.unit_key).label,e.side,`${e.start_seconds.toFixed(6)}–${e.end_seconds.toFixed(6)}`,ms(e.duration_seconds),e.source_indices.length]));
+ const all=r.filtered.segments.map(s=>s.map(p=>({...p,position:p.timestamp_seconds,selected_f0_hz:r.baseline_hz*2**(p.normalized_semitones/12)})));const v=all.flat().map(p=>p.normalized_semitones);const extent=Math.max(...r.raw.map(p=>p.timestamp_seconds));draw('detail',all,[Math.min(-3,...v)-1,Math.max(3,...v)+1],extent);
+ const raw=r.raw.filter(p=>(p.tracker_f0_hz??p.f0_hz)>0).map(p=>[{...p,position:p.timestamp_seconds,normalized_semitones:12*Math.log2((p.tracker_f0_hz??p.f0_hz)/r.baseline_hz)}]);const rv=raw.flat().map(p=>p.normalized_semitones);draw('raw',raw,[Math.min(...rv)-1,Math.max(...rv)+1],extent);
+ const low=evidence.controls.find(c=>c.id==='7787300e');for(const [id,c] of [['low',low],['low-synthetic',evidence.synthetic[0]],['sweep',evidence.synthetic[2]],['jump',evidence.synthetic[1]]])draw(id,c.segments,c.policies[policy].domain,1,c.policies[policy]);
+ document.getElementById('low-text').textContent=`All ${low.selected_count} selected points preserved; ${low.policies[policy].overflow_points} outside, explicitly represented. Absolute low register is not a domain criterion.`;
+ window.reviewState={id:r.id,policy,points:r.segments.flat().length,events:p.events.length,grouped:!!group};
+}
+evidence.recordings.forEach((r,i)=>{const o=document.createElement('option');o.value=i;o.textContent=r.id.slice(0,8)+' · '+r.transcript;document.getElementById('take').append(o);});
+document.getElementById('take').onchange=render;document.getElementById('policy').onchange=render;review(0);
+</script></html>

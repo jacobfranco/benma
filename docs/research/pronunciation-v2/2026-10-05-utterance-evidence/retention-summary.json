@@ -1,0 +1,26 @@
+{
+  "All saved regions": {
+    "regions": 152,
+    "before_classifiable": 52,
+    "eligible": 71,
+    "after_classifiable": 37
+  },
+  "Speech captures": {
+    "regions": 140,
+    "before_classifiable": 50,
+    "eligible": 70,
+    "after_classifiable": 37
+  },
+  "Negative-control regions": {
+    "regions": 12,
+    "before_classifiable": 2,
+    "eligible": 1,
+    "after_classifiable": 0
+  },
+  "Named healthy human \u82f9 + two healthy \u8981": {
+    "regions": 3,
+    "before_classifiable": 3,
+    "eligible": 3,
+    "after_classifiable": 3
+  }
+}

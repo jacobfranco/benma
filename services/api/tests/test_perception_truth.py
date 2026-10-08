@@ -5,7 +5,7 @@ import uuid
 
 import httpx
 import pytest
-from conftest import ApiClient
+from conftest import ApiClient, wav_bytes
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, sessionmaker
@@ -81,7 +81,7 @@ def test_perception_service_only_loads_canonical_audio() -> None:
     class Store:
         def read(self, key: str) -> bytes:
             calls.append("read_audio")
-            return b"wave"
+            return wav_bytes()
 
     class Provider:
         provider_name = "capture"
@@ -191,7 +191,7 @@ def test_provider_failure_is_persisted(
 
     class MemoryStore:
         def read(self, key: str) -> bytes:
-            return b"wav"
+            return wav_bytes()
 
     from benma_api.perception.repository import SqlPerceptionRepository
 

@@ -118,7 +118,7 @@ it('starts free-speech analysis after perception beside meaning and does not gat
   expect(feedback).toHaveBeenLastCalledWith({ utteranceId: 'utterance-1', perceptionId: 'perception-1', state: 'failed' });
 });
 
-it('known-target assessment can finish while unknown-target perception is still pending', async () => {
+it('known-target assessment waits for successful perception before creating an attempt', async () => {
   const client = workflowApi(), perception = deferred<never>();
   client.createPerception.mockReturnValue(perception.promise);
   const heard = jest.fn(), feedback = jest.fn();
@@ -126,11 +126,15 @@ it('known-target assessment can finish while unknown-target perception is still 
     { uri: 'file:///one.m4a' }, 'audio/mp4', () => {}, heard, 0, feedback);
   await flushWorkflow();
   expect(heard).not.toHaveBeenCalled();
-  expect(client.createAttempt).toHaveBeenCalledWith('utterance-1', 'explicit-target');
-  expect(client.analyzePerceivedSpeech).not.toHaveBeenCalled(); // The server owns this branch for targets.
-  expect(feedback).toHaveBeenLastCalledWith(expect.objectContaining({ state: 'ready', pronunciation: expect.any(Object) }));
+  expect(client.createAttempt).not.toHaveBeenCalled();
+  expect(client.analyzePerceivedSpeech).not.toHaveBeenCalled(); // Perceived graph waits for immutable perception.
+  expect(feedback).not.toHaveBeenCalled();
   perception.resolve({ id: 'p', transcript: '你好' } as never);
   await submission;
+  expect(client.createAttempt).toHaveBeenCalledWith('utterance-1', 'explicit-target');
+  await flushWorkflow();
+  expect(client.analyzePerceivedSpeech).toHaveBeenCalledWith('p');
+  expect(feedback).toHaveBeenLastCalledWith(expect.objectContaining({ state: 'ready', perceived: perceivedAnalysis, pronunciation: expect.any(Object) }));
 });
 
 it('retrying perception starts exactly one transcript analysis after success', async () => {
@@ -177,4 +181,80 @@ it('does not start transcript analysis before perception is committed; sends onl
   await submitSpeech(client, { responseMode: 'conversation', conversationId: 'c' },
     checkpoint, 'audio/mp4', () => {}, () => {});
   expect(client.analyzePerceivedSpeech).toHaveBeenCalledTimes(1);
+});
+
+it.each(['target-first', 'perceived-first'] as const)('S13 graph evidence survives %s completion and late reading previews', async order => {
+  const client = workflowApi(), target = deferred<never>(), pitch = deferred<never>(), preview = deferred<never>();
+  client.createPerception.mockResolvedValue({ id: 's13-perception', transcript: '我要去贵州。' } as never);
+  client.analyzePronunciation.mockReturnValue(target.promise);
+  client.analyzePerceivedSpeech.mockReturnValue(pitch.promise);
+  client.getPerceivedReadings = jest.fn().mockReturnValue(preview.promise);
+  const perceived = { ...perceivedAnalysis, alignment_reference_text: '我要去贵州。', data: {
+    ...perceivedAnalysis.data, syllables: ['我', '要', '去', '贵', '州'].map((characters, index) => ({
+      ...perceivedAnalysis.data.syllables[0]!, index, characters,
+      pinyin: ['wǒ', 'yào', 'qù', 'guì', 'zhōu'][index], expected_surface_tone: [3,4,4,4,1][index],
+      start_seconds: .1 + index * .2, end_seconds: .3 + index * .2,
+    })),
+  } };
+  const targetResult = { target: { text: '我要去广州。' }, syllables: [{ characters: '广', expected_surface_tone: 3,
+    timing: { start_seconds: 9, end_seconds: 10 }, display_contour: { segments: [] } }] };
+  const checkpoint: SpeechCheckpoint = { uri: 'file:///s13.m4a' }, feedback = jest.fn();
+  await submitSpeech(client, { responseMode: 'none', targetId: 'guangzhou' }, checkpoint,
+    'audio/mp4', () => {}, () => {}, 0, feedback);
+  if (order === 'target-first') {
+    target.resolve(targetResult as never); await checkpoint.targetAnalysis;
+    expect(feedback).toHaveBeenLastCalledWith(expect.objectContaining({ state: 'processing' }));
+    pitch.resolve(perceived as never); await checkpoint.analysis;
+  } else {
+    pitch.resolve(perceived as never); await checkpoint.analysis;
+    target.resolve(targetResult as never); await checkpoint.targetAnalysis;
+  }
+  const final = feedback.mock.calls.at(-1)![0];
+  expect(final.state).toBe('ready');
+  expect(final.perceived).toBe(perceived);
+  expect(final.perceived.data.syllables[3]).toMatchObject({ characters: '贵', pinyin: 'guì', expected_surface_tone: 4, start_seconds: .1 + 3 * .2 });
+  expect(final.perceived.data.tone_graph).toBe(perceivedAnalysis.data.tone_graph);
+  expect(final.pronunciation).toBe(targetResult);
+  expect(client.analyzePerceivedSpeech).toHaveBeenCalledWith('s13-perception');
+  const count = feedback.mock.calls.length;
+  preview.resolve({ syllables: [{ characters: '广' }] } as never); await flushWorkflow();
+  expect(feedback).toHaveBeenCalledTimes(count);
+  await submitSpeech(client, { responseMode: 'none', targetId: 'guangzhou' }, checkpoint,
+    'audio/mp4', () => {}, () => {}, 0, feedback);
+  expect(client.analyzePerceivedSpeech).toHaveBeenCalledTimes(1);
+  expect(client.analyzePronunciation).toHaveBeenCalledTimes(1);
+});
+
+it('target success cannot replace failed perceived analysis with target-aligned graph data', async () => {
+  const client = workflowApi(), target = deferred<never>();
+  client.analyzePronunciation.mockReturnValue(target.promise);
+  client.analyzePerceivedSpeech.mockRejectedValue(new Error('pitch unavailable'));
+  const checkpoint: SpeechCheckpoint = { uri: 'file:///one.m4a' }, feedback = jest.fn();
+  await submitSpeech(client, { responseMode: 'none', targetId: 't' }, checkpoint, 'audio/mp4', () => {}, () => {}, 0, feedback);
+  await checkpoint.analysis;
+  target.resolve({ target: { text: '广州' }, syllables: [{ characters: '广' }] } as never);
+  await checkpoint.targetAnalysis;
+  expect(feedback).toHaveBeenLastCalledWith(expect.objectContaining({ state: 'failed' }));
+  expect(feedback.mock.calls.at(-1)![0].perceived).toBeUndefined();
+});
+
+it.each(['upload', 'perception', 'failed-result'] as const)('no-speech at %s cannot publish text, graph, target assessment or a reply', async stage => {
+  for (const mode of [{ responseMode: 'none', targetId: 'target' }, { responseMode: 'conversation', conversationId: 'c' }] as const) {
+    const client = workflowApi(), pending = deferred<never>();
+    const checkpoint: SpeechCheckpoint = { uri: 'file:///silent.m4a' }, heard = jest.fn(), feedback = jest.fn();
+    if (stage === 'upload') client.uploadUtterance.mockReturnValue(pending.promise);
+    else client.createPerception.mockReturnValue(pending.promise);
+    const submission = submitSpeech(client, mode, checkpoint, 'audio/mp4', () => {}, heard, 0, feedback);
+    const rejected = expect(submission).rejects.toMatchObject({ stage: 'no_speech' });
+    await flushWorkflow();
+    expect(client.createAttempt).not.toHaveBeenCalled();
+    expect(client.analyzePronunciation).not.toHaveBeenCalled();
+    if (stage === 'failed-result') pending.resolve({ status: 'failed', error_code: 'no_speech', transcript: '现在是下午两点半。' } as never);
+    else pending.reject(Object.assign(new Error('no speech'), { code: 'no_speech' }));
+    await rejected; await flushWorkflow();
+    expect(heard).not.toHaveBeenCalled(); expect(feedback).not.toHaveBeenCalled();
+    expect(client.createAttempt).not.toHaveBeenCalled(); expect(client.analyzePronunciation).not.toHaveBeenCalled();
+    expect(client.analyzePerceivedSpeech).not.toHaveBeenCalled(); expect(client.addConversationUserTurn).not.toHaveBeenCalled();
+    expect(checkpoint.targetAnalysis).toBeUndefined(); expect(checkpoint.pronunciation).toBeUndefined();
+  }
 });

@@ -1,0 +1,24 @@
+{
+  "manifest_entries": 48,
+  "positive_completed": 37,
+  "negative_completed": 10,
+  "unresolved_completed": 1,
+  "skipped": [],
+  "failed": [],
+  "raw_probability_count": 3681,
+  "research_tests_passed": 106,
+  "determinism_waveforms": 48,
+  "official_wrapper_numpy_exact_parity_waveforms": 48,
+  "official_direct_segmentation_parity_waveforms": 48,
+  "metadata_contexts_per_waveform": 6,
+  "metadata_contexts_identical": 288,
+  "metadata_contexts_total": 288,
+  "input_rates_unit_tested": [
+    8000,
+    16000,
+    24000,
+    44100,
+    48000
+  ],
+  "completed_before_closeout_instruction": true
+}

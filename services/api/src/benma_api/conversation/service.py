@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 from benma_api.assistant_generation.contracts import AssistantResponseGenerationPort
 from benma_api.assistant_generation.repository import SqlAssistantGenerationRepository
 from benma_api.assistant_generation.service import AssistantGenerationService
+from benma_api.audio.presence import require_speech
 from benma_api.contextual_interpretation.contracts import ContextualInterpretationPort
 from benma_api.contextual_interpretation.repository import (
     SqlContextualInterpretationRepository,
@@ -19,12 +20,19 @@ from benma_api.contextual_interpretation.repository import (
 from benma_api.contextual_interpretation.service import ContextualInterpretationService
 from benma_api.conversation.context import ConversationContextBuilder
 from benma_api.conversation.repository import SqlConversationRepository
-from benma_api.db.models import ContextualInterpretationRun, Conversation, ConversationTurn, utcnow
+from benma_api.db.models import (
+    AudioAsset,
+    ContextualInterpretationRun,
+    Conversation,
+    ConversationTurn,
+    utcnow,
+)
 from benma_api.errors import (
     AnalysisUnsupportedError,
     AuthorizationError,
     InvalidConversationTurnError,
 )
+from benma_api.storage.audio_store import AudioObjectStore
 
 
 @dataclass(frozen=True, slots=True)
@@ -77,6 +85,7 @@ class ConversationService:
         perception_run_id: uuid.UUID,
         interpreter: ContextualInterpretationPort,
         generator: AssistantResponseGenerationPort,
+        store: AudioObjectStore,
         on_interpretation: Callable[[ContextualInterpretationRun, int], None] | None = None,
     ) -> FreeTalkTurnResult:
         conversation = self._load_for_append(account_id, conversation_id)
@@ -87,9 +96,13 @@ class ConversationService:
         )
         if evidence is None:
             raise AuthorizationError("utterance or perception run was not found")
-        _, perception = evidence
-        if perception.transcript is None:
+        utterance, perception = evidence
+        if perception.status != "succeeded" or not (perception.transcript or "").strip():
             raise AnalysisUnsupportedError("perception run has no transcript to interpret")
+        asset = self.db.get(AudioAsset, utterance.canonical_audio_asset_id)
+        if asset is None or asset.account_id != account_id:
+            raise AuthorizationError("canonical audio was not found")
+        require_speech(store.read(asset.storage_key), transcript=perception.transcript)
         if self.repository.perception_is_linked(perception_run_id):
             raise InvalidConversationTurnError(
                 "perception run is already linked to a conversation turn"

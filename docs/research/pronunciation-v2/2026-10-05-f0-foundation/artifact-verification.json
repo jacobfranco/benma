@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "audio_hashes_verified": 49,
+  "raw_tracks_verified": 245,
+  "crepe_completed": 49,
+  "skipped": 0,
+  "failed": 0,
+  "activation_files": 49,
+  "production_ablation_files": 49,
+  "metric_rows": 539,
+  "pairwise_rows": 396,
+  "metadata_invariant_trackers": [
+    "praat_ac",
+    "praat_cc",
+    "pyin",
+    "harvest",
+    "crepe_full"
+  ],
+  "preexisting_paths_unchanged": 774,
+  "tracked_diff_byte_identical_to_baseline": true,
+  "browser_check": "PASS: 49 recordings, native display, tracker toggle, raw/cleanup switch, production overlay, audio decode and playback",
+  "model_sha256": "133225604dedd2e4005f8bbd1bd0a2ec073ba8b7a6cd31ff6d5edbbfa3539986",
+  "checks_do_not_reextract": true
+}

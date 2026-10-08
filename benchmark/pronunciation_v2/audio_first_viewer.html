@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; media-src data:; connect-src 'none'">
+<title>Benma · Listen to your speech</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6f4;color:#253634;font:16px/1.5 system-ui,sans-serif}main{max-width:680px;margin:auto;padding:16px}h1{font-size:22px;margin:6px 0 12px}p{margin:6px 0}.muted{color:#566461;font-size:14px}button,select,input,summary{font:inherit}button,select,input{min-height:44px;border:1px solid #97a8a4;border-radius:8px;padding:8px 12px;background:white;color:inherit}button,summary{cursor:pointer}button:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #315e92;outline-offset:2px}button:hover{background:#eef3f2}button[aria-pressed=true]{background:#dae8e4;border-color:#315e59}select,input{width:100%}label{display:block;margin:10px 0}.panel{padding:16px;background:white;border:1px solid #d5ded9;border-radius:12px;margin:12px 0}.sentence{font-size:30px;line-height:1.9;overflow-wrap:anywhere;margin:10px 0}.sentence button{font-size:30px;line-height:1.3;border-color:transparent;padding:4px 3px;border-radius:5px}.sentence button.group{border-bottom:2px solid #647e77}.actions{display:flex;gap:8px;flex-wrap:wrap}.primary{background:#edf4f1;border-color:#708f85;font-weight:600}.cards{display:flex;flex-direction:column;gap:10px;margin:12px 0}.unit{border:1px solid #ccd8d2;border-radius:10px;padding:12px;background:#fff;scroll-margin:16px}.unit[data-selected=true]{outline:2px solid #647e77}.unit .actions{margin-top:10px}.unit .actions button{padding:8px 10px}.unit-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.han{font-size:30px;line-height:1.4}.reading{color:#566461;font-size:14px}.status{font-size:14px;margin:8px 0 2px}.gesture{font-size:14px;margin:2px 0}.group-note{font-size:12px;color:#566461}.unit details{font-size:13px;margin-top:8px}summary{min-height:44px;display:list-item;padding:10px 0}.cards.horizontal{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding:3px 3px 10px}.horizontal .unit{flex:0 0 260px;scroll-snap-align:start}.graph-scroll{overflow:auto;max-width:100%;border:1px solid #d5ded9}.graph-scroll svg{display:block;background:#fafbf9}.point{fill:#356d62}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-height:350px;overflow:auto}#playback-state{min-height:26px;font-size:14px}#mode-label{font-size:12px;letter-spacing:.06em;text-transform:uppercase}#target-panel{background:#f3f2ec}.research{font-size:14px}#conversation-heading{margin:8px 0}footer{font-size:12px;color:#566461;margin:24px 0} [hidden]{display:none!important}
+</style>
+<main>
+<p class="muted">Benma · local research preview</p><h1>Listen to your speech</h1>
+<label for="take">Saved October 6 recording</label><select id="take"></select>
+<section id="target-panel" class="panel" hidden><p class="muted">Intended target · separate from what Benma heard</p><p id="target-text"></p><p id="target-difference" class="muted"></p></section>
+<section class="panel">
+  <p id="mode-label">Free Practice</p><p class="muted">What Benma heard</p>
+  <div class="sentence" id="sentence" lang="zh-Hans"></div>
+  <div class="actions"><button id="whole" class="primary">Play whole recording</button><button id="stop">Stop playback</button></div>
+  <p id="playback-state" role="status" aria-live="polite"></p>
+  <details id="pronunciation" open><summary id="conversation-heading">Pronunciation evidence</summary>
+    <p class="muted" id="guidance">Tap a word above to find its recording card. Pitch descriptions are tentative.</p>
+    <p class="muted" id="context-note" hidden></p>
+    <div id="cards" class="cards"></div>
+    <p id="untimed" class="muted"></p>
+    <details id="pitch-details"><summary>Pitch details</summary>
+      <p class="muted">Complete selected pitch over recording time. Gaps stay empty. These measurements do not grade pronunciation.</p>
+      <p id="focus-detail" class="muted"></p>
+      <div id="plot" class="graph-scroll" tabindex="0" aria-label="Complete selected pitch over recording time"></div>
+      <p id="plot-meta" class="muted"></p>
+      <pre id="point-readout" aria-live="polite">Select a point for exact stored values.</pre>
+      <details id="raw"><summary>Raw · developer diagnostics</summary><pre id="raw-data"></pre></details>
+    </details>
+  </details>
+</section>
+<details class="panel research"><summary>Research controls</summary>
+  <label for="layout">Card layout<select id="layout"><option value="vertical">B · Compact list</option><option value="horizontal">A · Horizontal cards</option></select></label>
+  <label for="padding">With context · listening candidate<select id="padding"><option value="40">40 ms each side · candidate B</option><option value="80">80 ms each side · candidate C</option></select></label>
+  <p class="muted">Compare A: Mine, B: With context at 40 ms, C: With context at 80 ms on every card. This selector changes only With context. 40 ms is the first test candidate, not a chosen product default. No listening preference has been established.</p>
+  <label for="mode">Surface<select id="mode"><option>Free Practice</option><option>Practice</option><option>Conversation</option></select></label>
+  <label for="target">Intended target (Practice only)<input id="target" value="广州" lang="zh-Hans"></label>
+  <p>No reference segment is linked to these saved perceived units.</p>
+</details>
+<footer>Frozen recordings and saved analyses. No provider requests. Research preview; deployment remains blocked by speech-presence limitations.</footer>
+</main>
+<script>/* MODEL */</script><script>/* EVIDENCE */</script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let current=0, units=[], selected=null, playbackState={state:'idle'};
+const player=new AudioFirst.SegmentPlayer(()=>new AudioContext(),async(context,recording)=>{
+  const bytes=Uint8Array.from(atob(recording.audio_base64),c=>c.charCodeAt(0));
+  return context.decodeAudioData(bytes.buffer);
+},state=>{
+  playbackState=state;
+  const unit=units.find(u=>u.key===state.key);
+  $('playback-state').textContent=state.state==='error'?state.message:state.state==='loading'?'Loading recording…':state.state==='playing'
+    ?`Playing ${unit?.text ?? 'whole recording'}${state.bounds.padding_ms?' with context':''}`:'';
+  document.querySelectorAll('[data-play]').forEach(b=>b.setAttribute('aria-pressed',String(state.state==='playing' && b.dataset.play===state.key && b.dataset.action===state.action)));
+  $('whole').setAttribute('aria-pressed',String(state.state==='playing' && state.key==='whole'));
+});
+function focusCard(key, action='exact') {
+  selected=key;
+  $('pronunciation').open=true;
+  document.querySelectorAll('.unit').forEach(e=>e.dataset.selected=String(e.dataset.key===key));
+  document.querySelectorAll('[data-focus]').forEach(e=>e.setAttribute('aria-pressed',String(e.dataset.focus===key)));
+  const card=document.querySelector(`.unit[data-key="${key}"]`);
+  card?.scrollIntoView({block:'nearest',inline:'nearest'});
+  card?.querySelector(`[data-action="${action}"]`)?.focus({preventScroll:true});
+}
+function showDetail(key) {
+  const unit=units.find(u=>u.key===key); selected=key;
+  $('pitch-details').open=true;
+  $('focus-detail').textContent=`${unit.text}: accepted timing ${unit.start_seconds}–${unit.end_seconds} s. The graph retains the entire recording.`;
+  renderPlot();$('pitch-details').scrollIntoView({block:'start'});
+}
+function renderPlot() {
+  const r=evidence.recordings[current], contour=r.data.tone_graph.filtered;
+  const points=contour.segments.flat();
+  const lo=Math.min(contour.minimum_semitones,...points.map(p=>p.normalized_semitones));
+  const hi=Math.max(contour.maximum_semitones,...points.map(p=>p.normalized_semitones));
+  const width=Math.max(620,r.duration_seconds*140),height=260;
+  const x=t=>48+t/r.duration_seconds*(width-66),y=v=>height-32-(v-lo)/(hi-lo||1)*(height-56);
+  let svg=`<svg role="img" aria-label="Selected pitch, real seconds, common recording baseline" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><title>Exact saved selected measurements; no local centering or clipping</title>`;
+  const focused=units.find(u=>u.key===selected);
+  if(focused)svg+=`<rect x="${x(focused.start_seconds)}" y="10" width="${x(focused.end_seconds)-x(focused.start_seconds)}" height="218" fill="#e3ede8"/>`;
+  for(let i=0;i<=4;i++) {
+    const t=i*r.duration_seconds/4,v=lo+(hi-lo)*i/4;
+    svg+=`<text x="${x(t)}" y="252" font-size="11" text-anchor="middle">${t.toFixed(2)} s</text><text x="42" y="${y(v)+4}" font-size="11" text-anchor="end">${v.toFixed(1)}</text><line x1="48" x2="${width-18}" y1="${y(v)}" y2="${y(v)}" stroke="#e0e7e2"/>`;
+  }
+  let index=0;
+  contour.segments.forEach(segment=>{
+    if(segment.length>1)svg+=`<polyline class="selected-segment" fill="none" stroke="#356d62" stroke-width="1.2" points="${segment.map(p=>`${x(p.timestamp_seconds)},${y(p.normalized_semitones)}`).join(' ')}"/>`;
+    segment.forEach(p=>svg+=`<circle class="point" data-point="${index++}" cx="${x(p.timestamp_seconds)}" cy="${y(p.normalized_semitones)}" r="2.5"><title>${p.timestamp_seconds} s · ${p.normalized_semitones} st</title></circle>`);
+  });
+  $('plot').innerHTML=svg+'</svg>';
+  $('plot-meta').textContent=`${points.length} selected measurements · ${contour.segments.length} preserved segments · semitones relative to the fixed recording baseline (${contour.baseline_hz} Hz). Scroll for the full time axis.`;
+  $('plot').querySelectorAll('[data-point]').forEach(e=>{
+    const show=()=>{const p=points[Number(e.dataset.point)];const frame=r.data.tone_graph.raw.find(f=>f.timestamp_seconds===p.timestamp_seconds);$('point-readout').textContent=JSON.stringify({selected_point:p,source_frame:frame},null,2);};
+    e.onclick=show;e.onpointerenter=show;
+  });
+}
+function renderTarget() {
+  const mode=$('mode').value,target=$('target').value;
+  $('mode-label').textContent=mode;$('target-panel').hidden=mode!=='Practice';
+  $('target-text').textContent=target;
+  const normalize=s=>s.replace(/[\p{P}\p{Z}\s]/gu,'');
+  $('target-difference').textContent=normalize(target)!==normalize(evidence.recordings[current].perceived_text)?'Target wording differs from what Benma heard. Recording cards follow the heard text.':'';
+}
+function render() {
+  player.stop();selected=null;
+  const r=evidence.recordings[current];units=AudioFirst.cards(r.data);
+  const chars=Array.from(r.perceived_text);let sentence='';
+  for(let i=0;i<chars.length;) {
+    const unit=units.find(u=>u.character_start===i);
+    if(unit){sentence+=`<button class="${unit.grouped?'group':''}" data-focus="${unit.key}" aria-label="Focus recording card for ${esc(unit.text)}" aria-pressed="false">${esc(unit.text)}</button>`;i=unit.character_end;}
+    else sentence+=esc(chars[i++]);
+  }
+  $('sentence').innerHTML=sentence;
+  $('cards').className=`cards ${$('layout').value}`;
+  $('cards').innerHTML=units.map(u=>`<article class="unit" data-key="${u.key}" data-selected="false" aria-label="${esc(u.text)} recording evidence">
+    <div class="unit-top"><div><div class="han" lang="zh-Hans">${esc(u.text)}</div>${u.reading?`<div class="reading">${esc(u.reading)}</div>`:''}</div></div>
+    <div class="actions"><button class="primary" data-play="${u.key}" data-action="exact" aria-label="${esc(u.playback_label)}" aria-describedby="context-note" aria-pressed="false">Mine ▶</button><button data-play="${u.key}" data-action="context" aria-label="${esc(u.context_playback_label)}" aria-describedby="context-note" aria-pressed="false">With context ▶</button></div>
+    ${u.grouped?'<p class="group-note">One group · shared recording span</p>':''}
+    <p class="status">${esc(u.status)}</p>${u.observed?`<p class="gesture">Observed pitch: ${esc(u.observed)}</p>`:''}
+    <details><summary>Details for ${esc(u.text)}</summary><p>Accepted timing: ${u.start_seconds}–${u.end_seconds} s</p>
+      ${u.references.map(t=>`<p>${esc(t)}</p>`).join('')}<p>Reference pronunciation; no tone grade.</p>
+      ${u.grouped?'<p>Individual character timing and gestures are unavailable.</p>':''}
+      <button data-detail="${u.key}">Inspect exact pitch evidence</button></details></article>`).join('');
+  const untimed=r.data.syllables.filter(s=>!units.some(u=>s.character_start>=u.character_start&&s.character_end<=u.character_end)).map(s=>s.characters).join('');
+  $('untimed').textContent=units.length?untimed?`Timing-specific feedback unavailable for ${untimed}. Use whole-recording playback.`:''
+    :'Timing-specific feedback unavailable. Listen to the whole recording; whole-recording pitch is available in Pitch details.';
+  $('guidance').hidden=!units.length;
+  $('pronunciation').open=$('mode').value!=='Conversation';
+  $('pitch-details').open=false;$('raw').open=false;$('focus-detail').textContent='';
+  $('point-readout').textContent='Select a point for exact stored values.';
+  $('raw-data').textContent='';
+  $('context-note').hidden=!units.length;
+  $('context-note').textContent=`Mine: exact matched speech segment. With context: the same segment with up to ${$('padding').value} ms of surrounding audio on each side. You may hear neighboring speech; that audio is outside the accepted timing.`;
+  $('whole').setAttribute('aria-label',`Play my whole recording: ${r.perceived_text}`);
+  document.querySelectorAll('[data-focus]').forEach(e=>e.onclick=()=>focusCard(e.dataset.focus));
+  document.querySelectorAll('[data-play]').forEach(e=>e.onclick=()=>{
+    focusCard(e.dataset.play,e.dataset.action);
+    const unit=units.find(u=>u.key===e.dataset.play);
+    if(e.dataset.action==='exact')void player.playExact(r,unit);
+    else void player.playWithContext(r,unit,Number($('padding').value));
+  });
+  document.querySelectorAll('[data-detail]').forEach(e=>e.onclick=()=>showDetail(e.dataset.detail));
+  renderTarget();renderPlot();
+  return {id:r.id,cards:units.length,grouped:units.filter(u=>u.grouped).length,points:r.data.tone_graph.filtered.segments.flat().length};
+}
+function review(index){current=index;$('take').value=String(index);return render();}
+$('take').innerHTML=evidence.recordings.map((r,i)=>`<option value="${i}">${r.id.slice(0,8)} · ${esc(r.perceived_text)}</option>`).join('');
+$('take').onchange=()=>review(Number($('take').value));
+for(const id of ['layout','padding','mode'])$(id).onchange=render;
+$('target').oninput=renderTarget;
+$('whole').onclick=()=>void player.play(evidence.recordings[current],null);
+$('stop').onclick=()=>player.stop();
+$('raw').ontoggle=()=>{if($('raw').open)$('raw-data').textContent=JSON.stringify(evidence.recordings[current].data.tone_graph.raw,null,2);};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)player.stop();});
+window.addEventListener('pagehide',event=>{
+  if(event.persisted)player.stop();
+  else void player.dispose();
+});
+review(0);
+</script></html>

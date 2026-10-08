@@ -46,7 +46,7 @@ it('free Practice shows heard speech without a reply or target-relative score', 
   const rendered = JSON.stringify(renderer.toJSON());
   expect(rendered).toContain('你好。');
   expect(rendered).toContain('What Benma heard');
-  expect(rendered).toContain('Expected and mine by syllable');
+  expect(rendered).toContain('Your pitch');
   expect(rendered).not.toContain('target phrase is needed');
   const visibleText = renderer.root.findAllByType(Text).map((node) => node.props.children).flat().join(' ');
   expect(visibleText).not.toMatch(/BENMA|\d+%|accuracy score/);
@@ -67,11 +67,11 @@ it('target Practice prepares a reference, then invokes existing known-target ass
   expect(api.createAttempt).toHaveBeenCalledWith('utterance', 'target');
   expect(api.analyzePronunciation).toHaveBeenCalledWith('attempt');
   expect(api.addConversationUserTurn).not.toHaveBeenCalled();
-  expect(JSON.stringify(renderer.toJSON())).toContain('Experimental pronunciation analysis');
+  expect(JSON.stringify(renderer.toJSON())).toContain('Your pitch');
   expect(JSON.stringify(renderer.toJSON())).not.toContain('Pronunciation accuracy vs target: 79 (experimental)');
   await press('More detail');
-  expect(JSON.stringify(renderer.toJSON())).toContain('Pronunciation accuracy vs target: 79 (experimental)');
-  expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Pronunciation accuracy vs target: 79 (experimental)');
+  expect(api.analyzePerceivedSpeech).toHaveBeenCalled();
 });
 it.each(['preserve', 'infer', 'clarify'] as const)('renders %s evidence distinctly with selectable Mandarin', async (decision) => {
   await act(async () => renderer.update(React.createElement(SpeechEvidence, {
@@ -115,8 +115,8 @@ it('an incomplete CLARIFY utterance retains conservative speech feedback and sep
   })));
   const rendered = JSON.stringify(renderer.toJSON());
   expect(rendered).toContain('你好，今天我……');
-  expect(rendered).toContain('Expected here · acoustic shapes');
-  expect(rendered).toContain('Expected and mine by syllable');
+  expect(rendered).toContain('Your pitch');
+  expect(rendered).toContain('Sentence pitch timeline');
   expect(rendered).toContain('Meaning');
   expect(rendered).toContain('unsure');
   expect(rendered).not.toMatch(/trailing off|accuracy|target phrase is needed/i);
@@ -130,7 +130,7 @@ it('optional target-analysis failure leaves heard speech and the next recording 
   await press('Prepare target');
   await record();
   expect(JSON.stringify(renderer.toJSON())).toContain('你好。');
-  expect(JSON.stringify(renderer.toJSON())).toContain('Speech analysis unavailable');
+  expect(JSON.stringify(renderer.toJSON())).toContain('Your pitch');
   await press('Tap to speak');
   expect(renderer.root.findByProps({ accessibilityLabel: 'Stop recording' })).toBeTruthy();
 });
@@ -146,12 +146,12 @@ it('retains one prepared target through three completed turns and rerenders; cha
   }
   expect(api.createAttempt).toHaveBeenCalledTimes(3);
   expect(jest.mocked(api.createAttempt).mock.calls.map(call => call[1])).toEqual(['target', 'target', 'target']);
-  expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
+  expect(api.analyzePerceivedSpeech).toHaveBeenCalled();
   await press('Change target');
   expect(renderer.root.findByProps({ accessibilityLabel: 'Tap to speak' }).props.disabled).toBe(true);
   await press('Clear target · use free practice');
   await record();
-  expect(api.analyzePerceivedSpeech).toHaveBeenCalledTimes(1);
+  expect(api.analyzePerceivedSpeech).toHaveBeenCalledTimes(4);
 });
 
 it('changing 嘛 to 麻 records against the visible new target and retains it for repeats', async () => {
@@ -176,7 +176,7 @@ it('changing 嘛 to 麻 records against the visible new target and retains it fo
   expect(jest.mocked(api.createAttempt).mock.calls.map(call => call[1])).toEqual(['neutral', 'rising', 'rising']);
 });
 
-it('renders persisted attempt identity independently of the currently prepared target', async () => {
+it('keeps the recorded target snapshot and perceived graph independent of legacy attempt data', async () => {
   jest.mocked(api.analyzePronunciation).mockResolvedValue({
     attempt: { id: 'attempt' }, target: { id: 'persisted-neutral', text: '嘛', display_pinyin: 'ma' },
     syllables: [], overall_evidence: {}, recording_audio_url: '/v1/utterances/utterance/audio',
@@ -186,9 +186,9 @@ it('renders persisted attempt identity independently of the currently prepared t
   await press('Prepare target');
   await record();
   expect(api.createAttempt).toHaveBeenCalledWith('utterance', 'target');
-  expect(JSON.stringify(renderer.toJSON())).toContain('嘛');
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('嘛');
   await press('More detail');
-  expect(JSON.stringify(renderer.toJSON())).toContain('persisted-neutral');
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('persisted-neutral');
 });
 
 it.each(['synthetic_replay', 'unknown'])('never presents a %s provider score as real assessment', async evidence_status => {
@@ -202,12 +202,29 @@ it.each(['synthetic_replay', 'unknown'])('never presents a %s provider score as 
   await press('Add a target phrase');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('妈'));
   await press('Prepare target'); await record();
-  expect(JSON.stringify(renderer.toJSON())).toContain('Good');
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Pitch signal: Limited');
   await press('More detail');
   const tree = JSON.stringify(renderer.toJSON());
   expect(tree).not.toContain('Pronunciation accuracy vs target: 79');
-  if (evidence_status === 'synthetic_replay') {
-    expect(tree).toContain('Provider assessment is a development fixture');
-    expect(tree).toContain('excluded from learner evaluation');
+  expect(tree).not.toMatch(/Good ·|Tone 1 ✓|Yours sounded|Correct|Perfect/);
+});
+
+it.each([false, true])('no speech leaves Practice ready to rerecord, with prepared target=%s intact', async withTarget => {
+  if (withTarget) {
+    await press('Add a target phrase');
+    await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
+    await press('Prepare target');
   }
+  jest.mocked(api.uploadUtterance).mockRejectedValueOnce({ code: 'no_speech' });
+  await record();
+  const tree = JSON.stringify(renderer.toJSON());
+  expect(tree).toContain("Didn't catch any speech. Try again.");
+  expect(tree).not.toContain('What Benma heard'); expect(tree).not.toContain('Your pitch');
+  expect(api.createPerception).not.toHaveBeenCalled(); expect(api.createAttempt).not.toHaveBeenCalled();
+  expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled(); expect(api.analyzePronunciation).not.toHaveBeenCalled();
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Tap to speak' }).props.disabled).toBe(false);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Retry' })).toHaveLength(0);
+  await record();
+  expect(JSON.stringify(renderer.toJSON())).toContain('What Benma heard');
+  if (withTarget) expect(api.createAttempt).toHaveBeenCalledWith('utterance', 'target');
 });

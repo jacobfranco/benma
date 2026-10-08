@@ -1,0 +1,622 @@
+{
+  "input_sample_rate": 16000,
+  "normalized_sample_rate": 16000,
+  "input_samples": 35200,
+  "normalized_samples": 35200,
+  "input_duration_seconds": 2.2,
+  "normalized_duration_seconds": 2.2,
+  "preprocessing": "mono PCM16 / 32768; float32; no gain/DC/filter change; scipy resample_poly only when input is not 16 kHz",
+  "window_samples": 512,
+  "window_seconds": 0.032,
+  "context_samples": 64,
+  "last_chunk_zero_padding_samples": 128,
+  "model_sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
+  "frames": [
+    {
+      "start_sample": 0,
+      "end_sample": 512,
+      "start_seconds": 0.0,
+      "end_seconds": 0.032,
+      "window_end_seconds": 0.032,
+      "probability": 0.01943814754486084
+    },
+    {
+      "start_sample": 512,
+      "end_sample": 1024,
+      "start_seconds": 0.032,
+      "end_seconds": 0.064,
+      "window_end_seconds": 0.064,
+      "probability": 0.012037187814712524
+    },
+    {
+      "start_sample": 1024,
+      "end_sample": 1536,
+      "start_seconds": 0.064,
+      "end_seconds": 0.096,
+      "window_end_seconds": 0.096,
+      "probability": 0.009684234857559204
+    },
+    {
+      "start_sample": 1536,
+      "end_sample": 2048,
+      "start_seconds": 0.096,
+      "end_seconds": 0.128,
+      "window_end_seconds": 0.128,
+      "probability": 0.01128438115119934
+    },
+    {
+      "start_sample": 2048,
+      "end_sample": 2560,
+      "start_seconds": 0.128,
+      "end_seconds": 0.16,
+      "window_end_seconds": 0.16,
+      "probability": 0.006657600402832031
+    },
+    {
+      "start_sample": 2560,
+      "end_sample": 3072,
+      "start_seconds": 0.16,
+      "end_seconds": 0.192,
+      "window_end_seconds": 0.192,
+      "probability": 0.006903737783432007
+    },
+    {
+      "start_sample": 3072,
+      "end_sample": 3584,
+      "start_seconds": 0.192,
+      "end_seconds": 0.224,
+      "window_end_seconds": 0.224,
+      "probability": 0.005594730377197266
+    },
+    {
+      "start_sample": 3584,
+      "end_sample": 4096,
+      "start_seconds": 0.224,
+      "end_seconds": 0.256,
+      "window_end_seconds": 0.256,
+      "probability": 0.007073789834976196
+    },
+    {
+      "start_sample": 4096,
+      "end_sample": 4608,
+      "start_seconds": 0.256,
+      "end_seconds": 0.288,
+      "window_end_seconds": 0.288,
+      "probability": 0.0074484944343566895
+    },
+    {
+      "start_sample": 4608,
+      "end_sample": 5120,
+      "start_seconds": 0.288,
+      "end_seconds": 0.32,
+      "window_end_seconds": 0.32,
+      "probability": 0.00518074631690979
+    },
+    {
+      "start_sample": 5120,
+      "end_sample": 5632,
+      "start_seconds": 0.32,
+      "end_seconds": 0.352,
+      "window_end_seconds": 0.352,
+      "probability": 0.004094868898391724
+    },
+    {
+      "start_sample": 5632,
+      "end_sample": 6144,
+      "start_seconds": 0.352,
+      "end_seconds": 0.384,
+      "window_end_seconds": 0.384,
+      "probability": 0.005443483591079712
+    },
+    {
+      "start_sample": 6144,
+      "end_sample": 6656,
+      "start_seconds": 0.384,
+      "end_seconds": 0.416,
+      "window_end_seconds": 0.416,
+      "probability": 0.003826528787612915
+    },
+    {
+      "start_sample": 6656,
+      "end_sample": 7168,
+      "start_seconds": 0.416,
+      "end_seconds": 0.448,
+      "window_end_seconds": 0.448,
+      "probability": 0.0038569271564483643
+    },
+    {
+      "start_sample": 7168,
+      "end_sample": 7680,
+      "start_seconds": 0.448,
+      "end_seconds": 0.48,
+      "window_end_seconds": 0.48,
+      "probability": 0.007453352212905884
+    },
+    {
+      "start_sample": 7680,
+      "end_sample": 8192,
+      "start_seconds": 0.48,
+      "end_seconds": 0.512,
+      "window_end_seconds": 0.512,
+      "probability": 0.0049346983432769775
+    },
+    {
+      "start_sample": 8192,
+      "end_sample": 8704,
+      "start_seconds": 0.512,
+      "end_seconds": 0.544,
+      "window_end_seconds": 0.544,
+      "probability": 0.004907667636871338
+    },
+    {
+      "start_sample": 8704,
+      "end_sample": 9216,
+      "start_seconds": 0.544,
+      "end_seconds": 0.576,
+      "window_end_seconds": 0.576,
+      "probability": 0.004508674144744873
+    },
+    {
+      "start_sample": 9216,
+      "end_sample": 9728,
+      "start_seconds": 0.576,
+      "end_seconds": 0.608,
+      "window_end_seconds": 0.608,
+      "probability": 0.004302978515625
+    },
+    {
+      "start_sample": 9728,
+      "end_sample": 10240,
+      "start_seconds": 0.608,
+      "end_seconds": 0.64,
+      "window_end_seconds": 0.64,
+      "probability": 0.003714233636856079
+    },
+    {
+      "start_sample": 10240,
+      "end_sample": 10752,
+      "start_seconds": 0.64,
+      "end_seconds": 0.672,
+      "window_end_seconds": 0.672,
+      "probability": 0.0033959150314331055
+    },
+    {
+      "start_sample": 10752,
+      "end_sample": 11264,
+      "start_seconds": 0.672,
+      "end_seconds": 0.704,
+      "window_end_seconds": 0.704,
+      "probability": 0.015125364065170288
+    },
+    {
+      "start_sample": 11264,
+      "end_sample": 11776,
+      "start_seconds": 0.704,
+      "end_seconds": 0.736,
+      "window_end_seconds": 0.736,
+      "probability": 0.01424446702003479
+    },
+    {
+      "start_sample": 11776,
+      "end_sample": 12288,
+      "start_seconds": 0.736,
+      "end_seconds": 0.768,
+      "window_end_seconds": 0.768,
+      "probability": 0.02875828742980957
+    },
+    {
+      "start_sample": 12288,
+      "end_sample": 12800,
+      "start_seconds": 0.768,
+      "end_seconds": 0.8,
+      "window_end_seconds": 0.8,
+      "probability": 0.008158475160598755
+    },
+    {
+      "start_sample": 12800,
+      "end_sample": 13312,
+      "start_seconds": 0.8,
+      "end_seconds": 0.832,
+      "window_end_seconds": 0.832,
+      "probability": 0.005437791347503662
+    },
+    {
+      "start_sample": 13312,
+      "end_sample": 13824,
+      "start_seconds": 0.832,
+      "end_seconds": 0.864,
+      "window_end_seconds": 0.864,
+      "probability": 0.00459522008895874
+    },
+    {
+      "start_sample": 13824,
+      "end_sample": 14336,
+      "start_seconds": 0.864,
+      "end_seconds": 0.896,
+      "window_end_seconds": 0.896,
+      "probability": 0.009560376405715942
+    },
+    {
+      "start_sample": 14336,
+      "end_sample": 14848,
+      "start_seconds": 0.896,
+      "end_seconds": 0.928,
+      "window_end_seconds": 0.928,
+      "probability": 0.004921704530715942
+    },
+    {
+      "start_sample": 14848,
+      "end_sample": 15360,
+      "start_seconds": 0.928,
+      "end_seconds": 0.96,
+      "window_end_seconds": 0.96,
+      "probability": 0.003986656665802002
+    },
+    {
+      "start_sample": 15360,
+      "end_sample": 15872,
+      "start_seconds": 0.96,
+      "end_seconds": 0.992,
+      "window_end_seconds": 0.992,
+      "probability": 0.003245055675506592
+    },
+    {
+      "start_sample": 15872,
+      "end_sample": 16384,
+      "start_seconds": 0.992,
+      "end_seconds": 1.024,
+      "window_end_seconds": 1.024,
+      "probability": 0.003198176622390747
+    },
+    {
+      "start_sample": 16384,
+      "end_sample": 16896,
+      "start_seconds": 1.024,
+      "end_seconds": 1.056,
+      "window_end_seconds": 1.056,
+      "probability": 0.0020559728145599365
+    },
+    {
+      "start_sample": 16896,
+      "end_sample": 17408,
+      "start_seconds": 1.056,
+      "end_seconds": 1.088,
+      "window_end_seconds": 1.088,
+      "probability": 0.0017630457878112793
+    },
+    {
+      "start_sample": 17408,
+      "end_sample": 17920,
+      "start_seconds": 1.088,
+      "end_seconds": 1.12,
+      "window_end_seconds": 1.12,
+      "probability": 0.0017358064651489258
+    },
+    {
+      "start_sample": 17920,
+      "end_sample": 18432,
+      "start_seconds": 1.12,
+      "end_seconds": 1.152,
+      "window_end_seconds": 1.152,
+      "probability": 0.0016965270042419434
+    },
+    {
+      "start_sample": 18432,
+      "end_sample": 18944,
+      "start_seconds": 1.152,
+      "end_seconds": 1.184,
+      "window_end_seconds": 1.184,
+      "probability": 0.001818627119064331
+    },
+    {
+      "start_sample": 18944,
+      "end_sample": 19456,
+      "start_seconds": 1.184,
+      "end_seconds": 1.216,
+      "window_end_seconds": 1.216,
+      "probability": 0.0020530223846435547
+    },
+    {
+      "start_sample": 19456,
+      "end_sample": 19968,
+      "start_seconds": 1.216,
+      "end_seconds": 1.248,
+      "window_end_seconds": 1.248,
+      "probability": 0.002250194549560547
+    },
+    {
+      "start_sample": 19968,
+      "end_sample": 20480,
+      "start_seconds": 1.248,
+      "end_seconds": 1.28,
+      "window_end_seconds": 1.28,
+      "probability": 0.0021208524703979492
+    },
+    {
+      "start_sample": 20480,
+      "end_sample": 20992,
+      "start_seconds": 1.28,
+      "end_seconds": 1.312,
+      "window_end_seconds": 1.312,
+      "probability": 0.004524976015090942
+    },
+    {
+      "start_sample": 20992,
+      "end_sample": 21504,
+      "start_seconds": 1.312,
+      "end_seconds": 1.344,
+      "window_end_seconds": 1.344,
+      "probability": 0.0028473734855651855
+    },
+    {
+      "start_sample": 21504,
+      "end_sample": 22016,
+      "start_seconds": 1.344,
+      "end_seconds": 1.376,
+      "window_end_seconds": 1.376,
+      "probability": 0.0027986466884613037
+    },
+    {
+      "start_sample": 22016,
+      "end_sample": 22528,
+      "start_seconds": 1.376,
+      "end_seconds": 1.408,
+      "window_end_seconds": 1.408,
+      "probability": 0.002803623676300049
+    },
+    {
+      "start_sample": 22528,
+      "end_sample": 23040,
+      "start_seconds": 1.408,
+      "end_seconds": 1.44,
+      "window_end_seconds": 1.44,
+      "probability": 0.00395965576171875
+    },
+    {
+      "start_sample": 23040,
+      "end_sample": 23552,
+      "start_seconds": 1.44,
+      "end_seconds": 1.472,
+      "window_end_seconds": 1.472,
+      "probability": 0.004245191812515259
+    },
+    {
+      "start_sample": 23552,
+      "end_sample": 24064,
+      "start_seconds": 1.472,
+      "end_seconds": 1.504,
+      "window_end_seconds": 1.504,
+      "probability": 0.0037640631198883057
+    },
+    {
+      "start_sample": 24064,
+      "end_sample": 24576,
+      "start_seconds": 1.504,
+      "end_seconds": 1.536,
+      "window_end_seconds": 1.536,
+      "probability": 0.0026759207248687744
+    },
+    {
+      "start_sample": 24576,
+      "end_sample": 25088,
+      "start_seconds": 1.536,
+      "end_seconds": 1.568,
+      "window_end_seconds": 1.568,
+      "probability": 0.005784124135971069
+    },
+    {
+      "start_sample": 25088,
+      "end_sample": 25600,
+      "start_seconds": 1.568,
+      "end_seconds": 1.6,
+      "window_end_seconds": 1.6,
+      "probability": 0.0032520592212677
+    },
+    {
+      "start_sample": 25600,
+      "end_sample": 26112,
+      "start_seconds": 1.6,
+      "end_seconds": 1.632,
+      "window_end_seconds": 1.632,
+      "probability": 0.004614830017089844
+    },
+    {
+      "start_sample": 26112,
+      "end_sample": 26624,
+      "start_seconds": 1.632,
+      "end_seconds": 1.664,
+      "window_end_seconds": 1.664,
+      "probability": 0.003519117832183838
+    },
+    {
+      "start_sample": 26624,
+      "end_sample": 27136,
+      "start_seconds": 1.664,
+      "end_seconds": 1.696,
+      "window_end_seconds": 1.696,
+      "probability": 0.003601670265197754
+    },
+    {
+      "start_sample": 27136,
+      "end_sample": 27648,
+      "start_seconds": 1.696,
+      "end_seconds": 1.728,
+      "window_end_seconds": 1.728,
+      "probability": 0.002073228359222412
+    },
+    {
+      "start_sample": 27648,
+      "end_sample": 28160,
+      "start_seconds": 1.728,
+      "end_seconds": 1.76,
+      "window_end_seconds": 1.76,
+      "probability": 0.002826899290084839
+    },
+    {
+      "start_sample": 28160,
+      "end_sample": 28672,
+      "start_seconds": 1.76,
+      "end_seconds": 1.792,
+      "window_end_seconds": 1.792,
+      "probability": 0.0015231668949127197
+    },
+    {
+      "start_sample": 28672,
+      "end_sample": 29184,
+      "start_seconds": 1.792,
+      "end_seconds": 1.824,
+      "window_end_seconds": 1.824,
+      "probability": 0.0016535818576812744
+    },
+    {
+      "start_sample": 29184,
+      "end_sample": 29696,
+      "start_seconds": 1.824,
+      "end_seconds": 1.856,
+      "window_end_seconds": 1.856,
+      "probability": 0.0017649531364440918
+    },
+    {
+      "start_sample": 29696,
+      "end_sample": 30208,
+      "start_seconds": 1.856,
+      "end_seconds": 1.888,
+      "window_end_seconds": 1.888,
+      "probability": 0.0014592111110687256
+    },
+    {
+      "start_sample": 30208,
+      "end_sample": 30720,
+      "start_seconds": 1.888,
+      "end_seconds": 1.92,
+      "window_end_seconds": 1.92,
+      "probability": 0.0013176500797271729
+    },
+    {
+      "start_sample": 30720,
+      "end_sample": 31232,
+      "start_seconds": 1.92,
+      "end_seconds": 1.952,
+      "window_end_seconds": 1.952,
+      "probability": 0.00181657075881958
+    },
+    {
+      "start_sample": 31232,
+      "end_sample": 31744,
+      "start_seconds": 1.952,
+      "end_seconds": 1.984,
+      "window_end_seconds": 1.984,
+      "probability": 0.001435011625289917
+    },
+    {
+      "start_sample": 31744,
+      "end_sample": 32256,
+      "start_seconds": 1.984,
+      "end_seconds": 2.016,
+      "window_end_seconds": 2.016,
+      "probability": 0.0012312531471252441
+    },
+    {
+      "start_sample": 32256,
+      "end_sample": 32768,
+      "start_seconds": 2.016,
+      "end_seconds": 2.048,
+      "window_end_seconds": 2.048,
+      "probability": 0.0014713704586029053
+    },
+    {
+      "start_sample": 32768,
+      "end_sample": 33280,
+      "start_seconds": 2.048,
+      "end_seconds": 2.08,
+      "window_end_seconds": 2.08,
+      "probability": 0.001175224781036377
+    },
+    {
+      "start_sample": 33280,
+      "end_sample": 33792,
+      "start_seconds": 2.08,
+      "end_seconds": 2.112,
+      "window_end_seconds": 2.112,
+      "probability": 0.0013845860958099365
+    },
+    {
+      "start_sample": 33792,
+      "end_sample": 34304,
+      "start_seconds": 2.112,
+      "end_seconds": 2.144,
+      "window_end_seconds": 2.144,
+      "probability": 0.0014334022998809814
+    },
+    {
+      "start_sample": 34304,
+      "end_sample": 34816,
+      "start_seconds": 2.144,
+      "end_seconds": 2.176,
+      "window_end_seconds": 2.176,
+      "probability": 0.0017018020153045654
+    },
+    {
+      "start_sample": 34816,
+      "end_sample": 35200,
+      "start_seconds": 2.176,
+      "end_seconds": 2.2,
+      "window_end_seconds": 2.208,
+      "probability": 0.0028198957443237305
+    }
+  ],
+  "id": "padding_low_voice",
+  "audio_sha256": "b0871e66d0580d515bbdde8276cc9c98293e85c454e8a21e18efb590fdc7a326",
+  "provenance": {
+    "package": "silero-vad",
+    "version": "6.2.3",
+    "upstream_repository": "https://github.com/snakers4/silero-vad",
+    "download": {
+      "package": "silero-vad",
+      "version": "6.2.3",
+      "artifact": {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "ff91344bc524cfe9970eabf27b7ec68e721aa32968079b0012b797803725b529"
+        },
+        "digests": {
+          "blake2b_256": "84ef9099037ed6f180ea33220178df4107112c0ce2bf5fb4d6f6ab19db2844ed",
+          "md5": "ec12fff503efca78b44ea8edee929654",
+          "sha256": "7b7f5436cfcb02fae583a05b512ea96467fd449fe54cb49a5e4f06c51a1e43b8"
+        },
+        "downloads": -1,
+        "filename": "silero_vad-6.2.3-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "ec12fff503efca78b44ea8edee929654",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": ">=3.8",
+        "size": 11317527,
+        "upload_time": "2026-09-23T11:37:20",
+        "upload_time_iso_8601": "2026-09-23T11:37:20.002180Z",
+        "url": "https://files.pythonhosted.org/packages/84/ef/9099037ed6f180ea33220178df4107112c0ce2bf5fb4d6f6ab19db2844ed/silero_vad-6.2.3-py3-none-any.whl",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    },
+    "model": "silero_vad/data/silero_vad.onnx",
+    "model_sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
+    "model_size_bytes": 2327524,
+    "utils_sha256": "15d0f6b3ef9590e22ca2f146e1436f6901da356cb552d3183df4100862b333cb",
+    "license": "MIT",
+    "backend": "onnxruntime",
+    "onnxruntime": "1.23.2",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.3",
+    "python": "3.12.13",
+    "intra_op_threads": 1,
+    "inter_op_threads": 1,
+    "batch_size": 1,
+    "initial_import_and_model_load_ms": 960.1675410012831,
+    "manifest_sha256": "6a335d31ea05680d72e33cb8502ce336118bbe41a19c280be20ef43ee8944aa5",
+    "upstream_opset": 16
+  }
+}

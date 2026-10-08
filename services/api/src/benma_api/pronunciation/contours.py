@@ -17,6 +17,7 @@ from itertools import pairwise
 from typing import Any
 
 from benma_api.pronunciation.evidence_region import select_tone_evidence
+from benma_api.pronunciation.pitch_types import UtterancePitchTrack
 from benma_api.schemas import DisplayContour, DisplayPitchPoint, ObservedContour
 
 MAX_GAP = 0.045  # Missing/unvoiced frames always break a segment, even below this limit.
@@ -24,14 +25,19 @@ CLASSIFIER_VERSION = "acoustic-shape-quality-v7-bounded-gestures"
 DISPLAY_VERSION = "local-hampel-short-island-no-interpolation-v2.1"
 
 
-def display_contour(raw: list[dict[str, Any]]) -> DisplayContour:
+def display_contour(
+    raw: list[dict[str, Any]], *, diagnostics: list[dict[str, Any]] | None = None
+) -> DisplayContour:
     """Display view of reliable measured pitch; downstream smoothing is display-only."""
-    return _reliable_pitch_contour(raw)
+    return _reliable_pitch_contour(raw, diagnostics=diagnostics)
 
 
-def _reliable_pitch_contour(raw: list[dict[str, Any]]) -> DisplayContour:
+def _reliable_pitch_contour(
+    raw: list[dict[str, Any]], *, diagnostics: list[dict[str, Any]] | None = None
+) -> DisplayContour:
     """Full-resolution evidence, encoded in the existing contour transport type."""
     valid: list[tuple[float, float] | None] = []
+    reasons: list[list[str]] = []
     for point in raw:
         t, hz, confidence = (
             point.get("timestamp_seconds"),
@@ -48,6 +54,20 @@ def _reliable_pitch_contour(raw: list[dict[str, Any]]) -> DisplayContour:
             and 40 <= hz <= 1000
             and (confidence is None or confidence >= 0.45)
         )
+        rejected_by = []
+        if point.get("tracker_f0_hz", hz) is None:
+            rejected_by.append("tracker_missing")
+        if point.get("energy_gated"):
+            rejected_by.append("below_energy_gate")
+        if not point.get("quality_usable", True):
+            rejected_by.append(point.get("selection_reason", "quality_gate"))
+        if not isinstance(t, (int, float)) or not math.isfinite(t) or t < 0:
+            rejected_by.append("invalid_timestamp")
+        if not isinstance(hz, (int, float)) or not math.isfinite(hz) or not 40 <= hz <= 1000:
+            rejected_by.append("missing_or_out_of_range_f0")
+        if confidence is not None and confidence < 0.45:
+            rejected_by.append("weak_periodicity")
+        reasons.append(rejected_by)
         if usable:
             assert isinstance(t, (int, float)) and isinstance(hz, (int, float))
             valid.append((float(t), float(hz)))
@@ -55,6 +75,11 @@ def _reliable_pitch_contour(raw: list[dict[str, Any]]) -> DisplayContour:
             valid.append(None)
     baseline = statistics.median([p[1] for p in valid if p]) if any(valid) else None
     if baseline is None:
+        if diagnostics is not None:
+            diagnostics.extend(
+                {"timestamp_seconds": p.get("timestamp_seconds"), "retained": False, "reasons": r}
+                for p, r in zip(raw, reasons, strict=True)
+            )
         return DisplayContour(method=DISPLAY_VERSION)
     values = [12 * math.log2(p[1] / baseline) if p else None for p in valid]
     rejected: set[int] = set()
@@ -81,6 +106,8 @@ def _reliable_pitch_contour(raw: list[dict[str, Any]]) -> DisplayContour:
             after = statistics.median([v for i in following[:5] if (v := values[i]) is not None])
             if abs(before - after) <= 2 and abs(inside - before) > 6 and abs(inside - after) > 6:
                 rejected.update(middle)
+                for index in middle:
+                    reasons[index].append("bracketed_short_pitch_island")
     for i, value in enumerate(values):
         if value is None:
             continue
@@ -106,6 +133,16 @@ def _reliable_pitch_contour(raw: list[dict[str, Any]]) -> DisplayContour:
         mad = statistics.median(abs(v - median) for v in local_values)
         if abs(value - median) > max(6, 3 * 1.4826 * mad):
             rejected.add(i)
+            reasons[i].append("local_hampel_outlier")
+    if diagnostics is not None:
+        diagnostics.extend(
+            {
+                "timestamp_seconds": p.get("timestamp_seconds"),
+                "retained": valid[i] is not None and i not in rejected,
+                "reasons": reasons[i],
+            }
+            for i, p in enumerate(raw)
+        )
     # Recompute the display baseline after rejecting artifacts, leaving raw normalization intact.
     retained_hz = [p[1] for i, p in enumerate(valid) if p and i not in rejected]
     baseline = statistics.median(retained_hz) if retained_hz else baseline
@@ -226,6 +263,7 @@ def classify_contour(
     raw: list[dict[str, Any]],
     timing_reliable: bool = True,
     timings: dict[str, float] | None = None,
+    pitch_track: UtterancePitchTrack | None = None,
 ) -> ObservedContour:
     started = time.perf_counter()
     stages: dict[str, float] = {}
@@ -233,7 +271,12 @@ def classify_contour(
     # a simplified, normalized, or otherwise modified display as acoustic truth.
     del contour
     region = select_tone_evidence(raw, start, end) if timing_reliable else None
-    evidence = _reliable_pitch_contour(raw)
+    if pitch_track is not None:
+        from benma_api.pronunciation.pitch_evidence import display_from_track
+
+        evidence = display_from_track(pitch_track)
+    else:
+        evidence = _reliable_pitch_contour(raw)
     result = _classify_contour(
         evidence,
         region.start if region else start,

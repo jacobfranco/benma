@@ -501,11 +501,25 @@ class AcousticAnalysisService:
         audio_path = self.store.path_for_processing(asset.storage_key)
 
         analyzer = self.analyzer
+        audio_sha256 = asset.sha256
+        audio_duration = asset.duration_seconds
 
         def compute() -> AcousticRun:
             started = time.perf_counter()
             try:
                 result = analyzer.analyze(audio_path)
+                if "duration_seconds" not in result and audio_duration is not None:
+                    result = {**result, "duration_seconds": audio_duration}
+                from benma_api.pronunciation.pitch_evidence import build_pitch_track
+
+                track = build_pitch_track(
+                    result,
+                    audio_sha256=audio_sha256,
+                    tracker_source=analyzer.algorithm_name,
+                    tracker_version=analyzer.algorithm_version,
+                    parameters=analyzer.parameters,
+                )
+                result = {**result, "utterance_pitch_track": track.model_dump(mode="json")}
                 run = AcousticRun(
                     account_id=account_id,
                     utterance_id=utterance_id,

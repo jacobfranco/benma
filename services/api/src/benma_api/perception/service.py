@@ -5,7 +5,9 @@ from __future__ import annotations
 import logging
 import time
 import uuid
+from dataclasses import asdict
 
+from benma_api.audio.presence import VERSION, corroborate_transcript, require_speech
 from benma_api.db.models import PerceptionRun
 from benma_api.errors import AuthorizationError, BenmaError
 from benma_api.perception.repository import PerceptionRepository
@@ -47,8 +49,14 @@ class PerceptionService:
         )
         started = time.perf_counter()
         configuration = getattr(self.provider, "request_configuration", None)
+        presence_evidence = {}
+        raw = None
         try:
+            presence = require_speech(request.canonical_audio)
+            presence_evidence = {"version": VERSION, **asdict(presence)}
             response = self.provider.perceive(request)
+            raw = encode_raw_payload(response.raw_payload)
+            corroborate_transcript(presence, response.evidence.transcript)
         except BenmaError as exc:
             run = PerceptionRun(
                 account_id=account_id,
@@ -56,8 +64,17 @@ class PerceptionService:
                 provider=self.provider.provider_name,
                 product=self.provider.product_name,
                 adapter_version=self.provider.adapter_version,
-                normalized_result={"request_configuration": configuration}
-                if configuration is not None else None,
+                normalized_result={
+                    "speech_presence": presence_evidence,
+                    **(
+                        {"request_configuration": configuration}
+                        if configuration is not None
+                        else {}
+                    ),
+                },
+                raw_payload_json=raw.json_value if raw else None,
+                raw_payload_text=raw.text_value if raw else None,
+                raw_payload_sha256=raw.sha256 if raw else None,
                 status="failed",
                 error_code=exc.code,
                 error_message=exc.message,
@@ -75,7 +92,7 @@ class PerceptionService:
                 },
             )
             raise
-        raw = encode_raw_payload(response.raw_payload)
+        assert raw is not None
         evidence = response.evidence
         run = PerceptionRun(
             account_id=account_id,
@@ -89,6 +106,7 @@ class PerceptionService:
             provider_uncertainty=evidence.provider_uncertainty,
             normalized_result={
                 **evidence.normalized(),
+                "speech_presence": presence_evidence,
                 **({"request_configuration": configuration} if configuration is not None else {}),
             },
             raw_payload_json=raw.json_value,

@@ -57,7 +57,7 @@ export default function HomeScreen() {
       </Card>
       <Card>
         <Heading>Practice</Heading>
-        <Body>See your tone contour, or practice a target phrase.</Body>
+        <Body>See your measured pitch, or practice a target phrase.</Body>
         <Button label="Open Practice" onPress={() => router.push('/practice')} />
       </Card>
       <View style={styles.secondaryActions}>

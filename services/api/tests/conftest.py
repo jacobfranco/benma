@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import asyncio
 import io
+import math
+import struct
 import wave
 from collections.abc import Generator
 from pathlib import Path
@@ -50,7 +52,16 @@ def wav_bytes(duration_seconds: float = 0.15, sample_rate: int = 16000) -> bytes
         writer.setnchannels(1)
         writer.setsampwidth(2)
         writer.setframerate(sample_rate)
-        writer.writeframes(b"\x00\x00" * frames)
+        # Deterministic voiced stand-in; silence cannot be a successful upload.
+        writer.writeframes(
+            struct.pack(
+                f"<{frames}h",
+                *[
+                    round(3000 * math.sin(2 * math.pi * 180 * i / sample_rate))
+                    for i in range(frames)
+                ],
+            )
+        )
     return output.getvalue()
 
 
@@ -108,6 +119,7 @@ def client(
             yield db
 
     app.dependency_overrides[get_db] = override_db
+
     async def override_settings() -> Settings:
         return settings
 

@@ -1,0 +1,6 @@
+{
+  "environment": "local Node.js, not mobile device render latency",
+  "calls": 100000,
+  "median_ms_per_call": 0.000023467000000010785,
+  "max_ms_per_call": 0.000733729000000011
+}

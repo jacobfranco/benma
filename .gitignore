@@ -20,3 +20,15 @@ benchmark/reports/outputs/runs/*.json
 benchmark/reports/outputs/plots/*.svg
 benchmark/corpus/provider-captures/
 docs/research/pronunciation-v2/2026-09-30-luilui-t3-forensics/drawer-payloads/
+
+# Reproducible local research presentations and execution logs, not checkpoint inputs.
+# Keep the f0_foundation_viewer.html source template in benchmark/.
+docs/research/pronunciation-v2/2026-10-06-silero-vad/viewer.html
+docs/research/pronunciation-v2/2026-10-06-silero-vad/figures/
+docs/research/pronunciation-v2/2026-10-06-speech-presence/figures/
+docs/research/pronunciation-v2/2026-10-05-utterance-evidence/git-state.txt
+docs/research/pronunciation-v2/2026-10-06-silero-vad/git-state.txt
+docs/research/pronunciation-v2/2026-10-06-speech-presence/git-state.txt
+docs/research/pronunciation-v2/2026-10-06-silero-vad/validation-output.txt
+docs/research/pronunciation-v2/2026-10-06-speech-presence/validation-output.txt
+docs/research/pronunciation-v2/2026-10-05-f0-foundation/archive-verification.json

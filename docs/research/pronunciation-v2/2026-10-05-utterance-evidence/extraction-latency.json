@@ -1,0 +1,57 @@
+{
+  "audio_sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+  "audio_id": "human_control",
+  "duration_seconds": 2.8561,
+  "source": "same provisional production Praat; one existing waveform; six local timing repetitions; no benchmark rerun",
+  "measurements": [
+    {
+      "iteration": 0,
+      "extraction_ms": 70.9153710049577,
+      "track_build_ms": 7.249798014527187,
+      "track_encode_ms": 0.580810010433197,
+      "track_replay_ms": 1.0386350040789694
+    },
+    {
+      "iteration": 1,
+      "extraction_ms": 42.68888701335527,
+      "track_build_ms": 7.554964016890153,
+      "track_encode_ms": 0.5687029915861785,
+      "track_replay_ms": 1.3954199966974556
+    },
+    {
+      "iteration": 2,
+      "extraction_ms": 42.6616620097775,
+      "track_build_ms": 7.535130018368363,
+      "track_encode_ms": 0.572363001992926,
+      "track_replay_ms": 1.1723689967766404
+    },
+    {
+      "iteration": 3,
+      "extraction_ms": 41.55547500704415,
+      "track_build_ms": 7.413532002829015,
+      "track_encode_ms": 0.5880219978280365,
+      "track_replay_ms": 1.1969369952566922
+    },
+    {
+      "iteration": 4,
+      "extraction_ms": 41.50449999724515,
+      "track_build_ms": 6.84988300781697,
+      "track_encode_ms": 0.8355940226465464,
+      "track_replay_ms": 1.2488810170907527
+    },
+    {
+      "iteration": 5,
+      "extraction_ms": 40.98139199777506,
+      "track_build_ms": 27.79904901399277,
+      "track_encode_ms": 0.6404309824574739,
+      "track_replay_ms": 1.2722880055662245
+    }
+  ],
+  "warm_median_ms": {
+    "extraction_ms": 41.55547500704415,
+    "track_build_ms": 7.535130018368363,
+    "track_encode_ms": 0.5880219978280365,
+    "track_replay_ms": 1.2488810170907527
+  },
+  "asr_latency": "not measured; no provider calls; existing concurrency unchanged"
+}

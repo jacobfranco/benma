@@ -1,0 +1,50 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Benma character-free F0 bakeoff</title>
+<style>
+body { font:15px system-ui; margin:2rem; max-width:1500px; background:#fafafa; color:#222 }
+details { background:white; border:1px solid #ccc; padding:1rem; margin:1rem 0 }
+summary { font-weight:700; cursor:pointer }
+svg { width:100%; height:auto }
+.controls { display:flex; gap:1rem; flex-wrap:wrap }
+p { overflow-wrap:anywhere }
+.track-A-minimal, .track-B-minimal, .track-C-minimal,
+.track-D-minimal, .track-E-minimal, .track-F-minimal, .production { display:none }
+audio { vertical-align:middle }
+</style>
+<h1>Character-free F0 foundation</h1>
+<p>Offline research. Whole-waveform extraction; x-axis is elapsed audio time.
+No character alignment enters tracking. Native confidence values have different meanings.
+A continuous raw line does not prove speech or correct fundamental.</p>
+<p>The sixth-tracker extension preserves native voicing in raw output. Its optional
+minimal view uses only the predeclared native confidence threshold. The revealed
+RMVPE view uses max salience &gt;0.05; raw uses the upstream &gt;0.03 decision.
+The other five minimal views retain the previous acoustic cleanup.</p>
+<p>Review harmonic agreement, supported continuity, octave branches and real gaps before
+revealing names. This is a semi-blinded single-reviewer inspection, not an independent
+listening panel.</p>
+<details><summary>Reveal tracker identities</summary><code>{{KEY}}</code></details>
+{{CARDS}}
+<script>
+document.querySelectorAll('details[id]').forEach(card => {
+  function update() {
+    const mode = card.querySelector('.mode').value;
+    card.querySelectorAll('[data-track]').forEach(box => {
+      const label = box.dataset.track;
+      ['raw', 'minimal'].forEach(view => {
+        card.querySelectorAll('.track-' + label + '-' + view).forEach(node => {
+          node.style.display = box.checked && mode === view ? 'inline' : 'none';
+        });
+      });
+      card.querySelectorAll('.confidence-' + label).forEach(node => {
+        node.style.display = box.checked ? 'inline' : 'none';
+      });
+    });
+    card.querySelectorAll('.production').forEach(node => {
+      node.style.display = card.querySelector('.production-toggle').checked ? 'inline' : 'none';
+    });
+  }
+  card.querySelectorAll('input,select').forEach(node => node.addEventListener('change', update));
+  update();
+});
+</script>

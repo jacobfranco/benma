@@ -89,7 +89,7 @@ class Settings(BaseSettings):
     mfa_dictionary: str = "mandarin_mfa"
     mfa_acoustic_model: str = "mandarin_mfa"
     mfa_timeout_seconds: float = 45.0
-    enable_experimental_tone_interpretation: bool = True
+    enable_experimental_tone_interpretation: bool = False
     enable_categorical_tone_judgment: bool = False
 
     @field_validator("cors_allowed_origins")

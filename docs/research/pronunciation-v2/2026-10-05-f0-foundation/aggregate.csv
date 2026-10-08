@@ -1,0 +1,14 @@
+tracker,variant,speech_islands,speech_jumps_gt9,speech_nearby_jumps_gt9,negative_pitch_frames,negative_total_frames,synthetic_octave_frames,synthetic_compared_frames,synthetic_voiced_coverage,low_proxy_coverage,low_proxy_doubled
+praat_ac,raw,254,5,60,427,1911,0,1404,1.0,1.0,0
+praat_ac,minimal,256,5,54,418,1911,0,1404,1.0,1.0,0
+praat_ac,production,184,1,30,122,1911,0,1259,0.8967236467236467,1.0,0
+praat_cc,raw,302,7,67,471,1923,0,1403,1.0,1.0,0
+praat_cc,minimal,291,7,57,457,1923,0,1403,1.0,1.0,0
+pyin,raw,154,0,10,670,1947,145,1404,1.0,0.9821717990275527,1
+pyin,minimal,131,0,1,39,1947,145,1404,1.0,0.7293354943273906,0
+harvest,raw,161,29,60,1075,1947,0,1404,1.0,0.9951377633711507,3
+harvest,minimal,161,29,60,1073,1947,0,1404,1.0,0.9951377633711507,3
+crepe_full,raw,30,0,0,1947,1947,145,1404,1.0,1.0,8
+crepe_full,minimal,277,0,3,289,1947,145,1378,0.9814814814814815,0.9367909238249594,1
+rmvpe,raw,147,22,32,374,1947,79,1404,1.0,1.0,3
+rmvpe,minimal,140,17,27,326,1947,79,1404,1.0,1.0,3

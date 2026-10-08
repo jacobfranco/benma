@@ -21,6 +21,7 @@ from pypinyin.contrib.tone_convert import to_tone, to_tone3
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from benma_api.audio.presence import require_speech
 from benma_api.config import Settings
 from benma_api.db.models import AudioAsset, PerceivedSpeechAnalysis, PerceptionRun, Utterance
 from benma_api.errors import AnalysisUnsupportedError, AuthorizationError
@@ -35,17 +36,26 @@ from benma_api.pronunciation.alignment import (
     build_aligner,
     validate_alignment,
 )
+from benma_api.pronunciation.azure_alignment import azure_word_timing_groups
 from benma_api.pronunciation.contours import (
     CLASSIFIER_VERSION,
     DISPLAY_VERSION,
     classify_contour,
-    display_contour,
     simplify_display,
     syllable_contour,
 )
+from benma_api.pronunciation.pitch_evidence import (
+    display_from_track,
+    gate_observation,
+    interpretation_eligibility,
+    load_pitch_track,
+    project_pitch,
+)
+from benma_api.pronunciation.pitch_types import ELIGIBILITY_VERSION, TRACK_VERSION
 from benma_api.pronunciation.readings import READING_VERSION, resolve_run
 from benma_api.pronunciation.surface import SURFACE_VERSION, surface_expectations
 from benma_api.pronunciation.targets import parse_corrected_pinyin
+from benma_api.pronunciation.tone_graph import sentence_pitch_evidence
 from benma_api.schemas import (
     ExpectedTonePoint,
     MeasuredPitchPoint,
@@ -57,7 +67,7 @@ from benma_api.schemas import (
 from benma_api.storage.audio_store import AudioObjectStore
 
 LOGGER = logging.getLogger(__name__)
-VERSION = "perceived-speech-v3"
+VERSION = "perceived-speech-v6-utterance-evidence"
 # Chao 55/35/214/51, rescaled from 1..5 to 0..1; never measured Hz.
 # https://linguistics.berkeley.edu/acip/appendix/languages/chinese/chinese_tone.html
 # Neutral tone has no context-free fixed shape.
@@ -168,6 +178,29 @@ def reading_response(perception: PerceptionRun) -> PerceivedReadingResponse:
 
 
 def analysis_response(run: PerceivedSpeechAnalysis) -> PerceivedSpeechAnalysisResponse:
+    data = PerceivedAnalysisData.model_validate(run.result)
+    for syllable in data.syllables:
+        # Old analyses lack completeness evidence: preserve saved history but
+        # never serialize an old confident category as newly eligible feedback.
+        syllable.observed_contour = gate_observation(
+            syllable.observed_contour, syllable.pitch_eligibility
+        )
+    # Also enrich old persisted analyses using their saved timing payload. Pure
+    # presentation: no provider call, reclassification or mutation of stored truth.
+    if (
+        "timing_groups" not in run.result
+        and data.alignment_status != "synthetic"
+        and data.evidence_status != "synthetic_replay"
+    ):
+        timing = run.result.get("timing_evidence", {})
+        if timing.get("provider") == "azure_speech_alignment_only" and timing.get("id"):
+            data.timing_groups = azure_word_timing_groups(
+                timing.get("provider_timing") or {},
+                run.alignment_reference_text,
+                data.syllables,
+                duration_seconds=data.duration_seconds,
+                timing_evidence_id=timing["id"],
+            )
     return PerceivedSpeechAnalysisResponse(
         id=run.id,
         perception_run_id=run.perception_run_id,
@@ -178,7 +211,7 @@ def analysis_response(run: PerceivedSpeechAnalysis) -> PerceivedSpeechAnalysisRe
         error_code=run.error_code,
         latency_ms=run.latency_ms,
         created_at=run.created_at if run.created_at.tzinfo else run.created_at.replace(tzinfo=UTC),
-        data=PerceivedAnalysisData.model_validate(run.result),
+        data=data,
     )
 
 
@@ -228,6 +261,7 @@ class PerceivedSpeechAnalysisService:
         if asset is None or asset.account_id != account_id or asset.duration_seconds is None:
             raise AuthorizationError("canonical audio was not found")
         duration_seconds = asset.duration_seconds
+        require_speech(self.store.read(asset.storage_key), transcript=perception.transcript)
         config = {
             "normalization": "exact-persisted-transcript-v1",
             "reading_engine": f"pypinyin-{version('pypinyin')}",
@@ -236,6 +270,8 @@ class PerceivedSpeechAnalysisService:
             "surface_rules": SURFACE_VERSION,
             "display_filter": DISPLAY_VERSION,
             "observed_classifier": CLASSIFIER_VERSION,
+            "pitch_track": TRACK_VERSION,
+            "pitch_eligibility": ELIGIBILITY_VERSION,
             "analyzer_version": VERSION,
             "acoustic_algorithm": self.analyzer.algorithm_name,
             "acoustic_version": self.analyzer.algorithm_version,
@@ -275,6 +311,7 @@ class PerceivedSpeechAnalysisService:
         request = AlignmentRequest(
             audio_path=self.store.path_for_processing(asset.storage_key),
             reference_text=text,
+            reference_kind="perceived_text",
             pinyin_syllables=[s.pinyin or "" for s in syllables],
             duration_seconds=asset.duration_seconds,
             timeout_seconds=(
@@ -369,6 +406,7 @@ class PerceivedSpeechAnalysisService:
                     if self.aligner.algorithm_name == "disabled":
                         failure_code = "alignment_disabled"
                     response = self.aligner.align(request)
+                    timing_evidence["evidence_status"] = response.evidence_status
                     provider_units = validated(response.units)
                     synthetic = synthetic or response.evidence_status == "synthetic_replay"
                     # Never allow replay partitions to displace real token timing.
@@ -422,8 +460,17 @@ class PerceivedSpeechAnalysisService:
             units, alignment_status, alignment_error, alignment_ms = alignment_future.result()
         processing_started = time.perf_counter()
         raw_pitch = (acoustic.normalized_result or {}).get("f0", [])
-        display = display_contour(raw_pitch)
+        track = load_pitch_track(
+            acoustic.normalized_result or {},
+            audio_sha256=asset.sha256,
+            tracker_source=acoustic.algorithm,
+            tracker_version=acoustic.algorithm_version,
+            parameters=acoustic.parameters,
+        )
+        display = display_from_track(track)
         timings["display_contour"] = (time.perf_counter() - processing_started) * 1000
+        timings["pitch_projection"] = 0
+        timings["pitch_eligibility"] = 0
         timings["contour_slicing"] = 0
         timings["quality_gate_and_classification"] = 0
         for unit in units:
@@ -432,12 +479,26 @@ class PerceivedSpeechAnalysisService:
             syllable.end_seconds = unit["end_seconds"]
             syllable.timing_source = unit.get("source", self.aligner.algorithm_name)
             syllable.timing_evidence_id = unit.get("source_evidence_id", timing_evidence_id)
-            if alignment_status in {"aligned", "partial"}:
+            if alignment_status in {"aligned", "partial"} and acoustic.status == "succeeded":
                 slice_started = time.perf_counter()
                 syllable.display_contour = syllable_contour(
                     display, unit["start_seconds"], unit["end_seconds"]
                 )
                 timings["contour_slicing"] += (time.perf_counter() - slice_started) * 1000
+                projection_started = time.perf_counter()
+                syllable.pitch_projection = project_pitch(
+                    track,
+                    unit["start_seconds"],
+                    unit["end_seconds"],
+                    timing_source=syllable.timing_source,
+                    timing_evidence_id=syllable.timing_evidence_id,
+                )
+                timings["pitch_projection"] += (time.perf_counter() - projection_started) * 1000
+                eligibility_started = time.perf_counter()
+                syllable.pitch_eligibility = interpretation_eligibility(
+                    track, syllable.pitch_projection
+                )
+                timings["pitch_eligibility"] += (time.perf_counter() - eligibility_started) * 1000
                 classify_started = time.perf_counter()
                 syllable.observed_contour = classify_contour(
                     syllable.display_contour,
@@ -445,6 +506,10 @@ class PerceivedSpeechAnalysisService:
                     unit["end_seconds"],
                     raw=raw_pitch,
                     timings=timings,
+                    pitch_track=track,
+                )
+                syllable.observed_contour = gate_observation(
+                    syllable.observed_contour, syllable.pitch_eligibility
                 )
                 timings["quality_gate_and_classification"] += (
                     time.perf_counter() - classify_started
@@ -455,6 +520,37 @@ class PerceivedSpeechAnalysisService:
                         "first_reliable_core_seconds"
                     ),
                 )
+        group_started = time.perf_counter()
+        timing_groups = (
+            azure_word_timing_groups(
+                timing_evidence.get("provider_timing") or {},
+                text,
+                syllables,
+                duration_seconds=duration_seconds,
+                timing_evidence_id=timing_evidence_id,
+            )
+            if alignment_status != "synthetic"
+            and not synthetic_perception
+            and timing_evidence.get("evidence_status") != "synthetic_replay"
+            else []
+        )
+        timings["grouped_timing"] = (time.perf_counter() - group_started) * 1000
+        for group in timing_groups if acoustic.status == "succeeded" else []:
+            group.pitch_projection = project_pitch(
+                track,
+                group.start_seconds,
+                group.end_seconds,
+                timing_source=group.source,
+                timing_evidence_id=group.timing_evidence_id,
+            )
+            group.pitch_eligibility = interpretation_eligibility(track, group.pitch_projection)
+        tone_graph = sentence_pitch_evidence(
+            raw_pitch,
+            display,
+            syllables,
+            timing_groups,
+            track=track if acoustic.status == "succeeded" else None,
+        )
         display = simplify_display(display)
         timings["contour_processing_classification"] = (
             time.perf_counter() - processing_started
@@ -478,6 +574,9 @@ class PerceivedSpeechAnalysisService:
         if issues:
             observations.append("Recording quality limits the pitch evidence.")
         data = PerceivedAnalysisData(
+            pitch_track_evidence_id=track.evidence_id if acoustic.status == "succeeded" else None,
+            tone_graph=tone_graph,
+            timing_groups=timing_groups,
             display_contour=display,
             expected_tone_basis="conservative_surface_tones",
             timing_source="+".join(timing_evidence.get("sources", [])) or None,

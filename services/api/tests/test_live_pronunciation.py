@@ -107,7 +107,7 @@ def test_azure_eleven_spans_are_provider_offsets_not_equal_splits():
     [
         ("你好", [3, 3], [2, 3]),
         ("不是", [4, 4], [2, 4]),
-        ("一个", [1, 4], [2, 4]),
+        ("一个", [1, 4], [2, None]),
         ("一天", [1, 1], [4, 1]),
         ("第一", [4, 1], [4, 1]),
         ("看一看", [None, 1, None], [None, None, None]),
@@ -252,7 +252,7 @@ def test_exact_perception_lineage_real_timing_and_mine(
         assert "score" not in str(run.result).lower()
         assert all(s["display_contour"]["segments"] for s in run.result["syllables"])
         assert all(
-            s["observed_contour"]["classification"] == "2-like" for s in run.result["syllables"]
+            s["observed_contour"]["classification"] == "unclear" for s in run.result["syllables"]
         )
         assert db.scalar(select(PronunciationTarget)) is None
         assert db.get(PerceptionRun, perception.id).raw_payload_json == {"immutable": True}

@@ -12,7 +12,9 @@ from pypinyin import Style, pinyin
 from pypinyin.contrib.tone_convert import to_tone3
 from pypinyin.phrases_dict import phrases_dict
 
-READING_VERSION = "exact-text-lexical-context-v3.1"
+from benma_api.pronunciation.surface import DIGITS, YI_QUANTITY_FOLLOWERS
+
+READING_VERSION = "exact-text-lexical-context-v3.2"
 ReadingSource = Literal["phrase", "grammar", "dictionary", "unresolved"]
 # Reviewed contemporary Mandarin defaults; the dictionary also lists historical
 # variants. This is deliberately NOT a generic first-dictionary-reading fallback.
@@ -52,6 +54,13 @@ def character_options(character: str) -> tuple[str, ...]:
     return tuple(
         pinyin(character, style=Style.TONE3, heteronym=True, neutral_tone_with_five=True)[0]
     )
+
+
+def _quantity_follows(text: str, start: int) -> bool:
+    end = start
+    while end < len(text) and text[end] in DIGITS:
+        end += 1
+    return end > start and end < len(text) and text[end] in YI_QUANTITY_FOLLOWERS
 
 
 @lru_cache(maxsize=2048)
@@ -102,6 +111,10 @@ def resolve_run(text: str) -> tuple[tuple[str | None, ReadingSource, tuple[str, 
             selected, source = "ba5", "grammar"
         elif character == "们" and index > 0 and text[index - 1] in "我你他她它咱您人友学师孩":
             selected, source = "men5", "grammar"
+        elif character == "要" and _quantity_follows(text, index + 1):
+            # Want/need a quantity: yào. Longest phrase lookup above still owns
+            # 要求/要挟; bare 要 and other unresolved uses keep their alternatives.
+            selected, source = "yao4", "grammar"
         else:
             selected = DOMINANT.get(character) or (options[0] if len(options) == 1 else None)
             source = "dictionary" if selected else "unresolved"

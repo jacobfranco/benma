@@ -1,0 +1,16 @@
+{
+  "native_threshold": 0.03,
+  "one_sweep": [
+    0.01,
+    0.02,
+    0.03,
+    0.04,
+    0.05
+  ],
+  "optional_view_threshold": 0.05,
+  "filters": "native max-salience only; no energy/island/range/smoothing gates",
+  "cpu_threads": 1,
+  "primary": "unmodified native decode at default 0.03",
+  "pitch_range": "full 360 native bins; no 50/70 Hz mask",
+  "blinding": "new independently shuffled A-F key; do not inspect before notes"
+}

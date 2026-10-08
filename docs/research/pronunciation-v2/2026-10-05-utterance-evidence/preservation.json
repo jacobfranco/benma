@@ -1,0 +1,27 @@
+{
+  "original_frozen": {
+    "indexed": 467,
+    "unchanged": 466
+  },
+  "rmvpe_saved": {
+    "indexed": 133,
+    "unchanged": 133
+  },
+  "protected_source_files": [
+    "services/api/src/benma_api/audio/presence.py",
+    "services/api/src/benma_api/audio/presence_service.py",
+    "services/api/src/benma_api/pronunciation/readings.py",
+    "services/api/src/benma_api/pronunciation/surface.py",
+    "services/api/src/benma_api/pronunciation/warmup.py",
+    "services/api/src/benma_api/api/routes.py"
+  ],
+  "non_evidence_cache_differences": [
+    {
+      "path": "services/api/var/f0-foundation/mpl/fontlist-v390.json",
+      "previous": "c57e30743a8caa3f6601164b64262da3c452b2377a0f8b311cb1af91a314b995",
+      "current": null,
+      "meaning": "Missing volatile Matplotlib font cache; not audio, pitch, salience, alignment, or metrics. No evidence was changed or restored."
+    }
+  ],
+  "failures": []
+}

@@ -195,7 +195,7 @@ def test_api_target_revision_preserves_acoustic_evidence(
         lambda *_: {
             "f0": raw,
             "mobile_f0": raw,
-            "duration_seconds": row["end"],
+            "duration_seconds": raw[-1]["timestamp_seconds"] + 0.01,
             "recording_quality": {"status": "usable", "issues": []},
         },
     )
@@ -240,7 +240,12 @@ def test_api_target_revision_preserves_acoustic_evidence(
     a, b = [r["syllables"][0] for r in results]
     assert a["expected_surface_tone"] != b["expected_surface_tone"] == 2
     assert a["observed_contour"] == b["observed_contour"]
-    assert a["observed_contour"]["classification"] == ("3-like" if sample_index == 1 else "4-like")
+    assert a["observed_contour"]["classification"] == "unclear"
+    assert a["pitch_eligibility"]["state"] != "sufficient"
+    assert (
+        results[0]["acoustic"]["utterance_pitch_track"]
+        == results[1]["acoustic"]["utterance_pitch_track"]
+    )
     assert a["display_contour"] == b["display_contour"]
     assert results[0]["display_contour"] == display_contour(raw).model_dump()
     assert (

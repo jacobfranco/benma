@@ -1,0 +1,743 @@
+{
+  "saved_analysis_sha256": "52976f639be52b4a8e88d41a7f7009198cb5997ec47e530ce387887e9f439440",
+  "recordings": [
+    {
+      "id": "40357072",
+      "perceived_text": "我想买五把雨伞。",
+      "analysis_id": "273e6216-6900-4d66-81d1-abcbb729c9cf",
+      "audio_sha256": "00e30ad842c92133609d2728367e8d18993a7ce6961176117e05d312e9313855",
+      "duration": 4.8994375,
+      "cards": [
+        {
+          "key": "0:1",
+          "text": "我",
+          "character_start": 0,
+          "character_end": 1,
+          "grouped": false,
+          "reading": "wǒ",
+          "start_seconds": 0.84,
+          "end_seconds": 1.37,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "我 · wǒ · Lexical T3; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 我",
+          "context_playback_label": "Play recording with context for 我"
+        },
+        {
+          "key": "1:2",
+          "text": "想",
+          "character_start": 1,
+          "character_end": 2,
+          "grouped": false,
+          "reading": "xiǎng",
+          "start_seconds": 1.38,
+          "end_seconds": 1.93,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "想 · xiǎng · Lexical T3; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 想",
+          "context_playback_label": "Play recording with context for 想"
+        },
+        {
+          "key": "2:3",
+          "text": "买",
+          "character_start": 2,
+          "character_end": 3,
+          "grouped": false,
+          "reading": "mǎi",
+          "start_seconds": 1.94,
+          "end_seconds": 2.52,
+          "state": "unstable",
+          "status": "Pitch evidence unstable",
+          "observed": null,
+          "references": [
+            "买 · mǎi · Lexical T3; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 买",
+          "context_playback_label": "Play recording with context for 买"
+        },
+        {
+          "key": "3:4",
+          "text": "五",
+          "character_start": 3,
+          "character_end": 4,
+          "grouped": false,
+          "reading": "wǔ",
+          "start_seconds": 2.55,
+          "end_seconds": 3.17,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "五 · wǔ · Lexical T3; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 五",
+          "context_playback_label": "Play recording with context for 五"
+        },
+        {
+          "key": "4:5",
+          "text": "把",
+          "character_start": 4,
+          "character_end": 5,
+          "grouped": false,
+          "reading": null,
+          "start_seconds": 3.18,
+          "end_seconds": 3.55,
+          "state": "insufficient",
+          "status": "Not enough pitch evidence",
+          "observed": null,
+          "references": [
+            "把: Reading unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 把",
+          "context_playback_label": "Play recording with context for 把"
+        },
+        {
+          "key": "5:7",
+          "text": "雨伞",
+          "character_start": 5,
+          "character_end": 7,
+          "grouped": true,
+          "reading": "yǔ sǎn",
+          "start_seconds": 3.56,
+          "end_seconds": 4.87,
+          "state": "unstable",
+          "status": "Pitch evidence unstable",
+          "observed": null,
+          "references": [
+            "雨 · yǔ · Lexical T3; contextual reference unresolved",
+            "伞 · sǎn · Lexical T3; contextual reference unresolved"
+          ],
+          "timing_source": "azure_word",
+          "playback_label": "Play exact recording for 雨伞",
+          "context_playback_label": "Play recording with context for 雨伞"
+        }
+      ],
+      "detail": {
+        "points": 253,
+        "segments": 13,
+        "baseline_hz": 111.118
+      },
+      "padding": [
+        {
+          "ms": 0,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 40,
+          "units_with_neighbor_context": 6
+        },
+        {
+          "ms": 80,
+          "units_with_neighbor_context": 6
+        }
+      ]
+    },
+    {
+      "id": "8d252264",
+      "perceived_text": "我要一个苹果。",
+      "analysis_id": "381e7e5b-b029-4448-9235-0885cf9483dd",
+      "audio_sha256": "aa4c9fd8de1cec17021691f4332025b3607a8f564b9bbfc1ba9c1f43536dd984",
+      "duration": 4.6904375,
+      "cards": [
+        {
+          "key": "0:1",
+          "text": "我",
+          "character_start": 0,
+          "character_end": 1,
+          "grouped": false,
+          "reading": "wǒ",
+          "start_seconds": 0.47,
+          "end_seconds": 0.96,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "我 · wǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 我",
+          "context_playback_label": "Play recording with context for 我"
+        },
+        {
+          "key": "1:2",
+          "text": "要",
+          "character_start": 1,
+          "character_end": 2,
+          "grouped": false,
+          "reading": "yào",
+          "start_seconds": 0.97,
+          "end_seconds": 1.46,
+          "state": "unstable",
+          "status": "Pitch evidence unstable",
+          "observed": null,
+          "references": [
+            "要 · yào · Reference tone: T4"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 要",
+          "context_playback_label": "Play recording with context for 要"
+        },
+        {
+          "key": "2:3",
+          "text": "一",
+          "character_start": 2,
+          "character_end": 3,
+          "grouped": false,
+          "reading": "yī",
+          "start_seconds": 1.68,
+          "end_seconds": 2.46,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Rising (tentative)",
+          "references": [
+            "一 · yī · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 一",
+          "context_playback_label": "Play recording with context for 一"
+        },
+        {
+          "key": "3:4",
+          "text": "个",
+          "character_start": 3,
+          "character_end": 4,
+          "grouped": false,
+          "reading": "gè",
+          "start_seconds": 2.47,
+          "end_seconds": 2.94,
+          "state": "insufficient",
+          "status": "Not enough pitch evidence",
+          "observed": null,
+          "references": [
+            "个 · gè · Lexical T4; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 个",
+          "context_playback_label": "Play recording with context for 个"
+        },
+        {
+          "key": "4:5",
+          "text": "苹",
+          "character_start": 4,
+          "character_end": 5,
+          "grouped": false,
+          "reading": "píng",
+          "start_seconds": 3.26,
+          "end_seconds": 4.02,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "苹 · píng · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 苹",
+          "context_playback_label": "Play recording with context for 苹"
+        },
+        {
+          "key": "5:6",
+          "text": "果",
+          "character_start": 5,
+          "character_end": 6,
+          "grouped": false,
+          "reading": "guǒ",
+          "start_seconds": 4.03,
+          "end_seconds": 4.67,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Rising (tentative)",
+          "references": [
+            "果 · guǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 果",
+          "context_playback_label": "Play recording with context for 果"
+        }
+      ],
+      "detail": {
+        "points": 189,
+        "segments": 14,
+        "baseline_hz": 119.767
+      },
+      "padding": [
+        {
+          "ms": 0,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 40,
+          "units_with_neighbor_context": 6
+        },
+        {
+          "ms": 80,
+          "units_with_neighbor_context": 6
+        }
+      ]
+    },
+    {
+      "id": "d47274bc",
+      "perceived_text": "我有一个苹果。",
+      "analysis_id": "39056d74-0aaa-4fdb-9a74-de0ced97b11f",
+      "audio_sha256": "aa5b374d61e56dea146942e0d3b149ad629db6ca1534f5fae376ac31b4a75aa7",
+      "duration": 6.873125,
+      "cards": [],
+      "detail": {
+        "points": 214,
+        "segments": 9,
+        "baseline_hz": 109.308
+      },
+      "padding": [
+        {
+          "ms": 0,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 40,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 80,
+          "units_with_neighbor_context": 0
+        }
+      ]
+    },
+    {
+      "id": "4b9dbd2b",
+      "perceived_text": "我要一个苹果。",
+      "analysis_id": "36da15ad-ead6-45d2-8c48-c720b9ce3014",
+      "audio_sha256": "466f5655bfe765a7951294dc7d088b3f1cf83360add674ce3cc7ad865be08fee",
+      "duration": 6.78025,
+      "cards": [
+        {
+          "key": "0:1",
+          "text": "我",
+          "character_start": 0,
+          "character_end": 1,
+          "grouped": false,
+          "reading": "wǒ",
+          "start_seconds": 0.68,
+          "end_seconds": 1.61,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Dipping / valley-like (tentative)",
+          "references": [
+            "我 · wǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 我",
+          "context_playback_label": "Play recording with context for 我"
+        },
+        {
+          "key": "1:2",
+          "text": "要",
+          "character_start": 1,
+          "character_end": 2,
+          "grouped": false,
+          "reading": "yào",
+          "start_seconds": 1.62,
+          "end_seconds": 2.44,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "要 · yào · Reference tone: T4"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 要",
+          "context_playback_label": "Play recording with context for 要"
+        },
+        {
+          "key": "2:3",
+          "text": "一",
+          "character_start": 2,
+          "character_end": 3,
+          "grouped": false,
+          "reading": "yī",
+          "start_seconds": 2.86,
+          "end_seconds": 3.25,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Falling (tentative)",
+          "references": [
+            "一 · yī · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 一",
+          "context_playback_label": "Play recording with context for 一"
+        },
+        {
+          "key": "3:4",
+          "text": "个",
+          "character_start": 3,
+          "character_end": 4,
+          "grouped": false,
+          "reading": "gè",
+          "start_seconds": 3.26,
+          "end_seconds": 3.85,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Dipping / valley-like (tentative)",
+          "references": [
+            "个 · gè · Lexical T4; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 个",
+          "context_playback_label": "Play recording with context for 个"
+        },
+        {
+          "key": "4:5",
+          "text": "苹",
+          "character_start": 4,
+          "character_end": 5,
+          "grouped": false,
+          "reading": "píng",
+          "start_seconds": 4.59,
+          "end_seconds": 5.53,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Rising (tentative)",
+          "references": [
+            "苹 · píng · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 苹",
+          "context_playback_label": "Play recording with context for 苹"
+        },
+        {
+          "key": "5:6",
+          "text": "果",
+          "character_start": 5,
+          "character_end": 6,
+          "grouped": false,
+          "reading": "guǒ",
+          "start_seconds": 5.54,
+          "end_seconds": 6.38,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Dipping / valley-like (tentative)",
+          "references": [
+            "果 · guǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 果",
+          "context_playback_label": "Play recording with context for 果"
+        }
+      ],
+      "detail": {
+        "points": 224,
+        "segments": 6,
+        "baseline_hz": 111.035
+      },
+      "padding": [
+        {
+          "ms": 0,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 40,
+          "units_with_neighbor_context": 6
+        },
+        {
+          "ms": 80,
+          "units_with_neighbor_context": 6
+        }
+      ]
+    },
+    {
+      "id": "8faf1a90",
+      "perceived_text": "我要一个苹果。",
+      "analysis_id": "a1214d48-3fc8-4338-bb50-117de8964af7",
+      "audio_sha256": "c69e9debd717d9ab0827c4131415c95eaaef8250992f5cd8462ec0bd1669a882",
+      "duration": 3.018625,
+      "cards": [
+        {
+          "key": "0:1",
+          "text": "我",
+          "character_start": 0,
+          "character_end": 1,
+          "grouped": false,
+          "reading": "wǒ",
+          "start_seconds": 0.59,
+          "end_seconds": 0.87,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Falling (tentative)",
+          "references": [
+            "我 · wǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 我",
+          "context_playback_label": "Play recording with context for 我"
+        },
+        {
+          "key": "1:2",
+          "text": "要",
+          "character_start": 1,
+          "character_end": 2,
+          "grouped": false,
+          "reading": "yào",
+          "start_seconds": 0.88,
+          "end_seconds": 1.23,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Level-like (tentative)",
+          "references": [
+            "要 · yào · Reference tone: T4"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 要",
+          "context_playback_label": "Play recording with context for 要"
+        },
+        {
+          "key": "2:3",
+          "text": "一",
+          "character_start": 2,
+          "character_end": 3,
+          "grouped": false,
+          "reading": "yī",
+          "start_seconds": 1.24,
+          "end_seconds": 1.49,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "一 · yī · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 一",
+          "context_playback_label": "Play recording with context for 一"
+        },
+        {
+          "key": "3:4",
+          "text": "个",
+          "character_start": 3,
+          "character_end": 4,
+          "grouped": false,
+          "reading": "gè",
+          "start_seconds": 1.5,
+          "end_seconds": 1.89,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Falling (tentative)",
+          "references": [
+            "个 · gè · Lexical T4; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 个",
+          "context_playback_label": "Play recording with context for 个"
+        },
+        {
+          "key": "4:5",
+          "text": "苹",
+          "character_start": 4,
+          "character_end": 5,
+          "grouped": false,
+          "reading": "píng",
+          "start_seconds": 1.92,
+          "end_seconds": 2.32,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Falling (tentative)",
+          "references": [
+            "苹 · píng · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 苹",
+          "context_playback_label": "Play recording with context for 苹"
+        },
+        {
+          "key": "5:6",
+          "text": "果",
+          "character_start": 5,
+          "character_end": 6,
+          "grouped": false,
+          "reading": "guǒ",
+          "start_seconds": 2.33,
+          "end_seconds": 2.86,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "果 · guǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 果",
+          "context_playback_label": "Play recording with context for 果"
+        }
+      ],
+      "detail": {
+        "points": 164,
+        "segments": 9,
+        "baseline_hz": 110.08
+      },
+      "padding": [
+        {
+          "ms": 0,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 40,
+          "units_with_neighbor_context": 6
+        },
+        {
+          "ms": 80,
+          "units_with_neighbor_context": 6
+        }
+      ]
+    },
+    {
+      "id": "a5acd04c",
+      "perceived_text": "我有一个苹果。",
+      "analysis_id": "1c515113-fbed-4a67-94d2-339662f98f87",
+      "audio_sha256": "2865d75595fa2bc0779921abc4d379ef7514d53789ed173dcfc3d55aab734f76",
+      "duration": 2.6935,
+      "cards": [
+        {
+          "key": "0:1",
+          "text": "我",
+          "character_start": 0,
+          "character_end": 1,
+          "grouped": false,
+          "reading": "wǒ",
+          "start_seconds": 0.68,
+          "end_seconds": 0.91,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Unclear",
+          "references": [
+            "我 · wǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 我",
+          "context_playback_label": "Play recording with context for 我"
+        },
+        {
+          "key": "1:2",
+          "text": "有",
+          "character_start": 1,
+          "character_end": 2,
+          "grouped": false,
+          "reading": null,
+          "start_seconds": 0.92,
+          "end_seconds": 1.25,
+          "state": "unstable",
+          "status": "Pitch evidence unstable",
+          "observed": null,
+          "references": [
+            "有: Reading unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 有",
+          "context_playback_label": "Play recording with context for 有"
+        },
+        {
+          "key": "2:3",
+          "text": "一",
+          "character_start": 2,
+          "character_end": 3,
+          "grouped": false,
+          "reading": "yī",
+          "start_seconds": 1.26,
+          "end_seconds": 1.47,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Level-like (tentative)",
+          "references": [
+            "一 · yī · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 一",
+          "context_playback_label": "Play recording with context for 一"
+        },
+        {
+          "key": "3:4",
+          "text": "个",
+          "character_start": 3,
+          "character_end": 4,
+          "grouped": false,
+          "reading": "gè",
+          "start_seconds": 1.48,
+          "end_seconds": 1.67,
+          "state": "unstable",
+          "status": "Pitch evidence unstable",
+          "observed": null,
+          "references": [
+            "个 · gè · Lexical T4; contextual reference unresolved"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 个",
+          "context_playback_label": "Play recording with context for 个"
+        },
+        {
+          "key": "4:5",
+          "text": "苹",
+          "character_start": 4,
+          "character_end": 5,
+          "grouped": false,
+          "reading": "píng",
+          "start_seconds": 1.68,
+          "end_seconds": 2.01,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Falling (tentative)",
+          "references": [
+            "苹 · píng · Reference tone: T2"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 苹",
+          "context_playback_label": "Play recording with context for 苹"
+        },
+        {
+          "key": "5:6",
+          "text": "果",
+          "character_start": 5,
+          "character_end": 6,
+          "grouped": false,
+          "reading": "guǒ",
+          "start_seconds": 2.02,
+          "end_seconds": 2.47,
+          "state": "sufficient",
+          "status": "Pitch evidence available",
+          "observed": "Rising (tentative)",
+          "references": [
+            "果 · guǒ · Reference tone: T3"
+          ],
+          "timing_source": "azure_provider_grapheme",
+          "playback_label": "Play exact recording for 果",
+          "context_playback_label": "Play recording with context for 果"
+        }
+      ],
+      "detail": {
+        "points": 140,
+        "segments": 12,
+        "baseline_hz": 116.536
+      },
+      "padding": [
+        {
+          "ms": 0,
+          "units_with_neighbor_context": 0
+        },
+        {
+          "ms": 40,
+          "units_with_neighbor_context": 6
+        },
+        {
+          "ms": 80,
+          "units_with_neighbor_context": 6
+        }
+      ]
+    }
+  ]
+}

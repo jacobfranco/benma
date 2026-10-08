@@ -3,7 +3,7 @@ from __future__ import annotations
 import uuid
 
 import pytest
-from conftest import ApiClient
+from conftest import ApiClient, wav_bytes
 from sqlalchemy import select
 from sqlalchemy.orm import Session, sessionmaker
 
@@ -123,9 +123,7 @@ def test_cross_account_isolation_for_all_owned_resources(
         headers=auth_header,
         json={"utterance_id": uploaded_utterance["id"], "target_id": target["id"]},
     ).json()
-    other_auth = client.post(
-        "/v1/dev/auth", json={"phone_number": "+12025550124"}
-    ).json()
+    other_auth = client.post("/v1/dev/auth", json={"phone_number": "+12025550124"}).json()
     other = {"Authorization": f"Bearer {other_auth['token']}"}
     paths = [
         f"/v1/practice-sessions/{practice['id']}",
@@ -185,7 +183,7 @@ def test_failed_assessment_persists_and_retry_reuses_attempt(
 
     class MemoryStore:
         def read(self, key: str) -> bytes:
-            return b"wav"
+            return wav_bytes()
 
     with session_factory() as db:
         stored_attempt = db.get(PronunciationAttempt, uuid.UUID(attempt["id"]))
@@ -209,9 +207,9 @@ def test_failed_assessment_persists_and_retry_reuses_attempt(
     with session_factory() as db:
         runs = list(
             db.scalars(
-                select(AssessmentRun).where(
-                    AssessmentRun.pronunciation_attempt_id == uuid.UUID(attempt["id"])
-                ).order_by(AssessmentRun.created_at)
+                select(AssessmentRun)
+                .where(AssessmentRun.pronunciation_attempt_id == uuid.UUID(attempt["id"]))
+                .order_by(AssessmentRun.created_at)
             )
         )
         assert [run.status for run in runs] == ["failed", "succeeded"]

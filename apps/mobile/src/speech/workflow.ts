@@ -2,13 +2,14 @@ import type { BenmaApiClient } from '@/api/client';
 import type { PerceivedReadings, PerceivedSpeechAnalysis, ContextualInterpretationRun, FreeTalkTurn, PerceptionRun, PronunciationResult } from '@/api/types';
 
 export type SpeechStage = 'stopping' | 'uploading' | 'perceiving' | 'responding' | 'assessing';
-export type SpeechFailure = 'recording' | 'upload' | 'perception' | 'response' | 'assessment';
+export type SpeechFailure = 'recording' | 'upload' | 'perception' | 'response' | 'assessment' | 'no_speech';
 export const speechStageLabels: Record<SpeechStage, string> = {
   stopping: 'Finishing recording…', uploading: 'Sending recording…',
   perceiving: 'Processing speech…', responding: 'Understanding meaning…',
   assessing: 'Analyzing pronunciation…',
 };
 export const speechFailureLabels: Record<SpeechFailure, string> = {
+  no_speech: "Didn't catch any speech. Try again.",
   recording: 'Recording interrupted. Please record again.',
   upload: 'Upload failed. Try sending the recording again.',
   perception: 'Could not understand speech. Try again or make a new recording.',
@@ -33,6 +34,9 @@ export interface SpeechCheckpoint {
   perception?: PerceptionRun;
   attemptId?: string;
   analysis?: Promise<void>;
+  targetAnalysis?: Promise<void>;
+  pronunciation?: PronunciationResult;
+  feedback?: SpeechAnalysis;
 }
 export interface SpeechAnalysis {
   receivedAt?: number;
@@ -73,54 +77,32 @@ export async function submitSpeech(
       checkpoint.utteranceId = (await measureSpeech('utterance upload', () =>
         client.uploadUtterance(checkpoint.uri, mimeType))).id;
     }
-    // These are independent public resources. Internal pronunciation evidence
-    // fan-out and persistence belong to the server's analyze workflow.
-    // Attach failure handling immediately and retain the promise across retries.
     const startAnalysis = () => checkpoint.analysis ??= (async () => {
-      const utteranceId = checkpoint.utteranceId!;
-      const identity = { utteranceId,
-        ...(mode.responseMode === 'none' && mode.targetId ? { targetId: mode.targetId }
-          : { perceptionId: checkpoint.perception!.id }) };
-      onAnalysis({ ...identity, state: 'processing' });
+      const identity = { utteranceId: checkpoint.utteranceId!, perceptionId: checkpoint.perception!.id,
+        ...(mode.responseMode === 'none' && mode.targetId ? { targetId: mode.targetId } : {}) };
+      const publish = (value: SpeechAnalysis) => {
+        checkpoint.feedback = { ...value, ...(checkpoint.pronunciation ? { pronunciation: checkpoint.pronunciation } : {}) };
+        onAnalysis(checkpoint.feedback);
+      };
+      publish({ ...identity, state: 'processing' });
       let complete = false;
       let readings: PerceivedReadings | undefined;
       try {
-        if (mode.responseMode === 'none' && mode.targetId) {
-          checkpoint.attemptId ??= (await client.createAttempt(utteranceId, mode.targetId)).id;
-          const pronunciation = await measureSpeech('target-analysis branch wall', () =>
-            client.analyzePronunciation(checkpoint.attemptId!));
-          if (__DEV__) {
-            for (const [branch, run] of Object.entries({ assessment: pronunciation.assessment,
-              acoustic: pronunciation.acoustic, alignment: pronunciation.alignment })) {
-              if (typeof run?.latency_ms === 'number') console.info(`[speech timing] ${branch} server compute ms:`, run.latency_ms);
-            }
-            if (typeof pronunciation.overall_evidence?.analysis_wall_ms === 'number') {
-              console.info('[speech timing] target-analysis server wall ms:', pronunciation.overall_evidence.analysis_wall_ms);
-            }
-          }
-          onAnalysis({ ...identity, state: 'ready', pronunciation });
-        } else {
-          void client.getPerceivedReadings?.(checkpoint.perception!.id).then(value => {
-            readings = value;
-            if (!complete) onAnalysis({ ...identity, state: 'processing', readings });
-          }).catch(() => {});
-          const requestStarted = Date.now();
-          const perceived = await measureSpeech('transcript-conditioned analysis total', () =>
-            client.analyzePerceivedSpeech(checkpoint.perception!.id));
-          if (__DEV__) {
-            console.info('[speech timing] pitch extraction server ms:', perceived.data.pitch_latency_ms);
-            console.info('[speech timing] alignment server ms:', perceived.data.alignment_latency_ms);
-            console.info('[speech timing] transcript analysis server ms:', perceived.latency_ms);
-            console.info('[speech timing] request overhead ms (includes queue/serialization):', Math.max(0, Date.now()-requestStarted-perceived.latency_ms));
-            console.info('[speech timing] analysis stage ms:', perceived.data.timings_ms);
-          }
-          complete = true;
-          onAnalysis({ ...identity, receivedAt: Date.now(), startedAt, state: perceived.status === 'failed' ? 'failed' : 'ready', perceived });
-          if (perceived.data.pitch_status === 'available') logTiming('total time to chart available', startedAt);
-        }
-      } catch { complete = true; onAnalysis({ ...identity, state: 'failed', ...(readings ? { readings } : {}) }); }
+        void client.getPerceivedReadings?.(checkpoint.perception!.id).then(value => {
+          readings = value;
+          if (!complete) publish({ ...identity, state: 'processing', readings });
+        }).catch(() => {});
+        const perceived = await measureSpeech('transcript-conditioned analysis total', () =>
+          client.analyzePerceivedSpeech(checkpoint.perception!.id));
+        complete = true;
+        publish({ ...identity, receivedAt: Date.now(), startedAt,
+          state: perceived.status === 'failed' ? 'failed' : 'ready', perceived });
+        if (perceived.data.pitch_status === 'available') logTiming('total time to chart available', startedAt);
+      } catch {
+        complete = true;
+        publish({ ...identity, state: 'failed', ...(readings ? { readings } : {}) });
+      }
     })();
-    if (mode.responseMode === 'none' && mode.targetId) startAnalysis();
     failure = 'perception';
     if (!checkpoint.perception) {
       onStage('perceiving');
@@ -130,7 +112,22 @@ export async function submitSpeech(
     const perception = checkpoint.perception;
     if (perception.status === 'failed' || !perception.transcript?.trim()) {
       delete checkpoint.perception;
-      throw new SpeechSubmissionError('perception');
+      throw new SpeechSubmissionError(perception.error_code === 'no_speech' ? 'no_speech' : 'perception');
+    }
+    // Keep existing target-attempt persistence independent from the perceived graph.
+    // Target evidence can supply comparison metadata, never graph units or pitch.
+    if (mode.responseMode === 'none' && mode.targetId) {
+      const targetId = mode.targetId;
+      checkpoint.targetAnalysis ??= (async () => {
+        try {
+          checkpoint.attemptId ??= (await client.createAttempt(checkpoint.utteranceId!, targetId)).id;
+          checkpoint.pronunciation = await client.analyzePronunciation(checkpoint.attemptId);
+          if (checkpoint.feedback) {
+            checkpoint.feedback = { ...checkpoint.feedback, pronunciation: checkpoint.pronunciation };
+            onAnalysis(checkpoint.feedback);
+          }
+        } catch { /* Optional target evidence cannot hide perceived pitch. */ }
+      })();
     }
     onPerception(perception);
     logTiming('total time to heard transcript', startedAt);
@@ -146,6 +143,9 @@ export async function submitSpeech(
     }
     return { perception };
   } catch (error) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'no_speech') {
+      throw new SpeechSubmissionError('no_speech');
+    }
     if (error instanceof SpeechSubmissionError) throw error;
     throw new SpeechSubmissionError(failure);
   }

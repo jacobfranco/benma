@@ -334,19 +334,14 @@ export default function PronunciationScreen() {
             )}
             <View style={styles.syllableGrid}>
               {result.syllables.map((syllable) => {
-                const interpretation = asMap(syllable.interpretation);
-                const provider = asMap(syllable.provider_evidence);
                 return (
                   <View key={syllable.syllable_index} style={styles.syllableCard}>
                     <Chinese>{syllable.characters}</Chinese>
                     <Pinyin>{syllable.pinyin}</Pinyin>
                     <Text style={styles.expected}>
-                      Expected {toneLabel(syllable.expected_surface_tone)}
+                      Reference {toneLabel(syllable.expected_surface_tone)}
                     </Text>
-                    {provider?.detected_tone !== undefined && (
-                      <Text style={styles.detected}>Evaluator detected Tone {String(provider.detected_tone)}</Text>
-                    )}
-                    <Body>{String(interpretation?.message ?? 'Could not evaluate this syllable reliably.')}</Body>
+                    <Body>Tone comparison is unavailable. Reference pronunciation is not a grade.</Body>
                     {syllable.surface_tone_reason.map((rule, index) => (
                       <Text key={index} style={styles.ruleReason}>
                         {String(rule.type).replaceAll('_', ' ').toLocaleLowerCase()}
@@ -374,13 +369,15 @@ export default function PronunciationScreen() {
 
           <Pressable
             accessibilityRole="button"
+            accessibilityLabel={advanced ? 'Hide advanced evidence' : 'Show advanced evidence'}
             onPress={() => setAdvanced((value) => !value)}
             style={styles.advancedToggle}
           >
             <Text style={styles.link}>{advanced ? 'Hide advanced evidence' : 'Show advanced evidence'}</Text>
           </Pressable>
           {advanced && (
-            <EvidencePanel>
+            <EvidencePanel title="Experimental diagnostics">
+              <Body>Uncalibrated provider and historical interpretation data. These are not pronunciation grades.</Body>
               <EvidenceRow label="Capability policy" value={result.capability_policy} />
               <EvidenceRow label="Provider" value={result.assessment?.provider} />
               <EvidenceRow label="Provider evidence" value={result.assessment?.normalized_result} />
@@ -448,7 +445,7 @@ export default function PronunciationScreen() {
               />
               {attempt.syllables.map((syllable) => (
                 <Text key={syllable.syllable_index} style={styles.comparisonEvidence}>
-                  {syllable.characters}: {String(asMap(syllable.interpretation)?.message ?? 'No reliable interpretation')}
+                  {syllable.characters}: tone comparison unavailable
                 </Text>
               ))}
             </View>
@@ -505,7 +502,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.plotBackground,
   },
   expected: { color: colors.text, fontSize: 13, fontWeight: '700' },
-  detected: { color: colors.reference, fontSize: 13, fontWeight: '700' },
   ruleReason: { color: colors.secondary, fontSize: 11, textTransform: 'capitalize' },
   abButtons: { gap: 8 },
   advancedToggle: { alignItems: 'center', padding: 8 },

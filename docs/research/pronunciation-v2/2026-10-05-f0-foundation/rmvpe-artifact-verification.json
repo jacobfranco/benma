@@ -1,0 +1,87 @@
+{
+  "corpus_files_verified": 49,
+  "original_capture_hashes_verified": 32,
+  "prior_native_tracks_unchanged": 245,
+  "rmvpe_native_tracks": 49,
+  "rmvpe_salience_files": 49,
+  "rmvpe_frames": 13318,
+  "salience_bins": 360,
+  "failures": 0,
+  "skips": 0,
+  "saved_alignment_paths_unchanged": 36,
+  "original_frozen_artifacts_unchanged": 467,
+  "model_and_source_hashes_verified": true,
+  "metadata_invariance": true,
+  "table_joins_and_all_prior_values_verified": {
+    "metrics": {
+      "previous": 539,
+      "rmvpe": 98,
+      "combined": 637
+    },
+    "repeatability": {
+      "previous": 396,
+      "rmvpe": 72,
+      "combined": 468
+    },
+    "windows": {
+      "previous": 308,
+      "rmvpe": 56,
+      "combined": 364
+    },
+    "perturbations": {
+      "previous": 30,
+      "rmvpe": 6,
+      "combined": 36
+    },
+    "low-f0-proxy": {
+      "previous": 198,
+      "rmvpe": 36,
+      "combined": 234
+    },
+    "low-f0-under70": {
+      "previous": 33,
+      "rmvpe": 6,
+      "combined": 39
+    },
+    "acoustic-support": {
+      "previous": 165,
+      "rmvpe": 30,
+      "combined": 195
+    }
+  },
+  "preexisting_file_states": 817,
+  "unchanged_preexisting_files": 788,
+  "changed_preexisting_research_files": [
+    "benchmark/pronunciation_v2/f0_foundation.py",
+    "benchmark/pronunciation_v2/f0_foundation_report.py",
+    "benchmark/pronunciation_v2/f0_foundation_run.py",
+    "benchmark/pronunciation_v2/f0_foundation_viewer.html",
+    "benchmark/pronunciation_v2/f0_foundation_viewer.py",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/README.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/acoustic-support.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/aggregate.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/architecture.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/blinded-review.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/decision.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/diagnostic-windows.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/low-f0-and-silence.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/low-f0-proxy.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/low-f0-under70.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/pairwise-repeatability.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/per-recording-metrics.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/raw-results.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/raw-tables.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/repeatability-tables.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/repeatability.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/runtime.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/runtime.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/safety-tables.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/source-perturbations.csv",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/synthetic-results.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/synthetic-tables.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/tracker-inventory.md",
+    "docs/research/pronunciation-v2/2026-10-05-f0-foundation/validation.md"
+  ],
+  "preexisting_tracked_diff_identical": true,
+  "blinded_notes_and_key_verified": true
+}

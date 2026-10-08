@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Benma · disconnected gesture fragments</title>
+<style>
+body{font:15px system-ui;margin:24px;color:#183344;background:#f4f7f8}h1{font-size:24px}h2{font-size:18px;margin:8px 0}p{max-width:1200px;line-height:1.5}select,button{font:inherit;padding:8px;margin-right:10px}section{background:white;border:1px solid #d4dfe4;border-radius:8px;padding:16px;margin:14px 0}.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}svg{width:100%;height:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:7px;text-align:left;border-bottom:1px solid #ddd}code{font-size:12px}#inspect{min-height:42px;font:13px monospace;white-space:pre-wrap}.warning{color:#9c3a0c;font-weight:600}.muted{color:#586e7a}.plot-title{font-size:14px;font-weight:600}audio{height:32px;width:300px}a{color:#006b76}@media(max-width:900px){.pair{display:block}}
+</style>
+<h1>Disconnected gesture fragments · six frozen Oct 6 takes</h1>
+<p>Research outcome B: real gaps permit separate relative fragments, but continuous failures remain in the primary U-shape take. Production unchanged. Fragment boundaries never depend on pitch magnitude.</p>
+<select id="take" aria-label="Recording"></select><label><input id="points" type="checkbox" checked> Show retained points</label>
+<p id="identity"></p><audio id="audio" controls preload="none"></audio><p id="status"></p>
+<section><h2>Primary timing-unit zoom · one timing identity, multiple acoustic fragments</h2><select id="zoom-unit" aria-label="Timing unit zoom"></select><p id="zoom-label"></p>
+<div class="pair"><div><h2>Absolute selected gesture</h2><div id="zoom-absolute"></div></div><div><h2>Fragment-relative gesture</h2><div id="zoom-relative"></div></div></div><div id="fragments"></div>
+<p>Both zooms retain their utterance-wide Y-domain. F1/F2/F3 are acoustic fragments, never inferred characters. Gap duration is last-selected to next-selected; missing support subtracts one 10 ms frame interval.</p></section>
+<section><div class="pair"><div><h2>A · Current Mine</h2><div id="absolute"></div></div><div><h2>B · Relative gesture fragments</h2><div id="relative"></div></div></div>
+<p>Identical character/group X mapping from the actual mobile helper. A uses existing smoothing/simplification; B uses full-resolution selected measurements to preserve every pairwise semitone difference. One common min/max Y-domain per utterance; no per-fragment amplitude scaling. Separate lines across evidence gaps and timing units. Vertical register across a gap is intentionally not comparable.</p>
+<div id="inspect">Hover a point for source index, actual time and measured value.</div></section>
+<section><h2>Accepted timing and acoustic fragments</h2><div id="units"></div><p class="muted">Every selected measurement remains. Maximum continuous step is descriptive only; it never determines fragment boundaries or selection. A single missing/rejected frame separates fragments.</p></section>
+<section><h2>Absolute selected F0 · real time / Hz</h2><div id="hz"></div></section>
+<section><h2>C · Unchanged More Detail equivalent · real time / recording-baseline semitones</h2><div id="detail"></div><p>Unsmoothed selected measurements; one recording baseline preserves absolute register relationships. Unit and missing-evidence boundaries stay split.</p></section>
+<section><h2>D · Unchanged Raw tracker · real time / Hz</h2><div id="raw"></div><p>Teal: retained timestamps; gray: excluded. Points only. Hover includes stored source index and exclusion reasons. Candidates remain in the immutable acoustic track; the mobile Raw payload does not expose them.</p></section>
+<section><h2>Register safety beside the high branch (existing gap preserved)</h2><div class="pair"><div><p class="plot-title">8d252264 果 · all 24 selected high-branch samples</p><div id="high-control"></div></div><div><p class="plot-title">7787300e · protected 54.610 Hz at 2.5124 s</p><div id="low-control"></div></div></div><p>These two control panels label their separate domains. The low panel shows independently centered connected fragments within a whole-recording control fixture, with a time zoom only. It asserts no character boundary. Neither panel selects or repairs an octave.</p></section>
+<section><h2>Continuous failure control · 100 → 105 → 210 → 220 Hz</h2><div id="counterexample"></div><p>Four consecutive 10 ms frames, one fragment. The internal 12 st jump remains. No pitch-derived fragment boundary is allowed.</p></section>
+<script>
+const evidence=__FRAGMENT_JSON__;
+const NS='http://www.w3.org/2000/svg';
+const num=x=>x==null?'—':x.toFixed(3);
+function node(tag,attrs={},text){const n=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;}
+function plot(id,{segments,domain,xDomain,regions=[],highlight=null,gaps=[],ylabel='st',raw=false,empty='',pointInfo=null}){
+ const host=document.getElementById(id);host.replaceChildren();const svg=node('svg',{viewBox:'0 0 720 218',role:'img','aria-label':id+' pitch plot'});host.append(svg);
+ const X=x=>52+(x-xDomain[0])/(xDomain[1]-xDomain[0])*650,Y=y=>178-(y-domain[0])/(domain[1]-domain[0])*150;
+ for(let i=0;i<=4;i++){let v=domain[0]+i*(domain[1]-domain[0])/4;svg.append(node('line',{x1:52,x2:702,y1:Y(v),y2:Y(v),stroke:'#e5eaed'}));svg.append(node('text',{x:47,y:Y(v)+4,'text-anchor':'end','font-size':10},num(v)));}
+ if(domain[0]<0&&domain[1]>0)svg.append(node('line',{x1:52,x2:702,y1:Y(0),y2:Y(0),stroke:'#8caab2','stroke-dasharray':'3 4'}));
+ for(const r of regions){svg.append(node('rect',{x:X(r.start),y:28,width:Math.max(0,X(r.end)-X(r.start)),height:150,fill:r.grouped?'#f1eadb':'transparent',opacity:.45,stroke:'#9eaeb8'}));svg.append(node('text',{x:(X(r.start)+X(r.end))/2,y:199,'text-anchor':'middle','font-size':13},r.label));}
+ for(const gap of gaps){svg.append(node('rect',{x:X(gap.start_seconds),y:28,width:X(gap.end_seconds)-X(gap.start_seconds),height:150,fill:'#f4c7ad',opacity:.35}));svg.append(node('text',{x:(X(gap.start_seconds)+X(gap.end_seconds))/2,y:25,'text-anchor':'middle','font-size':10},Math.round(gap.elapsed_between_selected_seconds*1000)+' ms gap'));}
+ if(highlight){svg.append(node('rect',{x:X(highlight[0]),y:28,width:Math.max(2,X(highlight[1])-X(highlight[0])),height:150,fill:'#eb8c41',opacity:.2}));}
+ for(const seg of segments){const visible=seg.filter(p=>p.x>=xDomain[0]&&p.x<=xDomain[1]);if(!raw&&visible.length>1)svg.append(node('polyline',{points:visible.map(p=>`${X(p.x)},${Y(p.y)}`).join(' '),fill:'none',stroke:'#007b87','stroke-width':1.8}));for(const p of visible){let c=node('circle',{cx:X(p.x),cy:Y(p.y),r:raw||document.getElementById('points').checked||visible.length===1?2.2:0,fill:p.excluded?'#90999f':'#007b87'});let info=pointInfo?pointInfo(p):p;const txt=JSON.stringify(info);c.append(node('title',{},txt));c.addEventListener('pointerenter',()=>document.getElementById('inspect').textContent=txt);svg.append(c);}}
+ svg.append(node('text',{x:52,y:15,'font-size':11},`${ylabel} · domain ${num(domain[0])} … ${num(domain[1])}`));
+ svg.append(node('text',{x:702,y:215,'text-anchor':'end','font-size':10},`${num(xDomain[0])} … ${num(xDomain[1])}`));
+ if(empty)svg.append(node('text',{x:377,y:105,'text-anchor':'middle','font-size':15,fill:'#9c3a0c'},empty));
+ return svg;
+}
+function table(host,headers,rows){const t=document.createElement('table');const head=document.createElement('tr');headers.forEach(x=>{let th=document.createElement('th');th.textContent=x;head.append(th)});t.append(head);rows.forEach(row=>{let tr=document.createElement('tr');row.forEach(x=>{let td=document.createElement('td');td.textContent=x;tr.append(td)});t.append(tr)});document.getElementById(host).replaceChildren(t);}
+function unitTable(r){table('units',['Timing unit','Seconds','Selected / fragments','Absolute st min…max','Fragment-relative st min…max','Largest continuous step'],r.projection.units.map(u=>[u.label+(u.grouped?' (grouped)':''),num(u.start_seconds)+'–'+num(u.end_seconds),u.selected_count+' / '+u.fragment_count,u.absolute_st_re_recording.map(num).join('…'),u.relative_range.map(num).join('…'),num(u.maximum_continuous_step_st)]));}
+function zoom(r,index){const u=r.projection.units[index];
+ document.getElementById('zoom-label').textContent=u?`${u.label}${u.grouped?' — ONE grouped timing span; no separate 雨/伞 timing':''} · ${num(u.start_seconds)}–${num(u.end_seconds)} s · ${u.fragment_count} fragments`:'NO TRUSTWORTHY TIMING → NO MINE GRAPH';
+ if(!u){for(const id of ['zoom-absolute','zoom-relative'])plot(id,{segments:[],domain:[-3,3],xDomain:[0,r.duration],empty:'NO TRUSTWORTHY TIMING → NO MINE GRAPH'});document.getElementById('fragments').replaceChildren();return;}
+ const region=[{start:u.start_seconds,end:u.end_seconds,label:u.label,grouped:u.grouped}];
+ const gaps=u.fragments.map(f=>f.following_gap).filter(Boolean);
+ for(const relative of [false,true]){
+  const segments=u.fragments.map(f=>f.segments[0].map(p=>({...p,x:p.timestamp_seconds,y:relative?p.normalized_semitones:p.absolute_semitones-12*Math.log2(r.baseline_hz)})));
+  plot(relative?'zoom-relative':'zoom-absolute',{segments,domain:relative?r.fragment_domain:r.current_domain,xDomain:[u.start_seconds,u.end_seconds],regions:region,gaps});
+ }
+ table('fragments',['Fragment · seconds / source indices','Points / support duration','Absolute Hz','Absolute st','Center Hz / st','Relative st / excursion','Following gap / missing support'],u.fragments.map((f,i)=>['F'+(i+1)+' · '+num(f.start_seconds)+'–'+num(f.end_seconds)+' / '+f.source_indices[0]+'–'+f.source_indices.at(-1),f.selected_count+' / '+num(f.support_duration_seconds)+' s',f.absolute_hz_range.map(num).join('…'),f.absolute_st_re_recording.map(num).join('…'),num(f.center_hz)+' / '+num(f.center_st_re_recording),f.relative_range.map(num).join('…')+' / '+num(f.excursion_semitones),f.following_gap?(1000*f.following_gap.elapsed_between_selected_seconds).toFixed(0)+' ms / '+(1000*f.following_gap.missing_support_seconds).toFixed(0)+' ms':'—']));
+ window.__zoom={label:u.label,fragments:u.fragment_count,points:u.selected_count,grouped:u.grouped};
+}
+function draw(){const r=evidence.recordings[+document.getElementById('take').value],l=r.layout;
+ document.getElementById('identity').textContent=`${r.id}.wav · ${r.transcript} · ${num(r.duration)} s`;
+ document.getElementById('audio').src='../../audio/4437ecb5-c693-476c-8cc6-4c51cc910742/canonical/'+r.id+'.wav';
+ document.getElementById('status').textContent=r.accepted_units?`${(r.accepted_units-r.grouped_units)} timed characters + ${r.grouped_units} grouped spans; ${r.projected_count}/${r.selected_count} selected frames owned by accepted timing. Domain span ratio: ${num(1+r.domain_span_change_fraction)}.`:'NO TRUSTWORTHY TIMING → NO MINE GRAPH. Raw and selected evidence still exist.';
+ const regions=l.current.evidenceRegions.map(g=>({...g,grouped:r.projection.units.some(u=>u.label===g.label&&u.grouped)}));
+ const map=segments=>segments.map(s=>s.map(p=>({...p,x:p.position,y:p.normalized_semitones})));
+ const empty=r.accepted_units?'':'NO TRUSTWORTHY TIMING → NO MINE GRAPH';
+ plot('absolute',{segments:map(l.current.segments),domain:l.current_domain,xDomain:[0,l.current.extent],regions,empty});
+ plot('relative',{segments:map(l.proposed.segments),domain:l.relative_domain,xDomain:[0,l.proposed.extent],regions,empty});
+ unitTable(r);
+ const zoomSelect=document.getElementById('zoom-unit');zoomSelect.replaceChildren();r.projection.units.forEach((u,i)=>{const o=document.createElement('option');o.value=i;o.textContent=u.label+(u.grouped?' (grouped)':'');zoomSelect.append(o)});
+ const zi=r.id.startsWith('40357072')?r.projection.units.findIndex(u=>u.grouped):0;zoomSelect.value=zi;zoomSelect.onchange=()=>zoom(r,+zoomSelect.value);zoom(r,zi);
+ const timeRegions=r.projection.units.map(u=>({start:u.start_seconds,end:u.end_seconds,label:u.label,grouped:u.grouped}));
+ const highlight=r.id.startsWith('8d252264')?[4.1002,4.3402]:null;
+ const selectedByTime=new Map(r.raw.map(p=>[p.timestamp_seconds,p.selected_f0_hz]));
+ const measured=r.filtered.segments.map(s=>s.map(p=>({...p,x:p.timestamp_seconds,y:selectedByTime.get(p.timestamp_seconds)})));
+ const hzValues=r.raw.map(p=>p.tracker_f0_hz??p.f0_hz).filter(v=>v!=null);
+ const hzDomain=[Math.max(0,Math.min(...hzValues)-10),Math.max(...hzValues)+10];
+ plot('hz',{segments:measured,domain:hzDomain,xDomain:[0,r.duration],regions:timeRegions,highlight,ylabel:'Hz'});
+ const vals=r.filtered.segments.flat().map(p=>p.normalized_semitones);
+ const detailDomain=[Math.min(r.filtered.minimum_semitones,...vals.map(v=>v-1)),Math.max(r.filtered.maximum_semitones,...vals.map(v=>v+1))];
+ plot('detail',{segments:r.filtered.segments.map(s=>s.map(p=>({...p,x:p.timestamp_seconds,y:p.normalized_semitones}))),domain:detailDomain,xDomain:[0,r.duration],regions:timeRegions,highlight});
+ plot('raw',{segments:[r.raw.filter(p=>(p.tracker_f0_hz??p.f0_hz)!=null).map(p=>({...p,x:p.timestamp_seconds,y:p.tracker_f0_hz??p.f0_hz,excluded:!p.retained}))],domain:hzDomain,xDomain:[0,r.duration],regions:timeRegions,highlight,ylabel:'Hz',raw:true});
+ const high=evidence.recordings[1].projection.units.find(u=>u.label==='果');
+ plot('high-control',{segments:high.segments.map(s=>s.map(p=>({...p,x:p.timestamp_seconds,y:p.normalized_semitones}))),domain:[-3,4],xDomain:[4.03,4.67],highlight:[4.1002,4.3402]});
+ const low=evidence.low_control;
+ plot('low-control',{segments:low.projection.segments.map(s=>s.map(p=>({...p,x:p.timestamp_seconds,y:p.normalized_semitones}))),domain:[low.projection.minimum_semitones,low.projection.maximum_semitones],xDomain:[2.18,2.83],highlight:[2.4824,2.5124]});
+ const counter=evidence.counterexample;
+ plot('counterexample',{segments:counter.segments.map(s=>s.map(p=>({...p,x:p.timestamp_seconds,y:p.normalized_semitones}))),domain:[counter.minimum_semitones,counter.maximum_semitones],xDomain:[0,.04]});
+ window.__review={id:r.id,units:r.accepted_units,currentPoints:l.current.segments.flat().length,relativePoints:l.proposed.segments.flat().length,domain:l.relative_domain};
+}
+const select=document.getElementById('take');evidence.recordings.forEach((r,i)=>{let o=document.createElement('option');o.value=i;o.textContent=`Take ${i+1} · ${r.id.slice(0,8)} · ${r.transcript}`;select.append(o);});select.onchange=draw;document.getElementById('points').onchange=draw;function setReview(index){select.value=index;draw();return window.__review;}draw();
+</script></html>

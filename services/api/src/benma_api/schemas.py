@@ -6,7 +6,13 @@ import uuid
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, computed_field, model_validator
+
+from benma_api.pronunciation.pitch_types import (
+    PitchInterpretationEligibility,
+    PitchRegionProjection,
+    UtterancePitchTrack,
+)
 
 
 class StrictRequest(BaseModel):
@@ -320,6 +326,7 @@ class ReferenceSpeechResponse(BaseModel):
 
 
 class AcousticRunResponse(BaseModel):
+    utterance_pitch_track: UtterancePitchTrack | None = None
     id: uuid.UUID
     utterance_id: uuid.UUID
     algorithm: str
@@ -380,9 +387,9 @@ class DisplayContour(BaseModel):
 
 
 class ObservedContour(BaseModel):
-    classification: Literal[
-        "1-like", "2-like", "3-like", "4-like", "neutral-like", "unclear"
-    ] = "unclear"
+    classification: Literal["1-like", "2-like", "3-like", "4-like", "neutral-like", "unclear"] = (
+        "unclear"
+    )
     confidence: Literal["moderate", "low"] = "low"
     reason: str = "timing_unavailable"
     voiced_coverage: float = 0
@@ -390,6 +397,12 @@ class ObservedContour(BaseModel):
 
 
 class PronunciationSyllableResult(BaseModel):
+    # Separate release permission: local pitch eligibility cannot establish speech presence.
+    tone_comparison_policy: Literal["experimental"] = "experimental"
+    pitch_projection: PitchRegionProjection | None = None
+    pitch_eligibility: PitchInterpretationEligibility = Field(
+        default_factory=PitchInterpretationEligibility
+    )
     display_contour: DisplayContour | None = None
     observed_contour: ObservedContour = Field(default_factory=ObservedContour)
     syllable_index: int
@@ -453,12 +466,71 @@ class MeasuredPitchPoint(BaseModel):
     voicing_probability: float | None = Field(default=None, ge=0, le=1)
 
 
+class TrackerPitchFrame(BaseModel):
+    """Allowlisted tracker measurements; retained means selected by the existing filter."""
+
+    timestamp_seconds: float = Field(ge=0, allow_inf_nan=False)
+    tracker_f0_hz: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    f0_hz: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    selected_f0_hz: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    retained: bool
+    exclusion_reasons: tuple[str, ...] = ()
+    source_frame_index: int | None = None
+
+
+class SentencePitchEvidence(BaseModel):
+    track_evidence_id: str | None = None
+    mine: DisplayContour
+    filtered: DisplayContour
+    raw: list[TrackerPitchFrame]
+
+
 class ExpectedTonePoint(BaseModel):
     position: float = Field(ge=0, le=1)
     height: float = Field(ge=0, le=1)
 
 
+ObservedGesture = Literal["level", "rising", "dipping", "falling", "unclear"]
+OBSERVED_GESTURES: dict[str, ObservedGesture] = {
+    "1-like": "level",
+    "2-like": "rising",
+    "3-like": "dipping",
+    "4-like": "falling",
+}
+
+
+class PerceivedTimingGroup(BaseModel):
+    """An exact perceived word span; no internal character timing is implied."""
+
+    pitch_projection: PitchRegionProjection | None = None
+    pitch_eligibility: PitchInterpretationEligibility = Field(
+        default_factory=PitchInterpretationEligibility
+    )
+
+    character_start: int = Field(ge=0)
+    character_end: int = Field(gt=0)
+    text: str = Field(min_length=2)
+    start_seconds: float = Field(ge=0, allow_inf_nan=False)
+    end_seconds: float = Field(gt=0, allow_inf_nan=False)
+    source: Literal["azure_word"] = "azure_word"
+    timing_evidence_id: str
+
+    @model_validator(mode="after")
+    def ordered_span(self) -> PerceivedTimingGroup:
+        if self.character_end - self.character_start != len(self.text):
+            raise ValueError("group text must exactly cover its character span")
+        if self.end_seconds <= self.start_seconds:
+            raise ValueError("group timing must be ordered")
+        return self
+
+
 class PerceivedSyllable(BaseModel):
+    # Separate release permission: local pitch eligibility cannot establish speech presence.
+    tone_comparison_policy: Literal["experimental"] = "experimental"
+    pitch_projection: PitchRegionProjection | None = None
+    pitch_eligibility: PitchInterpretationEligibility = Field(
+        default_factory=PitchInterpretationEligibility
+    )
     index: int
     character_start: int
     character_end: int
@@ -480,8 +552,22 @@ class PerceivedSyllable(BaseModel):
     end_seconds: float | None = None
     expected_tone: list[ExpectedTonePoint]
 
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def observed_gesture(self) -> ObservedGesture:
+        """Semantic alias only; no lexical tone identification or new classifier."""
+        return OBSERVED_GESTURES.get(self.observed_contour.classification, "unclear")
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def observed_confidence(self) -> Literal["moderate", "low"]:
+        return self.observed_contour.confidence
+
 
 class PerceivedAnalysisData(BaseModel):
+    pitch_track_evidence_id: str | None = None
+    tone_graph: SentencePitchEvidence | None = None
+    timing_groups: list[PerceivedTimingGroup] = Field(default_factory=list)
     display_contour: DisplayContour | None = None
     timings_ms: dict[str, float] = Field(default_factory=dict)
     syllables: list[PerceivedSyllable]

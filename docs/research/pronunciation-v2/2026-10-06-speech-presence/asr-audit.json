@@ -1,0 +1,1286 @@
+[
+  {
+    "id": "6f56aef1",
+    "available": true,
+    "perception_id": "6f56aef1-c191-41f8-bb5e-d99b529ee6bf",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我昨天晚上朋友去吃饭了。",
+    "raw_transcript": "我昨天晚上朋友去吃饭了。",
+    "characters": 12,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -3.8889261304575484e-06
+      },
+      {
+        "token": "昨天",
+        "logprob": -0.03823816403746605
+      },
+      {
+        "token": "晚上",
+        "logprob": -0.00034476007567718625
+      },
+      {
+        "token": "朋友",
+        "logprob": -0.3368875980377197
+      },
+      {
+        "token": "去",
+        "logprob": -8.113290095934644e-05
+      },
+      {
+        "token": "吃",
+        "logprob": -2.1008713702030946e-06
+      },
+      {
+        "token": "饭",
+        "logprob": -2.339278580620885e-06
+      },
+      {
+        "token": "了",
+        "logprob": -2.3676733690081164e-05
+      },
+      {
+        "token": "。",
+        "logprob": -0.031238766387104988
+      }
+    ],
+    "mean_logprob": -0.04520249191652207,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "6f214b37fdf5439183baa57a1cd6502287dd537e1eb2afe106834e73685bc9bd"
+  },
+  {
+    "id": "5b995fff",
+    "available": true,
+    "perception_id": "5b995fff-38d4-47c0-ab6f-40f79bb97f0c",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我是讲",
+    "raw_transcript": "我是讲",
+    "characters": 3,
+    "tokens": [
+      {
+        "token": "我是",
+        "logprob": -2.400085687637329
+      },
+      {
+        "token": "讲",
+        "logprob": -1.6133778095245361
+      }
+    ],
+    "mean_logprob": -2.0067317485809326,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "8e3dc34618a531366a51e5d3e06a806a12810e265fb567b111bcd454b70aa5ac"
+  },
+  {
+    "id": "7787300e",
+    "available": true,
+    "perception_id": "7787300e-d43a-48d2-bf1d-121e11761af9",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我想买五把雨伞。",
+    "raw_transcript": "我想买五把雨伞。",
+    "characters": 8,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": 0.0
+      },
+      {
+        "token": "想",
+        "logprob": -1.981667537620524e-06
+      },
+      {
+        "token": "买",
+        "logprob": -0.00011236425780225545
+      },
+      {
+        "token": "五",
+        "logprob": -0.00044318195432424545
+      },
+      {
+        "token": "把",
+        "logprob": -4.723352049040841e-06
+      },
+      {
+        "token": "雨",
+        "logprob": -0.008665625005960464
+      },
+      {
+        "token": "�",
+        "logprob": -4.4849443838757e-06
+      },
+      {
+        "token": "�",
+        "logprob": 0.0
+      },
+      {
+        "token": "。",
+        "logprob": -0.03165809065103531
+      }
+    ],
+    "mean_logprob": -0.004543383537010313,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "a9ac125d49f50524938b70e5881b5889c331ad9dc58b6261b7dbf240bfc010f7"
+  },
+  {
+    "id": "c95673d3",
+    "available": true,
+    "perception_id": "c95673d3-ab32-443c-b2cd-49c5f95c8a45",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我想买五把雨伞",
+    "raw_transcript": "我想买五把雨伞",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -9.088346359931165e-07
+      },
+      {
+        "token": "想",
+        "logprob": -3.941161776310764e-05
+      },
+      {
+        "token": "买",
+        "logprob": -0.000597116129938513
+      },
+      {
+        "token": "五",
+        "logprob": -0.00358759518712759
+      },
+      {
+        "token": "把",
+        "logprob": -0.008653218857944012
+      },
+      {
+        "token": "雨",
+        "logprob": -0.0012744003906846046
+      },
+      {
+        "token": "�",
+        "logprob": -3.6789137084269896e-05
+      },
+      {
+        "token": "�",
+        "logprob": 0.0
+      }
+    ],
+    "mean_logprob": -0.0017736800193972613,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "fe2ab84c8f2a6406176f14807ce0f31d556f8cd191afd020c9e26f1084f1b3c5"
+  },
+  {
+    "id": "c5188fc3",
+    "available": true,
+    "perception_id": "c5188fc3-1f1f-4520-8135-a4f7f65e49ac",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "这不是我的。",
+    "raw_transcript": "这不是我的。",
+    "characters": 6,
+    "tokens": [
+      {
+        "token": "这",
+        "logprob": -0.00137404166162014
+      },
+      {
+        "token": "不是",
+        "logprob": -7.896309739408025e-07
+      },
+      {
+        "token": "我的",
+        "logprob": -0.0001454955490771681
+      },
+      {
+        "token": "。",
+        "logprob": -0.048945799469947815
+      }
+    ],
+    "mean_logprob": -0.012616531577904766,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "54dadb9f72ae9ca2d0d15e96c9c6e709a2632240d9518c37973f212a421e12a6"
+  },
+  {
+    "id": "27ea3b92",
+    "available": true,
+    "perception_id": "27ea3b92-3ce7-4c76-b3d3-0535581a5ab1",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "这不是我的。",
+    "raw_transcript": "这不是我的。",
+    "characters": 6,
+    "tokens": [
+      {
+        "token": "这",
+        "logprob": -4.990154047845863e-05
+      },
+      {
+        "token": "不是",
+        "logprob": -3.128163257315464e-07
+      },
+      {
+        "token": "我的",
+        "logprob": -1.5048530030981055e-06
+      },
+      {
+        "token": "。",
+        "logprob": -0.5807446241378784
+      }
+    ],
+    "mean_logprob": -0.14519908583692143,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "1cb72b7ca93faf720a84af334c7def57efa45db169032aba37cff5a63e5066c6"
+  },
+  {
+    "id": "0f4107fe",
+    "available": true,
+    "perception_id": "0f4107fe-5c8f-49ac-8302-63070cbadfca",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -0.8259825706481934
+      },
+      {
+        "token": "一个",
+        "logprob": -0.0032796678133308887
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.0008775161695666611
+      },
+      {
+        "token": "。",
+        "logprob": -0.1627586930990219
+      }
+    ],
+    "mean_logprob": -0.2482246119325282,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "b98b387c609932d5d0e22dedc455facdd9e7edb6ad251a4c2ed979e720c4d689"
+  },
+  {
+    "id": "f3c642b5",
+    "available": true,
+    "perception_id": "f3c642b5-ef7b-451a-8e96-ec7e143338d9",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我们去吧",
+    "raw_transcript": "我们去吧",
+    "characters": 4,
+    "tokens": [
+      {
+        "token": "我们",
+        "logprob": -0.0008168928325176239
+      },
+      {
+        "token": "去",
+        "logprob": -7.24310302757658e-05
+      },
+      {
+        "token": "吧",
+        "logprob": -0.0005905635771341622
+      }
+    ],
+    "mean_logprob": -0.0004932958133091839,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "f060948e0756430d646abd9909765fa37f854f37cd77d538be4ad46a815c27bd"
+  },
+  {
+    "id": "f47fadb3",
+    "available": true,
+    "perception_id": "f47fadb3-63a6-4445-9c11-3b2170de9343",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我们要去贵州。",
+    "raw_transcript": "我们要去贵州。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我们",
+        "logprob": -3.583550642360933e-05
+      },
+      {
+        "token": "要",
+        "logprob": -4.320199877838604e-07
+      },
+      {
+        "token": "去",
+        "logprob": -0.00011486753646750003
+      },
+      {
+        "token": "贵州",
+        "logprob": -0.010523855686187744
+      },
+      {
+        "token": "。",
+        "logprob": -0.026529600843787193
+      }
+    ],
+    "mean_logprob": -0.0074409183185707665,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "88b6ce8fb97158b8af2dd275d0f6b90f9523e0da1901694c63acfd1052d42c0f"
+  },
+  {
+    "id": "a0270cee",
+    "available": true,
+    "perception_id": "a0270cee-2e62-41b3-b266-cec08c185226",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我想买五把雨伞。",
+    "raw_transcript": "我想买五把雨伞。",
+    "characters": 8,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -1.9361264946837764e-07
+      },
+      {
+        "token": "想",
+        "logprob": -2.7252845029579476e-05
+      },
+      {
+        "token": "买",
+        "logprob": -0.0002523992152418941
+      },
+      {
+        "token": "五",
+        "logprob": -0.05167540907859802
+      },
+      {
+        "token": "把",
+        "logprob": -0.0001596771035110578
+      },
+      {
+        "token": "雨",
+        "logprob": -0.001676852349191904
+      },
+      {
+        "token": "�",
+        "logprob": -1.843177233240567e-05
+      },
+      {
+        "token": "�",
+        "logprob": 0.0
+      },
+      {
+        "token": "。",
+        "logprob": -0.06323300302028656
+      }
+    ],
+    "mean_logprob": -0.013004802110760098,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "a9755d5d451f434b5610ba23434c935a5164e7af202654c98d1f3958f1285437"
+  },
+  {
+    "id": "silence_original",
+    "available": true,
+    "perception_id": "de4b999e-a527-4613-8709-618c68716477",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "现在是下午两点半。",
+    "raw_transcript": "现在是下午两点半。",
+    "characters": 9,
+    "tokens": [
+      {
+        "token": "现在",
+        "logprob": -5.259430885314941
+      },
+      {
+        "token": "是",
+        "logprob": -2.250619888305664
+      },
+      {
+        "token": "下午",
+        "logprob": -3.003297805786133
+      },
+      {
+        "token": "两",
+        "logprob": -2.577488899230957
+      },
+      {
+        "token": "点",
+        "logprob": -0.0031379126012325287
+      },
+      {
+        "token": "半",
+        "logprob": -2.5205447673797607
+      },
+      {
+        "token": "。",
+        "logprob": -0.04912218078970909
+      }
+    ],
+    "mean_logprob": -2.237663191344057,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "dd7ba8e4b40059648f2deb852ee691574d5ab253600f6dabd30dfe21bb4da9eb"
+  },
+  {
+    "id": "484e80c0",
+    "available": true,
+    "perception_id": "484e80c0-cc41-49ab-9623-ba09d71a7458",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -0.005235887598246336
+      },
+      {
+        "token": "一个",
+        "logprob": -0.004104165825992823
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.0024687631521373987
+      },
+      {
+        "token": "。",
+        "logprob": -0.06356026232242584
+      }
+    ],
+    "mean_logprob": -0.0188422697247006,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "39d435a3b1ebb3259051727dc03cdb6adcc879214e4df531b30a3a72e7f3c64d"
+  },
+  {
+    "id": "e59a6350",
+    "available": true,
+    "perception_id": "e59a6350-6631-43bd-ab64-7f02a6ed377a",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我们去吧。",
+    "raw_transcript": "我们去吧。",
+    "characters": 5,
+    "tokens": [
+      {
+        "token": "我们",
+        "logprob": -0.0001669485354796052
+      },
+      {
+        "token": "去",
+        "logprob": -0.00010092071170220152
+      },
+      {
+        "token": "吧",
+        "logprob": -0.0001669485354796052
+      },
+      {
+        "token": "。",
+        "logprob": -0.13292346894741058
+      }
+    ],
+    "mean_logprob": -0.033339571682518,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "f4604f219ccea4d9ae5165fc214c8504b3dcaaaa0f61637febc06159bdd66ea7"
+  },
+  {
+    "id": "f5dc0cc1",
+    "available": true,
+    "perception_id": "f5dc0cc1-cd1f-4721-918b-9357f33774e1",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "贵州。",
+    "raw_transcript": "贵州。",
+    "characters": 3,
+    "tokens": [
+      {
+        "token": "贵州",
+        "logprob": -0.4217844307422638
+      },
+      {
+        "token": "。",
+        "logprob": -0.4780872166156769
+      }
+    ],
+    "mean_logprob": -0.44993582367897034,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "71bbb7b2a4331ca672f13e7ae85193375f3c839bda0e0031d7aa1844f291cd32"
+  },
+  {
+    "id": "silence_periodic",
+    "available": true,
+    "perception_id": "ab6c16ab-ece9-4d00-a3f9-ca693d103624",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "其实我不行",
+    "raw_transcript": "其实我不行",
+    "characters": 5,
+    "tokens": [
+      {
+        "token": "其实",
+        "logprob": -5.509159088134766
+      },
+      {
+        "token": "我",
+        "logprob": -2.3263912200927734
+      },
+      {
+        "token": "不",
+        "logprob": -2.8583998680114746
+      },
+      {
+        "token": "行",
+        "logprob": -5.269913673400879
+      }
+    ],
+    "mean_logprob": -3.990965962409973,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "096430cd76add648027d925aab5c04d627c034b8618560d2844b8e3ac5e19b1d"
+  },
+  {
+    "id": "370aa8f4",
+    "available": true,
+    "perception_id": "370aa8f4-fe6e-4e44-ba32-4b1e886280f2",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我想买五部",
+    "raw_transcript": "我想买五部",
+    "characters": 5,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -3.128163257315464e-07
+      },
+      {
+        "token": "想",
+        "logprob": -1.4498052223643754e-05
+      },
+      {
+        "token": "买",
+        "logprob": -0.0021441932767629623
+      },
+      {
+        "token": "五",
+        "logprob": -0.4328712522983551
+      },
+      {
+        "token": "部",
+        "logprob": -0.33290472626686096
+      }
+    ],
+    "mean_logprob": -0.15358699654210567,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "4e747b49dd253fb6cd73272afdf6975ff948f7a6bb03ecc3871a645bed2ad4c2"
+  },
+  {
+    "id": "1a927887",
+    "available": true,
+    "perception_id": "1a927887-320c-4f15-876e-60648b472c8c",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我想买五把雨伞。",
+    "raw_transcript": "我想买五把雨伞。",
+    "characters": 8,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -0.017438990995287895
+      },
+      {
+        "token": "想",
+        "logprob": -0.04762214049696922
+      },
+      {
+        "token": "买",
+        "logprob": -0.0034483722411096096
+      },
+      {
+        "token": "五",
+        "logprob": -0.1157793328166008
+      },
+      {
+        "token": "把",
+        "logprob": -1.0606110095977783
+      },
+      {
+        "token": "雨",
+        "logprob": -0.03517547994852066
+      },
+      {
+        "token": "�",
+        "logprob": -9.13388703338569e-06
+      },
+      {
+        "token": "�",
+        "logprob": 0.0
+      },
+      {
+        "token": "。",
+        "logprob": -0.1296631395816803
+      }
+    ],
+    "mean_logprob": -0.1566386221738867,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "1ae6e4642725f592a0478c2255fe0760bccbcd82db8d913d4c3fbb1855784d54"
+  },
+  {
+    "id": "5ca771a7",
+    "available": true,
+    "perception_id": "5ca771a7-ad1f-42a0-b7ee-20babc4a1385",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -5.836499985889532e-05
+      },
+      {
+        "token": "一个",
+        "logprob": -0.000204851632588543
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.02416064962744713
+      },
+      {
+        "token": "。",
+        "logprob": -0.16173763573169708
+      }
+    ],
+    "mean_logprob": -0.04654037549789791,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "924a0ecca730a41979cc4f5c6142abe89dde4a2dce623df7b2397d25fd627783"
+  },
+  {
+    "id": "209ef0c7",
+    "available": true,
+    "perception_id": "209ef0c7-c22b-4e74-af1c-391892040d29",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我们去吧。",
+    "raw_transcript": "我们去吧。",
+    "characters": 5,
+    "tokens": [
+      {
+        "token": "我们",
+        "logprob": -0.0001725511101540178
+      },
+      {
+        "token": "去",
+        "logprob": -1.2233183042553719e-05
+      },
+      {
+        "token": "吧",
+        "logprob": -9.031157969729975e-05
+      },
+      {
+        "token": "。",
+        "logprob": -0.31643837690353394
+      }
+    ],
+    "mean_logprob": -0.07917836819410695,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "aea51fcb7321ce470b1e93ad1e176bcd155652cf70620cd370cbac1a9fd0c01d"
+  },
+  {
+    "id": "87ac7dd1",
+    "available": true,
+    "perception_id": "87ac7dd1-702e-46af-92f5-652507487d51",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "贵州",
+    "raw_transcript": "贵州",
+    "characters": 2,
+    "tokens": [
+      {
+        "token": "贵州",
+        "logprob": -0.5129003524780273
+      }
+    ],
+    "mean_logprob": -0.5129003524780273,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "c63b58dbd30c8a5bcfc21d7d35c9fa774680132313fc1f1dbf136d97c3ec9fc0"
+  },
+  {
+    "id": "277e9941",
+    "available": true,
+    "perception_id": "277e9941-1fb3-423f-97cb-3d8063d0951d",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "failed",
+    "error_code": "no_speech",
+    "product_transcript": null,
+    "raw_transcript": "但我懂得",
+    "characters": 4,
+    "tokens": [
+      {
+        "token": "但",
+        "logprob": -5.90471076965332
+      },
+      {
+        "token": "我",
+        "logprob": -2.3408000469207764
+      },
+      {
+        "token": "懂",
+        "logprob": -7.991336822509766
+      },
+      {
+        "token": "得",
+        "logprob": -2.4407460689544678
+      }
+    ],
+    "mean_logprob": -4.6693984270095825,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "2c4af394f5006a16aef87aa65ea87d4dc4a6e8ee20bade0c54fdb7b472ee1f73"
+  },
+  {
+    "id": "02927481",
+    "available": true,
+    "perception_id": "02927481-5174-478d-a40a-6cece40b98df",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我想买五把雨伞。",
+    "raw_transcript": "我想买五把雨伞。",
+    "characters": 8,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -1.9361264946837764e-07
+      },
+      {
+        "token": "想",
+        "logprob": -7.896309739408025e-07
+      },
+      {
+        "token": "买",
+        "logprob": -0.0006033109966665506
+      },
+      {
+        "token": "五",
+        "logprob": -0.009878150187432766
+      },
+      {
+        "token": "把",
+        "logprob": -2.8921695047756657e-05
+      },
+      {
+        "token": "雨",
+        "logprob": -0.00026765360962599516
+      },
+      {
+        "token": "�",
+        "logprob": -3.166338137816638e-05
+      },
+      {
+        "token": "�",
+        "logprob": 0.0
+      },
+      {
+        "token": "。",
+        "logprob": -0.04956800490617752
+      }
+    ],
+    "mean_logprob": -0.0067087431133280185,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "e2250513656d05a2e3c33d5f561739f6109f9327707a1caab68e3d203c811b0c"
+  },
+  {
+    "id": "90aa0d8d",
+    "available": true,
+    "perception_id": "90aa0d8d-91ed-4f0e-8697-d583a15976d2",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我也啊",
+    "raw_transcript": "我也啊",
+    "characters": 3,
+    "tokens": [
+      {
+        "token": "我",
+        "logprob": -0.018315929919481277
+      },
+      {
+        "token": "也",
+        "logprob": -0.0021948604844510555
+      },
+      {
+        "token": "啊",
+        "logprob": -0.0206772368401289
+      }
+    ],
+    "mean_logprob": -0.013729342414687077,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "521b6d6faa43333b61c47c7f624b83b5299d6d8258b82b4321443c4463cab69b"
+  },
+  {
+    "id": "e0c56934",
+    "available": true,
+    "perception_id": "e0c56934-0bcb-47fd-aab3-a636f45092cb",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -0.00043102685594931245
+      },
+      {
+        "token": "一个",
+        "logprob": -0.0015267637791112065
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.019170811399817467
+      },
+      {
+        "token": "。",
+        "logprob": -0.39092719554901123
+      }
+    ],
+    "mean_logprob": -0.1030139493959723,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "cc15b04ccf64cdca581ba16e58ddd1cf3953455b889eb812fc7027d6ba517bf6"
+  },
+  {
+    "id": "dccf8a63",
+    "available": true,
+    "perception_id": "dccf8a63-0e0f-4458-82ce-facda812c8e3",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我们去吧",
+    "raw_transcript": "我们去吧",
+    "characters": 4,
+    "tokens": [
+      {
+        "token": "我们",
+        "logprob": -0.0007065945537760854
+      },
+      {
+        "token": "去",
+        "logprob": -0.12710995972156525
+      },
+      {
+        "token": "吧",
+        "logprob": -8.518582762917504e-05
+      }
+    ],
+    "mean_logprob": -0.04263391336765684,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "9501ae27784b6ff38858af948ae24bf810277aab5571d3a54b16b9417a99e033"
+  },
+  {
+    "id": "9b1d959a",
+    "available": true,
+    "perception_id": "9b1d959a-f7ec-453a-8728-1a1c685606e7",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "贵州。",
+    "raw_transcript": "贵州。",
+    "characters": 3,
+    "tokens": [
+      {
+        "token": "贵州",
+        "logprob": -0.0005345634999684989
+      },
+      {
+        "token": "。",
+        "logprob": -0.5781643390655518
+      }
+    ],
+    "mean_logprob": -0.28934945128276013,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "caa041bd8ce98e2682d10af6d78a23b9160268d667fedf53d8ec6b0f9dfb16eb"
+  },
+  {
+    "id": "human_control",
+    "available": true,
+    "perception_id": "422877d2-558e-4eae-89f2-f5f3c8fb9027",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -0.005234356038272381
+      },
+      {
+        "token": "一个",
+        "logprob": -0.0007164848502725363
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.0015450954670086503
+      },
+      {
+        "token": "。",
+        "logprob": -0.08373146504163742
+      }
+    ],
+    "mean_logprob": -0.022806850349297747,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "1c3e95633351e19a79da97db168f9fb8f746f365f82d88d10e5f79d60dc280eb"
+  },
+  {
+    "id": "google_old",
+    "available": true,
+    "perception_id": "c19a5a74-40ea-42a4-8b77-b360b85c33b6",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -9.674858301877975e-05
+      },
+      {
+        "token": "一个",
+        "logprob": -6.611323624383658e-05
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.000633566698525101
+      },
+      {
+        "token": "。",
+        "logprob": -0.4790474474430084
+      }
+    ],
+    "mean_logprob": -0.11996096899019904,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "71f41fdeee9df1c876a4b69d9eea15d1e59f228e13e9d5c64f53ea511fc7fea2"
+  },
+  {
+    "id": "silence_accidental",
+    "available": true,
+    "perception_id": "7e489fd3-c36d-41f6-a20b-300616ad1a42",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果",
+    "raw_transcript": "我要一个苹果",
+    "characters": 6,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -2.7968066206085496e-05
+      },
+      {
+        "token": "一个",
+        "logprob": -1.3425219549390022e-05
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.0009525521309114993
+      }
+    ],
+    "mean_logprob": -0.0003313151388889916,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "4c63947f32e84324143edff11f42970fcbdf24fd54f696016c8905a6c9733140"
+  },
+  {
+    "id": "take_1",
+    "available": true,
+    "perception_id": "48c71bb4-913a-4a73-bf28-c76f958282bf",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -5.872261317563243e-05
+      },
+      {
+        "token": "一个",
+        "logprob": -8.2994620242971e-06
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.0005772201111540198
+      },
+      {
+        "token": "。",
+        "logprob": -0.12859733402729034
+      }
+    ],
+    "mean_logprob": -0.03231039405341107,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "2e6c609f264dccf96f3207217cba0845f55be8720520c0d97565c6c864956958"
+  },
+  {
+    "id": "take_2",
+    "available": true,
+    "perception_id": "cabf8d61-b782-497d-a00b-7f31636642d7",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -2.165027217415627e-05
+      },
+      {
+        "token": "一个",
+        "logprob": -1.3306015716807451e-05
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.0013570250011980534
+      },
+      {
+        "token": "。",
+        "logprob": -0.12820586562156677
+      }
+    ],
+    "mean_logprob": -0.03239946172766395,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "9603d7d24ef29417ba17063289bb059a184659583ce9fe6126358fbf6b45229f"
+  },
+  {
+    "id": "take_3",
+    "available": true,
+    "perception_id": "0cb79e67-aef4-4ea7-a90f-7c7568fd78a8",
+    "provider": "openai",
+    "product": "gpt-4o-transcribe",
+    "status": "succeeded",
+    "error_code": null,
+    "product_transcript": "我要一个苹果。",
+    "raw_transcript": "我要一个苹果。",
+    "characters": 7,
+    "tokens": [
+      {
+        "token": "我要",
+        "logprob": -9.686778503237292e-05
+      },
+      {
+        "token": "一个",
+        "logprob": -2.8921695047756657e-05
+      },
+      {
+        "token": "苹果",
+        "logprob": -0.00022952310973778367
+      },
+      {
+        "token": "。",
+        "logprob": -0.10222642123699188
+      }
+    ],
+    "mean_logprob": -0.02564543345670245,
+    "asr_word_timing": null,
+    "asr_segment_timing": null,
+    "no_speech_probability": null,
+    "raw_payload_sha256": "cd63193ee95fab9d132d9eadfa6042f6854b167d3b520328a968e40f1beaeec8"
+  },
+  {
+    "id": "native_16k",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "native_gain",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "native_bandlimit",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "neg_digital_silence",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "neg_stationary_noise",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "neg_clicks",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "short_human_a",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "short_human_b",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "short_human_c",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "short_native",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "low_f0_excerpt",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "low_f0_excerpt_2",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "padding_human_head",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "padding_human_tail",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "padding_low_voice",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  },
+  {
+    "id": "padding_phone",
+    "available": false,
+    "reason": "No saved ASR for this waveform; no request made."
+  }
+]

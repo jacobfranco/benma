@@ -1,0 +1,95 @@
+{
+  "tracker": "praat_cc",
+  "explicit_initialization_seconds": 6.080081220716238e-07,
+  "warm_runs": [
+    {
+      "recording": "native_24k",
+      "iteration": 0,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.005314070003805682,
+      "cpu_seconds": 0.02106185399999999,
+      "real_time_factor": 0.005061019051243507,
+      "evidence_sha256": "b09f3a54d6471a9b54cd241e6cad38de74476ca1a9a1f7246ce60ca3c6e3eaf2"
+    },
+    {
+      "recording": "native_24k",
+      "iteration": 1,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.004798918991582468,
+      "cpu_seconds": 0.020455735000000003,
+      "real_time_factor": 0.00457039903960235,
+      "evidence_sha256": "b09f3a54d6471a9b54cd241e6cad38de74476ca1a9a1f7246ce60ca3c6e3eaf2"
+    },
+    {
+      "recording": "native_24k",
+      "iteration": 2,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.004780451999977231,
+      "cpu_seconds": 0.020420616000000003,
+      "real_time_factor": 0.004552811428549744,
+      "evidence_sha256": "b09f3a54d6471a9b54cd241e6cad38de74476ca1a9a1f7246ce60ca3c6e3eaf2"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 0,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.006189117993926629,
+      "cpu_seconds": 0.04165697399999996,
+      "real_time_factor": 0.002167010698794802,
+      "evidence_sha256": "a1941945a1d5c0f609919b8f8e19a2dc3c07b46e8b0c313db004d9fd9812428a"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 1,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.006047599017620087,
+      "cpu_seconds": 0.04192036600000004,
+      "real_time_factor": 0.002117460320850852,
+      "evidence_sha256": "a1941945a1d5c0f609919b8f8e19a2dc3c07b46e8b0c313db004d9fd9812428a"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 2,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.00603871198836714,
+      "cpu_seconds": 0.04223927399999999,
+      "real_time_factor": 0.002114348684024646,
+      "evidence_sha256": "a1941945a1d5c0f609919b8f8e19a2dc3c07b46e8b0c313db004d9fd9812428a"
+    }
+  ],
+  "invariance": {
+    "recording": "f5dc0cc1",
+    "audio_sha256": "a5917bbbb3f969a001f88da190c204dbc19e21089e7fc3eb0c1616229f7819ef",
+    "contexts": [
+      {
+        "transcript": "\u8d35\u5dde",
+        "target": "\u5e7f\u5dde",
+        "pinyin": "gui4 zhou1",
+        "tone": [
+          4,
+          1
+        ]
+      },
+      {
+        "transcript": "\u9b3c\u7ca5",
+        "target": "fake",
+        "pinyin": "nonsense",
+        "tone": [
+          1,
+          4
+        ]
+      },
+      {
+        "transcript": "",
+        "target": null,
+        "character": null,
+        "expected_contour": "fake"
+      }
+    ],
+    "byte_identical": true,
+    "evidence_sha256": "0c312e0e31f93d22ca854f53be07c28499b43053f8fb69ee7cf6e4937184de30"
+  },
+  "first_inference_seconds": 0.02669878301094286,
+  "process_peak_rss_kib": 125664,
+  "median_warm_rtf": 0.003359911063672273
+}

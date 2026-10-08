@@ -1,0 +1,1649 @@
+[
+  {
+    "policy": "envelope",
+    "threshold_factor": 0.8,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [
+        "277e9941"
+      ],
+      "rejected": []
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 3
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 0
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "envelope",
+    "threshold_factor": 1.0,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 3
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 0
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "envelope",
+    "threshold_factor": 1.2,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 3
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 0
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "band_envelope",
+    "threshold_factor": 0.8,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 4
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 1
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "band_envelope",
+    "threshold_factor": 1.0,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 4
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 1
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "band_envelope",
+    "threshold_factor": 1.2,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 4
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 1
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "spectral_temporal",
+    "threshold_factor": 0.8,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [
+        "277e9941"
+      ],
+      "rejected": []
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 3
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 0
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "spectral_temporal",
+    "threshold_factor": 1.0,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 3
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 0
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "spectral_temporal",
+    "threshold_factor": 1.2,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 3
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 0
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "combined",
+    "threshold_factor": 0.8,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 4
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 1
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "combined",
+    "threshold_factor": 1.0,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 4
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 1
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "combined",
+    "threshold_factor": 1.2,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": [
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt"
+      ]
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_accidental"
+      ],
+      "rejected": [
+        "silence_original",
+        "silence_periodic",
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [],
+      "rejected": [
+        "277e9941"
+      ]
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 1
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 4
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 1
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 3
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "short_spectral",
+    "threshold_factor": 0.8,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": []
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_original",
+        "silence_periodic",
+        "silence_accidental",
+        "neg_stationary_noise",
+        "padding_human_head",
+        "padding_human_tail",
+        "padding_low_voice",
+        "padding_phone"
+      ],
+      "rejected": [
+        "neg_digital_silence",
+        "neg_clicks"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [
+        "277e9941"
+      ],
+      "rejected": []
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 4
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 5
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 6
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 4
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "short_spectral",
+    "threshold_factor": 1.0,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": []
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_original",
+        "silence_periodic",
+        "silence_accidental",
+        "padding_human_head",
+        "padding_low_voice"
+      ],
+      "rejected": [
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_tail",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [
+        "277e9941"
+      ],
+      "rejected": []
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 4
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 5
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 6
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 4
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  },
+  {
+    "policy": "short_spectral",
+    "threshold_factor": 1.2,
+    "positive": {
+      "total": 37,
+      "accepted": [
+        "6f56aef1",
+        "5b995fff",
+        "7787300e",
+        "c95673d3",
+        "c5188fc3",
+        "27ea3b92",
+        "0f4107fe",
+        "f3c642b5",
+        "f47fadb3",
+        "a0270cee",
+        "484e80c0",
+        "e59a6350",
+        "f5dc0cc1",
+        "370aa8f4",
+        "1a927887",
+        "5ca771a7",
+        "209ef0c7",
+        "87ac7dd1",
+        "02927481",
+        "90aa0d8d",
+        "e0c56934",
+        "dccf8a63",
+        "9b1d959a",
+        "human_control",
+        "google_old",
+        "take_1",
+        "take_2",
+        "take_3",
+        "native_16k",
+        "native_gain",
+        "native_bandlimit",
+        "short_human_a",
+        "short_human_b",
+        "short_human_c",
+        "short_native",
+        "low_f0_excerpt",
+        "low_f0_excerpt_2"
+      ],
+      "rejected": []
+    },
+    "negative": {
+      "total": 10,
+      "accepted": [
+        "silence_original",
+        "silence_periodic",
+        "silence_accidental",
+        "padding_human_head",
+        "padding_low_voice"
+      ],
+      "rejected": [
+        "neg_digital_silence",
+        "neg_stationary_noise",
+        "neg_clicks",
+        "padding_human_tail",
+        "padding_phone"
+      ]
+    },
+    "unresolved": {
+      "total": 1,
+      "accepted": [
+        "277e9941"
+      ],
+      "rejected": []
+    },
+    "categories": {
+      "confirmed_human": {
+        "total": 4,
+        "accepted": 4
+      },
+      "low_f0_54_70_proxy": {
+        "total": 5,
+        "accepted": 5
+      },
+      "ordinary": {
+        "total": 28,
+        "accepted": 28
+      },
+      "quiet_gain_control": {
+        "total": 1,
+        "accepted": 1
+      },
+      "quiet_rms_proxy": {
+        "total": 12,
+        "accepted": 12
+      },
+      "short": {
+        "total": 6,
+        "accepted": 6
+      },
+      "sparse_pitch": {
+        "total": 8,
+        "accepted": 8
+      },
+      "tts_native_like": {
+        "total": 4,
+        "accepted": 4
+      },
+      "tts_phone": {
+        "total": 4,
+        "accepted": 4
+      }
+    }
+  }
+]

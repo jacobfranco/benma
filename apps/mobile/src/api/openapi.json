@@ -110,6 +110,16 @@
             "format": "uuid",
             "title": "Utterance Id",
             "type": "string"
+          },
+          "utterance_pitch_track": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UtterancePitchTrack"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -1901,6 +1911,17 @@
             "title": "Pitch Status",
             "type": "string"
           },
+          "pitch_track_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pitch Track Evidence Id"
+          },
           "quality_issues": {
             "items": {
               "type": "string"
@@ -1931,6 +1952,13 @@
             ],
             "title": "Timing Evidence Id"
           },
+          "timing_groups": {
+            "items": {
+              "$ref": "#/components/schemas/PerceivedTimingGroup"
+            },
+            "title": "Timing Groups",
+            "type": "array"
+          },
           "timing_source": {
             "anyOf": [
               {
@@ -1948,6 +1976,16 @@
             },
             "title": "Timings Ms",
             "type": "object"
+          },
+          "tone_graph": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SentencePitchEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "unresolved_spans": {
             "items": {
@@ -2207,8 +2245,30 @@
             ],
             "title": "Lexical Tone"
           },
+          "observed_confidence": {
+            "enum": [
+              "moderate",
+              "low"
+            ],
+            "readOnly": true,
+            "title": "Observed Confidence",
+            "type": "string"
+          },
           "observed_contour": {
             "$ref": "#/components/schemas/ObservedContour"
+          },
+          "observed_gesture": {
+            "description": "Semantic alias only; no lexical tone identification or new classifier.",
+            "enum": [
+              "level",
+              "rising",
+              "dipping",
+              "falling",
+              "unclear"
+            ],
+            "readOnly": true,
+            "title": "Observed Gesture",
+            "type": "string"
           },
           "pinyin": {
             "anyOf": [
@@ -2220,6 +2280,19 @@
               }
             ],
             "title": "Pinyin"
+          },
+          "pitch_eligibility": {
+            "$ref": "#/components/schemas/PitchInterpretationEligibility"
+          },
+          "pitch_projection": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PitchRegionProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "reading_source": {
             "enum": [
@@ -2295,6 +2368,12 @@
               }
             ],
             "title": "Timing Source"
+          },
+          "tone_comparison_policy": {
+            "const": "experimental",
+            "default": "experimental",
+            "title": "Tone Comparison Policy",
+            "type": "string"
           }
         },
         "required": [
@@ -2306,9 +2385,74 @@
           "lexical_tone",
           "reading_source",
           "alternatives",
-          "expected_tone"
+          "expected_tone",
+          "observed_gesture",
+          "observed_confidence"
         ],
         "title": "PerceivedSyllable",
+        "type": "object"
+      },
+      "PerceivedTimingGroup": {
+        "description": "An exact perceived word span; no internal character timing is implied.",
+        "properties": {
+          "character_end": {
+            "exclusiveMinimum": 0.0,
+            "title": "Character End",
+            "type": "integer"
+          },
+          "character_start": {
+            "minimum": 0.0,
+            "title": "Character Start",
+            "type": "integer"
+          },
+          "end_seconds": {
+            "exclusiveMinimum": 0.0,
+            "title": "End Seconds",
+            "type": "number"
+          },
+          "pitch_eligibility": {
+            "$ref": "#/components/schemas/PitchInterpretationEligibility"
+          },
+          "pitch_projection": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PitchRegionProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source": {
+            "const": "azure_word",
+            "default": "azure_word",
+            "title": "Source",
+            "type": "string"
+          },
+          "start_seconds": {
+            "minimum": 0.0,
+            "title": "Start Seconds",
+            "type": "number"
+          },
+          "text": {
+            "minLength": 2,
+            "title": "Text",
+            "type": "string"
+          },
+          "timing_evidence_id": {
+            "title": "Timing Evidence Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "character_start",
+          "character_end",
+          "text",
+          "start_seconds",
+          "end_seconds",
+          "timing_evidence_id"
+        ],
+        "title": "PerceivedTimingGroup",
         "type": "object"
       },
       "PerceptionRunResponse": {
@@ -2470,6 +2614,249 @@
           "pinyin"
         ],
         "title": "PinyinCorrectionCreate",
+        "type": "object"
+      },
+      "PitchCandidate": {
+        "additionalProperties": false,
+        "properties": {
+          "frequency_hz": {
+            "exclusiveMinimum": 0.0,
+            "title": "Frequency Hz",
+            "type": "number"
+          },
+          "strength": {
+            "title": "Strength",
+            "type": "number"
+          }
+        },
+        "required": [
+          "frequency_hz",
+          "strength"
+        ],
+        "title": "PitchCandidate",
+        "type": "object"
+      },
+      "PitchInterpretationEligibility": {
+        "additionalProperties": false,
+        "properties": {
+          "metrics": {
+            "$ref": "#/components/schemas/PitchSupportMetrics"
+          },
+          "reasons": {
+            "default": [
+              "timing_unavailable"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "state": {
+            "default": "insufficient",
+            "enum": [
+              "sufficient",
+              "incomplete",
+              "unstable",
+              "insufficient"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "version": {
+            "default": "voiced-support-completeness-v1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "title": "PitchInterpretationEligibility",
+        "type": "object"
+      },
+      "PitchRegionProjection": {
+        "additionalProperties": false,
+        "properties": {
+          "end_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Seconds"
+          },
+          "frame_indices": {
+            "default": [],
+            "items": {
+              "type": "integer"
+            },
+            "title": "Frame Indices",
+            "type": "array"
+          },
+          "start_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Seconds"
+          },
+          "timing_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Evidence Id"
+          },
+          "timing_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Source"
+          },
+          "track_evidence_id": {
+            "title": "Track Evidence Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "track_evidence_id"
+        ],
+        "title": "PitchRegionProjection",
+        "type": "object"
+      },
+      "PitchSupportMetrics": {
+        "additionalProperties": false,
+        "properties": {
+          "discontinuities": {
+            "default": 0,
+            "title": "Discontinuities",
+            "type": "integer"
+          },
+          "early_retained_fraction": {
+            "default": 0,
+            "title": "Early Retained Fraction",
+            "type": "number"
+          },
+          "largest_island_seconds": {
+            "default": 0,
+            "title": "Largest Island Seconds",
+            "type": "number"
+          },
+          "largest_raw_gap_seconds": {
+            "default": 0,
+            "title": "Largest Raw Gap Seconds",
+            "type": "number"
+          },
+          "largest_selected_gap_seconds": {
+            "default": 0,
+            "title": "Largest Selected Gap Seconds",
+            "type": "number"
+          },
+          "late_retained_fraction": {
+            "default": 0,
+            "title": "Late Retained Fraction",
+            "type": "number"
+          },
+          "maximum_raw_jump_semitones": {
+            "default": 0,
+            "title": "Maximum Raw Jump Semitones",
+            "type": "number"
+          },
+          "middle_retained_fraction": {
+            "default": 0,
+            "title": "Middle Retained Fraction",
+            "type": "number"
+          },
+          "missing_head_seconds": {
+            "default": 0,
+            "title": "Missing Head Seconds",
+            "type": "number"
+          },
+          "missing_tail_seconds": {
+            "default": 0,
+            "title": "Missing Tail Seconds",
+            "type": "number"
+          },
+          "raw_end_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw End Seconds"
+          },
+          "raw_start_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Start Seconds"
+          },
+          "raw_voiced_frames": {
+            "default": 0,
+            "title": "Raw Voiced Frames",
+            "type": "integer"
+          },
+          "retained_fraction": {
+            "default": 0,
+            "title": "Retained Fraction",
+            "type": "number"
+          },
+          "selected_end_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected End Seconds"
+          },
+          "selected_frames": {
+            "default": 0,
+            "title": "Selected Frames",
+            "type": "integer"
+          },
+          "selected_islands": {
+            "default": 0,
+            "title": "Selected Islands",
+            "type": "integer"
+          },
+          "selected_start_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Start Seconds"
+          }
+        },
+        "title": "PitchSupportMetrics",
         "type": "object"
       },
       "PracticeSessionCreate": {
@@ -2804,6 +3191,19 @@
             "title": "Pinyin",
             "type": "string"
           },
+          "pitch_eligibility": {
+            "$ref": "#/components/schemas/PitchInterpretationEligibility"
+          },
+          "pitch_projection": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PitchRegionProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "provider_evidence": {
             "anyOf": [
               {
@@ -2839,6 +3239,12 @@
               }
             ],
             "title": "Timing"
+          },
+          "tone_comparison_policy": {
+            "const": "experimental",
+            "default": "experimental",
+            "title": "Tone Comparison Policy",
+            "type": "string"
           }
         },
         "required": [
@@ -3116,6 +3522,116 @@
         "title": "ReferenceSpeechResponse",
         "type": "object"
       },
+      "SentencePitchEvidence": {
+        "properties": {
+          "filtered": {
+            "$ref": "#/components/schemas/DisplayContour"
+          },
+          "mine": {
+            "$ref": "#/components/schemas/DisplayContour"
+          },
+          "raw": {
+            "items": {
+              "$ref": "#/components/schemas/TrackerPitchFrame"
+            },
+            "title": "Raw",
+            "type": "array"
+          },
+          "track_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Track Evidence Id"
+          }
+        },
+        "required": [
+          "mine",
+          "filtered",
+          "raw"
+        ],
+        "title": "SentencePitchEvidence",
+        "type": "object"
+      },
+      "TrackerPitchFrame": {
+        "description": "Allowlisted tracker measurements; retained means selected by the existing filter.",
+        "properties": {
+          "exclusion_reasons": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Exclusion Reasons",
+            "type": "array"
+          },
+          "f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "F0 Hz"
+          },
+          "retained": {
+            "title": "Retained",
+            "type": "boolean"
+          },
+          "selected_f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected F0 Hz"
+          },
+          "source_frame_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Frame Index"
+          },
+          "timestamp_seconds": {
+            "minimum": 0.0,
+            "title": "Timestamp Seconds",
+            "type": "number"
+          },
+          "tracker_f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tracker F0 Hz"
+          }
+        },
+        "required": [
+          "timestamp_seconds",
+          "retained"
+        ],
+        "title": "TrackerPitchFrame",
+        "type": "object"
+      },
       "UnknownPerceptionRequest": {
         "additionalProperties": false,
         "properties": {
@@ -3227,6 +3743,230 @@
           "created_at"
         ],
         "title": "UserCorrectionResponse",
+        "type": "object"
+      },
+      "UtterancePitchFrame": {
+        "additionalProperties": false,
+        "properties": {
+          "analyzer_selected_f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Analyzer Selected F0 Hz"
+          },
+          "candidates": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/PitchCandidate"
+            },
+            "title": "Candidates",
+            "type": "array"
+          },
+          "comparison_f0_hz": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comparison F0 Hz"
+          },
+          "display_semitones": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Semitones"
+          },
+          "energy_gated_f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Gated F0 Hz"
+          },
+          "energy_rms": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Rms"
+          },
+          "exclusion_reasons": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Exclusion Reasons",
+            "type": "array"
+          },
+          "filter_disagreement_st": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter Disagreement St"
+          },
+          "periodicity": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Periodicity"
+          },
+          "raw_f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw F0 Hz"
+          },
+          "selected_f0_hz": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected F0 Hz"
+          },
+          "timestamp_seconds": {
+            "minimum": 0.0,
+            "title": "Timestamp Seconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "timestamp_seconds"
+        ],
+        "title": "UtterancePitchFrame",
+        "type": "object"
+      },
+      "UtterancePitchTrack": {
+        "additionalProperties": false,
+        "properties": {
+          "audio_sha256": {
+            "title": "Audio Sha256",
+            "type": "string"
+          },
+          "baseline_hz": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baseline Hz"
+          },
+          "duration_seconds": {
+            "minimum": 0.0,
+            "title": "Duration Seconds",
+            "type": "number"
+          },
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "frame_cadence_seconds": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frame Cadence Seconds"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/UtterancePitchFrame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "raw_provenance": {
+            "enum": [
+              "native_tracker",
+              "legacy_energy_gated"
+            ],
+            "title": "Raw Provenance",
+            "type": "string"
+          },
+          "schema_version": {
+            "default": "utterance-pitch-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "selection_version": {
+            "title": "Selection Version",
+            "type": "string"
+          },
+          "tracker_configuration_json": {
+            "title": "Tracker Configuration Json",
+            "type": "string"
+          },
+          "tracker_source": {
+            "title": "Tracker Source",
+            "type": "string"
+          },
+          "tracker_version": {
+            "title": "Tracker Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "audio_sha256",
+          "tracker_source",
+          "tracker_version",
+          "tracker_configuration_json",
+          "selection_version",
+          "raw_provenance",
+          "duration_seconds",
+          "frames"
+        ],
+        "title": "UtterancePitchTrack",
         "type": "object"
       },
       "UtteranceResponse": {

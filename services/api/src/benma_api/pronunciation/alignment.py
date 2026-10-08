@@ -12,7 +12,7 @@ import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, Literal, Protocol
 
 from pypinyin.contrib.tone_convert import to_tone3
 from sqlalchemy import select
@@ -39,6 +39,7 @@ class AlignmentRequest:
     pinyin_syllables: list[str]
     duration_seconds: float
     timeout_seconds: float
+    reference_kind: Literal["target_text", "perceived_text"] = "target_text"
 
 
 @dataclass(frozen=True, slots=True)

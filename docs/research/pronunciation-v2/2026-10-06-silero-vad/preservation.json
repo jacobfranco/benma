@@ -1,0 +1,9 @@
+{
+  "snapshot_files": 22258,
+  "protected_non_environment_files": 1446,
+  "changed": [],
+  "missing": [],
+  "branch": "pronunciation-v2-research",
+  "initial_snapshot_sha256": "9c42b2c940ffe8ef9adf2aba1f4a9082080bbb441a81f6b670d844430aded7d4",
+  "protected_files_sha256": "fb5930468f18439aa59a3734afad691182d17b34aa72f5180a949ea0dba3d302"
+}

@@ -11,6 +11,7 @@ from collections.abc import Callable
 
 from sqlalchemy.orm import Session
 
+from benma_api.audio.presence_service import require_saved_speech
 from benma_api.db.models import (
     AssessmentRun,
     AudioAsset,
@@ -120,6 +121,9 @@ class AssessmentService:
             timeout_seconds=timeout_seconds,
         )
         audio_sha256 = asset.sha256
+        require_saved_speech(
+            self.db, request.canonical_audio, account_id=account_id, utterance_id=utterance.id
+        )
         sample_rate_hz = asset.sample_rate_hz
 
         provider = self.provider

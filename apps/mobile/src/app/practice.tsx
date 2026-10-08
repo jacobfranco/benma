@@ -11,7 +11,7 @@ import { SpeechEvidence } from '@/speech/SpeechEvidence';
 import { useSpeechTurn } from '@/speech/useSpeechTurn';
 import type { SpeechAnalysis } from '@/speech/workflow';
 
-interface PracticeEntry { perception: PerceptionRun; pronunciation?: PronunciationResult }
+interface PracticeEntry { perception: PerceptionRun; pronunciation?: PronunciationResult; intendedText?: string }
 
 export default function PracticeScreen() {
   const [withTarget, setWithTarget] = useState(false);
@@ -38,9 +38,9 @@ export default function PracticeScreen() {
     beforeRecording: () => trace('record', target?.id),
     onAnalysis: (analysis) => setAnalyses((current) => ({ ...current, [analysis.perceptionId ?? analysis.utteranceId]: analysis })),
     onPerception: (perception) => setEntries((current) => current.some((entry) => entry.perception.id === perception.id)
-      ? current : [...current, { perception }]),
+      ? current : [...current, { perception, ...(target ? { intendedText: target.text } : {}) }]),
     onResult: (result) => setEntries((current) => current.map((entry) => entry.perception.id === result.perception.id
-      ? { perception: result.perception, ...(result.pronunciation ? { pronunciation: result.pronunciation } : {}) } : entry)),
+      ? { ...entry, perception: result.perception, ...(result.pronunciation ? { pronunciation: result.pronunciation } : {}) } : entry)),
   });
 
   const prepare = async (correctReading = false) => {
@@ -104,7 +104,7 @@ export default function PracticeScreen() {
         {reference?.status === 'succeeded' && reference.audio_url
           ? <PlaybackButton label="▶ Native reference" uri={reference.audio_url} disabled={turn.busy} />
           : !turn.busy && !preparing && <Button secondary label="Retry reference" onPress={() => void retryReference()} />}
-        <Body>One example realization. Your target phrase guides the assessment.</Body>
+        <Body>One example realization. The graph follows what Benma heard.</Body>
       </>}
       <Button secondary label="Clear target · use free practice" disabled={turn.busy || preparing} onPress={() => {
         turn.reset(); stopAllPlayback(); trace('clear', target?.id);
@@ -113,8 +113,8 @@ export default function PracticeScreen() {
       }} />
       <ErrorMessage message={targetError} />
     </Card> : <Body>Free practice: speak without a target phrase.</Body>}
-    {entries.map(({ perception, pronunciation }) => <SpeechEvidence key={perception.id}
-      heard={perception.transcript ?? ''}
+    {entries.map(({ perception, pronunciation, intendedText }) => <SpeechEvidence key={perception.id}
+      heard={perception.transcript ?? ''} intendedText={intendedText}
       {...(perception.utterance_id ? { recordingUrl: `/v1/utterances/${perception.utterance_id}/audio` } : {})}
       synthetic={perception.normalized_result?.evidence_status === 'synthetic_replay'}
       pronunciation={(analyses[perception.id] ?? analyses[perception.utterance_id])?.pronunciation ?? pronunciation}

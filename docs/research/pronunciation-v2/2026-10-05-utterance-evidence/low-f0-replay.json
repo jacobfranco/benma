@@ -1,0 +1,101 @@
+[
+  {
+    "recording": "7787300e",
+    "timestamp": 2.4924,
+    "proxy_hz": 55.288,
+    "raw_f0_hz": 55.288,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8239
+  },
+  {
+    "recording": "7787300e",
+    "timestamp": 2.5024,
+    "proxy_hz": 54.773,
+    "raw_f0_hz": 54.773,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8815
+  },
+  {
+    "recording": "7787300e",
+    "timestamp": 2.5124,
+    "proxy_hz": 54.61,
+    "raw_f0_hz": 54.61,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8415
+  },
+  {
+    "recording": "c95673d3",
+    "timestamp": 2.1021,
+    "proxy_hz": 57.326,
+    "raw_f0_hz": 57.326,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8023
+  },
+  {
+    "recording": "c95673d3",
+    "timestamp": 2.1121,
+    "proxy_hz": 56.607,
+    "raw_f0_hz": 56.607,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8292
+  },
+  {
+    "recording": "c95673d3",
+    "timestamp": 2.1221,
+    "proxy_hz": 55.576,
+    "raw_f0_hz": 55.576,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8585
+  },
+  {
+    "recording": "c95673d3",
+    "timestamp": 2.1321,
+    "proxy_hz": 55.34,
+    "raw_f0_hz": 55.34,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.9741
+  },
+  {
+    "recording": "c95673d3",
+    "timestamp": 2.1421,
+    "proxy_hz": 55.264,
+    "raw_f0_hz": 55.264,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.9933
+  },
+  {
+    "recording": "27ea3b92",
+    "timestamp": 2.1818,
+    "proxy_hz": 66.615,
+    "raw_f0_hz": 66.615,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8317
+  },
+  {
+    "recording": "27ea3b92",
+    "timestamp": 2.2518,
+    "proxy_hz": 58.329,
+    "raw_f0_hz": 58.329,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.8603
+  },
+  {
+    "recording": "27ea3b92",
+    "timestamp": 2.2618,
+    "proxy_hz": 58.165,
+    "raw_f0_hz": 58.165,
+    "selected": true,
+    "reason": "praat_selected",
+    "periodicity": 0.889
+  }
+]

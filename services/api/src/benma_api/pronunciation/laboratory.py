@@ -11,15 +11,18 @@ from typing import Any
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from benma_api.audio.presence_service import require_saved_speech
 from benma_api.config import Settings
 from benma_api.db.models import (
     AcousticRun,
     AlignmentRun,
     AssessmentRun,
+    AudioAsset,
     PronunciationAttempt,
     PronunciationInterpretationRun,
     PronunciationTarget,
     ReferenceSpeechAsset,
+    Utterance,
 )
 from benma_api.errors import AuthorizationError
 from benma_api.pronunciation.acoustics import (
@@ -42,6 +45,13 @@ from benma_api.pronunciation.contours import (
 from benma_api.pronunciation.interpretation import (
     PronunciationInterpretationService,
     has_live_assessment,
+)
+from benma_api.pronunciation.pitch_evidence import (
+    display_from_track,
+    gate_observation,
+    interpretation_eligibility,
+    load_pitch_track,
+    project_pitch,
 )
 from benma_api.pronunciation.reference import ReferenceSpeechService
 from benma_api.pronunciation.service import AssessmentService, log_assessment
@@ -102,6 +112,7 @@ def reference_response(asset: ReferenceSpeechAsset) -> ReferenceSpeechResponse:
 
 def acoustic_response(run: AcousticRun) -> AcousticRunResponse:
     return AcousticRunResponse(
+        utterance_pitch_track=(run.normalized_result or {}).get("utterance_pitch_track"),
         id=run.id,
         utterance_id=run.utterance_id,
         algorithm=run.algorithm,
@@ -256,6 +267,20 @@ class PronunciationLaboratoryService:
                 AssessmentRun.pronunciation_attempt_id == attempt_id,
                 AssessmentRun.status == "succeeded",
             )
+        if assessment is not None:
+            # Reuse must not bypass the guard in AssessmentService.prepare.
+            utterance = self.db.get(Utterance, attempt.utterance_id)
+            asset = (
+                self.db.get(AudioAsset, utterance.canonical_audio_asset_id) if utterance else None
+            )
+            if asset is None or asset.account_id != account_id:
+                raise AuthorizationError("attempt audio was not found")
+            require_saved_speech(
+                self.db,
+                self.store.read(asset.storage_key),
+                account_id=account_id,
+                utterance_id=attempt.utterance_id,
+            )
         assessment_work = (
             None
             if assessment
@@ -405,7 +430,20 @@ class PronunciationLaboratoryService:
         surface = expectation.get("expected_surface_tones")
         surface_tones = surface if isinstance(surface, list) else [None] * len(target.lexical_tones)
         raw_pitch = (acoustic.normalized_result or {}).get("f0", []) if acoustic else []
-        display = display_contour(raw_pitch)
+        utterance = self.db.get(Utterance, attempt.utterance_id)
+        asset = self.db.get(AudioAsset, utterance.canonical_audio_asset_id) if utterance else None
+        track = (
+            load_pitch_track(
+                acoustic.normalized_result or {},
+                audio_sha256=asset.sha256,
+                tracker_source=acoustic.algorithm,
+                tracker_version=acoustic.algorithm_version,
+                parameters=acoustic.parameters,
+            )
+            if acoustic and asset and acoustic.status == "succeeded"
+            else None
+        )
+        display = display_from_track(track) if track else display_contour(raw_pitch)
         characters = [str(unit.get("characters", "")) for unit in target.syllable_units]
         timing_resolution = resolve_target_timing(
             alignment.normalized_result or {} if alignment else {},
@@ -484,13 +522,35 @@ class PronunciationLaboratoryService:
             )
             measured = (
                 classify_contour(
-                    slice_display, timing["start_seconds"], timing["end_seconds"], raw=raw_pitch
+                    slice_display,
+                    timing["start_seconds"],
+                    timing["end_seconds"],
+                    raw=raw_pitch,
+                    pitch_track=track,
                 )
                 if slice_display is not None and isinstance(timing, dict)
                 else None
             )
+            projection = (
+                project_pitch(
+                    track,
+                    timing["start_seconds"],
+                    timing["end_seconds"],
+                    timing_source=str(timing.get("source", "validated_target_alignment")),
+                    timing_evidence_id=timing_resolution.get("source_record_id"),
+                )
+                if track and timing_usable and isinstance(timing, dict)
+                else None
+            )
+            eligibility = (
+                interpretation_eligibility(track, projection) if track and projection else None
+            )
+            if measured is not None and eligibility is not None:
+                measured = gate_observation(measured, eligibility)
             syllables.append(
                 PronunciationSyllableResult(
+                    pitch_projection=projection,
+                    **({"pitch_eligibility": eligibility} if eligibility else {}),
                     display_contour=simplify_display(
                         slice_display,
                         preserve_seconds=measured.features.get("first_reliable_core_seconds")

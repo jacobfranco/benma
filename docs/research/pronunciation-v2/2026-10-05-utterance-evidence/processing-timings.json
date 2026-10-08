@@ -1,0 +1,1086 @@
+{
+  "samples": [
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.040366999996876984,
+      "eligibility_ms": 0.09197700001095654,
+      "gesture_ms": 0.963430000012977
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.03444800000806936,
+      "eligibility_ms": 0.04921400000057474,
+      "gesture_ms": 0.6869250000249849
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.032353999984024995,
+      "eligibility_ms": 0.04697999997915758,
+      "gesture_ms": 0.7396889999995437
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.032012000019676634,
+      "eligibility_ms": 0.035557999979118904,
+      "gesture_ms": 0.6048370000257819
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.03223100003424406,
+      "eligibility_ms": 0.05516599998145466,
+      "gesture_ms": 0.909766999996009
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.03294200001846548,
+      "eligibility_ms": 0.05930700001499645,
+      "gesture_ms": 0.732034999998632
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.030633999983820104,
+      "eligibility_ms": 0.056015999973624275,
+      "gesture_ms": 0.7871560000012323
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.03170700000509896,
+      "eligibility_ms": 0.05255400003534305,
+      "gesture_ms": 1.0412480000354662
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.03046599999834143,
+      "eligibility_ms": 0.03135800000109157,
+      "gesture_ms": 0.5734750000101485
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.03009199997450196,
+      "eligibility_ms": 0.04291600004080465,
+      "gesture_ms": 0.7020539999871289
+    },
+    {
+      "recording": "6f56aef1",
+      "build_ms": 11.809724999977789,
+      "projection_ms": 0.0313009999786118,
+      "eligibility_ms": 0.04052000002729983,
+      "gesture_ms": 0.6332809999776146
+    },
+    {
+      "recording": "5b995fff",
+      "build_ms": 5.472904999976436,
+      "projection_ms": 0.021546000027683476,
+      "eligibility_ms": 0.0586560000215286,
+      "gesture_ms": 0.5454270000200268
+    },
+    {
+      "recording": "5b995fff",
+      "build_ms": 5.472904999976436,
+      "projection_ms": 0.018683999996937928,
+      "eligibility_ms": 0.008188999970570876,
+      "gesture_ms": 0.2312560000063968
+    },
+    {
+      "recording": "5b995fff",
+      "build_ms": 5.472904999976436,
+      "projection_ms": 0.018274000012752367,
+      "eligibility_ms": 0.06085100000063903,
+      "gesture_ms": 0.522299000010662
+    },
+    {
+      "recording": "7787300e",
+      "build_ms": 19.903526000007332,
+      "projection_ms": 0.06295299999692361,
+      "eligibility_ms": 0.063651999994363,
+      "gesture_ms": 0.8741849999864826
+    },
+    {
+      "recording": "7787300e",
+      "build_ms": 19.903526000007332,
+      "projection_ms": 0.055216000021118816,
+      "eligibility_ms": 0.05963299997802096,
+      "gesture_ms": 0.8381349999808663
+    },
+    {
+      "recording": "7787300e",
+      "build_ms": 19.903526000007332,
+      "projection_ms": 0.05423400000381662,
+      "eligibility_ms": 0.048708999997870706,
+      "gesture_ms": 0.7673279999949045
+    },
+    {
+      "recording": "7787300e",
+      "build_ms": 19.903526000007332,
+      "projection_ms": 0.05386700001963618,
+      "eligibility_ms": 0.061485999992783036,
+      "gesture_ms": 0.9909359999937806
+    },
+    {
+      "recording": "7787300e",
+      "build_ms": 19.903526000007332,
+      "projection_ms": 0.053485000023556495,
+      "eligibility_ms": 0.05967100003090309,
+      "gesture_ms": 0.7978360000038265
+    },
+    {
+      "recording": "c95673d3",
+      "build_ms": 11.821784999995089,
+      "projection_ms": 0.03573300000425661,
+      "eligibility_ms": 0.07636799995225374,
+      "gesture_ms": 0.9707190000085575
+    },
+    {
+      "recording": "c95673d3",
+      "build_ms": 11.821784999995089,
+      "projection_ms": 0.03220700000383658,
+      "eligibility_ms": 0.06158399997957531,
+      "gesture_ms": 0.8245119999514827
+    },
+    {
+      "recording": "c95673d3",
+      "build_ms": 11.821784999995089,
+      "projection_ms": 0.0368579999872054,
+      "eligibility_ms": 0.06730199999083197,
+      "gesture_ms": 0.8697380000057819
+    },
+    {
+      "recording": "c95673d3",
+      "build_ms": 11.821784999995089,
+      "projection_ms": 0.030129999970540666,
+      "eligibility_ms": 0.06440499998916493,
+      "gesture_ms": 0.8158300000218333
+    },
+    {
+      "recording": "c95673d3",
+      "build_ms": 11.821784999995089,
+      "projection_ms": 0.029711000024690293,
+      "eligibility_ms": 0.07558900000503854,
+      "gesture_ms": 0.8680849999791462
+    },
+    {
+      "recording": "c5188fc3",
+      "build_ms": 14.247090000026219,
+      "projection_ms": 0.023339999984273163,
+      "eligibility_ms": 0.04862599996613426,
+      "gesture_ms": 0.4069810000260077
+    },
+    {
+      "recording": "c5188fc3",
+      "build_ms": 14.247090000026219,
+      "projection_ms": 0.02130199999328397,
+      "eligibility_ms": 0.03768400000581096,
+      "gesture_ms": 0.3491389999794592
+    },
+    {
+      "recording": "c5188fc3",
+      "build_ms": 14.247090000026219,
+      "projection_ms": 0.01995900004203577,
+      "eligibility_ms": 0.04331299999194016,
+      "gesture_ms": 0.44460700001991427
+    },
+    {
+      "recording": "c5188fc3",
+      "build_ms": 14.247090000026219,
+      "projection_ms": 0.02004800001031981,
+      "eligibility_ms": 0.059753000016371516,
+      "gesture_ms": 0.5160879999834833
+    },
+    {
+      "recording": "c5188fc3",
+      "build_ms": 14.247090000026219,
+      "projection_ms": 0.020489000007728464,
+      "eligibility_ms": 0.03796599997940575,
+      "gesture_ms": 0.35136999997575913
+    },
+    {
+      "recording": "27ea3b92",
+      "build_ms": 7.078573000001143,
+      "projection_ms": 0.0300680000009379,
+      "eligibility_ms": 0.05239600000095379,
+      "gesture_ms": 0.5366780000031213
+    },
+    {
+      "recording": "27ea3b92",
+      "build_ms": 7.078573000001143,
+      "projection_ms": 0.03600799999503579,
+      "eligibility_ms": 0.07084399999257585,
+      "gesture_ms": 0.47038799999654657
+    },
+    {
+      "recording": "27ea3b92",
+      "build_ms": 7.078573000001143,
+      "projection_ms": 0.022822999994787097,
+      "eligibility_ms": 0.04428500000130953,
+      "gesture_ms": 0.4754320000301959
+    },
+    {
+      "recording": "27ea3b92",
+      "build_ms": 7.078573000001143,
+      "projection_ms": 0.024257999996279977,
+      "eligibility_ms": 0.05958100001635103,
+      "gesture_ms": 0.5539169999906335
+    },
+    {
+      "recording": "27ea3b92",
+      "build_ms": 7.078573000001143,
+      "projection_ms": 0.022777999959089357,
+      "eligibility_ms": 0.05146299997704773,
+      "gesture_ms": 0.5318569999985812
+    },
+    {
+      "recording": "0f4107fe",
+      "build_ms": 6.050117000029331,
+      "projection_ms": 0.024150000001554872,
+      "eligibility_ms": 0.052708999987771676,
+      "gesture_ms": 0.5185809999943558
+    },
+    {
+      "recording": "0f4107fe",
+      "build_ms": 6.050117000029331,
+      "projection_ms": 0.02114300002631353,
+      "eligibility_ms": 0.05691100000149163,
+      "gesture_ms": 0.5240510000135146
+    },
+    {
+      "recording": "0f4107fe",
+      "build_ms": 6.050117000029331,
+      "projection_ms": 0.01939800000627656,
+      "eligibility_ms": 0.043568999956278276,
+      "gesture_ms": 0.5021590000069409
+    },
+    {
+      "recording": "0f4107fe",
+      "build_ms": 6.050117000029331,
+      "projection_ms": 0.019927999971969257,
+      "eligibility_ms": 0.05300499998384112,
+      "gesture_ms": 0.5479339999965305
+    },
+    {
+      "recording": "0f4107fe",
+      "build_ms": 6.050117000029331,
+      "projection_ms": 0.02906400004576426,
+      "eligibility_ms": 0.04571800002395321,
+      "gesture_ms": 0.4879360000131783
+    },
+    {
+      "recording": "0f4107fe",
+      "build_ms": 6.050117000029331,
+      "projection_ms": 0.01916200000096069,
+      "eligibility_ms": 0.028863000011369877,
+      "gesture_ms": 0.2948069999888503
+    },
+    {
+      "recording": "f3c642b5",
+      "build_ms": 4.655178999996679,
+      "projection_ms": 0.02128100004483713,
+      "eligibility_ms": 0.04127599999037557,
+      "gesture_ms": 0.2807380000149351
+    },
+    {
+      "recording": "f3c642b5",
+      "build_ms": 4.655178999996679,
+      "projection_ms": 0.018642999975782004,
+      "eligibility_ms": 0.03535600001214334,
+      "gesture_ms": 0.28655500000240863
+    },
+    {
+      "recording": "f3c642b5",
+      "build_ms": 4.655178999996679,
+      "projection_ms": 0.018426999986331793,
+      "eligibility_ms": 0.03375200003574719,
+      "gesture_ms": 0.25444000004881673
+    },
+    {
+      "recording": "f3c642b5",
+      "build_ms": 4.655178999996679,
+      "projection_ms": 0.01870200003395439,
+      "eligibility_ms": 0.008110000010219665,
+      "gesture_ms": 0.14737100002548686
+    },
+    {
+      "recording": "f47fadb3",
+      "build_ms": 7.644600999981321,
+      "projection_ms": 0.024992000021484273,
+      "eligibility_ms": 0.04022299998496237,
+      "gesture_ms": 0.4482699999925899
+    },
+    {
+      "recording": "f47fadb3",
+      "build_ms": 7.644600999981321,
+      "projection_ms": 0.023416000033193995,
+      "eligibility_ms": 0.04090499999165331,
+      "gesture_ms": 0.5115850000265709
+    },
+    {
+      "recording": "f47fadb3",
+      "build_ms": 7.644600999981321,
+      "projection_ms": 0.024271999961911206,
+      "eligibility_ms": 0.06357500001286098,
+      "gesture_ms": 0.7224120000159928
+    },
+    {
+      "recording": "f47fadb3",
+      "build_ms": 7.644600999981321,
+      "projection_ms": 0.03258300000652525,
+      "eligibility_ms": 0.056048999965696567,
+      "gesture_ms": 0.6296980000115582
+    },
+    {
+      "recording": "f47fadb3",
+      "build_ms": 7.644600999981321,
+      "projection_ms": 0.026242999979331216,
+      "eligibility_ms": 0.05860900000698166,
+      "gesture_ms": 0.6117020000147022
+    },
+    {
+      "recording": "f47fadb3",
+      "build_ms": 7.644600999981321,
+      "projection_ms": 0.02326100002392195,
+      "eligibility_ms": 0.04316799999060095,
+      "gesture_ms": 0.4647660000500764
+    },
+    {
+      "recording": "a0270cee",
+      "build_ms": 9.618376999981137,
+      "projection_ms": 0.03135800000109157,
+      "eligibility_ms": 0.053428999990501325,
+      "gesture_ms": 0.6826869999940754
+    },
+    {
+      "recording": "a0270cee",
+      "build_ms": 9.618376999981137,
+      "projection_ms": 0.028272000008655596,
+      "eligibility_ms": 0.050067000017861574,
+      "gesture_ms": 0.6848609999678956
+    },
+    {
+      "recording": "a0270cee",
+      "build_ms": 9.618376999981137,
+      "projection_ms": 0.02912399997967441,
+      "eligibility_ms": 0.06919000003335896,
+      "gesture_ms": 0.7361779999541795
+    },
+    {
+      "recording": "a0270cee",
+      "build_ms": 9.618376999981137,
+      "projection_ms": 0.027643999999327207,
+      "eligibility_ms": 0.08655300001692012,
+      "gesture_ms": 0.8315700000025572
+    },
+    {
+      "recording": "a0270cee",
+      "build_ms": 9.618376999981137,
+      "projection_ms": 0.028944999996838305,
+      "eligibility_ms": 0.06815099999357699,
+      "gesture_ms": 0.7547410000370292
+    },
+    {
+      "recording": "silence_original",
+      "build_ms": 16.435761000025195,
+      "projection_ms": 0.08254400000851092,
+      "eligibility_ms": 0.0424460000090221,
+      "gesture_ms": 0.2656170000250313
+    },
+    {
+      "recording": "484e80c0",
+      "build_ms": 6.241262999992614,
+      "projection_ms": 0.023714999997537234,
+      "eligibility_ms": 0.04710600001089915,
+      "gesture_ms": 0.4122379999671466
+    },
+    {
+      "recording": "484e80c0",
+      "build_ms": 6.241262999992614,
+      "projection_ms": 0.020226999993155914,
+      "eligibility_ms": 0.04869100001769766,
+      "gesture_ms": 0.48701500003289766
+    },
+    {
+      "recording": "484e80c0",
+      "build_ms": 6.241262999992614,
+      "projection_ms": 0.019133000023430213,
+      "eligibility_ms": 0.03750399997670684,
+      "gesture_ms": 0.37675999999464693
+    },
+    {
+      "recording": "484e80c0",
+      "build_ms": 6.241262999992614,
+      "projection_ms": 0.018604999979743297,
+      "eligibility_ms": 0.03555299997515249,
+      "gesture_ms": 0.3760179999972024
+    },
+    {
+      "recording": "484e80c0",
+      "build_ms": 6.241262999992614,
+      "projection_ms": 0.02607999999781896,
+      "eligibility_ms": 0.06370400001287635,
+      "gesture_ms": 0.5078659999639967
+    },
+    {
+      "recording": "484e80c0",
+      "build_ms": 6.241262999992614,
+      "projection_ms": 0.020429000016974896,
+      "eligibility_ms": 0.03315800000791569,
+      "gesture_ms": 0.24781000001894427
+    },
+    {
+      "recording": "e59a6350",
+      "build_ms": 4.6853059999989455,
+      "projection_ms": 0.020365000011679513,
+      "eligibility_ms": 0.04308799998398172,
+      "gesture_ms": 0.3762569999707921
+    },
+    {
+      "recording": "e59a6350",
+      "build_ms": 4.6853059999989455,
+      "projection_ms": 0.020512000048711343,
+      "eligibility_ms": 0.03842500001383087,
+      "gesture_ms": 0.3616899999769885
+    },
+    {
+      "recording": "e59a6350",
+      "build_ms": 4.6853059999989455,
+      "projection_ms": 0.03100300000369316,
+      "eligibility_ms": 0.052893000031417614,
+      "gesture_ms": 0.3068789999929322
+    },
+    {
+      "recording": "e59a6350",
+      "build_ms": 4.6853059999989455,
+      "projection_ms": 0.02082699995753501,
+      "eligibility_ms": 0.008820000005016482,
+      "gesture_ms": 0.17082599998730075
+    },
+    {
+      "recording": "f5dc0cc1",
+      "build_ms": 3.9717200000382036,
+      "projection_ms": 0.017513999978291395,
+      "eligibility_ms": 0.04347300000517862,
+      "gesture_ms": 0.35000700000864526
+    },
+    {
+      "recording": "f5dc0cc1",
+      "build_ms": 3.9717200000382036,
+      "projection_ms": 0.01855699997577176,
+      "eligibility_ms": 0.041792999979861634,
+      "gesture_ms": 0.290697000025375
+    },
+    {
+      "recording": "silence_periodic",
+      "build_ms": 6.772785999999087,
+      "projection_ms": 0.04182899999705114,
+      "eligibility_ms": 0.19768499998917832,
+      "gesture_ms": 0.5957559999956175
+    },
+    {
+      "recording": "370aa8f4",
+      "build_ms": 8.805694999978186,
+      "projection_ms": 0.03239200003690712,
+      "eligibility_ms": 0.058717000001706765,
+      "gesture_ms": 0.6481640000401967
+    },
+    {
+      "recording": "370aa8f4",
+      "build_ms": 8.805694999978186,
+      "projection_ms": 0.027120000027025526,
+      "eligibility_ms": 0.05011900003637493,
+      "gesture_ms": 0.6261920000270038
+    },
+    {
+      "recording": "370aa8f4",
+      "build_ms": 8.805694999978186,
+      "projection_ms": 0.027553999984775146,
+      "eligibility_ms": 0.05784899997252069,
+      "gesture_ms": 0.6749610000156281
+    },
+    {
+      "recording": "370aa8f4",
+      "build_ms": 8.805694999978186,
+      "projection_ms": 0.027352000017799583,
+      "eligibility_ms": 0.07849799999348761,
+      "gesture_ms": 0.8272730000271622
+    },
+    {
+      "recording": "370aa8f4",
+      "build_ms": 8.805694999978186,
+      "projection_ms": 0.027078000016445003,
+      "eligibility_ms": 0.07408900000882568,
+      "gesture_ms": 0.7051849999584192
+    },
+    {
+      "recording": "1a927887",
+      "build_ms": 29.949616999999762,
+      "projection_ms": 0.04695899997386732,
+      "eligibility_ms": 0.06927399999767658,
+      "gesture_ms": 0.773113999969155
+    },
+    {
+      "recording": "1a927887",
+      "build_ms": 29.949616999999762,
+      "projection_ms": 0.03808099995694647,
+      "eligibility_ms": 0.05331299996669259,
+      "gesture_ms": 0.7149780000190731
+    },
+    {
+      "recording": "1a927887",
+      "build_ms": 29.949616999999762,
+      "projection_ms": 0.031030999991799035,
+      "eligibility_ms": 0.05280300001686555,
+      "gesture_ms": 0.6986449999999422
+    },
+    {
+      "recording": "1a927887",
+      "build_ms": 29.949616999999762,
+      "projection_ms": 0.03100000003541936,
+      "eligibility_ms": 0.0590459999898485,
+      "gesture_ms": 0.9235599999897204
+    },
+    {
+      "recording": "1a927887",
+      "build_ms": 29.949616999999762,
+      "projection_ms": 0.03215299994963061,
+      "eligibility_ms": 0.054840000018430146,
+      "gesture_ms": 0.7474520000414486
+    },
+    {
+      "recording": "5ca771a7",
+      "build_ms": 6.125004000011813,
+      "projection_ms": 0.026187000003119465,
+      "eligibility_ms": 0.06454199996142052,
+      "gesture_ms": 0.6043120000072122
+    },
+    {
+      "recording": "5ca771a7",
+      "build_ms": 6.125004000011813,
+      "projection_ms": 0.021902000014506484,
+      "eligibility_ms": 0.05052000000205226,
+      "gesture_ms": 0.5475799999885567
+    },
+    {
+      "recording": "5ca771a7",
+      "build_ms": 6.125004000011813,
+      "projection_ms": 0.021477000018421677,
+      "eligibility_ms": 0.04366699999991397,
+      "gesture_ms": 0.5029929999977867
+    },
+    {
+      "recording": "5ca771a7",
+      "build_ms": 6.125004000011813,
+      "projection_ms": 0.02100799997606373,
+      "eligibility_ms": 0.04001799999286959,
+      "gesture_ms": 0.48187900000584705
+    },
+    {
+      "recording": "5ca771a7",
+      "build_ms": 6.125004000011813,
+      "projection_ms": 0.02370500004644782,
+      "eligibility_ms": 0.04611299999623952,
+      "gesture_ms": 0.5355949999739096
+    },
+    {
+      "recording": "5ca771a7",
+      "build_ms": 6.125004000011813,
+      "projection_ms": 0.022474999980204302,
+      "eligibility_ms": 0.048036999999112595,
+      "gesture_ms": 0.5327779999788618
+    },
+    {
+      "recording": "209ef0c7",
+      "build_ms": 5.895205999991049,
+      "projection_ms": 0.021368999966853153,
+      "eligibility_ms": 0.042407000023558794,
+      "gesture_ms": 0.3325800000197887
+    },
+    {
+      "recording": "209ef0c7",
+      "build_ms": 5.895205999991049,
+      "projection_ms": 0.02128199997741831,
+      "eligibility_ms": 0.03969800002323609,
+      "gesture_ms": 0.3565960000173618
+    },
+    {
+      "recording": "209ef0c7",
+      "build_ms": 5.895205999991049,
+      "projection_ms": 0.020303999974657927,
+      "eligibility_ms": 0.029671999982383568,
+      "gesture_ms": 0.26750000000674845
+    },
+    {
+      "recording": "209ef0c7",
+      "build_ms": 5.895205999991049,
+      "projection_ms": 0.020397000014327205,
+      "eligibility_ms": 0.0451850000331433,
+      "gesture_ms": 0.29151900002943876
+    },
+    {
+      "recording": "87ac7dd1",
+      "build_ms": 4.648213999985273,
+      "projection_ms": 0.021070999991934514,
+      "eligibility_ms": 0.05431499999986045,
+      "gesture_ms": 0.42009600002756997
+    },
+    {
+      "recording": "87ac7dd1",
+      "build_ms": 4.648213999985273,
+      "projection_ms": 0.01895499997317529,
+      "eligibility_ms": 0.04143099999964761,
+      "gesture_ms": 0.2506360000325003
+    },
+    {
+      "recording": "277e9941",
+      "build_ms": 5.588183999975627,
+      "projection_ms": 0.036275000013574754,
+      "eligibility_ms": 0.12958599995727127,
+      "gesture_ms": 0.277192999988074
+    },
+    {
+      "recording": "02927481",
+      "build_ms": 9.069657999987157,
+      "projection_ms": 0.03215799995359703,
+      "eligibility_ms": 0.05979100001241022,
+      "gesture_ms": 0.7748549999746501
+    },
+    {
+      "recording": "02927481",
+      "build_ms": 9.069657999987157,
+      "projection_ms": 0.02834600002188381,
+      "eligibility_ms": 0.06216100001665836,
+      "gesture_ms": 0.9049870000126248
+    },
+    {
+      "recording": "02927481",
+      "build_ms": 9.069657999987157,
+      "projection_ms": 0.03230499999062886,
+      "eligibility_ms": 0.09021500000017113,
+      "gesture_ms": 0.8814769999503369
+    },
+    {
+      "recording": "02927481",
+      "build_ms": 9.069657999987157,
+      "projection_ms": 0.028692999990198587,
+      "eligibility_ms": 0.07442399999035842,
+      "gesture_ms": 0.8938920000218786
+    },
+    {
+      "recording": "02927481",
+      "build_ms": 9.069657999987157,
+      "projection_ms": 0.028258999975605548,
+      "eligibility_ms": 0.04547700001467092,
+      "gesture_ms": 0.7016750000161665
+    },
+    {
+      "recording": "90aa0d8d",
+      "build_ms": 5.589869999994335,
+      "projection_ms": 0.02107300002762713,
+      "eligibility_ms": 0.049017000037565595,
+      "gesture_ms": 0.38804600001185463
+    },
+    {
+      "recording": "90aa0d8d",
+      "build_ms": 5.589869999994335,
+      "projection_ms": 0.019109999982447334,
+      "eligibility_ms": 0.03725200002691054,
+      "gesture_ms": 0.28497699997842574
+    },
+    {
+      "recording": "90aa0d8d",
+      "build_ms": 5.589869999994335,
+      "projection_ms": 0.018547999957263528,
+      "eligibility_ms": 0.03384999996569604,
+      "gesture_ms": 0.2655160000131218
+    },
+    {
+      "recording": "e0c56934",
+      "build_ms": 7.813263999992159,
+      "projection_ms": 0.025142999959371082,
+      "eligibility_ms": 0.0531379999983983,
+      "gesture_ms": 0.6204320000051666
+    },
+    {
+      "recording": "e0c56934",
+      "build_ms": 7.813263999992159,
+      "projection_ms": 0.022926999974970386,
+      "eligibility_ms": 0.053599000011672615,
+      "gesture_ms": 0.6185949999917284
+    },
+    {
+      "recording": "e0c56934",
+      "build_ms": 7.813263999992159,
+      "projection_ms": 0.02310500002522531,
+      "eligibility_ms": 0.051445999986299285,
+      "gesture_ms": 0.5826699999715856
+    },
+    {
+      "recording": "e0c56934",
+      "build_ms": 7.813263999992159,
+      "projection_ms": 0.021830999969552067,
+      "eligibility_ms": 0.05225800003927361,
+      "gesture_ms": 0.6167509999954746
+    },
+    {
+      "recording": "e0c56934",
+      "build_ms": 7.813263999992159,
+      "projection_ms": 0.02201099999865619,
+      "eligibility_ms": 0.04761900004268682,
+      "gesture_ms": 0.5828339999993659
+    },
+    {
+      "recording": "e0c56934",
+      "build_ms": 7.813263999992159,
+      "projection_ms": 0.023225999996157043,
+      "eligibility_ms": 0.04840999997668405,
+      "gesture_ms": 0.8472360000268964
+    },
+    {
+      "recording": "dccf8a63",
+      "build_ms": 3.4239920000231905,
+      "projection_ms": 0.018560000000888977,
+      "eligibility_ms": 0.038463999999294174,
+      "gesture_ms": 0.2726519999782795
+    },
+    {
+      "recording": "dccf8a63",
+      "build_ms": 3.4239920000231905,
+      "projection_ms": 0.01704099997823505,
+      "eligibility_ms": 0.04124000003002948,
+      "gesture_ms": 0.3491749999966487
+    },
+    {
+      "recording": "dccf8a63",
+      "build_ms": 3.4239920000231905,
+      "projection_ms": 0.01694899998483379,
+      "eligibility_ms": 0.03169700005400955,
+      "gesture_ms": 0.2545179999628999
+    },
+    {
+      "recording": "dccf8a63",
+      "build_ms": 3.4239920000231905,
+      "projection_ms": 0.016761999972914055,
+      "eligibility_ms": 0.031236999973316415,
+      "gesture_ms": 0.25399599996944744
+    },
+    {
+      "recording": "9b1d959a",
+      "build_ms": 4.01995499998975,
+      "projection_ms": 0.01792900002328679,
+      "eligibility_ms": 0.0551439999867398,
+      "gesture_ms": 0.4700519999687458
+    },
+    {
+      "recording": "9b1d959a",
+      "build_ms": 4.01995499998975,
+      "projection_ms": 0.01887700000224868,
+      "eligibility_ms": 0.06342799997582915,
+      "gesture_ms": 0.4644179999786502
+    },
+    {
+      "recording": "human_control",
+      "build_ms": 7.6359130000014375,
+      "projection_ms": 0.026042000001780252,
+      "eligibility_ms": 0.07229999999935899,
+      "gesture_ms": 0.580329999991136
+    },
+    {
+      "recording": "human_control",
+      "build_ms": 7.6359130000014375,
+      "projection_ms": 0.022618999992118916,
+      "eligibility_ms": 0.05640000000539658,
+      "gesture_ms": 0.5195979999825795
+    },
+    {
+      "recording": "human_control",
+      "build_ms": 7.6359130000014375,
+      "projection_ms": 0.02232800000001589,
+      "eligibility_ms": 0.04134800002475458,
+      "gesture_ms": 0.5669579999789676
+    },
+    {
+      "recording": "human_control",
+      "build_ms": 7.6359130000014375,
+      "projection_ms": 0.02318399998557652,
+      "eligibility_ms": 0.05430999999589403,
+      "gesture_ms": 0.4392300000404248
+    },
+    {
+      "recording": "human_control",
+      "build_ms": 7.6359130000014375,
+      "projection_ms": 0.02213699997355434,
+      "eligibility_ms": 0.053324000020893436,
+      "gesture_ms": 0.5786599999737518
+    },
+    {
+      "recording": "human_control",
+      "build_ms": 7.6359130000014375,
+      "projection_ms": 0.023225000006732444,
+      "eligibility_ms": 0.05698900002926166,
+      "gesture_ms": 0.4016739999883612
+    },
+    {
+      "recording": "google_old",
+      "build_ms": 15.849570000000313,
+      "projection_ms": 0.041003999967870186,
+      "eligibility_ms": 0.06992700002683705,
+      "gesture_ms": 0.7141909999859308
+    },
+    {
+      "recording": "google_old",
+      "build_ms": 15.849570000000313,
+      "projection_ms": 0.03701900004671188,
+      "eligibility_ms": 0.06529999996018887,
+      "gesture_ms": 1.019009999993159
+    },
+    {
+      "recording": "google_old",
+      "build_ms": 15.849570000000313,
+      "projection_ms": 0.03521700000419514,
+      "eligibility_ms": 0.052139999979772256,
+      "gesture_ms": 0.4039300000044932
+    },
+    {
+      "recording": "google_old",
+      "build_ms": 15.849570000000313,
+      "projection_ms": 0.03167300002360207,
+      "eligibility_ms": 0.04548700002260375,
+      "gesture_ms": 0.6203500000196982
+    },
+    {
+      "recording": "google_old",
+      "build_ms": 15.849570000000313,
+      "projection_ms": 0.035090999972453574,
+      "eligibility_ms": 0.06566399997609551,
+      "gesture_ms": 0.41473800001767813
+    },
+    {
+      "recording": "google_old",
+      "build_ms": 15.849570000000313,
+      "projection_ms": 0.03346799996961636,
+      "eligibility_ms": 0.18852200003038888,
+      "gesture_ms": 1.0109239999565034
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.029906000008850242,
+      "eligibility_ms": 0.06437400003278526,
+      "gesture_ms": 0.4969050000340758
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.02516699998977856,
+      "eligibility_ms": 0.050736000048345886,
+      "gesture_ms": 0.49232000003485155
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.02862200000208759,
+      "eligibility_ms": 0.040981999973155325,
+      "gesture_ms": 0.25107100003651794
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.023358000021289627,
+      "eligibility_ms": 0.04293500001040229,
+      "gesture_ms": 0.4443440000159171
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.024822999989737582,
+      "eligibility_ms": 0.05873599997130441,
+      "gesture_ms": 0.257142999998905
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.02440200000819459,
+      "eligibility_ms": 0.07807899999079382,
+      "gesture_ms": 0.5966310000076191
+    },
+    {
+      "recording": "silence_accidental",
+      "build_ms": 10.144749000005504,
+      "projection_ms": 0.05310500000632601,
+      "eligibility_ms": 0.32882400000744383,
+      "gesture_ms": 0.7214720000092711
+    },
+    {
+      "recording": "take_1",
+      "build_ms": 44.404098000029535,
+      "projection_ms": 0.03984800002854172,
+      "eligibility_ms": 0.07020900000043184,
+      "gesture_ms": 0.9006099999737671
+    },
+    {
+      "recording": "take_1",
+      "build_ms": 44.404098000029535,
+      "projection_ms": 0.036581999950158206,
+      "eligibility_ms": 0.062148999973032915,
+      "gesture_ms": 0.772574999984954
+    },
+    {
+      "recording": "take_1",
+      "build_ms": 44.404098000029535,
+      "projection_ms": 0.03155199999582692,
+      "eligibility_ms": 0.04493000000138636,
+      "gesture_ms": 0.667343999964487
+    },
+    {
+      "recording": "take_1",
+      "build_ms": 44.404098000029535,
+      "projection_ms": 0.03028399999038811,
+      "eligibility_ms": 0.04477400000268972,
+      "gesture_ms": 0.6711059999702229
+    },
+    {
+      "recording": "take_1",
+      "build_ms": 44.404098000029535,
+      "projection_ms": 0.031395999997130275,
+      "eligibility_ms": 0.05473200002370504,
+      "gesture_ms": 0.6934950000072604
+    },
+    {
+      "recording": "take_1",
+      "build_ms": 44.404098000029535,
+      "projection_ms": 0.03159700003152466,
+      "eligibility_ms": 0.08998600003451429,
+      "gesture_ms": 0.8831000000100175
+    },
+    {
+      "recording": "take_2",
+      "build_ms": 10.082345000000714,
+      "projection_ms": 0.03110599999445185,
+      "eligibility_ms": 0.05887999998321902,
+      "gesture_ms": 0.6505860000061148
+    },
+    {
+      "recording": "take_2",
+      "build_ms": 10.082345000000714,
+      "projection_ms": 0.02342499999485881,
+      "eligibility_ms": 0.04782599995678538,
+      "gesture_ms": 0.564417000020967
+    },
+    {
+      "recording": "take_2",
+      "build_ms": 10.082345000000714,
+      "projection_ms": 0.022103999981482048,
+      "eligibility_ms": 0.03710000004275571,
+      "gesture_ms": 0.47101000001248394
+    },
+    {
+      "recording": "take_2",
+      "build_ms": 10.082345000000714,
+      "projection_ms": 0.02109700000119119,
+      "eligibility_ms": 0.041984999995747785,
+      "gesture_ms": 0.5224340000040684
+    },
+    {
+      "recording": "take_2",
+      "build_ms": 10.082345000000714,
+      "projection_ms": 0.023247999990871904,
+      "eligibility_ms": 0.05400300000246716,
+      "gesture_ms": 0.564014000019597
+    },
+    {
+      "recording": "take_2",
+      "build_ms": 10.082345000000714,
+      "projection_ms": 0.02323000001069886,
+      "eligibility_ms": 0.08912700002383644,
+      "gesture_ms": 0.6565639999962514
+    },
+    {
+      "recording": "take_3",
+      "build_ms": 17.557271000043784,
+      "projection_ms": 0.04871200002298792,
+      "eligibility_ms": 0.07342199995719056,
+      "gesture_ms": 0.8638360000077228
+    },
+    {
+      "recording": "take_3",
+      "build_ms": 17.557271000043784,
+      "projection_ms": 0.036728999987190036,
+      "eligibility_ms": 0.06828499999755877,
+      "gesture_ms": 0.8030660000031276
+    },
+    {
+      "recording": "take_3",
+      "build_ms": 17.557271000043784,
+      "projection_ms": 0.03557600001613537,
+      "eligibility_ms": 0.0458210000147119,
+      "gesture_ms": 0.6967379999878176
+    },
+    {
+      "recording": "take_3",
+      "build_ms": 17.557271000043784,
+      "projection_ms": 0.034804999984316964,
+      "eligibility_ms": 0.04711200000429017,
+      "gesture_ms": 0.7173759999545837
+    },
+    {
+      "recording": "take_3",
+      "build_ms": 17.557271000043784,
+      "projection_ms": 0.03677300003346318,
+      "eligibility_ms": 0.05383500001698849,
+      "gesture_ms": 0.7346169999777885
+    },
+    {
+      "recording": "take_3",
+      "build_ms": 17.557271000043784,
+      "projection_ms": 0.036674999989827484,
+      "eligibility_ms": 0.09023399996976877,
+      "gesture_ms": 0.898235000022396
+    },
+    {
+      "recording": "neg_digital_silence",
+      "build_ms": 2.102821999983462,
+      "projection_ms": 0.027064999983394955,
+      "eligibility_ms": 0.016353999967577693,
+      "gesture_ms": 0.0966759999982969
+    },
+    {
+      "recording": "neg_stationary_noise",
+      "build_ms": 3.0958400000145048,
+      "projection_ms": 0.027498999997987994,
+      "eligibility_ms": 0.017088999982206587,
+      "gesture_ms": 0.09655299999167255
+    },
+    {
+      "recording": "neg_clicks",
+      "build_ms": 2.1726219999891327,
+      "projection_ms": 0.026665999996566825,
+      "eligibility_ms": 0.016440000024431356,
+      "gesture_ms": 0.09784300004866964
+    }
+  ],
+  "summary": {
+    "build_ms": {
+      "median": 8.805694999978186,
+      "maximum": 44.404098000029535
+    },
+    "projection_ms": {
+      "median": 0.026133500000469212,
+      "maximum": 0.08254400000851092
+    },
+    "eligibility_ms": {
+      "median": 0.05247500001814842,
+      "maximum": 0.32882400000744383
+    },
+    "gesture_ms": {
+      "median": 0.564215500020282,
+      "maximum": 1.0412480000354662
+    }
+  }
+}

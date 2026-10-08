@@ -9,7 +9,7 @@ from benma_api.speech.provider_lifecycle import provider_status_manifest
 
 WORDING_POLICY = {
     "raw_evidence": "factual_provider_or_acoustic_observation_only",
-    "experimental": "detected_appears_likely_with_conflict_and_missingness",
+    "experimental": "uncalibrated_provider_labels_with_conflict_and_missingness",
     "calibrated": "stronger_diagnostic_only_with_matching_calibration_scope",
 }
 

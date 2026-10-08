@@ -27,7 +27,10 @@ def test_target_parser_preserves_lexical_and_surface_tones() -> None:
     assert nihao.surface_tone_expectation["expected_surface_tones"] == [2, 3]
     assert nihao.surface_tone_expectation["rules"][0]["type"] == "THIRD_TONE_SANDHI"
     assert surface_tone_expectation("不是", [4, 4])["expected_surface_tones"] == [2, 4]
-    assert surface_tone_expectation("一个", [1, 4])["expected_surface_tones"] == [2, 4]
+    quantity = surface_tone_expectation("一个", [1, 4])
+    assert quantity["expected_surface_tones"] is None
+    assert quantity["status"] == "context_dependent"
+    assert [r["expected_surface_tone"] for r in quantity["rules"]] == [2, None]
     assert surface_tone_expectation("一天", [1, 1])["expected_surface_tones"] == [4, 1]
 
 
@@ -134,6 +137,7 @@ def _interpret(
     *,
     expected_tone: int = 2,
     synthetic: bool = False,
+    experimental: bool = True,
 ) -> dict[str, object]:
     target = PronunciationTarget(
         text="麻",
@@ -178,7 +182,7 @@ def _interpret(
         assessment=assessment,
         acoustic=acoustic,
         alignment=None,
-        settings=Settings(environment="test"),
+        settings=Settings(environment="test", enable_experimental_tone_interpretation=experimental),
     )
     return observations[0]
 
@@ -203,6 +207,16 @@ def test_interpreter_distinguishes_agreement_conflict_and_acoustic_only() -> Non
     assert acoustic_only["capability_state"] == "raw_evidence"
     third_tone = _interpret(4, [-2.0, 2.0], expected_tone=3)
     assert third_tone["agreement"] == "inconclusive"
+
+
+def test_checkpoint_default_keeps_provider_labels_uncalibrated() -> None:
+    assert Settings.model_fields["enable_experimental_tone_interpretation"].default is False
+    observation = _interpret(4, [2.0, -2.0], experimental=False)
+    assert observation["kind"] == "provider_tone_observation"
+    assert observation["capability_state"] == "raw_evidence"
+    assert "Uncalibrated provider tone label" in str(observation["message"])
+    assert "not a pronunciation grade" in str(observation["message"])
+    assert "detected" not in str(observation["message"])
 
 
 def test_interpreter_diff_is_stable_and_non_mutating() -> None:
@@ -285,7 +299,7 @@ def test_analysis_orchestrates_separate_evidence_and_is_idempotent(
     assert first["alignment"]["id"] == second["alignment"]["id"]
     assert first["interpretation"]["id"] == second["interpretation"]["id"]
     assert first["interpretation"]["interpreter_configuration"] == {
-        "enable_experimental_tone_interpretation": True,
+        "enable_experimental_tone_interpretation": False,
         "enable_categorical_tone_judgment": False,
     }
     rerun = client.post(
@@ -305,11 +319,9 @@ def test_analysis_orchestrates_separate_evidence_and_is_idempotent(
     assert first["capability_policy"]["wording_policy"]["raw_evidence"] == (
         "factual_provider_or_acoustic_observation_only"
     )
-    assert first["overall_evidence"]["recording_quality"]["status"] == (
-        "invalid_for_interpretation"
-    )
+    assert first["overall_evidence"]["recording_quality"]["status"] == "usable"
     assert first["syllables"][0]["interpretation"] is None or (
-        first["syllables"][0]["interpretation"]["kind"] == "invalid_audio"
+        first["syllables"][0]["interpretation"]["kind"] == "acoustic_observation"
     )
     history = client.get(f"/v1/pronunciation-targets/{target['id']}/attempts", headers=auth_header)
     assert history.status_code == 200 and len(history.json()) == 1
@@ -402,7 +414,8 @@ def test_target_reuses_exact_provider_timing_for_shape_without_fabricating_surfa
     ).json()
     syllable = result["syllables"][0]
     assert syllable["timing"]["source"] == "assessment"
-    assert syllable["observed_contour"]["classification"] == "1-like"
+    assert syllable["observed_contour"]["classification"] == "unclear"
+    assert syllable["tone_comparison_policy"] == "experimental"
     assert syllable["lexical_tone"] == 4
     assert result["assessment"]["normalized_result"]["pronunciation_score"] == 79
 

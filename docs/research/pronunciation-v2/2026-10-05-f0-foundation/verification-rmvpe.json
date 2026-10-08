@@ -1,0 +1,97 @@
+{
+  "explicit_initialization_seconds": 2.6294477510091383,
+  "warm_runs": [
+    {
+      "recording": "native_24k",
+      "iteration": 0,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.12550937497871928,
+      "cpu_seconds": 0.12512015499999984,
+      "real_time_factor": 0.11953273807497074,
+      "evidence_sha256": "ba6221dcae8949a7cbe99414b7420e17ed5e20d5767cad6ada87e86e0ba952f7"
+    },
+    {
+      "recording": "native_24k",
+      "iteration": 1,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.1254420809855219,
+      "cpu_seconds": 0.12503594000000007,
+      "real_time_factor": 0.1194686485576399,
+      "evidence_sha256": "ba6221dcae8949a7cbe99414b7420e17ed5e20d5767cad6ada87e86e0ba952f7"
+    },
+    {
+      "recording": "native_24k",
+      "iteration": 2,
+      "duration_seconds": 1.05,
+      "wall_seconds": 0.1247092270059511,
+      "cpu_seconds": 0.1243351279999998,
+      "real_time_factor": 0.1187706923866201,
+      "evidence_sha256": "ba6221dcae8949a7cbe99414b7420e17ed5e20d5767cad6ada87e86e0ba952f7"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 0,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.30396137898787856,
+      "cpu_seconds": 0.3028940950000001,
+      "real_time_factor": 0.10642672525124311,
+      "evidence_sha256": "47d5a9fc71478e7e1920583e98c540b687c8fb5c30170c8cd09a6c34768f36a3"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 1,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.28378503100248054,
+      "cpu_seconds": 0.28300534099999997,
+      "real_time_factor": 0.09936233223274368,
+      "evidence_sha256": "47d5a9fc71478e7e1920583e98c540b687c8fb5c30170c8cd09a6c34768f36a3"
+    },
+    {
+      "recording": "human_control",
+      "iteration": 2,
+      "duration_seconds": 2.8560625,
+      "wall_seconds": 0.2862454970018007,
+      "cpu_seconds": 0.2854473930000001,
+      "real_time_factor": 0.10022382108297724,
+      "evidence_sha256": "47d5a9fc71478e7e1920583e98c540b687c8fb5c30170c8cd09a6c34768f36a3"
+    }
+  ],
+  "first_inference_seconds": 0.22161112798494287,
+  "first_evidence_sha256": "ba6221dcae8949a7cbe99414b7420e17ed5e20d5767cad6ada87e86e0ba952f7",
+  "invariance": {
+    "recording": "f5dc0cc1",
+    "audio_sha256": "a5917bbbb3f969a001f88da190c204dbc19e21089e7fc3eb0c1616229f7819ef",
+    "contexts": [
+      {
+        "transcript": "贵州",
+        "pinyin": "gui4 zhou1",
+        "tone": [
+          4,
+          1
+        ]
+      },
+      {
+        "transcript": "鬼粥",
+        "pinyin": "invented",
+        "tone": [
+          1,
+          4
+        ]
+      },
+      {
+        "transcript": "",
+        "target": null
+      },
+      {
+        "transcript": "zxq gibberish 123 !",
+        "target": "nonsense",
+        "expected_contour": "fake"
+      }
+    ],
+    "byte_identical": true,
+    "evidence_sha256": "e94598db41811cacd91b70d6df21aa9bf1a96e1dc8a765b73e72d247a10717fa"
+  },
+  "upstream_public_method_identical": true,
+  "process_peak_rss_kib": 945380,
+  "median_warm_rtf": 0.11259870881893161
+}

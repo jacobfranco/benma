@@ -1,0 +1,3935 @@
+[
+  {
+    "id": "6f56aef1",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "3d76f83ed9ff57af5ebf20aaa83c1ac21b7a8c08734916aba59f2d9ee138c3be",
+    "duration_seconds": 4.527875,
+    "rms": 0.027482550789145844,
+    "peak": 0.1566162109375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.004216755393276919,
+      "activity_seconds": 0.53,
+      "periodic_seconds": 0.51,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.00246951668701581,
+        0.004066499087967964,
+        0.018856383190855783,
+        0.03866170919750262,
+        0.048886251645744096,
+        0.0518562983966996,
+        0.07097199485987915
+      ],
+      "frame_count": 451,
+      "active_frame_count": 273,
+      "active_total_seconds": 2.73,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 11,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0024812947316797175,
+        0.004194561165540025,
+        0.01876528991815129,
+        0.03846664913078118,
+        0.04864611323501992,
+        0.05052840220454366,
+        0.0677961022860849
+      ],
+      "active_energy_seconds": 2.73,
+      "active_run_seconds": 0.54,
+      "band_active_run_seconds": 0.59,
+      "band_modulation": 20.728183999760212,
+      "band_ratio": 0.3051487966389279,
+      "low_below_150_ratio": 0.42265843446579654,
+      "flux_q90": 0.7345101948240689,
+      "entropy_median": 0.5171626099274983,
+      "band_energy_proportions": [
+        0.42265843446579654,
+        0.2510126701678709,
+        0.2019471363843009,
+        0.05147412543396472,
+        0.03148608426891712,
+        0.020241450551745005,
+        0.0211800987274046
+      ]
+    },
+    "periodic_frames": 246,
+    "pitch_quantiles_0_10_50_90_100": [
+      40.474467787328045,
+      65.07332184564886,
+      96.87402877227858,
+      114.97977977548192,
+      127.50933933651385
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "5b995fff",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "4f43188ac6f43538b1cd13fab7a115f1e4b6b94c4dbb6f6d207141415d8d3a2a",
+    "duration_seconds": 2.229125,
+    "rms": 0.0349850893128682,
+    "peak": 0.30853271484375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0028573701654435882,
+      "activity_seconds": 0.46,
+      "periodic_seconds": 0.35000000000000003,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0017749409555796413,
+        0.002728512170848383,
+        0.011086635596474161,
+        0.03363236759753545,
+        0.06264678330741935,
+        0.09337663236822819,
+        0.12174029533074822
+      ],
+      "frame_count": 221,
+      "active_frame_count": 121,
+      "active_total_seconds": 1.21,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 3,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0017465972067232595,
+        0.002683950296395768,
+        0.011445433551714523,
+        0.03235114649012197,
+        0.06115708493046912,
+        0.09552659733935864,
+        0.1210123956507295
+      ],
+      "active_energy_seconds": 1.24,
+      "active_run_seconds": 0.47000000000000003,
+      "band_active_run_seconds": 0.48,
+      "band_modulation": 32.837163816973,
+      "band_ratio": 0.1896309140947507,
+      "low_below_150_ratio": 0.47114571360056534,
+      "flux_q90": 0.5537081739388636,
+      "entropy_median": 0.4811340725155168,
+      "band_energy_proportions": [
+        0.4711457136005654,
+        0.32413804904212873,
+        0.06519990146031428,
+        0.047684523282562244,
+        0.06931328217982409,
+        0.007433207172050067,
+        0.015085323262555525
+      ]
+    },
+    "periodic_frames": 88,
+    "pitch_quantiles_0_10_50_90_100": [
+      49.02700133964434,
+      61.42089902239115,
+      114.79216474417382,
+      134.18784169469083,
+      151.46763244818308
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "7787300e",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy",
+      "sparse_pitch",
+      "low_f0_54_70_proxy"
+    ],
+    "sha256": "0dd0e4a9dd5ca6bd87a83077ad69f2f8193fbe8b73bbfee49290055630baf3fe",
+    "duration_seconds": 7.8948125,
+    "rms": 0.020229655491024713,
+    "peak": 0.164306640625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0021888770481005883,
+      "activity_seconds": 1.09,
+      "periodic_seconds": 0.38,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0018903088721125996,
+        0.002186105092092541,
+        0.0030076242220886265,
+        0.025644919686388462,
+        0.0390007787307196,
+        0.04867475885818301,
+        0.06444897405503372
+      ],
+      "frame_count": 788,
+      "active_frame_count": 277,
+      "active_total_seconds": 2.77,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 7,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.001955958685302878,
+        0.0021930876243831006,
+        0.00294614551912539,
+        0.025500877020544165,
+        0.03913630448297668,
+        0.049370221425667674,
+        0.06472707247917159
+      ],
+      "active_energy_seconds": 2.7600000000000002,
+      "active_run_seconds": 1.09,
+      "band_active_run_seconds": 0.75,
+      "band_modulation": 17.483255277327657,
+      "band_ratio": 0.21371687142411452,
+      "low_below_150_ratio": 0.4307989846328872,
+      "flux_q90": 0.537994715608735,
+      "entropy_median": 0.5304489109960662,
+      "band_energy_proportions": [
+        0.4307989846328874,
+        0.3271741569891293,
+        0.131625868026634,
+        0.05210136676151071,
+        0.021590898208572396,
+        0.00839873842739742,
+        0.028309986953868976
+      ]
+    },
+    "periodic_frames": 222,
+    "pitch_quantiles_0_10_50_90_100": [
+      42.035571726137775,
+      60.630605141533316,
+      94.81363787531735,
+      119.31926813293596,
+      183.01526785645143
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "c95673d3",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "low_f0_54_70_proxy"
+    ],
+    "sha256": "2cbbdf2874d68e478891309fc69ce2f814ba393003324cd933a5c244ed951c8d",
+    "duration_seconds": 3.9241875,
+    "rms": 0.07677873389034735,
+    "peak": 0.52838134765625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.00636849265659299,
+      "activity_seconds": 2.05,
+      "periodic_seconds": 0.75,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0027039747701775407,
+        0.00585676670383295,
+        0.04469571869452543,
+        0.10520934307549265,
+        0.1266809359937596,
+        0.14993244949594559,
+        0.22371880174666442
+      ],
+      "frame_count": 391,
+      "active_frame_count": 286,
+      "active_total_seconds": 2.86,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 7,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0028994341260205948,
+        0.006107413852883695,
+        0.04497157054603229,
+        0.10396175953556437,
+        0.12587993803491898,
+        0.15676749212734714,
+        0.22711190884368365
+      ],
+      "active_energy_seconds": 2.87,
+      "active_run_seconds": 2.06,
+      "band_active_run_seconds": 1.58,
+      "band_modulation": 32.64439860263396,
+      "band_ratio": 0.6911384161452084,
+      "low_below_150_ratio": 0.06973895070735155,
+      "flux_q90": 0.5034591633745547,
+      "entropy_median": 0.5408344847069225,
+      "band_energy_proportions": [
+        0.0697389507073516,
+        0.22978844365031206,
+        0.5206480709059343,
+        0.16228607432386222,
+        0.004361747309119277,
+        0.003842523606292916,
+        0.00933418949712763
+      ]
+    },
+    "periodic_frames": 236,
+    "pitch_quantiles_0_10_50_90_100": [
+      44.54728217631999,
+      64.5461663026172,
+      96.26251345183542,
+      112.61960258920584,
+      159.9489958823087
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "c5188fc3",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "189ce5173001aa7b478a719c8233e89a8ea416a2039b14f10ba7a81121f71621",
+    "duration_seconds": 2.13625,
+    "rms": 0.05366946510056898,
+    "peak": 0.433380126953125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0028624668302248734,
+      "activity_seconds": 1.26,
+      "periodic_seconds": 0.23,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0021129427183707986,
+        0.0028006217546152506,
+        0.019445874901549042,
+        0.059571365749845076,
+        0.10855898999616177,
+        0.12828793980205075,
+        0.1652222863549103
+      ],
+      "frame_count": 212,
+      "active_frame_count": 127,
+      "active_total_seconds": 1.27,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 5,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0021834213971284504,
+        0.002804717274286558,
+        0.019654966592171315,
+        0.0601435299470661,
+        0.10769283225438109,
+        0.12966954137376804,
+        0.16482149189525125
+      ],
+      "active_energy_seconds": 1.28,
+      "active_run_seconds": 1.28,
+      "band_active_run_seconds": 1.08,
+      "band_modulation": 58.751707502157466,
+      "band_ratio": 0.6956202639735718,
+      "low_below_150_ratio": 0.07008438341534787,
+      "flux_q90": 0.6935007448541882,
+      "entropy_median": 0.5246952663814777,
+      "band_energy_proportions": [
+        0.07008438341534784,
+        0.22353594188722217,
+        0.643536040142732,
+        0.0351950911128866,
+        0.012499301874304461,
+        0.0043898308436482025,
+        0.010759410723858318
+      ]
+    },
+    "periodic_frames": 77,
+    "pitch_quantiles_0_10_50_90_100": [
+      57.60058050912553,
+      116.69121604933493,
+      146.87371643167882,
+      417.5787224846719,
+      444.49620672034183
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "27ea3b92",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "low_f0_54_70_proxy"
+    ],
+    "sha256": "0f1cde94bc6a9ec5560b038524bb67202affca04a77590c8d3dd8a7e15e83b91",
+    "duration_seconds": 2.6935,
+    "rms": 0.036635568269270835,
+    "peak": 0.239349365234375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0018382533148953671,
+      "activity_seconds": 0.76,
+      "periodic_seconds": 0.27,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0015354275085432904,
+        0.001789409741673716,
+        0.0076245371348079944,
+        0.04581732151777934,
+        0.06714830655200628,
+        0.08700097898306429,
+        0.10210710798282616
+      ],
+      "frame_count": 268,
+      "active_frame_count": 138,
+      "active_total_seconds": 1.3800000000000001,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 5,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.001594838759565218,
+        0.0018079768659642111,
+        0.008678527338912619,
+        0.046151657495727146,
+        0.06802003556559288,
+        0.08519838708390269,
+        0.10110440728076157
+      ],
+      "active_energy_seconds": 1.3900000000000001,
+      "active_run_seconds": 0.77,
+      "band_active_run_seconds": 0.46,
+      "band_modulation": 53.93255769674571,
+      "band_ratio": 0.5553577009528485,
+      "low_below_150_ratio": 0.17503468245552928,
+      "flux_q90": 0.6716711991898505,
+      "entropy_median": 0.5464653146774786,
+      "band_energy_proportions": [
+        0.1750346824555293,
+        0.25233796138868847,
+        0.47941855937462646,
+        0.037942157346341744,
+        0.030573626041488007,
+        0.007423358190392543,
+        0.017269655202933644
+      ]
+    },
+    "periodic_frames": 96,
+    "pitch_quantiles_0_10_50_90_100": [
+      58.13054258879208,
+      67.82941362297223,
+      116.03461283760635,
+      131.29738265008893,
+      137.83314075862523
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "0f4107fe",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "d76f1adcaa80df3bff443bb4f3534bd97d3c51d0d7586d813bff3a5fd2e4bb4a",
+    "duration_seconds": 2.2755625,
+    "rms": 0.04202483330104304,
+    "peak": 0.2318115234375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0029030508619606716,
+      "activity_seconds": 0.5,
+      "periodic_seconds": 0.46,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0020782532026283186,
+        0.002761799707620438,
+        0.02351569188411016,
+        0.05780827542560043,
+        0.07594658827427758,
+        0.08836954363771593,
+        0.10848705711034726
+      ],
+      "frame_count": 226,
+      "active_frame_count": 141,
+      "active_total_seconds": 1.41,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002124771164521029,
+        0.0027906482222717923,
+        0.022773800940037857,
+        0.05480036426572003,
+        0.07748845126750069,
+        0.08725284722901837,
+        0.1047968266894956
+      ],
+      "active_energy_seconds": 1.44,
+      "active_run_seconds": 0.51,
+      "band_active_run_seconds": 0.47000000000000003,
+      "band_modulation": 33.03697286011429,
+      "band_ratio": 0.3703497638895753,
+      "low_below_150_ratio": 0.20875112858184777,
+      "flux_q90": 0.4840300931302632,
+      "entropy_median": 0.5375483215079492,
+      "band_energy_proportions": [
+        0.20875112858184777,
+        0.4204228179874524,
+        0.32417231847411787,
+        0.03774320830733001,
+        0.00798206714268022,
+        0.00045216996544699344,
+        0.0004762895411245052
+      ]
+    },
+    "periodic_frames": 114,
+    "pitch_quantiles_0_10_50_90_100": [
+      44.579537520743635,
+      92.0571850130851,
+      106.51981835295626,
+      123.95827652808133,
+      207.98357329683995
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "f3c642b5",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy",
+      "sparse_pitch"
+    ],
+    "sha256": "6dc1af68387a1ca93096567233d01ab918c40493e49b2c9c6cfcfb7687c1ad8f",
+    "duration_seconds": 2.2059375,
+    "rms": 0.020406047704967838,
+    "peak": 0.151519775390625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.00235115906749456,
+      "activity_seconds": 0.48,
+      "periodic_seconds": 0.2,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002094077722886135,
+        0.0023451023168617937,
+        0.002956916491549011,
+        0.01556127040218504,
+        0.04099943634579283,
+        0.05491786126905478,
+        0.0735144592675506
+      ],
+      "frame_count": 219,
+      "active_frame_count": 52,
+      "active_total_seconds": 0.52,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 4,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002085359546096775,
+        0.00233559317285101,
+        0.002974980241645788,
+        0.015977368215306334,
+        0.03941147871515159,
+        0.054789379572065276,
+        0.07170627069618019
+      ],
+      "active_energy_seconds": 0.54,
+      "active_run_seconds": 0.49,
+      "band_active_run_seconds": 0.34,
+      "band_modulation": 11.453156841842002,
+      "band_ratio": 0.19022593416863398,
+      "low_below_150_ratio": 0.22076211022738593,
+      "flux_q90": 0.6060654522335698,
+      "entropy_median": 0.5659728099012142,
+      "band_energy_proportions": [
+        0.22076211022738598,
+        0.5703513661954828,
+        0.11302677775365136,
+        0.05833738944046513,
+        0.006385348893114465,
+        0.012476418081403071,
+        0.018660589408497286
+      ]
+    },
+    "periodic_frames": 65,
+    "pitch_quantiles_0_10_50_90_100": [
+      56.23136173883855,
+      59.548374173535095,
+      64.34648159813159,
+      144.31518435880236,
+      156.86435337240619
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "f47fadb3",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "978db669aa6dfeb1fdf25dc07f2de89034d2c3736d34d4c04b3f8b096a9db1e2",
+    "duration_seconds": 3.08825,
+    "rms": 0.02417107704892377,
+    "peak": 0.168182373046875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.002492917998400647,
+      "activity_seconds": 0.62,
+      "periodic_seconds": 0.64,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002013359694924604,
+        0.002482803638482445,
+        0.0061761727279479785,
+        0.03486262145236396,
+        0.044662293508234495,
+        0.04994288728446301,
+        0.06730968029772147
+      ],
+      "frame_count": 307,
+      "active_frame_count": 149,
+      "active_total_seconds": 1.49,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002027043263157155,
+        0.0024903178511485233,
+        0.006827356114009644,
+        0.03438214064248316,
+        0.04516242329223824,
+        0.049551831839091495,
+        0.07046212435368263
+      ],
+      "active_energy_seconds": 1.52,
+      "active_run_seconds": 0.65,
+      "band_active_run_seconds": 0.54,
+      "band_modulation": 15.889592848181048,
+      "band_ratio": 0.19125931182886385,
+      "low_below_150_ratio": 0.3276425296064923,
+      "flux_q90": 0.5401703898590843,
+      "entropy_median": 0.5155454106171476,
+      "band_energy_proportions": [
+        0.32764252960649254,
+        0.4620644560342005,
+        0.15542808765959706,
+        0.02494102089346238,
+        0.005932700732110428,
+        0.004957502543693904,
+        0.019033702530443022
+      ]
+    },
+    "periodic_frames": 139,
+    "pitch_quantiles_0_10_50_90_100": [
+      52.39210945873303,
+      79.43729932495184,
+      97.94273884340099,
+      106.63475300251238,
+      120.61848553327621
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "a0270cee",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "b50de95b98256488786e9f146ce08afc70cb3c3d5d2629c45cc92057fdfa1fa5",
+    "duration_seconds": 3.8313125,
+    "rms": 0.02713342678691125,
+    "peak": 0.1734619140625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.003587064158184182,
+      "activity_seconds": 0.55,
+      "periodic_seconds": 0.6900000000000001,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0028829160295819104,
+        0.003487685867382416,
+        0.016966979682792684,
+        0.03476933505086272,
+        0.04357359081375597,
+        0.05754764630772102,
+        0.0732540842650632
+      ],
+      "frame_count": 382,
+      "active_frame_count": 207,
+      "active_total_seconds": 2.07,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 7,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0028669993477455887,
+        0.003529558597438317,
+        0.016997085062631246,
+        0.033185566746118285,
+        0.04375400862678829,
+        0.057753128275694496,
+        0.07330680588739631
+      ],
+      "active_energy_seconds": 2.1,
+      "active_run_seconds": 0.56,
+      "band_active_run_seconds": 0.52,
+      "band_modulation": 14.197222813038152,
+      "band_ratio": 0.18979450769288078,
+      "low_below_150_ratio": 0.5125285774229735,
+      "flux_q90": 0.484693400804999,
+      "entropy_median": 0.47960477458648926,
+      "band_energy_proportions": [
+        0.5125285774229734,
+        0.24147379140804542,
+        0.0903760194908696,
+        0.08225890097001684,
+        0.004305510988465749,
+        0.012854076243528436,
+        0.05620312347610012
+      ]
+    },
+    "periodic_frames": 268,
+    "pitch_quantiles_0_10_50_90_100": [
+      53.215081489344215,
+      57.09648350250242,
+      92.21250098234711,
+      121.5143663339196,
+      131.94032628059267
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "silence_original",
+    "label": "negative",
+    "tags": [],
+    "sha256": "c95cc5554d4f682bb899d12e17509468dc870ade24ea896eb3d98755d05087e4",
+    "duration_seconds": 6.78025,
+    "rms": 0.006132451753052656,
+    "peak": 0.536041259765625,
+    "old": {
+      "no_speech": true,
+      "reason": "stationary_background_without_sustained_activity",
+      "background_rms": 0.0030302280987268356,
+      "activity_seconds": 0.03,
+      "periodic_seconds": 0.0,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": false,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002765216594302351,
+        0.003027887488113265,
+        0.003661182584313602,
+        0.004466956895722752,
+        0.005042084684110548,
+        0.005788052874948431,
+        0.05706691040891731
+      ],
+      "frame_count": 677,
+      "active_frame_count": 16,
+      "active_total_seconds": 0.16,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": true,
+        "han_units": 8,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002782122206266154,
+        0.003030725620571662,
+        0.0036627735272183057,
+        0.004506400919482806,
+        0.0050631718266974535,
+        0.005932196960709877,
+        0.051075146334587394
+      ],
+      "active_energy_seconds": 0.19,
+      "active_run_seconds": 0.03,
+      "band_active_run_seconds": 0.03,
+      "band_modulation": 1.629044370997968,
+      "band_ratio": 0.22489821578392008,
+      "low_below_150_ratio": 0.32080883927011616,
+      "flux_q90": 0.5028751428868264,
+      "entropy_median": 0.4998237489209636,
+      "band_energy_proportions": [
+        0.32080883927011616,
+        0.052173787046913285,
+        0.05535086019224292,
+        0.028827846922500018,
+        0.08202747472060372,
+        0.058692033948573134,
+        0.4021191578990505
+      ]
+    },
+    "periodic_frames": 0,
+    "pitch_quantiles_0_10_50_90_100": [],
+    "current_accepted": false
+  },
+  {
+    "id": "484e80c0",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "901ce949f0df0426e89b1e4cf91d7a2d33e26455146527de0968f336b295dd22",
+    "duration_seconds": 2.0665625,
+    "rms": 0.04149821589627824,
+    "peak": 0.22705078125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0054335910739256735,
+      "activity_seconds": 0.64,
+      "periodic_seconds": 0.62,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.004183941386865918,
+        0.005219044509987649,
+        0.015287541917396162,
+        0.06689929590577907,
+        0.07708134488843908,
+        0.07991516625963044,
+        0.08759277311280436
+      ],
+      "frame_count": 205,
+      "active_frame_count": 97,
+      "active_total_seconds": 0.97,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.004176678726643269,
+        0.0053191458218631305,
+        0.015415321898010436,
+        0.06681043359702683,
+        0.07738245932493235,
+        0.07990277139920407,
+        0.08620559044047588
+      ],
+      "active_energy_seconds": 0.99,
+      "active_run_seconds": 0.65,
+      "band_active_run_seconds": 0.86,
+      "band_modulation": 26.526393248195664,
+      "band_ratio": 0.460244089818081,
+      "low_below_150_ratio": 0.2796953583052414,
+      "flux_q90": 0.6418280558091567,
+      "entropy_median": 0.5511470082161475,
+      "band_energy_proportions": [
+        0.2796953583052413,
+        0.2507294112486434,
+        0.3857727569550029,
+        0.03455581893153213,
+        0.0304393067931663,
+        0.00947620713837985,
+        0.00933114062803396
+      ]
+    },
+    "periodic_frames": 96,
+    "pitch_quantiles_0_10_50_90_100": [
+      46.452269428215004,
+      56.18642997637207,
+      112.8055398547541,
+      120.83839713581662,
+      139.41852033341732
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "e59a6350",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "sparse_pitch"
+    ],
+    "sha256": "8e1a5cd68783e51ba012233b3df32854296102f523b67207c8702868afa4ef0e",
+    "duration_seconds": 2.3916875,
+    "rms": 0.03353104273024025,
+    "peak": 0.319488525390625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.003031617657136653,
+      "activity_seconds": 0.62,
+      "periodic_seconds": 0.29,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.00254906015232222,
+        0.0029816120906606494,
+        0.004044433725266087,
+        0.029160795043750458,
+        0.06513907757153138,
+        0.07387004357998433,
+        0.16548584634675265
+      ],
+      "frame_count": 238,
+      "active_frame_count": 62,
+      "active_total_seconds": 0.62,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 4,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0025500181647705213,
+        0.0030179656658870365,
+        0.004057327631288714,
+        0.03039944984252761,
+        0.06558612582111077,
+        0.07269356852621053,
+        0.15927879654631005
+      ],
+      "active_energy_seconds": 0.63,
+      "active_run_seconds": 0.63,
+      "band_active_run_seconds": 0.66,
+      "band_modulation": 16.57627435506368,
+      "band_ratio": 0.38575821422420237,
+      "low_below_150_ratio": 0.29486631260645235,
+      "flux_q90": 0.5325200696231371,
+      "entropy_median": 0.46687403131050237,
+      "band_energy_proportions": [
+        0.29486631260645224,
+        0.2839871013930949,
+        0.29866988413088136,
+        0.05640514606106963,
+        0.001775230873302438,
+        0.028907953158948667,
+        0.03538837177625017
+      ]
+    },
+    "periodic_frames": 52,
+    "pitch_quantiles_0_10_50_90_100": [
+      53.16041338361525,
+      57.060104414646624,
+      121.23530141191438,
+      155.52261129962537,
+      159.58561290155197
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "f5dc0cc1",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "sparse_pitch"
+    ],
+    "sha256": "a5917bbbb3f969a001f88da190c204dbc19e21089e7fc3eb0c1616229f7819ef",
+    "duration_seconds": 1.6254375,
+    "rms": 0.051025725098036746,
+    "peak": 0.52520751953125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.003300670702534569,
+      "activity_seconds": 0.26,
+      "periodic_seconds": 0.16,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002499004357314212,
+        0.003231836703346921,
+        0.004960112542101101,
+        0.03846609573545401,
+        0.08536084200719037,
+        0.11912438768413808,
+        0.22406593845617187
+      ],
+      "frame_count": 161,
+      "active_frame_count": 53,
+      "active_total_seconds": 0.53,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 2,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002617065778035048,
+        0.0033544079859895003,
+        0.004907744413542389,
+        0.040592780529289184,
+        0.08270655494205943,
+        0.12263469318307067,
+        0.2173669270759827
+      ],
+      "active_energy_seconds": 0.53,
+      "active_run_seconds": 0.26,
+      "band_active_run_seconds": 0.31,
+      "band_modulation": 37.79550503716551,
+      "band_ratio": 0.6513155848428794,
+      "low_below_150_ratio": 0.09661046788687948,
+      "flux_q90": 0.7285991577173914,
+      "entropy_median": 0.5126346339577252,
+      "band_energy_proportions": [
+        0.09661046788687948,
+        0.23782524875417824,
+        0.6144387490756347,
+        0.033529510311331376,
+        0.002531090448296451,
+        0.0008162350076172633,
+        0.014248698516062669
+      ]
+    },
+    "periodic_frames": 29,
+    "pitch_quantiles_0_10_50_90_100": [
+      84.78911135046766,
+      91.91802077221712,
+      116.82975601875056,
+      215.09018058492111,
+      485.93827534725926
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "silence_periodic",
+    "label": "negative",
+    "tags": [],
+    "sha256": "6f8c2f58de72ce69fce08125091c12b6194d517f5e6752fdba556b9f25e789d1",
+    "duration_seconds": 3.50625,
+    "rms": 0.0029664215888839125,
+    "peak": 0.012176513671875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.002238854890282758,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.17,
+      "corroborated_seconds": 0.04,
+      "corroborated_run_seconds": 0.03,
+      "corroboration_checked": true,
+      "accepted": false,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0020124856813595023,
+        0.0022314293095413015,
+        0.0027790131041930755,
+        0.0033491368560521297,
+        0.0037815970449074704,
+        0.0042062242130617685,
+        0.006684637030075415
+      ],
+      "frame_count": 349,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 5,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0020638634081170575,
+        0.002308809308905306,
+        0.0027549299734633227,
+        0.003310637030396422,
+        0.0038188221835123866,
+        0.004205990794101538,
+        0.006532300890717662
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.6647770196277711,
+      "band_ratio": 0.10771436828797298,
+      "low_below_150_ratio": 0.6994818978350318,
+      "flux_q90": 0.4819034712492663,
+      "entropy_median": 0.48851837216288096,
+      "band_energy_proportions": [
+        0.699481897835032,
+        0.19191742364174927,
+        0.0789758513063152,
+        0.01918427087167547,
+        0.00854624189334363,
+        0.001008004216638699,
+        0.0008863102352461543
+      ]
+    },
+    "periodic_frames": 147,
+    "pitch_quantiles_0_10_50_90_100": [
+      45.220064433323834,
+      55.67420656398005,
+      58.64403896672761,
+      60.6665985310236,
+      63.25731487288035
+    ],
+    "current_accepted": false
+  },
+  {
+    "id": "370aa8f4",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "44e048247ab0b8c31e3040a450196be52fee031fbeb5a1f035be6143be56058c",
+    "duration_seconds": 3.5526875,
+    "rms": 0.018730667808316982,
+    "peak": 0.118133544921875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.002511902549492364,
+      "activity_seconds": 1.34,
+      "periodic_seconds": 1.17,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0020005882585830198,
+        0.0024741827615016193,
+        0.005072821769646031,
+        0.02678770264362677,
+        0.03130038945159125,
+        0.03825271260361736,
+        0.04568245560102126
+      ],
+      "frame_count": 354,
+      "active_frame_count": 172,
+      "active_total_seconds": 1.72,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 5,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0020068269729262194,
+        0.0024700392424437797,
+        0.005286890264137857,
+        0.0268759912907562,
+        0.03233511564813589,
+        0.03964386845791679,
+        0.045864840146119086
+      ],
+      "active_energy_seconds": 1.72,
+      "active_run_seconds": 1.34,
+      "band_active_run_seconds": 1.29,
+      "band_modulation": 17.09738598297522,
+      "band_ratio": 0.17481798116556171,
+      "low_below_150_ratio": 0.5887786927556827,
+      "flux_q90": 0.4848166921506898,
+      "entropy_median": 0.4807572486605183,
+      "band_energy_proportions": [
+        0.5887786927556828,
+        0.22237953532400365,
+        0.12426428536961741,
+        0.03043976212697746,
+        0.009527928967985322,
+        0.01058600470098155,
+        0.014023790754752045
+      ]
+    },
+    "periodic_frames": 235,
+    "pitch_quantiles_0_10_50_90_100": [
+      52.63358977137553,
+      57.9970748548653,
+      99.33512279763984,
+      116.9922738675144,
+      129.0098988382831
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "1a927887",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "66b6ec23a83c8e96417e1832df7bebb0692f204c1f7ef80208bcc59723eccafc",
+    "duration_seconds": 4.4118125,
+    "rms": 0.01764701885797803,
+    "peak": 0.110382080078125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0025340041465764956,
+      "activity_seconds": 0.87,
+      "periodic_seconds": 0.55,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0021125089892954758,
+        0.0024971828607763657,
+        0.010883227160891682,
+        0.02441833749707681,
+        0.02995490140389433,
+        0.0359160809615192,
+        0.0434647564796339
+      ],
+      "frame_count": 440,
+      "active_frame_count": 238,
+      "active_total_seconds": 2.38,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 7,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0021687006598248436,
+        0.0025020168642181538,
+        0.010901384745317324,
+        0.023924392751282195,
+        0.02992589232862292,
+        0.037192524703280654,
+        0.04249744161467122
+      ],
+      "active_energy_seconds": 2.39,
+      "active_run_seconds": 0.86,
+      "band_active_run_seconds": 0.67,
+      "band_modulation": 13.879492694717857,
+      "band_ratio": 0.15253659555688676,
+      "low_below_150_ratio": 0.5814328003351215,
+      "flux_q90": 0.5093514973113505,
+      "entropy_median": 0.4801457635748881,
+      "band_energy_proportions": [
+        0.5814328003351211,
+        0.24935500962664425,
+        0.08972570576106612,
+        0.03732012724539973,
+        0.010237574978505106,
+        0.015253187571915851,
+        0.016675594481347495
+      ]
+    },
+    "periodic_frames": 224,
+    "pitch_quantiles_0_10_50_90_100": [
+      41.3535212364216,
+      50.46576404692731,
+      98.02418699299864,
+      117.54275254844829,
+      122.7453487773797
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "5ca771a7",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "bdfea0fa05fbda85a29f595e9261debfd31d34754d85d918e3a32c0b9a8f8248",
+    "duration_seconds": 2.71675,
+    "rms": 0.022137495114656958,
+    "peak": 0.1326904296875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.00326303747992048,
+      "activity_seconds": 0.53,
+      "periodic_seconds": 0.43,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0026812127487785783,
+        0.0032163247178951483,
+        0.011335876092809786,
+        0.031485225319801496,
+        0.03909705172965454,
+        0.04606128499400242,
+        0.05093417186981834
+      ],
+      "frame_count": 270,
+      "active_frame_count": 145,
+      "active_total_seconds": 1.45,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002670499609608347,
+        0.003344125229991597,
+        0.011972111360922386,
+        0.031613320995362355,
+        0.03935247113996466,
+        0.046022696754051885,
+        0.051069203129071934
+      ],
+      "active_energy_seconds": 1.44,
+      "active_run_seconds": 0.53,
+      "band_active_run_seconds": 0.74,
+      "band_modulation": 18.517845263524165,
+      "band_ratio": 0.2662458261056869,
+      "low_below_150_ratio": 0.3050495570304608,
+      "flux_q90": 0.5192565496634185,
+      "entropy_median": 0.49430576608518617,
+      "band_energy_proportions": [
+        0.3050495570304607,
+        0.4280345097037916,
+        0.22326424542705953,
+        0.040807374183985536,
+        0.0007069703492892141,
+        0.0014672361453526598,
+        0.0006701071600603484
+      ]
+    },
+    "periodic_frames": 128,
+    "pitch_quantiles_0_10_50_90_100": [
+      54.764474957452734,
+      59.0260719864555,
+      102.09177616114906,
+      118.08311362951059,
+      120.54426294739126
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "209ef0c7",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy",
+      "sparse_pitch"
+    ],
+    "sha256": "0ed2c58291c4acbe98b56eec67027b8027f9e9ba3995b62ae772695a5771a794",
+    "duration_seconds": 2.6935,
+    "rms": 0.02016050973753876,
+    "peak": 0.146697998046875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0027264534556755067,
+      "activity_seconds": 0.54,
+      "periodic_seconds": 0.46,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002235719014776458,
+        0.0026966045775684644,
+        0.004039010085213497,
+        0.010693960121123003,
+        0.03957838476740775,
+        0.057483915293435967,
+        0.06937215183254763
+      ],
+      "frame_count": 268,
+      "active_frame_count": 56,
+      "active_total_seconds": 0.56,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 4,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002347678203098805,
+        0.002876562751995211,
+        0.003957146748229811,
+        0.011734295867832884,
+        0.038442791233633006,
+        0.05798596777291012,
+        0.06611834621287266
+      ],
+      "active_energy_seconds": 0.56,
+      "active_run_seconds": 0.54,
+      "band_active_run_seconds": 0.56,
+      "band_modulation": 13.479471773943104,
+      "band_ratio": 0.17936172728852615,
+      "low_below_150_ratio": 0.454281158073234,
+      "flux_q90": 0.5290058283910684,
+      "entropy_median": 0.47877646437539156,
+      "band_energy_proportions": [
+        0.4542811580732338,
+        0.3617356049477863,
+        0.13623981009974945,
+        0.03915296332168611,
+        0.0012418819920205864,
+        0.002727071875070078,
+        0.004621509690453498
+      ]
+    },
+    "periodic_frames": 143,
+    "pitch_quantiles_0_10_50_90_100": [
+      39.98679914045388,
+      52.31258962950335,
+      69.41802493637415,
+      111.75768579019062,
+      122.45496857110048
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "87ac7dd1",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy",
+      "sparse_pitch"
+    ],
+    "sha256": "9c2c3828fa4362188ff5e1e87f00747f42adda3dba76399e1595191d0bfc48d3",
+    "duration_seconds": 1.92725,
+    "rms": 0.02325074218354209,
+    "peak": 0.203094482421875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0029891371133394374,
+      "activity_seconds": 0.23,
+      "periodic_seconds": 0.17,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002598890128195794,
+        0.0029423395229383476,
+        0.004248310891393156,
+        0.0168215286102072,
+        0.04375861580785977,
+        0.06444070454340736,
+        0.09321913742342891
+      ],
+      "frame_count": 191,
+      "active_frame_count": 46,
+      "active_total_seconds": 0.46,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 2,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0026568672395665526,
+        0.0029745068659248596,
+        0.0041934089613293824,
+        0.017362390366167775,
+        0.04390577003355971,
+        0.06328319895148686,
+        0.09050120947341775
+      ],
+      "active_energy_seconds": 0.47000000000000003,
+      "active_run_seconds": 0.23,
+      "band_active_run_seconds": 0.23,
+      "band_modulation": 25.707245080142965,
+      "band_ratio": 0.453371607333117,
+      "low_below_150_ratio": 0.19334430399285352,
+      "flux_q90": 0.5875213546907747,
+      "entropy_median": 0.4867471680920961,
+      "band_energy_proportions": [
+        0.19334430399285363,
+        0.3437245383207045,
+        0.4124908421437587,
+        0.020661094544609376,
+        0.008916521450282084,
+        0.011303149194466889,
+        0.009559550353324894
+      ]
+    },
+    "periodic_frames": 69,
+    "pitch_quantiles_0_10_50_90_100": [
+      51.284504345636826,
+      56.17953381624704,
+      59.71944411617619,
+      115.55228828522255,
+      124.03229141294413
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "277e9941",
+    "label": "unresolved",
+    "tags": [],
+    "sha256": "f2b96f87666e7bafe38f6174b1521249de9243eb011bf0f0cc3143f13499cef1",
+    "duration_seconds": 2.8793125,
+    "rms": 0.002588505017239688,
+    "peak": 0.023773193359375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0018555509009603377,
+      "activity_seconds": 0.03,
+      "periodic_seconds": 0.23,
+      "corroborated_seconds": 0.03,
+      "corroborated_run_seconds": 0.03,
+      "corroboration_checked": true,
+      "accepted": false,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0016753069361066233,
+        0.0018496676958368184,
+        0.0022968955872697937,
+        0.0027001385467650715,
+        0.0028820419697445825,
+        0.0030989741869851617,
+        0.013275011727523307
+      ],
+      "frame_count": 286,
+      "active_frame_count": 3,
+      "active_total_seconds": 0.03,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 4,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0017214052281625575,
+        0.001887025625471987,
+        0.002278621132355837,
+        0.002667975438976699,
+        0.0028723621183650494,
+        0.003071970963334137,
+        0.012084853239013043
+      ],
+      "active_energy_seconds": 0.04,
+      "active_run_seconds": 0.04,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.5107176720642748,
+      "band_ratio": 0.1646349928417443,
+      "low_below_150_ratio": 0.6742027355473733,
+      "flux_q90": 0.4710842899776244,
+      "entropy_median": 0.5378177284111385,
+      "band_energy_proportions": [
+        0.6742027355473734,
+        0.1597365968526292,
+        0.11863029685394515,
+        0.029780993026990905,
+        0.01382340361721806,
+        0.0024002993435902394,
+        0.0014256747582529594
+      ]
+    },
+    "periodic_frames": 97,
+    "pitch_quantiles_0_10_50_90_100": [
+      43.74966256290662,
+      52.65862354222439,
+      58.236014809504056,
+      61.25505859549405,
+      67.35241768483802
+    ],
+    "current_accepted": false
+  },
+  {
+    "id": "02927481",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "78103e205e43b62f973c18df9d104a3b07543dd960dd9a94d7d81cde1cf1f285",
+    "duration_seconds": 3.9009375,
+    "rms": 0.017034548583531615,
+    "peak": 0.0880126953125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0024701798119909097,
+      "activity_seconds": 0.79,
+      "periodic_seconds": 1.28,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0019426292380184784,
+        0.002443978023134443,
+        0.016294047949294153,
+        0.02222474620340502,
+        0.025172584580973958,
+        0.02900693850515079,
+        0.035077562967649856
+      ],
+      "frame_count": 389,
+      "active_frame_count": 270,
+      "active_total_seconds": 2.7,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 7,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0019260301159366524,
+        0.002414630117659884,
+        0.016087529147118702,
+        0.02228112055819889,
+        0.02535679108731814,
+        0.028642439555611764,
+        0.03462458153623072
+      ],
+      "active_energy_seconds": 2.72,
+      "active_run_seconds": 0.79,
+      "band_active_run_seconds": 0.5700000000000001,
+      "band_modulation": 11.924999815670418,
+      "band_ratio": 0.18479265791532168,
+      "low_below_150_ratio": 0.49605776413798075,
+      "flux_q90": 0.4747718784708321,
+      "entropy_median": 0.48363634570814995,
+      "band_energy_proportions": [
+        0.49605776413798053,
+        0.2552584052953315,
+        0.10358147742925253,
+        0.059410461666771046,
+        0.011834237682230258,
+        0.009966481137067796,
+        0.06389117265136614
+      ]
+    },
+    "periodic_frames": 270,
+    "pitch_quantiles_0_10_50_90_100": [
+      43.01850695042392,
+      59.795773912649786,
+      100.46924903623639,
+      120.85151824569643,
+      140.2446451171735
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "90aa0d8d",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "sparse_pitch"
+    ],
+    "sha256": "35bbdc3316099fbcba03c91cbd140c0133f19c2392befb6508de8e15a807cdf9",
+    "duration_seconds": 1.8111875,
+    "rms": 0.027597445457872523,
+    "peak": 0.302764892578125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0025627161179563153,
+      "activity_seconds": 0.3,
+      "periodic_seconds": 0.31,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.002255908869761715,
+        0.002529112900471715,
+        0.004880161929715571,
+        0.023898559117321784,
+        0.03818763508493557,
+        0.0772062168680615,
+        0.11073675887244201
+      ],
+      "frame_count": 180,
+      "active_frame_count": 72,
+      "active_total_seconds": 0.72,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 3,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0022589636976745814,
+        0.002573726599335172,
+        0.004884206074689793,
+        0.024428058832682877,
+        0.03746308572328918,
+        0.07426024605265212,
+        0.11399864902443839
+      ],
+      "active_energy_seconds": 0.74,
+      "active_run_seconds": 0.3,
+      "band_active_run_seconds": 0.28,
+      "band_modulation": 21.63388717038779,
+      "band_ratio": 0.5035233727615201,
+      "low_below_150_ratio": 0.2610748932048742,
+      "flux_q90": 0.537656592311942,
+      "entropy_median": 0.5958931511878496,
+      "band_energy_proportions": [
+        0.2610748932048742,
+        0.22312481033631337,
+        0.18205338289058726,
+        0.2689875114276469,
+        0.03377296638286332,
+        0.01870951206042261,
+        0.012276923697292356
+      ]
+    },
+    "periodic_frames": 39,
+    "pitch_quantiles_0_10_50_90_100": [
+      103.29105350235693,
+      104.05331111555877,
+      113.06971036362049,
+      121.33140544094171,
+      123.91915839013757
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "e0c56934",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "db12a011c432f27c71fa7ec6a6e94c24c57220ddcaacf92a394649ed4339cdce",
+    "duration_seconds": 2.7631875,
+    "rms": 0.03270798529306197,
+    "peak": 0.157806396484375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.002960851620005056,
+      "activity_seconds": 0.66,
+      "periodic_seconds": 0.54,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0023767776892887594,
+        0.0028452420747371214,
+        0.017373796447032852,
+        0.04694481881595614,
+        0.055030447067586155,
+        0.0600077175139042,
+        0.08141573148111228
+      ],
+      "frame_count": 275,
+      "active_frame_count": 165,
+      "active_total_seconds": 1.6500000000000001,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0024471965301881638,
+        0.002873240515996575,
+        0.018050730774530475,
+        0.047258145768107475,
+        0.05546754767397116,
+        0.05983786324055381,
+        0.07892569466963349
+      ],
+      "active_energy_seconds": 1.6600000000000001,
+      "active_run_seconds": 0.66,
+      "band_active_run_seconds": 0.55,
+      "band_modulation": 30.189957701297953,
+      "band_ratio": 0.30960244435983814,
+      "low_below_150_ratio": 0.36632945865338057,
+      "flux_q90": 0.5024312724287562,
+      "entropy_median": 0.521547894323434,
+      "band_energy_proportions": [
+        0.3663294586533804,
+        0.3206922629476689,
+        0.24068511965399392,
+        0.06302026116230723,
+        0.0036854198221987467,
+        0.0022116437213381816,
+        0.003375834039112371
+      ]
+    },
+    "periodic_frames": 160,
+    "pitch_quantiles_0_10_50_90_100": [
+      49.10889919068047,
+      85.42501008405893,
+      107.79361311043658,
+      126.35434890050759,
+      141.63384856536322
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "dccf8a63",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "sparse_pitch"
+    ],
+    "sha256": "d6c6abf9b5e57432033ccb57b9e763623ff68ab09056a01d69b908b331ce34d4",
+    "duration_seconds": 1.5093125,
+    "rms": 0.026913118708606326,
+    "peak": 0.1614990234375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0023897770265885725,
+      "activity_seconds": 0.28,
+      "periodic_seconds": 0.25,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0020013998072319172,
+        0.0023529705366985465,
+        0.0031501621274626973,
+        0.03458039768948792,
+        0.04816595685659117,
+        0.0695974620130083,
+        0.08153672195237291
+      ],
+      "frame_count": 149,
+      "active_frame_count": 57,
+      "active_total_seconds": 0.5700000000000001,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 4,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0021109462522617465,
+        0.002398274760368536,
+        0.003253608566315055,
+        0.034973110924855735,
+        0.04742578910844637,
+        0.06918213560521601,
+        0.08189157483379751
+      ],
+      "active_energy_seconds": 0.58,
+      "active_run_seconds": 0.56,
+      "band_active_run_seconds": 0.24,
+      "band_modulation": 18.349907024878604,
+      "band_ratio": 0.17579527947811996,
+      "low_below_150_ratio": 0.6138221449791252,
+      "flux_q90": 0.6617946519445113,
+      "entropy_median": 0.5462272168721054,
+      "band_energy_proportions": [
+        0.613822144979125,
+        0.20702951991393356,
+        0.12414360798440485,
+        0.045478118732301294,
+        0.003750750760033629,
+        0.0024228020013803706,
+        0.0033530556288211577
+      ]
+    },
+    "periodic_frames": 39,
+    "pitch_quantiles_0_10_50_90_100": [
+      111.60590854014389,
+      115.16351655059471,
+      125.42289085050598,
+      148.71457115602237,
+      161.9841608851496
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "9b1d959a",
+    "label": "positive",
+    "tags": [
+      "ordinary"
+    ],
+    "sha256": "e5ead05a19f091a0c7294087287d5c3e3b6b0c955fac1e19e034e9911de2b402",
+    "duration_seconds": 1.6950625,
+    "rms": 0.027891444307667077,
+    "peak": 0.180908203125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0019714689847982036,
+      "activity_seconds": 0.37,
+      "periodic_seconds": 0.38,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0017185523842412915,
+        0.001925174344109565,
+        0.004056996779028668,
+        0.039855826833308065,
+        0.05445368573668109,
+        0.06324645116752445,
+        0.07780220460480183
+      ],
+      "frame_count": 168,
+      "active_frame_count": 76,
+      "active_total_seconds": 0.76,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 2,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0017661223885168463,
+        0.002002155921098573,
+        0.0042895249939927434,
+        0.03915834436415966,
+        0.05465655851058185,
+        0.06158166928090016,
+        0.074198139205186
+      ],
+      "active_energy_seconds": 0.76,
+      "active_run_seconds": 0.37,
+      "band_active_run_seconds": 0.35000000000000003,
+      "band_modulation": 38.54131351682903,
+      "band_ratio": 0.37481105125103237,
+      "low_below_150_ratio": 0.3164462959513852,
+      "flux_q90": 0.6707275532846086,
+      "entropy_median": 0.515715466434997,
+      "band_energy_proportions": [
+        0.3164462959513851,
+        0.3014214687353431,
+        0.30167425736901365,
+        0.0693513315525522,
+        0.0026297312833173875,
+        0.0011557310461492412,
+        0.007321184062239263
+      ]
+    },
+    "periodic_frames": 74,
+    "pitch_quantiles_0_10_50_90_100": [
+      60.232247145565914,
+      61.61132148631124,
+      103.4395089864683,
+      130.56135616947222,
+      132.1110428704275
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "human_control",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "confirmed_human"
+    ],
+    "sha256": "ef3081f0d3f0ddc1fd71a2f3af0282842cf091b37316f418136cb49302bf3350",
+    "duration_seconds": 2.8560625,
+    "rms": 0.03220605484474562,
+    "peak": 0.21087646484375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.003873689263835485,
+      "activity_seconds": 0.49,
+      "periodic_seconds": 0.41000000000000003,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0035228975429980394,
+        0.0038395835297117,
+        0.008482518694511085,
+        0.04508556929420915,
+        0.05845435084190135,
+        0.07049884512578211,
+        0.09604495445603874
+      ],
+      "frame_count": 284,
+      "active_frame_count": 131,
+      "active_total_seconds": 1.31,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.003529136278958006,
+        0.003859933012370245,
+        0.008552573765025663,
+        0.04631851797172637,
+        0.0568815415862031,
+        0.06969310149011693,
+        0.09339661401604199
+      ],
+      "active_energy_seconds": 1.31,
+      "active_run_seconds": 0.49,
+      "band_active_run_seconds": 0.6,
+      "band_modulation": 27.611679741543295,
+      "band_ratio": 0.31569868781708915,
+      "low_below_150_ratio": 0.4060579168109984,
+      "flux_q90": 0.5708395608842954,
+      "entropy_median": 0.46549011834525494,
+      "band_energy_proportions": [
+        0.4060579168109982,
+        0.27627678597501987,
+        0.27675706775842024,
+        0.027640700169546003,
+        0.007084663024620942,
+        0.004216256864501894,
+        0.001966609396892226
+      ]
+    },
+    "periodic_frames": 210,
+    "pitch_quantiles_0_10_50_90_100": [
+      40.60577240521058,
+      54.039471470648074,
+      61.65445868872488,
+      117.8462987971932,
+      124.65570290116813
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "google_old",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "tts_phone"
+    ],
+    "sha256": "bbe264ec0a910fcf76cd3582c4fe4f6b7d137753f8c7f6bc59a8d673202b83cd",
+    "duration_seconds": 4.435,
+    "rms": 0.030225073689220477,
+    "peak": 0.3843994140625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.00514766006804566,
+      "activity_seconds": 0.49,
+      "periodic_seconds": 0.68,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.004383268123938511,
+        0.005139021298833514,
+        0.008590254240634903,
+        0.03282106452109641,
+        0.045720050197574594,
+        0.06678997921163399,
+        0.15688788144399546
+      ],
+      "frame_count": 442,
+      "active_frame_count": 162,
+      "active_total_seconds": 1.62,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.004433455453340904,
+        0.0051773299018165065,
+        0.008592965270137785,
+        0.032413970740365415,
+        0.046249960444870966,
+        0.06418844893070037,
+        0.1497825274572038
+      ],
+      "active_energy_seconds": 1.57,
+      "active_run_seconds": 0.48,
+      "band_active_run_seconds": 0.9500000000000001,
+      "band_modulation": 41.08727152341845,
+      "band_ratio": 0.9087835955539415,
+      "low_below_150_ratio": 0.04567860982270165,
+      "flux_q90": 0.5659369712111308,
+      "entropy_median": 0.4475846832677032,
+      "band_energy_proportions": [
+        0.045678609822701666,
+        0.04494182097229035,
+        0.12399460422078958,
+        0.6307729536657121,
+        0.1531485952125902,
+        0.000867442454849903,
+        0.0005959736510667039
+      ]
+    },
+    "periodic_frames": 264,
+    "pitch_quantiles_0_10_50_90_100": [
+      51.83759089323994,
+      54.28964039240796,
+      189.29156699725382,
+      283.92298795320886,
+      395.90761413642593
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "silence_accidental",
+    "label": "negative",
+    "tags": [],
+    "sha256": "fcaf551459dc957c7544e396858395e4214c2447aa23cc577a2f9c5261b28eaf",
+    "duration_seconds": 3.1346875,
+    "rms": 0.02041279641878626,
+    "peak": 0.23162841796875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.004828497314988739,
+      "activity_seconds": 0.29,
+      "periodic_seconds": 0.47000000000000003,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.004236192348738921,
+        0.004787099332175957,
+        0.007093486302386077,
+        0.022400301088494806,
+        0.03246970232374689,
+        0.04076082984723905,
+        0.10457877923791016
+      ],
+      "frame_count": 312,
+      "active_frame_count": 81,
+      "active_total_seconds": 0.81,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0041769004540271725,
+        0.004749522309430208,
+        0.006923382533155229,
+        0.023258820375906812,
+        0.03218392119314582,
+        0.04036512787641,
+        0.09916047110264198
+      ],
+      "active_energy_seconds": 0.8200000000000001,
+      "active_run_seconds": 0.3,
+      "band_active_run_seconds": 0.62,
+      "band_modulation": 34.73205963011856,
+      "band_ratio": 0.8757406052328796,
+      "low_below_150_ratio": 0.08634427861171465,
+      "flux_q90": 0.5561273839066404,
+      "entropy_median": 0.45170042140007194,
+      "band_energy_proportions": [
+        0.08634427861171459,
+        0.03710924160840224,
+        0.14731546970719936,
+        0.5972574257122664,
+        0.129687047348628,
+        0.001480662464785598,
+        0.000805874547003329
+      ]
+    },
+    "periodic_frames": 279,
+    "pitch_quantiles_0_10_50_90_100": [
+      51.86564900831693,
+      56.628808398969376,
+      59.72342306608777,
+      329.3455697527524,
+      534.0211244829198
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "take_1",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "tts_phone"
+    ],
+    "sha256": "44d5c787f03cc42955575beb2d231c42ab0cf7c079d5c4e5b544087b855f0464",
+    "duration_seconds": 3.87775,
+    "rms": 0.025109451573546653,
+    "peak": 0.30010986328125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.002213787912369596,
+      "activity_seconds": 0.74,
+      "periodic_seconds": 0.63,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0017991530909161019,
+        0.002202414062266977,
+        0.006266689936738859,
+        0.02753087718273176,
+        0.04191197495084143,
+        0.05101370715248423,
+        0.13080460821693402
+      ],
+      "frame_count": 386,
+      "active_frame_count": 185,
+      "active_total_seconds": 1.85,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0018423033108295507,
+        0.00222381838754805,
+        0.006103903275203484,
+        0.02731705622572335,
+        0.040520367914872665,
+        0.05037793318374438,
+        0.12343444144322295
+      ],
+      "active_energy_seconds": 1.84,
+      "active_run_seconds": 0.74,
+      "band_active_run_seconds": 0.75,
+      "band_modulation": 29.006900042429933,
+      "band_ratio": 0.9650650159321821,
+      "low_below_150_ratio": 0.004879065132338014,
+      "flux_q90": 0.5786608233060038,
+      "entropy_median": 0.5258437769292963,
+      "band_energy_proportions": [
+        0.004879065132338012,
+        0.029556351338524432,
+        0.11223455049114263,
+        0.5440573235578176,
+        0.30773658797343384,
+        0.001036553909787753,
+        0.0004995675969554889
+      ]
+    },
+    "periodic_frames": 195,
+    "pitch_quantiles_0_10_50_90_100": [
+      163.21738806308406,
+      188.11653815611464,
+      236.53524957854472,
+      306.0904482521838,
+      435.15137082915334
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "take_2",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "tts_phone",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "93c60936ddedfa7cba1324ecf6be2f53a4c3eecd47460d3cd63dc6bd76df13e1",
+    "duration_seconds": 2.5774375,
+    "rms": 0.024948226128756575,
+    "peak": 0.26275634765625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0022197306266311524,
+      "activity_seconds": 0.5,
+      "periodic_seconds": 0.43,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.001878871658772104,
+        0.0021626485215713335,
+        0.007542834756659365,
+        0.02946610004868915,
+        0.04086437782238022,
+        0.05020737935927279,
+        0.11204201954455267
+      ],
+      "frame_count": 256,
+      "active_frame_count": 137,
+      "active_total_seconds": 1.37,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0019149482552941145,
+        0.0022071339944116073,
+        0.00788893247193757,
+        0.029720414670429466,
+        0.04041378882312403,
+        0.048550104270764206,
+        0.11112633487646091
+      ],
+      "active_energy_seconds": 1.3800000000000001,
+      "active_run_seconds": 0.5,
+      "band_active_run_seconds": 0.6,
+      "band_modulation": 28.865758597211,
+      "band_ratio": 0.94717224690309,
+      "low_below_150_ratio": 0.005581455722974407,
+      "flux_q90": 0.6497132577806728,
+      "entropy_median": 0.5293058395276788,
+      "band_energy_proportions": [
+        0.005581455722974409,
+        0.04580779318892482,
+        0.19041262707436943,
+        0.46294426557786245,
+        0.29228877376265544,
+        0.001526580488202558,
+        0.0014385041850106478
+      ]
+    },
+    "periodic_frames": 147,
+    "pitch_quantiles_0_10_50_90_100": [
+      163.8268736132217,
+      212.46880291314028,
+      279.15917123723233,
+      391.8587094416361,
+      499.0292824513025
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "take_3",
+    "label": "positive",
+    "tags": [
+      "ordinary",
+      "tts_phone",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "47cc17edd56f510676325270fed72a4b018c4eafad9d35c00b3b4a687f58b082",
+    "duration_seconds": 4.736875,
+    "rms": 0.023687561649901153,
+    "peak": 0.301239013671875,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.002271880174620518,
+      "activity_seconds": 0.74,
+      "periodic_seconds": 0.63,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0018843659967097846,
+        0.0022434382733962947,
+        0.00407412814527212,
+        0.026135915622153182,
+        0.037831184397551745,
+        0.051111916013751015,
+        0.14150600443504666
+      ],
+      "frame_count": 472,
+      "active_frame_count": 195,
+      "active_total_seconds": 1.95,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 6,
+        "at_least_three_han": true,
+        "corroborated_total_below_bound": true,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0019304287066629127,
+        0.0023076097127366336,
+        0.003963181584136539,
+        0.026455174169107667,
+        0.03750089426313086,
+        0.048210386639505436,
+        0.1398449269902982
+      ],
+      "active_energy_seconds": 1.96,
+      "active_run_seconds": 0.74,
+      "band_active_run_seconds": 0.96,
+      "band_modulation": 29.58969038956417,
+      "band_ratio": 0.9592610482890424,
+      "low_below_150_ratio": 0.009086531111915744,
+      "flux_q90": 0.6081071296392355,
+      "entropy_median": 0.5222270492536742,
+      "band_energy_proportions": [
+        0.009086531111915742,
+        0.031227488630552674,
+        0.1262323015400683,
+        0.5571268194604776,
+        0.27513604960229515,
+        0.0007658776862013861,
+        0.0004249319684890348
+      ]
+    },
+    "periodic_frames": 204,
+    "pitch_quantiles_0_10_50_90_100": [
+      117.18991829842695,
+      183.5028211816583,
+      238.15033841517806,
+      387.87439742728014,
+      447.29885266927283
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "native_16k",
+    "label": "positive",
+    "tags": [
+      "tts_native_like"
+    ],
+    "sha256": "88e6b9325b545a1c16e893f18b65b7645d2cfd7ccab7f35fb5df1b6788228fbe",
+    "duration_seconds": 1.05,
+    "rms": 0.07721002835253805,
+    "peak": 0.38336181640625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.014152415028888933,
+      "activity_seconds": 0.34,
+      "periodic_seconds": 0.37,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0009486778504384878,
+        0.008808809380647433,
+        0.07750730959524149,
+        0.10387943953975667,
+        0.11571180038223348,
+        0.12472386844073002,
+        0.13293869480205303
+      ],
+      "frame_count": 104,
+      "active_frame_count": 66,
+      "active_total_seconds": 0.66,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0012493135485678495,
+        0.012251202988344086,
+        0.08111439801319273,
+        0.10449551278897534,
+        0.11660143363361856,
+        0.12222224378798412,
+        0.13403795625250817
+      ],
+      "active_energy_seconds": 0.68,
+      "active_run_seconds": 0.34,
+      "band_active_run_seconds": 0.34,
+      "band_modulation": 33.518871810527536,
+      "band_ratio": 0.49706773201236,
+      "low_below_150_ratio": 0.0041664762159220325,
+      "flux_q90": 0.8702895646952801,
+      "entropy_median": 0.45813379764052153,
+      "band_energy_proportions": [
+        0.004166476215922032,
+        0.4979067549636078,
+        0.32052951425106957,
+        0.13481348041868618,
+        0.03887127408699036,
+        0.002853463255613799,
+        0.0008590368081103627
+      ]
+    },
+    "periodic_frames": 72,
+    "pitch_quantiles_0_10_50_90_100": [
+      218.21802611116962,
+      228.67025211294302,
+      262.13872537202997,
+      448.10921244740024,
+      545.3394430002372
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "native_gain",
+    "label": "positive",
+    "tags": [
+      "tts_native_like",
+      "quiet_gain_control",
+      "quiet_rms_proxy"
+    ],
+    "sha256": "58ba2678cef961d7b1cd1f2feab3b45b0316584525e20aaafaa14087f2aa6a82",
+    "duration_seconds": 1.05,
+    "rms": 0.019309003826073073,
+    "peak": 0.095855712890625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.003669934085169552,
+      "activity_seconds": 0.34,
+      "periodic_seconds": 0.37,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.00023792475512791688,
+        0.002202491989060618,
+        0.019374038018172286,
+        0.025974164166656134,
+        0.028940803791355347,
+        0.031174495257945373,
+        0.03329565875932035
+      ],
+      "frame_count": 104,
+      "active_frame_count": 66,
+      "active_total_seconds": 0.66,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0003123303099621934,
+        0.0030589642361730143,
+        0.02029815750374803,
+        0.026119125765950442,
+        0.029155690896907744,
+        0.030590570306594865,
+        0.03352159672830955
+      ],
+      "active_energy_seconds": 0.68,
+      "active_run_seconds": 0.34,
+      "band_active_run_seconds": 0.34,
+      "band_modulation": 29.69437980267838,
+      "band_ratio": 0.5220293846303714,
+      "low_below_150_ratio": 0.004405553057907117,
+      "flux_q90": 0.8491261610882086,
+      "entropy_median": 0.3955254619749118,
+      "band_energy_proportions": [
+        0.004405553057907119,
+        0.4720130961186802,
+        0.3442734424878315,
+        0.1362621678595157,
+        0.038646681680363684,
+        0.002847092602660751,
+        0.0008704254071357919
+      ]
+    },
+    "periodic_frames": 72,
+    "pitch_quantiles_0_10_50_90_100": [
+      218.22282328669385,
+      228.63330194323456,
+      262.1380787784482,
+      448.104476418097,
+      545.3476038161842
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "native_bandlimit",
+    "label": "positive",
+    "tags": [
+      "tts_native_like"
+    ],
+    "sha256": "cede6bec755cc8402ec84e67e6af88ec911f466532567be84d932333a18b0e48",
+    "duration_seconds": 1.05,
+    "rms": 0.07682964264815294,
+    "peak": 0.37530517578125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.009140399190784012,
+      "activity_seconds": 0.35000000000000003,
+      "periodic_seconds": 0.35000000000000003,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0006838901465998561,
+        0.00649736789001635,
+        0.07726379059443433,
+        0.10370661837554415,
+        0.1155733502111044,
+        0.12462434928524443,
+        0.1328632327533839
+      ],
+      "frame_count": 104,
+      "active_frame_count": 70,
+      "active_total_seconds": 0.7000000000000001,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": false,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0009018072936976493,
+        0.007852192600815395,
+        0.08092829884898872,
+        0.1042339204514407,
+        0.11641239919363262,
+        0.12206701215989221,
+        0.13384065265325865
+      ],
+      "active_energy_seconds": 0.73,
+      "active_run_seconds": 0.36,
+      "band_active_run_seconds": 0.34,
+      "band_modulation": 30.54545361220388,
+      "band_ratio": 0.5245279155868358,
+      "low_below_150_ratio": 0.0020145372105624983,
+      "flux_q90": 0.7696756042857538,
+      "entropy_median": 0.3955420348338558,
+      "band_energy_proportions": [
+        0.002014537210562498,
+        0.4734457458062645,
+        0.3467253476661714,
+        0.1372564317735215,
+        0.03864930667201875,
+        0.001896829475124023,
+        1.179734040209348e-05
+      ]
+    },
+    "periodic_frames": 68,
+    "pitch_quantiles_0_10_50_90_100": [
+      218.20963412721642,
+      228.55663303406067,
+      259.88601933529765,
+      283.81944825534856,
+      545.3378285053725
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "neg_digital_silence",
+    "label": "negative",
+    "tags": [],
+    "sha256": "20eaebffe1816e0ffa6f7f854f5ef4ea80d5349faaf0ce1fec1b713e7fde58fa",
+    "duration_seconds": 2.0,
+    "rms": 0.0,
+    "peak": 0.0,
+    "old": {
+      "no_speech": true,
+      "reason": "quantization_level_silence",
+      "background_rms": 0,
+      "activity_seconds": 0,
+      "periodic_seconds": 0,
+      "corroborated_seconds": 0,
+      "corroborated_run_seconds": 0,
+      "corroboration_checked": false,
+      "accepted": false,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frame_count": 199,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": true,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 0.0,
+      "band_ratio": 0.0,
+      "low_below_150_ratio": 0.0,
+      "flux_q90": 0.0,
+      "entropy_median": 0.0,
+      "band_energy_proportions": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "periodic_frames": 0,
+    "pitch_quantiles_0_10_50_90_100": [],
+    "current_accepted": false
+  },
+  {
+    "id": "neg_stationary_noise",
+    "label": "negative",
+    "tags": [],
+    "sha256": "1742c42b636cfdd3753e17e0dac5107dfa0f0542dfab7beb740b2d3fb0dde6c5",
+    "duration_seconds": 2.0,
+    "rms": 0.006007873950330535,
+    "peak": 0.033050537109375,
+    "old": {
+      "no_speech": true,
+      "reason": "stationary_background_without_sustained_activity",
+      "background_rms": 0.005791999880538396,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.0,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": false,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.005276303207200392,
+        0.005675027765229651,
+        0.005791999880538396,
+        0.0060011785257301446,
+        0.006190608226230285,
+        0.006287409427027997,
+        0.006407267833952927,
+        0.006708218354754902
+      ],
+      "frame_count": 199,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": true,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.005389446798396767,
+        0.00569596974387731,
+        0.005807858357125743,
+        0.006011124790770832,
+        0.006139474679877337,
+        0.0062533140498314075,
+        0.006392514110871035,
+        0.0066882880773037135
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.1735553496906357,
+      "band_ratio": 0.47060747471785114,
+      "low_below_150_ratio": 0.01925657661441471,
+      "flux_q90": 0.1708806805645779,
+      "entropy_median": 0.9332379689836805,
+      "band_energy_proportions": [
+        0.019256576614414718,
+        0.019035845849637443,
+        0.03600311392769261,
+        0.07590953091780686,
+        0.15444776302465835,
+        0.20424706684769328,
+        0.4911001028180964
+      ]
+    },
+    "periodic_frames": 0,
+    "pitch_quantiles_0_10_50_90_100": [],
+    "current_accepted": false
+  },
+  {
+    "id": "neg_clicks",
+    "label": "negative",
+    "tags": [],
+    "sha256": "c97b2205252bf058fd03260fe8fb68ba71ddcac43cc91dfad7be663ebec1d3bb",
+    "duration_seconds": 2.0,
+    "rms": 0.00486139492618923,
+    "peak": 0.5,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.02790714234295586,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.0,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.039148787800841786
+      ],
+      "frame_count": 199,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": true,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.03512851014874203
+      ],
+      "active_energy_seconds": 0.06,
+      "active_run_seconds": 0.03,
+      "band_active_run_seconds": 0.03,
+      "band_modulation": 0.0,
+      "band_ratio": 0.5829639166180697,
+      "low_below_150_ratio": 0.12028562504912425,
+      "flux_q90": 0.0,
+      "entropy_median": 0.0,
+      "band_energy_proportions": [
+        0.12028562504912425,
+        0.1317936559344501,
+        0.21126287657729473,
+        0.22356011218540614,
+        0.08240089787629011,
+        0.06574002997907889,
+        0.16495680239835567
+      ]
+    },
+    "periodic_frames": 0,
+    "pitch_quantiles_0_10_50_90_100": [],
+    "current_accepted": true
+  },
+  {
+    "id": "short_human_a",
+    "label": "positive",
+    "tags": [
+      "short",
+      "confirmed_human"
+    ],
+    "sha256": "253cbd0284341b426cc170947b9fb353f71065b930d9a979e7f3b0348e3a1b3e",
+    "duration_seconds": 0.17,
+    "rms": 0.07063778286218263,
+    "peak": 0.21087646484375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.05204143972613223,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.1,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0456883557068322,
+        0.048238654486351715,
+        0.05204143972613223,
+        0.07099065419943995,
+        0.08635313799520822,
+        0.08935524657806018,
+        0.09182354390202223,
+        0.09604495445603874
+      ],
+      "frame_count": 16,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.04668078910029572,
+        0.05008942681588686,
+        0.05245407843012761,
+        0.07489150568010909,
+        0.08651432535960062,
+        0.09000194537348698,
+        0.0914885717999982,
+        0.09339661401604199
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 2.427756137164496,
+      "band_ratio": 0.5079112614120489,
+      "low_below_150_ratio": 0.3018263295744822,
+      "flux_q90": 0.29662745844840854,
+      "entropy_median": 0.47109425442025227,
+      "band_energy_proportions": [
+        0.30182632957448213,
+        0.1899082206094388,
+        0.49294459101015176,
+        0.002553348009093931,
+        0.009242781646054066,
+        0.003170540746749322,
+        0.00035418840403003465
+      ]
+    },
+    "periodic_frames": 10,
+    "pitch_quantiles_0_10_50_90_100": [
+      118.54450679289243,
+      118.98228369031251,
+      121.14364044571056,
+      122.11304045829408,
+      122.2450006451389
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "short_human_b",
+    "label": "positive",
+    "tags": [
+      "short",
+      "confirmed_human"
+    ],
+    "sha256": "cbe29744434349bd65cb66ae40ef8c539faaedeb482931498e9e5b707c7cc2e1",
+    "duration_seconds": 0.11,
+    "rms": 0.03410526047864934,
+    "peak": 0.0908203125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.024883756016662928,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.04,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.020252790386650735,
+        0.023273309407321533,
+        0.024883756016662928,
+        0.03328270831992688,
+        0.04196169793804758,
+        0.04341220875897016,
+        0.04391988211809302,
+        0.044427555477215885
+      ],
+      "frame_count": 10,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.022532700126880887,
+        0.024807185092997945,
+        0.027258187226951926,
+        0.03221771311490524,
+        0.03845648428500796,
+        0.0404507166593355,
+        0.04142143816043287,
+        0.042392159661530246
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.4492659116332542,
+      "band_ratio": 0.06462609629339157,
+      "low_below_150_ratio": 0.46593097064734734,
+      "flux_q90": 0.3120938524270472,
+      "entropy_median": 0.4526665468774352,
+      "band_energy_proportions": [
+        0.46593097064734734,
+        0.46656080006105066,
+        0.046331078334595245,
+        0.0003903085545237515,
+        0.0028265598135065006,
+        0.015078149590766051,
+        0.002882132998210601
+      ]
+    },
+    "periodic_frames": 4,
+    "pitch_quantiles_0_10_50_90_100": [
+      106.801786276062,
+      106.99429171007036,
+      108.70274491604039,
+      110.37004412220308,
+      110.54491212772257
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "short_human_c",
+    "label": "positive",
+    "tags": [
+      "short",
+      "confirmed_human"
+    ],
+    "sha256": "c843d722accad004bfd27e2e8fea4ddd1035e6abf98173825a8ee7c1bbaf0d23",
+    "duration_seconds": 0.2,
+    "rms": 0.06233588045526234,
+    "peak": 0.13909912109375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.05336395494163614,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.13,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.05064145822534118,
+        0.05256475945458458,
+        0.05336395494163614,
+        0.05860490529088775,
+        0.06934171599120266,
+        0.07392872070713094,
+        0.0741996997081174,
+        0.07587722022762669
+      ],
+      "frame_count": 19,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.04899472308306883,
+        0.05233323037536169,
+        0.055156225476220094,
+        0.056669088920113894,
+        0.06661894206656117,
+        0.0726862235865594,
+        0.07516274774845018,
+        0.07656375664988421
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.1764873728034368,
+      "band_ratio": 0.0460478469770941,
+      "low_below_150_ratio": 0.6773012920234878,
+      "flux_q90": 0.26732501429034766,
+      "entropy_median": 0.40157956735350503,
+      "band_energy_proportions": [
+        0.677301292023488,
+        0.2758480696110493,
+        0.04075784720452626,
+        0.0022089464870264806,
+        0.000979112566285944,
+        0.002101940719255433,
+        0.0008027913883686617
+      ]
+    },
+    "periodic_frames": 13,
+    "pitch_quantiles_0_10_50_90_100": [
+      109.46943133341574,
+      109.80595820722601,
+      113.0581374201246,
+      121.11349423742594,
+      123.19769863954761
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "short_native",
+    "label": "positive",
+    "tags": [
+      "short",
+      "tts_native_like"
+    ],
+    "sha256": "d8c625540127079ba0b3598d422f0aa25995437a0336f0dbb6a50a39513a00d2",
+    "duration_seconds": 0.3,
+    "rms": 0.10755751430746104,
+    "peak": 0.38336181640625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.09838881777473554,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.23,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.06983162864150227,
+        0.08390444072765409,
+        0.09838881777473554,
+        0.10507278485800577,
+        0.12002698869378739,
+        0.12818609727960636,
+        0.13145612523941974,
+        0.13293869480205303
+      ],
+      "frame_count": 29,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.07136383757733646,
+        0.08206204806972019,
+        0.09886849485923306,
+        0.10617141532361635,
+        0.11854989336439435,
+        0.12655403338608545,
+        0.13072725171124996,
+        0.13403795625250817
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.7642464536689375,
+      "band_ratio": 0.5200311105138289,
+      "low_below_150_ratio": 0.0005469610438279014,
+      "flux_q90": 0.49022421593802323,
+      "entropy_median": 0.45848248594650826,
+      "band_energy_proportions": [
+        0.0005469610438279013,
+        0.4782982387914071,
+        0.2815819851288951,
+        0.16297422840010467,
+        0.07155221756973196,
+        0.0039226794150970775,
+        0.001123689650936296
+      ]
+    },
+    "periodic_frames": 23,
+    "pitch_quantiles_0_10_50_90_100": [
+      231.5594793285438,
+      237.0899570594831,
+      269.59038493169453,
+      274.402986181728,
+      274.847591137971
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "low_f0_excerpt",
+    "label": "positive",
+    "tags": [
+      "short",
+      "low_f0_54_70_proxy"
+    ],
+    "sha256": "0e07fdb1fabcdd61ee06e912d116b65f96f77d79b2acf731c5c35fe07ae01d6e",
+    "duration_seconds": 0.26,
+    "rms": 0.05257786088288837,
+    "peak": 0.298492431640625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.03298070973160847,
+      "activity_seconds": 0.01,
+      "periodic_seconds": 0.07,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.02921364392573417,
+        0.03204206746462304,
+        0.03298070973160847,
+        0.0378016319448438,
+        0.05370543678936319,
+        0.06870886776205831,
+        0.08976573141109989,
+        0.10909678797298185
+      ],
+      "frame_count": 25,
+      "active_frame_count": 1,
+      "active_total_seconds": 0.01,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.030993857809270667,
+        0.032545151783963,
+        0.03379171499544017,
+        0.036117291777039554,
+        0.04928806388328807,
+        0.06271546827116208,
+        0.0838141186752419,
+        0.10525282448594786
+      ],
+      "active_energy_seconds": 0.01,
+      "active_run_seconds": 0.01,
+      "band_active_run_seconds": 0.02,
+      "band_modulation": 2.5375217944509876,
+      "band_ratio": 0.5202693177600474,
+      "low_below_150_ratio": 0.09806193967340703,
+      "flux_q90": 0.3253665252596373,
+      "entropy_median": 0.4989292777279296,
+      "band_energy_proportions": [
+        0.09806193967340703,
+        0.3814067252658659,
+        0.5034399786043366,
+        0.011579302142600917,
+        0.005047520188884662,
+        0.00020251682422539738,
+        0.00026201730067959274
+      ]
+    },
+    "periodic_frames": 7,
+    "pitch_quantiles_0_10_50_90_100": [
+      55.27150210262448,
+      55.2723987844169,
+      55.8680653920126,
+      57.63864976053815,
+      58.033840042965636
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "low_f0_excerpt_2",
+    "label": "positive",
+    "tags": [
+      "short",
+      "low_f0_54_70_proxy"
+    ],
+    "sha256": "4e5ecbca6a5d14854dc63cad6f85e514858819b2e4f71a2adabacb7a9eb2eab6",
+    "duration_seconds": 0.27,
+    "rms": 0.03817824368809532,
+    "peak": 0.171783447265625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.020615085658889584,
+      "activity_seconds": 0.01,
+      "periodic_seconds": 0.05,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": false,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.01843788058305476,
+        0.019743543386533998,
+        0.020615085658889584,
+        0.03708130379189031,
+        0.04596576674795284,
+        0.05263307105012378,
+        0.05935518109819882,
+        0.06298972114314456
+      ],
+      "frame_count": 26,
+      "active_frame_count": 1,
+      "active_total_seconds": 0.01,
+      "checks": {
+        "background_below_0_01": false,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.018453836738402687,
+        0.01987189415801439,
+        0.020512888985125273,
+        0.03563653674811465,
+        0.045956086549281905,
+        0.0554150469822478,
+        0.05850298128927554,
+        0.06087425410431309
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.19,
+      "band_modulation": 8.516041098669152,
+      "band_ratio": 0.754693289804537,
+      "low_below_150_ratio": 0.10791882287177237,
+      "flux_q90": 0.7543036962596587,
+      "entropy_median": 0.5298845434982216,
+      "band_energy_proportions": [
+        0.10791882287177233,
+        0.13595983287888666,
+        0.6184008535754294,
+        0.10180110104581348,
+        0.03155324698321414,
+        0.002938088200079616,
+        0.0014280544448042008
+      ]
+    },
+    "periodic_frames": 11,
+    "pitch_quantiles_0_10_50_90_100": [
+      58.112938212018065,
+      58.14985733289018,
+      66.25023846438299,
+      67.6110154138751,
+      68.13900568255954
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "padding_human_head",
+    "label": "negative",
+    "tags": [
+      "padding"
+    ],
+    "sha256": "f0830d550baaed1c8adffd7e62dccc95de19425ec1aeb666c17c4c36e3bd4a76",
+    "duration_seconds": 0.5,
+    "rms": 0.00395047614722564,
+    "peak": 0.024017333984375,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.003504709528792789,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.38,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": true,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0015428101764025592,
+        0.0029305389700902216,
+        0.003504709528792789,
+        0.00375449201957849,
+        0.00441422693729352,
+        0.004920824340792776,
+        0.0050393101936462015,
+        0.005521071315153256
+      ],
+      "frame_count": 49,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.00204301330233366,
+        0.003169835948674566,
+        0.0035473332719588783,
+        0.0038007231873416316,
+        0.004377540161056125,
+        0.004761046970894008,
+        0.004921668378540022,
+        0.00533999898298306
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.01,
+      "band_modulation": 1.8475733310008728,
+      "band_ratio": 0.13099625595765935,
+      "low_below_150_ratio": 0.7649938005344868,
+      "flux_q90": 0.40697927202821965,
+      "entropy_median": 0.47808562472472205,
+      "band_energy_proportions": [
+        0.7649938005344867,
+        0.07393346677878061,
+        0.05705291192581029,
+        0.025158152945867197,
+        0.03785464278515136,
+        0.01093054830083052,
+        0.030076476729073192
+      ]
+    },
+    "periodic_frames": 39,
+    "pitch_quantiles_0_10_50_90_100": [
+      55.33720904197328,
+      55.914028740604856,
+      58.8328693855035,
+      60.742919486422174,
+      61.19208692262769
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "padding_human_tail",
+    "label": "negative",
+    "tags": [
+      "padding"
+    ],
+    "sha256": "0b60f7c6966bd2b0fbda7263e645f18ac658abfdf9147c1ad9ef4cf0330f7d8b",
+    "duration_seconds": 0.25,
+    "rms": 0.005253478975896436,
+    "peak": 0.03253173828125,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0038721683464508897,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.18,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": true,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.002370264438665799,
+        0.003796044638184396,
+        0.0038721683464508897,
+        0.005041159470161144,
+        0.006211239546996606,
+        0.006825166365106343,
+        0.006999570908531301,
+        0.007144839749094446
+      ],
+      "frame_count": 24,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.003631287108390116,
+        0.003802847612358654,
+        0.0041106884641008866,
+        0.004992003499938977,
+        0.006228346018604887,
+        0.00642699793943341,
+        0.006523797551389418,
+        0.007016900240949417
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.01,
+      "band_modulation": 1.7180545206780353,
+      "band_ratio": 0.06288774679722967,
+      "low_below_150_ratio": 0.8591878942981823,
+      "flux_q90": 0.16581355339010329,
+      "entropy_median": 0.40889735617938266,
+      "band_energy_proportions": [
+        0.8591878942981823,
+        0.07207023755050902,
+        0.02483473873529175,
+        0.021829727263356347,
+        0.011047419090009983,
+        0.005175861708571579,
+        0.00585412135407904
+      ]
+    },
+    "periodic_frames": 18,
+    "pitch_quantiles_0_10_50_90_100": [
+      53.615661625116005,
+      54.352082463032374,
+      55.43803467103399,
+      60.6544705387668,
+      61.694665947782475
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "padding_low_voice",
+    "label": "negative",
+    "tags": [
+      "padding"
+    ],
+    "sha256": "b0871e66d0580d515bbdde8276cc9c98293e85c454e8a21e18efb590fdc7a326",
+    "duration_seconds": 2.2,
+    "rms": 0.002554343703987728,
+    "peak": 0.01177978515625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0019492837642080027,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.1,
+      "corroborated_seconds": 0.1,
+      "corroborated_run_seconds": 0.1,
+      "corroboration_checked": true,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.0012638319986695945,
+        0.0017781005016869367,
+        0.0019492837642080027,
+        0.0024138514204530438,
+        0.002935019656808105,
+        0.0031827418311050435,
+        0.0034602440390170694,
+        0.004667949137786143
+      ],
+      "frame_count": 219,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": false
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0013254225809397452,
+        0.0018042160119881919,
+        0.0020249825821039894,
+        0.0023883395331322343,
+        0.002872390830374061,
+        0.0030881799785435885,
+        0.003397367856569566,
+        0.00456512385825512
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.4973549718391277,
+      "band_ratio": 0.14258687075801982,
+      "low_below_150_ratio": 0.5615918891211626,
+      "flux_q90": 0.4911205778000074,
+      "entropy_median": 0.5318871349709029,
+      "band_energy_proportions": [
+        0.5615918891211629,
+        0.28160551033509085,
+        0.09274498497131135,
+        0.03571537675951594,
+        0.009563351196387453,
+        0.00456315783080495,
+        0.0142157297857268
+      ]
+    },
+    "periodic_frames": 45,
+    "pitch_quantiles_0_10_50_90_100": [
+      51.66258022396429,
+      53.24104092030592,
+      56.922279923454596,
+      67.72027781028694,
+      68.39412922387552
+    ],
+    "current_accepted": true
+  },
+  {
+    "id": "padding_phone",
+    "label": "negative",
+    "tags": [
+      "padding"
+    ],
+    "sha256": "5c814cdc25f26e290a2a5ce3f9af4d73189c57ffbb6a4d859e5d675afe5acdd0",
+    "duration_seconds": 1.05,
+    "rms": 0.005019470901066396,
+    "peak": 0.01666259765625,
+    "old": {
+      "no_speech": false,
+      "reason": "speech_or_uncertain",
+      "background_rms": 0.0040038267792940506,
+      "activity_seconds": 0.0,
+      "periodic_seconds": 0.98,
+      "corroborated_seconds": 0.0,
+      "corroborated_run_seconds": 0.0,
+      "corroboration_checked": true,
+      "accepted": true,
+      "frame_energy_quantiles_0_10_20_50_80_90_95_100": [
+        0.002280216661693846,
+        0.0035859788739279154,
+        0.0040038267792940506,
+        0.004911457492129622,
+        0.005717323126562276,
+        0.005949593417513875,
+        0.006402143137972569,
+        0.007032289728612122
+      ],
+      "frame_count": 104,
+      "active_frame_count": 0,
+      "active_total_seconds": 0.0,
+      "checks": {
+        "background_below_0_01": true,
+        "activity_below_0_05": true,
+        "no_periodic_run": false,
+        "han_units": 0,
+        "at_least_three_han": false,
+        "corroborated_total_below_bound": false,
+        "corroborated_run_below_0_05": true
+      }
+    },
+    "features": {
+      "rms_quantiles_0_10_20_50_80_90_95_100": [
+        0.0026033374309281055,
+        0.003653737569924286,
+        0.004039343239545517,
+        0.004897034127657583,
+        0.005711844062121752,
+        0.0060103149144399935,
+        0.006313967184570873,
+        0.006500582948549964
+      ],
+      "active_energy_seconds": 0.0,
+      "active_run_seconds": 0.0,
+      "band_active_run_seconds": 0.0,
+      "band_modulation": 1.5418500534635864,
+      "band_ratio": 0.033202968665717106,
+      "low_below_150_ratio": 0.9170922089223378,
+      "flux_q90": 0.17652667070252615,
+      "entropy_median": 0.37375687062335755,
+      "band_energy_proportions": [
+        0.9170922089223374,
+        0.04346706400764196,
+        0.020179079145720105,
+        0.006421192692820419,
+        0.003960243717778669,
+        0.0026424531093979155,
+        0.006237758404303305
+      ]
+    },
+    "periodic_frames": 98,
+    "pitch_quantiles_0_10_50_90_100": [
+      54.39522494777738,
+      56.44857097712969,
+      58.72562631516901,
+      60.62017296255473,
+      62.79042589151543
+    ],
+    "current_accepted": true
+  }
+]

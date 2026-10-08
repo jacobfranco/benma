@@ -1,0 +1,38 @@
+{
+  "whole_clip": {
+    "start_seconds": 0,
+    "end_seconds": 3.1346875,
+    "probability_min": 0.0016697943210601807,
+    "probability_median_over_overlapping_chunks": 0.8675193786621094,
+    "probability_max": 0.9976807832717896,
+    "seconds_p_ge_0_5": 1.7919999999999998,
+    "seconds_p_ge_0_9": 1.44
+  },
+  "energy_290_ms": {
+    "start_seconds": 2.39,
+    "end_seconds": 2.6799999999999997,
+    "probability_min": 0.9871745109558105,
+    "probability_median_over_overlapping_chunks": 0.9939756393432617,
+    "probability_max": 0.9976807832717896,
+    "seconds_p_ge_0_5": 0.2899999999999996,
+    "seconds_p_ge_0_9": 0.2899999999999996
+  },
+  "periodic_470_ms": {
+    "start_seconds": 0.56734375,
+    "end_seconds": 1.03734375,
+    "probability_min": 0.0043836236000061035,
+    "probability_median_over_overlapping_chunks": 0.009497404098510742,
+    "probability_max": 0.05475613474845886,
+    "seconds_p_ge_0_5": 0,
+    "seconds_p_ge_0_9": 0
+  },
+  "default_detected_region": {
+    "start_seconds": 1.026,
+    "end_seconds": 2.878,
+    "probability_min": 0.00853043794631958,
+    "probability_median_over_overlapping_chunks": 0.9775420427322388,
+    "probability_max": 0.9976807832717896,
+    "seconds_p_ge_0_5": 1.7919999999999998,
+    "seconds_p_ge_0_9": 1.44
+  }
+}

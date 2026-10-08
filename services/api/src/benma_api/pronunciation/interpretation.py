@@ -29,7 +29,7 @@ class CapabilityState(StrEnum):
     CALIBRATED = "calibrated"
 
 
-INTERPRETER_VERSION = "pronunciation-observations-v1.2-fixture-boundary"
+INTERPRETER_VERSION = "pronunciation-observations-v1.3-descriptive-provider-labels"
 
 
 def has_live_assessment(assessment: AssessmentRun | None) -> bool:
@@ -237,8 +237,9 @@ def interpret_evidence(
                 else "provider_only"
             )
             message = (
-                f"The evaluator detected Tone {provider_tone}; "
-                f"the expected surface tone is Tone {expected_tone}."
+                f"Experimental provider tone label: T{provider_tone}; "
+                f"the reference surface tone is T{expected_tone}. "
+                "This is not a pronunciation grade."
             )
             if agreement == "agreement":
                 message += f" The measured pitch was {direction}."
@@ -267,7 +268,10 @@ def interpret_evidence(
                     **base,
                     "kind": "provider_tone_observation",
                     "agreement": "provider_only" if direction is None else "not_calibrated",
-                    "message": f"The evaluator detected Tone {provider_tone} here.",
+                    "message": (
+                        f"Uncalibrated provider tone label: T{provider_tone}. "
+                        "This is not a pronunciation grade."
+                    ),
                     "capability_state": CapabilityState.RAW_EVIDENCE,
                 }
             )
@@ -287,7 +291,7 @@ def interpret_evidence(
                     **base,
                     "kind": "tone_unavailable",
                     "agreement": "unavailable",
-                    "message": "Tone detection is unavailable for this syllable.",
+                    "message": "Pitch interpretation is unavailable for this syllable.",
                     "capability_state": CapabilityState.UNAVAILABLE,
                 }
             )

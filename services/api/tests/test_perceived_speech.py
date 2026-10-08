@@ -90,10 +90,10 @@ def test_perception_is_the_reference_regardless_of_semantics(
     assert result["alignment_reference_text"] == text
     assert result["reference_kind"] == "perceived_text"
     assert result["data"]["syllables"]
-    # Even silence retains an explicit measured (unvoiced) contour, never fabricated F0.
+    # The voiced upload fixture supplies audio-only pitch regardless of semantic interpretation.
     assert result["data"]["measured_pitch"]
-    assert all(point["f0_hz"] is None for point in result["data"]["measured_pitch"])
-    assert result["data"]["pitch_status"] == "unavailable"
+    assert any(point["f0_hz"] is not None for point in result["data"]["measured_pitch"])
+    assert result["data"]["pitch_status"] == "available"
     assert "score" not in str(result)
     if decision == "infer":
         assert [s["pinyin"] for s in result["data"]["syllables"]] == ["zhōu", "móu"]
@@ -319,6 +319,8 @@ def test_pitch_failure_is_persisted_without_losing_reference_or_meaning(
         run = service.run(account_id=perception.account_id, perception_run_id=perception.id)
         assert run.status == "failed"
         assert run.result["measured_pitch"] == []
+        assert run.result["pitch_track_evidence_id"] is None
+        assert run.result["tone_graph"]["track_evidence_id"] is None
         assert run.alignment_reference_text == "周谋"
         assert run.result["syllables"]
         assert "SECRET" not in analysis_response(run).model_dump_json()
@@ -425,9 +427,8 @@ def test_exact_token_timing_enables_shape_without_forced_aligner(
         assert run.result["alignment_status"] == ("synthetic" if synthetic else "aligned")
         assert syllable["lexical_tone"] == 4
         assert syllable["pinyin"] == "mò"
-        assert syllable["observed_contour"]["classification"] == (
-            "unclear" if synthetic else "1-like"
-        )
+        assert syllable["observed_contour"]["classification"] == "unclear"
+        assert syllable["pitch_eligibility"]["state"] != "sufficient"
         if synthetic:
             assert syllable["display_contour"] is None
         else:
@@ -508,7 +509,7 @@ def test_two_real_token_intervals_slice_only_their_own_learner_contour(
     assert [
         first["observed_contour"]["classification"],
         second["observed_contour"]["classification"],
-    ] == ["2-like", "4-like"]
+    ] == ["unclear", "unclear"]
     for syllable in (first, second):
         assert all(
             syllable["start_seconds"] <= p["timestamp_seconds"] < syllable["end_seconds"]
