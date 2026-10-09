@@ -89,20 +89,20 @@ export default function PracticeScreen() {
     finally { preparationLock.current = false; setPreparing(false); }
   };
   return <Screen compact footer={<>
-    {!target && <View style={styles.entryActions}>
-      <Pressable accessibilityRole="button" accessibilityLabel="Add target" disabled={turn.busy || preparing}
-        onPress={() => open('target')} style={({ pressed }) => [styles.link, pressed && styles.pressed]}>
-        <Text style={styles.linkText}>Add target</Text>
-      </Pressable>
-      <Pressable accessibilityRole="button" accessibilityLabel="Random phrase" disabled={turn.busy || preparing}
-        accessibilityState={{ busy: preparing, disabled: turn.busy || preparing }}
-        onPress={randomPhrase} style={({ pressed }) => [styles.link, pressed && styles.pressed]}>
-        <Text style={styles.linkText}>{preparing ? 'Preparing target…' : 'Random phrase'}</Text>
-      </Pressable>
-    </View>}
     {!target && !dialog && <ErrorMessage message={targetError} />}
     <SpeechControls turn={turn} recordLabel={currentEntry ? 'New Attempt' : 'Record'} disabled={preparing || dialog !== null} />
   </>}>
+    {!target && <View style={styles.entryActions}>
+      <Pressable accessibilityRole="button" accessibilityLabel="Add target" disabled={turn.busy || preparing}
+        onPress={() => open('target')} style={({ pressed }) => [styles.entryButton, pressed && styles.pressed]}>
+        <Text style={styles.entryButtonText}>Add target</Text>
+      </Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel="Random phrase" disabled={turn.busy || preparing}
+        accessibilityState={{ busy: preparing, disabled: turn.busy || preparing }}
+        onPress={randomPhrase} style={({ pressed }) => [styles.entryButton, pressed && styles.pressed]}>
+        <Text style={styles.entryButtonText}>{preparing ? 'Preparing target…' : 'Random phrase'}</Text>
+      </Pressable>
+    </View>}
     {target && <Card style={styles.target}>
       <Text style={styles.label}>Target</Text>
       <View style={styles.targetRow}>
@@ -163,14 +163,15 @@ const styles = StyleSheet.create({
   targetBody: { flex: 1, minWidth: 0, minHeight: 44, paddingVertical: 4, paddingHorizontal: 2, borderRadius: 8, borderWidth: 2, borderColor: 'transparent' },
   focused: { borderColor: colors.primary },
   pressed: { backgroundColor: colors.diagnostic },
-  entryActions: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 8 },
+  entryActions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 4 },
   actions: { flexDirection: 'row', alignItems: 'center' },
   phrase: { color: colors.text, fontSize: 24, lineHeight: 34, flexShrink: 1 },
   reading: { color: colors.secondary, fontSize: 15, lineHeight: 22, flexShrink: 1 },
   label: { color: colors.secondary, fontSize: 12, fontWeight: '600' },
-  link: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 8, borderRadius: 8 },
-  linkText: { color: colors.primary, fontSize: 14 },
+  entryButton: { flexGrow: 1, flexBasis: 128, minHeight: 52, justifyContent: 'center', alignItems: 'center',
+    paddingHorizontal: 8, paddingVertical: 10, borderRadius: 12, borderWidth: 1, borderColor: colors.primary },
+  entryButtonText: { color: colors.primary, fontSize: 14, fontWeight: '700', textAlign: 'center' },
   input: { fontSize: 24, minHeight: 50, color: colors.text },
   historyRow: { minHeight: 48, padding: 8, borderRadius: 8, backgroundColor: colors.diagnostic, gap: 4 },
 });
