@@ -242,6 +242,12 @@ export class BenmaApiClient {
     return path;
   }
 
+  async downloadCanonicalRecording(utteranceId: string): Promise<Uint8Array> {
+    const path = this.protectedAudioPath(`/v1/utterances/${utteranceId}/audio`);
+    const response = await this.fetchResponse(`${path}?canonical=true`, {}, mediaFetch);
+    return (await readAudioResponse(response)).bytes;
+  }
+
   downloadAssistantSpeech(path: string): Promise<Uint8Array> {
     return this.downloadAudio(path);
   }

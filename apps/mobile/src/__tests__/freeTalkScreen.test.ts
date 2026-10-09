@@ -9,6 +9,8 @@ import type { FreeTalkTurn } from '@/api/types';
 import FreeTalkScreen from '@/app/free-talk';
 import { SpeechEvidence } from '@/speech/SpeechEvidence';
 
+jest.mock('@/audio/useCachedAudio', () => ({ useCachedAudio: () => ({ isPlaying: false, error: null, toggle: jest.fn() }) }));
+
 jest.mock('@/audio/PlaybackButton', () => ({ PlaybackButton: () => null }));
 
 const mockCapture = {
@@ -214,7 +216,8 @@ describe('Free Talk screen', () => {
     expect(rendered).toContain('我想卖水果。');
     expect(rendered).toContain('What Benma heard');
     expect(rendered).toContain('What Benma understood');
-    expect(rendered).toContain('Your pitch');
+    expect(rendered).toContain('Explore pronunciation');
+    expect(rendered).not.toContain('Your pitch');
     expect(rendered).not.toMatch(/provider|logprob|evidence|uncertainty/i);
 
     const userText = renderer.root.findByProps({ children: '我想买水果。' });
@@ -231,6 +234,8 @@ describe('Free Talk screen', () => {
     jest.spyOn(api, 'analyzePerceivedSpeech').mockReturnValue(new Promise(resolve => { releaseAnalysis = resolve; }));
     const renderer = await renderScreen();
     await recordAndStop(renderer);
+    expect(JSON.stringify(renderer.toJSON())).not.toContain('sentence-graph-placeholder');
+    await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Explore pronunciation' }).props.onPress());
     const section = renderer.root.findByProps({ testID: 'pronunciation-section' });
     const placeholder = renderer.root.findByProps({ testID: 'pronunciation-content' });
     expect(JSON.stringify(renderer.toJSON())).toContain('sentence-graph-placeholder');

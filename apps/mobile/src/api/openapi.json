@@ -7958,6 +7958,16 @@
               "title": "Utterance Id",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "canonical",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Canonical",
+              "type": "boolean"
+            }
           }
         ],
         "responses": {

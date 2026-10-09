@@ -4,8 +4,8 @@ import { Button, ErrorMessage } from '@/components/Ui';
 import type { useSpeechTurn } from '@/speech/useSpeechTurn';
 import { speechStageLabels } from '@/speech/workflow';
 
-export function SpeechControls({ turn, disabled = false }: {
-  turn: ReturnType<typeof useSpeechTurn>; disabled?: boolean;
+export function SpeechControls({ turn, disabled = false, recordLabel = 'Tap to speak' }: {
+  turn: ReturnType<typeof useSpeechTurn>; disabled?: boolean; recordLabel?: string;
 }) {
   return <>
     {turn.phase === 'recording' ? <>
@@ -13,7 +13,7 @@ export function SpeechControls({ turn, disabled = false }: {
       <Button label="Stop recording" onPress={() => void turn.stop()} />
     </> : turn.phase === 'processing' && turn.stage ?
       <Button disabled loading label={speechStageLabels[turn.stage]} onPress={() => {}} /> :
-      <Button disabled={disabled} label={turn.permissionDenied ? 'Try microphone again' : 'Tap to speak'}
+      <Button disabled={disabled} label={turn.permissionDenied ? 'Try microphone again' : recordLabel}
         onPress={() => void turn.start()} />}
     {turn.retryable && <Button secondary label="Retry" onPress={() => void turn.retry()} />}
     <ErrorMessage message={turn.error} />

@@ -81,7 +81,8 @@ export function ContourLines({ segments, color = colors.primary }: { segments: D
 export function PitchPlot({ user, reference = [], display, referenceDisplay, regions = [], compact = false,
   durationSeconds = 0, startSeconds = 0, fitVoiced = false, fixedDisplayDomain = false,
   showPoints = false, pointsOnly = false, rejected = [], xLayout, showRegionLabels = true, showMineLabel = true,
-  showAxes = true, showEmptyLabel = true, transparent = false }: {
+  showAxes = true, showEmptyLabel = true, transparent = false, plotHeight }: {
+  plotHeight?: number;
   transparent?: boolean;
   showAxes?: boolean; showEmptyLabel?: boolean;
   xLayout?: PitchXLayout | undefined; showRegionLabels?: boolean; showMineLabel?: boolean;
@@ -90,7 +91,7 @@ export function PitchPlot({ user, reference = [], display, referenceDisplay, reg
   fixedDisplayDomain?: boolean; regions?: Region[]; compact?: boolean; durationSeconds?: number; startSeconds?: number; fitVoiced?: boolean;
 }) {
   const [width, setWidth] = useState(0);
-  const height = compact ? 46 : 136;
+  const height = compact ? 46 : plotHeight ?? 136;
   const segments = useMemo(() => display?.segments ?? pitchSegments(user), [display, user]);
   const referenceSegments = useMemo(() => referenceDisplay?.segments ?? pitchSegments(reference), [referenceDisplay, reference]);
   const all = [...segments.flat(), ...referenceSegments.flat(), ...rejected].filter(p => Number.isFinite(p.normalized_semitones));

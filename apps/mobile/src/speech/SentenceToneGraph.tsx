@@ -7,12 +7,12 @@ import { expectedLabel, graphWidth, hasTiming, normalizedMine, rawPitch, toneNam
 import { colors } from '@/theme';
 import { gestureLabel, toneGestureMatch } from '@/speech/toneGestureMatch';
 
-export function SentenceToneGraph({ data }: { data: PerceivedSpeechAnalysis['data'] }) {
+export function SentenceToneGraph({ data, initialDetail = false }: { data: PerceivedSpeechAnalysis['data']; initialDetail?: boolean }) {
   const scroll = useRef<ScrollView>(null);
   useEffect(() => {
     scroll.current?.scrollTo({ x: 0, y: 0, animated: false });
   }, [data]);
-  const [detail, setDetail] = useState(false);
+  const [detail, setDetail] = useState(initialDetail);
   const [raw, setRaw] = useState(false);
   const [layoutWidth, setLayoutWidth] = useState(0);
   const [selectedUnit, setSelectedUnit] = useState<number | null>(null);

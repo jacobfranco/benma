@@ -8,8 +8,11 @@ import type { PerceivedSpeechAnalysis } from '@/api/types';
 import { SpeechEvidence } from '@/speech/SpeechEvidence';
 import { PitchPlot, contourGeometry } from '@/components/PitchPlot';
 import { SentenceToneGraph } from '@/speech/SentenceToneGraph';
+import { PronunciationWorkspace } from '@/speech/PronunciationWorkspace';
 import { TranscriptFeedback } from '@/speech/TranscriptFeedback';
 import { expectedLabel, graphWidth, pitchSignal, rawPitch } from '@/speech/sentenceToneGraph';
+
+jest.mock('@/audio/useCachedAudio', () => ({ useCachedAudio: () => ({ isPlaying: false, error: null, toggle: jest.fn() }) }));
 
 jest.mock('@/audio/PlaybackButton', () => ({ PlaybackButton: () => null }));
 let renderer: ReactTestRenderer;
@@ -28,10 +31,11 @@ it.each(['preserve', 'infer', 'clarify'] as const)('keeps the measured sentence 
     analysis: { utteranceId: 'u', state: 'ready', perceived: perceivedAnalysis },
   })); });
   const tree = JSON.stringify(renderer.toJSON());
-  expect(tree).toContain('What Benma heard');
+  expect(tree).not.toContain('What Benma heard');
   expect(tree).toContain('周'); expect(tree).toContain('谋');
   expect(tree).not.toMatch(/accuracy|Tone 2-like|mò/);
-  expect(renderer.root.findByType(PitchPlot).props.display).toBe(data.tone_graph!.mine);
+  await press('More details');
+  expect(renderer.root.findAllByType(PitchPlot).at(-1)!.props.display).toBe(data.tone_graph!.filtered);
   expect(tree.includes('What Benma understood')).toBe(decision === 'infer');
   expect(tree.includes('Meaning')).toBe(decision === 'clarify');
 });
@@ -48,10 +52,10 @@ it('S13 shows 贵州 units and a separate 广 → 贵 target comparison, even wi
     analysis: { utteranceId: 'u', state: 'ready', perceived: { ...perceivedAnalysis,
       alignment_reference_text: '我要去贵州。', data: { ...data, syllables } } },
   })); });
-  const graph = renderer.root.findByType(SentenceToneGraph);
-  expect(graph.props.data.syllables.map((s: { characters: string }) => s.characters).join('')).toBe('我要去贵州');
+  const graph = renderer.root.findByType(PronunciationWorkspace);
+  expect(graph.props.analysis.data.syllables.map((s: { characters: string }) => s.characters).join('')).toBe('我要去贵州');
   expect(JSON.stringify(renderer.toJSON())).toContain('广 → 贵');
-  expect(graph.findByProps({ testID: 'character-unit-3' }).props.accessibilityLabel).not.toContain('T4');
+  expect(graph.findByProps({ testID: 'pronunciation-unit-3' }).props.accessibilityLabel).not.toContain('T4');
   expect(JSON.stringify(graph.props)).not.toContain('guǎng');
 });
 
@@ -70,11 +74,12 @@ it('timing and pitch survive unresolved readings while expected reference abstai
 it('identical heard evidence keeps geometry and signal unchanged across different intended targets', async () => {
   const props = { heard: '周谋', analysis: { utteranceId: 'u', state: 'ready' as const, perceived: perceivedAnalysis } };
   await act(async () => { renderer = create(React.createElement(SpeechEvidence, { ...props, intendedText: '周末' })); });
-  const layout = renderer.root.findByType(PitchPlot).props.xLayout;
-  const label = renderer.root.findByProps({ testID: 'character-unit-0' }).props.accessibilityLabel;
+  await act(async () => renderer.root.findByProps({ testID: 'pronunciation-unit-0' }).props.onPress());
+  const layout = renderer.root.findByType(PitchPlot).props.display;
+  const label = renderer.root.findByProps({ testID: 'pronunciation-unit-0' }).props.accessibilityLabel;
   await act(async () => renderer.update(React.createElement(SpeechEvidence, { ...props, intendedText: '广州' })));
-  expect(renderer.root.findByType(PitchPlot).props.xLayout).toEqual(layout);
-  expect(renderer.root.findByProps({ testID: 'character-unit-0' }).props.accessibilityLabel).toBe(label);
+  expect(renderer.root.findByType(PitchPlot).props.display).toEqual(layout);
+  expect(renderer.root.findByProps({ testID: 'pronunciation-unit-0' }).props.accessibilityLabel).toBe(label);
 });
 
 it('keeps gaps in Mine and detail and never overlays expected shapes', async () => {
@@ -182,15 +187,16 @@ it('detail uses real seconds for a bounded sentence domain and reserves readable
   expect(JSON.stringify(renderer.toJSON())).toContain('2.60–3.20 s');
 });
 
-it('a new analysis remounts the scroll strip at its first cell and clears detail/tap state', async () => {
+it('a new analysis resets workspace selection and full detail state', async () => {
   await act(async () => { renderer = create(React.createElement(TranscriptFeedback, { analysis: perceivedAnalysis })); });
-  const old = renderer.root.findByType(SentenceToneGraph);
-  await act(async () => renderer.root.findByProps({ testID: 'character-unit-1' }).props.onPress());
-  await press('More detail'); await press('Raw');
+  const old = renderer.root.findByType(PronunciationWorkspace);
+  await act(async () => renderer.root.findByProps({ testID: 'pronunciation-unit-1' }).props.onPress());
+  await press('More details'); await press('Raw');
   await act(async () => renderer.update(React.createElement(TranscriptFeedback, { analysis: { ...perceivedAnalysis, id: 'new-result' } })));
-  expect(renderer.root.findByType(SentenceToneGraph)).not.toBe(old);
+  expect(renderer.root.findByType(PronunciationWorkspace)).not.toBe(old);
   expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(1);
-  expect(renderer.root.findByType(PitchPlot).props.xLayout.regions[0].start).toBe(0);
+  expect(renderer.root.findByProps({ testID: 'pronunciation-unit-0' }).props.accessibilityState.selected).toBe(true);
+  expect(renderer.root.findByProps({ accessibilityLabel: 'More details' }).props.accessibilityState.expanded).toBe(false);
   expect(JSON.stringify(renderer.toJSON())).not.toContain('Lexical tone:');
   expect(JSON.stringify(renderer.toJSON())).not.toContain('Raw tracker evidence');
 });
@@ -209,7 +215,7 @@ it('uses the completed character strip as heard text while retaining uncovered m
   const props = { heard: '周谋', analysis: { utteranceId: 'u', state: 'ready' as const, perceived: perceivedAnalysis } };
   await act(async () => { renderer = create(React.createElement(SpeechEvidence, props)); });
   expect(renderer.root.findAllByType(Text).filter(n => n.props.children === '周谋')).toHaveLength(0);
-  expect(renderer.root.findByType(SentenceToneGraph).props.data.syllables.map((s: { characters: string }) => s.characters).join('')).toBe('周谋');
+  expect(renderer.root.findByType(PronunciationWorkspace).props.analysis.data.syllables.map((s: { characters: string }) => s.characters).join('')).toBe('周谋');
   await act(async () => renderer.update(React.createElement(SpeechEvidence, { ...props, heard: '周谋 ABC' })));
   expect(renderer.root.findAllByType(Text).filter(n => n.props.children === '周谋 ABC')).toHaveLength(1);
 });

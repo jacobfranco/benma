@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { PlaybackButton } from '@/audio/PlaybackButton';
 import type { ConversationTurn, PronunciationResult } from '@/api/types';
 import { Card, FixtureBanner } from '@/components/Ui';
 import { TranscriptFeedback } from '@/speech/TranscriptFeedback';
+import { pronunciationUnits } from '@/speech/pronunciationWorkspace';
 import type { SpeechAnalysis } from '@/speech/workflow';
 import { colors } from '@/theme';
 
@@ -18,7 +20,8 @@ export function changedWording(heard: string, understood: string): { heard: stri
 const semanticText = (text: string) => text.replace(/[\p{P}\p{Z}\s]/gu, '');
 
 export function SpeechEvidence({ heard, decision = null, understood = null,
-  pronunciation, analysis, processing, recordingUrl, intendedText, synthetic = false }: {
+  pronunciation, analysis, processing, recordingUrl, intendedText, synthetic = false, compact = false }: {
+  compact?: boolean;
   heard: string;
   intendedText?: string | undefined;
   decision?: ConversationTurn['interpretation_decision'] | undefined;
@@ -29,6 +32,7 @@ export function SpeechEvidence({ heard, decision = null, understood = null,
   recordingUrl?: string;
   synthetic?: boolean;
 }) {
+  const [expanded, setExpanded] = useState(!compact);
   const inferred = decision === 'infer' && understood !== null && semanticText(heard) !== semanticText(understood);
   const targetText = intendedText ?? pronunciation?.target.text ?? analysis?.pronunciation?.target.text;
   const targetChange = targetText && semanticText(targetText) !== semanticText(heard)
@@ -37,21 +41,27 @@ export function SpeechEvidence({ heard, decision = null, understood = null,
   // The completed strip is the heard sentence when it represents all lexical text.
   // Keep full text for loading, failed analyses and mixed/non-Han utterances.
   const stripText = analysis?.perceived?.data.syllables.map(s => s.characters).join('');
-  const heardInStrip = !!stripText && semanticText(stripText) === semanticText(heard);
+  const heardInStrip = expanded && !!analysis?.perceived && pronunciationUnits(analysis.perceived.data).length > 0 && !!stripText && semanticText(stripText) === semanticText(heard);
 
-  return <Card>
-    <Text style={styles.speaker}>YOU</Text>
+  const playback = recordingUrl ? <PlaybackButton compact uri={recordingUrl} label="Play my full recording" /> : null;
+  return <Card style={!compact ? { padding: 12, gap: 6 } : undefined}>
+    {compact && <Text style={styles.speaker}>YOU</Text>}
     {synthetic && <FixtureBanner />}
-    <Text style={styles.label}>What Benma heard</Text>
-    {!heardInStrip && <Text selectable style={styles.text}>{heard}</Text>}
-    <View testID="pronunciation-section" style={{ gap: 8, minHeight: pronunciation || /[\u3400-\u4dbf\u4e00-\u9fff]/.test(heard) ? 270 : 0 }}>
+    {compact && <Text style={styles.label}>What Benma heard</Text>}
+    {!heardInStrip && <View testID="perceived-phrase-row" style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 4 }}>
+      <Text selectable style={[styles.text, { flexShrink: 1 }]}>{heard}</Text>{playback}
+    </View>}
+    {compact && <Pressable accessibilityRole="button" accessibilityLabel={expanded ? 'Hide pronunciation' : 'Explore pronunciation'}
+      accessibilityState={{ expanded }} onPress={() => setExpanded(!expanded)} style={{ minHeight: 44, justifyContent: 'center' }}>
+      <Text style={styles.feedback}>{expanded ? 'Hide pronunciation' : 'Explore pronunciation →'}</Text>
+    </Pressable>}
+    {expanded && <View testID="pronunciation-section" style={{ gap: 8 }}>
       <TranscriptFeedback heard={heard} analysis={analysis?.perceived} readings={analysis?.readings} failed={analysis?.state === 'failed'}
-          receivedAt={analysis?.receivedAt} startedAt={analysis?.startedAt} />
-    </View>
+          phraseActions={heardInStrip ? playback : null} receivedAt={analysis?.receivedAt} startedAt={analysis?.startedAt} />
+    </View>}
     {targetChange && <View testID="target-comparison">
       <Text style={styles.feedback}>{`Target difference: ${targetChange.heard || "∅"} → ${targetChange.understood || "∅"}`}</Text>
     </View>}
-    {recordingUrl && <PlaybackButton uri={recordingUrl} label="▶ Play mine" />}
     {inferred && <>
       <Text style={styles.label}>What Benma understood</Text>
       <Text selectable style={styles.text}>{understood}</Text>

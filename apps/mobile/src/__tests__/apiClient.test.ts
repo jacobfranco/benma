@@ -340,3 +340,16 @@ it('requests transcript analysis using only an owned perception ID, then retriev
     expect(fetchMock.mock.calls[1]![0]).toBe('http://api.test/v1/perceived-speech-analyses/analysis');
   } finally { fetchMock.mockRestore(); }
 });
+
+it('requests canonical audio only by authenticated utterance identity and rejects paths', async () => {
+  multipartFetchMock.mockResolvedValue({ ...jsonResponse({}), bytes: async () => new Uint8Array([1, 2]) });
+  const client = new BenmaApiClient('http://api.test');
+  client.setToken('canonical-test-token');
+  await client.downloadCanonicalRecording('utterance-1');
+  const [url, init] = multipartFetchMock.mock.calls.at(-1)!;
+  expect(url).toBe('http://api.test/v1/utterances/utterance-1/audio?canonical=true');
+  expect(new Headers(init.headers).get('Authorization')).toBe('Bearer canonical-test-token');
+  for (const invalid of ['../other', 'x/audio?path=secret', 'https://other.test']) {
+    await expect(client.downloadCanonicalRecording(invalid)).rejects.toThrow('Invalid protected audio path');
+  }
+});

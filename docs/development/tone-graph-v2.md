@@ -1,5 +1,13 @@
 # Tone Graph V2 — current state and checkpoint decision
 
+## Learner workspace update: October 8, 2026
+
+The [pronunciation workspace](pronunciation-workspace.md) now replaces the default horizontal whole-sentence graph with wrapped perceived timing units and one selected-unit panel. Practice/Free Practice show one active attempt, with session-local History and a fixed New Attempt control. Conversation starts with pronunciation collapsed. Full pitch details retains the whole-utterance elapsed-time graph and optional Raw evidence; it is no longer the primary learner navigation surface.
+
+Selected graphs use saved retained measurements on a shared attempt scale, and exact Mine playback uses the canonical audio timeline via the authenticated existing audio resource's `canonical=true` option. Groups remain atomic; no accepted timing means no bounded unit playback. Context playback is not in production. Learner comparison remains uncertain: all units use neutral measurement-quality labels, not positive/negative pronunciation grades. The known speech-presence deployment blocker remains.
+
+The October 6 checkpoint below is preserved as historical research/policy context. Its description of the then-default graph hierarchy is superseded by this workspace update; its research conclusions and comparison guardrails are unchanged.
+
 ## Current state: October 6, 2026
 
 **Checkpoint posture: Option B, architecture with conservative feature gating. Ready for a small final physical smoke before a separately authorized commit. Deployment: DO NOT DEPLOY YET.** The [checkpoint report](../research/pronunciation-v2/2026-10-06-checkpoint-scope/README.md) is the current decision authority. Older research readiness statements and proposed next experiments are historical, not current instructions.

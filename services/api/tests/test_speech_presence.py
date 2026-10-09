@@ -71,11 +71,19 @@ def test_quiet_aperiodic_activity_does_not_require_pitch() -> None:
 
 
 @pytest.mark.parametrize(
-    "audio", [pcm(np.zeros(16000)), noise(0.003, True)], ids=["silence", "click"]
+    "audio",
+    [
+        pcm(np.zeros(8000)),
+        pcm(np.zeros(160000)),
+        pcm(np.random.default_rng(23).normal(0, 0.00003, 160000)),
+        noise(0.003, True),
+    ],
+    ids=["short-silence", "long-silence", "long-near-silence", "click"],
 )
 def test_no_speech_upload_creates_no_utterance_or_attempt(
-    client, auth_header, session_factory, audio
+    client, auth_header, session_factory, audio, settings
 ):
+    settings.max_audio_duration_seconds = 15
     response = client.post(
         "/v1/utterances", headers=auth_header, files={"file": ("silence.wav", audio, "audio/wav")}
     )
@@ -88,21 +96,25 @@ def test_no_speech_upload_creates_no_utterance_or_attempt(
         assert list(db.scalars(select(AudioAsset.kind))) == ["original"]
 
 
-def legacy_silence(uploaded_utterance, session_factory, store):
+def legacy_silence(uploaded_utterance, session_factory, store, duration=1):
     """Simulate an upload saved before the guard, without altering production rows."""
     with session_factory() as db:
         utterance = db.get(Utterance, uuid.UUID(uploaded_utterance["id"]))
         asset = db.get(AudioAsset, utterance.canonical_audio_asset_id)
-        store.path_for_processing(asset.storage_key).write_bytes(pcm(np.zeros(16000)))
+        store.path_for_processing(asset.storage_key).write_bytes(
+            pcm(np.zeros(round(duration * 16000)))
+        )
         return utterance.account_id, utterance.id
 
 
+@pytest.mark.parametrize("duration", [0.5, 10])
 def test_provider_cannot_hallucinate_success_on_legacy_silence(
+    duration,
     uploaded_utterance,
     session_factory,
     store,
 ):
-    account, utterance = legacy_silence(uploaded_utterance, session_factory, store)
+    account, utterance = legacy_silence(uploaded_utterance, session_factory, store, duration)
     provider = Mock(provider_name="hallucinating", product_name="test", adapter_version="1")
     provider.request_configuration = {}
     with session_factory() as db:

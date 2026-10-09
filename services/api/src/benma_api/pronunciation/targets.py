@@ -14,7 +14,7 @@ from typing import Any, Literal
 from pypinyin import Style, pinyin
 from pypinyin.contrib.tone_convert import to_tone, to_tone3
 
-from benma_api.pronunciation.readings import LEXICAL_NEUTRAL_READINGS
+from benma_api.pronunciation.readings import LEXICAL_NEUTRAL_READINGS, citation_reading
 from benma_api.pronunciation.surface import SURFACE_VERSION, surface_expectations
 
 Tone = Literal[0, 1, 2, 3, 4]
@@ -112,7 +112,14 @@ def parse_mandarin_target(text: str) -> ParsedTarget:
             numeric, tone = "bu4", 4
         selected.append(numeric)
         tones.append(tone)
-        alternatives.append([_numeric_syllable(item)[0] for item in group])
+        alternatives.append(
+            list(
+                dict.fromkeys(
+                    citation_reading(text[index : index + 1], _numeric_syllable(item)[0])
+                    for item in group
+                )
+            )
+        )
         marked = to_tone(numeric.replace("5", "")) if tone is not None else numeric
         display.append(marked)
         syllable_units.append(
@@ -152,6 +159,9 @@ def parse_corrected_pinyin(text: str, corrected_pinyin: str) -> ParsedTarget:
             "corrected pinyin must currently map one syllable to each target character"
         )
     numeric = [item[0] for item in numeric_and_tones]
+    candidates = parse_mandarin_target(text).alternatives
+    if any(value not in options for value, options in zip(numeric, candidates, strict=True)):
+        raise ValueError("select a supported lexical reading for each character")
     tones = [item[1] for item in numeric_and_tones]
     units = [
         {
@@ -167,7 +177,7 @@ def parse_corrected_pinyin(text: str, corrected_pinyin: str) -> ParsedTarget:
         display_pinyin=" ".join(to_tone(item.replace("5", "")) for item in numeric),
         pinyin_syllables=numeric,
         lexical_tones=tones,
-        alternatives=[[item] for item in numeric],
+        alternatives=candidates,
         syllable_units=units,
         surface_tone_expectation=_surface_tones(text, tones),
         provenance="user-corrected",

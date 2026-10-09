@@ -112,7 +112,7 @@ export default function ConversationScreen() {
             <Text style={styles.pending}>{speechTurn.error ? 'Response unavailable. You can keep talking.' : 'Preparing response…'}</Text>
           </Card>
         : !turn || turn.role === 'user'
-        ? <SpeechEvidence key={key} heard={perception?.transcript ?? turn?.perceived_text ?? ''}
+        ? <SpeechEvidence compact key={key} heard={perception?.transcript ?? turn?.perceived_text ?? ''}
             synthetic={perception?.normalized_result?.evidence_status === 'synthetic_replay'}
             decision={turn?.interpretation_decision ?? meanings[key]?.decision}
             understood={turn ? turn.resolved_text : meanings[key]?.inferred_text}

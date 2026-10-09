@@ -7,6 +7,7 @@ import uuid
 import wave
 from pathlib import Path
 
+import pytest
 from conftest import ApiClient
 
 from benma_api.config import Settings
@@ -462,3 +463,41 @@ def test_assessment_provenance_fails_closed():
             normalized_result={"evidence_status": evidence, "pronunciation_score": 79},
         )
         assert has_live_assessment(row) is accepted
+
+
+@pytest.mark.parametrize("text,reading", [("我", "wo4"), ("一个", "yi2 ge4"), ("不是", "bu2 shi4")])
+def test_reading_correction_rejects_nonlexical_or_sandhi_choices(text, reading) -> None:
+    with pytest.raises(ValueError, match="supported lexical reading"):
+        parse_corrected_pinyin(text, reading)
+
+
+@pytest.mark.parametrize("text", ["一个", "不是", "妈妈", "我想买", "行"])
+def test_reading_candidates_are_lexical_and_survive_revision(text) -> None:
+    original = parse_mandarin_target(text)
+    assert all(
+        value in options
+        for value, options in zip(original.pinyin_syllables, original.alternatives, strict=True)
+    )
+    revised = parse_corrected_pinyin(text, " ".join(original.pinyin_syllables))
+    assert revised.alternatives == original.alternatives
+    assert revised.surface_tone_expectation == original.surface_tone_expectation
+    if text == "一个":
+        assert original.alternatives[0] == ["yi1"]
+        assert original.lexical_tones[0] == 1
+        assert original.surface_tone_expectation["rules"][0]["expected_surface_tone"] == 2
+
+
+def test_impossible_reading_does_not_create_target_revision(client, auth_header, session_factory):
+    from sqlalchemy import func, select
+
+    original = client.post(
+        "/v1/pronunciation-targets", headers=auth_header, json={"text": "我"}
+    ).json()
+    response = client.post(
+        f"/v1/pronunciation-targets/{original['id']}/pinyin-corrections",
+        headers=auth_header,
+        json={"pinyin": "wo4"},
+    )
+    assert response.status_code == 422
+    with session_factory() as db:
+        assert db.scalar(select(func.count()).select_from(PronunciationTarget)) == 1

@@ -14,12 +14,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { colors } from '@/theme';
 
-export function Screen({ children }: PropsWithChildren): ReactNode {
+export function Screen({ children, footer, compact = false }: PropsWithChildren<{ footer?: ReactNode; compact?: boolean }>): ReactNode {
   return (
     <SafeAreaView style={styles.safe} edges={['bottom']}>
-      <ScrollView contentContainerStyle={styles.screen} keyboardShouldPersistTaps="handled">
+      <ScrollView contentContainerStyle={[styles.screen, compact && { padding: 12, paddingBottom: 12, gap: 8 }]} keyboardShouldPersistTaps="handled">
         {children}
       </ScrollView>
+      {footer && <View style={styles.footer}>{footer}</View>}
     </SafeAreaView>
   );
 }
@@ -114,6 +115,8 @@ export function EvidenceRow({ label, value }: { label: string; value: unknown })
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.background },
+  footer: { paddingHorizontal: 20, paddingVertical: 10, gap: 8, backgroundColor: colors.background,
+    width: '100%', maxWidth: 900, alignSelf: 'center' },
   screen: { padding: 20, paddingBottom: 48, gap: 16,
     ...(Platform.OS === 'web' ? { width: '100%', maxWidth: 900, alignSelf: 'center' } as const : {}) },
   card: {

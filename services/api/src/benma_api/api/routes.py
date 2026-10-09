@@ -785,6 +785,7 @@ async def get_utterance(
 @router.get("/v1/utterances/{utterance_id}/audio")
 async def get_utterance_audio(
     utterance_id: uuid.UUID,
+    canonical: bool = False,
     auth: AuthContext = Depends(get_auth_context),
     db: Session = Depends(get_db),
     store: AudioObjectStore = Depends(get_audio_store),
@@ -792,7 +793,10 @@ async def get_utterance_audio(
     utterance = db.get(Utterance, utterance_id)
     if utterance is None or utterance.account_id != auth.account_id:
         raise AuthorizationError("utterance was not found")
-    asset = db.get(AudioAsset, utterance.original_audio_asset_id)
+    asset_id = (
+        utterance.canonical_audio_asset_id if canonical else utterance.original_audio_asset_id
+    )
+    asset = db.get(AudioAsset, asset_id)
     if asset is None or asset.account_id != auth.account_id:
         raise AuthorizationError("audio was not found")
     return Response(
