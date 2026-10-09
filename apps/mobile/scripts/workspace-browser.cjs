@@ -11,7 +11,7 @@ const root = path.resolve(__dirname, '../../..');
 const saved = JSON.parse(fs.readFileSync(process.env.BENMA_WORKSPACE_FIXTURE || path.join(root, 'services/api/var/audio-first-feedback/viewer-data.json'))).recordings;
 const grouped = saved.find(r => r.id.startsWith('40357072'));
 const noTiming = saved.find(r => r.id.startsWith('d47274bc'));
-const output = process.env.BENMA_BROWSER_OUTPUT || '/tmp/benma-polish-review';
+const output = process.env.BENMA_BROWSER_OUTPUT || '/tmp/benma-entry-review';
 fs.mkdirSync(output, { recursive: true });
 const summary = [];
 (async () => {
@@ -28,6 +28,8 @@ const summary = [];
         HTMLMediaElement.prototype.play = function () { window.__playedAudio.push(this); return originalPlay.call(this); };
       });
       let chosen = grouped, turn = 0;
+      const preparedPhrases = [];
+      let rejectLanguage = false;
       let targetText = '我想买五把雨伞';
       const target = () => ({ id: 'target', text: targetText, display_pinyin: targetText === '行' ? 'xíng' : 'wǒ xiǎng mǎi wǔ bǎ yǔ sǎn',
         pinyin_syllables: targetText === '行' ? ['xing2'] : ['wo3', 'xiang3', 'mai3', 'wu3', 'ba3', 'yu3', 'san3'],
@@ -36,13 +38,16 @@ const summary = [];
       await page.route('**/v1/**', async route => {
         const url = new URL(route.request().url()), p = url.pathname;
         const json = data => route.fulfill({ json: data });
-        if (p === '/v1/pronunciation-targets') { targetText = route.request().postDataJSON().text; return json(target()); }
+        if (p === '/v1/pronunciation-targets') { targetText = route.request().postDataJSON().text; preparedPhrases.push(targetText); return json(target()); }
         if (p.endsWith('/reference-speech')) return json({ id: 'ref', status: 'succeeded', audio_url: '/v1/reference-speech/ref/audio', generation_config: {} });
         if (p.endsWith('/pinyin-corrections')) return json({ ...target(), id: 'revision', pinyin_syllables: ['hang2'], display_pinyin: 'háng' });
         if (p === '/v1/pronunciation-attempts') return json({ id: 'attempt' });
         if (p.endsWith('/analyze')) return json({ attempt: { id: 'attempt' }, target: target(), syllables: [] });
         if (p === '/v1/me') return json({ id: 'offline' });
         if (p === '/v1/utterances') { attempts.set(++turn, chosen); return json({ id: `u${turn}` }); }
+        if (p.endsWith('/perceptions') && rejectLanguage) {
+          rejectLanguage = false; return route.fulfill({ status: 422, json: { error: { code: 'non_mandarin', message: 'offline language rejection', retryable: false } } });
+        }
         if (p.endsWith('/perceptions')) return json({ id: `p${turn}`, utterance_id: `u${turn}`, transcript: chosen.perceived_text, status: 'succeeded' });
         if (p.endsWith('/speech-analysis')) return json({ id: `a${turn}`, utterance_id: `u${turn}`, perception_run_id: `p${turn}`, status: 'succeeded', alignment_reference_text: chosen.perceived_text, data: chosen.data });
         if (p.endsWith('/readings')) return json({ syllables: chosen.data.syllables });
@@ -69,7 +74,7 @@ const summary = [];
         await playing.click();
         await page.getByRole('button', { name: label, exact: true }).waitFor();
       };
-      const record = async (label = 'New Attempt') => {
+      const record = async (label = 'Record') => {
         await click(label);
         assert.equal(await page.getByTestId('pronunciation-workspace').count(), 0);
         await page.waitForTimeout(250);
@@ -79,11 +84,61 @@ const summary = [];
         await page.getByTestId('pronunciation-workspace').waitFor();
       };
       await page.goto(process.env.BENMA_WEB_URL || 'http://localhost:8086'); await click('Open Practice');
-      await click('Add a target phrase');
-      await page.getByLabel('Target phrase', { exact: true }).fill(targetText);
+      const checkEntry = async () => {
+        assert.equal(await page.getByText('Free Practice', { exact: true }).count(), 0);
+        assert.equal(await page.getByText('Target', { exact: true }).count(), 0);
+        assert.equal(await page.getByRole('button', { name: 'History', exact: true }).count(), 0);
+        for (const name of ['Add target', 'Random phrase', 'Record']) {
+          const action = page.getByRole('button', { name, exact: true });
+          const b = await action.boundingBox();
+          assert(b.width >= 44 && b.height >= 44 && b.x >= 0 && b.x + b.width <= width);
+          assert(b.y >= 0 && b.y + b.height <= 844);
+        }
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      };
+      await checkEntry();
+      await page.screenshot({ path: `${output}/${width}-empty.png`, fullPage: true });
+      await page.evaluate(() => { Math.random = () => 0; });
+      await click('Random phrase');
+      await page.getByRole('button', { name: 'Edit target: 我不知道', exact: true }).waitFor();
+      assert.equal(turn, 0);
+      await click('Clear target');
+      assert.equal(await page.getByRole('dialog').count(), 0);
+      await checkEntry();
+      await click('Random phrase');
+      await page.getByRole('button', { name: 'Edit target: 你今天忙吗', exact: true }).waitFor();
+      assert.deepEqual(preparedPhrases, ['我不知道', '你今天忙吗']);
+      assert.equal(turn, 0);
+      await click('Clear target');
+      await click('Add target');
+      await page.getByLabel('Target phrase', { exact: true }).fill('我想买五把雨伞');
       await click('Prepare target');
       await page.getByRole('button', { name: `Play native reference for ${targetText}`, exact: true }).waitFor();
       assert.equal(await page.getByRole('button', { name: 'Edit reading', exact: true }).count(), 0);
+      assert.equal(await page.getByRole('button', { name: 'Change target', exact: true }).count(), 0);
+      assert.equal(await page.getByRole('button', { name: 'New Attempt', exact: true }).count(), 0);
+      const edit = page.getByRole('button', { name: `Edit target: ${targetText}`, exact: true });
+      assert.equal(await edit.getByRole('button').count(), 0); // Speaker/clear are siblings.
+      await edit.hover();
+      await edit.focus();
+      assert(await edit.evaluate(n => n === document.activeElement));
+      await page.screenshot({ path: `${output}/${width}-target.png`, fullPage: true });
+      for (const key of ['Enter', 'Space']) {
+        await edit.focus(); await page.keyboard.press(key);
+        await page.getByRole('textbox', { name: 'Target phrase', exact: true }).waitFor();
+        await page.waitForTimeout(350); // Let the native-web Modal entrance animation finish.
+        assert.equal(await page.getByRole('textbox', { name: 'Target phrase', exact: true }).inputValue(), targetText);
+        await page.keyboard.press('Escape');
+        await page.getByRole('dialog').waitFor({ state: 'hidden' });
+        await page.waitForTimeout(350);
+      }
+      await edit.tap();
+      await page.getByRole('dialog').waitFor(); await page.waitForTimeout(350); await click('Close Change target');
+      await page.getByRole('dialog').waitFor({ state: 'hidden' });
+      await page.waitForTimeout(350);
+      await stablePlayback(`Play native reference for ${targetText}`);
+      assert.equal(await page.getByRole('dialog').count(), 0);
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       await record();
       const overview = page.getByTestId('perceived-sentence-overview');
       const labels = await overview.locator('[data-testid^=pronunciation-unit-]').allTextContents();
@@ -100,7 +155,7 @@ const summary = [];
         return items;
       };
       const short = await checkLayout();
-      for (const label of [`Play native reference for ${targetText}`, 'Change target', 'Clear target', 'Play my full recording']) {
+      for (const label of [`Play native reference for ${targetText}`, 'Clear target', 'Play my full recording']) {
         const action = page.getByRole('button', { name: label, exact: true });
         const bounds = await action.boundingBox();
         assert(bounds.width >= 44 && bounds.width <= 48 && bounds.height >= 44);
@@ -108,6 +163,7 @@ const summary = [];
         assert(!((await action.textContent()) || '').includes(label));
       }
       await stablePlayback(`Play native reference for ${targetText}`);
+      assert.equal(await page.getByRole('dialog').count(), 0);
       await stablePlayback('Play my full recording');
       assert(await page.getByRole('button', { name: 'History', exact: true }).isVisible());
       const retry = await page.getByRole('button', { name: 'New Attempt', exact: true }).boundingBox();
@@ -167,10 +223,17 @@ const summary = [];
       await click('Clear target');
       assert.equal(await page.getByTestId('pronunciation-workspace').count(), 0);
       assert.equal(await page.getByRole('button', { name: 'History', exact: true }).count(), 0);
-      assert(await page.getByText('Free Practice', { exact: true }).isVisible());
+      assert.equal(await page.getByText('Free Practice', { exact: true }).count(), 0);
+      assert(await page.getByRole('button', { name: 'Record', exact: true }).isVisible());
+      rejectLanguage = true;
+      await click('Record'); await page.waitForTimeout(250); await click('Stop recording');
+      await page.getByRole('alert').filter({ hasText: "This doesn't sound like Mandarin. Try again." }).waitFor();
+      await checkEntry();
+      assert.equal(await page.getByTestId('pronunciation-workspace').count(), 0);
+      await page.screenshot({ path: `${output}/${width}-language-retry.png`, fullPage: true });
       chosen = grouped; await record();
       await page.screenshot({ path: `${output}/${width}-free.png`, fullPage: true });
-      await click('Add a target phrase'); await page.getByLabel('Target phrase', { exact: true }).fill('行');
+      await click('Add target'); await page.getByLabel('Target phrase', { exact: true }).fill('行');
       await click('Prepare target'); await click('Edit reading');
       assert.deepEqual(await page.getByRole('radio').allTextContents(), ['xing2', 'hang2']);
       await page.getByRole('radio', { name: '行: hang2', exact: true }).click();
@@ -178,7 +241,7 @@ const summary = [];
       await page.screenshot({ path: `${output}/${width}-reading.png`, fullPage: true });
       await click('Use this reading');
       await page.getByText('háng', { exact: true }).waitFor();
-      await click('Change target');
+      await click(`Edit target: ${targetText}`);
       await page.waitForTimeout(350);
       await page.screenshot({ path: `${output}/${width}-target-dialog.png`, fullPage: true });
       await page.keyboard.press('Escape');
@@ -192,7 +255,7 @@ const summary = [];
       await click('Explore pronunciation');
       assert.equal(await page.getByTestId('pronunciation-workspace').count(), 1);
       assert.deepEqual(errors, []);
-      summary.push({ width, shortRows: new Set(short.map(r => r.y)).size, longRows: new Set(long.map(r => r.y)).size, grouped: true, noTiming: true, history: true, canonicalPlayback: true, targetActions: true, readingSelector: true, clearTarget: true, freshAttempt: true, dialogs: true, primaryFits: true, playbackBoundsStable: true, conversationCollapsed: true, errors });
+      summary.push({ width, emptyEntry: true, randomPhrase: true, targetKeyboardAndTouch: true, independentTargetActions: true, languageRetryPlumbing: true, shortRows: new Set(short.map(r => r.y)).size, longRows: new Set(long.map(r => r.y)).size, grouped: true, noTiming: true, history: true, canonicalPlayback: true, targetActions: true, readingSelector: true, clearTarget: true, freshAttempt: true, dialogs: true, primaryFits: true, playbackBoundsStable: true, conversationCollapsed: true, errors });
       await context.close();
     }
     fs.writeFileSync(`${output}/review.json`, JSON.stringify(summary, null, 2));

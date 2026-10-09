@@ -238,23 +238,25 @@ it('target success cannot replace failed perceived analysis with target-aligned 
   expect(feedback.mock.calls.at(-1)![0].perceived).toBeUndefined();
 });
 
-it.each(['upload', 'perception', 'failed-result'] as const)('no-speech at %s cannot publish text, graph, target assessment or a reply', async stage => {
-  for (const mode of [{ responseMode: 'none', targetId: 'target' }, { responseMode: 'conversation', conversationId: 'c' }] as const) {
-    const client = workflowApi(), pending = deferred<never>();
-    const checkpoint: SpeechCheckpoint = { uri: 'file:///silent.m4a' }, heard = jest.fn(), feedback = jest.fn();
-    if (stage === 'upload') client.uploadUtterance.mockReturnValue(pending.promise);
-    else client.createPerception.mockReturnValue(pending.promise);
-    const submission = submitSpeech(client, mode, checkpoint, 'audio/mp4', () => {}, heard, 0, feedback);
-    const rejected = expect(submission).rejects.toMatchObject({ stage: 'no_speech' });
-    await flushWorkflow();
-    expect(client.createAttempt).not.toHaveBeenCalled();
-    expect(client.analyzePronunciation).not.toHaveBeenCalled();
-    if (stage === 'failed-result') pending.resolve({ status: 'failed', error_code: 'no_speech', transcript: '现在是下午两点半。' } as never);
-    else pending.reject(Object.assign(new Error('no speech'), { code: 'no_speech' }));
-    await rejected; await flushWorkflow();
-    expect(heard).not.toHaveBeenCalled(); expect(feedback).not.toHaveBeenCalled();
-    expect(client.createAttempt).not.toHaveBeenCalled(); expect(client.analyzePronunciation).not.toHaveBeenCalled();
-    expect(client.analyzePerceivedSpeech).not.toHaveBeenCalled(); expect(client.addConversationUserTurn).not.toHaveBeenCalled();
-    expect(checkpoint.targetAnalysis).toBeUndefined(); expect(checkpoint.pronunciation).toBeUndefined();
+it.each(['upload', 'perception', 'failed-result'] as const)('recording rejection at %s cannot publish text, graph, target assessment or a reply', async stage => {
+  for (const code of ['no_speech', 'non_mandarin', 'language_uncertain'] as const) {
+    for (const mode of [{ responseMode: 'none' }, { responseMode: 'none', targetId: 'target' }, { responseMode: 'conversation', conversationId: 'c' }] as const) {
+      const client = workflowApi(), pending = deferred<never>();
+      const checkpoint: SpeechCheckpoint = { uri: 'file:///silent.m4a' }, heard = jest.fn(), feedback = jest.fn();
+      if (stage === 'upload') client.uploadUtterance.mockReturnValue(pending.promise);
+      else client.createPerception.mockReturnValue(pending.promise);
+      const submission = submitSpeech(client, mode, checkpoint, 'audio/mp4', () => {}, heard, 0, feedback);
+      const rejected = expect(submission).rejects.toMatchObject({ stage: code });
+      await flushWorkflow();
+      expect(client.createAttempt).not.toHaveBeenCalled();
+      expect(client.analyzePronunciation).not.toHaveBeenCalled();
+      if (stage === 'failed-result') pending.resolve({ status: 'failed', error_code: code, transcript: '现在是下午两点半。' } as never);
+      else pending.reject(Object.assign(new Error('rejected recording'), { code }));
+      await rejected; await flushWorkflow();
+      expect(heard).not.toHaveBeenCalled(); expect(feedback).not.toHaveBeenCalled();
+      expect(client.createAttempt).not.toHaveBeenCalled(); expect(client.analyzePronunciation).not.toHaveBeenCalled();
+      expect(client.analyzePerceivedSpeech).not.toHaveBeenCalled(); expect(client.addConversationUserTurn).not.toHaveBeenCalled();
+      expect(checkpoint.targetAnalysis).toBeUndefined(); expect(checkpoint.pronunciation).toBeUndefined();
+    }
   }
 });

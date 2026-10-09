@@ -1,16 +1,148 @@
 # Pronunciation workspace
 
-## October 8, 2026 checkpoint
+## October 8, 2026 — practice entry pass
 
-**READY FOR SECOND PHYSICAL UI SMOKE.** Physical UI smoke can proceed with neutral evidence states; semantic green/yellow/orange grading remains a separate policy decision. This is not deployment approval. No commit, push, deployment, new classifier, tracker/VAD experiment, or numeric pronunciation score belongs to this pass.
+**NON-MANDARIN DETECTION NEEDS ONE SPECIFIC TECHNICAL FOLLOW-UP.** The practice entry UI
+is implemented; robust source-language detection is not implemented with the configured
+recognizer. No commit, push or deployment was performed. Tone/gesture interpretation,
+eligibility, pitch filtering, comparison policy, experimental wording and the future
+visual-state seam remain unchanged. No tracker/VAD research or new model was introduced.
 
-The UX polish continues the existing wrapped sentence workspace, grouped evidence, selected detail replacement, canonical exact playback, session history, Conversation collapse and full utterance diagnostics. It does not restart the architecture. No tracker/VAD research, grading policy or acoustic algorithm was changed.
+### Optional target and entry controls
+
+Practice has an optional target, not a learner-facing Free Practice mode. The empty screen
+has **Add target** and **Random phrase** as compact secondary controls immediately above
+the primary **Record** footer. There is no empty target card, mode label, explanation or
+History control. The existing top-level route/title is already **Practice** and stays so.
+
+**Record** starts capture whenever there is no current attempt, including a prepared target
+with no take yet. After an accepted take, the action becomes **New Attempt**. New Attempt
+clears the active evidence and selection, stops playback and starts capture while retaining
+the target and session history. During capture it says **Stop recording**. A failed/rejected
+new take leaves an empty workspace with **Record**; old attempts remain available only by
+explicit History selection. A subsequent accepted take shows **New Attempt** again.
+
+**Add target** opens the existing target-entry dialog. **Random phrase** selects from the
+60 short, manually reviewable strings in `apps/mobile/src/speech/practicePhrases.ts`, such as
+我不知道, 你今天忙吗, 我想喝咖啡, 请再说一遍, 我想去超市 and 可以用手机付款吗.
+The module stores text only. Its chooser accepts an injected RNG and excludes the previous
+random selection for this mounted session, including across Clear target. Nothing is stored
+persistently, and no LLM or phrase-fetch request is used.
+
+Both entry actions use the same `prepare` function and `api.createTarget` followed by
+`api.createReferenceSpeech`: normal lexical parsing, pinyin, surface expectations, reading
+corrections, reference audio, attempts and History semantics apply. There is no random-target
+type. Normal target preparation still uses the existing backend/reference services; only
+phrase selection is entirely local. Selection never starts recording. Preparing disables
+duplicate selection/recording, successful preparation announces the target, target-creation
+failure displays the existing error without a phantom target, and reference failure retains
+the prepared target with the existing reference-retry action.
+
+The target phrase **and pinyin body** open the existing edit dialog, labelled
+`Edit target: <phrase>`. The redundant target pencil is removed. Hover/press tint and a focus
+border provide subtle affordances; web Enter/Space activate editing. Speaker and Clear are
+sibling controls, not children of the edit button, so they cannot bubble into editing.
+Speaker uses `Play native reference for <phrase>` and Clear uses `Clear target`.
+The separate lexical **Edit reading** selector is preserved for ambiguous readings only.
+
+Clear target retains its session-generation race guard: it clears target/reference/draft,
+current attempt/selection, all exercise entries and analyses, and playback. Late old
+analysis cannot restore that exercise. It returns to Add target / Random phrase / Record.
+History remains session-local and secondary once accepted attempts exist. Untargeted
+Mandarin attempts retain perceived identity, wrapped units, detail, graphs, full/selected
+playback and History, without target-relative controls or a mode heading.
+
+### Source-language audit and exact limitation
+
+The shared live perception path for targeted practice, untargeted practice and Conversation
+is `submitSpeech` → `createPerception` → `PerceptionService` →
+`OpenAITranscriptionProvider`. The checked repository default and local non-secret model
+setting both select **gpt-4o-transcribe**. The request sends `language=zh`, `response_format=json`,
+`include[]=logprobs`, and the server-owned `mandarin-verbatim-v1` policy whose first sentence
+asserts that the recording is Mandarin. That is language conditioning, not independent
+source-language detection. Intended target and conversational context are structurally
+absent from `UnknownTargetPerceptionInput`. Azure's separate known-target/alignment requests
+use zh-CN and do not establish the language of the source recording either.
+
+This explains the risk in English audio becoming plausible Chinese: the recognizer is
+asked to decode Mandarin even when the input is English. The precise reported recording
+was not available to reproduce, so this is a traced failure mechanism, not a measured
+explanation of each hallucinated word. A Chinese transcript, successful pinyin mapping or
+high token probability cannot certify Mandarin speech.
+
+The adapter already preserves raw provider payloads, singular `language` and plural
+`languages` metadata, including an explicitly empty array. The normalized perception keeps
+`detected_language` / `detected_languages`; nothing relevant was being discarded.
+`gpt-4o-transcribe` JSON/logprobs do not provide a documented independent language-ID signal
+usable in this configuration. Simply omitting the hint does not add a documented language-ID
+field. Existing constrained metadata cannot be treated as independent evidence.
+
+The current [official OpenAI file-transcription guide](https://developers.openai.com/api/docs/guides/speech-to-text)
+documents detected language codes for **gpt-transcribe** and an empty `languages` array when
+it cannot reliably identify a language. That is a different model, supported by the adapter
+but not selected here; even that adapter path currently supplies `languages[]=zh` and the
+Mandarin assertion. The prior transcription bakeoff retained gpt-4o-transcribe for a reason
+([recorded audit](perception-alignment-pitch-2026-09-18.md#transcription-and-truth-boundaries)).
+This pass does not silently switch recognizers, add a classifier, or repurpose token logprobs
+as language confidence. Automatic rejection of accidental English therefore remains
+**unsupported in the running backend**. Target presence cannot make this evidence stronger.
+
+### Language-rejection UX plumbing (no detector yet)
+
+The shared mobile workflow now recognizes reserved `non_mandarin` and `language_uncertain`
+errors, from either a failed perception response or transport error, before publishing a
+perception or starting any pronunciation/Conversation work. The current backend does **not**
+emit either code. Tests inject them to validate the future error boundary, not to claim
+English/other-language classification accuracy.
+
+- `non_mandarin`: “This doesn't sound like Mandarin. Try again.”
+- `language_uncertain`: “Couldn't identify the language. Try recording again.”
+
+These errors announce as alerts, discard the recording's retry checkpoint, leave the target
+intact and permit immediate fresh capture. They do not offer resubmission of the rejected
+audio, create pronunciation attempts, show fabricated perceived text/graphs/timing, add a
+History entry, or invoke the conversational assistant. Unknown language is never labelled
+confidently non-Mandarin. Normal accepted perceptions retain existing behavior; no transcript
+heuristic was added. Conversation layout and collapsed-pronunciation behavior are unchanged.
+
+Speech presence remains separate: digital silence rejection and short-Mandarin acceptance
+are preserved; ambient/background false positives remain an existing blocker. VAD research
+was not reopened. The visible-geometry versus gesture-interpretation discrepancy remains a
+separate future pass, with no grading colors or policy changes here.
+
+### Entry-pass validation
+
+- Mobile native/web: **32 suites, 412 tests passed**, including entry state, Record/New Attempt,
+  deterministic phrase selection, ordinary target/reference flow, no automatic capture,
+  preparation/reference failure, clear-target race protection, readings, full/canonical
+  playback, grouped 雨伞, d47274bc no-timing, 广州/贵州 and Conversation regressions.
+- Language UX mocks cover target/no-target rejection, uncertain rejection, fresh retry,
+  no new History, and no assistant/analysis publication. These are plumbing tests only.
+- Mobile lint/typecheck and web/Android exports pass. Artifacts/logs use `/tmp/benma-entry-*`.
+- Final focused rerun after the compact 320 px spacing adjustment: **85 tests passed**.
+- Unchanged-backend regression check: **64 passed, 2 optional private-recording skips** across
+  provider adapters, perception truth, speech presence and target-reading/ownership tests.
+  No backend code, schema, API contract, generated OpenAPI, database or migration changed.
+- Chromium entry and existing workspace review **passed at 320/390/412 × 844 px**, with no
+  horizontal overflow or page errors. Empty/target screenshots were visually inspected;
+  Enter/Space/touch editing, independent speaker/clear controls and the complete primary
+  attempt loop passed at each width. The review is recorded by
+  `apps/mobile/scripts/workspace-browser.cjs`; all API/provider responses are intercepted.
+  Screenshots and results go to `/tmp/benma-entry-review`. Physical native playback and
+  VoiceOver/TalkBack still require device smoke; browser automation is not language-ID validation.
+
+**One next technical step:** run a bounded source-language evaluation of an **unhinted,
+prompt-free gpt-transcribe preflight**, retaining the existing Mandarin transcription path
+until results support integration. Include short/accented Mandarin, English, another language,
+ambiguous/mixed speech and empty-language output; establish Mandarin-versus-generic-Chinese
+handling from observed provider codes. This would be a separately validated model/configuration
+change, not a solved detector in this UI pass.
 
 ## Compact learner hierarchy
 
-Practice and Free Practice show the target (when present), current perceived phrase, one selected-unit detail and a fixed **New Attempt** footer. The normal surface removes YOU, What Benma heard, Your pitch, the graph introduction, repeated recording-target text and reference disclaimers. Conversation retains its contextual heard/understood distinction and starts with pronunciation collapsed.
+Practice shows the target (when present), current perceived phrase, one selected-unit detail and a fixed **Record / New Attempt** footer. The normal surface removes YOU, What Benma heard, Your pitch, the graph introduction, repeated recording-target text and reference disclaimers. Conversation retains its contextual heard/understood distinction and starts with pronunciation collapsed.
 
-The Target card contains a small `Target` label, the Chinese phrase, inline reference playback / pencil / clear actions, and the lexical reading. It replaces “Target active · every recording uses this phrase” and the stack of large action buttons. Reference audio uses `Play native reference for <target>`; whole-attempt playback uses `Play my full recording`. Both native and web playback render compact icons in this workspace. Existing non-workspace playback remains compatible.
+The Target card contains a small `Target` label, the Chinese phrase, tappable phrase/lexical-reading body and inline reference playback / clear actions. It replaces “Target active · every recording uses this phrase” and the stack of large action buttons. Reference audio uses `Play native reference for <target>`; whole-attempt playback uses `Play my full recording`. Both native and web playback render compact icons in this workspace. Existing non-workspace playback remains compatible.
 
 The perceived phrase is the wrapping timed-unit row when it covers the lexical text; otherwise complete perceived text remains visible. Whole-recording playback sits in that phrase row, including when no timing is available. Unit playback sits beside the selected identity and reading, with `Play my recording for <unit>`. All icon actions have accessible names and at least 44 × 44 px hit targets. Pending downloads expose busy/disabled state. Selection remains a neutral outline, independent of correctness.
 
@@ -97,13 +229,13 @@ Existing playback registration gives one foreground player, recording interrupti
 ## Attempts and surfaces
 
 - **Practice with a target:** one current entry, separate immutable target snapshot/comparison, selected-unit workspace, retained reference workflow, fixed New Attempt control, compact attempt counter and History. A new perceived result becomes current. Late analysis hydrates its own entry without switching the active history selection.
-- **Free Practice:** the target-free mode of the same Practice screen, with the same workspace and session-local history. Perceived speech is its only identity. There is no separate free-practice backend.
+- **Practice without a target:** the same Practice screen and workspace with session-local history. Perceived speech is its only identity. There is no separate free-practice backend.
 - **Conversation:** the `/conversation` route reuses `free-talk.tsx`. Heard text and whole-recording audio remain visible, pronunciation starts collapsed behind Explore pronunciation, and the assistant reply remains primary. Expansion mounts the same workspace. No practice retry/history mechanics were added to Conversation.
 - **Pronunciation laboratory:** not redesigned; existing guarded experimental/provider diagnostics remain separate.
 
 **New Attempt** preserves target and session history, clears the active attempt immediately (no fallback to the latest entry), unmounts selected detail/graphs/dialog state, stops playback via the existing recording lifecycle, clears retry/checkpoint state and starts microphone capture. A failed/no-speech new take leaves the workspace empty; history can explicitly reopen the prior take. Permission denial likewise does not restore stale graphs.
 
-**Clear target** clears target/reference/draft, current attempt, selected detail, all entries/analyses for the exercise, transient dialogs/errors and playback, then returns to Free Practice. A session generation guard ignores late analyses from cleared exercises. Preparing a different target starts a fresh exercise; canceling its dialog preserves the current exercise. Changing only a supported reading preserves previous attempts and their immutable target-text snapshots.
+**Clear target** clears target/reference/draft, current attempt, selected detail, all entries/analyses for the exercise, transient dialogs/errors and playback, then returns to the empty untargeted entry state. A session generation guard ignores late analyses from cleared exercises. Preparing a different target starts a fresh exercise; canceling its dialog preserves the current exercise. Changing only a supported reading preserves previous attempts and their immutable target-text snapshots.
 
 History reuses the existing in-memory entries/analyses and is **session-local to the mounted Practice screen**. Its compact header action opens a dialog, newest attempt first with an accessible Current marker. Reopening an old attempt replaces the one workspace. It is not persistent after reload and adds no before/after comparison feature.
 
@@ -126,7 +258,7 @@ Saved timing/identity extracts for 40357072 and d47274bc are in `workspaceTiming
 - **广州/贵州** and changed intended targets: readings/identity/graph/playback source remain perceived, comparison separate.
 - Incomplete/unstable/insufficient evidence stays neutral and withholds observed-gesture interpretation. No-timing, missing reading, empty pitch and non-Han states remain explicit.
 
-Validation for this polish pass:
+Historical validation for the preceding workspace polish pass (before the entry changes above):
 
 | Check | Result |
 | --- | --- |
@@ -149,8 +281,8 @@ Responsive Chromium review covers **320, 390 and 412 × 844 px**, target actions
 
 Reproduce with `apps/mobile/scripts/workspace-browser.cjs`; set `PLAYWRIGHT_MODULE`, serve the exported app at `BENMA_WEB_URL`, and provide the ignored six-take viewer data via `BENMA_WORKSPACE_FIXTURE` if needed. Screenshots and `review.json` live under `/tmp/benma-polish-review`, not tracked source. API/provider responses are offline fixtures, not live inference.
 
-## Remaining boundaries and one next step
+## Earlier workspace boundary
 
 The known false-positive speech-presence issue remains a **deployment blocker**. Non-speech can still be accepted and perceived as Chinese, potentially creating a neutral pitch workspace or Conversation response. No UI color, acoustic eligibility or successful request certifies speech presence. Tracker and VAD research remain closed.
 
-One next step: **second physical UI smoke on the learner's phone**, exercising normal and exaggerated 我想买五把雨伞, exact individual/group playback, New Attempt, History and Conversation expansion with neutral evidence states. Context padding and authoritative color comparison are separate unresolved decisions; deployment is not authorized by this smoke.
+The earlier workspace checkpoint called for a second physical UI smoke. The current entry pass and its single technical follow-up are described at the top of this document. Context padding and authoritative color comparison remain separate unresolved decisions; deployment is not authorized.

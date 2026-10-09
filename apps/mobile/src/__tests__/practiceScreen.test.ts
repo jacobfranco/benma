@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { AccessibilityInfo, Text } from 'react-native';
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 
 import { perceivedAnalysis } from './perceivedFixture';
 
+import { practicePhrases } from '@/speech/practicePhrases';
+import { Card } from '@/components/Ui';
 import { registerPlayback } from '@/audio/session';
 import { api } from '@/api/client';
 import PracticeScreen from '@/app/practice';
@@ -24,9 +26,13 @@ let renderer: ReactTestRenderer;
 async function press(label: string) {
   await act(async () => { renderer.root.findByProps({ accessibilityLabel: label }).props.onPress(); });
 }
-async function record() { await press('New Attempt'); await press('Stop recording'); }
+async function record() {
+  await press(renderer.root.findAllByProps({ accessibilityLabel: 'New Attempt' }).length ? 'New Attempt' : 'Record');
+  await press('Stop recording');
+}
 beforeEach(async () => {
   jest.restoreAllMocks(); jest.clearAllMocks();
+  jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});
   jest.spyOn(console, 'info').mockImplementation(() => {});
   jest.spyOn(api, 'uploadUtterance').mockResolvedValue({ id: 'utterance' } as never);
   jest.spyOn(api, 'createPerception').mockResolvedValue({ id: 'perception', utterance_id: 'utterance', transcript: '你好。' } as never);
@@ -44,6 +50,111 @@ beforeEach(async () => {
 });
 afterEach(async () => { await act(async () => renderer.unmount()); });
 
+it('starts with Record and two secondary target actions, without a target card or History', () => {
+  for (const label of ['Record', 'Add target', 'Random phrase']) {
+    expect(renderer.root.findByProps({ accessibilityLabel: label }).props.accessibilityRole).toBe('button');
+  }
+  expect(renderer.root.findAllByType(Card)).toHaveLength(0);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'History' })).toHaveLength(0);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'New Attempt' })).toHaveLength(0);
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Free Practice');
+});
+
+it('a prepared target still says Record; its body opens the existing edit dialog', async () => {
+  await press('Add target');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
+  await press('Prepare target');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'New Attempt' })).toHaveLength(0);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Change target' })).toHaveLength(0);
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('✎');
+  await press('Edit target: 你好');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.value).toBe('你好');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' }).props.disabled).toBe(true);
+  await press('Close Change target');
+  await press('Clear target');
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Target phrase' })).toHaveLength(0);
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
+});
+
+it('Random phrase uses ordinary target/reference preparation, announces it, and never starts recording', async () => {
+  jest.spyOn(Math, 'random').mockReturnValue(0);
+  jest.mocked(api.createTarget).mockImplementation(async text => ({
+    id: 'random-target', text, display_pinyin: 'wǒ bù zhī dào', pinyin_syllables: ['wo3', 'bu4', 'zhi1', 'dao4'],
+  } as never));
+  await press('Random phrase');
+  expect(api.createTarget).toHaveBeenLastCalledWith(practicePhrases[0]);
+  expect(api.createReferenceSpeech).toHaveBeenCalledWith('random-target');
+  expect(AccessibilityInfo.announceForAccessibility).toHaveBeenCalledWith(`Target: ${practicePhrases[0]}`);
+  expect(mockCapture.start).not.toHaveBeenCalled();
+  expect(renderer.root.findByProps({ accessibilityLabel: `Edit target: ${practicePhrases[0]}` })).toBeTruthy();
+  expect(renderer.root.findByProps({ children: 'wǒ bù zhī dào' })).toBeTruthy();
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
+  await record();
+  expect(api.createAttempt).toHaveBeenCalledWith('utterance', 'random-target');
+  await press('Clear target');
+  await press('Random phrase');
+  expect(api.createTarget).toHaveBeenLastCalledWith(practicePhrases[1]);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'History' })).toHaveLength(0);
+});
+
+it('random preparation locks recording and duplicate selection, then fails without a phantom target', async () => {
+  let fail!: (error: Error) => void;
+  jest.mocked(api.createTarget).mockReturnValueOnce(new Promise((_, reject) => { fail = reject; }));
+  await press('Random phrase');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' }).props.disabled).toBe(true);
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Random phrase' }).props.disabled).toBe(true);
+  await press('Random phrase');
+  expect(api.createTarget).toHaveBeenCalledTimes(1);
+  await act(async () => fail(new Error('unavailable')));
+  expect(JSON.stringify(renderer.toJSON())).toContain('Could not prepare that target phrase. Try again.');
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Clear target' })).toHaveLength(0);
+  expect(api.createReferenceSpeech).not.toHaveBeenCalled();
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' }).props.disabled).toBe(false);
+});
+
+it('random reference failure retains a real target and normal reference retry', async () => {
+  jest.mocked(api.createReferenceSpeech).mockRejectedValueOnce(new Error('unavailable'));
+  await press('Random phrase');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Edit target: 你好' })).toBeTruthy();
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' }).props.disabled).toBe(false);
+  await press('Retry reference');
+  expect(api.createReferenceSpeech).toHaveBeenLastCalledWith('target', true);
+});
+
+it.each([false, true])('future language rejection allows a fresh retry with target=%s, without evidence or History', async withTarget => {
+  if (withTarget) await press('Random phrase');
+  jest.mocked(api.createPerception).mockRejectedValueOnce({ code: 'non_mandarin' });
+  await record();
+  expect(JSON.stringify(renderer.toJSON())).toContain("This doesn't sound like Mandarin. Try again.");
+  expect(renderer.root.findAllByProps({ accessibilityRole: 'alert' }).length).toBeGreaterThan(0);
+  expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(0);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'History' })).toHaveLength(0);
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Retry' })).toHaveLength(0);
+  expect(api.createAttempt).not.toHaveBeenCalled();
+  expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' }).props.disabled).toBe(false);
+  await record();
+  expect(api.uploadUtterance).toHaveBeenCalledTimes(2);
+  expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(1);
+  expect(renderer.root.findByProps({ accessibilityLabel: 'New Attempt' })).toBeTruthy();
+  await press('History');
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Open attempt 2' })).toHaveLength(0);
+});
+
+it('a rejected new recording cannot restore old evidence or add a History entry', async () => {
+  await record();
+  jest.mocked(api.createPerception).mockRejectedValueOnce({ code: 'language_uncertain' });
+  await record();
+  expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(0);
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
+  expect(JSON.stringify(renderer.toJSON())).toContain("Couldn't identify the language. Try recording again.");
+  await press('History');
+  expect(renderer.root.findAllByProps({ accessibilityLabel: 'Open attempt 2' })).toHaveLength(0);
+  await press('Open attempt 1');
+  expect(renderer.root.findByType(SpeechEvidence).props.heard).toBe('你好。');
+});
+
 it('free Practice shows heard speech without a reply or target-relative score', async () => {
   await record();
   const rendered = JSON.stringify(renderer.toJSON());
@@ -59,7 +170,7 @@ it('free Practice shows heard speech without a reply or target-relative score', 
   expect(api.analyzePronunciation).not.toHaveBeenCalled();
 });
 it('target Practice prepares a reference, then invokes existing known-target assessment', async () => {
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target');
   expect(api.createTarget).toHaveBeenCalledWith('你好');
@@ -96,11 +207,11 @@ it('describes exact changed characters without assigning pronunciation blame', (
 });
 
 it('keeps the prepared reference mounted but disabled during recording so replay retains its cache', async () => {
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target');
   mockPlayback.mockClear();
-  await press('New Attempt');
+  await press('Record');
   expect(mockPlayback).toHaveBeenCalledWith({
     compact: true, label: 'Play native reference for 你好', uri: '/v1/reference-speech/ref/audio', disabled: true,
   });
@@ -128,7 +239,7 @@ it('an incomplete CLARIFY utterance retains conservative speech feedback and sep
 
 it('optional target-analysis failure leaves heard speech and the next recording available', async () => {
   jest.spyOn(api, 'analyzePronunciation').mockRejectedValue(new Error('analysis failed'));
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target');
   await record();
@@ -139,7 +250,7 @@ it('optional target-analysis failure leaves heard speech and the next recording 
 });
 
 it('retains one prepared target through three completed turns and rerenders; changes explicitly', async () => {
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target');
   for (let i = 0; i < 3; i++) {
@@ -150,7 +261,7 @@ it('retains one prepared target through three completed turns and rerenders; cha
   expect(api.createAttempt).toHaveBeenCalledTimes(3);
   expect(jest.mocked(api.createAttempt).mock.calls.map(call => call[1])).toEqual(['target', 'target', 'target']);
   expect(api.analyzePerceivedSpeech).toHaveBeenCalled();
-  await press('Change target');
+  await press('Edit target: 你好');
   expect(renderer.root.findByProps({ accessibilityLabel: 'New Attempt' }).props.disabled).toBe(true);
   await press('Close Change target');
   await press('Clear target');
@@ -162,12 +273,12 @@ it('changing 嘛 to 麻 records against the visible new target and retains it fo
   jest.mocked(api.createTarget)
     .mockResolvedValueOnce({ id: 'neutral', text: '嘛', display_pinyin: 'ma', pinyin_syllables: ['ma5'] } as never)
     .mockResolvedValueOnce({ id: 'rising', text: '麻', display_pinyin: 'má', pinyin_syllables: ['ma2'] } as never);
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('嘛'));
   await press('Prepare target');
   await record();
   expect(api.createAttempt).toHaveBeenLastCalledWith('utterance', 'neutral');
-  await press('Change target');
+  await press('Edit target: 嘛');
   expect(renderer.root.findByProps({ accessibilityLabel: 'New Attempt' }).props.disabled).toBe(true);
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('麻'));
   await press('Prepare target');
@@ -185,7 +296,7 @@ it('keeps the recorded target snapshot and perceived graph independent of legacy
     attempt: { id: 'attempt' }, target: { id: 'persisted-neutral', text: '嘛', display_pinyin: 'ma' },
     syllables: [], overall_evidence: {}, recording_audio_url: '/v1/utterances/utterance/audio',
   } as never);
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target');
   await record();
@@ -203,7 +314,7 @@ it.each(['synthetic_replay', 'unknown'])('never presents a %s provider score as 
       observed_contour: { classification: '1-like', confidence: 'moderate', reason: 'acoustic_shape_only' } }],
     overall_evidence: {}, recording_audio_url: '/v1/utterances/utterance/audio',
   } as never);
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('妈'));
   await press('Prepare target'); await record();
   expect(JSON.stringify(renderer.toJSON())).not.toContain('Pitch signal: Limited');
@@ -215,7 +326,7 @@ it.each(['synthetic_replay', 'unknown'])('never presents a %s provider score as 
 
 it.each([false, true])('no speech leaves Practice ready to rerecord, with prepared target=%s intact', async withTarget => {
   if (withTarget) {
-    await press('Add a target phrase');
+    await press('Add target');
     await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
     await press('Prepare target');
   }
@@ -226,7 +337,7 @@ it.each([false, true])('no speech leaves Practice ready to rerecord, with prepar
   expect(tree).not.toContain('What Benma heard'); expect(tree).not.toContain('Your pitch');
   expect(api.createPerception).not.toHaveBeenCalled(); expect(api.createAttempt).not.toHaveBeenCalled();
   expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled(); expect(api.analyzePronunciation).not.toHaveBeenCalled();
-  expect(renderer.root.findByProps({ accessibilityLabel: 'New Attempt' }).props.disabled).toBe(false);
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' }).props.disabled).toBe(false);
   expect(renderer.root.findAllByProps({ accessibilityLabel: 'Retry' })).toHaveLength(0);
   await record();
   expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(1);
@@ -254,7 +365,7 @@ it('re-record replaces the workspace; history reopens an earlier attempt and mar
 });
 
 it('New Attempt clears active graphs immediately, stops playback, and preserves target/history', async () => {
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target'); await record();
   const stop = jest.fn(), unregister = registerPlayback(stop);
@@ -274,7 +385,7 @@ it('New Attempt clears active graphs immediately, stops playback, and preserves 
 it('Clear target removes attempts and ignores analysis arriving from the old exercise', async () => {
   let finish!: (value: typeof perceivedAnalysis) => void;
   jest.mocked(api.analyzePerceivedSpeech).mockReturnValueOnce(new Promise(resolve => { finish = resolve; }));
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target'); await record();
   await press('Clear target');
@@ -282,21 +393,22 @@ it('Clear target removes attempts and ignores analysis arriving from the old exe
   expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(0);
   expect(renderer.root.findAllByProps({ accessibilityLabel: 'History' })).toHaveLength(0);
   expect(renderer.root.findAllByProps({ accessibilityLabel: 'Clear target' })).toHaveLength(0);
-  expect(JSON.stringify(renderer.toJSON())).toContain('Free Practice');
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Free Practice');
+  expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
   await record();
   expect(renderer.root.findByType(SpeechEvidence).props.intendedText).toBeUndefined();
   expect(api.createAttempt).toHaveBeenCalledTimes(1);
 });
 
 it('offers only provided lexical readings, preserves raw perception and omits single-reading edits', async () => {
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('你好'));
   await press('Prepare target');
   expect(renderer.root.findAllByProps({ accessibilityLabel: 'Edit reading' })).toHaveLength(0);
   const target = { id: 'polyphone', text: '行', display_pinyin: 'xíng', pinyin_syllables: ['xing2'], pinyin_alternatives: [['xing2', 'hang2']] };
   jest.mocked(api.createTarget).mockResolvedValueOnce(target as never);
   jest.spyOn(api, 'correctTargetPinyin').mockResolvedValueOnce({ ...target, id: 'revision', pinyin_syllables: ['hang2'], display_pinyin: 'háng' } as never);
-  await press('Change target');
+  await press('Edit target: 你好');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('行'));
   await press('Prepare target'); await record();
   const raw = renderer.root.findByType(SpeechEvidence).props.heard;
@@ -337,7 +449,7 @@ it('keeps 广州 target distinct from 贵州 perception, readings and both playb
   jest.mocked(api.analyzePerceivedSpeech).mockResolvedValueOnce(evidence);
   jest.mocked(api.createTarget).mockResolvedValueOnce({ id: 'guangzhou', text: '广州', display_pinyin: 'guǎng zhōu',
     pinyin_syllables: ['guang3', 'zhou1'], pinyin_alternatives: [['guang3'], ['zhou1']] } as never);
-  await press('Add a target phrase');
+  await press('Add target');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('广州'));
   await press('Prepare target'); await record();
   expect(renderer.root.findByProps({ children: '广州' })).toBeTruthy();

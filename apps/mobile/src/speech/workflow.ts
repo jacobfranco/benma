@@ -2,7 +2,7 @@ import type { BenmaApiClient } from '@/api/client';
 import type { PerceivedReadings, PerceivedSpeechAnalysis, ContextualInterpretationRun, FreeTalkTurn, PerceptionRun, PronunciationResult } from '@/api/types';
 
 export type SpeechStage = 'stopping' | 'uploading' | 'perceiving' | 'responding' | 'assessing';
-export type SpeechFailure = 'recording' | 'upload' | 'perception' | 'response' | 'assessment' | 'no_speech';
+export type SpeechFailure = 'recording' | 'upload' | 'perception' | 'response' | 'assessment' | 'no_speech' | 'non_mandarin' | 'language_uncertain';
 export const speechStageLabels: Record<SpeechStage, string> = {
   stopping: 'Finishing recording…', uploading: 'Sending recording…',
   perceiving: 'Processing speech…', responding: 'Understanding meaning…',
@@ -10,6 +10,8 @@ export const speechStageLabels: Record<SpeechStage, string> = {
 };
 export const speechFailureLabels: Record<SpeechFailure, string> = {
   no_speech: "Didn't catch any speech. Try again.",
+  non_mandarin: "This doesn't sound like Mandarin. Try again.",
+  language_uncertain: "Couldn't identify the language. Try recording again.",
   recording: 'Recording interrupted. Please record again.',
   upload: 'Upload failed. Try sending the recording again.',
   perception: 'Could not understand speech. Try again or make a new recording.',
@@ -18,6 +20,12 @@ export const speechFailureLabels: Record<SpeechFailure, string> = {
 };
 export class SpeechSubmissionError extends Error {
   constructor(public readonly stage: SpeechFailure) { super(speechFailureLabels[stage]); }
+}
+
+// Error plumbing only: the current server does not emit language rejections.
+// Never infer source language from transcript text or constrained ASR metadata.
+function recordingRejection(code: unknown): SpeechFailure | undefined {
+  if (code === 'no_speech' || code === 'non_mandarin' || code === 'language_uncertain') return code;
 }
 
 export type SpeechWorkflowApi = Pick<BenmaApiClient,
@@ -112,7 +120,7 @@ export async function submitSpeech(
     const perception = checkpoint.perception;
     if (perception.status === 'failed' || !perception.transcript?.trim()) {
       delete checkpoint.perception;
-      throw new SpeechSubmissionError(perception.error_code === 'no_speech' ? 'no_speech' : 'perception');
+      throw new SpeechSubmissionError(recordingRejection(perception.error_code) ?? 'perception');
     }
     // Keep existing target-attempt persistence independent from the perceived graph.
     // Target evidence can supply comparison metadata, never graph units or pitch.
@@ -143,8 +151,9 @@ export async function submitSpeech(
     }
     return { perception };
   } catch (error) {
-    if (error && typeof error === 'object' && 'code' in error && error.code === 'no_speech') {
-      throw new SpeechSubmissionError('no_speech');
+    if (error && typeof error === 'object' && 'code' in error) {
+      const rejection = recordingRejection(error.code);
+      if (rejection) throw new SpeechSubmissionError(rejection);
     }
     if (error instanceof SpeechSubmissionError) throw error;
     throw new SpeechSubmissionError(failure);

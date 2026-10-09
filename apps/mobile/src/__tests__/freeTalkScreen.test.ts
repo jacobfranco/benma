@@ -180,6 +180,22 @@ describe('Free Talk screen', () => {
     await act(async () => renderer.unmount());
   });
 
+  it('future non-Mandarin rejection withholds a turn and pronunciation, then permits a fresh recording', async () => {
+    jest.mocked(api.createPerception).mockRejectedValueOnce({ code: 'non_mandarin' });
+    const renderer = await renderScreen();
+    await recordAndStop(renderer);
+    expect(JSON.stringify(renderer.toJSON())).toContain("This doesn't sound like Mandarin. Try again.");
+    expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(0);
+    expect(api.analyzePerceivedSpeech).not.toHaveBeenCalled();
+    expect(api.addConversationUserTurn).not.toHaveBeenCalled();
+    expect(api.createAssistantSpeech).not.toHaveBeenCalled();
+    expect(button(renderer.root, 'Tap to speak').props.disabled).toBe(false);
+    await recordAndStop(renderer);
+    expect(api.uploadUtterance).toHaveBeenCalledTimes(2);
+    expect(api.addConversationUserTurn).toHaveBeenCalledTimes(1);
+    await act(async () => renderer.unmount());
+  });
+
   it('automatically creates a new persisted conversation and keeps captures temporary', async () => {
     const renderer = await renderScreen();
 

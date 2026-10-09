@@ -46,7 +46,7 @@ export function Body({ children }: PropsWithChildren) {
 }
 
 export function ErrorMessage({ message }: { message: string | null }) {
-  return message ? <Text style={styles.error}>{message}</Text> : null;
+  return message ? <Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.error}>{message}</Text> : null;
 }
 
 export function FixtureBanner({ message = 'Development fixture — not real speech evaluation.' }: { message?: string }) {

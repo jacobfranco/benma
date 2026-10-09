@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { api } from '@/api/client';
 import type { PerceptionRun, PronunciationResult, PronunciationTarget, ReferenceSpeech } from '@/api/types';
@@ -8,6 +8,7 @@ import { stopAllPlayback } from '@/audio/session';
 import { Body, Button, Card, ErrorMessage, FixtureBanner, Screen } from '@/components/Ui';
 import { IconAction, WorkspaceDialog } from '@/components/WorkspaceActions';
 import { ReadingSelector, readingChoices } from '@/speech/ReadingSelector';
+import { choosePracticePhrase } from '@/speech/practicePhrases';
 import { SpeechControls } from '@/speech/SpeechControls';
 import { SpeechEvidence } from '@/speech/SpeechEvidence';
 import { useSpeechTurn } from '@/speech/useSpeechTurn';
@@ -26,6 +27,9 @@ export default function PracticeScreen() {
   const [entries, setEntries] = useState<PracticeEntry[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [dialog, setDialog] = useState<'target' | 'reading' | 'history' | null>(null);
+  const [targetFocused, setTargetFocused] = useState(false);
+  const [targetHovered, setTargetHovered] = useState(false);
+  const previousPhrase = useRef<string | undefined>(undefined);
   const currentEntry = entries.find(entry => entry.perception.id === activeId);
   const preparationLock = useRef(false);
   const session = useRef(0);
@@ -58,17 +62,24 @@ export default function PracticeScreen() {
     if (turn.busy || preparationLock.current) return;
     turn.reset(); clearAttempts(); setTarget(null); setReference(null); setTargetText(''); setTargetError(null); setDialog(null);
   };
-  const prepare = async (reading?: string) => {
+  const prepare = async (reading?: string, text = targetText) => {
     if (preparationLock.current || turn.busy) return;
     turn.reset(); preparationLock.current = true; setPreparing(true); setTargetError(null); stopAllPlayback();
     try {
-      const prepared = reading && target ? await api.correctTargetPinyin(target.id, reading) : await api.createTarget(targetText.trim());
+      const prepared = reading && target ? await api.correctTargetPinyin(target.id, reading) : await api.createTarget(text.trim());
       if (!reading) clearAttempts();
-      setTarget(prepared); setDialog(null); setReference(null);
+      setTarget(prepared); setTargetText(prepared.text); setDialog(null); setReference(null);
+      AccessibilityInfo.announceForAccessibility(`Target: ${prepared.text}`);
       try { setReference(await api.createReferenceSpeech(prepared.id)); }
       catch { setTargetError('Reference audio unavailable. You can still practice.'); }
     } catch { setTargetError('Could not prepare that target phrase. Try again.'); }
     finally { preparationLock.current = false; setPreparing(false); }
+  };
+  const randomPhrase = () => {
+    if (preparationLock.current || turn.busy) return;
+    const phrase = choosePracticePhrase(previousPhrase.current);
+    previousPhrase.current = phrase;
+    void prepare(undefined, phrase);
   };
   const retryReference = async () => {
     if (!target || preparationLock.current) return;
@@ -77,32 +88,46 @@ export default function PracticeScreen() {
     catch { setTargetError('Reference audio unavailable. You can still practice.'); }
     finally { preparationLock.current = false; setPreparing(false); }
   };
-  return <Screen compact footer={<SpeechControls turn={turn} recordLabel="New Attempt" disabled={preparing || dialog !== null} />}>
-    {target ? <Card style={styles.target}>
+  return <Screen compact footer={<>
+    {!target && <View style={styles.entryActions}>
+      <Pressable accessibilityRole="button" accessibilityLabel="Add target" disabled={turn.busy || preparing}
+        onPress={() => open('target')} style={({ pressed }) => [styles.link, pressed && styles.pressed]}>
+        <Text style={styles.linkText}>Add target</Text>
+      </Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel="Random phrase" disabled={turn.busy || preparing}
+        accessibilityState={{ busy: preparing, disabled: turn.busy || preparing }}
+        onPress={randomPhrase} style={({ pressed }) => [styles.link, pressed && styles.pressed]}>
+        <Text style={styles.linkText}>{preparing ? 'Preparing target…' : 'Random phrase'}</Text>
+      </Pressable>
+    </View>}
+    {!target && !dialog && <ErrorMessage message={targetError} />}
+    <SpeechControls turn={turn} recordLabel={currentEntry ? 'New Attempt' : 'Record'} disabled={preparing || dialog !== null} />
+  </>}>
+    {target && <Card style={styles.target}>
       <Text style={styles.label}>Target</Text>
-      <View style={styles.row}>
-        <Text selectable style={styles.phrase}>{target.text}</Text>
+      <View style={styles.targetRow}>
+        <Pressable accessibilityRole="button" accessibilityLabel={`Edit target: ${target.text}`}
+          accessibilityState={{ disabled: turn.busy || preparing }} disabled={turn.busy || preparing}
+          onPress={() => { setTargetText(target.text); open('target'); }}
+          onFocus={() => setTargetFocused(true)} onBlur={() => setTargetFocused(false)}
+          onHoverIn={() => setTargetHovered(true)} onHoverOut={() => setTargetHovered(false)}
+          style={({ pressed }) => [styles.targetBody, (pressed || targetHovered) && styles.pressed,
+            targetFocused && styles.focused]}>
+          <Text style={styles.phrase}>{target.text}</Text>
+          <Text style={styles.reading}>{target.display_pinyin}</Text>
+        </Pressable>
         <View style={styles.actions}>
           {reference?.status === 'succeeded' && reference.audio_url
             ? <PlaybackButton compact label={`Play native reference for ${target.text}`} uri={reference.audio_url} disabled={turn.busy || preparing} />
             : <IconAction icon="▷" label="Retry reference" loading={preparing} disabled={turn.busy} onPress={() => void retryReference()} />}
-          <IconAction icon="✎" label="Change target" disabled={turn.busy || preparing}
-            onPress={() => { setTargetText(target.text); open('target'); }} />
           <IconAction icon="×" label="Clear target" disabled={turn.busy || preparing} onPress={clear} />
         </View>
       </View>
-      <View style={styles.row}>
-        <Text style={styles.reading}>{target.display_pinyin}</Text>
-        {readingChoices(target).some(options => options.length > 1) && <IconAction icon="✎" label="Edit reading"
-          disabled={turn.busy || preparing} onPress={() => open('reading')} />}
-      </View>
+      {readingChoices(target).some(options => options.length > 1) && <IconAction icon="✎" label="Edit reading"
+        disabled={turn.busy || preparing} onPress={() => open('reading')} />}
       {reference?.generation_config.evidence_status === 'synthetic_replay' && <FixtureBanner />}
       {!dialog && <ErrorMessage message={targetError} />}
-    </Card> : <View style={styles.row}>
-      <Text style={styles.label}>Free Practice</Text>
-      <Pressable accessibilityRole="button" accessibilityLabel="Add a target phrase" disabled={turn.busy || preparing}
-        onPress={() => open('target')} style={styles.link}><Text style={styles.linkText}>Add target</Text></Pressable>
-    </View>}
+    </Card>}
     {!!entries.length && <View style={styles.row}>
       <Text style={styles.label}>{currentEntry ? `Attempt ${entries.indexOf(currentEntry) + 1} of ${entries.length}` : 'Ready for a new attempt'}</Text>
       <IconAction icon="↶" label="History" disabled={turn.busy || preparing} onPress={() => open('history')} />
@@ -113,7 +138,7 @@ export default function PracticeScreen() {
       synthetic={currentEntry.perception.normalized_result?.evidence_status === 'synthetic_replay'}
       pronunciation={(analyses[currentEntry.perception.id] ?? analyses[currentEntry.perception.utterance_id])?.pronunciation ?? currentEntry.pronunciation}
       analysis={analyses[currentEntry.perception.id] ?? analyses[currentEntry.perception.utterance_id]} />}
-    {dialog === 'target' && <WorkspaceDialog title="Change target" onClose={() => { if (!preparing) setDialog(null); }}>
+    {dialog === 'target' && <WorkspaceDialog title={target ? 'Change target' : 'Add target'} onClose={() => { if (!preparing) setDialog(null); }}>
       <TextInput accessibilityLabel="Target phrase" autoFocus editable={!preparing} value={targetText}
         style={styles.input} onChangeText={setTargetText} />
       <Button label="Prepare target" disabled={!targetText.trim()} loading={preparing} onPress={() => void prepare()} />
@@ -134,12 +159,17 @@ export default function PracticeScreen() {
 }
 const styles = StyleSheet.create({
   target: { padding: 12, gap: 2 },
+  targetRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 4 },
+  targetBody: { flex: 1, minWidth: 0, minHeight: 44, paddingVertical: 4, paddingHorizontal: 2, borderRadius: 8, borderWidth: 2, borderColor: 'transparent' },
+  focused: { borderColor: colors.primary },
+  pressed: { backgroundColor: colors.diagnostic },
+  entryActions: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 8 },
   row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 4 },
   actions: { flexDirection: 'row', alignItems: 'center' },
   phrase: { color: colors.text, fontSize: 24, lineHeight: 34, flexShrink: 1 },
   reading: { color: colors.secondary, fontSize: 15, lineHeight: 22, flexShrink: 1 },
   label: { color: colors.secondary, fontSize: 12, fontWeight: '600' },
-  link: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 8 },
+  link: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 8, borderRadius: 8 },
   linkText: { color: colors.primary, fontSize: 14 },
   input: { fontSize: 24, minHeight: 50, color: colors.text },
   historyRow: { minHeight: 48, padding: 8, borderRadius: 8, backgroundColor: colors.diagnostic, gap: 4 },

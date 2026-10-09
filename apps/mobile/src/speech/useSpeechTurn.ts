@@ -81,8 +81,9 @@ export function useSpeechTurn({ mode, onPerception, onResult, onAnalysis, onInte
       if (!mounted.current) return;
       const failure = caught instanceof SpeechSubmissionError ? caught.stage : 'recording';
       setError(speechFailureLabels[failure]);
-      setRetryable(failure !== 'response' && failure !== 'recording' && failure !== 'no_speech');
-      if (failure === 'no_speech') checkpoint.current = null;
+      const rejectedRecording = failure === 'no_speech' || failure === 'non_mandarin' || failure === 'language_uncertain';
+      setRetryable(failure !== 'response' && failure !== 'recording' && !rejectedRecording);
+      if (rejectedRecording) checkpoint.current = null;
       if (failure === 'response') await onResponseFailure?.();
     } finally {
       lock.current = false;
