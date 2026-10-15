@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import type { DisplayContour } from '@/api/types';
+import { pitchFeedbackCopy } from '@/speech/pitchFeedback';
 import { colors } from '@/theme';
 
 export interface PitchPoint {
@@ -20,6 +21,7 @@ export interface PitchXLayout {
   extent: number;
 }
 export function normalizedGeometry(layout: PitchXLayout, width: number, height: number, domain: [number, number]): Dot[][] {
+  if (width <= 0 || height <= 0 || layout.extent <= 0) return [];
   return layout.segments.map(segment => segment.map(p => ({ x: p.position / layout.extent * width,
     y: height - (p.normalized_semitones! - domain[0]) / Math.max(2, domain[1] - domain[0]) * height, confidence: 1 })));
 }
@@ -81,7 +83,9 @@ export function ContourLines({ segments, color = colors.primary }: { segments: D
 export function PitchPlot({ user, reference = [], display, referenceDisplay, regions = [], compact = false,
   durationSeconds = 0, startSeconds = 0, fitVoiced = false, fixedDisplayDomain = false,
   showPoints = false, pointsOnly = false, rejected = [], xLayout, showRegionLabels = true, showMineLabel = true,
-  showAxes = true, showEmptyLabel = true, transparent = false, plotHeight }: {
+  showAxes = true, showEmptyLabel = true, transparent = false, plotHeight,
+  accessibilityLabel = 'Relative pitch contour' }: {
+  accessibilityLabel?: string;
   plotHeight?: number;
   transparent?: boolean;
   showAxes?: boolean; showEmptyLabel?: boolean;
@@ -108,12 +112,12 @@ export function PitchPlot({ user, reference = [], display, referenceDisplay, reg
     left: r.start / xLayout.extent, width: (r.end-r.start) / xLayout.extent })) : regions.map(r => ({ label: r.label,
     left: (r.start_seconds-startSeconds) / (duration-startSeconds), width: (r.end_seconds-r.start_seconds) / (duration-startSeconds) }));
   return <View>
-    {!compact && <View style={styles.legend}>
+    {!compact && (showMineLabel || reference.length > 0 || showAxes) && <View style={styles.legend}>
       {showMineLabel && <Text style={styles.userLegend}>Mine</Text>}
       {reference.length > 0 && <Text style={styles.referenceLegend}>Reference</Text>}
       {showAxes && <Text style={styles.axisLabel}>relative pitch (st) ↑</Text>}
     </View>}
-    <View accessibilityLabel="Relative pitch contour" onLayout={e => setWidth(e.nativeEvent.layout.width)}
+    <View accessibilityLabel={accessibilityLabel} onLayout={e => setWidth(e.nativeEvent.layout.width)}
       style={[styles.plot, { height }, transparent && { backgroundColor: 'transparent' }]}>
       {!compact && [.25, .5, .75].map(f => <View key={f} style={[styles.gridLine, { top: height*f }]} />)}
       {!compact && plotRegions.map((r, i) => <View key={i} style={[styles.region, {
@@ -121,7 +125,7 @@ export function PitchPlot({ user, reference = [], display, referenceDisplay, reg
       }]}>{showRegionLabels && <Text style={styles.regionLabel}>{r.label}</Text>}</View>)}
       {xLayout?.pauses.map(position => <Text key={position} testID="pitch-pause" accessibilityLabel="Pause"
         style={[styles.pause, { left: 4 + position / xLayout.extent * (width-8) - 5 }]}>‖</Text>)}
-      {showEmptyLabel && !(xLayout ? xLayout.segments.flat().length : all.length) && <Text style={styles.empty}>{xLayout && !xLayout.regions.length ? 'Timing unavailable · see More detail for pitch' : 'Not enough pitch signal'}</Text>}
+      {showEmptyLabel && !(xLayout ? xLayout.segments.flat().length : all.length) && <Text style={styles.empty}>{xLayout && !xLayout.regions.length ? 'Timing unavailable · see More detail for pitch' : pitchFeedbackCopy.unavailable}</Text>}
       {!pointsOnly && <ContourLines segments={geometry(referenceSegments)} color={colors.reference} />}
       {!pointsOnly && <ContourLines segments={mineGeometry} />}
       {(showPoints || pointsOnly) && <ContourLines segments={mineGeometry.flat().map(p => [p])} />}

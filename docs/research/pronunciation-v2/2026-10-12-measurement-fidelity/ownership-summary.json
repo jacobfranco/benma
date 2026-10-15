@@ -1,0 +1,288 @@
+[
+  {
+    "id": "430fcc2e-1975-4773-b6be-fe1176349237",
+    "boundary_policy": "[start, end), including final unit; later start wins accepted overlaps",
+    "timebase": "recording_global_seconds; no rounding, padding or chunk offset added",
+    "global": {
+      "raw_count": 322,
+      "retained_count": 80,
+      "unowned_retained_timestamps": [
+        1.192
+      ]
+    },
+    "units": [
+      {
+        "unit": "我",
+        "reading": [
+          "wǒ"
+        ],
+        "grouped": false,
+        "aligned_interval": [
+          0.58,
+          0.91
+        ],
+        "timing_source": [
+          "azure_provider_grapheme"
+        ],
+        "provider_words": [
+          {
+            "index": 0,
+            "text": "我",
+            "start": 0.58,
+            "end": 0.91,
+            "timebase": "recording_global_seconds"
+          }
+        ],
+        "chunk": {
+          "text": "我",
+          "interval": [
+            0.58,
+            0.91
+          ]
+        },
+        "source_sample_count": 33,
+        "raw_voiced_count": 24,
+        "retained_in_aligned_span": 21,
+        "retained_count": 21,
+        "owned_interval": [
+          0.682,
+          0.902
+        ],
+        "segment_count": 3,
+        "classification": {
+          "shape": "RISING",
+          "shape_reason": "retained_geometry",
+          "family": "TONE_2",
+          "family_reason": "best_fit"
+        }
+      },
+      {
+        "unit": "想",
+        "reading": [
+          "xiǎng"
+        ],
+        "grouped": false,
+        "aligned_interval": [
+          0.92,
+          1.19
+        ],
+        "timing_source": [
+          "azure_provider_grapheme"
+        ],
+        "provider_words": [
+          {
+            "index": 1,
+            "text": "想",
+            "start": 0.92,
+            "end": 1.19,
+            "timebase": "recording_global_seconds"
+          }
+        ],
+        "chunk": {
+          "text": "想",
+          "interval": [
+            0.92,
+            1.19
+          ]
+        },
+        "source_sample_count": 27,
+        "raw_voiced_count": 25,
+        "retained_in_aligned_span": 22,
+        "retained_count": 22,
+        "owned_interval": [
+          0.952,
+          1.182
+        ],
+        "segment_count": 2,
+        "classification": {
+          "shape": "UNCLEAR",
+          "shape_reason": "ambiguous_geometry",
+          "family": "UNCLEAR",
+          "family_reason": "ambiguous_geometry"
+        }
+      },
+      {
+        "unit": "买",
+        "reading": [
+          "mǎi"
+        ],
+        "grouped": false,
+        "aligned_interval": [
+          1.2,
+          1.47
+        ],
+        "timing_source": [
+          "azure_provider_grapheme"
+        ],
+        "provider_words": [
+          {
+            "index": 2,
+            "text": "买",
+            "start": 1.2,
+            "end": 1.47,
+            "timebase": "recording_global_seconds"
+          }
+        ],
+        "chunk": {
+          "text": "买",
+          "interval": [
+            1.2,
+            1.47
+          ]
+        },
+        "source_sample_count": 27,
+        "raw_voiced_count": 3,
+        "retained_in_aligned_span": 3,
+        "retained_count": 3,
+        "owned_interval": [
+          1.202,
+          1.222
+        ],
+        "segment_count": 1,
+        "classification": {
+          "shape": "UNCLEAR",
+          "shape_reason": "insufficient_support",
+          "family": "UNCLEAR",
+          "family_reason": "insufficient_support"
+        }
+      },
+      {
+        "unit": "这",
+        "reading": [
+          "zhè"
+        ],
+        "grouped": false,
+        "aligned_interval": [
+          1.48,
+          1.79
+        ],
+        "timing_source": [
+          "azure_provider_grapheme"
+        ],
+        "provider_words": [
+          {
+            "index": 3,
+            "text": "这个",
+            "start": 1.48,
+            "end": 2.25,
+            "timebase": "recording_global_seconds"
+          }
+        ],
+        "chunk": {
+          "text": "这个",
+          "interval": [
+            1.48,
+            2.25
+          ]
+        },
+        "source_sample_count": 31,
+        "raw_voiced_count": 16,
+        "retained_in_aligned_span": 15,
+        "retained_count": 15,
+        "owned_interval": [
+          1.522,
+          1.662
+        ],
+        "segment_count": 1,
+        "classification": {
+          "shape": "FALLING",
+          "shape_reason": "retained_geometry",
+          "family": "TONE_4",
+          "family_reason": "best_fit"
+        }
+      },
+      {
+        "unit": "个",
+        "reading": [
+          "ge"
+        ],
+        "grouped": false,
+        "aligned_interval": [
+          1.8,
+          2.25
+        ],
+        "timing_source": [
+          "azure_provider_grapheme"
+        ],
+        "provider_words": [
+          {
+            "index": 3,
+            "text": "这个",
+            "start": 1.48,
+            "end": 2.25,
+            "timebase": "recording_global_seconds"
+          }
+        ],
+        "chunk": {
+          "text": "这个",
+          "interval": [
+            1.48,
+            2.25
+          ]
+        },
+        "source_sample_count": 45,
+        "raw_voiced_count": 21,
+        "retained_in_aligned_span": 18,
+        "retained_count": 18,
+        "owned_interval": [
+          1.812,
+          1.982
+        ],
+        "segment_count": 1,
+        "classification": {
+          "shape": "FALLING",
+          "shape_reason": "retained_geometry",
+          "family": "TONE_4",
+          "family_reason": "best_fit"
+        }
+      }
+    ],
+    "chunks": [
+      {
+        "text": "我",
+        "interval": [
+          0.58,
+          0.91
+        ],
+        "retained_count": 21,
+        "constituents": [
+          "我"
+        ]
+      },
+      {
+        "text": "想",
+        "interval": [
+          0.92,
+          1.19
+        ],
+        "retained_count": 22,
+        "constituents": [
+          "想"
+        ]
+      },
+      {
+        "text": "买",
+        "interval": [
+          1.2,
+          1.47
+        ],
+        "retained_count": 3,
+        "constituents": [
+          "买"
+        ]
+      },
+      {
+        "text": "这个",
+        "interval": [
+          1.48,
+          2.25
+        ],
+        "retained_count": 33,
+        "constituents": [
+          "这",
+          "个"
+        ]
+      }
+    ]
+  }
+]

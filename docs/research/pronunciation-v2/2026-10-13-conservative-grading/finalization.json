@@ -1,0 +1,64 @@
+{
+  "scope": "Finalization only. No executable code, tests, thresholds, calibration, fixtures or prior replay artifacts changed during finalization.",
+  "passSpecificAudit": "passed",
+  "auditLog": "/tmp/benma-conservative/finalization-audit.log",
+  "auditLogSha256": "e2029c1bd096c9450e00b1afbd00a01dd2d91a081a82c63a98c486976b797399",
+  "sourceFilesRechecked": 464,
+  "executableChangesDuringFinalization": 0,
+  "productionHashes": {
+    "apps/mobile/src/speech/chunkPitchGrade.ts": "101daf16417aa9dea9e8b3a227e1c5008a5f502e136dca187cfc004cc97ffb1b",
+    "apps/mobile/src/speech/learnerPitchGrade.ts": "2d60ed386492db0be6d6f2b1b5a94463be69f833a8ca8f98fef002f037e4c60f",
+    "apps/mobile/src/speech/PronunciationWorkspace.tsx": "e3ef989cabe0c7439d124f90f06631b7503cd72435051849598f52fd4be3fcfb"
+  },
+  "historicalRedIds": [
+    "4b9dbd2b:\u4e2a",
+    "8faf1a90:\u6211",
+    "8faf1a90:\u82f9"
+  ],
+  "softenedRedIds": [
+    "8d252264:\u679c",
+    "4b9dbd2b:\u8981",
+    "4b9dbd2b:\u4e00",
+    "4b9dbd2b:\u82f9",
+    "8faf1a90:\u4e00",
+    "a5acd04c:\u6211",
+    "a5acd04c:\u4e00",
+    "a5acd04c:\u82f9",
+    "b9067bec:\u60f3"
+  ],
+  "trustworthyAmbiguityIds": [
+    "89cee47e:\u60f3",
+    "6b5b2135:\u6211",
+    "6b5b2135:\u60f3",
+    "ee8a8b32:\u60f3",
+    "8d252264:\u4e00",
+    "8d252264:\u82f9",
+    "8faf1a90:\u8981",
+    "a5acd04c:\u679c",
+    "b9067bec:\u6211",
+    "5c70f317:\u60f3"
+  ],
+  "historicalChangeInventoryComplete": true,
+  "historicalRedToGreen": 0,
+  "invariants": {
+    "acousticFamilyChanges": 0,
+    "measurementChanges": 0,
+    "selectedFrameChanges": 0,
+    "frozenFiles": 186
+  },
+  "expensiveSuitesRerun": false,
+  "historicalDistribution": {
+    "before": {
+      "STRONG_MATCH": 16,
+      "UNAVAILABLE": 24,
+      "PARTIAL_OR_WEAK": 1,
+      "CLEAR_DIFFERENCE": 12
+    },
+    "after": {
+      "STRONG_MATCH": 16,
+      "PARTIAL_OR_WEAK": 20,
+      "UNAVAILABLE": 14,
+      "CLEAR_DIFFERENCE": 3
+    }
+  }
+}

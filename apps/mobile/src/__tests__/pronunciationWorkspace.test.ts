@@ -32,6 +32,121 @@ async function select(index: number) {
 }
 afterEach(async () => { if (renderer) await act(async () => renderer.unmount()); });
 
+const physicalProjection = require('../../../../services/api/tests/fixtures/pitch_projection_89cee47e.json') as {
+  data: PerceivedSpeechAnalysis['data'];
+  track: { evidence_id: string; frames: { timestamp_seconds: number; selected_f0_hz: number | null }[] };
+};
+
+it('replays the physical 这/个 evidence through selected graph, playback, and repeated unit switches', async () => {
+  const value = { ...perceivedAnalysis, data: physicalProjection.data };
+  await mount(value);
+  for (const index of [3, 4, 3, 4]) {
+    await select(index);
+    const s = value.data.syllables[index]!;
+    const graph = renderer.root.findAllByType(PitchPlot)[0]?.props;
+    const playback = renderer.root.findByType(ExactPlaybackButton).props;
+    if (index === 3) expect([graph?.startSeconds, graph?.durationSeconds]).toEqual([s.start_seconds, s.end_seconds]);
+    else expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(0);
+    expect([playback.start, playback.end, playback.text]).toEqual([s.start_seconds, s.end_seconds, s.characters]);
+    const indices = (graph?.display.segments.flat() ?? []).map((p: { timestamp_seconds: number }) =>
+      physicalProjection.track.frames.findIndex(f => f.timestamp_seconds === p.timestamp_seconds));
+    const expected = index === 3 ? [...Array.from({ length: 15 }, (_, i) => 245 + i), 263, 264, 265, 266, 267] : [];
+    expect(indices).toEqual(expected);
+    expect(s.pitch_projection?.track_evidence_id).toBe(physicalProjection.track.evidence_id);
+    expect(indices.every((i: number) => s.pitch_projection?.frame_indices?.includes(i))).toBe(true);
+  }
+  expect(JSON.stringify(renderer.toJSON())).toContain("Pitch couldn't be measured reliably.");
+});
+
+it('exposes B evidence after a gap and never leaks it into A, even when B is strictly ineligible', async () => {
+  const data = JSON.parse(JSON.stringify(physicalProjection.data)) as PerceivedSpeechAnalysis['data'];
+  // Deterministic counterfactual fixture, not a change to the physical recording.
+  const b = [{ timestamp_seconds: 2.80, normalized_semitones: -2 },
+    { timestamp_seconds: 2.81, normalized_semitones: -1 },
+    { timestamp_seconds: 2.82, normalized_semitones: 0 }];
+  data.tone_graph!.filtered.segments!.push(b);
+  const before = JSON.stringify(data);
+  await mount({ ...perceivedAnalysis, data });
+  await select(3);
+  expect(renderer.root.findByType(PitchPlot).props.display.segments.flat()
+    .every((p: { timestamp_seconds: number }) => p.timestamp_seconds < 2.73)).toBe(true);
+  await select(4);
+  expect(renderer.root.findByType(PitchPlot).props.display.segments).toEqual([b]);
+  expect(renderer.root.findByType(ExactPlaybackButton).props).toMatchObject({ start: 2.74, end: 3.04, text: '个' });
+  await select(3);
+  expect(renderer.root.findByType(PitchPlot).props.display.segments).not.toContainEqual(b);
+  expect(JSON.stringify(data)).toBe(before);
+});
+
+it('shows the physical 我 dip and rise while preserving the old diagnostic under Technical details', async () => {
+  const value = { ...perceivedAnalysis, data: physicalProjection.data };
+  const before = JSON.stringify(value);
+  await mount(value); await select(0);
+  expect(value.data.syllables[0]!.characters).toBe('我');
+  expect(value.data.syllables[0]!.observed_gesture).toBe('level');
+  expect(JSON.stringify(renderer.toJSON())).toContain('Most like Tone 3');
+  expect(renderer.root.findByType(PitchPlot).props.showAxes).toBe(false);
+  expect(renderer.root.findByType(PitchPlot).props.display.segments.flat().length).toBeGreaterThan(0);
+  expect(renderer.root.findByType(ExactPlaybackButton).props.text).toBe('我');
+  expect(JSON.stringify(renderer.toJSON())).not.toMatch(/Mostly level|experimental|Measurement:|Gesture unavailable|Pitch detail is limited/i);
+  expect(renderer.root.findByProps({ testID: 'pronunciation-unit-0' }).props.accessibilityLabel).toBe('我, pronunciation chunk, Pitch acceptable');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'More details' }).props.onPress());
+  expect(JSON.stringify(renderer.toJSON())).toContain('Dip and rise');
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Measurement evidence:');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Technical details' }).props.onPress());
+  const details = JSON.stringify(renderer.toJSON());
+  expect(details).toContain('Observed gesture: Mostly level · experimental');
+  expect(details).toContain('Measurement: clear');
+  expect(details).toContain('Measurement evidence: sufficient');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Raw' }).props.onPress());
+  expect(JSON.stringify(renderer.toJSON())).toContain('Raw tracker evidence · developer detail');
+  expect(JSON.stringify(renderer.toJSON())).toContain('Exclusion reasons:');
+  expect(JSON.stringify(value)).toBe(before);
+});
+
+it.each(['incomplete', 'unstable', 'insufficient'] as const)('keeps a usable graph quiet despite strict %s eligibility', async state => {
+  const value = { ...perceivedAnalysis, data: { ...perceivedAnalysis.data,
+    syllables: perceivedAnalysis.data.syllables.map(s => ({ ...s,
+      pitch_eligibility: { state, reasons: ['raw_pitch_discontinuity'] } })),
+  } };
+  await mount(value); await select(0);
+  expect(renderer.root.findByType(PitchPlot).props.display.segments.flat()).toHaveLength(5);
+  expect(renderer.root.findByType(ExactPlaybackButton)).toBeTruthy();
+  expect(JSON.stringify(renderer.toJSON())).not.toMatch(/Measurement:|raw_pitch_discontinuity|experimental|Pitch detail is limited|couldn't be measured/i);
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'More details' }).props.onPress());
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Measurement evidence:');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Technical details' }).props.onPress());
+  expect(JSON.stringify(renderer.toJSON())).toContain(`Measurement evidence: ${state}`);
+  expect(JSON.stringify(renderer.toJSON())).toContain('raw_pitch_discontinuity');
+});
+
+it('announces pitch unavailability for the timed physical 个 without an empty graph or missing-speech claim', async () => {
+  await mount({ ...perceivedAnalysis, data: physicalProjection.data }); await select(4);
+  expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(0);
+  expect(renderer.root.findByType(ExactPlaybackButton).props).toMatchObject({ text: '个', start: 2.74, end: 3.04 });
+  const message = renderer.root.findAllByProps({ accessibilityRole: 'text' })
+    .find(n => n.props.children === "Pitch couldn't be measured reliably.");
+  expect(message).toBeTruthy();
+  expect(JSON.stringify(renderer.toJSON())).not.toMatch(/not enough|not heard|didn't hear|no speech|Measurement:|Gesture unavailable/i);
+});
+
+it('keeps perceived 贵州 ownership independent of target 广州 and resets selection for a new analysis', async () => {
+  const perceived = { ...perceivedAnalysis, alignment_reference_text: '贵州', data: { ...perceivedAnalysis.data,
+    syllables: perceivedAnalysis.data.syllables.map((s, i) => ({ ...s, characters: ['贵', '州'][i]! })) } };
+  const make = (id: string, intendedText = '广州') => React.createElement(SpeechEvidence, { heard: '贵州', intendedText,
+    analysis: { utteranceId: id, state: 'ready' as const, perceived: { ...perceived, id, utterance_id: id } } });
+  await act(async () => { renderer = create(make('first')); });
+  await select(1);
+  const selected = renderer.root.findByType(PitchPlot).props.display;
+  await act(async () => { renderer.update(make('first', '北京')); });
+  expect(renderer.root.findByType(PitchPlot).props.display).toEqual(selected);
+  expect(renderer.root.findByType(ExactPlaybackButton).props.text).toBe('州');
+  await act(async () => { renderer.update(make('second')); });
+  expect(renderer.root.findByProps({ testID: 'pronunciation-unit-0' }).props.accessibilityState.selected).toBe(true);
+  await select(1);
+  expect(renderer.root.findByType(PitchPlot).props.display).toEqual(selected);
+});
+
 it('wraps in sentence order with 44px targets, no horizontal scroll, and one atomic 雨伞 group', async () => {
   await mount();
   const overview = renderer.root.findByProps({ testID: 'perceived-sentence-overview' });
@@ -43,7 +158,7 @@ it('wraps in sentence order with 44px targets, no horizontal scroll, and one ato
   await select(5);
   expect(renderer.root.findAllByType(ExactPlaybackButton)).toHaveLength(1);
   expect(renderer.root.findByType(ExactPlaybackButton).props).toMatchObject({ text: '雨伞', start: 2.5, end: 4 });
-  expect(JSON.stringify(renderer.toJSON())).toContain('Grouped phrase');
+  expect(renderer.root.findByProps({ testID: 'pronunciation-unit-5' }).props.accessibilityLabel).toContain('grouped timing');
   expect(renderer.root.findAllByProps({ testID: 'pronunciation-unit-6' })).toHaveLength(0);
 });
 
@@ -68,7 +183,8 @@ it.each(['sufficient', 'incomplete', 'unstable', 'insufficient'] as const)('keep
   await mount(value); await select(0);
   const tree = JSON.stringify(renderer.toJSON());
   expect(tree).not.toMatch(/Strong pitch match|Partial pitch match|Pitch differs|detected Tone|\d+%|tone score/i);
-  expect(tree.includes('Rising · experimental')).toBe(state === 'sufficient');
+  expect(tree).not.toMatch(/Rising|experimental|Measurement:|Gesture unavailable/i);
+  expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(1);
 });
 
 it('reserves four semantic labels but has no approved positive or negative mapping', () => {
@@ -105,7 +221,8 @@ it('keeps missing readings and empty pitch missing, with exact timed audio still
   })) } });
   await select(0);
   expect(JSON.stringify(renderer.toJSON())).toContain('Reading unresolved');
-  expect(renderer.root.findByType(PitchPlot).props.display.segments).toEqual([]);
+  expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(0);
+  expect(JSON.stringify(renderer.toJSON())).toContain("Pitch couldn't be measured reliably.");
   expect(renderer.root.findByType(ExactPlaybackButton).props).toMatchObject({ start: 0, end: .5 });
 });
 
@@ -116,6 +233,8 @@ it('conversation stays collapsed until explicitly opened and full utterance deta
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Explore pronunciation' }).props.onPress());
   expect(renderer.root.findAllByType(ScrollView)).toHaveLength(0);
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'More details' }).props.onPress());
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Measurement evidence:');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Technical details' }).props.onPress());
   expect(renderer.root.findByProps({ accessibilityLabel: 'Sentence pitch timeline' })).toBeTruthy();
 });
 
@@ -139,14 +258,17 @@ it('distinguishes measurement uncertainty from gesture and keeps diagnostic reas
   await mount({ ...analysis, data: { ...analysis.data, syllables: analysis.data.syllables.map(s => ({ ...s,
     pitch_eligibility: { state: 'unstable', reasons: ['raw_pitch_discontinuity'] }, observed_gesture: 'dipping',
   })) } });
-  await select(2);
+  await select(0);
   const tree = JSON.stringify(renderer.toJSON());
-  expect(tree).toContain('Measurement: mixed');
-  expect(tree).toContain('Some pitch measurements disagree.');
-  expect(tree).toContain('Gesture unavailable');
+  expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(1);
+  expect(tree).not.toMatch(/Measurement:|Some pitch measurements disagree|Gesture unavailable|Pitch detail is limited/);
   expect(tree).not.toMatch(/Pitch evidence unstable|raw_pitch_discontinuity|Dipping|Your pitch/);
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'More details' }).props.onPress());
+  expect(JSON.stringify(renderer.toJSON())).not.toContain('Measurement evidence:');
+  await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Technical details' }).props.onPress());
   expect(JSON.stringify(renderer.toJSON())).toContain('raw_pitch_discontinuity');
+  expect(JSON.stringify(renderer.toJSON())).toContain('Measurement evidence: unstable');
+  expect(JSON.stringify(renderer.toJSON())).toContain('Measurement: mixed');
   await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Close Full pitch details' }).props.onPress());
   expect(JSON.stringify(renderer.toJSON())).not.toContain('raw_pitch_discontinuity');
 });

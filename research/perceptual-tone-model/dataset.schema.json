@@ -1,0 +1,758 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Benma perceptual syllable record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "example_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recording_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "utterance_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "speaker_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "partition": {
+      "enum": [
+        "stage0",
+        "unassigned",
+        "train",
+        "validation",
+        "test"
+      ]
+    },
+    "utterance": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sample_rate_hz": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "span_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "reference",
+        "sha256",
+        "sample_rate_hz",
+        "span_id"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "syllable": {
+          "type": "string",
+          "minLength": 1
+        },
+        "syllable_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "syllable_indices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "unit_kind": {
+          "enum": [
+            "syllable",
+            "timing_group"
+          ]
+        },
+        "start_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "syllable",
+        "syllable_index",
+        "syllable_indices",
+        "unit_kind",
+        "start_seconds",
+        "end_seconds"
+      ]
+    },
+    "context_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "start_seconds",
+        "end_seconds"
+      ]
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lexical_tone": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            null
+          ]
+        },
+        "surface_tone": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            null
+          ]
+        },
+        "acceptable_families": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "TONE_1",
+              "TONE_2",
+              "TONE_3",
+              "TONE_4"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "surface_rule": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "previous_tone": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            null
+          ]
+        },
+        "next_tone": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            null
+          ]
+        },
+        "neutral_context": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "phrase_position": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "lexical_tone",
+        "surface_tone",
+        "acceptable_families",
+        "surface_rule",
+        "previous_tone",
+        "next_tone",
+        "neutral_context",
+        "phrase_position"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "analysis",
+            "historical_row"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "analysis_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "row_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "path",
+        "sha256",
+        "analysis_id",
+        "row_id"
+      ]
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "annotator_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "acceptability": {
+            "enum": [
+              "acceptable",
+              "borderline",
+              "incorrect",
+              "ungradable"
+            ]
+          },
+          "perceived_tone": {
+            "enum": [
+              "T1",
+              "T2",
+              "T3",
+              "T4",
+              "unclear",
+              null
+            ]
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "annotator_id",
+          "acceptability",
+          "perceived_tone",
+          "notes"
+        ]
+      }
+    },
+    "disagreement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "unlabeled",
+            "unanimous",
+            "disputed",
+            "adjudicated"
+          ]
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "acceptable": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "borderline": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "incorrect": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ungradable": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "acceptable",
+            "borderline",
+            "incorrect",
+            "ungradable"
+          ]
+        },
+        "adjudicated_label": {
+          "enum": [
+            "acceptable",
+            "borderline",
+            "incorrect",
+            "ungradable",
+            null
+          ]
+        },
+        "adjudicator_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "counts",
+        "adjudicated_label",
+        "adjudicator_id",
+        "notes"
+      ]
+    },
+    "deterministic": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/deterministic"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "example_id",
+    "recording_id",
+    "utterance_id",
+    "speaker_id",
+    "partition",
+    "utterance",
+    "audio",
+    "target",
+    "context_window",
+    "expected",
+    "source",
+    "annotations",
+    "disagreement",
+    "deterministic"
+  ],
+  "definitions": {
+    "deterministic": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseline_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "evidence_reliability": {
+          "enum": [
+            "trustworthy",
+            "unavailable"
+          ]
+        },
+        "eligibility": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "structural_reliability": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "observed_family": {
+          "enum": [
+            "TONE_1",
+            "TONE_2",
+            "TONE_3",
+            "TONE_4",
+            "UNCLEAR"
+          ]
+        },
+        "family_decision": {
+          "enum": [
+            "NUMBERED",
+            "UNCLEAR",
+            "UNAVAILABLE"
+          ]
+        },
+        "family_scores": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "TONE_1": {
+              "type": "number"
+            },
+            "TONE_2": {
+              "type": "number"
+            },
+            "TONE_3": {
+              "type": "number"
+            },
+            "TONE_4": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "TONE_1",
+            "TONE_2",
+            "TONE_3",
+            "TONE_4"
+          ]
+        },
+        "winner": {
+          "enum": [
+            "TONE_1",
+            "TONE_2",
+            "TONE_3",
+            "TONE_4",
+            null
+          ]
+        },
+        "winner_support": {
+          "type": "number"
+        },
+        "runner_up": {
+          "enum": [
+            "TONE_1",
+            "TONE_2",
+            "TONE_3",
+            "TONE_4",
+            null
+          ]
+        },
+        "runner_up_support": {
+          "type": "number"
+        },
+        "acceptable_support": {
+          "type": "number"
+        },
+        "margins": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "acoustic": {
+              "type": "number"
+            },
+            "acceptable": {
+              "type": "number"
+            },
+            "runner_up": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "acoustic",
+            "acceptable",
+            "runner_up"
+          ]
+        },
+        "clarity": {
+          "type": "number"
+        },
+        "probe_agreement": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "agreeing": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "fraction": {
+              "type": "number"
+            },
+            "probes": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "agreeing",
+            "total",
+            "fraction",
+            "probes"
+          ]
+        },
+        "gesture_strength": {
+          "enum": [
+            "full",
+            "weak",
+            "unavailable"
+          ]
+        },
+        "learner_grade": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "agreement": {
+              "enum": [
+                "STRONG_MATCH",
+                "PARTIAL_OR_WEAK",
+                "CLEAR_DIFFERENCE",
+                "UNAVAILABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1
+            },
+            "coaching": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "agreement",
+            "reason",
+            "message",
+            "coaching"
+          ]
+        },
+        "color": {
+          "enum": [
+            "green",
+            "amber",
+            "red",
+            "gray"
+          ]
+        },
+        "coaching_message": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "chunk": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "grade": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "agreement": {
+                      "enum": [
+                        "STRONG_MATCH",
+                        "PARTIAL_OR_WEAK",
+                        "CLEAR_DIFFERENCE",
+                        "UNAVAILABLE"
+                      ]
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "coaching": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "agreement",
+                    "reason",
+                    "message",
+                    "coaching"
+                  ]
+                },
+                "color": {
+                  "enum": [
+                    "green",
+                    "amber",
+                    "red",
+                    "gray"
+                  ]
+                },
+                "constituent_role": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "text",
+                "grade",
+                "color",
+                "constituent_role"
+              ]
+            }
+          ]
+        },
+        "resolved_expectation": {
+          "type": "object"
+        },
+        "shape": {
+          "type": "object"
+        },
+        "acoustic": {
+          "type": "object"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "normalized_f0_segments": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "projection": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "baseline_id",
+        "evidence_reliability",
+        "eligibility",
+        "structural_reliability",
+        "observed_family",
+        "family_decision",
+        "family_scores",
+        "winner",
+        "winner_support",
+        "runner_up",
+        "runner_up_support",
+        "acceptable_support",
+        "margins",
+        "clarity",
+        "probe_agreement",
+        "gesture_strength",
+        "learner_grade",
+        "color",
+        "coaching_message",
+        "chunk",
+        "resolved_expectation",
+        "shape",
+        "acoustic",
+        "duration_seconds",
+        "normalized_f0_segments",
+        "projection"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "partition": {
+            "enum": [
+              "train",
+              "validation",
+              "test"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "speaker_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "annotations": {
+            "minItems": 1
+          },
+          "target": {
+            "properties": {
+              "unit_kind": {
+                "const": "syllable"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

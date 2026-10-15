@@ -175,14 +175,21 @@ def project_pitch(
 
 
 def interpretation_eligibility(
-    track: UtterancePitchTrack, region: PitchRegionProjection
+    track: UtterancePitchTrack,
+    region: PitchRegionProjection,
+    *,
+    _interpretation_raw: list[UtterancePitchFrame] | None = None,
 ) -> PitchInterpretationEligibility:
     if region.track_evidence_id != track.evidence_id:
         raise ValueError("projection belongs to a different pitch track")
     if region.start_seconds is None:
         return PitchInterpretationEligibility()
     frames = [track.frames[i] for i in region.frame_indices]
-    raw = [f for f in frames if f.raw_f0_hz is not None]
+    raw = (
+        [f for f in frames if f.raw_f0_hz is not None]
+        if _interpretation_raw is None
+        else _interpretation_raw
+    )
     selected = [f for f in raw if f.selected_f0_hz is not None]
     hop = track.frame_cadence_seconds or 0.01
     if not raw:
@@ -271,9 +278,40 @@ def interpretation_eligibility(
         reasons.append("raw_tracker_history_unavailable")
     else:
         state = "sufficient"
-    return PitchInterpretationEligibility.model_validate(
+    result = PitchInterpretationEligibility.model_validate(
         dict(state=state, reasons=tuple(reasons), metrics=m)
     )
+    # A proven short candidate branch is excluded evidence, not an unresolved
+    # competing path. Recheck the independently retained region; preserve ALL raw
+    # metrics above for audit. No other quality rejection receives this waiver.
+    from benma_api.pronunciation.pitch_rejection import BRANCH_REASON
+
+    certified = [f for f in raw if BRANCH_REASON in f.exclusion_reasons]
+    other_missing = [f for f in raw if f.selected_f0_hz is None and f not in certified]
+    if (
+        _interpretation_raw is None
+        and certified
+        and selected
+        and track.raw_provenance == "native_tracker"
+        and len(selected) >= 2 * len(certified)
+        and len(other_missing) <= 1
+        and all(
+            set(f.exclusion_reasons) <= {"below_energy_gate", "missing_or_out_of_range_f0"}
+            and "below_energy_gate" in f.exclusion_reasons
+            for f in other_missing
+        )
+    ):
+        # Bound attrition again in the projected unit; a short fragment of the
+        # primary cannot inherit the full recording's branch certificate.
+        checked = interpretation_eligibility(track, region, _interpretation_raw=selected)
+        if checked.state == "sufficient":
+            return result.model_copy(
+                update={
+                    "state": "sufficient",
+                    "reasons": ("candidate_branch_excluded_primary_sufficient",),
+                }
+            )
+    return result
 
 
 def gate_observation(

@@ -1,0 +1,694 @@
+{
+  "corpus_sha256": "7f20f855e5059687907d1a28b4064c7b630bbe16b48633ec1e5fde70607397b3",
+  "units": {
+    "89cee47e:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "89cee47e:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "89cee47e:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "89cee47e:这": {
+      "characters": "这",
+      "pinyin": "zhè",
+      "reading_source": "phrase",
+      "lexical_tone": 4,
+      "expected_surface_tone": 4,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 1.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "89cee47e:个": {
+      "characters": "个",
+      "pinyin": "ge",
+      "reading_source": "phrase",
+      "lexical_tone": 0,
+      "expected_surface_tone": 0,
+      "expected_surface_shape": [],
+      "surface_rule": "lexical_neutral"
+    },
+    "7e6b6fe9:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "7e6b6fe9:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "7e6b6fe9:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "6b5b2135:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "6b5b2135:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "6b5b2135:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "0b194cf9:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "0b194cf9:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "0b194cf9:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "ee8a8b32:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "ee8a8b32:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "ee8a8b32:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "40357072:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "40357072:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "40357072:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "40357072:五": {
+      "characters": "五",
+      "pinyin": "wǔ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "40357072:把": {
+      "characters": "把",
+      "pinyin": null,
+      "reading_source": "unresolved",
+      "lexical_tone": null,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "reading_unresolved"
+    },
+    "40357072:雨伞": {
+      "characters": null,
+      "pinyin": null,
+      "reading_source": null,
+      "lexical_tone": null,
+      "expected_surface_tone": null,
+      "expected_surface_shape": null,
+      "surface_rule": null
+    },
+    "8d252264:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8d252264:要": {
+      "characters": "要",
+      "pinyin": "yào",
+      "reading_source": "grammar",
+      "lexical_tone": 4,
+      "expected_surface_tone": 4,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 1.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8d252264:一": {
+      "characters": "一",
+      "pinyin": "yī",
+      "reading_source": "phrase",
+      "lexical_tone": 1,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "yi_quantity"
+    },
+    "8d252264:个": {
+      "characters": "个",
+      "pinyin": "gè",
+      "reading_source": "phrase",
+      "lexical_tone": 4,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "quantity_ge_reduction_optional"
+    },
+    "8d252264:苹": {
+      "characters": "苹",
+      "pinyin": "píng",
+      "reading_source": "phrase",
+      "lexical_tone": 2,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8d252264:果": {
+      "characters": "果",
+      "pinyin": "guǒ",
+      "reading_source": "phrase",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "4b9dbd2b:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "4b9dbd2b:要": {
+      "characters": "要",
+      "pinyin": "yào",
+      "reading_source": "grammar",
+      "lexical_tone": 4,
+      "expected_surface_tone": 4,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 1.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "4b9dbd2b:一": {
+      "characters": "一",
+      "pinyin": "yī",
+      "reading_source": "phrase",
+      "lexical_tone": 1,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "yi_quantity"
+    },
+    "4b9dbd2b:个": {
+      "characters": "个",
+      "pinyin": "gè",
+      "reading_source": "phrase",
+      "lexical_tone": 4,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "quantity_ge_reduction_optional"
+    },
+    "4b9dbd2b:苹": {
+      "characters": "苹",
+      "pinyin": "píng",
+      "reading_source": "phrase",
+      "lexical_tone": 2,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "4b9dbd2b:果": {
+      "characters": "果",
+      "pinyin": "guǒ",
+      "reading_source": "phrase",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8faf1a90:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8faf1a90:要": {
+      "characters": "要",
+      "pinyin": "yào",
+      "reading_source": "grammar",
+      "lexical_tone": 4,
+      "expected_surface_tone": 4,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 1.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8faf1a90:一": {
+      "characters": "一",
+      "pinyin": "yī",
+      "reading_source": "phrase",
+      "lexical_tone": 1,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "yi_quantity"
+    },
+    "8faf1a90:个": {
+      "characters": "个",
+      "pinyin": "gè",
+      "reading_source": "phrase",
+      "lexical_tone": 4,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "quantity_ge_reduction_optional"
+    },
+    "8faf1a90:苹": {
+      "characters": "苹",
+      "pinyin": "píng",
+      "reading_source": "phrase",
+      "lexical_tone": 2,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "8faf1a90:果": {
+      "characters": "果",
+      "pinyin": "guǒ",
+      "reading_source": "phrase",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "a5acd04c:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "a5acd04c:有": {
+      "characters": "有",
+      "pinyin": null,
+      "reading_source": "unresolved",
+      "lexical_tone": null,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "reading_unresolved"
+    },
+    "a5acd04c:一": {
+      "characters": "一",
+      "pinyin": "yī",
+      "reading_source": "phrase",
+      "lexical_tone": 1,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "yi_quantity"
+    },
+    "a5acd04c:个": {
+      "characters": "个",
+      "pinyin": "gè",
+      "reading_source": "phrase",
+      "lexical_tone": 4,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "quantity_ge_reduction_optional"
+    },
+    "a5acd04c:苹": {
+      "characters": "苹",
+      "pinyin": "píng",
+      "reading_source": "phrase",
+      "lexical_tone": 2,
+      "expected_surface_tone": 2,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.5
+        },
+        {
+          "position": 1.0,
+          "height": 1.0
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "a5acd04c:果": {
+      "characters": "果",
+      "pinyin": "guǒ",
+      "reading_source": "phrase",
+      "lexical_tone": 3,
+      "expected_surface_tone": 3,
+      "expected_surface_shape": [
+        {
+          "position": 0.0,
+          "height": 0.25
+        },
+        {
+          "position": 0.5,
+          "height": 0.0
+        },
+        {
+          "position": 1.0,
+          "height": 0.75
+        }
+      ],
+      "surface_rule": "unchanged"
+    },
+    "b9067bec:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "b9067bec:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "b9067bec:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "5c70f317:我": {
+      "characters": "我",
+      "pinyin": "wǒ",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "5c70f317:想": {
+      "characters": "想",
+      "pinyin": "xiǎng",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    },
+    "5c70f317:买": {
+      "characters": "买",
+      "pinyin": "mǎi",
+      "reading_source": "dictionary",
+      "lexical_tone": 3,
+      "expected_surface_tone": null,
+      "expected_surface_shape": [],
+      "surface_rule": "prosodic_grouping_unresolved"
+    }
+  }
+}

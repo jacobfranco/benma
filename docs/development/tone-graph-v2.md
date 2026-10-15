@@ -1,5 +1,34 @@
 # Tone Graph V2 — current state and checkpoint decision
 
+## October 10, 2026 — dominant tone families and primary learner grades
+
+This policy supersedes earlier comparison/color descriptions below. The acoustic
+layer classifies the dominant supported measured gesture without knowing target,
+characters, readings, lexical tones, expected tones, transcript or reference TTS.
+A small boundary counter-movement may remain subordinate to a coherent primary
+rise, fall or valley. Full-track corruption gates and perturbation checks remain.
+
+The linguistic layer supplies explicit surface expectations where resolved. Those
+expectations remain authoritative, including 一, 不 and resolved T3 sandhi. When
+surface realization is null but reading/pinyin and lexical tone 1–4 are resolved,
+the learner layer may grade against that lexical family. It does not rewrite the
+surface field. Details say “Tone N family” and “Connected-speech realization may
+vary here.” Contextual coaching refines the explanation without erasing a useful
+family judgment. Unresolved readings remain unavailable.
+
+Green means strong compatible family; amber means weak/reduced compatible family;
+red means stable incompatible family; gray means judgment unavailable. Reduced T3
+belongs in acoustic family/strength/variant, not a grading exception for observed T4.
+
+Neutral uses contextual dependent-syllable acceptance, without a fixed numbered
+tone. In recognized chunks with separate accepted timing and exact playback,
+structurally supported neutral can be positively accepted. Unmeasured neutral can
+remain non-vetoing. Neither can hide a mismatching, absent or weak head. Standalone,
+optional-neutral, unresolved and grouped cases remain bounded.
+
+See [implementation, frozen replay and validation](../research/pronunciation-v2/2026-10-09-product-feedback/dominant-gesture-pass.md).
+
+
 ## Learner workspace update: October 8, 2026
 
 The [pronunciation workspace](pronunciation-workspace.md) now replaces the default horizontal whole-sentence graph with wrapped perceived timing units and one selected-unit panel. Practice/Free Practice show one active attempt, with session-local History and a fixed New Attempt control. Conversation starts with pronunciation collapsed. Full pitch details retains the whole-utterance elapsed-time graph and optional Raw evidence; it is no longer the primary learner navigation surface.

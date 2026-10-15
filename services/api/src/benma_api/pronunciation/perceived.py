@@ -37,6 +37,7 @@ from benma_api.pronunciation.alignment import (
     validate_alignment,
 )
 from benma_api.pronunciation.azure_alignment import azure_word_timing_groups
+from benma_api.pronunciation.chunks import CHUNK_POLICY_VERSION, pronunciation_chunk_candidates
 from benma_api.pronunciation.contours import (
     CLASSIFIER_VERSION,
     DISPLAY_VERSION,
@@ -201,6 +202,12 @@ def analysis_response(run: PerceivedSpeechAnalysis) -> PerceivedSpeechAnalysisRe
                 duration_seconds=data.duration_seconds,
                 timing_evidence_id=timing["id"],
             )
+    # Presentation metadata is derived from this attempt's saved perceived text
+    # and readings, including history. Never persist it as fresh acoustic evidence.
+    data.pronunciation_chunk_policy = CHUNK_POLICY_VERSION
+    data.pronunciation_chunk_candidates = pronunciation_chunk_candidates(
+        run.alignment_reference_text, data.syllables
+    )
     return PerceivedSpeechAnalysisResponse(
         id=run.id,
         perception_run_id=run.perception_run_id,

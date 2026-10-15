@@ -1,0 +1,143 @@
+{
+  "basis": "Exact working-tree snapshot at task arrival, including already-untracked files. Inventory itself has no self-referential hash.",
+  "files": [
+    {
+      "path": "apps/mobile/scripts/tone-classification-browser.cjs",
+      "status": "added",
+      "insertions": 117,
+      "deletions": 0,
+      "sha256": "0c31e584a4876e775e6d74a9c86757c8672cc05e7a962a353cbcd18acacfd4ef"
+    },
+    {
+      "path": "apps/mobile/scripts/tone-feedback-browser.cjs",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 3,
+      "sha256": "5760eb4601ae66a5ef26431cb2ae8684d4e58bd7a5465fc4b8c7561bffba3339"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/chunkPitchGrade.test.ts",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 7,
+      "sha256": "9144bcacdc6e7dc996f2c20f0e8055c97ce3d42308defae81e06f838aa5f0b44"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/fixtures/toneClassificationPhysical.json",
+      "status": "added",
+      "insertions": 11333,
+      "deletions": 0,
+      "sha256": "61f783196fe16c9217d53885dcf8fc34b25b6777d0405b2270ee8bbd60988794"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/toneClassification.test.ts",
+      "status": "added",
+      "insertions": 142,
+      "deletions": 0,
+      "sha256": "2078e42bb43545e10ed081262a8fa3f6eac13b9219a276f85ad1294b596d90a5"
+    },
+    {
+      "path": "apps/mobile/src/speech/PronunciationWorkspace.tsx",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "sha256": "9adcca62ddc235ccb4dc432d2d5de156facabe4165f680ef25dcbe8efdea936f"
+    },
+    {
+      "path": "apps/mobile/src/speech/chunkPitchGrade.ts",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "sha256": "2acd044407f86c5a965bdb2fc96230519b78e014afa1fa66373024cd492ac4ea"
+    },
+    {
+      "path": "apps/mobile/src/speech/pitchShape.ts",
+      "status": "modified",
+      "insertions": 105,
+      "deletions": 6,
+      "sha256": "3ab7dab790a614bb75389721e5036cebe12a880b5d2eff4df03b403c37497765"
+    },
+    {
+      "path": "apps/mobile/src/speech/toneLikeness.ts",
+      "status": "modified",
+      "insertions": 12,
+      "deletions": 8,
+      "sha256": "82b2d0e85fc5b34410ae46d22e77166753d7741c011c39683d625e2d6fad79c3"
+    },
+    {
+      "path": "benchmark/pronunciation_v2/test_tone_feedback.cjs",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "sha256": "63f5acefde164a217e59bacdc8933fda5aef4263b0f0aaf6c67abc031007c2f6"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-09-product-feedback/neutral-dependent-policy.md",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 1,
+      "sha256": "81d8ef6f66c048e8bacb88e6fa538ccbdea48f526f75d63a9d5f73bdc0d51c52"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-09-product-feedback/tone-feedback-matrix.csv",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "sha256": "a9c3cc7bf9cdad8fdd05608a79233527148839eaa145af7db703ef05b5e8421f"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-09-product-feedback/tone-feedback-results.json",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 8,
+      "sha256": "94d806e9d499e2ada229554c52b15084e21c3f3627715e6e89b736e66d43e541"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-09-product-feedback/tone-likeness.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "sha256": "97b369327e227dba054b218e8bc3dbf0561cc3d2e0d331af667d9c2a07a637b9"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-learner-classification/README.md",
+      "status": "added",
+      "insertions": 255,
+      "deletions": 0,
+      "sha256": "0ff482abb81e9e9709878937f2016414d28b66cb979960b36ce95c191ce11916"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-learner-classification/physical-provenance.json",
+      "status": "added",
+      "insertions": 18,
+      "deletions": 0,
+      "sha256": "3fc1ae5006526f34d12eed9a5f363ce4a98ce92f4303c4e955813a89d1b83c20"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-learner-classification/replay-results.json",
+      "status": "added",
+      "insertions": 1041,
+      "deletions": 0,
+      "sha256": "99639ed0fdbea15fdfac0ddee2e8a50e3fc42884250d1b5e30828486c8cf3a45"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-learner-classification/changed-files.json",
+      "status": "added",
+      "insertions": 143,
+      "deletions": 0
+    }
+  ],
+  "summary": {
+    "files": 18,
+    "insertions": 13210,
+    "deletions": 38
+  },
+  "finalization": "No production, test, browser, fixture or benchmark code changed during finalization.",
+  "working_tree_git_diff_stat": {
+    "tracked_files": 14,
+    "insertions": 653,
+    "deletions": 60,
+    "includes_preexisting_work": true,
+    "includes_untracked": false
+  }
+}

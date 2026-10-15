@@ -1,0 +1,264 @@
+{
+  "finalization_scope": "documentation and audit records only; no executable changes or expensive suite reruns",
+  "completed_checks": [
+    {
+      "name": "mobile_validate",
+      "status": "passed",
+      "summary": "lint, typecheck, 720 tests in 44 suites",
+      "log_path": "/tmp/benma-robustness/validate.log",
+      "log_sha256": "70588053a89c0d8c03a26920cdc6abd28eec055c62ec8cef2ab4721e185e0876",
+      "log_tail": [
+        "PASS native src/__tests__/workflowMachine.test.ts",
+        "PASS native src/__tests__/practicePhrases.test.ts",
+        "",
+        "Test Suites: 44 passed, 44 total",
+        "Tests:       720 passed, 720 total",
+        "Snapshots:   0 total",
+        "Time:        16.209 s",
+        "Ran all test suites in 2 projects."
+      ]
+    },
+    {
+      "name": "focused_mobile",
+      "status": "passed",
+      "summary": "126 tests in six suites",
+      "log_path": "/tmp/benma-robustness/focused.log",
+      "log_sha256": "cad9ab476fe3594e97cf4c7ddd8aab48f82f1b8687f5ffee9d958847743b054e",
+      "log_tail": [
+        "PASS native src/__tests__/naturalToneFamily.test.ts",
+        "PASS native src/__tests__/toneClassification.test.ts",
+        "",
+        "Test Suites: 6 passed, 6 total",
+        "Tests:       126 passed, 126 total",
+        "Snapshots:   0 total",
+        "Time:        3.402 s, estimated 4 s",
+        "Ran all test suites within paths \"src/__tests__/learnerPitchGrade.test.ts\", \"src/__tests__/pitchRobustness.test.ts\", \"src/__tests__/naturalToneFamily.test.ts\", \"src/__tests__/chunkPitchGrade.test.ts\", \"src/__tests__/toneClassification.test.ts\", \"src/__tests__/toneFeedbackWorkspace.test.ts\"."
+      ]
+    },
+    {
+      "name": "backend_research",
+      "status": "passed",
+      "summary": "275 tests",
+      "log_path": "/tmp/benma-robustness/research-established.log",
+      "log_sha256": "ee724bf82e0a6f679aea4341a5c3d7e4560fb6273aa789e41c06589e745f11c0",
+      "log_tail": [
+        "benchmark/pronunciation_v2/test_product_feedback.py ..............       [ 78%]",
+        "benchmark/pronunciation_v2/test_relative_pitch_gesture.py .............. [ 83%]",
+        "................                                                         [ 89%]",
+        "benchmark/pronunciation_v2/test_relative_pitch_fragments.py ............ [ 93%]",
+        "................                                                         [ 99%]",
+        "benchmark/pronunciation_v2/test_pitch_robustness_replay.py .             [100%]",
+        "",
+        "============================= 275 passed in 4.29s =============================="
+      ]
+    },
+    {
+      "name": "node_audits",
+      "status": "passed",
+      "summary": "four audit tests",
+      "log_path": "/tmp/benma-robustness/node-audits.log",
+      "log_sha256": "11f22bc9f7b5579d86a4b0f2b5ae750491b6b8eaaf5d1fbb437e7339a0d823d3",
+      "log_tail": [
+        "ℹ tests 4",
+        "ℹ suites 0",
+        "ℹ pass 4",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0",
+        "ℹ duration_ms 6298.619076"
+      ]
+    },
+    {
+      "name": "acceptance_final",
+      "status": "passed",
+      "summary": "deterministic acceptance audit",
+      "log_path": "/tmp/benma-robustness/provenance-final-test.log",
+      "log_sha256": "1877cd4901378006252f629afb60efa2533ce9fb1af88e0742a20471253ed2e1",
+      "log_tail": [
+        "ℹ tests 1",
+        "ℹ suites 0",
+        "ℹ pass 1",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0",
+        "ℹ duration_ms 3273.021944"
+      ]
+    },
+    {
+      "name": "mypy",
+      "status": "passed",
+      "summary": "80 source files",
+      "log_path": "/tmp/benma-robustness/mypy-final.log",
+      "log_sha256": "2ee1bfc13507fda246a3220aaeaa3f3dd56dcc26a996aa35567c2871279b5ecd",
+      "log_tail": [
+        "Success: no issues found in 80 source files"
+      ]
+    },
+    {
+      "name": "ruff",
+      "status": "passed",
+      "summary": "changed Python files",
+      "log_path": "/tmp/benma-robustness/ruff.log",
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "log_tail": [
+        "All checks passed!"
+      ]
+    },
+    {
+      "name": "openapi",
+      "status": "passed",
+      "summary": "generated API defaults",
+      "log_path": "/tmp/benma-robustness/openapi.log",
+      "log_sha256": "237a50562e13fa56574525f0ea0f709386e12eca509ed2e282f7a311db6a117a",
+      "log_tail": [
+        "wrote apps/mobile/src/api/openapi.json",
+        "wrote apps/mobile/src/api/openapi.generated.ts"
+      ]
+    },
+    {
+      "name": "web_export",
+      "status": "passed",
+      "summary": "Expo web export",
+      "log_path": "/tmp/benma-robustness/export.log",
+      "log_sha256": "cda26b1e252671472a301afedfaaed0c839bd7802c892e3cfbc05230770aa3d7",
+      "log_tail": [
+        "› web bundles (1):",
+        "_expo/static/js/web/entry-cbce6c2f9ded50adcb197289656cfe07.js (1.3MB)",
+        "",
+        "› Files (2):",
+        "index.html (1.2KB)",
+        "metadata.json (49B)",
+        "",
+        "Exported: /tmp/benma-robustness/web"
+      ]
+    },
+    {
+      "name": "historical_pcm_projection",
+      "status": "passed",
+      "summary": "13 recordings / 53 units",
+      "log_path": "/tmp/benma-robustness/gesture-replay.log",
+      "log_sha256": "eccc47ad98ba2f1f7c711c8156afcad928008c21d7c799b624a297d11f5bc194",
+      "log_tail": [
+        "a5acd04c:苹 sufficient falling segments [25] nine medians [5.67, 5.93, 5.73, 4.91, 3.31, 1.06, -0.96, -2.04, -2.43]",
+        "a5acd04c:果 sufficient rising segments [30] nine medians [-2.81, -2.74, -3.22, -3.57, -3.58, -2.89, -2.22, -0.05, 1.36]",
+        "b9067bec:我 sufficient level segments [29] nine medians [1.56, 0.52, 0.2, 0.38, 0.23, 0.11, 0.06, 0.07, -0.09]",
+        "b9067bec:想 sufficient unclear segments [31] nine medians [1.83, 1.33, 1.61, 2.19, 2.8, 2.99, 2.44, 1.08, -1.07]",
+        "b9067bec:买 incomplete unclear segments [43] nine medians [-2.31, -3.66, -3.66, -3.63, -4.15, -3.74, -3.35, -1.87, -1.04]",
+        "5c70f317:我 sufficient level segments [32] nine medians [1.49, 0.73, 0.07, -0.3, -0.51, -0.56, -0.38, -0.11, -0.01]",
+        "5c70f317:想 sufficient unclear segments [33] nine medians [2.33, 1.58, 1.15, 1.54, 2.28, 3.14, 3.56, 3.4, 2.26]",
+        "5c70f317:买 sufficient dipping segments [40] nine medians [-0.75, -3.78, -4.11, -3.66, -3.25, -3.3, -2.23, -0.15, 1.1]"
+      ]
+    },
+    {
+      "name": "physical_replay",
+      "status": "passed",
+      "summary": "saved newest physical replay",
+      "log_path": "/tmp/benma-robustness/physical-regression.log",
+      "log_sha256": "b336bfbb42d8a55315e2f7350d4a6528e0fd95453f81c1e21f96f9ae7c5d2932",
+      "log_tail": [
+        ".                                                                        [100%]",
+        "1 passed in 0.49s"
+      ]
+    },
+    {
+      "name": "broader_pronunciation",
+      "status": "baseline_failures",
+      "summary": "247 passed, two failed",
+      "log_path": "/tmp/benma-robustness/backend-pronunciation.log",
+      "log_sha256": "65ccdf1acb287022b9fea20a4da87e51b4bc82dd44cd8f91fadb67e72251e1e4",
+      "log_tail": [
+        "INFO     httpx:_client.py:1740 HTTP Request: POST http://testserver/v1/pronunciation-attempts \"HTTP/1.1 201 Created\"",
+        "INFO     benma_api.pronunciation.service:service.py:31 assessment evidence appended",
+        "INFO     benma_api.requests:app.py:57 request completed",
+        "INFO     httpx:_client.py:1740 HTTP Request: POST http://testserver/v1/pronunciation-attempts/a2fd02ca-34b4-43af-972f-a49ffa983776/analyze \"HTTP/1.1 200 OK\"",
+        "=========================== short test summary info ============================",
+        "FAILED tests/test_final_acoustic_calibration.py::test_api_target_revision_preserves_acoustic_evidence[1]",
+        "FAILED tests/test_final_acoustic_calibration.py::test_api_target_revision_preserves_acoustic_evidence[3]",
+        "2 failed, 247 passed in 8.29s"
+      ]
+    },
+    {
+      "name": "arrival_baseline_reproduction",
+      "status": "baseline_failures",
+      "summary": "two failed, 31 deselected",
+      "log_path": "/tmp/benma-robustness/preexisting-failures.log",
+      "log_sha256": "cb701b38726b81b8a424f61c27e7510e26b29da6130abe61a750f52289e473a9",
+      "log_tail": [
+        "INFO     httpx:_client.py:1740 HTTP Request: POST http://testserver/v1/pronunciation-attempts \"HTTP/1.1 201 Created\"",
+        "INFO     benma_api.pronunciation.service:service.py:31 assessment evidence appended",
+        "INFO     benma_api.requests:app.py:57 request completed",
+        "INFO     httpx:_client.py:1740 HTTP Request: POST http://testserver/v1/pronunciation-attempts/b3c39b7c-38bd-42f7-83c4-7d01ad6a6deb/analyze \"HTTP/1.1 200 OK\"",
+        "=========================== short test summary info ============================",
+        "FAILED services/api/tests/test_final_acoustic_calibration.py::test_api_target_revision_preserves_acoustic_evidence[1]",
+        "FAILED services/api/tests/test_final_acoustic_calibration.py::test_api_target_revision_preserves_acoustic_evidence[3]",
+        "2 failed, 31 deselected in 0.66s"
+      ]
+    },
+    {
+      "name": "exploratory_whole_api",
+      "status": "interrupted",
+      "summary": "no completed suite result; three failure markers observed",
+      "log_path": "/tmp/benma-robustness/backend.log",
+      "log_sha256": "2be83fdca656564ec65d89ee56733743d71aae4099dc6ee3e0bb459ff2cf362e",
+      "log_tail": [
+        "........................................................................ [ 20%]",
+        "...............................................FF....................... [ 31%]",
+        "....................ssss................................................ [ 41%]",
+        "....................ssssssssssssssssssssssssssssssssssssssssssssssssssss [ 51%]",
+        "sssssssss.....................................................F......... [ 62%]",
+        "........................................................................ [ 72%]",
+        "........................................................................ [ 82%]",
+        "...................."
+      ]
+    },
+    {
+      "name": "exploratory_all_research",
+      "status": "collection_errors",
+      "summary": "five optional legacy ML modules require torch",
+      "log_path": "/tmp/benma-robustness/research.log",
+      "log_sha256": "f94c2f26419038c824cb03dffc645c2065f081cc26199dc1a870f00621a10db5",
+      "log_tail": [
+        "=========================== short test summary info ============================",
+        "ERROR benchmark/pronunciation_v2/test_experiment3_evaluation.py",
+        "ERROR benchmark/pronunciation_v2/test_f0_foundation_rmvpe.py",
+        "ERROR benchmark/pronunciation_v2/test_model_probe.py",
+        "ERROR benchmark/pronunciation_v2/test_nonlinear_head.py",
+        "ERROR benchmark/pronunciation_v2/test_temporal_pooling.py",
+        "!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!",
+        "5 errors in 1.03s"
+      ]
+    }
+  ],
+  "browser_viewport_cases": 24,
+  "unrelated_api_failures": {
+    "tests": [
+      "services/api/tests/test_final_acoustic_calibration.py::test_api_target_revision_preserves_acoustic_evidence[1]",
+      "services/api/tests/test_final_acoustic_calibration.py::test_api_target_revision_preserves_acoustic_evidence[3]"
+    ],
+    "error": "KeyError: 'id'",
+    "location": "services/api/tests/test_final_acoustic_calibration.py:233",
+    "trigger": "pinyin-corrections POST with {\"pinyin\":\"ma2\"} returns HTTP 422 Unprocessable Entity; target[\"id\"] then fails",
+    "baseline_command": "PYTHONPATH=/tmp/benma-robustness/before/services/api/src services/api/.venv/bin/pytest -q services/api/tests/test_final_acoustic_calibration.py -k api_target_revision",
+    "untouched_test_file_sha256": "bb661f03ccae57740ab39a2f20fc2d535ad1161f00ab652ef7b2d3f5e190bdd8",
+    "durable_baseline_log": "baseline-api-failures.log",
+    "production_changes_for_these_failures": false,
+    "durable_log_normalization": "trailing whitespace removed; original log SHA-256 retained in completed_checks",
+    "durable_log_sha256": "c3334548952ac4d9d899aac70e332c8afdb0b23a16d129debc9abd807d9fb97c"
+  },
+  "final_invariants": {
+    "historical_recordings": 13,
+    "historical_selected_frame_changes": 0,
+    "historical_units": 53,
+    "historical_acoustic_family_changes": 0,
+    "historical_grade_changes": 4,
+    "all_four_preserve_weak_coaching": true
+  },
+  "provenance_command": "python /tmp/benma-robustness/provenance.py",
+  "hygiene_commands": [
+    "git diff --check",
+    "python /tmp/benma-robustness/pass-diff.py"
+  ],
+  "hygiene_status": "passed: git diff --check; all arrival-relative added lines checked with git diff --no-index --check; provenance assertions passed"
+}

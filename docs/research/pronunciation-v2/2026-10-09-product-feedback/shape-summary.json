@@ -1,0 +1,111 @@
+{
+  "items": 53,
+  "retained_points": 1852,
+  "results": {
+    "previous": {
+      "counts": {
+        "LEVEL": 5,
+        "UNCLEAR": 29,
+        "RISING": 6,
+        "DIP_RISE": 7,
+        "FALLING": 6
+      },
+      "agrees_unambiguous": 18,
+      "named_on_unclear_review": [
+        "6b5b2135:我",
+        "b9067bec:我",
+        "5c70f317:我"
+      ]
+    },
+    "linear": {
+      "counts": {
+        "UNCLEAR": 31,
+        "RISING": 14,
+        "FALLING": 5,
+        "LEVEL": 3
+      },
+      "agrees_unambiguous": 9,
+      "named_on_unclear_review": [
+        "89cee47e:想",
+        "89cee47e:买",
+        "6b5b2135:我",
+        "6b5b2135:想",
+        "40357072:想",
+        "8d252264:苹",
+        "4b9dbd2b:要",
+        "8faf1a90:一",
+        "5c70f317:想"
+      ]
+    },
+    "quadratic": {
+      "counts": {
+        "DIP_RISE": 17,
+        "RISING": 11,
+        "UNCLEAR": 18,
+        "FALLING": 4,
+        "LEVEL": 3
+      },
+      "agrees_unambiguous": 23,
+      "named_on_unclear_review": [
+        "89cee47e:想",
+        "89cee47e:买",
+        "6b5b2135:我",
+        "6b5b2135:想",
+        "40357072:想",
+        "8d252264:苹",
+        "4b9dbd2b:要",
+        "8faf1a90:一",
+        "5c70f317:想"
+      ]
+    },
+    "piecewise": {
+      "counts": {
+        "DIP_RISE": 18,
+        "UNCLEAR": 24,
+        "FALLING": 6,
+        "RISING": 3,
+        "LEVEL": 2
+      },
+      "agrees_unambiguous": 28,
+      "named_on_unclear_review": [
+        "40357072:想"
+      ]
+    }
+  },
+  "lost_previous_useful": [],
+  "new_useful": [
+    "89cee47e:我",
+    "7e6b6fe9:我",
+    "7e6b6fe9:想",
+    "7e6b6fe9:买",
+    "0b194cf9:想",
+    "0b194cf9:买",
+    "ee8a8b32:买",
+    "40357072:五",
+    "8faf1a90:果",
+    "b9067bec:买"
+  ],
+  "unstable": [
+    "4b9dbd2b:苹",
+    "b9067bec:想"
+  ],
+  "proposed_comparison": {
+    "UNAVAILABLE": 45,
+    "PARTIAL_OR_WEAK": 5,
+    "CLEAR_DIFFERENCE": 3
+  },
+  "scale_floor_comparison": {
+    "4": {
+      "maximum_0_2_st_height_fraction": 0.05,
+      "median_selected_range_fraction": 0.9692161964800257
+    },
+    "6": {
+      "maximum_0_2_st_height_fraction": 0.03333333333333333,
+      "median_selected_range_fraction": 0.6517762036613015
+    },
+    "8": {
+      "maximum_0_2_st_height_fraction": 0.025,
+      "median_selected_range_fraction": 0.48883215274597613
+    }
+  }
+}

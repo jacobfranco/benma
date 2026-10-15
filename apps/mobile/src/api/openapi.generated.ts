@@ -296,6 +296,8 @@ export interface components {
       };
     "PerceivedAnalysisCreate": {};
     "PerceivedAnalysisData": {
+        "pronunciation_chunk_policy"?: string | null;
+        "pronunciation_chunk_candidates"?: Array<components["schemas"]["PronunciationChunkCandidate"]>;
         "pitch_track_evidence_id"?: string | null;
         "tone_graph"?: components["schemas"]["SentencePitchEvidence"] | null;
         "timing_groups"?: Array<components["schemas"]["PerceivedTimingGroup"]>;
@@ -477,6 +479,13 @@ export interface components {
         "utterance_id": string;
         "target_id": string;
         "created_at": string;
+      };
+    "PronunciationChunkCandidate": {
+        "text": string;
+        "character_start": number;
+        "character_end": number;
+        "syllable_indices": Array<number>;
+        "reason": "lexical_word" | "demonstrative_classifier" | "numeral_classifier";
       };
     "PronunciationResultResponse": {
         "display_contour"?: components["schemas"]["DisplayContour"] | null;

@@ -1,0 +1,238 @@
+[
+  {
+    "recording": "d47274bc",
+    "audio_sha256": "aa5b374d61e56dea146942e0d3b149ad629db6ca1534f5fae376ac31b4a75aa7",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 95,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "7e6b6fe9",
+    "audio_sha256": "808a08df2bb4e58172e01b7f4b7084aa6f0f11705491f5fc2e7c35f7166142f0",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 25,
+      "dominated_quiet_windows": 1,
+      "background_span_seconds": 0.0,
+      "peak_band_hz": [
+        50.0,
+        50.0
+      ],
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "8faf1a90",
+    "audio_sha256": "c69e9debd717d9ab0827c4131415c95eaaef8250992f5cd8462ec0bd1669a882",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 25,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "6b5b2135",
+    "audio_sha256": "796c5799600787fdec1948f180b6340270529622caedc668f465e53929b161a3",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 39,
+      "dominated_quiet_windows": 4,
+      "background_span_seconds": 0.65,
+      "peak_band_hz": [
+        50.0,
+        65.0
+      ],
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "8d252264",
+    "audio_sha256": "aa4c9fd8de1cec17021691f4332025b3607a8f564b9bbfc1ba9c1f43536dd984",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 48,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "ee8a8b32",
+    "audio_sha256": "b86f5605c1ebddab0ffcfbd90f41a115cbf75f8f9c65e68039d33dd88d52c247",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 54,
+      "dominated_quiet_windows": 3,
+      "background_span_seconds": 0.75,
+      "peak_band_hz": [
+        55.0,
+        55.0
+      ],
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "5c70f317",
+    "audio_sha256": "945423c44fe212767305d3816ff5fb67547045a99bac718c73a702ba8b2b44a4",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 18,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "a5acd04c",
+    "audio_sha256": "2865d75595fa2bc0779921abc4d379ef7514d53789ed173dcfc3d55aab734f76",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 30,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "89cee47e",
+    "audio_sha256": "138433436566bd47b4e7731c43333d6dafa9f7e631b7b168ce954e8ca0f2ae4a",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 31,
+      "dominated_quiet_windows": 1,
+      "background_span_seconds": 0.0,
+      "peak_band_hz": [
+        60.0,
+        60.0
+      ],
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "4b9dbd2b",
+    "audio_sha256": "466f5655bfe765a7951294dc7d088b3f1cf83360add674ce3cc7ad865be08fee",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 85,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "40357072",
+    "audio_sha256": "00e30ad842c92133609d2728367e8d18993a7ce6961176117e05d312e9313855",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 41,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "0b194cf9",
+    "audio_sha256": "3dea4ade3c4b1c8136adc8fe5a3d802d0b5857690c09ada67bb934196d4a7081",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 22,
+      "dominated_quiet_windows": 1,
+      "background_span_seconds": 0.0,
+      "peak_band_hz": [
+        55.0,
+        55.0
+      ],
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  },
+  {
+    "recording": "b9067bec",
+    "audio_sha256": "e407e6d1c3c086303b8e35c5712c0fa8c397421a83a81c97b71c1a10db8b3e43",
+    "background": {
+      "version": "candidate-branch-background-v1",
+      "detected": false,
+      "quiet_windows": 11,
+      "dominated_quiet_windows": 0,
+      "background_span_seconds": 0,
+      "peak_band_hz": null,
+      "window_seconds": 0.2,
+      "hop_seconds": 0.05
+    },
+    "candidate_frames": 0,
+    "background_frames": 0,
+    "newly_rejected": []
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "items": 53,
+  "manual_geometry_counts": {
+    "DIP_RISE": 18,
+    "UNCLEAR": 24,
+    "FALLING": 6,
+    "RISING": 3,
+    "LEVEL": 2
+  },
+  "current_named": 24,
+  "current_agrees_named": 18,
+  "proposed_named": 20,
+  "proposed_agrees_named": 20,
+  "new_useful_descriptions": [
+    "7e6b6fe9:我",
+    "7e6b6fe9:想",
+    "7e6b6fe9:买",
+    "0b194cf9:想",
+    "0b194cf9:买",
+    "ee8a8b32:买",
+    "8faf1a90:果"
+  ],
+  "lost_current_agreements": [
+    "0b194cf9:我",
+    "ee8a8b32:我",
+    "8d252264:一",
+    "4b9dbd2b:一",
+    "a5acd04c:果"
+  ],
+  "mixed_described": [
+    "7e6b6fe9:想",
+    "7e6b6fe9:买",
+    "0b194cf9:买",
+    "ee8a8b32:买"
+  ],
+  "perturbation_sensitive": [
+    "89cee47e:我",
+    "0b194cf9:我",
+    "ee8a8b32:我",
+    "4b9dbd2b:一",
+    "4b9dbd2b:苹",
+    "b9067bec:买"
+  ],
+  "annotation_limit": "Assistant numeric review, not independent human listening/visual certification; current dipping mapped to DIP_RISE for this coarse comparison only."
+}

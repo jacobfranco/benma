@@ -21,7 +21,7 @@ from benma_api.pronunciation.pitch_types import UtterancePitchTrack
 from benma_api.schemas import DisplayContour, DisplayPitchPoint, ObservedContour
 
 MAX_GAP = 0.045  # Missing/unvoiced frames always break a segment, even below this limit.
-CLASSIFIER_VERSION = "acoustic-shape-quality-v7-bounded-gestures"
+CLASSIFIER_VERSION = "acoustic-shape-quality-v7.1-candidate-rejection"
 DISPLAY_VERSION = "local-hampel-short-island-no-interpolation-v2.1"
 
 
@@ -347,6 +347,18 @@ def _classify_contour(
         for p in raw
         if start <= p.get("timestamp_seconds", -1) < end and p.get("f0_hz") is not None
     ]
+    from benma_api.pronunciation.pitch_rejection import BRANCH_REASON
+
+    audit_raw_voiced = raw_voiced
+    raw_voiced = [
+        p
+        for p in raw_voiced
+        if not (
+            p.get("selection_reason") == BRANCH_REASON
+            and p.get("selected_f0_hz") is None
+            and p.get("quality_usable") is False
+        )
+    ]
     intervals = [
         b.timestamp_seconds - a.timestamp_seconds
         for region in contour.segments
@@ -429,6 +441,21 @@ def _classify_contour(
         and 0 < b["timestamp_seconds"] - a["timestamp_seconds"] <= 0.12
     ]
     quality["maximum_tracker_jump_st"] = max(jumps, default=0.0)
+    if len(audit_raw_voiced) != len(raw_voiced):
+        quality["candidate_ambiguous_branch_frames"] = float(
+            len(audit_raw_voiced) - len(raw_voiced)
+        )
+        quality["interpretation_voiced_frames"] = float(len(raw_voiced))
+        quality["raw_voiced_frames"] = float(len(audit_raw_voiced))
+        quality["maximum_interpretation_jump_st"] = max(jumps, default=0.0)
+        quality["maximum_tracker_jump_st"] = max(
+            (
+                abs(12 * math.log2(b["f0_hz"] / a["f0_hz"]))
+                for a, b in pairwise(audit_raw_voiced)
+                if 0 < b["timestamp_seconds"] - a["timestamp_seconds"] <= 0.12
+            ),
+            default=0.0,
+        )
     large_count = sum(jump > 6 for jump in jumps)
     longest_run = run = 0
     for jump in jumps:

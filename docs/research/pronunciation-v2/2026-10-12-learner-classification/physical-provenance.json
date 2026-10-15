@@ -1,0 +1,18 @@
+[
+  {
+    "id": "df7476d5-5716-4399-a528-924075c3a0fb",
+    "created_at": "2026-10-12 20:08:52.220782+00:00",
+    "audio_sha256": "7f6bccc7ea7354e8d4a4a49c3d0f53f2bdcfb3054a4d3c0c4077ab0d2f56a16c",
+    "storage_key": "4437ecb5-c693-476c-8cc6-4c51cc910742/canonical/b8049b3e6ae646948ecc6dd65967d01a.wav",
+    "sha256": "7f6bccc7ea7354e8d4a4a49c3d0f53f2bdcfb3054a4d3c0c4077ab0d2f56a16c",
+    "label": "Google TTS physical take"
+  },
+  {
+    "id": "208711dc-c437-4afe-b6d3-2aa0e16fb7cb",
+    "created_at": "2026-10-12 20:00:41.588454+00:00",
+    "audio_sha256": "63e67070a2ab1937466900dd5a34da1cefe6c521e74f27912736382603bdd7df",
+    "storage_key": "4437ecb5-c693-476c-8cc6-4c51cc910742/canonical/d7b27845119948618f4ad2aff08a532e.wav",
+    "sha256": "63e67070a2ab1937466900dd5a34da1cefe6c521e74f27912736382603bdd7df",
+    "label": "Human physical take"
+  }
+]

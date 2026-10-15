@@ -1,5 +1,45 @@
 # Learner pronunciation experience — 2026-09-17, finalized 2026-09-18
 
+## October 10, 2026 — dominant tone families and primary learner grades
+
+This policy supersedes earlier comparison/color descriptions below. The acoustic
+layer classifies the dominant supported measured gesture without knowing target,
+characters, readings, lexical tones, expected tones, transcript or reference TTS.
+A small boundary counter-movement may remain subordinate to a coherent primary
+rise, fall or valley. Full-track corruption gates and perturbation checks remain.
+
+The linguistic layer supplies explicit surface expectations where resolved. Those
+expectations remain authoritative, including 一, 不 and resolved T3 sandhi. When
+surface realization is null but reading/pinyin and lexical tone 1–4 are resolved,
+the learner layer may grade against that lexical family. It does not rewrite the
+surface field. Details say “Tone N family” and “Connected-speech realization may
+vary here.” Contextual coaching refines the explanation without erasing a useful
+family judgment. Unresolved readings remain unavailable.
+
+As of October 13, learner correctness uses an asymmetric conservative policy:
+trustworthy compatible numbered families default to green (“Pitch acceptable”);
+meaningful interpretation uncertainty is amber (“Pitch may be off”); only strong,
+stable incompatible evidence is red; unavailable evidence or unresolved required
+context is gray. Compatible families with fewer than 6/7 agreeing probes remain
+amber because of interpretation sensitivity. Small excursion alone never changes
+a grade. `LearnerPitchGrade.coaching` remains independent, including on green units.
+
+Red requires support ≥0.90, maximum acceptable-family support ≤0.20,
+winner–acceptable margin ≥0.70, winner–runner-up margin ≥0.60, clarity ≥0.90,
+and at least seven probes with 100% agreement. Explicit surface rules remain
+authoritative; the existing unresolved adjacent-T3 fallback may accept T3/T2,
+never T4. See the [conservative grading audit](../research/pronunciation-v2/2026-10-13-conservative-grading/README.md)
+for the exact rules, every changed grade, threshold rationale and validation.
+
+Neutral uses contextual dependent-syllable acceptance, without a fixed numbered
+tone. In recognized chunks with separate accepted timing and exact playback,
+structurally supported neutral can be positively accepted. Unmeasured neutral can
+remain non-vetoing. Neither can hide a red, amber or unavailable grade-bearing head. Standalone,
+optional-neutral, unresolved and grouped cases remain bounded.
+
+See [implementation, frozen replay and validation](../research/pronunciation-v2/2026-10-09-product-feedback/dominant-gesture-pass.md).
+
+
 This pass continues the existing dirty tree without resetting, replacing, staging, or committing
 prior work. It preserves the perception → independent pronunciation/meaning branches and does
 not start another milestone. No paid speech provider or benchmark was run.

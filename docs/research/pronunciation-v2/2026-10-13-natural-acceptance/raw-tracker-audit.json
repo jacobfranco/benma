@@ -1,0 +1,2203 @@
+[
+  {
+    "id": "8ae4e60f-964b-480a-b9c7-0c44592841fc",
+    "created_at": "2026-10-13T14:20:31.744418Z",
+    "audio_sha256": "46344042d025f43e1a30bc958b305ed6b4e91cab65b517cc756dbba28038f39f",
+    "sample_rate_hz": 16000,
+    "duration_seconds": 2.6703,
+    "algorithm": "praat_autocorrelation",
+    "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+    "parameters": {
+      "pitch_floor": 50.0,
+      "pitch_ceiling": 550.0,
+      "time_step": 0.01,
+      "octave_jump_cost": 0.5,
+      "octave_cost": 0.01,
+      "voiced_unvoiced_cost": 0.14,
+      "silence_threshold": 0.03,
+      "max_number_of_candidates": 15,
+      "very_accurate": false,
+      "voicing_threshold": 0.45,
+      "energy_gate": "bounded-recording-noise-floor-v1",
+      "quality_gate": "spectral-and-filter-disagreement-v1"
+    },
+    "recording_quality": {
+      "status": "usable",
+      "issues": [],
+      "rms": 0.026132,
+      "clipping_fraction": 0.0,
+      "silence_fraction": 0.007634
+    },
+    "energy_gate": {
+      "threshold_rms": 0.009037627522442894,
+      "noise_floor_rms": 0.012846835128583967
+    },
+    "provider_snr_db": null,
+    "summary": {
+      "interval": [
+        0,
+        2.6703
+      ],
+      "total_frames": 262,
+      "states": {
+        "estimator_no_in_range_candidates": 5,
+        "estimator_unvoiced_with_candidates": 48,
+        "benma_rejected_voiced_output": 133,
+        "retained": 76
+      },
+      "raw": {
+        "voiced_frames": 209,
+        "voiced_ratio": 0.7977099236641222,
+        "f0_hz": {
+          "min": 51.994,
+          "median": 61.869,
+          "max": 543.018
+        },
+        "fragment_count": 17,
+        "longest_unvoiced_run_seconds": 0.11,
+        "largest_jump_st_within_120ms": 33.852621864902574,
+        "jumps_over_6st": 7
+      },
+      "retained": {
+        "voiced_frames": 76,
+        "voiced_ratio": 0.2900763358778626,
+        "f0_hz": {
+          "min": 52.259,
+          "median": 70.2955,
+          "max": 542.894
+        },
+        "fragment_count": 19,
+        "longest_unvoiced_run_seconds": 0.42,
+        "largest_jump_st_within_120ms": 37.58352225951608,
+        "jumps_over_6st": 7
+      },
+      "raw_voiced_strength": {
+        "min": 0.381,
+        "median": 0.6505,
+        "max": 0.9728
+      },
+      "best_candidate_strength": {
+        "min": 0.2578,
+        "median": 0.6306,
+        "max": 0.9728
+      },
+      "frame_energy_rms": {
+        "min": 0.000132,
+        "median": 0.0224005,
+        "max": 0.060272
+      }
+    },
+    "syllables": [
+      {
+        "text": "我",
+        "interval": [
+          0.61,
+          0.93
+        ],
+        "total_frames": 32,
+        "states": {
+          "retained": 17,
+          "benma_rejected_voiced_output": 12,
+          "estimator_unvoiced_with_candidates": 3
+        },
+        "raw": {
+          "voiced_frames": 29,
+          "voiced_ratio": 0.90625,
+          "f0_hz": {
+            "min": 52.259,
+            "median": 70.238,
+            "max": 319.538
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.02,
+          "largest_jump_st_within_120ms": 26.110506628325478,
+          "jumps_over_6st": 2
+        },
+        "retained": {
+          "voiced_frames": 17,
+          "voiced_ratio": 0.53125,
+          "f0_hz": {
+            "min": 52.259,
+            "median": 277.719,
+            "max": 319.538
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.09,
+          "largest_jump_st_within_120ms": 28.82354275433275,
+          "jumps_over_6st": 2
+        },
+        "raw_voiced_strength": {
+          "min": 0.381,
+          "median": 0.6399,
+          "max": 0.8876
+        },
+        "best_candidate_strength": {
+          "min": 0.3366,
+          "median": 0.6452,
+          "max": 0.8876
+        },
+        "frame_energy_rms": {
+          "min": 0.015175,
+          "median": 0.0262975,
+          "max": 0.060272
+        }
+      },
+      {
+        "text": "想",
+        "interval": [
+          0.94,
+          1.23
+        ],
+        "total_frames": 29,
+        "states": {
+          "benma_rejected_voiced_output": 8,
+          "estimator_unvoiced_with_candidates": 4,
+          "retained": 17
+        },
+        "raw": {
+          "voiced_frames": 25,
+          "voiced_ratio": 0.8620689655172413,
+          "f0_hz": {
+            "min": 59.24,
+            "median": 67.91,
+            "max": 270.785
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.02,
+          "largest_jump_st_within_120ms": 25.64555470704895,
+          "jumps_over_6st": 2
+        },
+        "retained": {
+          "voiced_frames": 17,
+          "voiced_ratio": 0.5862068965517241,
+          "f0_hz": {
+            "min": 59.24,
+            "median": 260.525,
+            "max": 270.785
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.07,
+          "largest_jump_st_within_120ms": 25.64555470704895,
+          "jumps_over_6st": 2
+        },
+        "raw_voiced_strength": {
+          "min": 0.5319,
+          "median": 0.6501,
+          "max": 0.9271
+        },
+        "best_candidate_strength": {
+          "min": 0.4109,
+          "median": 0.6501,
+          "max": 0.9271
+        },
+        "frame_energy_rms": {
+          "min": 0.014591,
+          "median": 0.034637,
+          "max": 0.051801
+        }
+      },
+      {
+        "text": "买",
+        "interval": [
+          1.24,
+          1.47
+        ],
+        "total_frames": 23,
+        "states": {
+          "estimator_unvoiced_with_candidates": 12,
+          "benma_rejected_voiced_output": 6,
+          "retained": 5
+        },
+        "raw": {
+          "voiced_frames": 11,
+          "voiced_ratio": 0.4782608695652174,
+          "f0_hz": {
+            "min": 53.618,
+            "median": 58.855,
+            "max": 543.018
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.11,
+          "largest_jump_st_within_120ms": 2.3398782345938596,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 5,
+          "voiced_ratio": 0.21739130434782608,
+          "f0_hz": {
+            "min": 53.628,
+            "median": 61.162,
+            "max": 542.894
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.11,
+          "largest_jump_st_within_120ms": 2.265784982009635,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.5823,
+          "median": 0.6387,
+          "max": 0.8044
+        },
+        "best_candidate_strength": {
+          "min": 0.2743,
+          "median": 0.5448,
+          "max": 0.808
+        },
+        "frame_energy_rms": {
+          "min": 0.018208,
+          "median": 0.033706,
+          "max": 0.052224
+        }
+      },
+      {
+        "text": "这",
+        "interval": [
+          1.48,
+          1.85
+        ],
+        "total_frames": 37,
+        "states": {
+          "benma_rejected_voiced_output": 11,
+          "retained": 20,
+          "estimator_unvoiced_with_candidates": 6
+        },
+        "raw": {
+          "voiced_frames": 31,
+          "voiced_ratio": 0.8378378378378378,
+          "f0_hz": {
+            "min": 53.049,
+            "median": 68.077,
+            "max": 354.855
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.04,
+          "largest_jump_st_within_120ms": 31.938797278716642,
+          "jumps_over_6st": 2
+        },
+        "retained": {
+          "voiced_frames": 20,
+          "voiced_ratio": 0.5405405405405406,
+          "f0_hz": {
+            "min": 53.069,
+            "median": 311.98199999999997,
+            "max": 354.855
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.07,
+          "largest_jump_st_within_120ms": 31.938797278716642,
+          "jumps_over_6st": 2
+        },
+        "raw_voiced_strength": {
+          "min": 0.4428,
+          "median": 0.5978,
+          "max": 0.7673
+        },
+        "best_candidate_strength": {
+          "min": 0.3263,
+          "median": 0.5926,
+          "max": 0.7941
+        },
+        "frame_energy_rms": {
+          "min": 0.012359,
+          "median": 0.024179,
+          "max": 0.034934
+        }
+      },
+      {
+        "text": "个",
+        "interval": [
+          1.86,
+          2.18
+        ],
+        "total_frames": 32,
+        "states": {
+          "benma_rejected_voiced_output": 15,
+          "retained": 10,
+          "estimator_unvoiced_with_candidates": 7
+        },
+        "raw": {
+          "voiced_frames": 25,
+          "voiced_ratio": 0.78125,
+          "f0_hz": {
+            "min": 53.062,
+            "median": 60.288,
+            "max": 70.447
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.04,
+          "largest_jump_st_within_120ms": 2.355852983999309,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 10,
+          "voiced_ratio": 0.3125,
+          "f0_hz": {
+            "min": 53.062,
+            "median": 59.908500000000004,
+            "max": 62.827
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.18,
+          "largest_jump_st_within_120ms": 2.355852983999309,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.4286,
+          "median": 0.6213,
+          "max": 0.7655
+        },
+        "best_candidate_strength": {
+          "min": 0.4286,
+          "median": 0.5908500000000001,
+          "max": 0.7655
+        },
+        "frame_energy_rms": {
+          "min": 0.014139,
+          "median": 0.023951,
+          "max": 0.030521
+        }
+      }
+    ],
+    "replay": {
+      "all_f0_fields_equal": false,
+      "raw_tracker_equal": true,
+      "raw_candidates_equal": true,
+      "background_periodicity": {
+        "version": "candidate-branch-background-v1",
+        "detected": true,
+        "quiet_windows": 28,
+        "dominated_quiet_windows": 27,
+        "background_span_seconds": 2.4499999999999997,
+        "peak_band_hz": [
+          50.0,
+          70.0
+        ],
+        "window_seconds": 0.2,
+        "hop_seconds": 0.05,
+        "windows": [
+          {
+            "time": 0.1,
+            "high_power": 102.82795968745054,
+            "low_fraction": 0.8166450960287782,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 0.15,
+            "high_power": 72.53400600892091,
+            "low_fraction": 0.743457656474066,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 0.2,
+            "high_power": 117.30583867314463,
+            "low_fraction": 0.8308845707478889,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.25,
+            "high_power": 86.12908469889791,
+            "low_fraction": 0.8175999583763215,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.3,
+            "high_power": 72.07696994030269,
+            "low_fraction": 0.7813743318066737,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 0.35,
+            "high_power": 95.29618827304715,
+            "low_fraction": 0.8460850936300417,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.4,
+            "high_power": 73.52492873133224,
+            "low_fraction": 0.7713526382174012,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.45,
+            "high_power": 95.82475784713256,
+            "low_fraction": 0.7142334517078004,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.5,
+            "high_power": 102.10290136127625,
+            "low_fraction": 0.8104806959217429,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.55,
+            "high_power": 78.58726531482034,
+            "low_fraction": 0.8348072633068697,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.6,
+            "high_power": 133.20850639281036,
+            "low_fraction": 0.7037147415772333,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 0.65,
+            "high_power": 124.0488057306374,
+            "low_fraction": 0.8330785887770962,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.7,
+            "high_power": 482.66469542070666,
+            "low_fraction": 0.5130309103112582,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.75,
+            "high_power": 2771.3490626979524,
+            "low_fraction": 0.11711593839740857,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 0.8,
+            "high_power": 4158.933069103135,
+            "low_fraction": 0.13585956034217012,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.85,
+            "high_power": 1946.7045123152493,
+            "low_fraction": 0.20282204697517373,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 0.9,
+            "high_power": 454.7366676131159,
+            "low_fraction": 0.5635071829957294,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 0.95,
+            "high_power": 183.7711845777371,
+            "low_fraction": 0.7580069067064678,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.0,
+            "high_power": 1250.6047457935153,
+            "low_fraction": 0.37004902433381714,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.05,
+            "high_power": 3334.478490462517,
+            "low_fraction": 0.1249102287230074,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.1,
+            "high_power": 2270.7445202728127,
+            "low_fraction": 0.2931567122806191,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.15,
+            "high_power": 1039.4298331981943,
+            "low_fraction": 0.5375079660194404,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.2,
+            "high_power": 857.6530991562919,
+            "low_fraction": 0.30023170470412375,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.25,
+            "high_power": 2093.1439836562054,
+            "low_fraction": 0.30733058592637064,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.3,
+            "high_power": 3184.3737615955874,
+            "low_fraction": 0.17209959249310594,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.35,
+            "high_power": 1964.575533505264,
+            "low_fraction": 0.17883916522268758,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.4,
+            "high_power": 551.7711094146086,
+            "low_fraction": 0.5941915928585365,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.45,
+            "high_power": 176.1325595776281,
+            "low_fraction": 0.728932151580263,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.5,
+            "high_power": 160.1238743943192,
+            "low_fraction": 0.7458295408829518,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 1.55,
+            "high_power": 413.64733887440855,
+            "low_fraction": 0.605207117820997,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.6,
+            "high_power": 738.1677054075092,
+            "low_fraction": 0.42891195629099677,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.65,
+            "high_power": 1066.4874116050412,
+            "low_fraction": 0.342486737210604,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.7,
+            "high_power": 721.129970177115,
+            "low_fraction": 0.4660556550787702,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.75,
+            "high_power": 269.7158479413432,
+            "low_fraction": 0.6285026515739283,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.8,
+            "high_power": 291.146517703564,
+            "low_fraction": 0.6610720080762231,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.85,
+            "high_power": 373.40504589128284,
+            "low_fraction": 0.6768397629216251,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.9,
+            "high_power": 544.3786726504825,
+            "low_fraction": 0.5106775760774757,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.95,
+            "high_power": 719.4632091463595,
+            "low_fraction": 0.4503715819640178,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.0,
+            "high_power": 512.9415950286613,
+            "low_fraction": 0.5379497202335533,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.05,
+            "high_power": 277.47646806349053,
+            "low_fraction": 0.7120736343344267,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 2.1,
+            "high_power": 125.98782705433536,
+            "low_fraction": 0.8210711367276786,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 2.15,
+            "high_power": 143.12139817738512,
+            "low_fraction": 0.8199231940365499,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.2,
+            "high_power": 171.4498680995851,
+            "low_fraction": 0.8094461539389943,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.25,
+            "high_power": 121.20160010806784,
+            "low_fraction": 0.7588602218656701,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 2.3,
+            "high_power": 159.22669447561478,
+            "low_fraction": 0.8606895947868943,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.35,
+            "high_power": 113.1803527850994,
+            "low_fraction": 0.8378493332242082,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.4,
+            "high_power": 97.55571837406927,
+            "low_fraction": 0.7739689920280134,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 2.45,
+            "high_power": 126.71626929172524,
+            "low_fraction": 0.872433051201656,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.5,
+            "high_power": 108.58766848628672,
+            "low_fraction": 0.755383583310157,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.55,
+            "high_power": 140.97385701259938,
+            "low_fraction": 0.7130766126476912,
+            "peak_hz": 65.0
+          }
+        ],
+        "rejected_frames": 160
+      },
+      "selection": {
+        "version": "candidate-branch-background-v1",
+        "repaired_frame_count": 0,
+        "artifact_rejected_frame_count": 0,
+        "candidate_ambiguous_branch_frames": 0,
+        "policy": "reject_proven_ambiguity_never_replace_f0"
+      },
+      "frame_count": 262,
+      "audio_sha256_verified": true,
+      "unvoiced_with_locally_preferred_candidate": [
+        0.7102,
+        0.8502,
+        0.9502,
+        0.9602,
+        1.0102,
+        1.2302,
+        1.2402,
+        1.5602,
+        1.7002,
+        2.0002,
+        2.0102,
+        2.0202,
+        2.1402,
+        2.1502,
+        2.2102,
+        2.2402,
+        2.3902,
+        2.5002,
+        2.5102,
+        2.5202,
+        2.5302
+      ]
+    }
+  },
+  {
+    "id": "cc8be88b-1211-4ef1-ae7e-0ebf8b99327c",
+    "created_at": "2026-10-13T14:11:33.689135Z",
+    "audio_sha256": "1d42575f8018458b375dd5aface250290901cc4632b9658cead956bcf44fca51",
+    "sample_rate_hz": 16000,
+    "duration_seconds": 2.4149,
+    "algorithm": "praat_autocorrelation",
+    "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+    "parameters": {
+      "pitch_floor": 50.0,
+      "pitch_ceiling": 550.0,
+      "time_step": 0.01,
+      "octave_jump_cost": 0.5,
+      "octave_cost": 0.01,
+      "voiced_unvoiced_cost": 0.14,
+      "silence_threshold": 0.03,
+      "max_number_of_candidates": 15,
+      "very_accurate": false,
+      "voicing_threshold": 0.45,
+      "energy_gate": "bounded-recording-noise-floor-v1",
+      "quality_gate": "spectral-and-filter-disagreement-v1"
+    },
+    "recording_quality": {
+      "status": "usable",
+      "issues": [],
+      "rms": 0.03707,
+      "clipping_fraction": 0.0,
+      "silence_fraction": 0.292373
+    },
+    "energy_gate": {
+      "threshold_rms": 0.007682815464381059,
+      "noise_floor_rms": 0.0025609384881270197
+    },
+    "provider_snr_db": null,
+    "summary": {
+      "interval": [
+        0,
+        2.4149
+      ],
+      "total_frames": 236,
+      "states": {
+        "estimator_no_in_range_candidates": 29,
+        "estimator_unvoiced_with_candidates": 111,
+        "retained": 93,
+        "benma_rejected_voiced_output": 3
+      },
+      "raw": {
+        "voiced_frames": 96,
+        "voiced_ratio": 0.4067796610169492,
+        "f0_hz": {
+          "min": 58.433,
+          "median": 99.65350000000001,
+          "max": 190.638
+        },
+        "fragment_count": 5,
+        "longest_unvoiced_run_seconds": 0.55,
+        "largest_jump_st_within_120ms": 19.42036983016978,
+        "jumps_over_6st": 2
+      },
+      "retained": {
+        "voiced_frames": 93,
+        "voiced_ratio": 0.3940677966101695,
+        "f0_hz": {
+          "min": 58.433,
+          "median": 99.613,
+          "max": 186.356
+        },
+        "fragment_count": 5,
+        "longest_unvoiced_run_seconds": 0.57,
+        "largest_jump_st_within_120ms": 19.42036983016978,
+        "jumps_over_6st": 2
+      },
+      "raw_voiced_strength": {
+        "min": 0.4986,
+        "median": 0.9238,
+        "max": 0.9897
+      },
+      "best_candidate_strength": {
+        "min": 0.2282,
+        "median": 0.5531,
+        "max": 0.9897
+      },
+      "frame_energy_rms": {
+        "min": 0.000452,
+        "median": 0.009697500000000001,
+        "max": 0.109035
+      }
+    },
+    "syllables": [
+      {
+        "text": "我",
+        "interval": [
+          0.37,
+          0.82
+        ],
+        "total_frames": 45,
+        "states": {
+          "estimator_no_in_range_candidates": 6,
+          "estimator_unvoiced_with_candidates": 19,
+          "retained": 20
+        },
+        "raw": {
+          "voiced_frames": 20,
+          "voiced_ratio": 0.4444444444444444,
+          "f0_hz": {
+            "min": 96.179,
+            "median": 102.57300000000001,
+            "max": 112.979
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.2,
+          "largest_jump_st_within_120ms": 1.2980177943070075,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 20,
+          "voiced_ratio": 0.4444444444444444,
+          "f0_hz": {
+            "min": 96.179,
+            "median": 102.57300000000001,
+            "max": 112.979
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.2,
+          "largest_jump_st_within_120ms": 1.2980177943070075,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.4986,
+          "median": 0.9053,
+          "max": 0.9598
+        },
+        "best_candidate_strength": {
+          "min": 0.23,
+          "median": 0.6049,
+          "max": 0.9598
+        },
+        "frame_energy_rms": {
+          "min": 0.002275,
+          "median": 0.028199,
+          "max": 0.077115
+        }
+      },
+      {
+        "text": "想",
+        "interval": [
+          0.83,
+          1.08
+        ],
+        "total_frames": 25,
+        "states": {
+          "estimator_no_in_range_candidates": 4,
+          "estimator_unvoiced_with_candidates": 2,
+          "retained": 19
+        },
+        "raw": {
+          "voiced_frames": 19,
+          "voiced_ratio": 0.76,
+          "f0_hz": {
+            "min": 97.944,
+            "median": 122.441,
+            "max": 130.215
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.06,
+          "largest_jump_st_within_120ms": 0.5799133520582889,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 19,
+          "voiced_ratio": 0.76,
+          "f0_hz": {
+            "min": 97.944,
+            "median": 122.441,
+            "max": 130.215
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.06,
+          "largest_jump_st_within_120ms": 0.5799133520582889,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.7182,
+          "median": 0.9446,
+          "max": 0.9757
+        },
+        "best_candidate_strength": {
+          "min": 0.2738,
+          "median": 0.9422,
+          "max": 0.9757
+        },
+        "frame_energy_rms": {
+          "min": 0.029075,
+          "median": 0.06826,
+          "max": 0.109035
+        }
+      },
+      {
+        "text": "买",
+        "interval": [
+          1.09,
+          1.38
+        ],
+        "total_frames": 29,
+        "states": {
+          "retained": 29
+        },
+        "raw": {
+          "voiced_frames": 29,
+          "voiced_ratio": 1.0,
+          "f0_hz": {
+            "min": 91.475,
+            "median": 95.183,
+            "max": 99.398
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.0,
+          "largest_jump_st_within_120ms": 0.2902233226910772,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 29,
+          "voiced_ratio": 1.0,
+          "f0_hz": {
+            "min": 91.475,
+            "median": 95.183,
+            "max": 99.398
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.0,
+          "largest_jump_st_within_120ms": 0.2902233226910772,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.7744,
+          "median": 0.9642,
+          "max": 0.9897
+        },
+        "best_candidate_strength": {
+          "min": 0.7744,
+          "median": 0.9642,
+          "max": 0.9897
+        },
+        "frame_energy_rms": {
+          "min": 0.011004,
+          "median": 0.047674,
+          "max": 0.057055
+        }
+      },
+      {
+        "text": "这",
+        "interval": [
+          1.39,
+          1.7
+        ],
+        "total_frames": 31,
+        "states": {
+          "benma_rejected_voiced_output": 1,
+          "estimator_unvoiced_with_candidates": 6,
+          "estimator_no_in_range_candidates": 7,
+          "retained": 17
+        },
+        "raw": {
+          "voiced_frames": 18,
+          "voiced_ratio": 0.5806451612903226,
+          "f0_hz": {
+            "min": 58.433,
+            "median": 110.89699999999999,
+            "max": 129.347
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.1,
+          "largest_jump_st_within_120ms": 8.678307818962802,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 17,
+          "voiced_ratio": 0.5483870967741935,
+          "f0_hz": {
+            "min": 58.433,
+            "median": 112.71,
+            "max": 129.347
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.11,
+          "largest_jump_st_within_120ms": 8.678307818962802,
+          "jumps_over_6st": 1
+        },
+        "raw_voiced_strength": {
+          "min": 0.5355,
+          "median": 0.8283499999999999,
+          "max": 0.9726
+        },
+        "best_candidate_strength": {
+          "min": 0.3148,
+          "median": 0.77125,
+          "max": 0.9726
+        },
+        "frame_energy_rms": {
+          "min": 0.004164,
+          "median": 0.023134,
+          "max": 0.058578
+        }
+      },
+      {
+        "text": "个",
+        "interval": [
+          1.71,
+          2.01
+        ],
+        "total_frames": 30,
+        "states": {
+          "retained": 5,
+          "estimator_unvoiced_with_candidates": 21,
+          "benma_rejected_voiced_output": 2,
+          "estimator_no_in_range_candidates": 2
+        },
+        "raw": {
+          "voiced_frames": 7,
+          "voiced_ratio": 0.23333333333333334,
+          "f0_hz": {
+            "min": 60.697,
+            "median": 186.274,
+            "max": 190.638
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.17,
+          "largest_jump_st_within_120ms": 19.42036983016978,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 5,
+          "voiced_ratio": 0.16666666666666666,
+          "f0_hz": {
+            "min": 60.697,
+            "median": 63.445,
+            "max": 186.356
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.19,
+          "largest_jump_st_within_120ms": 19.42036983016978,
+          "jumps_over_6st": 1
+        },
+        "raw_voiced_strength": {
+          "min": 0.509,
+          "median": 0.6132,
+          "max": 0.752
+        },
+        "best_candidate_strength": {
+          "min": 0.2282,
+          "median": 0.38985000000000003,
+          "max": 0.752
+        },
+        "frame_energy_rms": {
+          "min": 0.002517,
+          "median": 0.004179499999999999,
+          "max": 0.018534
+        }
+      }
+    ],
+    "replay": {
+      "all_f0_fields_equal": false,
+      "raw_tracker_equal": true,
+      "raw_candidates_equal": true,
+      "background_periodicity": {
+        "version": "candidate-branch-background-v1",
+        "detected": false,
+        "quiet_windows": 29,
+        "dominated_quiet_windows": 2,
+        "background_span_seconds": 2.1999999999999997,
+        "peak_band_hz": [
+          50.0,
+          55.0
+        ],
+        "window_seconds": 0.2,
+        "hop_seconds": 0.05,
+        "windows": [
+          {
+            "time": 0.1,
+            "high_power": 10.422978648011966,
+            "low_fraction": 0.6794952735435186,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 0.15,
+            "high_power": 10.392532465464553,
+            "low_fraction": 0.25000343248767676,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.2,
+            "high_power": 11.012501852730956,
+            "low_fraction": 0.06916757434156813,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 0.25,
+            "high_power": 11.590205277498185,
+            "low_fraction": 0.0539220678400258,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 0.3,
+            "high_power": 10.461915435543592,
+            "low_fraction": 0.06533126973307884,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 0.35,
+            "high_power": 10.110968101738273,
+            "low_fraction": 0.11816185064464127,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.4,
+            "high_power": 9.772482543443367,
+            "low_fraction": 0.1432916642084719,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.45,
+            "high_power": 8.680377827518784,
+            "low_fraction": 0.20845158448504134,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.5,
+            "high_power": 10.311851966925348,
+            "low_fraction": 0.4745910242070781,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.55,
+            "high_power": 267.1817685860679,
+            "low_fraction": 0.024390715258829333,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.6,
+            "high_power": 1595.689788338867,
+            "low_fraction": 0.001412161522389979,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.65,
+            "high_power": 4475.795943969939,
+            "low_fraction": 0.0008047354296496507,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.7,
+            "high_power": 7289.47906129731,
+            "low_fraction": 0.0007661682579919519,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 0.75,
+            "high_power": 4434.932990409442,
+            "low_fraction": 0.0029574293558383147,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 0.8,
+            "high_power": 849.5860855263916,
+            "low_fraction": 0.010838714010027275,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 0.85,
+            "high_power": 1853.6592021409963,
+            "low_fraction": 0.0010480650016046376,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 0.9,
+            "high_power": 11812.626377823904,
+            "low_fraction": 0.00015673624043355012,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.95,
+            "high_power": 20049.366938900865,
+            "low_fraction": 0.0002554170708407103,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.0,
+            "high_power": 11569.307694936415,
+            "low_fraction": 0.0005584769977447758,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.05,
+            "high_power": 4654.898743181281,
+            "low_fraction": 0.0005059707632989501,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.1,
+            "high_power": 4012.6693893128013,
+            "low_fraction": 0.0010872854969959168,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.15,
+            "high_power": 2704.391178742537,
+            "low_fraction": 0.0019180615534232983,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.2,
+            "high_power": 2661.1887775364658,
+            "low_fraction": 0.001426390811825134,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.25,
+            "high_power": 2913.4244319228687,
+            "low_fraction": 0.000821792435742318,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.3,
+            "high_power": 3073.9415579537754,
+            "low_fraction": 0.0009271715043320866,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.35,
+            "high_power": 1117.0512957655553,
+            "low_fraction": 0.00221829330930531,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 1.4,
+            "high_power": 77.0718761150924,
+            "low_fraction": 0.015962446358320177,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 1.45,
+            "high_power": 168.14112938243179,
+            "low_fraction": 0.010805570325758268,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 1.5,
+            "high_power": 2430.263899477945,
+            "low_fraction": 0.0018670757302772815,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.55,
+            "high_power": 4636.80533762157,
+            "low_fraction": 0.0012528410108678801,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.6,
+            "high_power": 2979.2615663909824,
+            "low_fraction": 0.0025378967673418715,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.65,
+            "high_power": 964.6393284030592,
+            "low_fraction": 0.020423102799088703,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 1.7,
+            "high_power": 380.66389744188825,
+            "low_fraction": 0.04249660970138278,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.75,
+            "high_power": 473.74414214433887,
+            "low_fraction": 0.021343109220749945,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.8,
+            "high_power": 222.84488106770786,
+            "low_fraction": 0.02425268957700243,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.85,
+            "high_power": 52.072914000927,
+            "low_fraction": 0.04489601144152454,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.9,
+            "high_power": 21.32069913475956,
+            "low_fraction": 0.13904289164509,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.95,
+            "high_power": 11.429496760795303,
+            "low_fraction": 0.27880467869319636,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.0,
+            "high_power": 10.864350283966397,
+            "low_fraction": 0.21765756831142075,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.05,
+            "high_power": 12.377103932936341,
+            "low_fraction": 0.2306867162210847,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.1,
+            "high_power": 11.564180220227058,
+            "low_fraction": 0.20505908800244546,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 2.15,
+            "high_power": 11.51476232148421,
+            "low_fraction": 0.10525325248023659,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.2,
+            "high_power": 9.647973554662492,
+            "low_fraction": 0.23659065570905807,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.25,
+            "high_power": 9.572433558218817,
+            "low_fraction": 0.38977534032198113,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.3,
+            "high_power": 16.13852299951965,
+            "low_fraction": 0.6794762073622812,
+            "peak_hz": 55.0
+          }
+        ],
+        "rejected_frames": 0
+      },
+      "selection": {
+        "version": "candidate-branch-background-v1",
+        "repaired_frame_count": 0,
+        "artifact_rejected_frame_count": 7,
+        "candidate_ambiguous_branch_frames": 7,
+        "policy": "reject_proven_ambiguity_never_replace_f0"
+      },
+      "frame_count": 236,
+      "audio_sha256_verified": true,
+      "unvoiced_with_locally_preferred_candidate": [
+        0.8824,
+        1.4024,
+        1.6524,
+        1.7924,
+        2.3324,
+        2.3424,
+        2.3524
+      ]
+    }
+  },
+  {
+    "id": "430fcc2e-1975-4773-b6be-fe1176349237",
+    "created_at": "2026-10-12 01:29:16.559352+00:00",
+    "audio_sha256": "488e95d6012120b19e55c8c7d975d3283dc932a89c0aa9ea7e88ea394910c84b",
+    "sample_rate_hz": 16000,
+    "duration_seconds": 3.274,
+    "algorithm": "praat_autocorrelation",
+    "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+    "parameters": {
+      "pitch_floor": 50.0,
+      "pitch_ceiling": 550.0,
+      "time_step": 0.01,
+      "octave_jump_cost": 0.5,
+      "octave_cost": 0.01,
+      "voiced_unvoiced_cost": 0.14,
+      "silence_threshold": 0.03,
+      "max_number_of_candidates": 15,
+      "very_accurate": false,
+      "voicing_threshold": 0.45,
+      "energy_gate": "bounded-recording-noise-floor-v1",
+      "quality_gate": "spectral-and-filter-disagreement-v1"
+    },
+    "recording_quality": {
+      "status": "usable",
+      "issues": [],
+      "rms": 0.017201,
+      "clipping_fraction": 0.0,
+      "silence_fraction": 0.003106
+    },
+    "energy_gate": {
+      "threshold_rms": 0.009883961247314384,
+      "noise_floor_rms": 0.004616284924027092
+    },
+    "provider_snr_db": 10.547482,
+    "summary": {
+      "interval": [
+        0,
+        3.274
+      ],
+      "total_frames": 322,
+      "states": {
+        "estimator_no_in_range_candidates": 5,
+        "estimator_unvoiced_with_candidates": 200,
+        "benma_rejected_voiced_output": 37,
+        "retained": 80
+      },
+      "raw": {
+        "voiced_frames": 117,
+        "voiced_ratio": 0.36335403726708076,
+        "f0_hz": {
+          "min": 63.391,
+          "median": 278.689,
+          "max": 423.951
+        },
+        "fragment_count": 9,
+        "longest_unvoiced_run_seconds": 0.64,
+        "largest_jump_st_within_120ms": 5.71032573606015,
+        "jumps_over_6st": 0
+      },
+      "retained": {
+        "voiced_frames": 80,
+        "voiced_ratio": 0.2484472049689441,
+        "f0_hz": {
+          "min": 171.538,
+          "median": 283.0585,
+          "max": 396.392
+        },
+        "fragment_count": 7,
+        "longest_unvoiced_run_seconds": 1.26,
+        "largest_jump_st_within_120ms": 5.4220214981399035,
+        "jumps_over_6st": 0
+      },
+      "raw_voiced_strength": {
+        "min": 0.3799,
+        "median": 0.7041,
+        "max": 0.9665
+      },
+      "best_candidate_strength": {
+        "min": 0.2327,
+        "median": 0.483,
+        "max": 0.9665
+      },
+      "frame_energy_rms": {
+        "min": 0.000479,
+        "median": 0.0065585,
+        "max": 0.066092
+      }
+    },
+    "syllables": [
+      {
+        "text": "我",
+        "interval": [
+          0.58,
+          0.91
+        ],
+        "total_frames": 33,
+        "states": {
+          "estimator_unvoiced_with_candidates": 9,
+          "benma_rejected_voiced_output": 3,
+          "retained": 21
+        },
+        "raw": {
+          "voiced_frames": 24,
+          "voiced_ratio": 0.7272727272727273,
+          "f0_hz": {
+            "min": 273.801,
+            "median": 301.9345,
+            "max": 396.392
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.09,
+          "largest_jump_st_within_120ms": 3.8633018975199445,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 21,
+          "voiced_ratio": 0.6363636363636364,
+          "f0_hz": {
+            "min": 273.801,
+            "median": 297.016,
+            "max": 396.392
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.1,
+          "largest_jump_st_within_120ms": 3.9663309879682247,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.41,
+          "median": 0.6301,
+          "max": 0.9357
+        },
+        "best_candidate_strength": {
+          "min": 0.308,
+          "median": 0.5788,
+          "max": 0.9386
+        },
+        "frame_energy_rms": {
+          "min": 0.004669,
+          "median": 0.016907,
+          "max": 0.049246
+        }
+      },
+      {
+        "text": "想",
+        "interval": [
+          0.92,
+          1.19
+        ],
+        "total_frames": 27,
+        "states": {
+          "benma_rejected_voiced_output": 3,
+          "estimator_unvoiced_with_candidates": 2,
+          "retained": 22
+        },
+        "raw": {
+          "voiced_frames": 25,
+          "voiced_ratio": 0.9259259259259259,
+          "f0_hz": {
+            "min": 260.575,
+            "median": 280.099,
+            "max": 392.85
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.02,
+          "largest_jump_st_within_120ms": 5.71032573606015,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 22,
+          "voiced_ratio": 0.8148148148148148,
+          "f0_hz": {
+            "min": 260.575,
+            "median": 275.534,
+            "max": 318.426
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.03,
+          "largest_jump_st_within_120ms": 1.9066622697433675,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.3799,
+          "median": 0.7877,
+          "max": 0.9665
+        },
+        "best_candidate_strength": {
+          "min": 0.2346,
+          "median": 0.7798,
+          "max": 0.9665
+        },
+        "frame_energy_rms": {
+          "min": 0.007035,
+          "median": 0.023286,
+          "max": 0.066092
+        }
+      },
+      {
+        "text": "买",
+        "interval": [
+          1.2,
+          1.47
+        ],
+        "total_frames": 27,
+        "states": {
+          "retained": 3,
+          "estimator_unvoiced_with_candidates": 24
+        },
+        "raw": {
+          "voiced_frames": 3,
+          "voiced_ratio": 0.1111111111111111,
+          "f0_hz": {
+            "min": 264.444,
+            "median": 271.166,
+            "max": 278.689
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.24,
+          "largest_jump_st_within_120ms": 0.47375713622851506,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 3,
+          "voiced_ratio": 0.1111111111111111,
+          "f0_hz": {
+            "min": 264.444,
+            "median": 271.166,
+            "max": 278.689
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.24,
+          "largest_jump_st_within_120ms": 0.47375713622851506,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.6416,
+          "median": 0.6739,
+          "max": 0.7372
+        },
+        "best_candidate_strength": {
+          "min": 0.2529,
+          "median": 0.3859,
+          "max": 0.7372
+        },
+        "frame_energy_rms": {
+          "min": 0.005796,
+          "median": 0.02332,
+          "max": 0.048085
+        }
+      },
+      {
+        "text": "这",
+        "interval": [
+          1.48,
+          1.79
+        ],
+        "total_frames": 31,
+        "states": {
+          "estimator_unvoiced_with_candidates": 15,
+          "retained": 15,
+          "benma_rejected_voiced_output": 1
+        },
+        "raw": {
+          "voiced_frames": 16,
+          "voiced_ratio": 0.5161290322580645,
+          "f0_hz": {
+            "min": 192.449,
+            "median": 332.794,
+            "max": 346.176
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.11,
+          "largest_jump_st_within_120ms": 0.6467702684193974,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 15,
+          "voiced_ratio": 0.4838709677419355,
+          "f0_hz": {
+            "min": 285.052,
+            "median": 333.444,
+            "max": 346.176
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.12,
+          "largest_jump_st_within_120ms": 0.6467702684193974,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.4792,
+          "median": 0.8784000000000001,
+          "max": 0.9326
+        },
+        "best_candidate_strength": {
+          "min": 0.2906,
+          "median": 0.561,
+          "max": 0.9326
+        },
+        "frame_energy_rms": {
+          "min": 0.005587,
+          "median": 0.012277,
+          "max": 0.026336
+        }
+      },
+      {
+        "text": "个",
+        "interval": [
+          1.8,
+          2.25
+        ],
+        "total_frames": 45,
+        "states": {
+          "benma_rejected_voiced_output": 3,
+          "retained": 18,
+          "estimator_unvoiced_with_candidates": 24
+        },
+        "raw": {
+          "voiced_frames": 21,
+          "voiced_ratio": 0.4666666666666667,
+          "f0_hz": {
+            "min": 171.538,
+            "median": 181.764,
+            "max": 398.391
+          },
+          "fragment_count": 2,
+          "longest_unvoiced_run_seconds": 0.24,
+          "largest_jump_st_within_120ms": 0.23764807635985188,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 18,
+          "voiced_ratio": 0.4,
+          "f0_hz": {
+            "min": 171.538,
+            "median": 179.027,
+            "max": 194.889
+          },
+          "fragment_count": 1,
+          "longest_unvoiced_run_seconds": 0.26,
+          "largest_jump_st_within_120ms": 0.23764807635985188,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.5166,
+          "median": 0.6686,
+          "max": 0.7955
+        },
+        "best_candidate_strength": {
+          "min": 0.2582,
+          "median": 0.5306,
+          "max": 0.7955
+        },
+        "frame_energy_rms": {
+          "min": 0.004611,
+          "median": 0.009307,
+          "max": 0.021835
+        }
+      }
+    ],
+    "replay": {
+      "all_f0_fields_equal": true,
+      "raw_tracker_equal": true,
+      "raw_candidates_equal": true,
+      "background_periodicity": {
+        "version": "candidate-branch-background-v1",
+        "detected": false,
+        "quiet_windows": 44,
+        "dominated_quiet_windows": 0,
+        "background_span_seconds": 0,
+        "peak_band_hz": null,
+        "window_seconds": 0.2,
+        "hop_seconds": 0.05,
+        "windows": [
+          {
+            "time": 0.1,
+            "high_power": 28.524989253047906,
+            "low_fraction": 0.5978088143554294,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 0.15,
+            "high_power": 33.00889583378833,
+            "low_fraction": 0.14440784957628575,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 0.2,
+            "high_power": 30.290228347589444,
+            "low_fraction": 0.22297473527483916,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.25,
+            "high_power": 27.863940508026786,
+            "low_fraction": 0.5092459683107905,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 0.3,
+            "high_power": 25.902518835599896,
+            "low_fraction": 0.5387811531913888,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 0.35,
+            "high_power": 26.569506018617446,
+            "low_fraction": 0.36570751004999136,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 0.4,
+            "high_power": 31.28452729407353,
+            "low_fraction": 0.18190544274642562,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 0.45,
+            "high_power": 57.68754946206962,
+            "low_fraction": 0.12799957029637044,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.5,
+            "high_power": 58.42925908464725,
+            "low_fraction": 0.0677672634596403,
+            "peak_hz": 75.0
+          },
+          {
+            "time": 0.55,
+            "high_power": 45.35286051471242,
+            "low_fraction": 0.1345994797227685,
+            "peak_hz": 80.0
+          },
+          {
+            "time": 0.6,
+            "high_power": 34.16531810766066,
+            "low_fraction": 0.1933185335372116,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.65,
+            "high_power": 124.28695755344002,
+            "low_fraction": 0.08005325062237331,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.7,
+            "high_power": 1157.195947133571,
+            "low_fraction": 0.011843393741681467,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.75,
+            "high_power": 3141.4332533696215,
+            "low_fraction": 0.0017533921990377122,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 0.8,
+            "high_power": 2040.2932413596327,
+            "low_fraction": 0.004965339195023085,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.85,
+            "high_power": 634.6916521528626,
+            "low_fraction": 0.012544682354868551,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 0.9,
+            "high_power": 193.5009894698473,
+            "low_fraction": 0.03129337194593059,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 0.95,
+            "high_power": 930.113197702229,
+            "low_fraction": 0.008990954897466893,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 1.0,
+            "high_power": 4712.005870371573,
+            "low_fraction": 0.004943097844783104,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.05,
+            "high_power": 3350.4995037510635,
+            "low_fraction": 0.007047515276746933,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 1.1,
+            "high_power": 1073.2245735612848,
+            "low_fraction": 0.010295855076037728,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 1.15,
+            "high_power": 1027.5493655472678,
+            "low_fraction": 0.006489415142966659,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.2,
+            "high_power": 2362.282306117581,
+            "low_fraction": 0.004479753744377755,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 1.25,
+            "high_power": 3961.585288282424,
+            "low_fraction": 0.0027633369445390333,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.3,
+            "high_power": 2820.4858421144468,
+            "low_fraction": 0.0031707743889234892,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.35,
+            "high_power": 877.8099935643679,
+            "low_fraction": 0.01893258940643614,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.4,
+            "high_power": 228.5287175062408,
+            "low_fraction": 0.05282710553467397,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 1.45,
+            "high_power": 74.1914418433794,
+            "low_fraction": 0.17049354269096648,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 1.5,
+            "high_power": 167.6600043768544,
+            "low_fraction": 0.10405582005279336,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 1.55,
+            "high_power": 613.2493864785926,
+            "low_fraction": 0.03934469821206648,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.6,
+            "high_power": 902.5627182111035,
+            "low_fraction": 0.013162773782976778,
+            "peak_hz": 75.0
+          },
+          {
+            "time": 1.65,
+            "high_power": 850.9175124450047,
+            "low_fraction": 0.02376716003772011,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.7,
+            "high_power": 250.92232994883895,
+            "low_fraction": 0.08212912248361744,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.75,
+            "high_power": 112.3145517567584,
+            "low_fraction": 0.12949990253482213,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 1.8,
+            "high_power": 163.12982637712778,
+            "low_fraction": 0.07745126844570926,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.85,
+            "high_power": 325.2628001182302,
+            "low_fraction": 0.043687160212574516,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.9,
+            "high_power": 649.7151467655145,
+            "low_fraction": 0.021118370584694537,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 1.95,
+            "high_power": 548.4950269546617,
+            "low_fraction": 0.03280102365391957,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 2.0,
+            "high_power": 196.2863884500747,
+            "low_fraction": 0.10078105029075198,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 2.05,
+            "high_power": 91.96232705327695,
+            "low_fraction": 0.10443410061328093,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.1,
+            "high_power": 41.88828537810792,
+            "low_fraction": 0.30287783750725084,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.15,
+            "high_power": 31.717944259788464,
+            "low_fraction": 0.4194711903872925,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 2.2,
+            "high_power": 41.32212566615805,
+            "low_fraction": 0.28009150276985223,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.25,
+            "high_power": 49.37206654907898,
+            "low_fraction": 0.21780206852133516,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.3,
+            "high_power": 52.902465799668114,
+            "low_fraction": 0.2320162783264682,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.35,
+            "high_power": 42.12922003899085,
+            "low_fraction": 0.29044317276439485,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 2.4,
+            "high_power": 33.389208709754165,
+            "low_fraction": 0.2113990563016441,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.45,
+            "high_power": 34.436562447079766,
+            "low_fraction": 0.2303618860180244,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.5,
+            "high_power": 42.48641704181637,
+            "low_fraction": 0.21660958719245663,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 2.55,
+            "high_power": 44.96105557477525,
+            "low_fraction": 0.25179227074375554,
+            "peak_hz": 45.0
+          },
+          {
+            "time": 2.6,
+            "high_power": 44.92593209085688,
+            "low_fraction": 0.35557788867623885,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 2.65,
+            "high_power": 41.41300318956204,
+            "low_fraction": 0.23517330610627143,
+            "peak_hz": 50.0
+          },
+          {
+            "time": 2.7,
+            "high_power": 34.17628720979954,
+            "low_fraction": 0.13526405212903672,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.75,
+            "high_power": 25.65599988589333,
+            "low_fraction": 0.3551021448285867,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.8,
+            "high_power": 28.86936539663267,
+            "low_fraction": 0.4376932686446844,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.85,
+            "high_power": 31.208092775110355,
+            "low_fraction": 0.294252465664694,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.9,
+            "high_power": 33.17822093274507,
+            "low_fraction": 0.2403159880617693,
+            "peak_hz": 65.0
+          },
+          {
+            "time": 2.95,
+            "high_power": 31.40633438838259,
+            "low_fraction": 0.31404019498013924,
+            "peak_hz": 70.0
+          },
+          {
+            "time": 3.0,
+            "high_power": 35.56689153442373,
+            "low_fraction": 0.4034096778979471,
+            "peak_hz": 55.0
+          },
+          {
+            "time": 3.05,
+            "high_power": 39.77573768617414,
+            "low_fraction": 0.33038558853662425,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 3.1,
+            "high_power": 56.15311321320257,
+            "low_fraction": 0.26084870295784934,
+            "peak_hz": 60.0
+          },
+          {
+            "time": 3.15,
+            "high_power": 121.00339383111843,
+            "low_fraction": 0.11093436503427812,
+            "peak_hz": 55.0
+          }
+        ],
+        "rejected_frames": 0
+      },
+      "selection": {
+        "version": "candidate-branch-background-v1",
+        "repaired_frame_count": 0,
+        "artifact_rejected_frame_count": 0,
+        "candidate_ambiguous_branch_frames": 0,
+        "policy": "reject_proven_ambiguity_never_replace_f0"
+      },
+      "frame_count": 322,
+      "audio_sha256_verified": true,
+      "unvoiced_with_locally_preferred_candidate": [
+        0.092,
+        0.132,
+        0.262,
+        0.272,
+        0.282,
+        0.292,
+        0.332,
+        0.342,
+        0.352,
+        0.462,
+        0.472,
+        0.492,
+        0.622,
+        0.632,
+        1.232,
+        1.262,
+        1.272,
+        1.672,
+        1.732,
+        1.742,
+        1.752,
+        1.762,
+        2.022,
+        2.032,
+        2.102,
+        2.112,
+        2.122,
+        2.152,
+        2.192,
+        2.202,
+        2.212,
+        2.302,
+        2.322,
+        2.332,
+        2.342,
+        2.352,
+        2.362,
+        2.502,
+        2.552,
+        2.602,
+        2.632,
+        2.642,
+        2.672,
+        2.682,
+        2.692,
+        2.882,
+        2.962,
+        3.012,
+        3.022,
+        3.062,
+        3.072,
+        3.082,
+        3.102,
+        3.112,
+        3.122,
+        3.132
+      ]
+    }
+  }
+]

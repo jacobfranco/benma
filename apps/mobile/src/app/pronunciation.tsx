@@ -323,7 +323,6 @@ export default function PronunciationScreen() {
                 <Text style={styles.eyebrow}>LATEST ATTEMPT</Text>
                 <Chinese>{result.target.text}</Chinese>
               </View>
-              <Text style={styles.experimental}>Experimental analysis</Text>
             </View>
             {asMap(result.overall_evidence.recording_quality)?.status ===
               'invalid_for_interpretation' && (
@@ -487,7 +486,6 @@ const styles = StyleSheet.create({
   timer: { fontSize: 42, color: colors.text, fontVariant: ['tabular-nums'] },
   resultHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   eyebrow: { color: colors.secondary, fontSize: 11, fontWeight: '800', letterSpacing: 1.2 },
-  experimental: { color: colors.reference, fontSize: 12, fontWeight: '700', maxWidth: 110 },
   qualityWarning: { backgroundColor: colors.warningBackground, padding: 12, borderRadius: 10, gap: 4 },
   warningTitle: { color: colors.warningText, fontWeight: '800' },
   syllableGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },

@@ -1,5 +1,224 @@
 # Pronunciation workspace
 
+## October 10, 2026 — dominant tone families and primary learner grades
+
+This policy supersedes earlier comparison/color descriptions below. The acoustic
+layer classifies the dominant supported measured gesture without knowing target,
+characters, readings, lexical tones, expected tones, transcript or reference TTS.
+A small boundary counter-movement may remain subordinate to a coherent primary
+rise, fall or valley. Full-track corruption gates and perturbation checks remain.
+
+The linguistic layer supplies explicit surface expectations where resolved. Those
+expectations remain authoritative, including 一, 不 and resolved T3 sandhi. When
+surface realization is null but reading/pinyin and lexical tone 1–4 are resolved,
+the learner layer may grade against that lexical family. It does not rewrite the
+surface field. Details say “Tone N family” and “Connected-speech realization may
+vary here.” Contextual coaching refines the explanation without erasing a useful
+family judgment. Unresolved readings remain unavailable.
+
+As of October 13, learner correctness uses an asymmetric conservative policy:
+trustworthy compatible numbered families default to green (“Pitch acceptable”);
+meaningful interpretation uncertainty is amber (“Pitch may be off”); only strong,
+stable incompatible evidence is red; unavailable evidence or unresolved required
+context is gray. Compatible families with fewer than 6/7 agreeing probes remain
+amber because of interpretation sensitivity. Small excursion alone never changes
+a grade. `LearnerPitchGrade.coaching` remains independent, including on green units.
+
+Red requires support ≥0.90, maximum acceptable-family support ≤0.20,
+winner–acceptable margin ≥0.70, winner–runner-up margin ≥0.60, clarity ≥0.90,
+and at least seven probes with 100% agreement. Explicit surface rules remain
+authoritative; the existing unresolved adjacent-T3 fallback may accept T3/T2,
+never T4. See the [conservative grading audit](../research/pronunciation-v2/2026-10-13-conservative-grading/README.md)
+for the exact rules, every changed grade, threshold rationale and validation.
+
+Neutral uses contextual dependent-syllable acceptance, without a fixed numbered
+tone. In recognized chunks with separate accepted timing and exact playback,
+structurally supported neutral can be positively accepted. Unmeasured neutral can
+remain non-vetoing. Neither can hide a red, amber or unavailable grade-bearing head. Standalone,
+optional-neutral, unresolved and grouped cases remain bounded.
+
+See [implementation, frozen replay and validation](../research/pronunciation-v2/2026-10-09-product-feedback/dominant-gesture-pass.md).
+
+
+## October 10, 2026 — normalized shape and learner details
+
+This section supersedes the learner presentation described in the earlier dated passes.
+The worktree integrates a 100 px identity/playback rail beside a 96 px normalized pitch
+shape graph. Both learner axis titles are removed. Accepted timing spans share 0..1
+progress bounds; missing onset/tail/internal intervals remain empty. Pronunciation chunks
+use their whole real timing span and retain constituent proportions. Underlying timestamps,
+semitones, ownership, selected measurements and playback bounds are unchanged.
+
+`PitchShapePlot` / `shapeDisplay` provide local display scaling: the midpoint of the
+10th/90th pitch percentiles, a 6 st minimum range, and enough padding to keep every
+selected extremum visible. No clipping, interpolation, energy relaxation or pixel-based
+classification occurs. Technical plots retain the recording domain and real timestamps.
+
+`pitchShape` independently describes the retained numeric geometry as Level, Rising,
+Falling, Dip and rise, or Shape unclear. It checks internal valleys before net direction,
+uses 1 st valley limbs / 1.5 st directional movement, and withholds labels that change
+under endpoint deletion, thinning, flagged-point removal or neighboring endpoint regions.
+The frozen corpus improves from 18 to 28 matching descriptions among 29 unambiguous
+review labels and preserves all 18 old useful outputs. Exaggerated 我/想/买 and normal
+saved 我 are now dip/rise; saved backend gesture/strict eligibility remain unchanged.
+These are broad geometry descriptions, never inferred lexical tone numbers or grades.
+
+More Details shows selected identity, reading/playback, Your pitch, a 152 px normalized
+plot, measured shape and the server's contextual expected behavior. Technical details
+starts collapsed and retains strict eligibility, saved gestures, measurement reasons,
+source/frame metadata, real-time sentence evidence and Raw. Unresolved contextual
+surface behavior stays Context-dependent; lexical tone never silently substitutes for it.
+Connected T3 does not require a full rise. Neutral tone remains flexible. Existing
+T3 sandhi, 一/不 and pronunciation-chunk rules are reused without expansion.
+
+这个 retains all 20 这 points and zero 个 points. The chunk says “Pitch detail is limited.”;
+constituents keep independent exact playback and pitch availability. No aggregate grade
+or character partition is invented for grouped 雨伞. Unavailable pitch still says
+“Pitch couldn't be measured reliably.” Comparison semantics and agreement colors remain
+unintegrated; selection/background/trace colors do not encode pronunciation correctness.
+
+Validation: 181 focused tests, then all 541 mobile tests / 35 suites; lint/typecheck,
+web/Android export, 14 portable research tests, and offline browser review at 320/390/412.
+Keyboard/dialog/playback/History/untargeted Practice/Conversation checks pass. Physical
+phone listening and native screen-reader smoke remain pending.
+
+The separately approved language-preflight experiment is research only. It distinguished
+the confirmed English and throat-clear negatives but returned no language for protected
+low-F0 speech and timed out on one short excerpt. Production acceptance, provider model,
+Practice/History creation and Conversation rejection semantics are unchanged. Overall
+acceptance remains a blocker; this UI slice alone is ready for physical smoke.
+
+See [the complete product-feedback report](../research/pronunciation-v2/2026-10-09-product-feedback/README.md)
+for exact gates, numeric exceptions, approved request receipts and reproduction details.
+
+## October 9, 2026 — learner-facing pitch feedback cleanup
+
+Default detail is **text → reading → exact playback → measured graph → only a
+necessary limitation**. Current coarse gesture labels (including “Mostly level”)
+are demoted to More Details; no replacement classifier or readability heuristic
+has been introduced. “Experimental” is absent from default pronunciation feedback,
+including the older pronunciation screen's analysis badge. It remains only in
+explicit advanced diagnostics. “Measurement: clear” and other strict measurement
+labels are also absent from default text and selector accessibility labels.
+
+The presentation mapping intentionally uses existing constituent pitch availability:
+
+| Selected evidence | Default presentation |
+| --- | --- |
+| Retained pitch in every constituent | Graph, no status or limitation message |
+| Retained pitch in some constituents, none in others | Normal graph/playback layout; subtle “Pitch detail is limited.” |
+| No retained pitch | Playback and “Pitch couldn't be measured reliably.”; no empty graph |
+
+Strict `incomplete`, `unstable`, or `insufficient` eligibility alone does not trigger
+a warning or suppress a usable graph. This pass does not infer how readable a
+contour is. “Not enough pitch signal” is replaced in the shared plot's empty copy
+as well. Unavailability describes pitch reliability, never missing speech.
+
+For saved **我**, the exact retained contour remains primary while its existing
+level interpretation can be inspected in More Details. For **这个**, all 20 retained
+这 points remain at their original times; 个 still contributes zero points. Whole
+chunk playback stays 2.34–3.04 s. The normal panel has the one subtle limited-detail
+line above, with no error banner. More Details says **Pitch available** for 这 and
+**Pitch unavailable** for 个, with exact constituent playback. A timed standalone
+个 keeps playback and the reliability message. **雨伞** remains one timing identity:
+its graph or unavailability message follows the same rules, without inventing
+individual 雨/伞 availability.
+
+More Details retains observed gesture, strict eligibility, measurement status,
+reasons, exact timing, reference information and constituent inspection. Raw retains
+tracker evidence and exclusion reasons. Limitation messages are accessible text;
+healthy selector labels no longer announce measurement taxonomy. Selection remains
+available without color. No new colors, grading, scores, or positive status badges.
+
+This pass changes presentation only. Extraction, energy gating, gesture classification,
+five-bin summaries, timing, chunk boundaries, pitch ownership, shared attempt scale,
+exact playback, expected surface tones and Tone 3 logic are unchanged.
+**PER-UNIT PITCH PROJECTION VERIFIED; ENERGY GATE NEEDS ONE SPECIFIC REFINEMENT;
+GESTURE READABILITY NEEDS ONE SPECIFIC REFINEMENT; COLOR NOT YET JUSTIFIED.**
+Pronunciation Chunks V1 remains earned integration; those investigations were not reopened.
+
+Validation: **227 focused tests / 9 native-web suites**, then **524 tests / 34 suites**
+in the full mobile suite, including Practice, shared untargeted/Conversation workspaces,
+exact playback, grouping, accessibility and More Details/Raw. Lint, typecheck, web
+export, Android export and `git diff --check` pass. Two test typing errors were fixed
+(the grouped fixture's required timing ID and optional absent-graph access); no product
+behavior change was needed during final validation. The chunk fixture now clones its
+base evidence to prevent test-order-dependent mutations. Existing React test-renderer
+deprecation/act warnings remain; no tests are skipped or failing.
+
+Offline Chromium review and screenshot inspection cover **320, 390 and 412 × 844 px**:
+normal saved 我, standalone unavailable 个, partial 这个, grouped 雨伞, and More Details.
+The default graph remains 104 px high with unchanged geometry/scale; both learner
+messages fit on one line at these sizes. Graphs, compact playback, More Details and
+the New Attempt footer remain available without horizontal page overflow. At 320 px
+the longer/singleton navigation wraps normally. Partial 这个 uses the ordinary card,
+with one subtle limitation line and no error banner. Real browser checks also cover
+canonical playback, Enter/Space selection, dialog focus/Escape, History, New Attempt,
+Clear target, untargeted Practice, and collapsed Conversation.
+
+Reproduce with `apps/mobile/scripts/pronunciation-chunks-browser.cjs` against the fresh
+export, using `PLAYWRIGHT_MODULE`, `BENMA_WEB_URL` and the existing private saved audio
+fixtures. Current artifacts: `/tmp/benma-pitch-cleanup-{web,android,review}`; the review
+directory contains screenshots and `review.json`. No provider requests or new recordings
+are needed for these automated checks. Backend tests were not rerun for this presentation
+pass; the existing backend/schema diff was verified unchanged.
+
+**LEARNER PITCH UI CLEANUP READY FOR PHYSICAL SMOKE.** This checkpoint concerns
+presentation honesty only. It does not claim improved gesture detection or tone grading.
+Native listening and VoiceOver/TalkBack are still pending. The compact graph can look
+flatter than More Details; that future visual UX question is deliberately unresolved,
+with X/Y scale, filtering and geometry unchanged. Earlier documented speech-presence
+limitations remain. No commit, push, or deployment was performed.
+
+Phone checklist:
+
+1. 我: graph visible; no default Mostly level, Experimental, or Measurement: clear.
+2. 我 → More Details: current gesture/measurement diagnostics still recoverable.
+3. 想 / 买: usable graphs preserved without unnecessary measurement clutter.
+4. 这个: whole-chunk playback, truthful graph and “Pitch detail is limited.”
+5. Constituent 个: exact playback, no empty graph, “Pitch couldn't be measured reliably.”
+6. 雨伞: grouped graph/playback unchanged, with no invented character timing.
+7. Older pronunciation screen: no default Experimental analysis badge.
+
+Next step: run this phone smoke checklist. Earlier dated sections describe their
+original passes, including their historical copy.
+
+## October 9, 2026 — pronunciation chunks V1
+
+**PRONUNCIATION CHUNKS V1 EARNED INTEGRATION; READY FOR PHYSICAL CHUNK UX SMOKE.**
+The default compact navigation now projects pronunciation chunks over the original
+accepted timing units. **ACOUSTIC UNIT != PRONUNCIATION CHUNK; READING PHRASE !=
+PRONUNCIATION CHUNK; PRONUNCIATION CHUNK != TARGET WORD.** The prior per-unit architecture
+below remains the constituent evidence layer.
+
+The API supplies deterministic candidates for exactly **雨伞, 这个, 那个, and quantity-use
+一个**, using saved perceived readings and existing quantity metadata. The workspace
+accepts only whole, adjacent, fully timed units under these candidates, with the existing
+≥ .30 s visible-pause marker able to veto a join. Existing timing groups stay indivisible;
+all remaining perceived syllables are singleton chunks, untimed ones noninteractive.
+No general phrase/dictionary, neutral-particle, numeral/classifier, or 不 rule was added.
+
+For the saved 我想买这个 take, navigation is 我 / 想 / 买 / 这个. Chunk playback/display
+spans 2.34–3.04 s, while 这 remains 2.34–2.73 and 个 remains 2.74–3.04. The combined
+graph unions their original selected projections, retaining the attempt Y scale and all
+gaps: 20 selected 这 points and no selected 个 points. The panel says “Pitch was measured
+for part of this chunk.” It does not aggregate eligibility, gestures, scores, or colors.
+More Details offers one constituent inspector with exact playback and evidence. Grouped
+雨伞 remains one timing identity and never exposes invented individual 雨/伞 playback.
+
+Chunk pinyin concatenates saved citation readings (`zhège`, `nàge`, `yīgè` in the fixtures).
+Contextual 一/不/neutral expectations remain independently authoritative. Chunk IDs use
+constituent identities rather than text. Target edits cannot change the plan. Optional-target
+Practice, session-local History, New Attempt/Clear target, playback cancellation, and collapsed
+Conversation retain their existing lifecycle. Web chunk/constituent buttons now explicitly
+expose `aria-pressed`; native selected state and compact wrapping/hit areas are retained.
+
+Validation: 508 mobile tests / 34 native-web suites; 221 relevant API tests; lint, typecheck,
+Ruff, mypy, deterministic OpenAPI generation, web/Android exports, and 320/390/412 px Chromium
+review pass. Full API: 607 passed, 67 skipped, two pre-existing target-reading correction
+test failures reproduced against HEAD. No phone smoke, commit, push, or deployment is claimed.
+See the [full policy, audit, fixtures, validation, and phone checklist](../research/pronunciation-v2/2026-10-09-pronunciation-chunks/README.md).
+
 ## October 8, 2026 — practice entry pass
 
 **NON-MANDARIN DETECTION NEEDS ONE SPECIFIC TECHNICAL FOLLOW-UP.** The practice entry UI

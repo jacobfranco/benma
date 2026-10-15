@@ -1,0 +1,2632 @@
+{
+  "scope": "15 saved same-phrase/comparable recordings; numeric local replay, not new recordings or phonetic ground truth",
+  "parameters_identical": true,
+  "parameters": {
+    "pitch_floor": 50.0,
+    "pitch_ceiling": 550.0,
+    "time_step": 0.01,
+    "octave_jump_cost": 0.5,
+    "octave_cost": 0.01,
+    "voiced_unvoiced_cost": 0.14,
+    "silence_threshold": 0.03,
+    "max_number_of_candidates": 15,
+    "very_accurate": false,
+    "voicing_threshold": 0.45,
+    "energy_gate": "bounded-recording-noise-floor-v1",
+    "quality_gate": "spectral-and-filter-disagreement-v1"
+  },
+  "device_metadata": "No device model, OS version, microphone route or per-take gain/processing metadata persisted in these records. Practice metadata is absent.",
+  "recordings": [
+    {
+      "id": "aa12a29b-3080-4c20-9a3a-7ad9c5828ef1",
+      "created_at": "2026-10-08 21:42:37.957826+00:00",
+      "audio_sha256": "3dea4ade3c4b1c8136adc8fe5a3d802d0b5857690c09ada67bb934196d4a7081",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 2.9489,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.021749,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.110727
+      },
+      "energy_gate": {
+        "threshold_rms": 0.006007858182174738,
+        "noise_floor_rms": 0.002856987204869355
+      },
+      "provider_snr_db": 13.28348,
+      "summary": {
+        "interval": [
+          0,
+          2.9489
+        ],
+        "total_frames": 289,
+        "states": {
+          "estimator_no_in_range_candidates": 25,
+          "estimator_unvoiced_with_candidates": 87,
+          "benma_rejected_voiced_output": 31,
+          "retained": 146
+        },
+        "raw": {
+          "voiced_frames": 177,
+          "voiced_ratio": 0.6124567474048442,
+          "f0_hz": {
+            "min": 50.301,
+            "median": 109.961,
+            "max": 135.891
+          },
+          "fragment_count": 8,
+          "longest_unvoiced_run_seconds": 0.31,
+          "largest_jump_st_within_120ms": 6.482988945328007,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 146,
+          "voiced_ratio": 0.5051903114186851,
+          "f0_hz": {
+            "min": 95.247,
+            "median": 111.735,
+            "max": 135.891
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.69,
+          "largest_jump_st_within_120ms": 1.1819084377806282,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.4668,
+          "median": 0.9298,
+          "max": 0.9911
+        },
+        "best_candidate_strength": {
+          "min": 0.229,
+          "median": 0.82875,
+          "max": 0.9931
+        },
+        "frame_energy_rms": {
+          "min": 0.000542,
+          "median": 0.017913,
+          "max": 0.039145
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 289,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.0845,
+          0.1045,
+          0.1645,
+          0.3745,
+          0.3945,
+          0.5045,
+          0.5745,
+          0.5845,
+          0.6145,
+          1.2045,
+          1.9745,
+          2.0145,
+          2.5945,
+          2.6245,
+          2.7145,
+          2.7245,
+          2.7345
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "92510"
+      },
+      "channel_rms": [
+        0.02177671209046015,
+        0.02177671209046015
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.64,
+            1.21
+          ],
+          "frames": 57,
+          "raw_voiced": 48,
+          "retained": 48,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.22,
+            2.01
+          ],
+          "frames": 79,
+          "raw_voiced": 46,
+          "retained": 46,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.29
+        },
+        {
+          "text": "买",
+          "interval": [
+            2.04,
+            2.71
+          ],
+          "frames": 67,
+          "raw_voiced": 55,
+          "retained": 52,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.06
+        }
+      ]
+    },
+    {
+      "id": "44075f37-3359-4efb-8f88-73e373470fdd",
+      "created_at": "2026-10-09 02:22:56.403020+00:00",
+      "audio_sha256": "808a08df2bb4e58172e01b7f4b7084aa6f0f11705491f5fc2e7c35f7166142f0",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.274,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.024842,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.304348
+      },
+      "energy_gate": {
+        "threshold_rms": 0.006602395195430035,
+        "noise_floor_rms": 0.002200798398476678
+      },
+      "provider_snr_db": 14.507596,
+      "summary": {
+        "interval": [
+          0,
+          3.274
+        ],
+        "total_frames": 322,
+        "states": {
+          "estimator_no_in_range_candidates": 16,
+          "estimator_unvoiced_with_candidates": 105,
+          "benma_rejected_voiced_output": 36,
+          "retained": 165
+        },
+        "raw": {
+          "voiced_frames": 201,
+          "voiced_ratio": 0.6242236024844721,
+          "f0_hz": {
+            "min": 52.268,
+            "median": 101.969,
+            "max": 138.591
+          },
+          "fragment_count": 7,
+          "longest_unvoiced_run_seconds": 0.4,
+          "largest_jump_st_within_120ms": 14.097504923020065,
+          "jumps_over_6st": 2
+        },
+        "retained": {
+          "voiced_frames": 165,
+          "voiced_ratio": 0.5124223602484472,
+          "f0_hz": {
+            "min": 86.989,
+            "median": 104.791,
+            "max": 138.591
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.64,
+          "largest_jump_st_within_120ms": 1.2466188599108534,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.5115,
+          "median": 0.9416,
+          "max": 0.9947
+        },
+        "best_candidate_strength": {
+          "min": 0.2261,
+          "median": 0.8109500000000001,
+          "max": 0.997
+        },
+        "frame_energy_rms": {
+          "min": 0.000473,
+          "median": 0.021795000000000002,
+          "max": 0.054142
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 322,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.102,
+          0.572,
+          1.222,
+          1.252,
+          1.302,
+          1.312,
+          2.152,
+          3.162
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "98736"
+      },
+      "channel_rms": [
+        0.02496993560149746,
+        0.02496993560149746
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.52,
+            1.22
+          ],
+          "frames": 70,
+          "raw_voiced": 55,
+          "retained": 55,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.15
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.23,
+            2.23
+          ],
+          "frames": 100,
+          "raw_voiced": 56,
+          "retained": 51,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.39
+        },
+        {
+          "text": "买",
+          "interval": [
+            2.36,
+            3.25
+          ],
+          "frames": 89,
+          "raw_voiced": 66,
+          "retained": 59,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.17
+        }
+      ]
+    },
+    {
+      "id": "874ae05a-bd67-4836-a53c-f78df5d129b0",
+      "created_at": "2026-10-09 03:03:12.989124+00:00",
+      "audio_sha256": "138433436566bd47b4e7731c43333d6dafa9f7e631b7b168ce954e8ca0f2ae4a",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.2508,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.02465,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.25625
+      },
+      "energy_gate": {
+        "threshold_rms": 0.006968468060966106,
+        "noise_floor_rms": 0.002322822686988702
+      },
+      "provider_snr_db": 13.965991,
+      "summary": {
+        "interval": [
+          0,
+          3.2508
+        ],
+        "total_frames": 320,
+        "states": {
+          "estimator_no_in_range_candidates": 19,
+          "estimator_unvoiced_with_candidates": 139,
+          "retained": 148,
+          "benma_rejected_voiced_output": 14
+        },
+        "raw": {
+          "voiced_frames": 162,
+          "voiced_ratio": 0.50625,
+          "f0_hz": {
+            "min": 53.6,
+            "median": 115.672,
+            "max": 162.795
+          },
+          "fragment_count": 6,
+          "longest_unvoiced_run_seconds": 0.5,
+          "largest_jump_st_within_120ms": 11.03783177034733,
+          "jumps_over_6st": 2
+        },
+        "retained": {
+          "voiced_frames": 148,
+          "voiced_ratio": 0.4625,
+          "f0_hz": {
+            "min": 98.441,
+            "median": 116.394,
+            "max": 162.795
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.52,
+          "largest_jump_st_within_120ms": 8.083184829013573,
+          "jumps_over_6st": 1
+        },
+        "raw_voiced_strength": {
+          "min": 0.4537,
+          "median": 0.94535,
+          "max": 0.9914
+        },
+        "best_candidate_strength": {
+          "min": 0.2254,
+          "median": 0.6317,
+          "max": 0.9999
+        },
+        "frame_energy_rms": {
+          "min": 0.000261,
+          "median": 0.0185815,
+          "max": 0.065368
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 320,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.3304,
+          0.3404,
+          0.5204,
+          1.0604,
+          2.0004,
+          2.0904,
+          2.3204,
+          2.7104,
+          2.7204,
+          2.7504,
+          3.1604,
+          3.1704,
+          3.1804,
+          3.1904,
+          3.2004
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "97012"
+      },
+      "channel_rms": [
+        0.024719000687362876,
+        0.024719000687362876
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.44,
+            0.95
+          ],
+          "frames": 51,
+          "raw_voiced": 41,
+          "retained": 41,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.09
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.96,
+            1.55
+          ],
+          "frames": 59,
+          "raw_voiced": 43,
+          "retained": 43,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.16
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.56,
+            2.17
+          ],
+          "frames": 61,
+          "raw_voiced": 49,
+          "retained": 43,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.34,
+            2.73
+          ],
+          "frames": 39,
+          "raw_voiced": 20,
+          "retained": 20,
+          "raw_fragments": 2,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.14
+        },
+        {
+          "text": "个",
+          "interval": [
+            2.74,
+            3.04
+          ],
+          "frames": 30,
+          "raw_voiced": 8,
+          "retained": 0,
+          "raw_fragments": 1,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.2
+        }
+      ]
+    },
+    {
+      "id": "e5c17b4e-64e2-47da-806a-0aaacb61ca76",
+      "created_at": "2026-10-10 15:46:50.976890+00:00",
+      "audio_sha256": "b3e0f2964bb4a9831e008475d184fb7db3fb19b9dc2fd59f2d3547d3566d757d",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.2508,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.025005,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.134375
+      },
+      "energy_gate": {
+        "threshold_rms": 0.008436771352488317,
+        "noise_floor_rms": 0.0028122571174961056
+      },
+      "provider_snr_db": 15.906788,
+      "summary": {
+        "interval": [
+          0,
+          3.2508
+        ],
+        "total_frames": 320,
+        "states": {
+          "estimator_no_in_range_candidates": 26,
+          "estimator_unvoiced_with_candidates": 158,
+          "benma_rejected_voiced_output": 18,
+          "retained": 118
+        },
+        "raw": {
+          "voiced_frames": 136,
+          "voiced_ratio": 0.425,
+          "f0_hz": {
+            "min": 49.939,
+            "median": 98.06899999999999,
+            "max": 119.285
+          },
+          "fragment_count": 10,
+          "longest_unvoiced_run_seconds": 0.47,
+          "largest_jump_st_within_120ms": 11.337827290945619,
+          "jumps_over_6st": 3
+        },
+        "retained": {
+          "voiced_frames": 118,
+          "voiced_ratio": 0.36875,
+          "f0_hz": {
+            "min": 49.939,
+            "median": 99.61349999999999,
+            "max": 119.285
+          },
+          "fragment_count": 6,
+          "longest_unvoiced_run_seconds": 0.6,
+          "largest_jump_st_within_120ms": 11.337827290945619,
+          "jumps_over_6st": 1
+        },
+        "raw_voiced_strength": {
+          "min": 0.4725,
+          "median": 0.93215,
+          "max": 0.9888
+        },
+        "best_candidate_strength": {
+          "min": 0.2253,
+          "median": 0.5582,
+          "max": 0.999
+        },
+        "frame_energy_rms": {
+          "min": 0.000284,
+          "median": 0.014811000000000001,
+          "max": 0.056971
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 320,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.1504,
+          0.1604,
+          0.1904,
+          0.3604,
+          0.3704,
+          0.4004,
+          0.4104,
+          0.4304,
+          0.4704,
+          0.4804,
+          0.5904,
+          1.7604,
+          1.8604,
+          1.9504,
+          2.1204,
+          2.2504,
+          2.2904,
+          2.3004,
+          2.3104,
+          2.3204,
+          2.4104,
+          2.4204,
+          2.4304,
+          2.4904,
+          2.5004,
+          2.5304,
+          2.5504,
+          2.5604,
+          2.5704,
+          2.7804,
+          2.7904,
+          2.8904,
+          3.0104,
+          3.0204,
+          3.0804
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "96633"
+      },
+      "channel_rms": [
+        0.02504157860466887,
+        0.02504157860466887
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.46,
+            1.11
+          ],
+          "frames": 65,
+          "raw_voiced": 50,
+          "retained": 46,
+          "raw_fragments": 3,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.05
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.12,
+            1.65
+          ],
+          "frames": 53,
+          "raw_voiced": 36,
+          "retained": 36,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.17
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.66,
+            2.3
+          ],
+          "frames": 64,
+          "raw_voiced": 35,
+          "retained": 24,
+          "raw_fragments": 5,
+          "retained_fragments": 4,
+          "longest_raw_unvoiced_run_seconds": 0.17
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.52,
+            2.81
+          ],
+          "frames": 29,
+          "raw_voiced": 11,
+          "retained": 11,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.13
+        },
+        {
+          "text": "个",
+          "interval": [
+            2.82,
+            3.06
+          ],
+          "frames": 24,
+          "raw_voiced": 0,
+          "retained": 0,
+          "raw_fragments": 0,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.24
+        }
+      ]
+    },
+    {
+      "id": "efc680a7-24da-4ceb-9617-7ed8c5870c50",
+      "created_at": "2026-10-10 21:18:56.221762+00:00",
+      "audio_sha256": "58eb71acbe41a699c8ba526e7223ab58e988ec39df5d840aafd52700c400edea",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.7616,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.032456,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.38814
+      },
+      "energy_gate": {
+        "threshold_rms": 0.006886921586190687,
+        "noise_floor_rms": 0.002295640528730229
+      },
+      "provider_snr_db": 15.312202,
+      "summary": {
+        "interval": [
+          0,
+          3.7616
+        ],
+        "total_frames": 371,
+        "states": {
+          "estimator_no_in_range_candidates": 29,
+          "estimator_unvoiced_with_candidates": 201,
+          "benma_rejected_voiced_output": 8,
+          "retained": 133
+        },
+        "raw": {
+          "voiced_frames": 141,
+          "voiced_ratio": 0.38005390835579517,
+          "f0_hz": {
+            "min": 51.802,
+            "median": 112.706,
+            "max": 153.53
+          },
+          "fragment_count": 5,
+          "longest_unvoiced_run_seconds": 1.47,
+          "largest_jump_st_within_120ms": 8.744312354906238,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 133,
+          "voiced_ratio": 0.3584905660377358,
+          "f0_hz": {
+            "min": 83.742,
+            "median": 113.051,
+            "max": 153.53
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 1.49,
+          "largest_jump_st_within_120ms": 5.36239757468816,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.3242,
+          "median": 0.9686,
+          "max": 0.9953
+        },
+        "best_candidate_strength": {
+          "min": 0.2295,
+          "median": 0.50875,
+          "max": 0.9993
+        },
+        "frame_energy_rms": {
+          "min": 0.000283,
+          "median": 0.004569,
+          "max": 0.081776
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 371,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.0808,
+          0.4908,
+          1.1408,
+          1.1608,
+          3.1408
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "97357"
+      },
+      "channel_rms": [
+        0.0325190952320376,
+        0.0325190952320376
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            1.44,
+            1.93
+          ],
+          "frames": 49,
+          "raw_voiced": 41,
+          "retained": 39,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.06
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.94,
+            2.41
+          ],
+          "frames": 47,
+          "raw_voiced": 34,
+          "retained": 34,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.13
+        },
+        {
+          "text": "买",
+          "interval": [
+            2.42,
+            2.96
+          ],
+          "frames": 54,
+          "raw_voiced": 49,
+          "retained": 47,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.05
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.99,
+            3.33
+          ],
+          "frames": 34,
+          "raw_voiced": 16,
+          "retained": 12,
+          "raw_fragments": 3,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.1
+        },
+        {
+          "text": "个",
+          "interval": [
+            3.34,
+            3.57
+          ],
+          "frames": 23,
+          "raw_voiced": 0,
+          "retained": 0,
+          "raw_fragments": 0,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.23
+        }
+      ]
+    },
+    {
+      "id": "1a45d823-c872-4a45-996f-e31a3a884672",
+      "created_at": "2026-10-10 21:27:40.372665+00:00",
+      "audio_sha256": "4d82c84eea92d7f9e04d6f5e7fbf30c66459ae9add741b1987f22a78def997c0",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.5527,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.02494,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.225714
+      },
+      "energy_gate": {
+        "threshold_rms": 0.006464824727547121,
+        "noise_floor_rms": 0.0021549415758490404
+      },
+      "provider_snr_db": 13.304312,
+      "summary": {
+        "interval": [
+          0,
+          3.5527
+        ],
+        "total_frames": 350,
+        "states": {
+          "estimator_no_in_range_candidates": 35,
+          "estimator_unvoiced_with_candidates": 130,
+          "retained": 166,
+          "benma_rejected_voiced_output": 19
+        },
+        "raw": {
+          "voiced_frames": 185,
+          "voiced_ratio": 0.5285714285714286,
+          "f0_hz": {
+            "min": 51.261,
+            "median": 106.724,
+            "max": 172.648
+          },
+          "fragment_count": 7,
+          "longest_unvoiced_run_seconds": 0.55,
+          "largest_jump_st_within_120ms": 19.143123879063126,
+          "jumps_over_6st": 2
+        },
+        "retained": {
+          "voiced_frames": 166,
+          "voiced_ratio": 0.4742857142857143,
+          "f0_hz": {
+            "min": 51.261,
+            "median": 108.18549999999999,
+            "max": 172.648
+          },
+          "fragment_count": 6,
+          "longest_unvoiced_run_seconds": 0.55,
+          "largest_jump_st_within_120ms": 12.837241912112704,
+          "jumps_over_6st": 1
+        },
+        "raw_voiced_strength": {
+          "min": 0.4353,
+          "median": 0.9555,
+          "max": 0.9953
+        },
+        "best_candidate_strength": {
+          "min": 0.2305,
+          "median": 0.6413,
+          "max": 0.9987
+        },
+        "frame_energy_rms": {
+          "min": 0.000325,
+          "median": 0.016896500000000002,
+          "max": 0.062072
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 350,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.1813,
+          0.5613,
+          2.3513,
+          2.4213,
+          2.4813,
+          2.4913,
+          2.9313,
+          2.9613,
+          2.9713,
+          2.9813,
+          3.1313,
+          3.3113,
+          3.3213
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "96937"
+      },
+      "channel_rms": [
+        0.024984132360265955,
+        0.024984132360265955
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.5,
+            1.11
+          ],
+          "frames": 61,
+          "raw_voiced": 50,
+          "retained": 48,
+          "raw_fragments": 1,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.12,
+            1.81
+          ],
+          "frames": 69,
+          "raw_voiced": 49,
+          "retained": 49,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.2
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.82,
+            2.46
+          ],
+          "frames": 64,
+          "raw_voiced": 48,
+          "retained": 48,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.16
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.6,
+            3.01
+          ],
+          "frames": 41,
+          "raw_voiced": 21,
+          "retained": 16,
+          "raw_fragments": 3,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.1
+        },
+        {
+          "text": "个",
+          "interval": [
+            3.02,
+            3.38
+          ],
+          "frames": 36,
+          "raw_voiced": 4,
+          "retained": 4,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.17
+        }
+      ]
+    },
+    {
+      "id": "ce44ba9a-1697-40ed-9565-b12b0835d11d",
+      "created_at": "2026-10-12 01:25:57.229586+00:00",
+      "audio_sha256": "6893759ce3c92eafb37a7ff6cea76b710a51f685ef4896f8acb21dce106c602f",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.1115,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.032496,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.006536
+      },
+      "energy_gate": {
+        "threshold_rms": 0.013186389436682018,
+        "noise_floor_rms": 0.00529094670678102
+      },
+      "provider_snr_db": 12.00199,
+      "summary": {
+        "interval": [
+          0,
+          3.1115
+        ],
+        "total_frames": 306,
+        "states": {
+          "estimator_no_in_range_candidates": 17,
+          "estimator_unvoiced_with_candidates": 153,
+          "retained": 131,
+          "benma_rejected_voiced_output": 5
+        },
+        "raw": {
+          "voiced_frames": 136,
+          "voiced_ratio": 0.4444444444444444,
+          "f0_hz": {
+            "min": 61.963,
+            "median": 106.57249999999999,
+            "max": 133.124
+          },
+          "fragment_count": 6,
+          "longest_unvoiced_run_seconds": 0.87,
+          "largest_jump_st_within_120ms": 8.14824458911986,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 131,
+          "voiced_ratio": 0.42810457516339867,
+          "f0_hz": {
+            "min": 93.279,
+            "median": 106.916,
+            "max": 133.124
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.87,
+          "largest_jump_st_within_120ms": 0.900652555407961,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.5002,
+          "median": 0.9448,
+          "max": 0.991
+        },
+        "best_candidate_strength": {
+          "min": 0.2308,
+          "median": 0.5519,
+          "max": 0.991
+        },
+        "frame_energy_rms": {
+          "min": 0.000269,
+          "median": 0.020023,
+          "max": 0.086893
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 306,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.0707,
+          0.0807,
+          0.2107,
+          0.2307,
+          0.3107,
+          0.3207,
+          0.3307,
+          0.3407,
+          0.3507,
+          0.3607,
+          0.4007,
+          0.4707,
+          0.6807,
+          0.7407,
+          0.7607,
+          1.4507,
+          2.3108,
+          2.3207,
+          2.6207,
+          2.7908,
+          2.8807,
+          2.9207,
+          3.0107,
+          3.0408,
+          3.0507
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "98661"
+      },
+      "channel_rms": [
+        0.03260112807872503,
+        0.03260112807872503
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.67,
+            1.26
+          ],
+          "frames": 59,
+          "raw_voiced": 35,
+          "retained": 35,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.23
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.27,
+            1.8
+          ],
+          "frames": 53,
+          "raw_voiced": 34,
+          "retained": 34,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.19
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.81,
+            2.31
+          ],
+          "frames": 50,
+          "raw_voiced": 44,
+          "retained": 43,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.06
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.34,
+            2.64
+          ],
+          "frames": 30,
+          "raw_voiced": 17,
+          "retained": 14,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.1
+        },
+        {
+          "text": "个",
+          "interval": [
+            2.65,
+            3.0
+          ],
+          "frames": 35,
+          "raw_voiced": 4,
+          "retained": 4,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.23
+        }
+      ]
+    },
+    {
+      "id": "0edf7789-90df-4813-b5e4-da778f25511e",
+      "created_at": "2026-10-12 01:26:27.150208+00:00",
+      "audio_sha256": "e493dab05a1f910ae1ae3703fd6492e4a9a07995463bf6e3b998f829982fcf53",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.274,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.021204,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.034161
+      },
+      "energy_gate": {
+        "threshold_rms": 0.007695080585460039,
+        "noise_floor_rms": 0.0036104512817673744
+      },
+      "provider_snr_db": 10.294862,
+      "summary": {
+        "interval": [
+          0,
+          3.274
+        ],
+        "total_frames": 322,
+        "states": {
+          "estimator_unvoiced_with_candidates": 142,
+          "benma_rejected_voiced_output": 11,
+          "estimator_no_in_range_candidates": 27,
+          "retained": 142
+        },
+        "raw": {
+          "voiced_frames": 153,
+          "voiced_ratio": 0.4751552795031056,
+          "f0_hz": {
+            "min": 61.084,
+            "median": 104.221,
+            "max": 121.102
+          },
+          "fragment_count": 7,
+          "longest_unvoiced_run_seconds": 0.4,
+          "largest_jump_st_within_120ms": 9.663500759984476,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 142,
+          "voiced_ratio": 0.4409937888198758,
+          "f0_hz": {
+            "min": 95.789,
+            "median": 104.894,
+            "max": 121.102
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.64,
+          "largest_jump_st_within_120ms": 1.0754284293762422,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.497,
+          "median": 0.9173,
+          "max": 0.9905
+        },
+        "best_candidate_strength": {
+          "min": 0.2324,
+          "median": 0.6081,
+          "max": 0.9968
+        },
+        "frame_energy_rms": {
+          "min": 0.000346,
+          "median": 0.012574499999999999,
+          "max": 0.050829
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 322,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.122,
+          0.132,
+          0.152,
+          0.172,
+          0.322,
+          0.332,
+          0.422,
+          0.462,
+          0.532,
+          0.542,
+          0.582,
+          0.592,
+          0.602,
+          2.142,
+          2.152,
+          2.162,
+          2.182,
+          2.192,
+          2.222,
+          2.302,
+          2.692,
+          2.822,
+          2.892,
+          2.982,
+          3.162,
+          3.232
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "97898"
+      },
+      "channel_rms": [
+        0.021271419603593234,
+        0.021271419603593234
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.51,
+            1.02
+          ],
+          "frames": 51,
+          "raw_voiced": 34,
+          "retained": 32,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.1
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.03,
+            1.58
+          ],
+          "frames": 55,
+          "raw_voiced": 36,
+          "retained": 36,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.19
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.59,
+            2.25
+          ],
+          "frames": 66,
+          "raw_voiced": 54,
+          "retained": 54,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.12
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.34,
+            2.72
+          ],
+          "frames": 38,
+          "raw_voiced": 19,
+          "retained": 19,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.15
+        },
+        {
+          "text": "个",
+          "interval": [
+            2.73,
+            2.98
+          ],
+          "frames": 25,
+          "raw_voiced": 0,
+          "retained": 0,
+          "raw_fragments": 0,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.25
+        }
+      ]
+    },
+    {
+      "id": "5a194022-314b-42ed-8078-91614384f9ac",
+      "created_at": "2026-10-12 01:26:42.565032+00:00",
+      "audio_sha256": "79429e2c6d9e24ab3d8f2b35b9069b3c747752bf29d3d253cb5668ef5c10aee9",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 1.2307,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.025553,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.016949
+      },
+      "energy_gate": {
+        "threshold_rms": 0.007339842988966175,
+        "noise_floor_rms": 0.006158100152237344
+      },
+      "provider_snr_db": 14.963925,
+      "summary": {
+        "interval": [
+          0,
+          1.2307
+        ],
+        "total_frames": 118,
+        "states": {
+          "estimator_unvoiced_with_candidates": 41,
+          "retained": 69,
+          "estimator_no_in_range_candidates": 5,
+          "benma_rejected_voiced_output": 3
+        },
+        "raw": {
+          "voiced_frames": 72,
+          "voiced_ratio": 0.6101694915254238,
+          "f0_hz": {
+            "min": 54.902,
+            "median": 105.25399999999999,
+            "max": 130.071
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.22,
+          "largest_jump_st_within_120ms": 4.505850493770704,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 69,
+          "voiced_ratio": 0.5847457627118644,
+          "f0_hz": {
+            "min": 99.094,
+            "median": 106.024,
+            "max": 130.071
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.25,
+          "largest_jump_st_within_120ms": 4.505850493770704,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.4894,
+          "median": 0.92605,
+          "max": 0.981
+        },
+        "best_candidate_strength": {
+          "min": 0.2266,
+          "median": 0.8112,
+          "max": 0.9951
+        },
+        "frame_energy_rms": {
+          "min": 2.2e-05,
+          "median": 0.0271715,
+          "max": 0.049025
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 118,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": []
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "88616"
+      },
+      "channel_rms": [
+        0.02577196265131287,
+        0.02577196265131287
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.05,
+            0.18
+          ],
+          "frames": 13,
+          "raw_voiced": 8,
+          "retained": 8,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.04
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.19,
+            0.46
+          ],
+          "frames": 27,
+          "raw_voiced": 19,
+          "retained": 19,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "买",
+          "interval": [
+            0.47,
+            0.74
+          ],
+          "frames": 27,
+          "raw_voiced": 27,
+          "retained": 27,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.0
+        },
+        {
+          "text": "这",
+          "interval": [
+            0.75,
+            0.96
+          ],
+          "frames": 21,
+          "raw_voiced": 13,
+          "retained": 13,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "个",
+          "interval": [
+            0.97,
+            1.18
+          ],
+          "frames": 21,
+          "raw_voiced": 0,
+          "retained": 0,
+          "raw_fragments": 0,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.21
+        }
+      ]
+    },
+    {
+      "id": "95e9c412-8211-48d7-b8eb-065077e14958",
+      "created_at": "2026-10-12 01:27:00.356334+00:00",
+      "audio_sha256": "87d3d575ee5962a480c289f9551561196ea0379b09753576af2c0be09b142bbf",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 2.0666,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.034237,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.004975
+      },
+      "energy_gate": {
+        "threshold_rms": 0.009470320009407703,
+        "noise_floor_rms": 0.005248613467404238
+      },
+      "provider_snr_db": 11.126026,
+      "summary": {
+        "interval": [
+          0,
+          2.0666
+        ],
+        "total_frames": 201,
+        "states": {
+          "estimator_no_in_range_candidates": 21,
+          "estimator_unvoiced_with_candidates": 73,
+          "benma_rejected_voiced_output": 6,
+          "retained": 101
+        },
+        "raw": {
+          "voiced_frames": 107,
+          "voiced_ratio": 0.5323383084577115,
+          "f0_hz": {
+            "min": 61.491,
+            "median": 103.531,
+            "max": 118.253
+          },
+          "fragment_count": 5,
+          "longest_unvoiced_run_seconds": 0.25,
+          "largest_jump_st_within_120ms": 3.5817490292578835,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 101,
+          "voiced_ratio": 0.5024875621890548,
+          "f0_hz": {
+            "min": 91.765,
+            "median": 103.629,
+            "max": 118.253
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.42,
+          "largest_jump_st_within_120ms": 3.5817490292578835,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.4855,
+          "median": 0.944,
+          "max": 0.9878
+        },
+        "best_candidate_strength": {
+          "min": 0.2352,
+          "median": 0.761,
+          "max": 0.9998
+        },
+        "frame_energy_rms": {
+          "min": 0.000579,
+          "median": 0.035702,
+          "max": 0.062337
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 201,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.0833,
+          0.3233,
+          0.3733,
+          0.3833,
+          1.4533,
+          1.6733,
+          1.6833,
+          2.0133
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "95431"
+      },
+      "channel_rms": [
+        0.03435835857452605,
+        0.03435835857452605
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.36,
+            0.75
+          ],
+          "frames": 39,
+          "raw_voiced": 25,
+          "retained": 25,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.09
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.76,
+            1.15
+          ],
+          "frames": 39,
+          "raw_voiced": 27,
+          "retained": 27,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.12
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.16,
+            1.45
+          ],
+          "frames": 29,
+          "raw_voiced": 28,
+          "retained": 28,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.01
+        },
+        {
+          "text": "这",
+          "interval": [
+            1.46,
+            1.67
+          ],
+          "frames": 21,
+          "raw_voiced": 11,
+          "retained": 11,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.09
+        },
+        {
+          "text": "个",
+          "interval": [
+            1.68,
+            1.93
+          ],
+          "frames": 25,
+          "raw_voiced": 9,
+          "retained": 9,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.14
+        }
+      ]
+    },
+    {
+      "id": "02fd7f2e-7c2f-4bcc-a4e9-ee81d1b15b05",
+      "created_at": "2026-10-12 01:27:09.331337+00:00",
+      "audio_sha256": "622c4b5b01d1aed8835fb7ce6ddf90f754b4079e45d712d7cd843d480a57bfae",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 2.6006,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.028663,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.007843
+      },
+      "energy_gate": {
+        "threshold_rms": 0.01035481688474473,
+        "noise_floor_rms": 0.00478285591006204
+      },
+      "provider_snr_db": 12.687657,
+      "summary": {
+        "interval": [
+          0,
+          2.6006
+        ],
+        "total_frames": 255,
+        "states": {
+          "estimator_no_in_range_candidates": 15,
+          "estimator_unvoiced_with_candidates": 107,
+          "retained": 131,
+          "benma_rejected_voiced_output": 2
+        },
+        "raw": {
+          "voiced_frames": 133,
+          "voiced_ratio": 0.5215686274509804,
+          "f0_hz": {
+            "min": 95.324,
+            "median": 101.832,
+            "max": 121.63
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.38,
+          "largest_jump_st_within_120ms": 3.3314194312788654,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 131,
+          "voiced_ratio": 0.5137254901960784,
+          "f0_hz": {
+            "min": 95.324,
+            "median": 101.832,
+            "max": 121.63
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.39,
+          "largest_jump_st_within_120ms": 3.3314194312788654,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.5013,
+          "median": 0.9294,
+          "max": 0.9783
+        },
+        "best_candidate_strength": {
+          "min": 0.2335,
+          "median": 0.68265,
+          "max": 0.9975
+        },
+        "frame_energy_rms": {
+          "min": 0.000264,
+          "median": 0.022622,
+          "max": 0.069837
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 255,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.1403,
+          0.1503,
+          0.1603,
+          0.1703,
+          0.2003,
+          0.2103,
+          0.2203,
+          0.2303,
+          0.2403,
+          0.2503,
+          0.3703,
+          0.3803,
+          0.9703,
+          2.0003,
+          2.0203,
+          2.0403,
+          2.3003,
+          2.3103,
+          2.3203,
+          2.3503,
+          2.4103,
+          2.4203
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "98348"
+      },
+      "channel_rms": [
+        0.028729070355266957,
+        0.028729070355266957
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.33,
+            0.86
+          ],
+          "frames": 53,
+          "raw_voiced": 44,
+          "retained": 43,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.87,
+            1.56
+          ],
+          "frames": 69,
+          "raw_voiced": 33,
+          "retained": 33,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.36
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.57,
+            1.98
+          ],
+          "frames": 41,
+          "raw_voiced": 35,
+          "retained": 34,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.06
+        },
+        {
+          "text": "这",
+          "interval": [
+            2.01,
+            2.26
+          ],
+          "frames": 25,
+          "raw_voiced": 12,
+          "retained": 12,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.13
+        },
+        {
+          "text": "个",
+          "interval": [
+            2.27,
+            2.56
+          ],
+          "frames": 29,
+          "raw_voiced": 7,
+          "retained": 7,
+          "raw_fragments": 2,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.15
+        }
+      ]
+    },
+    {
+      "id": "7177c2c0-d874-4ca8-82d9-f81930e229c4",
+      "created_at": "2026-10-12 01:27:22.304694+00:00",
+      "audio_sha256": "0832e666e24ad9db0a4f31647e3c2b75029e4ed5f530cd399d8ee07c5bd26691",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 2.531,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.041281,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.008065
+      },
+      "energy_gate": {
+        "threshold_rms": 0.015991376528096422,
+        "noise_floor_rms": 0.005330458842698808
+      },
+      "provider_snr_db": 13.462897,
+      "summary": {
+        "interval": [
+          0,
+          2.531
+        ],
+        "total_frames": 248,
+        "states": {
+          "estimator_no_in_range_candidates": 20,
+          "estimator_unvoiced_with_candidates": 130,
+          "benma_rejected_voiced_output": 2,
+          "retained": 96
+        },
+        "raw": {
+          "voiced_frames": 98,
+          "voiced_ratio": 0.3951612903225806,
+          "f0_hz": {
+            "min": 55.677,
+            "median": 107.648,
+            "max": 140.875
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.75,
+          "largest_jump_st_within_120ms": 1.306606003112849,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 96,
+          "voiced_ratio": 0.3870967741935484,
+          "f0_hz": {
+            "min": 94.581,
+            "median": 107.977,
+            "max": 140.875
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.82,
+          "largest_jump_st_within_120ms": 1.306606003112849,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.5205,
+          "median": 0.9430499999999999,
+          "max": 0.9851
+        },
+        "best_candidate_strength": {
+          "min": 0.2278,
+          "median": 0.5209999999999999,
+          "max": 0.9866
+        },
+        "frame_energy_rms": {
+          "min": 0.000297,
+          "median": 0.0188825,
+          "max": 0.119852
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 248,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.1305,
+          0.2105,
+          0.2605,
+          0.2805,
+          0.3305,
+          0.4505,
+          0.4705,
+          0.4905,
+          0.5305,
+          0.5405,
+          0.5905,
+          0.6405,
+          0.6505,
+          0.7005,
+          0.7105,
+          0.7405,
+          0.7605,
+          0.7905,
+          1.8505,
+          1.9205,
+          2.1305,
+          2.2205,
+          2.2505,
+          2.2605,
+          2.2705,
+          2.2905,
+          2.3005,
+          2.3105,
+          2.3605,
+          2.3705,
+          2.4005
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "93984"
+      },
+      "channel_rms": [
+        0.04134104831233245,
+        0.04134104831233245
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.77,
+            1.16
+          ],
+          "frames": 39,
+          "raw_voiced": 26,
+          "retained": 26,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "想",
+          "interval": [
+            1.17,
+            1.56
+          ],
+          "frames": 39,
+          "raw_voiced": 30,
+          "retained": 30,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.09
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.57,
+            1.86
+          ],
+          "frames": 29,
+          "raw_voiced": 28,
+          "retained": 28,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.01
+        },
+        {
+          "text": "这",
+          "interval": [
+            1.87,
+            2.14
+          ],
+          "frames": 27,
+          "raw_voiced": 11,
+          "retained": 11,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.15
+        },
+        {
+          "text": "个",
+          "interval": [
+            2.15,
+            2.44
+          ],
+          "frames": 29,
+          "raw_voiced": 0,
+          "retained": 0,
+          "raw_fragments": 0,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.29
+        }
+      ]
+    },
+    {
+      "id": "415604c2-56fb-4dbc-b526-c04aa8ef6af4",
+      "created_at": "2026-10-12 01:28:01.808459+00:00",
+      "audio_sha256": "4794e8a1a6ebb2c2f94119c694021c55a955f6ff5aa96caaa09dc5b2b9815edd",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 1.4396,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.027124,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.007246
+      },
+      "energy_gate": {
+        "threshold_rms": 0.006454562181431646,
+        "noise_floor_rms": 0.004939349033521761
+      },
+      "provider_snr_db": 13.845991,
+      "summary": {
+        "interval": [
+          0,
+          1.4396
+        ],
+        "total_frames": 138,
+        "states": {
+          "estimator_no_in_range_candidates": 2,
+          "benma_rejected_voiced_output": 10,
+          "retained": 88,
+          "estimator_unvoiced_with_candidates": 38
+        },
+        "raw": {
+          "voiced_frames": 98,
+          "voiced_ratio": 0.7101449275362319,
+          "f0_hz": {
+            "min": 70.809,
+            "median": 108.59649999999999,
+            "max": 141.379
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.18,
+          "largest_jump_st_within_120ms": 11.858655071126869,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 88,
+          "voiced_ratio": 0.6376811594202898,
+          "f0_hz": {
+            "min": 93.058,
+            "median": 109.043,
+            "max": 141.379
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.25,
+          "largest_jump_st_within_120ms": 1.3676533928460333,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.3055,
+          "median": 0.88365,
+          "max": 0.9674
+        },
+        "best_candidate_strength": {
+          "min": 0.2398,
+          "median": 0.78865,
+          "max": 0.9674
+        },
+        "frame_energy_rms": {
+          "min": 0.001285,
+          "median": 0.025703499999999997,
+          "max": 0.043479
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 138,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.4148,
+          0.5548,
+          0.5648,
+          1.0148,
+          1.0248,
+          1.2948,
+          1.3048,
+          1.3648,
+          1.3948
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "91195"
+      },
+      "channel_rms": [
+        0.02726075556437037,
+        0.02726075556437037
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.05,
+            0.44
+          ],
+          "frames": 39,
+          "raw_voiced": 38,
+          "retained": 36,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.01
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.45,
+            0.94
+          ],
+          "frames": 49,
+          "raw_voiced": 31,
+          "retained": 28,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.18
+        },
+        {
+          "text": "买",
+          "interval": [
+            0.95,
+            1.38
+          ],
+          "frames": 43,
+          "raw_voiced": 26,
+          "retained": 23,
+          "raw_fragments": 2,
+          "retained_fragments": 3,
+          "longest_raw_unvoiced_run_seconds": 0.14
+        }
+      ]
+    },
+    {
+      "id": "ace81b5f-aa3c-4861-af70-60708b34a930",
+      "created_at": "2026-10-12 01:28:19.034720+00:00",
+      "audio_sha256": "08073d1968a49319c255b4aebeb16e2aaaaa84ebf264fd0be201b54e8400db16",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 1.1378,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.025516,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.009259
+      },
+      "energy_gate": {
+        "threshold_rms": 0.00705110144804473,
+        "noise_floor_rms": 0.005857825670913547
+      },
+      "provider_snr_db": 16.721441,
+      "summary": {
+        "interval": [
+          0,
+          1.1378
+        ],
+        "total_frames": 108,
+        "states": {
+          "estimator_unvoiced_with_candidates": 32,
+          "benma_rejected_voiced_output": 2,
+          "retained": 58,
+          "estimator_no_in_range_candidates": 16
+        },
+        "raw": {
+          "voiced_frames": 60,
+          "voiced_ratio": 0.5555555555555556,
+          "f0_hz": {
+            "min": 90.522,
+            "median": 104.445,
+            "max": 143.23
+          },
+          "fragment_count": 3,
+          "longest_unvoiced_run_seconds": 0.24,
+          "largest_jump_st_within_120ms": 6.0961459353743255,
+          "jumps_over_6st": 1
+        },
+        "retained": {
+          "voiced_frames": 58,
+          "voiced_ratio": 0.5370370370370371,
+          "f0_hz": {
+            "min": 91.176,
+            "median": 106.7715,
+            "max": 143.23
+          },
+          "fragment_count": 4,
+          "longest_unvoiced_run_seconds": 0.24,
+          "largest_jump_st_within_120ms": 6.0961459353743255,
+          "jumps_over_6st": 1
+        },
+        "raw_voiced_strength": {
+          "min": 0.3301,
+          "median": 0.88515,
+          "max": 0.9791
+        },
+        "best_candidate_strength": {
+          "min": 0.2287,
+          "median": 0.6821999999999999,
+          "max": 0.9978
+        },
+        "frame_energy_rms": {
+          "min": 0.001263,
+          "median": 0.023431,
+          "max": 0.04738
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 108,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.6539,
+          1.0639,
+          1.0739,
+          1.0839,
+          1.0939
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "86357"
+      },
+      "channel_rms": [
+        0.025730121797418192,
+        0.025730121797418192
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.05,
+            0.2
+          ],
+          "frames": 15,
+          "raw_voiced": 8,
+          "retained": 8,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.07
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.21,
+            0.42
+          ],
+          "frames": 21,
+          "raw_voiced": 16,
+          "retained": 16,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.05
+        },
+        {
+          "text": "买",
+          "interval": [
+            0.43,
+            0.64
+          ],
+          "frames": 21,
+          "raw_voiced": 20,
+          "retained": 19,
+          "raw_fragments": 1,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.01
+        },
+        {
+          "text": "这",
+          "interval": [
+            0.65,
+            0.86
+          ],
+          "frames": 21,
+          "raw_voiced": 13,
+          "retained": 13,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.08
+        },
+        {
+          "text": "个",
+          "interval": [
+            0.87,
+            1.08
+          ],
+          "frames": 21,
+          "raw_voiced": 0,
+          "retained": 0,
+          "raw_fragments": 0,
+          "retained_fragments": 0,
+          "longest_raw_unvoiced_run_seconds": 0.21
+        }
+      ]
+    },
+    {
+      "id": "430fcc2e-1975-4773-b6be-fe1176349237",
+      "created_at": "2026-10-12 01:29:16.559352+00:00",
+      "audio_sha256": "488e95d6012120b19e55c8c7d975d3283dc932a89c0aa9ea7e88ea394910c84b",
+      "sample_rate_hz": 16000,
+      "duration_seconds": 3.274,
+      "algorithm": "praat_autocorrelation",
+      "algorithm_version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "recording_quality": {
+        "status": "usable",
+        "issues": [],
+        "rms": 0.017201,
+        "clipping_fraction": 0.0,
+        "silence_fraction": 0.003106
+      },
+      "energy_gate": {
+        "threshold_rms": 0.009883961247314384,
+        "noise_floor_rms": 0.004616284924027092
+      },
+      "provider_snr_db": 10.547482,
+      "summary": {
+        "interval": [
+          0,
+          3.274
+        ],
+        "total_frames": 322,
+        "states": {
+          "estimator_no_in_range_candidates": 5,
+          "estimator_unvoiced_with_candidates": 200,
+          "benma_rejected_voiced_output": 37,
+          "retained": 80
+        },
+        "raw": {
+          "voiced_frames": 117,
+          "voiced_ratio": 0.36335403726708076,
+          "f0_hz": {
+            "min": 63.391,
+            "median": 278.689,
+            "max": 423.951
+          },
+          "fragment_count": 9,
+          "longest_unvoiced_run_seconds": 0.64,
+          "largest_jump_st_within_120ms": 5.71032573606015,
+          "jumps_over_6st": 0
+        },
+        "retained": {
+          "voiced_frames": 80,
+          "voiced_ratio": 0.2484472049689441,
+          "f0_hz": {
+            "min": 171.538,
+            "median": 283.0585,
+            "max": 396.392
+          },
+          "fragment_count": 7,
+          "longest_unvoiced_run_seconds": 1.26,
+          "largest_jump_st_within_120ms": 5.4220214981399035,
+          "jumps_over_6st": 0
+        },
+        "raw_voiced_strength": {
+          "min": 0.3799,
+          "median": 0.7041,
+          "max": 0.9665
+        },
+        "best_candidate_strength": {
+          "min": 0.2327,
+          "median": 0.483,
+          "max": 0.9665
+        },
+        "frame_energy_rms": {
+          "min": 0.000479,
+          "median": 0.0065585,
+          "max": 0.066092
+        }
+      },
+      "replay": {
+        "all_f0_fields_equal": true,
+        "frame_count": 322,
+        "audio_sha256_verified": true,
+        "unvoiced_with_locally_preferred_candidate": [
+          0.092,
+          0.132,
+          0.262,
+          0.272,
+          0.282,
+          0.292,
+          0.332,
+          0.342,
+          0.352,
+          0.462,
+          0.472,
+          0.492,
+          0.622,
+          0.632,
+          1.232,
+          1.262,
+          1.272,
+          1.672,
+          1.732,
+          1.742,
+          1.752,
+          1.762,
+          2.022,
+          2.032,
+          2.102,
+          2.112,
+          2.122,
+          2.152,
+          2.192,
+          2.202,
+          2.212,
+          2.302,
+          2.322,
+          2.332,
+          2.342,
+          2.352,
+          2.362,
+          2.502,
+          2.552,
+          2.602,
+          2.632,
+          2.642,
+          2.672,
+          2.682,
+          2.692,
+          2.882,
+          2.962,
+          3.012,
+          3.022,
+          3.062,
+          3.072,
+          3.082,
+          3.102,
+          3.112,
+          3.122,
+          3.132
+        ]
+      },
+      "original_stream": {
+        "codec_name": "aac",
+        "sample_rate": "44100",
+        "channels": 2,
+        "bit_rate": "95809"
+      },
+      "channel_rms": [
+        0.017246084269909534,
+        0.017246084269909534
+      ],
+      "channel_correlation": 1.0,
+      "canonical_replay_identical": true,
+      "syllables": [
+        {
+          "text": "我",
+          "interval": [
+            0.58,
+            0.91
+          ],
+          "frames": 33,
+          "raw_voiced": 24,
+          "retained": 21,
+          "raw_fragments": 1,
+          "retained_fragments": 3,
+          "longest_raw_unvoiced_run_seconds": 0.09
+        },
+        {
+          "text": "想",
+          "interval": [
+            0.92,
+            1.19
+          ],
+          "frames": 27,
+          "raw_voiced": 25,
+          "retained": 22,
+          "raw_fragments": 2,
+          "retained_fragments": 2,
+          "longest_raw_unvoiced_run_seconds": 0.02
+        },
+        {
+          "text": "买",
+          "interval": [
+            1.2,
+            1.47
+          ],
+          "frames": 27,
+          "raw_voiced": 3,
+          "retained": 3,
+          "raw_fragments": 1,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.24
+        },
+        {
+          "text": "这",
+          "interval": [
+            1.48,
+            1.79
+          ],
+          "frames": 31,
+          "raw_voiced": 16,
+          "retained": 15,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.11
+        },
+        {
+          "text": "个",
+          "interval": [
+            1.8,
+            2.25
+          ],
+          "frames": 45,
+          "raw_voiced": 21,
+          "retained": 18,
+          "raw_fragments": 2,
+          "retained_fragments": 1,
+          "longest_raw_unvoiced_run_seconds": 0.24
+        }
+      ]
+    }
+  ]
+}

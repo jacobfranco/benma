@@ -7,7 +7,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 TRACK_VERSION = "utterance-pitch-v1"
-ELIGIBILITY_VERSION = "voiced-support-completeness-v1"
+ELIGIBILITY_VERSION = "voiced-support-completeness-v2-candidate-branch"
 
 
 class FrozenEvidence(BaseModel):

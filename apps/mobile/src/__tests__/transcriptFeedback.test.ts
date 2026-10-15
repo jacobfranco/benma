@@ -35,6 +35,8 @@ it.each(['preserve', 'infer', 'clarify'] as const)('keeps the measured sentence 
   expect(tree).toContain('周'); expect(tree).toContain('谋');
   expect(tree).not.toMatch(/accuracy|Tone 2-like|mò/);
   await press('More details');
+  expect(renderer.root.findAllByType(SentenceToneGraph)).toHaveLength(0);
+  await press('Technical details');
   expect(renderer.root.findAllByType(PitchPlot).at(-1)!.props.display).toBe(data.tone_graph!.filtered);
   expect(tree.includes('What Benma understood')).toBe(decision === 'infer');
   expect(tree.includes('Meaning')).toBe(decision === 'clarify');
@@ -191,7 +193,7 @@ it('a new analysis resets workspace selection and full detail state', async () =
   await act(async () => { renderer = create(React.createElement(TranscriptFeedback, { analysis: perceivedAnalysis })); });
   const old = renderer.root.findByType(PronunciationWorkspace);
   await act(async () => renderer.root.findByProps({ testID: 'pronunciation-unit-1' }).props.onPress());
-  await press('More details'); await press('Raw');
+  await press('More details'); await press('Technical details'); await press('Raw');
   await act(async () => renderer.update(React.createElement(TranscriptFeedback, { analysis: { ...perceivedAnalysis, id: 'new-result' } })));
   expect(renderer.root.findByType(PronunciationWorkspace)).not.toBe(old);
   expect(renderer.root.findAllByType(PitchPlot)).toHaveLength(1);

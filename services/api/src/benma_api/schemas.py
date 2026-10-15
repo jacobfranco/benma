@@ -564,7 +564,23 @@ class PerceivedSyllable(BaseModel):
         return self.observed_contour.confidence
 
 
+class PronunciationChunkCandidate(BaseModel):
+    """Linguistic projection of perceived text; never an acoustic/timing unit.
+
+    The workspace may accept this span only over whole accepted timing units.
+    No playback bounds, pitch ownership, target text or tone grade lives here.
+    """
+
+    text: str
+    character_start: int = Field(ge=0)
+    character_end: int = Field(gt=0)
+    syllable_indices: list[int]
+    reason: Literal["lexical_word", "demonstrative_classifier", "numeral_classifier"]
+
+
 class PerceivedAnalysisData(BaseModel):
+    pronunciation_chunk_policy: str | None = None
+    pronunciation_chunk_candidates: list[PronunciationChunkCandidate] = Field(default_factory=list)
     pitch_track_evidence_id: str | None = None
     tone_graph: SentencePitchEvidence | None = None
     timing_groups: list[PerceivedTimingGroup] = Field(default_factory=list)

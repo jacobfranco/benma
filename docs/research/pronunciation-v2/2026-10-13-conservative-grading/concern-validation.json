@@ -1,0 +1,275 @@
+{
+  "status": "passed",
+  "scope": "Only production learner grading changed; tests and audit/docs updated. No reset, revert, commit, push or deployment.",
+  "checks": [
+    {
+      "name": "focused",
+      "status": "passed",
+      "summary": "124 tests in six suites",
+      "command": "npm test -- --runTestsByPath src/__tests__/conservativeLearnerGrade.test.ts src/__tests__/learnerPitchGrade.test.ts src/__tests__/chunkPitchGrade.test.ts src/__tests__/toneClassification.test.ts src/__tests__/pitchRobustness.test.ts src/__tests__/toneFeedbackWorkspace.test.ts",
+      "cwd": "apps/mobile",
+      "log": "/tmp/benma-concern/focused.log",
+      "sha256": "8f48224c48956cc7d32624b8ff5b5a82a68228739a37225df81c59b5f7c46c55",
+      "tail": [
+        "PASS native src/__tests__/toneFeedbackWorkspace.test.ts",
+        "PASS native src/__tests__/learnerPitchGrade.test.ts",
+        "PASS native src/__tests__/pitchRobustness.test.ts",
+        "PASS native src/__tests__/conservativeLearnerGrade.test.ts",
+        "",
+        "Test Suites: 6 passed, 6 total",
+        "Tests:       124 passed, 124 total",
+        "Snapshots:   0 total",
+        "Time:        2.411 s",
+        "Ran all test suites within paths \"src/__tests__/conservativeLearnerGrade.test.ts\", \"src/__tests__/learnerPitchGrade.test.ts\", \"src/__tests__/chunkPitchGrade.test.ts\", \"src/__tests__/toneClassification.test.ts\", \"src/__tests__/pitchRobustness.test.ts\", \"src/__tests__/toneFeedbackWorkspace.test.ts\"."
+      ]
+    },
+    {
+      "name": "validate",
+      "status": "passed",
+      "summary": "lint, typecheck, 757 tests in 45 suites",
+      "command": "npm run validate",
+      "cwd": "apps/mobile",
+      "log": "/tmp/benma-concern/validate.log",
+      "sha256": "eb3038dcff454cc17c6f4baf09dcdc3426c3a300528bb1a73221301015df388b",
+      "tail": [
+        "PASS native src/__tests__/toneGestureMatch.test.ts",
+        "PASS web src/__tests__/recordingUri.web.test.ts",
+        "PASS native src/__tests__/workflowMachine.test.ts",
+        "PASS native src/__tests__/practicePhrases.test.ts",
+        "",
+        "Test Suites: 45 passed, 45 total",
+        "Tests:       757 passed, 757 total",
+        "Snapshots:   0 total",
+        "Time:        15.674 s, estimated 16 s",
+        "Ran all test suites in 2 projects."
+      ]
+    },
+    {
+      "name": "node-audits",
+      "status": "passed",
+      "summary": "five audit files passed",
+      "command": "node --test benchmark/pronunciation_v2/test_conservative_grading_audit.cjs benchmark/pronunciation_v2/test_natural_acceptance_audit.cjs benchmark/pronunciation_v2/test_natural_family_audit.cjs benchmark/pronunciation_v2/test_measurement_audit.cjs benchmark/pronunciation_v2/test_tone_feedback.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/node-audits.log",
+      "sha256": "d985af7ed0d415718443033d3feab8c5d838c4767e09011e7d929c5c3928eebe",
+      "tail": [
+        "\u2714 benchmark/pronunciation_v2/test_natural_family_audit.cjs (6262.470315ms)",
+        "\u2714 benchmark/pronunciation_v2/test_tone_feedback.cjs (1327.939419ms)",
+        "\u2139 tests 5",
+        "\u2139 suites 0",
+        "\u2139 pass 5",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 6958.57162"
+      ]
+    },
+    {
+      "name": "historical-pcm",
+      "status": "passed",
+      "summary": "13 recordings / 53 units; corpus and selected projection byte-identical",
+      "command": "PYTHONPATH=. services/api/.venv/bin/python /tmp/benma-concern/gesture-replay.py",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/historical-pcm.log",
+      "sha256": "eccc47ad98ba2f1f7c711c8156afcad928008c21d7c799b624a297d11f5bc194",
+      "tail": [
+        "a5acd04c:\u4e00 sufficient level segments [18] nine medians [1.05, 1.49, 1.49, 1.49, 1.36, 1.06, 0.58, 0.5, 0.98]",
+        "a5acd04c:\u4e2a unstable unclear segments [14, 2] nine medians [1.07, 0.35, -0.22, -0.6, -0.84, -1.24, -1.71, -2.38, 10.22]",
+        "a5acd04c:\u82f9 sufficient falling segments [25] nine medians [5.67, 5.93, 5.73, 4.91, 3.31, 1.06, -0.96, -2.04, -2.43]",
+        "a5acd04c:\u679c sufficient rising segments [30] nine medians [-2.81, -2.74, -3.22, -3.57, -3.58, -2.89, -2.22, -0.05, 1.36]",
+        "b9067bec:\u6211 sufficient level segments [29] nine medians [1.56, 0.52, 0.2, 0.38, 0.23, 0.11, 0.06, 0.07, -0.09]",
+        "b9067bec:\u60f3 sufficient unclear segments [31] nine medians [1.83, 1.33, 1.61, 2.19, 2.8, 2.99, 2.44, 1.08, -1.07]",
+        "b9067bec:\u4e70 incomplete unclear segments [43] nine medians [-2.31, -3.66, -3.66, -3.63, -4.15, -3.74, -3.35, -1.87, -1.04]",
+        "5c70f317:\u6211 sufficient level segments [32] nine medians [1.49, 0.73, 0.07, -0.3, -0.51, -0.56, -0.38, -0.11, -0.01]",
+        "5c70f317:\u60f3 sufficient unclear segments [33] nine medians [2.33, 1.58, 1.15, 1.54, 2.28, 3.14, 3.56, 3.4, 2.26]",
+        "5c70f317:\u4e70 sufficient dipping segments [40] nine medians [-0.75, -3.78, -4.11, -3.66, -3.25, -3.3, -2.23, -0.15, 1.1]"
+      ]
+    },
+    {
+      "name": "export",
+      "status": "passed",
+      "summary": "Expo web export passed",
+      "command": "CI=1 ./node_modules/.bin/expo export --platform web --output-dir /tmp/benma-concern/web",
+      "cwd": "apps/mobile",
+      "log": "/tmp/benma-concern/export.log",
+      "sha256": "67bfb15f4dfe30013e197f9e889f9385091dbe649d2e1524ece357219f6469b1",
+      "tail": [
+        "node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)",
+        "",
+        "\u203a web bundles (1):",
+        "_expo/static/js/web/entry-54d300139707732cab729e82edd1373e.js (1.3MB)",
+        "",
+        "\u203a Files (2):",
+        "index.html (1.2KB)",
+        "metadata.json (49B)",
+        "",
+        "Exported: /tmp/benma-concern/web"
+      ]
+    },
+    {
+      "name": "newest-browser",
+      "status": "passed",
+      "summary": "6 fixture/viewport cases passed",
+      "command": "BENMA_WEB_URL=http://127.0.0.1:8102 PLAYWRIGHT_MODULE=/home/jacob/filefruit/node_modules/.pnpm/playwright@1.61.0/node_modules/playwright BENMA_BROWSER_OUTPUT=/tmp/benma-concern/newest-browser BENMA_NEWEST_PHYSICAL=1 node apps/mobile/scripts/tone-classification-browser.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/newest-browser.log",
+      "sha256": "d426fe17bb5d0448aba37cf15b8a4d2f3fc7a325d0de241b31859f6ac829786f",
+      "tail": [
+        "        \"lines\": 19,",
+        "        \"sourceCoordinatesMatch\": true",
+        "      }",
+        "    ],",
+        "    \"neutralUnavailableNonVeto\": true,",
+        "    \"canonicalPlayback\": true,",
+        "    \"history\": true,",
+        "    \"errors\": []",
+        "  }",
+        "]"
+      ]
+    },
+    {
+      "name": "older-browser",
+      "status": "passed",
+      "summary": "6 fixture/viewport cases passed",
+      "command": "BENMA_WEB_URL=http://127.0.0.1:8102 PLAYWRIGHT_MODULE=/home/jacob/filefruit/node_modules/.pnpm/playwright@1.61.0/node_modules/playwright BENMA_BROWSER_OUTPUT=/tmp/benma-concern/older-browser node apps/mobile/scripts/tone-classification-browser.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/older-browser.log",
+      "sha256": "329d49f9c35ec35827ec686058cf86ce46978f5ce79a324a83f7d9d216d5036d",
+      "tail": [
+        "        \"lines\": 35,",
+        "        \"sourceCoordinatesMatch\": true",
+        "      }",
+        "    ],",
+        "    \"neutralUnavailableNonVeto\": true,",
+        "    \"canonicalPlayback\": true,",
+        "    \"history\": true,",
+        "    \"errors\": []",
+        "  }",
+        "]"
+      ]
+    },
+    {
+      "name": "tone-browser",
+      "status": "passed",
+      "summary": "3 fixture/viewport cases passed",
+      "command": "BENMA_WEB_URL=http://127.0.0.1:8102 PLAYWRIGHT_MODULE=/home/jacob/filefruit/node_modules/.pnpm/playwright@1.61.0/node_modules/playwright BENMA_BROWSER_OUTPUT=/tmp/benma-concern/tone-browser BENMA_TONE_AUDIO=/home/jacob/benma/services/api/var/audio/4437ecb5-c693-476c-8cc6-4c51cc910742/canonical/19d8333bc4e04ce4bf026e393ea1f3e7.wav node apps/mobile/scripts/tone-feedback-browser.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/tone-browser.log",
+      "sha256": "4e30abe85701735a712b76bf152f8519278a97167def6aa72f6d69a1a1cbc9ef",
+      "tail": [
+        "    \"details\": true,",
+        "    \"technical\": true,",
+        "    \"canonicalPlayback\": true,",
+        "    \"keyboard\": true,",
+        "    \"focusContainment\": true,",
+        "    \"history\": true,",
+        "    \"overflow\": false,",
+        "    \"errors\": []",
+        "  }",
+        "]"
+      ]
+    },
+    {
+      "name": "measurement-browser",
+      "status": "passed",
+      "summary": "3 fixture/viewport cases passed",
+      "command": "BENMA_WEB_URL=http://127.0.0.1:8102 PLAYWRIGHT_MODULE=/home/jacob/filefruit/node_modules/.pnpm/playwright@1.61.0/node_modules/playwright BENMA_BROWSER_OUTPUT=/tmp/benma-concern/measurement-browser node apps/mobile/scripts/measurement-fidelity-browser.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/measurement-browser.log",
+      "sha256": "fccc7b59a28fb18e802db877415adc3b12ec55ba49d52f16c2b1a74edadebaff",
+      "tail": [
+        "          4",
+        "        ],",
+        "        \"lines\": 18,",
+        "        \"sourceCoordinatesMatch\": true",
+        "      }",
+        "    ],",
+        "    \"errors\": [],",
+        "    \"overflow\": false",
+        "  }",
+        "]"
+      ]
+    },
+    {
+      "name": "chunks-browser",
+      "status": "passed",
+      "summary": "3 fixture/viewport cases passed",
+      "command": "BENMA_WEB_URL=http://127.0.0.1:8102 PLAYWRIGHT_MODULE=/home/jacob/filefruit/node_modules/.pnpm/playwright@1.61.0/node_modules/playwright BENMA_BROWSER_OUTPUT=/tmp/benma-concern/chunks-browser node apps/mobile/scripts/pronunciation-chunks-browser.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/chunks-browser.log",
+      "sha256": "8966489eed6b8f01655b5d6d50fe9c98f31f2d87e3ba6b23a05275bf0155390a",
+      "tail": [
+        "    \"that\": true,",
+        "    \"groupedUmbrella\": true,",
+        "    \"history\": true,",
+        "    \"newAttempt\": true,",
+        "    \"clearTarget\": true,",
+        "    \"noTarget\": true,",
+        "    \"conversationCollapsed\": true,",
+        "    \"errors\": []",
+        "  }",
+        "]"
+      ]
+    },
+    {
+      "name": "product-browser",
+      "status": "passed",
+      "summary": "3 fixture/viewport cases passed",
+      "command": "BENMA_WEB_URL=http://127.0.0.1:8102 PLAYWRIGHT_MODULE=/home/jacob/filefruit/node_modules/.pnpm/playwright@1.61.0/node_modules/playwright BENMA_BROWSER_OUTPUT=/tmp/benma-concern/product-browser node apps/mobile/scripts/product-feedback-browser.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/product-browser.log",
+      "sha256": "8966489eed6b8f01655b5d6d50fe9c98f31f2d87e3ba6b23a05275bf0155390a",
+      "tail": [
+        "    \"that\": true,",
+        "    \"groupedUmbrella\": true,",
+        "    \"history\": true,",
+        "    \"newAttempt\": true,",
+        "    \"clearTarget\": true,",
+        "    \"noTarget\": true,",
+        "    \"conversationCollapsed\": true,",
+        "    \"errors\": []",
+        "  }",
+        "]"
+      ]
+    },
+    {
+      "name": "audit",
+      "status": "passed",
+      "summary": "53 historical units, older/newest physical replays, all changes/AMBERs/REDs reviewed; 186 frozen input hashes",
+      "command": "node benchmark/pronunciation_v2/conservative_grading_audit.cjs",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/audit.log",
+      "sha256": "9adad8112929482b758afefb47c8e91b215f95ddf0e96e4a67ed38cf80a9f186"
+    },
+    {
+      "name": "newest-physical",
+      "status": "passed",
+      "summary": "canonical WAVs reproduce both newest published physical fixtures exactly; every selected F0 equals its retained raw F0",
+      "command": "PYTHONPATH=services/api/src:. services/api/.venv/bin/python -m benchmark.pronunciation_v2.pitch_robustness_replay --audio-root services/api/var/audio --output /tmp/benma-concern/newest-physical-replay.json",
+      "cwd": ".",
+      "log": "/tmp/benma-concern/newest-physical.log",
+      "sha256": "04f50c6b4de87bcfb6812c2bf5845165d95387049e6431f11ab3e3035f4d2809"
+    }
+  ],
+  "invariants": {
+    "acousticFamilyChanges": 0,
+    "measurementChanges": 0,
+    "selectedFrameChanges": 0,
+    "frozenInputHashesVerified": 186,
+    "pitchExpectationUnchanged": true,
+    "redConstantsUnchanged": true,
+    "redDecisionExpressionUnchanged": true
+  },
+  "whitespace": "git diff --check and arrival-relative added-line whitespace checks passed",
+  "browserCases": 24,
+  "browserWidths": [
+    320,
+    390,
+    412
+  ],
+  "backendSuitesRerun": false,
+  "uncertainty": "No new native-listener study or live device recording. Previous out-of-scope API target-revision failures not rerun.",
+  "productionFile": "apps/mobile/src/speech/learnerPitchGrade.ts",
+  "productionSha256": "50af271989bf6aab7d077b08c5d84576cca51b05fba75101f27a8797f4f7da1b"
+}

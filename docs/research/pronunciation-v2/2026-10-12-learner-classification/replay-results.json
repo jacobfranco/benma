@@ -1,0 +1,1041 @@
+{
+  "thresholds": {
+    "COMPLETED_SHALLOW_VALLEY": {
+      "minimumFall": 0.2,
+      "minimumRecovery": 1,
+      "minimumFallRecoveryRatio": 0.15,
+      "minimumFallSeconds": 0.02,
+      "minimumRecoverySeconds": 0.04,
+      "minimumPrimarySeconds": 0.1,
+      "minimumValleyPosition": 0.1,
+      "maximumValleyPosition": 0.6,
+      "maximumTailFraction": 0.25,
+      "maximumRetreatRatio": 0.5,
+      "consistency": 0.8
+    },
+    "SUBORDINATE_LATE_ISLAND": {
+      "minimumSupportFraction": 0.75,
+      "maximumFrames": 4,
+      "maximumSeconds": 0.04,
+      "minimumPosition": 0.75,
+      "maximumGapSeconds": 0.05,
+      "maximumJump": 3,
+      "maximumExcursion": 0.75
+    }
+  },
+  "physical": [
+    {
+      "label": "Google TTS physical take",
+      "before": {
+        "id": "df7476d5-5716-4399-a528-924075c3a0fb",
+        "chunks": [
+          {
+            "text": "我",
+            "grade": "CLEAR_DIFFERENCE",
+            "color": "red",
+            "constituents": [
+              {
+                "text": "我",
+                "shape": "RISING",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_2",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "CLEAR_DIFFERENCE",
+                "gradeReason": "conflicting_stable_pitch",
+                "color": "red",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  12,
+                  1
+                ],
+                "features": {
+                  "start_st": -0.31999721978905793,
+                  "end_st": 2.0232850435321756,
+                  "minimum_st": -0.34885225348780535,
+                  "excursion_st": 2.372137297019981,
+                  "fall_st": 0.028855033698747423,
+                  "recovery_st": 2.372137297019981,
+                  "minimum_position": 0.1333333333333328,
+                  "net_st": 2.3432822633212336,
+                  "measured_net_st": 2.3432822633212336,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0,
+                  "rise_consistency": 1,
+                  "support_seconds": 0.13,
+                  "selected_extent_seconds": 0.1499999999999999
+                },
+                "perturbations": {
+                  "region_20ms": "RISING",
+                  "region_40ms": "RISING",
+                  "first_point": "RISING",
+                  "last_point": "RISING",
+                  "every_tenth": "RISING",
+                  "flagged_discontinuities": "RISING"
+                }
+              }
+            ]
+          },
+          {
+            "text": "想",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "想",
+                "shape": "UNCLEAR",
+                "shapeReason": "ambiguous_geometry",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "ambiguous_geometry",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "ambiguous_geometry",
+                "color": "gray",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  15
+                ],
+                "features": {
+                  "start_st": -1.0427572738400042,
+                  "end_st": 0.1038941278561156,
+                  "minimum_st": -1.1822068498125584,
+                  "excursion_st": 1.2909689798000292,
+                  "fall_st": 0.13944957597255425,
+                  "recovery_st": 1.286100977668674,
+                  "minimum_position": 0.2857142857142859,
+                  "net_st": 1.1466514016961198,
+                  "measured_net_st": 1.1466514016961198,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 1,
+                  "rise_consistency": 0.8039286778668109,
+                  "support_seconds": 0.15,
+                  "selected_extent_seconds": 0.14
+                },
+                "perturbations": {
+                  "region_20ms": "UNCLEAR",
+                  "region_40ms": "UNCLEAR",
+                  "first_point": "UNCLEAR",
+                  "last_point": "UNCLEAR",
+                  "every_tenth": "UNCLEAR",
+                  "flagged_discontinuities": "UNCLEAR"
+                }
+              }
+            ]
+          },
+          {
+            "text": "买",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "买",
+                "shape": "UNCLEAR",
+                "shapeReason": "contradictory_fragments",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "contradictory_fragments",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "contradictory_fragments",
+                "color": "gray",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  4,
+                  4
+                ],
+                "features": {},
+                "perturbations": {}
+              }
+            ]
+          },
+          {
+            "text": "这个",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "这",
+                "shape": "FALLING",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_4",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "STRONG_MATCH",
+                "gradeReason": "compatible_stable_pitch",
+                "color": "green",
+                "expectationBasis": "resolved_surface",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  14
+                ],
+                "features": {
+                  "start_st": 3.3877734524508583,
+                  "end_st": 0.9588661382892245,
+                  "minimum_st": 0.48698270007910166,
+                  "excursion_st": 3.176449244149463,
+                  "fall_st": 2.9007907523717567,
+                  "recovery_st": 0.47188343821012285,
+                  "minimum_position": 0.9615384615384623,
+                  "net_st": -2.4289073141616337,
+                  "measured_net_st": -2.4289073141616337,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0.8594348361371813,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.14,
+                  "selected_extent_seconds": 0.13000000000000012
+                },
+                "perturbations": {
+                  "region_20ms": "FALLING",
+                  "region_40ms": "FALLING",
+                  "first_point": "FALLING",
+                  "last_point": "FALLING",
+                  "every_tenth": "FALLING",
+                  "flagged_discontinuities": "FALLING"
+                }
+              },
+              {
+                "text": "个",
+                "shape": "LEVEL",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_1",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "neutral_has_no_fixed_shape",
+                "color": "gray",
+                "expectationBasis": "neutral",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  10
+                ],
+                "features": {
+                  "start_st": -7.700385702290648,
+                  "end_st": -8.321538721946238,
+                  "minimum_st": -8.377636773419752,
+                  "excursion_st": 0.8372354567222526,
+                  "fall_st": 0.6772510711291044,
+                  "recovery_st": 0.05609805147351388,
+                  "minimum_position": 0.7222222222222234,
+                  "net_st": -0.6211530196555906,
+                  "measured_net_st": -0.6211530196555906,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 1,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.1,
+                  "selected_extent_seconds": 0.09000000000000008
+                },
+                "perturbations": {
+                  "region_20ms": "LEVEL",
+                  "region_40ms": "LEVEL",
+                  "first_point": "LEVEL",
+                  "last_point": "LEVEL",
+                  "every_tenth": "LEVEL",
+                  "flagged_discontinuities": "LEVEL"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "df7476d5-5716-4399-a528-924075c3a0fb",
+        "chunks": [
+          {
+            "text": "我",
+            "grade": "CLEAR_DIFFERENCE",
+            "color": "red",
+            "constituents": [
+              {
+                "text": "我",
+                "shape": "RISING",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_2",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "CLEAR_DIFFERENCE",
+                "gradeReason": "conflicting_stable_pitch",
+                "color": "red",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  12,
+                  1
+                ],
+                "features": {
+                  "start_st": -0.31999721978905793,
+                  "end_st": 2.0232850435321756,
+                  "minimum_st": -0.34885225348780535,
+                  "excursion_st": 2.372137297019981,
+                  "fall_st": 0.028855033698747423,
+                  "recovery_st": 2.372137297019981,
+                  "minimum_position": 0.1333333333333328,
+                  "net_st": 2.3432822633212336,
+                  "measured_net_st": 2.3432822633212336,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0,
+                  "rise_consistency": 1,
+                  "support_seconds": 0.13,
+                  "selected_extent_seconds": 0.1499999999999999
+                },
+                "perturbations": {
+                  "region_20ms": "RISING",
+                  "region_40ms": "RISING",
+                  "first_point": "RISING",
+                  "last_point": "RISING",
+                  "every_tenth": "RISING",
+                  "flagged_discontinuities": "RISING"
+                }
+              }
+            ]
+          },
+          {
+            "text": "想",
+            "grade": "PARTIAL_OR_WEAK",
+            "color": "amber",
+            "constituents": [
+              {
+                "text": "想",
+                "shape": "DIP_RISE",
+                "shapeReason": "completed_shallow_valley",
+                "tone": "TONE_3",
+                "strength": "weak",
+                "variant": "completed_shallow_valley",
+                "toneReason": "best_fit",
+                "grade": "PARTIAL_OR_WEAK",
+                "gradeReason": "weak_excursion",
+                "color": "amber",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  15
+                ],
+                "features": {
+                  "start_st": -1.0427572738400042,
+                  "end_st": 0.1038941278561156,
+                  "minimum_st": -1.1822068498125584,
+                  "excursion_st": 1.2909689798000292,
+                  "fall_st": 0.13944957597255425,
+                  "recovery_st": 1.286100977668674,
+                  "minimum_position": 0.2857142857142859,
+                  "net_st": 1.1466514016961198,
+                  "measured_net_st": 1.1466514016961198,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 1,
+                  "rise_consistency": 0.8039286778668109,
+                  "support_seconds": 0.15,
+                  "selected_extent_seconds": 0.14,
+                  "completed_shallow_valley": 1,
+                  "local_fall_st": 0.6172760000383837,
+                  "local_recovery_st": 1.2909689798000292,
+                  "local_fall_consistency": 1,
+                  "local_rise_consistency": 1,
+                  "local_noise_st": 0.0037508450709606844,
+                  "terminal_retreat_st": 0.6199765602249108,
+                  "terminal_support_fraction": 0.13333333333333333,
+                  "local_valley_position": 0.21428571428571447,
+                  "local_recovery_position": 0.857142857142857
+                },
+                "perturbations": {
+                  "region_20ms": "DIP_RISE",
+                  "region_40ms": "DIP_RISE",
+                  "first_point": "DIP_RISE",
+                  "last_point": "DIP_RISE",
+                  "every_tenth": "DIP_RISE",
+                  "flagged_discontinuities": "DIP_RISE"
+                }
+              }
+            ]
+          },
+          {
+            "text": "买",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "买",
+                "shape": "UNCLEAR",
+                "shapeReason": "contradictory_fragments",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "contradictory_fragments",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "contradictory_fragments",
+                "color": "gray",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  4,
+                  4
+                ],
+                "features": {},
+                "perturbations": {}
+              }
+            ]
+          },
+          {
+            "text": "这个",
+            "grade": "STRONG_MATCH",
+            "color": "green",
+            "constituents": [
+              {
+                "text": "这",
+                "shape": "FALLING",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_4",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "STRONG_MATCH",
+                "gradeReason": "compatible_stable_pitch",
+                "color": "green",
+                "expectationBasis": "resolved_surface",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  14
+                ],
+                "features": {
+                  "start_st": 3.3877734524508583,
+                  "end_st": 0.9588661382892245,
+                  "minimum_st": 0.48698270007910166,
+                  "excursion_st": 3.176449244149463,
+                  "fall_st": 2.9007907523717567,
+                  "recovery_st": 0.47188343821012285,
+                  "minimum_position": 0.9615384615384623,
+                  "net_st": -2.4289073141616337,
+                  "measured_net_st": -2.4289073141616337,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0.8594348361371813,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.14,
+                  "selected_extent_seconds": 0.13000000000000012
+                },
+                "perturbations": {
+                  "region_20ms": "FALLING",
+                  "region_40ms": "FALLING",
+                  "first_point": "FALLING",
+                  "last_point": "FALLING",
+                  "every_tenth": "FALLING",
+                  "flagged_discontinuities": "FALLING"
+                }
+              },
+              {
+                "text": "个",
+                "shape": "LEVEL",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_1",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "unreliable_contextual_neutral",
+                "color": "gray",
+                "expectationBasis": "neutral",
+                "role": "neutral_unreliable_nonveto",
+                "structurallyUsable": false,
+                "segments": [
+                  10
+                ],
+                "features": {
+                  "start_st": -7.700385702290648,
+                  "end_st": -8.321538721946238,
+                  "minimum_st": -8.377636773419752,
+                  "excursion_st": 0.8372354567222526,
+                  "fall_st": 0.6772510711291044,
+                  "recovery_st": 0.05609805147351388,
+                  "minimum_position": 0.7222222222222234,
+                  "net_st": -0.6211530196555906,
+                  "measured_net_st": -0.6211530196555906,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 1,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.1,
+                  "selected_extent_seconds": 0.09000000000000008
+                },
+                "perturbations": {
+                  "region_20ms": "LEVEL",
+                  "region_40ms": "LEVEL",
+                  "first_point": "LEVEL",
+                  "last_point": "LEVEL",
+                  "every_tenth": "LEVEL",
+                  "flagged_discontinuities": "LEVEL"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Human physical take",
+      "before": {
+        "id": "208711dc-c437-4afe-b6d3-2aa0e16fb7cb",
+        "chunks": [
+          {
+            "text": "我",
+            "grade": "CLEAR_DIFFERENCE",
+            "color": "red",
+            "constituents": [
+              {
+                "text": "我",
+                "shape": "LEVEL",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_1",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "CLEAR_DIFFERENCE",
+                "gradeReason": "conflicting_stable_pitch",
+                "color": "red",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  36
+                ],
+                "features": {
+                  "start_st": -0.2796669533689496,
+                  "end_st": 0.12116158150881093,
+                  "minimum_st": -0.7287295659651307,
+                  "excursion_st": 0.9022934291519465,
+                  "fall_st": 0.44906261259618113,
+                  "recovery_st": 0.8498911474739417,
+                  "minimum_position": 0.6,
+                  "net_st": 0.4008285348777605,
+                  "measured_net_st": 0.4008285348777605,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0.5832636504216966,
+                  "rise_consistency": 0.9851608059244717,
+                  "support_seconds": 0.36,
+                  "selected_extent_seconds": 0.35
+                },
+                "perturbations": {
+                  "region_20ms": "LEVEL",
+                  "region_40ms": "LEVEL",
+                  "first_point": "LEVEL",
+                  "last_point": "LEVEL",
+                  "every_tenth": "LEVEL",
+                  "flagged_discontinuities": "LEVEL"
+                }
+              }
+            ]
+          },
+          {
+            "text": "想",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "想",
+                "shape": "UNCLEAR",
+                "shapeReason": "perturbation_sensitive",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "perturbation_sensitive",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "perturbation_sensitive",
+                "color": "gray",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  28
+                ],
+                "features": {
+                  "start_st": 3.0853290492905865,
+                  "end_st": 1.278916658480788,
+                  "minimum_st": 0.9517025568739501,
+                  "excursion_st": 2.31676602255155,
+                  "fall_st": 2.1336264924166364,
+                  "recovery_st": 0.32721410160683795,
+                  "minimum_position": 0.9814814814814818,
+                  "net_st": -1.8064123908097984,
+                  "measured_net_st": -1.8064123908097984,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0.9054370751129016,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.28,
+                  "selected_extent_seconds": 0.27
+                },
+                "perturbations": {
+                  "region_20ms": "FALLING",
+                  "region_40ms": "FALLING",
+                  "first_point": "FALLING",
+                  "last_point": "UNCLEAR",
+                  "every_tenth": "FALLING",
+                  "flagged_discontinuities": "FALLING"
+                }
+              }
+            ]
+          },
+          {
+            "text": "买",
+            "grade": "STRONG_MATCH",
+            "color": "green",
+            "constituents": [
+              {
+                "text": "买",
+                "shape": "DIP_RISE",
+                "shapeReason": "dominant_supported_gesture",
+                "tone": "TONE_3",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "STRONG_MATCH",
+                "gradeReason": "compatible_stable_pitch",
+                "color": "green",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  31
+                ],
+                "features": {
+                  "start_st": -0.2557099310648635,
+                  "end_st": 0.4134792624133171,
+                  "minimum_st": -1.9105993325175794,
+                  "excursion_st": 2.65319578349649,
+                  "fall_st": 1.6548894014527158,
+                  "recovery_st": 2.65319578349649,
+                  "minimum_position": 0.4666666666666663,
+                  "net_st": 0.9983063820437741,
+                  "measured_net_st": 0.6691891934781806,
+                  "dominant_excursion_st": 2.65319578349649,
+                  "counter_excursion_st": 0.28071380965644555,
+                  "gesture_end_position": 0.9333333333333332,
+                  "fall_consistency": 0.9200089674962814,
+                  "rise_consistency": 0.9872868417485827,
+                  "support_seconds": 0.31,
+                  "selected_extent_seconds": 0.30000000000000004
+                },
+                "perturbations": {
+                  "region_20ms": "DIP_RISE",
+                  "region_40ms": "DIP_RISE",
+                  "first_point": "DIP_RISE",
+                  "last_point": "DIP_RISE",
+                  "every_tenth": "DIP_RISE",
+                  "flagged_discontinuities": "DIP_RISE"
+                }
+              }
+            ]
+          },
+          {
+            "text": "这个",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "这",
+                "shape": "UNCLEAR",
+                "shapeReason": "contradictory_fragments",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "contradictory_fragments",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "contradictory_fragments",
+                "color": "gray",
+                "expectationBasis": "resolved_surface",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  11,
+                  3
+                ],
+                "features": {},
+                "perturbations": {}
+              },
+              {
+                "text": "个",
+                "shape": "UNCLEAR",
+                "shapeReason": "insufficient_support",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "insufficient_support",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "no_retained_pitch",
+                "color": "gray",
+                "expectationBasis": "neutral",
+                "role": "neutral_unmeasured_nonveto",
+                "structurallyUsable": false,
+                "segments": [],
+                "features": {},
+                "perturbations": {}
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "208711dc-c437-4afe-b6d3-2aa0e16fb7cb",
+        "chunks": [
+          {
+            "text": "我",
+            "grade": "CLEAR_DIFFERENCE",
+            "color": "red",
+            "constituents": [
+              {
+                "text": "我",
+                "shape": "LEVEL",
+                "shapeReason": "retained_geometry",
+                "tone": "TONE_1",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "CLEAR_DIFFERENCE",
+                "gradeReason": "conflicting_stable_pitch",
+                "color": "red",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  36
+                ],
+                "features": {
+                  "start_st": -0.2796669533689496,
+                  "end_st": 0.12116158150881093,
+                  "minimum_st": -0.7287295659651307,
+                  "excursion_st": 0.9022934291519465,
+                  "fall_st": 0.44906261259618113,
+                  "recovery_st": 0.8498911474739417,
+                  "minimum_position": 0.6,
+                  "net_st": 0.4008285348777605,
+                  "measured_net_st": 0.4008285348777605,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0.5832636504216966,
+                  "rise_consistency": 0.9851608059244717,
+                  "support_seconds": 0.36,
+                  "selected_extent_seconds": 0.35
+                },
+                "perturbations": {
+                  "region_20ms": "LEVEL",
+                  "region_40ms": "LEVEL",
+                  "first_point": "LEVEL",
+                  "last_point": "LEVEL",
+                  "every_tenth": "LEVEL",
+                  "flagged_discontinuities": "LEVEL"
+                }
+              }
+            ]
+          },
+          {
+            "text": "想",
+            "grade": "UNAVAILABLE",
+            "color": "gray",
+            "constituents": [
+              {
+                "text": "想",
+                "shape": "UNCLEAR",
+                "shapeReason": "perturbation_sensitive",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "perturbation_sensitive",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "perturbation_sensitive",
+                "color": "gray",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": false,
+                "segments": [
+                  28
+                ],
+                "features": {
+                  "start_st": 3.0853290492905865,
+                  "end_st": 1.278916658480788,
+                  "minimum_st": 0.9517025568739501,
+                  "excursion_st": 2.31676602255155,
+                  "fall_st": 2.1336264924166364,
+                  "recovery_st": 0.32721410160683795,
+                  "minimum_position": 0.9814814814814818,
+                  "net_st": -1.8064123908097984,
+                  "measured_net_st": -1.8064123908097984,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 0.9054370751129016,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.28,
+                  "selected_extent_seconds": 0.27
+                },
+                "perturbations": {
+                  "region_20ms": "FALLING",
+                  "region_40ms": "FALLING",
+                  "first_point": "FALLING",
+                  "last_point": "UNCLEAR",
+                  "every_tenth": "FALLING",
+                  "flagged_discontinuities": "FALLING"
+                }
+              }
+            ]
+          },
+          {
+            "text": "买",
+            "grade": "STRONG_MATCH",
+            "color": "green",
+            "constituents": [
+              {
+                "text": "买",
+                "shape": "DIP_RISE",
+                "shapeReason": "dominant_supported_gesture",
+                "tone": "TONE_3",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "STRONG_MATCH",
+                "gradeReason": "compatible_stable_pitch",
+                "color": "green",
+                "expectationBasis": "lexical_family",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  31
+                ],
+                "features": {
+                  "start_st": -0.2557099310648635,
+                  "end_st": 0.4134792624133171,
+                  "minimum_st": -1.9105993325175794,
+                  "excursion_st": 2.65319578349649,
+                  "fall_st": 1.6548894014527158,
+                  "recovery_st": 2.65319578349649,
+                  "minimum_position": 0.4666666666666663,
+                  "net_st": 0.9983063820437741,
+                  "measured_net_st": 0.6691891934781806,
+                  "dominant_excursion_st": 2.65319578349649,
+                  "counter_excursion_st": 0.28071380965644555,
+                  "gesture_end_position": 0.9333333333333332,
+                  "fall_consistency": 0.9200089674962814,
+                  "rise_consistency": 0.9872868417485827,
+                  "support_seconds": 0.31,
+                  "selected_extent_seconds": 0.30000000000000004
+                },
+                "perturbations": {
+                  "region_20ms": "DIP_RISE",
+                  "region_40ms": "DIP_RISE",
+                  "first_point": "DIP_RISE",
+                  "last_point": "DIP_RISE",
+                  "every_tenth": "DIP_RISE",
+                  "flagged_discontinuities": "DIP_RISE"
+                }
+              }
+            ]
+          },
+          {
+            "text": "这个",
+            "grade": "STRONG_MATCH",
+            "color": "green",
+            "constituents": [
+              {
+                "text": "这",
+                "shape": "FALLING",
+                "shapeReason": "dominant_supported_island",
+                "tone": "TONE_4",
+                "strength": "full",
+                "variant": "ordinary",
+                "toneReason": "best_fit",
+                "grade": "STRONG_MATCH",
+                "gradeReason": "compatible_stable_pitch",
+                "color": "green",
+                "expectationBasis": "resolved_surface",
+                "role": "grade_bearing",
+                "structurallyUsable": true,
+                "segments": [
+                  11,
+                  3
+                ],
+                "features": {
+                  "start_st": 4.3175028845336225,
+                  "end_st": 1.9652169902565437,
+                  "minimum_st": 1.2990910972812642,
+                  "excursion_st": 3.0678472780230988,
+                  "fall_st": 3.0184117872523584,
+                  "recovery_st": 0.6661258929752796,
+                  "minimum_position": 0.9500000000000011,
+                  "net_st": -2.352285894277079,
+                  "measured_net_st": -2.352285894277079,
+                  "dominant_excursion_st": 0,
+                  "counter_excursion_st": 0,
+                  "gesture_end_position": 1,
+                  "fall_consistency": 1,
+                  "rise_consistency": 0,
+                  "support_seconds": 0.11,
+                  "selected_extent_seconds": 0.10000000000000009,
+                  "subordinate_late_island": 1,
+                  "primary_support_fraction": 0.7857142857142857,
+                  "secondary_support_seconds": 0.03,
+                  "secondary_excursion_st": 0.07929319171308657,
+                  "inter_island_jump_st": 1.8702752276088526,
+                  "full_track_support_seconds": 0.14,
+                  "full_track_extent_seconds": 0.1499999999999999,
+                  "full_track_end_st": 2.750412584383937
+                },
+                "perturbations": {
+                  "region_20ms": "FALLING",
+                  "region_40ms": "FALLING",
+                  "first_point": "FALLING",
+                  "last_point": "FALLING",
+                  "every_tenth": "FALLING",
+                  "flagged_discontinuities": "FALLING"
+                }
+              },
+              {
+                "text": "个",
+                "shape": "UNCLEAR",
+                "shapeReason": "insufficient_support",
+                "tone": "UNCLEAR",
+                "strength": "unavailable",
+                "variant": "ordinary",
+                "toneReason": "insufficient_support",
+                "grade": "UNAVAILABLE",
+                "gradeReason": "no_retained_pitch",
+                "color": "gray",
+                "expectationBasis": "neutral",
+                "role": "neutral_unmeasured_nonveto",
+                "structurallyUsable": false,
+                "segments": [],
+                "features": {},
+                "perturbations": {}
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "historical": {
+    "units": 53,
+    "completeRowsIdentical": true,
+    "rowChanges": [],
+    "shapeChanges": [],
+    "toneChanges": [],
+    "reasonChanges": [],
+    "gradeChanges": [],
+    "distribution": {
+      "STRONG_MATCH": 15,
+      "UNAVAILABLE": 24,
+      "PARTIAL_OR_WEAK": 4,
+      "CLEAR_DIFFERENCE": 10
+    }
+  },
+  "frozen": [
+    {
+      "id": "e5c17b4e-64e2-47da-806a-0aaacb61ca76",
+      "text": "买",
+      "shape": "UNCLEAR",
+      "shapeReason": "missing_critical_support",
+      "tone": "UNCLEAR",
+      "grade": "UNAVAILABLE"
+    },
+    {
+      "id": "430fcc2e-1975-4773-b6be-fe1176349237",
+      "text": "买",
+      "shape": "UNCLEAR",
+      "shapeReason": "insufficient_support",
+      "tone": "UNCLEAR",
+      "grade": "UNAVAILABLE"
+    },
+    {
+      "id": "89cee47e:买",
+      "text": "买",
+      "shape": "UNCLEAR",
+      "shapeReason": "ambiguous_geometry",
+      "tone": "UNCLEAR",
+      "grade": "UNAVAILABLE"
+    }
+  ],
+  "browser": [
+    {
+      "name": "browser",
+      "runs": 6,
+      "widths": [
+        320,
+        390,
+        412
+      ],
+      "errors": 0,
+      "details": "/tmp/benma-classification/browser/review.json"
+    },
+    {
+      "name": "tone-browser",
+      "runs": 3,
+      "widths": [
+        320,
+        390,
+        412
+      ],
+      "errors": 0,
+      "details": "/tmp/benma-classification/tone-browser/review.json"
+    },
+    {
+      "name": "measurement-browser",
+      "runs": 3,
+      "widths": [
+        320,
+        390,
+        412
+      ],
+      "errors": 0,
+      "details": "/tmp/benma-classification/measurement-browser/review.json"
+    }
+  ],
+  "hashes": {
+    "apps/mobile/src/__tests__/fixtures/toneClassificationPhysical.json": "61f783196fe16c9217d53885dcf8fc34b25b6777d0405b2270ee8bbd60988794",
+    "apps/mobile/src/__tests__/fixtures/toneFeedbackPhysical.json": "2dacaf05518f262b63293da3969cac0ae59881af329ce6eef890789cf94d56ee",
+    "services/api/tests/fixtures/pitch_measurement_430fcc2e.json": "644c0e030a7ddd8dd0c8e944a972e9ba0b01888d25729349d582ebb52a50fe02",
+    "docs/research/pronunciation-v2/2026-10-08-gesture-readability/calibration-corpus.json": "7f20f855e5059687907d1a28b4064c7b630bbe16b48633ec1e5fde70607397b3"
+  },
+  "validation": {
+    "focused": 137,
+    "mobile": 675,
+    "mobileSuites": 42,
+    "backendResearch": 250,
+    "toneReplay": 2,
+    "measurementReplay": 2,
+    "savedGestureReplay": 53,
+    "lint": "pass",
+    "typecheck": "pass",
+    "webExport": "pass",
+    "diffCheck": "pass"
+  }
+}

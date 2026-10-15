@@ -307,7 +307,7 @@ class PraatAcousticAnalyzer:
         import parselmouth
 
         self.algorithm_version = (
-            f"1.2.0-parselmouth-{parselmouth.VERSION}-praat-{parselmouth.PRAAT_VERSION}"
+            f"1.3.0-parselmouth-{parselmouth.VERSION}-praat-{parselmouth.PRAAT_VERSION}"
         )
         self.parameters: dict[str, Any] = {
             "pitch_floor": 50.0,
@@ -321,7 +321,7 @@ class PraatAcousticAnalyzer:
             "very_accurate": False,
             "voicing_threshold": 0.45,
             "energy_gate": "bounded-recording-noise-floor-v1",
-            "quality_gate": "spectral-and-filter-disagreement-v1",
+            "quality_gate": "spectral-filter-background-candidate-v2",
         }
 
     def analyze(self, path: Path) -> dict[str, Any]:
@@ -411,18 +411,31 @@ class PraatAcousticAnalyzer:
                         ],
                     }
                 )
+        from benma_api.pronunciation.pitch_rejection import (
+            REJECTION_VERSION,
+            background_periodicity,
+            reject_ambiguous_branches,
+            reject_background_pitch,
+        )
+
+        background = background_periodicity(values, rate)
+        background["rejected_frames"] = reject_background_pitch(points, background)
+        branch_count = reject_ambiguous_branches(points)
         reject_terminal_octave_ambiguity(points, threshold)
         result = acoustic_result(rate, samples, points)
         result["channel_count"] = 1
         result["selection"] = {
-            "version": "bounded-terminal-ambiguity-v1",
+            "version": REJECTION_VERSION,
             "repaired_frame_count": 0,
-            "artifact_rejected_frame_count": sum(
+            "artifact_rejected_frame_count": branch_count
+            + sum(
                 p["selection_reason"] == "terminal_octave_ambiguity_no_supported_alternative"
                 for p in points
             ),
-            "policy": "reject_unsupported_terminal_branch_never_unwrap",
+            "candidate_ambiguous_branch_frames": branch_count,
+            "policy": "reject_proven_ambiguity_never_replace_f0",
         }
+        result["background_periodicity"] = background
         result["energy_gate"] = {"threshold_rms": threshold, "noise_floor_rms": floor}
         result["limitations"] = [
             "Praat reduces but cannot eliminate octave errors or creaky-voice ambiguity.",

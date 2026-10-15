@@ -51,8 +51,8 @@ export function defaultUnit(units: PronunciationUnit[]): string | null {
     units.find(u => u.eligibility?.state === 'sufficient') ?? units[0])?.id ?? null;
 }
 
-// Retained measurements, not the smoothed Mine contour. No recentering or local
-// scaling: every unit uses the same domain from this entire saved attempt.
+// Retained measurements, not the smoothed Mine contour. This evidence projection
+// keeps the recording domain; PitchShapePlot owns a separate local display domain.
 export function workspacePitch(data: Data) {
   const source = data.tone_graph?.filtered;
   const segments = source?.segments ?? pitchSegments(data.measured_pitch).map(segment => segment.map(p => ({

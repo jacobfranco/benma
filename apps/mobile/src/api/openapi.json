@@ -1922,6 +1922,24 @@
             ],
             "title": "Pitch Track Evidence Id"
           },
+          "pronunciation_chunk_candidates": {
+            "items": {
+              "$ref": "#/components/schemas/PronunciationChunkCandidate"
+            },
+            "title": "Pronunciation Chunk Candidates",
+            "type": "array"
+          },
+          "pronunciation_chunk_policy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pronunciation Chunk Policy"
+          },
           "quality_issues": {
             "items": {
               "type": "string"
@@ -2664,7 +2682,7 @@
             "type": "string"
           },
           "version": {
-            "default": "voiced-support-completeness-v1",
+            "default": "voiced-support-completeness-v2-candidate-branch",
             "title": "Version",
             "type": "string"
           }
@@ -3010,6 +3028,50 @@
           "created_at"
         ],
         "title": "PronunciationAttemptResponse",
+        "type": "object"
+      },
+      "PronunciationChunkCandidate": {
+        "description": "Linguistic projection of perceived text; never an acoustic/timing unit.\n\nThe workspace may accept this span only over whole accepted timing units.\nNo playback bounds, pitch ownership, target text or tone grade lives here.",
+        "properties": {
+          "character_end": {
+            "exclusiveMinimum": 0.0,
+            "title": "Character End",
+            "type": "integer"
+          },
+          "character_start": {
+            "minimum": 0.0,
+            "title": "Character Start",
+            "type": "integer"
+          },
+          "reason": {
+            "enum": [
+              "lexical_word",
+              "demonstrative_classifier",
+              "numeral_classifier"
+            ],
+            "title": "Reason",
+            "type": "string"
+          },
+          "syllable_indices": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Syllable Indices",
+            "type": "array"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "character_start",
+          "character_end",
+          "syllable_indices",
+          "reason"
+        ],
+        "title": "PronunciationChunkCandidate",
         "type": "object"
       },
       "PronunciationResultResponse": {

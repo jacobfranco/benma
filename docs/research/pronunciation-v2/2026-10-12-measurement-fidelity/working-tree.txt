@@ -1,0 +1,106 @@
+Focused pass files (no production behavior changed)
+apps/mobile/scripts/measurement-fidelity-browser.cjs (new in this pass)
+apps/mobile/src/__tests__/pitchMeasurement.test.ts (new in this pass)
+benchmark/pronunciation_v2/measurement_audit.cjs (new in this pass)
+benchmark/pronunciation_v2/raw_tracker_audit.py (new in this pass)
+benchmark/pronunciation_v2/test_measurement_audit.cjs (new in this pass)
+benchmark/pronunciation_v2/test_raw_tracker_audit.py (new in this pass)
+benchmark/pronunciation_v2/workspace_projection.cjs (modified pre-existing untracked file)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/README.md (new in this pass)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/commands.md (new in this pass)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/history-replay.json (new in this pass)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/mai-frames.csv (new in this pass)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/ownership-summary.json (new in this pass)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/recording-comparison.json (new in this pass)
+services/api/tests/fixtures/pitch_measurement_430fcc2e.json (new in this pass)
+services/api/tests/fixtures/raw_tracker_mai_430fcc2e.json (new in this pass)
+services/api/tests/test_pitch_projection_contract.py (modified pre-existing untracked file)
+docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/working-tree.txt (new in this pass)
+
+git diff --stat
+ .../src/__tests__/pronunciationSafety.test.ts      |   1 +
+ .../src/__tests__/pronunciationWorkspace.test.ts   | 136 +++++++++++++-
+ .../src/__tests__/transcriptFeedback.test.ts       |   4 +-
+ apps/mobile/src/api/openapi.generated.ts           |   9 +
+ apps/mobile/src/api/openapi.json                   |  62 ++++++
+ apps/mobile/src/app/pronunciation.tsx              |   2 -
+ apps/mobile/src/components/PitchPlot.tsx           |  12 +-
+ apps/mobile/src/speech/PronunciationWorkspace.tsx  | 194 ++++++++++++++-----
+ apps/mobile/src/speech/pronunciationWorkspace.ts   |   4 +-
+ .../pronunciation-learner-experience.md            |  29 +++
+ docs/development/pronunciation-workspace.md        | 208 +++++++++++++++++++++
+ docs/development/tone-graph-v2.md                  |  29 +++
+ .../api/src/benma_api/pronunciation/perceived.py   |   7 +
+ services/api/src/benma_api/schemas.py              |  16 ++
+ 14 files changed, 653 insertions(+), 60 deletions(-)
+
+git status --short
+ M apps/mobile/src/__tests__/pronunciationSafety.test.ts
+ M apps/mobile/src/__tests__/pronunciationWorkspace.test.ts
+ M apps/mobile/src/__tests__/transcriptFeedback.test.ts
+ M apps/mobile/src/api/openapi.generated.ts
+ M apps/mobile/src/api/openapi.json
+ M apps/mobile/src/app/pronunciation.tsx
+ M apps/mobile/src/components/PitchPlot.tsx
+ M apps/mobile/src/speech/PronunciationWorkspace.tsx
+ M apps/mobile/src/speech/pronunciationWorkspace.ts
+ M docs/development/pronunciation-learner-experience.md
+ M docs/development/pronunciation-workspace.md
+ M docs/development/tone-graph-v2.md
+ M services/api/src/benma_api/pronunciation/perceived.py
+ M services/api/src/benma_api/schemas.py
+?? apps/mobile/scripts/measurement-fidelity-browser.cjs
+?? apps/mobile/scripts/product-feedback-browser.cjs
+?? apps/mobile/scripts/pronunciation-chunks-browser.cjs
+?? apps/mobile/scripts/tone-feedback-browser.cjs
+?? apps/mobile/src/__tests__/chunkPitchGrade.test.ts
+?? apps/mobile/src/__tests__/fixtures/pronunciationChunkCases.json
+?? apps/mobile/src/__tests__/fixtures/toneFeedbackPhysical.json
+?? apps/mobile/src/__tests__/learnerPitchGrade.test.ts
+?? apps/mobile/src/__tests__/pitchMeasurement.test.ts
+?? apps/mobile/src/__tests__/pitchShape.test.ts
+?? apps/mobile/src/__tests__/pronunciationChunkFixture.ts
+?? apps/mobile/src/__tests__/pronunciationChunks.test.ts
+?? apps/mobile/src/__tests__/pronunciationChunks.web.test.ts
+?? apps/mobile/src/__tests__/toneFeedbackFixture.ts
+?? apps/mobile/src/__tests__/toneFeedbackWorkspace.test.ts
+?? apps/mobile/src/__tests__/toneFeedbackWorkspace.web.test.ts
+?? apps/mobile/src/__tests__/toneLikeness.test.ts
+?? apps/mobile/src/components/PitchShapePlot.tsx
+?? apps/mobile/src/speech/chunkPitchGrade.ts
+?? apps/mobile/src/speech/learnerPitchGrade.ts
+?? apps/mobile/src/speech/pitchFeedback.ts
+?? apps/mobile/src/speech/pitchShape.ts
+?? apps/mobile/src/speech/pitchShapeDisplay.ts
+?? apps/mobile/src/speech/pitchShapeEvidence.ts
+?? apps/mobile/src/speech/pronunciationChunks.ts
+?? apps/mobile/src/speech/toneLikeness.ts
+?? benchmark/pronunciation_v2/energy_gate_audit.py
+?? benchmark/pronunciation_v2/gesture_readability.py
+?? benchmark/pronunciation_v2/gesture_readability_audit.py
+?? benchmark/pronunciation_v2/language_preflight.py
+?? benchmark/pronunciation_v2/measurement_audit.cjs
+?? benchmark/pronunciation_v2/product_acceptance.py
+?? benchmark/pronunciation_v2/product_feedback.cjs
+?? benchmark/pronunciation_v2/product_feedback_audit.py
+?? benchmark/pronunciation_v2/raw_tracker_audit.py
+?? benchmark/pronunciation_v2/test_gesture_readability.py
+?? benchmark/pronunciation_v2/test_measurement_audit.cjs
+?? benchmark/pronunciation_v2/test_product_feedback.py
+?? benchmark/pronunciation_v2/test_raw_tracker_audit.py
+?? benchmark/pronunciation_v2/test_tone_feedback.cjs
+?? benchmark/pronunciation_v2/tone_feedback.cjs
+?? benchmark/pronunciation_v2/tone_feedback_audit.cjs
+?? benchmark/pronunciation_v2/workspace_projection.cjs
+?? docs/research/pronunciation-v2/2026-10-08-gesture-readability/
+?? docs/research/pronunciation-v2/2026-10-09-product-feedback/
+?? docs/research/pronunciation-v2/2026-10-09-pronunciation-chunks/
+?? docs/research/pronunciation-v2/2026-10-12-measurement-fidelity/
+?? services/api/src/benma_api/pronunciation/chunks.py
+?? services/api/tests/fixtures/energy_gate_saved_controls.json
+?? services/api/tests/fixtures/pitch_measurement_430fcc2e.json
+?? services/api/tests/fixtures/pitch_projection_89cee47e.json
+?? services/api/tests/fixtures/raw_tracker_mai_430fcc2e.json
+?? services/api/tests/test_energy_gate_saved_controls.py
+?? services/api/tests/test_pitch_projection_contract.py
+?? services/api/tests/test_pronunciation_chunks.py

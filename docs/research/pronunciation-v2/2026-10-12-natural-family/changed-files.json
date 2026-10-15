@@ -1,0 +1,223 @@
+{
+  "basis": "Arrival working tree, including pre-existing untracked files; not Git HEAD. Inventory itself excluded from line totals. SequenceMatcher line counts.",
+  "arrival_files_hash_identical": 1127,
+  "arrival_files_deleted": [],
+  "summary": {
+    "modified": 12,
+    "new": 14,
+    "added_lines": 43439,
+    "deleted_lines": 146,
+    "code_tests_audits_browser_scripts": {
+      "files": 16,
+      "added_lines": 877,
+      "deleted_lines": 146
+    }
+  },
+  "files": [
+    {
+      "path": "apps/mobile/scripts/product-feedback-browser.cjs",
+      "status": "modified from arrival",
+      "added_lines": 8,
+      "deleted_lines": 8,
+      "before_sha256": "1ba2cb77191403611d3c208b6ce88141c4e872945e856fcb49339bb937acfabd",
+      "after_sha256": "b1353b99577298ff68204568bcf9f3886041c704c01ec1da7182289f0f1d648f"
+    },
+    {
+      "path": "apps/mobile/scripts/pronunciation-chunks-browser.cjs",
+      "status": "modified from arrival",
+      "added_lines": 11,
+      "deleted_lines": 11,
+      "before_sha256": "915dc568ea96950dc485d79b389eb9e727b26d78d72862683dea3c839209acde",
+      "after_sha256": "cfe95543c51a62bd19e6d4d4565aba89ab1ff1c676eb57b46640e348e93da566"
+    },
+    {
+      "path": "apps/mobile/scripts/tone-classification-browser.cjs",
+      "status": "modified from arrival",
+      "added_lines": 6,
+      "deleted_lines": 6,
+      "before_sha256": "0c31e584a4876e775e6d74a9c86757c8672cc05e7a962a353cbcd18acacfd4ef",
+      "after_sha256": "0703c9bc56de17e14c164dfc9ff0d81341557bf4551ad857aef3e082d3d2dda1"
+    },
+    {
+      "path": "apps/mobile/scripts/tone-feedback-browser.cjs",
+      "status": "modified from arrival",
+      "added_lines": 13,
+      "deleted_lines": 2,
+      "before_sha256": "5760eb4601ae66a5ef26431cb2ae8684d4e58bd7a5465fc4b8c7561bffba3339",
+      "after_sha256": "e58d4d8bf59ec4dc65427b307cf22319206bbd681d7c5d53f646f8c284c351b6"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/fixtures/naturalToneContours.json",
+      "status": "new",
+      "added_lines": 332,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "51921dd26da6e4d601d4ea5a022e5fc76c63993a569ecb78b9a438881e0fa330"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/naturalToneFamily.test.ts",
+      "status": "new",
+      "added_lines": 93,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "f39d8fc20f4b8d67c1329c184f6faef008c3619e8e9cc211119cdbab5588c43b"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/toneClassification.test.ts",
+      "status": "modified from arrival",
+      "added_lines": 20,
+      "deleted_lines": 15,
+      "before_sha256": "2078e42bb43545e10ed081262a8fa3f6eac13b9219a276f85ad1294b596d90a5",
+      "after_sha256": "d0c8ad10b205a1cfac53e7cc5324fa5d330ab6e79e76fe26501c737b7f5fa0ba"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/toneFeedbackWorkspace.test.ts",
+      "status": "modified from arrival",
+      "added_lines": 3,
+      "deleted_lines": 3,
+      "before_sha256": "0a94cf88c9cb429b04c3626c0148763dc519b24b6e304355ae42f79247add9ca",
+      "after_sha256": "b233551ffacebf265831ab3a756c0a49da05abe04d33c10c8dbb6eea49977739"
+    },
+    {
+      "path": "apps/mobile/src/__tests__/toneLikeness.test.ts",
+      "status": "modified from arrival",
+      "added_lines": 14,
+      "deleted_lines": 15,
+      "before_sha256": "cc9892402b58df615137abc51cad1faae1c1a53c7975fe9963f4a9f983486f96",
+      "after_sha256": "e5b1314b40b2952a760e178a98581cc36d614e7d36ef1fee0cfa4230bbf36c93"
+    },
+    {
+      "path": "apps/mobile/src/speech/pitchShape.ts",
+      "status": "modified from arrival",
+      "added_lines": 22,
+      "deleted_lines": 7,
+      "before_sha256": "3ab7dab790a614bb75389721e5036cebe12a880b5d2eff4df03b403c37497765",
+      "after_sha256": "c415d10055c67484873c295c59823fa6479650c394c645e85f306afb313d27c9"
+    },
+    {
+      "path": "apps/mobile/src/speech/toneLikeness.ts",
+      "status": "modified from arrival",
+      "added_lines": 168,
+      "deleted_lines": 72,
+      "before_sha256": "82b2d0e85fc5b34410ae46d22e77166753d7741c011c39683d625e2d6fad79c3",
+      "after_sha256": "0ead119fa66d5116928e4fcc3c12649905275a90c5f2f006fe3e6e2fab85d65a"
+    },
+    {
+      "path": "benchmark/pronunciation_v2/natural_family_audit.cjs",
+      "status": "new",
+      "added_lines": 135,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "112d384ee2847882675a824cd313ae1a8e3f29c3ae9c7398c0052c7cfc32e31a"
+    },
+    {
+      "path": "benchmark/pronunciation_v2/test_natural_family_audit.cjs",
+      "status": "new",
+      "added_lines": 38,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "30a02a9e132ef5503aaf96570acc56bbb0e12bce556229055b1c1851d248e78e"
+    },
+    {
+      "path": "benchmark/pronunciation_v2/test_tone_feedback.cjs",
+      "status": "modified from arrival",
+      "added_lines": 7,
+      "deleted_lines": 5,
+      "before_sha256": "63f5acefde164a217e59bacdc8933fda5aef4263b0f0aaf6c67abc031007c2f6",
+      "after_sha256": "e2e1257b354475c65243bf6e93069265be98fddbce30f353d70d733481f7646b"
+    },
+    {
+      "path": "benchmark/pronunciation_v2/tone_feedback.cjs",
+      "status": "modified from arrival",
+      "added_lines": 4,
+      "deleted_lines": 1,
+      "before_sha256": "ef52cd5d03ef7fce790739861d65fbb2d212a89f5271593c943a88ed1bd58499",
+      "after_sha256": "3672ac68ddefedd7a236ebf8b70537df21307e6b4ad39187f0211d2c790bd685"
+    },
+    {
+      "path": "benchmark/pronunciation_v2/tone_feedback_audit.cjs",
+      "status": "modified from arrival",
+      "added_lines": 3,
+      "deleted_lines": 1,
+      "before_sha256": "8b9f5b81057d331e1a7a4164bb4382c98693ab66f66ff322a24ffdbcd3d021c7",
+      "after_sha256": "5ec4ae93735c3f690a10ae7bbf35af0049f8abe906aee8bb03d5e86ecd1246b3"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/README.md",
+      "status": "new",
+      "added_lines": 421,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "ea52a921ffa58178e162a9afa041b090ca0392217d24f41a52a12b78eeca651d"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/baseline.json",
+      "status": "new",
+      "added_lines": 6409,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "bb558a320523e1a852c21f0992208d2ef5b9a5a087d7cf8833142c2d8b604338"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/changed-files.json",
+      "status": "new",
+      "note": "This inventory; excluded from line totals and self-hashing."
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/historical-review.json",
+      "status": "new",
+      "added_lines": 1882,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "dd5340cc887c9312cb63967fef365cbe82aff74a16e2062ce007897a38558d39"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/historical-review.svg",
+      "status": "new",
+      "added_lines": 1,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "414926991c507302cd05d31401f95dde5b6e5792e7ac9d453fe106f02bc9e213"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/physical-and-boundary-contours.svg",
+      "status": "new",
+      "added_lines": 1,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "cf29146db88b627f66df4f25f34ac2faea23142d6bd9a52e79f47a4276e40a04"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/results.json",
+      "status": "new",
+      "added_lines": 20437,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "58d0a5938fe6d6fc952b8fdc3ab57cc989247330ddea9fc253396a5a18b5641c"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/tone-feedback-matrix.csv",
+      "status": "new",
+      "added_lines": 161,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "3435925ed5a94a3aa8372844e2c1b31f2284edffa4b67caf0d5c3c290dc8e1ba"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/tone-feedback-results.json",
+      "status": "new",
+      "added_lines": 12478,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "bf0f1b8019d790000cdc9815d42803cc65bfd267e16a4839495d4acf730bfc31"
+    },
+    {
+      "path": "docs/research/pronunciation-v2/2026-10-12-natural-family/validation.json",
+      "status": "new",
+      "added_lines": 772,
+      "deleted_lines": 0,
+      "before_sha256": null,
+      "after_sha256": "68222db38de6ea8076bc0f4480333e90a465ca14845ad84010f9e1fafbc6c744"
+    }
+  ]
+}

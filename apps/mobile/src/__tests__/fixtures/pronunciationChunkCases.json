@@ -1,0 +1,242 @@
+[
+  {
+    "text": "我想买这个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "我", "pinyin": "wǒ", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["wo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "想", "pinyin": "xiǎng", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["xiang3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "买", "pinyin": "mǎi", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["mai3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 3, "character_start": 3, "character_end": 4, "characters": "这", "pinyin": "zhè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["zhe4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 4, "character_start": 4, "character_end": 5, "characters": "个", "pinyin": "ge", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": [{"text": "这个", "character_start": 3, "character_end": 5, "syllable_indices": [3, 4], "reason": "demonstrative_classifier"}]
+  },
+  {
+    "text": "那个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "那", "pinyin": "nà", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["na4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "个", "pinyin": "ge", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": [{"text": "那个", "character_start": 0, "character_end": 2, "syllable_indices": [0, 1], "reason": "demonstrative_classifier"}]
+  },
+  {
+    "text": "我要一个苹果",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "我", "pinyin": "wǒ", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["wo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "要", "pinyin": "yào", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "grammar", "resolution_confidence": "high", "alternatives": ["yao4", "yao1", "yao3"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "一", "pinyin": "yī", "lexical_tone": 1, "expected_surface_tone": 2, "surface_rule": "yi_quantity", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yi1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 3, "character_start": 3, "character_end": 4, "characters": "个", "pinyin": "gè", "lexical_tone": 4, "expected_surface_tone": null, "surface_rule": "quantity_ge_reduction_optional", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 4, "character_start": 4, "character_end": 5, "characters": "苹", "pinyin": "píng", "lexical_tone": 2, "expected_surface_tone": 2, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ping2"], "expected_tone": [{"position": 0.0, "height": 0.5}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 5, "character_start": 5, "character_end": 6, "characters": "果", "pinyin": "guǒ", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["guo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": [{"text": "一个", "character_start": 2, "character_end": 4, "syllable_indices": [2, 3], "reason": "numeral_classifier"}]
+  },
+  {
+    "text": "这个……这个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "这", "pinyin": "zhè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["zhe4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "个", "pinyin": "ge", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 4, "character_end": 5, "characters": "这", "pinyin": "zhè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["zhe4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 3, "character_start": 5, "character_end": 6, "characters": "个", "pinyin": "ge", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": [{"text": "这个", "character_start": 0, "character_end": 2, "syllable_indices": [0, 1], "reason": "demonstrative_classifier"}, {"text": "这个", "character_start": 4, "character_end": 6, "syllable_indices": [2, 3], "reason": "demonstrative_classifier"}]
+  },
+  {
+    "text": "雨伞",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "雨", "pinyin": "yǔ", "lexical_tone": 3, "expected_surface_tone": 2, "surface_rule": "third_tone_pair", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yu3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "伞", "pinyin": "sǎn", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "third_tone_pair_final", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["san3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": [{"text": "雨伞", "character_start": 0, "character_end": 2, "syllable_indices": [0, 1], "reason": "lexical_word"}]
+  },
+  {
+    "text": "不是",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "不", "pinyin": "bù", "lexical_tone": 4, "expected_surface_tone": 2, "surface_rule": "bu_before_fourth", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["bu4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "是", "pinyin": "shì", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["shi4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "去吧",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "去", "pinyin": "qù", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["qu4", "qu1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "吧", "pinyin": "ba", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "grammar", "resolution_confidence": "high", "alternatives": ["ba5", "ba1", "pa1"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "你好吗",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "你", "pinyin": "nǐ", "lexical_tone": 3, "expected_surface_tone": 2, "surface_rule": "third_tone_pair", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ni3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "好", "pinyin": "hǎo", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "third_tone_pair_final", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["hao3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "吗", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ma5", "ma2", "ma3"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "我们",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "我", "pinyin": "wǒ", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["wo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "们", "pinyin": "men", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["men5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "三个人",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "三", "pinyin": "sān", "lexical_tone": 1, "expected_surface_tone": 1, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["san1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "个", "pinyin": "gè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "人", "pinyin": "rén", "lexical_tone": 2, "expected_surface_tone": 2, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ren2"], "expected_tone": [{"position": 0.0, "height": 0.5}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "两本书",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "两", "pinyin": "liǎng", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["liang3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "本", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ben3", "ben1"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "书", "pinyin": "shū", "lexical_tone": 1, "expected_surface_tone": 1, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["shu1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "我想",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "我", "pinyin": "wǒ", "lexical_tone": 3, "expected_surface_tone": 2, "surface_rule": "third_tone_pair", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["wo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "想", "pinyin": "xiǎng", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "third_tone_pair_final", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["xiang3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "第一个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "第", "pinyin": "dì", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["di4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "一", "pinyin": "yī", "lexical_tone": 1, "expected_surface_tone": 1, "surface_rule": "yi_ordinal_or_number", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yi1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "个", "pinyin": "gè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "一个个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "一", "pinyin": "yī", "lexical_tone": 1, "expected_surface_tone": 2, "surface_rule": "yi_quantity", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yi1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "个", "pinyin": "gè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "个", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ge4", "ge3", "gan4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "一共",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "一", "pinyin": "yī", "lexical_tone": 1, "expected_surface_tone": null, "surface_rule": "yi_grammatical_context_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yi1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "共", "pinyin": "gòng", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["gong4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "这，个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "这", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["zhe4", "zhei4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 2, "character_end": 3, "characters": "个", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ge4", "ge3", "gan4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "这A个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "这", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["zhe4", "zhei4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 2, "character_end": 3, "characters": "个", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ge4", "ge3", "gan4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "这1个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "这", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["zhe4", "zhei4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 2, "character_end": 3, "characters": "个", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ge4", "ge3", "gan4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "这🙂个",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "这", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["zhe4", "zhei4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 2, "character_end": 3, "characters": "个", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["ge4", "ge3", "gan4"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "贵州",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "贵", "pinyin": "guì", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["gui4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "州", "pinyin": "zhōu", "lexical_tone": 1, "expected_surface_tone": 1, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["zhou1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": []
+  },
+  {
+    "text": "我想买这个雨伞和那个雨伞再要一个苹果",
+    "provenance": "Deterministic linguistic fixture; no recorded timing/audio is claimed.",
+    "syllables": [
+      {"index": 0, "character_start": 0, "character_end": 1, "characters": "我", "pinyin": "wǒ", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["wo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 1, "character_start": 1, "character_end": 2, "characters": "想", "pinyin": "xiǎng", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["xiang3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 2, "character_start": 2, "character_end": 3, "characters": "买", "pinyin": "mǎi", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["mai3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 3, "character_start": 3, "character_end": 4, "characters": "这", "pinyin": "zhè", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["zhe4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 4, "character_start": 4, "character_end": 5, "characters": "个", "pinyin": "ge", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 5, "character_start": 5, "character_end": 6, "characters": "雨", "pinyin": "yǔ", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yu3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 6, "character_start": 6, "character_end": 7, "characters": "伞", "pinyin": "sǎn", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["san3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 7, "character_start": 7, "character_end": 8, "characters": "和", "pinyin": null, "lexical_tone": null, "expected_surface_tone": null, "surface_rule": "reading_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "unresolved", "resolution_confidence": "unresolved", "alternatives": ["he2", "he4", "hu2", "huo2", "huo4", "huo5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 8, "character_start": 8, "character_end": 9, "characters": "那", "pinyin": "nà", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["na4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 9, "character_start": 9, "character_end": 10, "characters": "个", "pinyin": "ge", "lexical_tone": 0, "expected_surface_tone": 0, "surface_rule": "lexical_neutral", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge5"], "expected_tone": [], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 10, "character_start": 10, "character_end": 11, "characters": "雨", "pinyin": "yǔ", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yu3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 11, "character_start": 11, "character_end": 12, "characters": "伞", "pinyin": "sǎn", "lexical_tone": 3, "expected_surface_tone": null, "surface_rule": "prosodic_grouping_unresolved", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["san3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 12, "character_start": 12, "character_end": 13, "characters": "再", "pinyin": "zài", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "dictionary", "resolution_confidence": "high", "alternatives": ["zai4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 13, "character_start": 13, "character_end": 14, "characters": "要", "pinyin": "yào", "lexical_tone": 4, "expected_surface_tone": 4, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "grammar", "resolution_confidence": "high", "alternatives": ["yao4", "yao1", "yao3"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 14, "character_start": 14, "character_end": 15, "characters": "一", "pinyin": "yī", "lexical_tone": 1, "expected_surface_tone": 2, "surface_rule": "yi_quantity", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["yi1"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 15, "character_start": 15, "character_end": 16, "characters": "个", "pinyin": "gè", "lexical_tone": 4, "expected_surface_tone": null, "surface_rule": "quantity_ge_reduction_optional", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ge4"], "expected_tone": [{"position": 0.0, "height": 1.0}, {"position": 1.0, "height": 0.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 16, "character_start": 16, "character_end": 17, "characters": "苹", "pinyin": "píng", "lexical_tone": 2, "expected_surface_tone": 2, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["ping2"], "expected_tone": [{"position": 0.0, "height": 0.5}, {"position": 1.0, "height": 1.0}], "observed_gesture": "unclear", "observed_confidence": "low"},
+      {"index": 17, "character_start": 17, "character_end": 18, "characters": "果", "pinyin": "guǒ", "lexical_tone": 3, "expected_surface_tone": 3, "surface_rule": "unchanged", "surface_rule_version": "exact-text-surface-v1.1", "reading_source": "phrase", "resolution_confidence": "high", "alternatives": ["guo3"], "expected_tone": [{"position": 0.0, "height": 0.25}, {"position": 0.5, "height": 0.0}, {"position": 1.0, "height": 0.75}], "observed_gesture": "unclear", "observed_confidence": "low"}
+    ],
+    "pronunciation_chunk_policy": "perceived-pronunciation-chunks-v1",
+    "pronunciation_chunk_candidates": [{"text": "这个", "character_start": 3, "character_end": 5, "syllable_indices": [3, 4], "reason": "demonstrative_classifier"}, {"text": "雨伞", "character_start": 5, "character_end": 7, "syllable_indices": [5, 6], "reason": "lexical_word"}, {"text": "那个", "character_start": 8, "character_end": 10, "syllable_indices": [8, 9], "reason": "demonstrative_classifier"}, {"text": "雨伞", "character_start": 10, "character_end": 12, "syllable_indices": [10, 11], "reason": "lexical_word"}, {"text": "一个", "character_start": 14, "character_end": 16, "syllable_indices": [14, 15], "reason": "numeral_classifier"}]
+  }
+]

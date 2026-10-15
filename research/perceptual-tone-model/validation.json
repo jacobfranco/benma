@@ -1,0 +1,131 @@
+{
+  "checkpoint_date": "2026-10-15",
+  "status": "passed",
+  "scope": "Documentation, research schema and offline baseline/export scaffolding only. No existing file changed. No commit, push, deployment, model training, provider calls or production DB writes.",
+  "production_files_changed": [],
+  "arrival_files_verified_unchanged": 1195,
+  "arrival_inventory_sha256": "795513d16e13a156218a65d35a45318a4a0230a1d2255304e39e14ebb356c020",
+  "baseline_manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+  "baseline_pinned_files": 413,
+  "checks": [
+    {
+      "name": "focused_pronunciation",
+      "status": "passed",
+      "cwd": "apps/mobile",
+      "command": "npm test -- --runTestsByPath src/__tests__/conservativeLearnerGrade.test.ts src/__tests__/learnerPitchGrade.test.ts src/__tests__/chunkPitchGrade.test.ts src/__tests__/toneClassification.test.ts src/__tests__/pitchRobustness.test.ts src/__tests__/toneFeedbackWorkspace.test.ts",
+      "tests": 124,
+      "suites": 6
+    },
+    {
+      "name": "established_audits",
+      "status": "passed",
+      "command": "node --test benchmark/pronunciation_v2/test_conservative_grading_audit.cjs benchmark/pronunciation_v2/test_natural_acceptance_audit.cjs benchmark/pronunciation_v2/test_natural_family_audit.cjs benchmark/pronunciation_v2/test_measurement_audit.cjs benchmark/pronunciation_v2/test_tone_feedback.cjs",
+      "files_passed": 5,
+      "comparison": "Exact current conservative-grading results.json plus upstream frozen-input assertions."
+    },
+    {
+      "name": "historical_and_physical_measurement_replay",
+      "status": "passed",
+      "command": "PYTHONPATH=. services/api/.venv/bin/python research/perceptual-tone-model/verify_measurements.py",
+      "historical_recordings": 13,
+      "historical_units": 53,
+      "historical_corpus_byte_identical": true,
+      "historical_projection_byte_identical": true,
+      "historical_fixture_byte_identical": true,
+      "newest_physical_fixtures": 2,
+      "newest_saved_evidence_and_canonical_wav_equal": true,
+      "selected_f0_equals_raw_f0": true,
+      "log_sha256": "872a283bd1d2d4fb772e1bda1fe39ed88ebee8ea4c8a91e1666bdd6e137f623b"
+    },
+    {
+      "name": "export_contract",
+      "status": "passed",
+      "command": "node --test research/perceptual-tone-model/test_evaluate.cjs",
+      "coverage": [
+        "63-unit grade/family parity",
+        "input nonmutation",
+        "wrong source hash and target rejection",
+        "lexical/context mismatch rejection",
+        "duplicate ID rejection",
+        "raw disagreement retention",
+        "unknown training speaker rejection",
+        "speaker-disjoint partition validation",
+        "vote-count mismatch rejection"
+      ]
+    },
+    {
+      "name": "export_reproducibility",
+      "status": "passed",
+      "command": "node research/perceptual-tone-model/evaluate.cjs research/perceptual-tone-model/stage0.dataset.jsonl /tmp/benma-checkpoint-stage0-replay.jsonl",
+      "comparison_command": "cmp research/perceptual-tone-model/stage0.baseline.jsonl /tmp/benma-checkpoint-stage0-replay.jsonl",
+      "byte_identical": true,
+      "existing_output_overwrite_rejected": true
+    },
+    {
+      "name": "whitespace",
+      "status": "passed",
+      "command": "git diff --check",
+      "new_research_files_trailing_whitespace_checked": true
+    },
+    {
+      "name": "arrival_scope",
+      "status": "passed",
+      "method": "SHA-256 comparison of every tracked and nonignored untracked file present at arrival; no changed or missing files."
+    }
+  ],
+  "invariants": {
+    "acoustic_family_changes": 0,
+    "measurement_changes": 0,
+    "selected_frame_changes": 0,
+    "historical_grades": {
+      "GREEN": 20,
+      "AMBER": 16,
+      "RED": 3,
+      "GRAY": 14
+    },
+    "newest_human": {
+      "analysis_id": "cc8be88b-1211-4ef1-ae7e-0ebf8b99327c",
+      "syllables": {
+        "我": "GREEN",
+        "想": "RED",
+        "买": "GREEN",
+        "这": "GREEN",
+        "个": "GRAY"
+      },
+      "这个": "GREEN",
+      "neutral_non_veto": true,
+      "shallow_dip_coaching_retained": [
+        "我",
+        "买"
+      ]
+    },
+    "newest_background": "GRAY throughout"
+  },
+  "stage0": {
+    "exported_units": 63,
+    "single_syllables": 62,
+    "timing_groups": 1,
+    "recordings": 15,
+    "speaker_ids_known": 0,
+    "native_listener_judgments": 0,
+    "use": "Pipeline validation only, not training or accuracy evaluation."
+  },
+  "artifacts": {
+    "ARCHITECTURE.md": "076d7825f0ac458f96f2e39295c9c0c71daffe7dcde311bbfb4c296cbd85ac62",
+    "EXPERIMENT.md": "6bab34572fbf2822146f7d6701f332b78b8d84919028112deb6da43cac9454da",
+    "README.md": "216627314c9a4b530dbd832176bca24c1847b5ba41f7a44ddc8a5d3fe2e123e8",
+    "baseline-manifest.json": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "dataset.schema.json": "cf4f0260009c85253aa32826666d06b1df0830dadb14ea6c765ed2e43ddaa2af",
+    "evaluate.cjs": "5f2730caeca9bef269553734dd4120a75897d43108548489cb8245b338c2a91c",
+    "stage0.baseline.jsonl": "63ae919eb27c5b053ca74195bf631de544c2e4649e1ef97e72f1aac78f723ee0",
+    "stage0.dataset.jsonl": "e35310808a4fad2db02c87dbc6c74cb2471bc6d04e5f4b6e64079fe0e8f354e2",
+    "test_evaluate.cjs": "a7ea26690ce8b83b737479b973047614b62dabcc1d065376cc03a38bbf5b2396",
+    "verify_measurements.py": "c82fe223c4e2c30a97b2a076373d63fe7e103283e2ffacf2d0e78fa10f751185"
+  },
+  "limits": [
+    "Existing private canonical audio/snapshots are required for measurement replay; saved JSONL export requires no audio access.",
+    "Manifest hashes detect working-tree drift; preserve the current uncommitted tree before later production edits. HEAD alone is insufficient.",
+    "No full browser, mobile-wide or backend-wide suite repeated because executable production code did not change.",
+    "No perceptual accuracy claim; pilot speaker identity, labels, split and frozen encoder cache are future work."
+  ]
+}

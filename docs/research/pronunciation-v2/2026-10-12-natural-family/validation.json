@@ -1,0 +1,772 @@
+{
+  "status": "passed",
+  "scope": "Offline saved-evidence and browser replay; no new live physical recording or upstream tracker changes.",
+  "checks": {
+    "focused": {
+      "passed": 175,
+      "suites": 7
+    },
+    "mobile_validate": {
+      "lint": "passed",
+      "typecheck": "passed",
+      "tests": 713,
+      "suites": 43
+    },
+    "final_browser_script_lint": "passed",
+    "research": {
+      "passed": 250
+    },
+    "tone_audit": {
+      "passed": 2
+    },
+    "natural_family_audit": {
+      "passed": 2
+    },
+    "measurement_audit": {
+      "passed": 2
+    },
+    "saved_gesture_pcm_replay": {
+      "units": 53,
+      "input_mutation": false
+    },
+    "web_export": "passed",
+    "git_diff_check": "passed",
+    "pass_specific_whitespace_check": "passed"
+  },
+  "browsers": {
+    "physical-browser": [
+      {
+        "id": "df7476d5-5716-4399-a528-924075c3a0fb",
+        "width": 320,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              12,
+              1
+            ],
+            "lines": 11,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              15
+            ],
+            "lines": 14,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              4,
+              4
+            ],
+            "lines": 6,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              14,
+              10
+            ],
+            "lines": 22,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              12,
+              1
+            ],
+            "lines": 11,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "neutralUnavailableNonVeto": true,
+        "canonicalPlayback": true,
+        "history": true,
+        "errors": []
+      },
+      {
+        "id": "df7476d5-5716-4399-a528-924075c3a0fb",
+        "width": 390,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              12,
+              1
+            ],
+            "lines": 11,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              15
+            ],
+            "lines": 14,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              4,
+              4
+            ],
+            "lines": 6,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              14,
+              10
+            ],
+            "lines": 22,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              12,
+              1
+            ],
+            "lines": 11,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "neutralUnavailableNonVeto": true,
+        "canonicalPlayback": true,
+        "history": true,
+        "errors": []
+      },
+      {
+        "id": "df7476d5-5716-4399-a528-924075c3a0fb",
+        "width": 412,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              12,
+              1
+            ],
+            "lines": 11,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              15
+            ],
+            "lines": 14,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              4,
+              4
+            ],
+            "lines": 6,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              14,
+              10
+            ],
+            "lines": 22,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              12,
+              1
+            ],
+            "lines": 11,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "neutralUnavailableNonVeto": true,
+        "canonicalPlayback": true,
+        "history": true,
+        "errors": []
+      },
+      {
+        "id": "208711dc-c437-4afe-b6d3-2aa0e16fb7cb",
+        "width": 320,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              36
+            ],
+            "lines": 35,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              28
+            ],
+            "lines": 27,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              31
+            ],
+            "lines": 30,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              11,
+              3
+            ],
+            "lines": 12,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              36
+            ],
+            "lines": 35,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "neutralUnavailableNonVeto": true,
+        "canonicalPlayback": true,
+        "history": true,
+        "errors": []
+      },
+      {
+        "id": "208711dc-c437-4afe-b6d3-2aa0e16fb7cb",
+        "width": 390,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              36
+            ],
+            "lines": 35,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              28
+            ],
+            "lines": 27,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              31
+            ],
+            "lines": 30,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              11,
+              3
+            ],
+            "lines": 12,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              36
+            ],
+            "lines": 35,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "neutralUnavailableNonVeto": true,
+        "canonicalPlayback": true,
+        "history": true,
+        "errors": []
+      },
+      {
+        "id": "208711dc-c437-4afe-b6d3-2aa0e16fb7cb",
+        "width": 412,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              36
+            ],
+            "lines": 35,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              28
+            ],
+            "lines": 27,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              31
+            ],
+            "lines": 30,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              11,
+              3
+            ],
+            "lines": 12,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              36
+            ],
+            "lines": 35,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "neutralUnavailableNonVeto": true,
+        "canonicalPlayback": true,
+        "history": true,
+        "errors": []
+      }
+    ],
+    "tone-browser": [
+      {
+        "width": 320,
+        "graphHeight": 96,
+        "graphWidth": 158,
+        "freshToneLabels": true,
+        "lexicalFamilyFeedback": true,
+        "neutralGreen": true,
+        "measuredNeutralAccepted": true,
+        "redControl": true,
+        "grayControl": true,
+        "amberControl": true,
+        "resolvedT3Green": true,
+        "groupedTiming": true,
+        "details": true,
+        "technical": true,
+        "canonicalPlayback": true,
+        "keyboard": true,
+        "focusContainment": true,
+        "history": true,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "graphHeight": 96,
+        "graphWidth": 228,
+        "freshToneLabels": true,
+        "lexicalFamilyFeedback": true,
+        "neutralGreen": true,
+        "measuredNeutralAccepted": true,
+        "redControl": true,
+        "grayControl": true,
+        "amberControl": true,
+        "resolvedT3Green": true,
+        "groupedTiming": true,
+        "details": true,
+        "technical": true,
+        "canonicalPlayback": true,
+        "keyboard": true,
+        "focusContainment": true,
+        "history": true,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 412,
+        "graphHeight": 96,
+        "graphWidth": 250,
+        "freshToneLabels": true,
+        "lexicalFamilyFeedback": true,
+        "neutralGreen": true,
+        "measuredNeutralAccepted": true,
+        "redControl": true,
+        "grayControl": true,
+        "amberControl": true,
+        "resolvedT3Green": true,
+        "groupedTiming": true,
+        "details": true,
+        "technical": true,
+        "canonicalPlayback": true,
+        "keyboard": true,
+        "focusContainment": true,
+        "history": true,
+        "overflow": false,
+        "errors": []
+      }
+    ],
+    "measurement-browser": [
+      {
+        "width": 320,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              14,
+              3,
+              4
+            ],
+            "lines": 18,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              14,
+              8
+            ],
+            "lines": 20,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              3
+            ],
+            "lines": 2,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              15,
+              18
+            ],
+            "lines": 31,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              14,
+              3,
+              4
+            ],
+            "lines": 18,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "errors": [],
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              14,
+              3,
+              4
+            ],
+            "lines": 18,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              14,
+              8
+            ],
+            "lines": 20,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              3
+            ],
+            "lines": 2,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              15,
+              18
+            ],
+            "lines": 31,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              14,
+              3,
+              4
+            ],
+            "lines": 18,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "errors": [],
+        "overflow": false
+      },
+      {
+        "width": 412,
+        "graphs": [
+          {
+            "text": "我",
+            "points": [
+              14,
+              3,
+              4
+            ],
+            "lines": 18,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "想",
+            "points": [
+              14,
+              8
+            ],
+            "lines": 20,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "买",
+            "points": [
+              3
+            ],
+            "lines": 2,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "这个",
+            "points": [
+              15,
+              18
+            ],
+            "lines": 31,
+            "sourceCoordinatesMatch": true
+          },
+          {
+            "text": "我",
+            "points": [
+              14,
+              3,
+              4
+            ],
+            "lines": 18,
+            "sourceCoordinatesMatch": true
+          }
+        ],
+        "errors": [],
+        "overflow": false
+      }
+    ],
+    "chunks-browser": [
+      {
+        "width": 320,
+        "shortRows": 2,
+        "longRows": 4,
+        "keyboard": true,
+        "canonicalPlayback": true,
+        "partialPitch": true,
+        "constituents": true,
+        "graphFirstWo": true,
+        "woDetailsAndRaw": true,
+        "unavailableSingleGe": true,
+        "quietAccessibility": true,
+        "quantity": true,
+        "that": true,
+        "groupedUmbrella": true,
+        "history": true,
+        "newAttempt": true,
+        "clearTarget": true,
+        "noTarget": true,
+        "conversationCollapsed": true,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "shortRows": 2,
+        "longRows": 4,
+        "keyboard": true,
+        "canonicalPlayback": true,
+        "partialPitch": true,
+        "constituents": true,
+        "graphFirstWo": true,
+        "woDetailsAndRaw": true,
+        "unavailableSingleGe": true,
+        "quietAccessibility": true,
+        "quantity": true,
+        "that": true,
+        "groupedUmbrella": true,
+        "history": true,
+        "newAttempt": true,
+        "clearTarget": true,
+        "noTarget": true,
+        "conversationCollapsed": true,
+        "errors": []
+      },
+      {
+        "width": 412,
+        "shortRows": 2,
+        "longRows": 4,
+        "keyboard": true,
+        "canonicalPlayback": true,
+        "partialPitch": true,
+        "constituents": true,
+        "graphFirstWo": true,
+        "woDetailsAndRaw": true,
+        "unavailableSingleGe": true,
+        "quietAccessibility": true,
+        "quantity": true,
+        "that": true,
+        "groupedUmbrella": true,
+        "history": true,
+        "newAttempt": true,
+        "clearTarget": true,
+        "noTarget": true,
+        "conversationCollapsed": true,
+        "errors": []
+      }
+    ],
+    "product-browser": [
+      {
+        "width": 320,
+        "shortRows": 2,
+        "longRows": 4,
+        "keyboard": true,
+        "canonicalPlayback": true,
+        "partialPitch": true,
+        "constituents": true,
+        "graphFirstWo": true,
+        "woDetailsAndRaw": true,
+        "unavailableSingleGe": true,
+        "quietAccessibility": true,
+        "quantity": true,
+        "that": true,
+        "groupedUmbrella": true,
+        "history": true,
+        "newAttempt": true,
+        "clearTarget": true,
+        "noTarget": true,
+        "conversationCollapsed": true,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "shortRows": 2,
+        "longRows": 4,
+        "keyboard": true,
+        "canonicalPlayback": true,
+        "partialPitch": true,
+        "constituents": true,
+        "graphFirstWo": true,
+        "woDetailsAndRaw": true,
+        "unavailableSingleGe": true,
+        "quietAccessibility": true,
+        "quantity": true,
+        "that": true,
+        "groupedUmbrella": true,
+        "history": true,
+        "newAttempt": true,
+        "clearTarget": true,
+        "noTarget": true,
+        "conversationCollapsed": true,
+        "errors": []
+      },
+      {
+        "width": 412,
+        "shortRows": 2,
+        "longRows": 4,
+        "keyboard": true,
+        "canonicalPlayback": true,
+        "partialPitch": true,
+        "constituents": true,
+        "graphFirstWo": true,
+        "woDetailsAndRaw": true,
+        "unavailableSingleGe": true,
+        "quietAccessibility": true,
+        "quantity": true,
+        "that": true,
+        "groupedUmbrella": true,
+        "history": true,
+        "newAttempt": true,
+        "clearTarget": true,
+        "noTarget": true,
+        "conversationCollapsed": true,
+        "errors": []
+      }
+    ]
+  },
+  "visually_reviewed_physical_screenshots": [
+    "1-320-unit-0.png",
+    "1-390-unit-1.png",
+    "1-412-unit-3.png",
+    "0-320-unit-1.png",
+    "0-390-unit-3.png",
+    "0-320-constituent-4.png"
+  ],
+  "logs": {
+    "focused-final.log": {
+      "path": "/tmp/benma-natural/focused-final.log",
+      "sha256": "c7b9c70be0fc9803df7b903f3dbc4e196a463d01be937ce914bcedfe3a8a66da"
+    },
+    "validate-final.log": {
+      "path": "/tmp/benma-natural/validate-final.log",
+      "sha256": "a60dc001f53314efb82420bc4b4bb330e2888f7253ca0bca3bf07929939c740c"
+    },
+    "research.log": {
+      "path": "/tmp/benma-natural/research.log",
+      "sha256": "b184795acdae16965a7dfad38a03f24a249c602e7efb085bdb08c8ce3cdb7c88"
+    },
+    "tone-tests.log": {
+      "path": "/tmp/benma-natural/tone-tests.log",
+      "sha256": "a1f43d3b0680a6b72d6892541f9d94c0afce8f8d686b8d5e6a38f9cedc7e65ff"
+    },
+    "natural-audit-tests.log": {
+      "path": "/tmp/benma-natural/natural-audit-tests.log",
+      "sha256": "7c24ef54e6f64e08418fded80b178c3058e78fa92da55130e5763d38b179f29c"
+    },
+    "measurement.log": {
+      "path": "/tmp/benma-natural/measurement.log",
+      "sha256": "17d7627c204e596788ee365446edb919e200e72cf93fd4bcbea6b288d01cb234"
+    },
+    "gesture-replay.log": {
+      "path": "/tmp/benma-natural/gesture-replay.log",
+      "sha256": "eccc47ad98ba2f1f7c711c8156afcad928008c21d7c799b624a297d11f5bc194"
+    },
+    "export.log": {
+      "path": "/tmp/benma-natural/export.log",
+      "sha256": "8c63ec24ac6d4abbd066ee304c624740d126c80035030c2dcd2168ed601a6393"
+    },
+    "lint-final.log": {
+      "path": "/tmp/benma-natural/lint-final.log",
+      "sha256": "f337663a7fbe43121ebe93ea233fbd6680a27e8cc8173425dd143bb6f6d228b9"
+    }
+  },
+  "notes": [
+    "Canonical WAV hashes validated by playback suites.",
+    "Original source-to-rendered line coordinates match within 0.1 px with original islands and gaps.",
+    "Two legacy browser harnesses were updated for existing grade/accessibility/details semantics; production UI unchanged.",
+    "Existing nonfatal React test-renderer deprecation and act warnings remain."
+  ]
+}

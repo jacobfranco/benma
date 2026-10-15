@@ -1,0 +1,354 @@
+{
+  "approval": "Exactly nine entries in frozen manifest explicitly approved. Earlier English probe separately approved. No retries or substitutions.",
+  "requests": [
+    {
+      "id": "throat_clear",
+      "sha256": "b8cd78d5953ab225290ed75281d058c62a2977ab65a832c82266c4cc921c5c28",
+      "duration_seconds": 2.043375,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "",
+        "languages": [],
+        "usage": {
+          "type": "duration",
+          "seconds": 3
+        }
+      },
+      "latency_seconds": 1.6018736320038442,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.0020810956767564922,
+        "activity_seconds": 0.17,
+        "periodic_seconds": 0.09,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "UNKNOWN",
+      "acceptance_reason": "no_reliable_language",
+      "learner_retry_copy": "Try recording that again."
+    },
+    {
+      "id": "clear_mandarin",
+      "sha256": "138433436566bd47b4e7731c43333d6dafa9f7e631b7b168ce954e8ca0f2ae4a",
+      "duration_seconds": 3.2508125,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "我想买这个。",
+        "languages": [
+          {
+            "code": "zh"
+          }
+        ],
+        "usage": {
+          "type": "duration",
+          "seconds": 4
+        }
+      },
+      "latency_seconds": 1.7452030319982441,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.002625245661188769,
+        "activity_seconds": 0.88,
+        "periodic_seconds": 0.88,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "ACCEPT",
+      "acceptance_reason": "mandarin_detected_not_acoustically_absent",
+      "learner_retry_copy": null
+    },
+    {
+      "id": "ambiguous_mandarin",
+      "sha256": "c3ae6909c8889468afb1bb5b923982c1e92d5947345729be42906ce28685e708",
+      "duration_seconds": 2.71675,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "我想买五八一三。",
+        "languages": [
+          {
+            "code": "zh"
+          }
+        ],
+        "usage": {
+          "type": "duration",
+          "seconds": 3
+        }
+      },
+      "latency_seconds": 0.8249950339959469,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.0027060140546918657,
+        "activity_seconds": 0.7000000000000001,
+        "periodic_seconds": 0.48,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "ACCEPT",
+      "acceptance_reason": "mandarin_detected_not_acoustically_absent",
+      "learner_retry_copy": null
+    },
+    {
+      "id": "short_human_a",
+      "sha256": "253cbd0284341b426cc170947b9fb353f71065b930d9a979e7f3b0348e3a1b3e",
+      "duration_seconds": 0.17,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "对。",
+        "languages": [
+          {
+            "code": "zh"
+          }
+        ],
+        "usage": {
+          "type": "duration",
+          "seconds": 1
+        }
+      },
+      "latency_seconds": 0.9014270150000812,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.05204143972613223,
+        "activity_seconds": 0.0,
+        "periodic_seconds": 0.1,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "ACCEPT",
+      "acceptance_reason": "mandarin_detected_not_acoustically_absent",
+      "learner_retry_copy": null
+    },
+    {
+      "id": "short_human_c",
+      "sha256": "c843d722accad004bfd27e2e8fea4ddd1035e6abf98173825a8ee7c1bbaf0d23",
+      "duration_seconds": 0.2,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "request_error": "ReadTimeout",
+      "latency_seconds": 30.204368374004844,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.05336395494163614,
+        "activity_seconds": 0.0,
+        "periodic_seconds": 0.13,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "UNKNOWN",
+      "acceptance_reason": "preflight_failed",
+      "learner_retry_copy": "Try recording that again."
+    },
+    {
+      "id": "short_native",
+      "sha256": "d8c625540127079ba0b3598d422f0aa25995437a0336f0dbb6a50a39513a00d2",
+      "duration_seconds": 0.3,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "我要一个。",
+        "languages": [
+          {
+            "code": "zh"
+          }
+        ],
+        "usage": {
+          "type": "duration",
+          "seconds": 1
+        }
+      },
+      "latency_seconds": 0.884478965002927,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.09838881777473554,
+        "activity_seconds": 0.0,
+        "periodic_seconds": 0.23,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "ACCEPT",
+      "acceptance_reason": "mandarin_detected_not_acoustically_absent",
+      "learner_retry_copy": null
+    },
+    {
+      "id": "low_f0_excerpt",
+      "sha256": "0e07fdb1fabcdd61ee06e912d116b65f96f77d79b2acf731c5c35fe07ae01d6e",
+      "duration_seconds": 0.26,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "",
+        "languages": [],
+        "usage": {
+          "type": "duration",
+          "seconds": 1
+        }
+      },
+      "latency_seconds": 1.5088057140019373,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.03298070973160847,
+        "activity_seconds": 0.01,
+        "periodic_seconds": 0.07,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "UNKNOWN",
+      "acceptance_reason": "no_reliable_language",
+      "learner_retry_copy": "Try recording that again."
+    },
+    {
+      "id": "digital_silence",
+      "sha256": "643f8a8dc8bd9c19225afffad2becfec5426180b3749cb208abdf1a6c8354efc",
+      "duration_seconds": 1.0,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "",
+        "languages": [],
+        "usage": {
+          "type": "duration",
+          "seconds": 1
+        }
+      },
+      "latency_seconds": 0.7477602880026097,
+      "current_presence": {
+        "no_speech": true,
+        "reason": "quantization_level_silence",
+        "background_rms": 0,
+        "activity_seconds": 0,
+        "periodic_seconds": 0,
+        "corroborated_seconds": 0,
+        "corroborated_run_seconds": 0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "RETRY",
+      "acceptance_reason": "acoustic_absence",
+      "learner_retry_copy": "Try recording that again."
+    },
+    {
+      "id": "mixed_english_mandarin",
+      "sha256": "bea2ba44e3a0638ce15d67c9f759047ff8a4f6a42368b5eb14e8f16829b01ac1",
+      "duration_seconds": 11.159875,
+      "model": "gpt-transcribe",
+      "request_fields": {
+        "model": "gpt-transcribe",
+        "response_format": "json"
+      },
+      "prompt_supplied": false,
+      "language_hint_supplied": false,
+      "http_status": 200,
+      "response": {
+        "text": "So, like, I feel like I got the UI, like, a lot cleaner now. So, oh shit. Washing my chuka.",
+        "languages": [
+          {
+            "code": "en"
+          }
+        ],
+        "usage": {
+          "type": "duration",
+          "seconds": 12
+        }
+      },
+      "latency_seconds": 1.3858174019987928,
+      "current_presence": {
+        "no_speech": false,
+        "reason": "speech_or_uncertain",
+        "background_rms": 0.004253962731774761,
+        "activity_seconds": 1.11,
+        "periodic_seconds": 0.88,
+        "corroborated_seconds": 0.0,
+        "corroborated_run_seconds": 0.0,
+        "corroboration_checked": false
+      },
+      "proposed_acceptance": "RETRY",
+      "acceptance_reason": "non_mandarin_detected",
+      "learner_retry_copy": "Try recording that again."
+    }
+  ],
+  "prior_english_probe": {
+    "recording": "d40b357a157545769ab731fff3e97ce6",
+    "model": "gpt-transcribe",
+    "prompt": null,
+    "language_hint": null,
+    "http_status": 200,
+    "latency_seconds": 1.5533246009999857,
+    "response": {
+      "text": "So, like, I feel like I got the UI, like, a lot cleaner now. So, oh shit.",
+      "languages": [
+        {
+          "code": "en"
+        }
+      ],
+      "usage": {
+        "type": "duration",
+        "seconds": 8
+      }
+    },
+    "proposed_acceptance": "RETRY",
+    "acceptance_reason": "non_mandarin_detected"
+  }
+}

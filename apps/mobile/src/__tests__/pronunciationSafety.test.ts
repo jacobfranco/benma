@@ -42,6 +42,7 @@ it('keeps cached evaluator claims out of default and A/B views, preserving label
     expect(JSON.stringify(renderer!.toJSON())).toContain('Tone comparison is unavailable');
     expect(JSON.stringify(renderer!.toJSON())).not.toContain(legacyMessage);
     expect(JSON.stringify(renderer!.toJSON())).not.toContain('Evaluator detected');
+    expect(JSON.stringify(renderer!.toJSON())).not.toMatch(/experimental/i);
     const choices = renderer!.root.findAllByType(Pressable).filter(node => node.props.accessibilityRole === 'checkbox');
     for (const choice of choices) await act(async () => choice.props.onPress());
     expect(JSON.stringify(renderer!.toJSON())).toContain('A/B comparison');

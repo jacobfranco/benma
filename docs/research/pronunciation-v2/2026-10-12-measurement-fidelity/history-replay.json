@@ -1,0 +1,56 @@
+{
+  "without_transition_costs_mai_voiced": [
+    [
+      1.202,
+      278.689
+    ],
+    [
+      1.212,
+      545.822
+    ],
+    [
+      1.222,
+      535.193
+    ],
+    [
+      1.232,
+      534.69
+    ],
+    [
+      1.262,
+      542.455
+    ],
+    [
+      1.272,
+      539.826
+    ]
+  ],
+  "history": [
+    {
+      "commit": "a8bdfab",
+      "version": "1.1.0-parselmouth-0.4.7-praat-6.1.38",
+      "equal": {
+        "timestamp_seconds": true,
+        "tracker_f0_hz": true,
+        "f0_hz": true,
+        "voicing_probability": true,
+        "energy_rms": true,
+        "comparison_f0_hz": true,
+        "quality_usable": true
+      }
+    },
+    {
+      "commit": "68057aa",
+      "version": "1.2.0-parselmouth-0.4.7-praat-6.1.38",
+      "equal": {
+        "timestamp_seconds": true,
+        "tracker_f0_hz": true,
+        "f0_hz": true,
+        "voicing_probability": true,
+        "energy_rms": true,
+        "comparison_f0_hz": true,
+        "quality_usable": true
+      }
+    }
+  ]
+}
