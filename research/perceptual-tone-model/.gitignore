@@ -1,0 +1,10 @@
+.cache/
+.venv/
+data/generated/
+annotations/generated/
+features/generated/
+embeddings/generated/
+models/generated/
+reports/runs/
+__pycache__/
+*.pyc

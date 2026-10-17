@@ -1,0 +1,231 @@
+{
+  "all_labels_and_original_spans_preserved": true,
+  "baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "clips_decoded_and_pcm_verified": 2361,
+  "derivable_by_tone": {
+    "T1": 175,
+    "T2": 183,
+    "T3": 147,
+    "T4": 224,
+    "T5": 58
+  },
+  "duration_seconds": {
+    "context": {
+      "max": 1.07,
+      "median": 0.72,
+      "min": 0.41,
+      "p1": 0.46,
+      "p25": 0.66,
+      "p5": 0.53,
+      "p75": 0.7853174603174603,
+      "p95": 0.93,
+      "p99": 1.0213999999999999
+    },
+    "playback_read_unit": {
+      "max": 0.57,
+      "median": 0.23,
+      "min": 0.06,
+      "p1": 0.1086,
+      "p25": 0.18,
+      "p5": 0.13,
+      "p75": 0.3,
+      "p95": 0.43699999999999933,
+      "p99": 0.5313999999999999
+    },
+    "tone_bearing_pooling_span": {
+      "max": 0.49,
+      "median": 0.14,
+      "min": 0.02,
+      "p1": 0.04,
+      "p25": 0.1,
+      "p5": 0.06,
+      "p75": 0.2,
+      "p95": 0.32,
+      "p99": 0.4
+    }
+  },
+  "full_candidates": 787,
+  "groups": {
+    "all_candidates": {
+      "count": 787,
+      "final_classes": {
+        "diphthong": 186,
+        "nasal": 252,
+        "open": 338,
+        "rhotic": 11
+      },
+      "final_end_changes": 0,
+      "final_start_changes": 746,
+      "initial_classes": {
+        "affricate": 141,
+        "fricative": 185,
+        "plosive": 209,
+        "sonorant": 126,
+        "zero_or_glide": 126
+      },
+      "sample_only_changes": 100,
+      "short_final_flags": 22
+    },
+    "failed": {
+      "count": 8,
+      "final_classes": {
+        "diphthong": 1,
+        "nasal": 4,
+        "open": 3
+      },
+      "final_end_changes": 0,
+      "final_start_changes": 8,
+      "initial_classes": {
+        "affricate": 1,
+        "fricative": 1,
+        "plosive": 4,
+        "sonorant": 1,
+        "zero_or_glide": 1
+      },
+      "sample_only_changes": 1,
+      "short_final_flags": 1
+    },
+    "pass_controls": {
+      "count": 18,
+      "final_classes": {
+        "diphthong": 3,
+        "nasal": 5,
+        "open": 9,
+        "rhotic": 1
+      },
+      "final_end_changes": 0,
+      "final_start_changes": 18,
+      "initial_classes": {
+        "affricate": 2,
+        "fricative": 4,
+        "plosive": 8,
+        "sonorant": 2,
+        "zero_or_glide": 2
+      },
+      "sample_only_changes": 1,
+      "short_final_flags": 1
+    }
+  },
+  "maximum_edge_change_samples": 1,
+  "ml_target_changed": false,
+  "new_adjacent_sample_overlaps": 0,
+  "old_adjacent_sample_overlaps": 82,
+  "original_automatic_qa": "passed",
+  "original_clips_verified": 78,
+  "original_quarantines_unchanged": 2,
+  "packet_sha256": "fe545f5954474d5079d0a08585e1360e4dfe8bad8bfa8712936012a0d1962b22",
+  "policy": "nearest_sample_half_open_and_owned_nucleus_coda_v1",
+  "released": false,
+  "root_cause_counts": {
+    "COARTICULATORY / FUZZY BOUNDARY": 3,
+    "UNCERTAIN": 5
+  },
+  "round1": {
+    "boundary_early": 7,
+    "gate": "failed",
+    "other": 1,
+    "pass": 18,
+    "total": 26
+  },
+  "round2_controls": 8,
+  "round2_html": "/home/jacob/benma/research/perceptual-tone-model/data/generated/aishell3/round2-final/index.html",
+  "round2_items": 18,
+  "round2_new_outliers": 2,
+  "rule_deterministic": true,
+  "sample_changed_units": 100,
+  "short_final_outliers": [
+    "aishell3:SSB01120199:2",
+    "aishell3:SSB01120199:3",
+    "aishell3:SSB00090400:2",
+    "aishell3:SSB00050353:2",
+    "aishell3:SSB00730450:1",
+    "aishell3:SSB00430212:0",
+    "aishell3:SSB00120163:1",
+    "aishell3:SSB00180030:2",
+    "aishell3:SSB00180030:3",
+    "aishell3:SSB00180365:3",
+    "aishell3:SSB00430035:2",
+    "aishell3:SSB00430051:2",
+    "aishell3:SSB00430051:3",
+    "aishell3:SSB00430061:2",
+    "aishell3:SSB00430387:3",
+    "aishell3:SSB00430404:0",
+    "aishell3:SSB01120094:0",
+    "aishell3:SSB01120114:0",
+    "aishell3:SSB01120159:1",
+    "aishell3:SSB01120234:1",
+    "aishell3:SSB01120482:0",
+    "aishell3:SSB01120490:1"
+  ],
+  "status": "BLOCKED_PENDING_ROUND2_HUMAN_REVIEW",
+  "tone_bearing_derivable": 787,
+  "tone_bearing_unavailable": 0,
+  "training_run": false,
+  "validation": {
+    "byte_reproducible_artifacts": 2387,
+    "focused_new_python_tests": 9,
+    "frozen_baseline": {
+      "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+      "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+      "verified_files": 413
+    },
+    "git_diff_check": "passed",
+    "javascript_syntax": "passed",
+    "new_quarantines": 0,
+    "node_test_files": 2,
+    "original_decisions_sha256": "3496ea30f07ec04ece0398b5e1b61d340addbb32ca9db8345815942c7f4b4dac",
+    "original_quarantines_retained": 2,
+    "original_review_json_byte_preserved": true,
+    "preexisting_evidence_files_unchanged": 1176,
+    "python_tests": 74,
+    "released": false,
+    "replay_byte_identical": true,
+    "replay_examples": 63,
+    "replay_sha256": "63ae919eb27c5b053ca74195bf631de544c2e4649e1ef97e72f1aac78f723ee0",
+    "round1_browser": {
+      "browser": "Chromium",
+      "context_and_target_buttons": "pass",
+      "decoded_pcm_frames_and_normalized_samples_verified": 78,
+      "export_complete_and_incomplete": "pass",
+      "human_answers_written": 0,
+      "human_playback_qa": "not_assessed_by_engineering_test",
+      "import_and_reviewer_identity": "pass",
+      "maximum_raw_normalization_error": 1.7762184143066406e-05,
+      "media_loaded": 78,
+      "nonpass_notes_required": "pass",
+      "normalization": "signed PCM16: negative /32768, positive /32767; float tolerance 1e-7",
+      "synthetic_only": true,
+      "targets": 26
+    },
+    "round2_browser": {
+      "browser": "Chromium",
+      "context_and_target_buttons": "pass",
+      "decoded_pcm_frames_and_normalized_samples_verified": 72,
+      "export_complete_and_incomplete": "pass",
+      "human_answers_written": 0,
+      "human_playback_qa": "not_assessed_by_engineering_test",
+      "import_and_reviewer_identity": "pass",
+      "maximum_raw_normalization_error": 1.7762184143066406e-05,
+      "media_loaded": 72,
+      "nonpass_notes_required": "pass",
+      "normalization": "signed PCM16: negative /32768, positive /32767; float tolerance 1e-7",
+      "synthetic_only": true,
+      "targets": 18
+    },
+    "scoped_ruff": "check and format check passed",
+    "source_sha256": {
+      "annotations/aishell3-round1-diagnostics.json": "27e28bd0e41f200b47cc15843adf2d57beb947a1f9feff30667a4fbbfb159696",
+      "perceptual_tone/aishell3_boundaries.py": "0dc31b4633426428553df2c9a534a07f86f9298a78e95ae234f387ced6f0e98e",
+      "scripts/aishell3_round2.py": "bfaa0f0db242ee5217e9c539e955a842d3d2412dc8c25b635861b957f568c9fd",
+      "scripts/aishell3_round2_review.js": "cdf29039f26e0d1dbcdee204cf0a76a99eb01ca7980b7bb516570eb3dd3bf636",
+      "scripts/aishell3_round2_smoke.cjs": "0590ffec557954633d94ae8bba82f85357a48ea2d4d562eb2a9cf357a2754a05",
+      "tests/test_aishell3_boundaries.py": "73b2352b23b3d1c0c8dec3d953f92e7dc911e926a55716e99cc0ead4f659b3b1"
+    },
+    "status": "AUTOMATIC_VALIDATION_PASSED_HUMAN_ROUND2_PENDING",
+    "training_run": false
+  }
+}

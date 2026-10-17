@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "seed": 20261015,
+  "scientific": false,
+  "split": {
+    "seed": 20261015,
+    "fractions": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "version": "speaker-split-v1"
+  },
+  "windows": {
+    "local": {
+      "before_seconds": 0.35,
+      "after_seconds": 0.35
+    },
+    "wide": {
+      "before_seconds": 1.2,
+      "after_seconds": 1.2
+    }
+  },
+  "aggregation": {
+    "method": "majority",
+    "min_judgments": 3,
+    "min_fraction": 0.6666666666666666,
+    "max_entropy": 0.6,
+    "exclude_mixed_ungradable": true
+  },
+  "encoder": "chinese_hubert_base",
+  "embedding": {
+    "view": "local",
+    "pooling": "target_mean",
+    "device": "cpu",
+    "threads": 2
+  },
+  "feature_version": "benma-numeric-v1",
+  "models": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "classifiers": [
+    "logistic",
+    "mlp"
+  ],
+  "logistic": {
+    "C": 0.1,
+    "max_iter": 1000,
+    "class_weight": "balanced"
+  },
+  "mlp": {
+    "hidden_layer_sizes": [
+      32
+    ],
+    "alpha": 0.1,
+    "max_iter": 400,
+    "solver": "lbfgs"
+  },
+  "policy": {
+    "abstain_below": 0.0,
+    "confident_incorrect": 0.8,
+    "calibration_bins": 10
+  }
+}

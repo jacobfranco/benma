@@ -1,0 +1,20 @@
+Research files created or modified in this remediation/finalization pass only.
+
+research/perceptual-tone-model/perceptual_tone/aishell3_boundaries.py
+research/perceptual-tone-model/scripts/aishell3_round2.py
+research/perceptual-tone-model/scripts/aishell3_round2_review.js
+research/perceptual-tone-model/scripts/aishell3_round2_smoke.cjs
+research/perceptual-tone-model/annotations/aishell3-round1-diagnostics.json
+research/perceptual-tone-model/tests/test_aishell3_boundaries.py
+research/perceptual-tone-model/aishell3-boundary-remediation-report.md
+research/perceptual-tone-model/aishell3-qa.md
+research/perceptual-tone-model/aishell3-recovery-report.md
+research/perceptual-tone-model/README.md
+research/perceptual-tone-model/EXPERIMENT.md
+research/perceptual-tone-model/reports/aishell3-round2-summary.json
+research/perceptual-tone-model/reports/aishell3-round2-changed-files.txt
+
+Ignored generated artifacts:
+research/perceptual-tone-model/data/generated/aishell3/continuation/playback-decisions.jsonl
+research/perceptual-tone-model/data/generated/aishell3/round2/ (preserved development/evidence archive)
+research/perceptual-tone-model/data/generated/aishell3/round2-final/ (final packet, all 787 derived records, exports, audit and test logs)

@@ -1,0 +1,125 @@
+{
+  "baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "baseline_replay": {
+    "byte_identical": true,
+    "examples": 63,
+    "sha256": "63ae919eb27c5b053ca74195bf631de544c2e4649e1ef97e72f1aac78f723ee0"
+  },
+  "cached_rerun_hits": 24,
+  "conclusion": "Engineering smoke test only; mock labels and temporary speaker IDs cannot establish model quality.",
+  "encoders": {
+    "chinese_hubert_base": {
+      "architecture": "hubert",
+      "hidden_layer": 9,
+      "hidden_size": 768,
+      "model_id": "TencentGameMate/chinese-hubert-base",
+      "normalize": true,
+      "revision": "fce0375452b1dd6c080ac3248d423d4d037bc831",
+      "sample_rate_hz": 16000
+    },
+    "wavlm_base_plus": {
+      "architecture": "wavlm",
+      "hidden_layer": 9,
+      "hidden_size": 768,
+      "model_id": "microsoft/wavlm-base-plus",
+      "normalize": false,
+      "revision": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+      "sample_rate_hz": 16000
+    }
+  },
+  "fit_warnings": {
+    "always_acceptable_sanity": [],
+    "model0_frozen_benma": [],
+    "model1_logistic": [],
+    "model1_mlp": [],
+    "model2_logistic": [],
+    "model2_mlp": [],
+    "model3_logistic": [],
+    "model3_mlp": [],
+    "model4_logistic": [],
+    "model4_mlp": []
+  },
+  "fixture_speakers": 6,
+  "full_report": "research/perceptual-tone-model/data/generated/stage0-validated/experiment/report.json",
+  "identity": {
+    "config_sha256": "acd3ad9fedcfd1fb4174e16421f22bbd8c71340be88df3180d4684c3a9a5a036",
+    "dataset_sha256": "649c18e7fe12cdfc8b9b907ef3a1bcb531e1baace9190a55342f5401c0bf748c",
+    "dataset_version": "stage0-smoke-v1",
+    "encoder": {
+      "architecture": "hubert",
+      "hidden_layer": 9,
+      "hidden_size": 768,
+      "model_id": "TencentGameMate/chinese-hubert-base",
+      "normalize": true,
+      "revision": "fce0375452b1dd6c080ac3248d423d4d037bc831",
+      "sample_rate_hz": 16000
+    },
+    "feature_version": "benma-numeric-v1",
+    "seed": 20261015,
+    "split_sha256": "de0bda86c638d65c286099bebefd24fcef720b65a0b2769d71d7c28a2a080157",
+    "split_version": "speaker-split-v1"
+  },
+  "manifest_examples": 24,
+  "models_exercised": [
+    "model0_frozen_benma",
+    "always_acceptable_sanity",
+    "model1_logistic",
+    "model1_mlp",
+    "model2_logistic",
+    "model2_mlp",
+    "model3_logistic",
+    "model3_mlp",
+    "model4_logistic",
+    "model4_mlp"
+  ],
+  "packet": {
+    "items": 24,
+    "public_directory": "research/perceptual-tone-model/data/generated/stage0-validated/annotation-packet/public",
+    "seed": 20261015
+  },
+  "partition_counts": {
+    "test": 4,
+    "train": 16,
+    "validation": 4
+  },
+  "primary_embeddings": 24,
+  "raw_mock_judgments": 72,
+  "reproduction": {
+    "all_cache_hits": 24,
+    "identical_model_metrics": true,
+    "identical_prediction_files": 9,
+    "report": "research/perceptual-tone-model/reports/runs/stage0-reproduced/report.json"
+  },
+  "runtime": {
+    "dependencies": {
+      "huggingface-hub": "0.36.2",
+      "joblib": "1.6.0",
+      "numpy": "2.3.3",
+      "safetensors": "0.8.0",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.16.2",
+      "threadpoolctl": "3.7.0",
+      "tokenizers": "0.22.2",
+      "torch": "2.8.0+cpu",
+      "transformers": "4.57.6"
+    },
+    "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+    "python": "3.12.13"
+  },
+  "scientific": false,
+  "secondary_embeddings": 2,
+  "status": "passed",
+  "ungradable_preserved": 6,
+  "validation": {
+    "existing_node_replay_suite": "passed",
+    "git_diff_check": "passed",
+    "production_files_changed": false,
+    "python_tests": 21,
+    "python_tests_status": "passed",
+    "ruff": "passed"
+  }
+}

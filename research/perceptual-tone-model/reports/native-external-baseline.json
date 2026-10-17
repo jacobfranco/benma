@@ -1,0 +1,950 @@
+{
+  "baseline": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+  "rows": [
+    {
+      "id": "89cee47e:我",
+      "recording": "89cee47ede594941baf0f4ad758b971a",
+      "text": "我",
+      "start": 0.44,
+      "end": 0.95,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.04638209977303654,
+        "TONE_2": 0,
+        "TONE_3": 0.8849381558452983,
+        "TONE_4": 0.20213230578903393
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "89cee47e:想",
+      "recording": "89cee47ede594941baf0f4ad758b971a",
+      "text": "想",
+      "start": 0.96,
+      "end": 1.55,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.04915457650275093,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0.35951702586981665
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "89cee47e:买",
+      "recording": "89cee47ede594941baf0f4ad758b971a",
+      "text": "买",
+      "start": 1.56,
+      "end": 2.17,
+      "prediction": null,
+      "reason": "raw_tracker_discontinuity",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "89cee47e:这",
+      "recording": "89cee47ede594941baf0f4ad758b971a",
+      "text": "这",
+      "start": 2.34,
+      "end": 2.73,
+      "prediction": null,
+      "reason": "contradictory_fragments",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "89cee47e:个",
+      "recording": "89cee47ede594941baf0f4ad758b971a",
+      "text": "个",
+      "start": 2.74,
+      "end": 3.04,
+      "prediction": null,
+      "reason": "insufficient_support",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "7e6b6fe9:我",
+      "recording": "7e6b6fe94b964c619f38e9679bf32488",
+      "text": "我",
+      "start": 0.52,
+      "end": 1.22,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.04008076122347979,
+        "TONE_2": 0.15585997378909286,
+        "TONE_3": 0.8891519582546968,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "7e6b6fe9:想",
+      "recording": "7e6b6fe94b964c619f38e9679bf32488",
+      "text": "想",
+      "start": 1.23,
+      "end": 2.23,
+      "prediction": null,
+      "reason": "raw_tracker_discontinuity",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "7e6b6fe9:买",
+      "recording": "7e6b6fe94b964c619f38e9679bf32488",
+      "text": "买",
+      "start": 2.36,
+      "end": 3.25,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.026327767885347162,
+        "TONE_2": 0.11387649409293872,
+        "TONE_3": 0.9131263137157362,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "6b5b2135:我",
+      "recording": "6b5b2135078047dca45e750c6833d18f",
+      "text": "我",
+      "start": 1.28,
+      "end": 1.82,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.1053057758072247,
+        "TONE_2": 0.41520407340875615,
+        "TONE_3": 0.08438224551047625,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "6b5b2135:想",
+      "recording": "6b5b2135078047dca45e750c6833d18f",
+      "text": "想",
+      "start": 1.83,
+      "end": 2.48,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.1471076656676573,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0.2984171184817512
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "6b5b2135:买",
+      "recording": "6b5b2135078047dca45e750c6833d18f",
+      "text": "买",
+      "start": 2.49,
+      "end": 3.11,
+      "prediction": null,
+      "reason": "missing_critical_support",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "0b194cf9:我",
+      "recording": "0b194cf972544763a0dd85bbf6845054",
+      "text": "我",
+      "start": 0.64,
+      "end": 1.21,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.0772732152481769,
+        "TONE_2": 0.18566022574588656,
+        "TONE_3": 0.8844928628701884,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "0b194cf9:想",
+      "recording": "0b194cf972544763a0dd85bbf6845054",
+      "text": "想",
+      "start": 1.22,
+      "end": 2.01,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.06444330329790411,
+        "TONE_2": 0.10952721725382171,
+        "TONE_3": 0.9428430570293066,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "0b194cf9:买",
+      "recording": "0b194cf972544763a0dd85bbf6845054",
+      "text": "买",
+      "start": 2.04,
+      "end": 2.71,
+      "prediction": null,
+      "reason": "raw_tracker_discontinuity",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "ee8a8b32:我",
+      "recording": "ee8a8b3293b94d9588e3346e7c5e4a3b",
+      "text": "我",
+      "start": 1.78,
+      "end": 2.23,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.01605905413092953,
+        "TONE_2": 0,
+        "TONE_3": 0.659823978378642,
+        "TONE_4": 0.28645616866363904
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "ee8a8b32:想",
+      "recording": "ee8a8b3293b94d9588e3346e7c5e4a3b",
+      "text": "想",
+      "start": 2.24,
+      "end": 2.69,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.2709834495360161,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0.23787966142483707
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "ee8a8b32:买",
+      "recording": "ee8a8b3293b94d9588e3346e7c5e4a3b",
+      "text": "买",
+      "start": 2.7,
+      "end": 3.28,
+      "prediction": null,
+      "reason": "raw_tracker_discontinuity",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "40357072:我",
+      "recording": "40357072fc994a0ab052752ca119b2e6",
+      "text": "我",
+      "start": 0.84,
+      "end": 1.37,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.08024088240231543,
+        "TONE_2": 0,
+        "TONE_3": 0.9393089076388762,
+        "TONE_4": 0.12114142889779032
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "40357072:想",
+      "recording": "40357072fc994a0ab052752ca119b2e6",
+      "text": "想",
+      "start": 1.38,
+      "end": 1.93,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.10560175546660332,
+        "TONE_2": 0.16584823583200745,
+        "TONE_3": 0.7608997574196132,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "40357072:买",
+      "recording": "40357072fc994a0ab052752ca119b2e6",
+      "text": "买",
+      "start": 1.94,
+      "end": 2.52,
+      "prediction": null,
+      "reason": "discontinuous_measurements",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "40357072:五",
+      "recording": "40357072fc994a0ab052752ca119b2e6",
+      "text": "五",
+      "start": 2.55,
+      "end": 3.17,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.08069891817968,
+        "TONE_2": 0.22053834134420744,
+        "TONE_3": 0.8505887313360863,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "40357072:把",
+      "recording": "40357072fc994a0ab052752ca119b2e6",
+      "text": "把",
+      "start": 3.18,
+      "end": 3.55,
+      "prediction": null,
+      "reason": "missing_critical_support",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "40357072:雨伞",
+      "recording": "40357072fc994a0ab052752ca119b2e6",
+      "text": "雨伞",
+      "start": 3.56,
+      "end": 4.87,
+      "prediction": null,
+      "reason": "grouped_timing"
+    },
+    {
+      "id": "8d252264:我",
+      "recording": "8d2522640da64860bd83c33b0b7b7e14",
+      "text": "我",
+      "start": 0.47,
+      "end": 0.96,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.056768925516696024,
+        "TONE_2": 0.20257436787812538,
+        "TONE_3": 0.9143815383826385,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8d252264:要",
+      "recording": "8d2522640da64860bd83c33b0b7b7e14",
+      "text": "要",
+      "start": 0.97,
+      "end": 1.46,
+      "prediction": null,
+      "reason": "contradictory_fragments",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8d252264:一",
+      "recording": "8d2522640da64860bd83c33b0b7b7e14",
+      "text": "一",
+      "start": 1.68,
+      "end": 2.46,
+      "prediction": null,
+      "reason": "family_perturbation_sensitive",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.08687228637858126,
+        "TONE_2": 0.4284244224672139,
+        "TONE_3": 0.5652280105155645,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8d252264:个",
+      "recording": "8d2522640da64860bd83c33b0b7b7e14",
+      "text": "个",
+      "start": 2.47,
+      "end": 2.94,
+      "prediction": null,
+      "reason": "missing_critical_support",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8d252264:苹",
+      "recording": "8d2522640da64860bd83c33b0b7b7e14",
+      "text": "苹",
+      "start": 3.26,
+      "end": 4.02,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.16662997733676324,
+        "TONE_2": 0.20575865577124197,
+        "TONE_3": 0.04393210615445848,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8d252264:果",
+      "recording": "8d2522640da64860bd83c33b0b7b7e14",
+      "text": "果",
+      "start": 4.03,
+      "end": 4.67,
+      "prediction": "T2",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_2",
+      "support_not_probabilities": {
+        "TONE_1": 0.033076305895463225,
+        "TONE_2": 0.7586601063633481,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "4b9dbd2b:我",
+      "recording": "4b9dbd2bb17b434498fcbd16a7dd4b69",
+      "text": "我",
+      "start": 0.68,
+      "end": 1.61,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.01821708498208073,
+        "TONE_2": 0.18335151533348595,
+        "TONE_3": 0.9563388835754347,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "4b9dbd2b:要",
+      "recording": "4b9dbd2bb17b434498fcbd16a7dd4b69",
+      "text": "要",
+      "start": 1.62,
+      "end": 2.44,
+      "prediction": "T2",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_2",
+      "support_not_probabilities": {
+        "TONE_1": 0.10303277784252826,
+        "TONE_2": 0.4800730478186896,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "4b9dbd2b:一",
+      "recording": "4b9dbd2bb17b434498fcbd16a7dd4b69",
+      "text": "一",
+      "start": 2.86,
+      "end": 3.25,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.0017611702436814796,
+        "TONE_2": 0,
+        "TONE_3": 0.23163090272929004,
+        "TONE_4": 0.7193427790513538
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "4b9dbd2b:个",
+      "recording": "4b9dbd2bb17b434498fcbd16a7dd4b69",
+      "text": "个",
+      "start": 3.26,
+      "end": 3.85,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.09930289208796095,
+        "TONE_2": 0,
+        "TONE_3": 0.9547320765657619,
+        "TONE_4": 0.04925467756650562
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "4b9dbd2b:苹",
+      "recording": "4b9dbd2bb17b434498fcbd16a7dd4b69",
+      "text": "苹",
+      "start": 4.59,
+      "end": 5.53,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.012711313431769162,
+        "TONE_2": 0.30761810804562584,
+        "TONE_3": 0.923052463355984,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "4b9dbd2b:果",
+      "recording": "4b9dbd2bb17b434498fcbd16a7dd4b69",
+      "text": "果",
+      "start": 5.54,
+      "end": 6.38,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.025554199331055637,
+        "TONE_2": 0.17146820490363104,
+        "TONE_3": 0.9436978136254951,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8faf1a90:我",
+      "recording": "8faf1a90f564479cac56a41aeab22177",
+      "text": "我",
+      "start": 0.59,
+      "end": 0.87,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.00006155350015167362,
+        "TONE_2": 0,
+        "TONE_3": 0.002195365639065463,
+        "TONE_4": 0.9547393365346784
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8faf1a90:要",
+      "recording": "8faf1a90f564479cac56a41aeab22177",
+      "text": "要",
+      "start": 0.88,
+      "end": 1.23,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.4071110303558972,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0.28600807551545554
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8faf1a90:一",
+      "recording": "8faf1a90f564479cac56a41aeab22177",
+      "text": "一",
+      "start": 1.24,
+      "end": 1.49,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.03492077381215363,
+        "TONE_2": 0,
+        "TONE_3": 0.07705274802424424,
+        "TONE_4": 0.8033768902406834
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8faf1a90:个",
+      "recording": "8faf1a90f564479cac56a41aeab22177",
+      "text": "个",
+      "start": 1.5,
+      "end": 1.89,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.000033066673271042506,
+        "TONE_2": 0,
+        "TONE_3": 0.13625861290774066,
+        "TONE_4": 0.872964991914983
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8faf1a90:苹",
+      "recording": "8faf1a90f564479cac56a41aeab22177",
+      "text": "苹",
+      "start": 1.92,
+      "end": 2.32,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 3.4160090005640113e-11,
+        "TONE_2": 0,
+        "TONE_3": 0.008616494776045168,
+        "TONE_4": 0.9762887433624805
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "8faf1a90:果",
+      "recording": "8faf1a90f564479cac56a41aeab22177",
+      "text": "果",
+      "start": 2.33,
+      "end": 2.86,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.04158397892801759,
+        "TONE_2": 0.20781173547483014,
+        "TONE_3": 0.8512069461381188,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "a5acd04c:我",
+      "recording": "a5acd04c21b742fbbfd53741a2aed1dd",
+      "text": "我",
+      "start": 0.68,
+      "end": 0.91,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.18354983843322775,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0.5419471630893066
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "a5acd04c:有",
+      "recording": "a5acd04c21b742fbbfd53741a2aed1dd",
+      "text": "有",
+      "start": 0.92,
+      "end": 1.25,
+      "prediction": null,
+      "reason": "discontinuous_measurements",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "a5acd04c:一",
+      "recording": "a5acd04c21b742fbbfd53741a2aed1dd",
+      "text": "一",
+      "start": 1.26,
+      "end": 1.47,
+      "prediction": "T1",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_1",
+      "support_not_probabilities": {
+        "TONE_1": 0.44765665716922926,
+        "TONE_2": 0,
+        "TONE_3": 0.24956626944920593,
+        "TONE_4": 0.18982111732635532
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "a5acd04c:个",
+      "recording": "a5acd04c21b742fbbfd53741a2aed1dd",
+      "text": "个",
+      "start": 1.48,
+      "end": 1.67,
+      "prediction": null,
+      "reason": "contradictory_fragments",
+      "family_decision": "UNAVAILABLE",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "a5acd04c:苹",
+      "recording": "a5acd04c21b742fbbfd53741a2aed1dd",
+      "text": "苹",
+      "start": 1.68,
+      "end": 2.01,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.001560862078660432,
+        "TONE_2": 0,
+        "TONE_3": 0.02272078873938876,
+        "TONE_4": 0.8667892338860435
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "a5acd04c:果",
+      "recording": "a5acd04c21b742fbbfd53741a2aed1dd",
+      "text": "果",
+      "start": 2.02,
+      "end": 2.47,
+      "prediction": null,
+      "reason": "close_candidates",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.021845289796494274,
+        "TONE_2": 0.4462917223164546,
+        "TONE_3": 0.49861944410155784,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "b9067bec:我",
+      "recording": "b9067bec2fa348e6a406e7538e4a0ee1",
+      "text": "我",
+      "start": 0.3,
+      "end": 0.71,
+      "prediction": null,
+      "reason": "close_candidates",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.06910395627765721,
+        "TONE_2": 0,
+        "TONE_3": 0.4030802072750091,
+        "TONE_4": 0.5178074199977964
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "b9067bec:想",
+      "recording": "b9067bec2fa348e6a406e7538e4a0ee1",
+      "text": "想",
+      "start": 0.72,
+      "end": 1.15,
+      "prediction": "T4",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_4",
+      "support_not_probabilities": {
+        "TONE_1": 0.0552933509785035,
+        "TONE_2": 0,
+        "TONE_3": 0,
+        "TONE_4": 0.48437476086019104
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "b9067bec:买",
+      "recording": "b9067bec2fa348e6a406e7538e4a0ee1",
+      "text": "买",
+      "start": 1.16,
+      "end": 1.9,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.07633539439237307,
+        "TONE_2": 0.18541354307455699,
+        "TONE_3": 0.8128606678398813,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "5c70f317:我",
+      "recording": "5c70f317214b463f9c3b31d090f6b028",
+      "text": "我",
+      "start": 0.55,
+      "end": 1,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.08320721931139223,
+        "TONE_2": 0,
+        "TONE_3": 0.8348627775391686,
+        "TONE_4": 0.2455083836431855
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "5c70f317:想",
+      "recording": "5c70f317214b463f9c3b31d090f6b028",
+      "text": "想",
+      "start": 1.01,
+      "end": 1.46,
+      "prediction": null,
+      "reason": "contradictory_geometry",
+      "family_decision": "UNCLEAR",
+      "observed_family": "UNCLEAR",
+      "support_not_probabilities": {
+        "TONE_1": 0.20398044148650907,
+        "TONE_2": 0.016862222999615723,
+        "TONE_3": 0.34384344058648747,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    },
+    {
+      "id": "5c70f317:买",
+      "recording": "5c70f317214b463f9c3b31d090f6b028",
+      "text": "买",
+      "start": 1.47,
+      "end": 2.16,
+      "prediction": "T3",
+      "reason": "best_fit",
+      "family_decision": "NUMBERED",
+      "observed_family": "TONE_3",
+      "support_not_probabilities": {
+        "TONE_1": 0.019978351129903937,
+        "TONE_2": 0.1814513288506017,
+        "TONE_3": 0.9571072719685085,
+        "TONE_4": 0
+      },
+      "neutral_output_supported": false
+    }
+  ]
+}

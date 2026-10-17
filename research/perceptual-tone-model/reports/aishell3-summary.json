@@ -1,0 +1,449 @@
+{
+  "additional_download_bytes_this_continuation": 0,
+  "artifact_sha256": {
+    "data/generated/aishell3/continuation/scaled-candidates.jsonl": "9f566dcf5b54d237d1fb24fee549491c9772411db1ab3028086f5522900b68a1",
+    "data/generated/aishell3/continuation/scaled-rejected.jsonl": "ec603d7f2f96285173ebee05ea6d2ae75f95cd0303e6b2bf3b526b0c328346df",
+    "data/generated/aishell3/expansion/lexicon-audit.json": "95db3020e607ca2e1dd267b4807eecd82bd3134e99b29f6036384168f72bdd78",
+    "data/generated/aishell3/expansion/read-units.dict": "758c343c9905179b1883e21a9e69a75b2949135fc32a3f86df462f054192ff3e",
+    "data/generated/aishell3/pilot/audit/candidates.jsonl": "6bed0435ff9c15fc78b47fbd5946c09b579a6e837e11ae1c3659819e9f51f763",
+    "data/generated/aishell3/pilot/audit/review/items.jsonl": "0317a8b1cc5ddc82ab24a20202cbd72a1ff6a556ce3d73604b9d8edbae4ee5bd",
+    "data/generated/aishell3/pilot/read-units.dict": "cd64a9631c3ab0fe968b27c51baab52e21600122f8d5e9ee31c98c0d4576d444"
+  },
+  "automatic_data_quality_gate_passed": true,
+  "baseline_metrics": null,
+  "best_classifier": null,
+  "browser_qa": {
+    "browser": "Chromium",
+    "context_and_target_buttons": "pass",
+    "export_complete_and_incomplete": "pass",
+    "human_answers_written": 0,
+    "human_playback_qa": "pending",
+    "import_and_reviewer_identity": "pass",
+    "media_loaded": 78,
+    "nonpass_notes_required": "pass",
+    "synthetic_only": true,
+    "targets": 26
+  },
+  "changed_files_count": 31,
+  "changed_files_manifest": "reports/aishell3-changed-files.txt",
+  "continuation_command_scope": "Verifies and releases data only; no native-tone training/selection runner is implemented.",
+  "expansion": {
+    "accepted": 587,
+    "alignment_tokens": 312,
+    "applied_overrides": 23,
+    "diagnostic_ranges": {
+      "overall_log_likelihood": [
+        -51.1623745622306,
+        -37.08897860738255
+      ],
+      "phone_duration_deviation": [
+        0.5448238095462249,
+        4.896873071628574
+      ],
+      "snr": [
+        4.014662908240016,
+        23.765274516408383
+      ],
+      "speech_log_likelihood": [
+        -57.53954060872396,
+        -39.90550994873047
+      ]
+    },
+    "mfa_seconds": 20.115,
+    "new_explicit_overrides": 17,
+    "new_pinyin_pronunciations": 229,
+    "new_units": 589,
+    "new_utterances": 157,
+    "oovs": 0,
+    "rejected": 2,
+    "reused_pilot_pronunciations": 83
+  },
+  "external_physical_probe": null,
+  "human_playback_qa": {
+    "purpose": "read-unit ownership and boundary integrity; no tone relabeling",
+    "required": 26,
+    "reviewed": 0,
+    "status": "pending"
+  },
+  "learned_metrics": null,
+  "limitations": [
+    "Human playback pending; automatic checks cannot prove heard read-unit ownership.",
+    "Only a 16-speaker recovered prefix; test has 3 speakers and 177 of 191 units are from SSB0043.",
+    "109 T3 internal phrase positions unknown.",
+    "Full source archive checksum/gzip footer not verifiable from bounded prefix."
+  ],
+  "natural_wo_to_t4_fix_demonstrated": null,
+  "next_step": "Complete the 26-target playback page, ingest the browser JSON, run aishell3_continue.py continue; then implement/run bounded model comparison using the released manifest.",
+  "pilot": {
+    "accepted_duration_seconds": {
+      "max": 0.5499999999999999,
+      "median": 0.21999999999999997,
+      "min": 0.08000000000000002,
+      "p1": 0.09989999999999997,
+      "p25": 0.18,
+      "p5": 0.1399999999999999,
+      "p75": 0.2799999999999999,
+      "p95": 0.41000000000000003,
+      "p99": 0.5200999999999999
+    },
+    "automatic_qa": "passed",
+    "blockers": [],
+    "clips_decoded": 200,
+    "derivative_pcm_overlap": false,
+    "duration_outliers": [],
+    "duration_seconds": {
+      "max": 0.5499999999999999,
+      "median": 0.21999999999999997,
+      "min": 0.08000000000000002,
+      "p1": 0.09989999999999997,
+      "p25": 0.18,
+      "p5": 0.1399999999999999,
+      "p75": 0.2799999999999999,
+      "p95": 0.41000000000000003,
+      "p99": 0.5200999999999999
+    },
+    "failed_utterance_units": 0,
+    "human_playback_qa": "pending",
+    "per_speaker": {
+      "SSB0005": 11,
+      "SSB0009": 10,
+      "SSB0011": 7,
+      "SSB0012": 8,
+      "SSB0016": 7,
+      "SSB0018": 24,
+      "SSB0033": 6,
+      "SSB0038": 4,
+      "SSB0043": 14,
+      "SSB0057": 12,
+      "SSB0073": 37,
+      "SSB0080": 10,
+      "SSB0112": 13,
+      "SSB0122": 21,
+      "SSB0133": 4,
+      "SSB0139": 12
+    },
+    "per_tone": {
+      "T1": 41,
+      "T2": 36,
+      "T3": 37,
+      "T4": 70,
+      "T5": 16
+    },
+    "phone_duration_seconds": {
+      "max": 0.3600000000000001,
+      "median": 0.08999999999999997,
+      "min": 0.010000000000000231,
+      "p1": 0.029999999999999888,
+      "p25": 0.06999999999999984,
+      "p5": 0.03999999999999998,
+      "p75": 0.1100000000000001,
+      "p95": 0.21299999999999944,
+      "p99": 0.31
+    },
+    "reconstruction_deterministic": true,
+    "reconstruction_sha256": "b7638728c391a86598a7f0889db25f274c20dd736900c0ca9f791dc3649e1956",
+    "rejection_reasons": {},
+    "t3_contexts": {
+      "before_T1": 9,
+      "before_T2": 7,
+      "before_T3": 0,
+      "before_T4": 8,
+      "before_T5": 3,
+      "phrase_final": 10,
+      "phrase_medial": 0,
+      "phrase_position_unknown": 27,
+      "utterance_final": 10,
+      "utterance_medial": 27
+    },
+    "training_run": false,
+    "units_accepted": 200,
+    "units_attempted": 200,
+    "units_rejected": 0,
+    "utterances_aligned": 32,
+    "utterances_attempted": 32,
+    "verified_speakers": [
+      "SSB0005",
+      "SSB0009",
+      "SSB0011",
+      "SSB0012",
+      "SSB0016",
+      "SSB0018",
+      "SSB0033",
+      "SSB0038",
+      "SSB0043",
+      "SSB0057",
+      "SSB0073",
+      "SSB0080",
+      "SSB0112",
+      "SSB0122",
+      "SSB0133",
+      "SSB0139"
+    ]
+  },
+  "production_freeze": {
+    "replay_byte_identical": true,
+    "replay_examples": 63,
+    "replay_sha256": "63ae919eb27c5b053ca74195bf631de544c2e4649e1ef97e72f1aac78f723ee0",
+    "verified_files": 413
+  },
+  "released_training_units": 0,
+  "review_packet": {
+    "all_media_hashes_and_decoded_pcm_verified": true,
+    "audio_clips": 78,
+    "html": "/home/jacob/benma/research/perceptual-tone-model/data/generated/aishell3/pilot/audit/review/index.html",
+    "human_playback_qa": "pending",
+    "packet_sha256": "8223626bf630723f31716610ba74e0da772bfc7c8bf113ca67239e527eeec615",
+    "plots": 26,
+    "targets": 26
+  },
+  "scaled": {
+    "accepted_duration_seconds": {
+      "max": 0.5700000000000001,
+      "median": 0.22999999999999998,
+      "min": 0.06,
+      "p1": 0.1086,
+      "p25": 0.18000000000000005,
+      "p5": 0.13,
+      "p75": 0.30000000000000004,
+      "p95": 0.4369999999999993,
+      "p99": 0.5313999999999998
+    },
+    "automatic_qa": "passed",
+    "blockers": [],
+    "clips_decoded": 789,
+    "core_coverage_gate": {
+      "blockers": [],
+      "passed": true,
+      "per_split_tone_counts": {
+        "test": {
+          "T1": 42,
+          "T2": 50,
+          "T3": 31,
+          "T4": 54
+        },
+        "train": {
+          "T1": 98,
+          "T2": 98,
+          "T3": 80,
+          "T4": 119
+        },
+        "validation": {
+          "T1": 35,
+          "T2": 35,
+          "T3": 36,
+          "T4": 51
+        }
+      },
+      "speaker_split": {
+        "test": [
+          "SSB0038",
+          "SSB0043",
+          "SSB0133"
+        ],
+        "train": [
+          "SSB0009",
+          "SSB0011",
+          "SSB0012",
+          "SSB0016",
+          "SSB0018",
+          "SSB0057",
+          "SSB0073",
+          "SSB0080",
+          "SSB0122",
+          "SSB0139"
+        ],
+        "validation": [
+          "SSB0005",
+          "SSB0033",
+          "SSB0112"
+        ]
+      }
+    },
+    "core_units": 729,
+    "coverage_gate": {
+      "blockers": [],
+      "passed": true,
+      "per_split_tone_counts": {
+        "test": {
+          "T1": 42,
+          "T2": 50,
+          "T3": 31,
+          "T4": 54,
+          "T5": 14
+        },
+        "train": {
+          "T1": 98,
+          "T2": 98,
+          "T3": 80,
+          "T4": 119,
+          "T5": 31
+        },
+        "validation": {
+          "T1": 35,
+          "T2": 35,
+          "T3": 36,
+          "T4": 51,
+          "T5": 13
+        }
+      },
+      "speaker_split": {
+        "test": [
+          "SSB0038",
+          "SSB0043",
+          "SSB0133"
+        ],
+        "train": [
+          "SSB0009",
+          "SSB0011",
+          "SSB0012",
+          "SSB0016",
+          "SSB0018",
+          "SSB0057",
+          "SSB0073",
+          "SSB0080",
+          "SSB0122",
+          "SSB0139"
+        ],
+        "validation": [
+          "SSB0005",
+          "SSB0033",
+          "SSB0112"
+        ]
+      }
+    },
+    "derivative_pcm_overlap": false,
+    "duration_outliers": [
+      {
+        "example_id": "aishell3:SSB00090179:0",
+        "reasons": [
+          "extreme_phone_duration"
+        ],
+        "seconds": 0.51
+      },
+      {
+        "example_id": "aishell3:SSB00570318:1",
+        "reasons": [
+          "extreme_phone_duration"
+        ],
+        "seconds": 0.6900000000000001
+      }
+    ],
+    "duration_seconds": {
+      "max": 0.6900000000000001,
+      "median": 0.22999999999999998,
+      "min": 0.06,
+      "p1": 0.1088,
+      "p25": 0.18000000000000005,
+      "p5": 0.13,
+      "p75": 0.30000000000000004,
+      "p95": 0.43999999999999995,
+      "p99": 0.54
+    },
+    "existing_pilot_utterances_reused": 32,
+    "failed_utterance_units": 0,
+    "first_experiment_classes": [
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ],
+    "human_playback_qa": "pending",
+    "neutral_policy": "Retained in audit; excluded from first model for sparse held-out coverage.",
+    "new_units_attempted": 589,
+    "new_utterances_aligned": 157,
+    "per_speaker": {
+      "SSB0005": 11,
+      "SSB0009": 26,
+      "SSB0011": 15,
+      "SSB0012": 37,
+      "SSB0016": 26,
+      "SSB0018": 201,
+      "SSB0033": 11,
+      "SSB0038": 4,
+      "SSB0043": 177,
+      "SSB0057": 23,
+      "SSB0073": 37,
+      "SSB0080": 12,
+      "SSB0112": 148,
+      "SSB0122": 21,
+      "SSB0133": 10,
+      "SSB0139": 28
+    },
+    "per_tone": {
+      "T1": 175,
+      "T2": 183,
+      "T3": 147,
+      "T4": 224,
+      "T5": 58
+    },
+    "phone_duration_seconds": {
+      "max": 0.5300000000000001,
+      "median": 0.09000000000000002,
+      "min": 0.010000000000000009,
+      "p1": 0.02999999999999997,
+      "p25": 0.06999999999999995,
+      "p5": 0.04000000000000001,
+      "p75": 0.1200000000000001,
+      "p95": 0.22999999999999987,
+      "p99": 0.31999999999999995
+    },
+    "reconstruction_deterministic": true,
+    "reconstruction_sha256": "145c20cd646c237f2d1dfceeaa1d4dced307df41bb434ab690f8c4d4dc9b9013",
+    "rejection_reasons": {
+      "extreme_phone_duration": 2
+    },
+    "split_policy": "fixed_10_3_3_speakers_minimum_squared_unit_count_error_to_60_20_20_seed_20261015_no_labels_or_metrics",
+    "t3_contexts": {
+      "before_T1": 38,
+      "before_T2": 23,
+      "before_T3": 1,
+      "before_T4": 29,
+      "before_T5": 18,
+      "phrase_final": 38,
+      "phrase_medial": 0,
+      "phrase_position_unknown": 109,
+      "utterance_final": 38,
+      "utterance_medial": 109
+    },
+    "training_run": false,
+    "units_accepted": 787,
+    "units_attempted": 789,
+    "units_rejected": 2,
+    "utterances_aligned": 189,
+    "utterances_attempted": 189,
+    "verified_speakers": [
+      "SSB0005",
+      "SSB0009",
+      "SSB0011",
+      "SSB0012",
+      "SSB0016",
+      "SSB0018",
+      "SSB0033",
+      "SSB0038",
+      "SSB0043",
+      "SSB0057",
+      "SSB0073",
+      "SSB0080",
+      "SSB0112",
+      "SSB0122",
+      "SSB0133",
+      "SSB0139"
+    ]
+  },
+  "selected_encoder_layer_view_pooling": null,
+  "status": "AUTOMATIC_DATA_QUALITY_PASSED_HUMAN_PLAYBACK_PENDING",
+  "t3_recall": null,
+  "t3_to_t2_comparison": null,
+  "t3_to_t4_comparison": null,
+  "tests": {
+    "aishell3_specific": 32,
+    "chromium_smoke": "pass",
+    "git_diff_check": "pass",
+    "node_test_files": 2,
+    "python": 65,
+    "reconstruction_repeat": "exact agreement",
+    "scoped_ruff": "pass"
+  },
+  "training_release_gate_passed": false,
+  "training_run": false
+}

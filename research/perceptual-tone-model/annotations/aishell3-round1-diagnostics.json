@@ -1,0 +1,78 @@
+{
+  "purpose": "Analyst interpretations of notes only; no verdict overrides or boundary edits.",
+  "items": {
+    "aishell3:SSB00430370:4": {
+      "categories": [
+        "UNCLEAR"
+      ],
+      "interpretation": "Slightly early suggests preceding material, but clipping before the consonant does not identify what was clipped. START_TOO_EARLY is possible; edge direction is unconfirmed.",
+      "visual_observation": "The start is near the decay into the stop interval; periodic energy follows the preceding vowel. The assigned stop, medial, vowel and nasal are complete in the crop. This does not establish their acoustic boundaries.",
+      "root_cause_classification": "UNCERTAIN",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB00730202:16": {
+      "categories": [
+        "MULTI_EDGE",
+        "UNCLEAR"
+      ],
+      "interpretation": "The note explicitly reports both boundary problems but gives neither edge-specific direction nor neighboring sound. Do not turn the enum words into geometric corrections.",
+      "visual_observation": "The start cuts through a continuing periodic transition before the stop release. The nasal-to-affricate ending is also continuous. Neither edge has a unique boundary established by the plot.",
+      "root_cause_classification": "UNCERTAIN",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB01390195:3": {
+      "categories": [
+        "START_TOO_EARLY"
+      ],
+      "interpretation": "Explicit preceding tai4 diphthong is audible in the target start.",
+      "visual_observation": "The aj-to-j transition has continuing formants; the target medial is assigned 110 ms before its vowel. The projection removes this transition but must be heard for retained target identity.",
+      "root_cause_classification": "COARTICULATORY / FUZZY BOUNDARY",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB00090400:1": {
+      "categories": [
+        "END_TOO_EARLY"
+      ],
+      "interpretation": "The note explicitly reports a clipped ou final, with reviewer uncertainty retained.",
+      "visual_observation": "The ow phone is a single 100 ms interval. Voicing and formants continue into the following l. The owned-final projection retains exactly the disputed endpoint and cannot repair it.",
+      "root_cause_classification": "UNCERTAIN",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB00800453:6": {
+      "categories": [
+        "START_TOO_EARLY"
+      ],
+      "interpretation": "Explicit preceding ai4 material is heard at the start.",
+      "visual_observation": "The aj-to-palatal-nasal transition is voiced; the vowel starts 100 ms after the unit boundary. Removing the onset avoids that interval but does not independently prove vowel ownership.",
+      "root_cause_classification": "COARTICULATORY / FUZZY BOUNDARY",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB00050353:4": {
+      "categories": [
+        "START_TOO_EARLY"
+      ],
+      "interpretation": "Explicit preceding fu4 material is heard at the start.",
+      "visual_observation": "The unit begins at the preceding vowel's decay before the affricate release. The 140 ms affricate interval may contain transitional voicing; the final projection excludes it.",
+      "root_cause_classification": "COARTICULATORY / FUZZY BOUNDARY",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB00570040:6": {
+      "categories": [
+        "START_TOO_LATE"
+      ],
+      "interpretation": "The note reports missing k onset material, regardless of the BOUNDARY EARLY enum.",
+      "visual_observation": "The crop contains the entire assigned 120 ms labialized stop interval, including visible closure/release evidence. Human clipping may reflect acoustic placement or isolated playback; moving the edge earlier is not justified by this plot alone.",
+      "root_cause_classification": "UNCERTAIN",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    },
+    "aishell3:SSB01120199:3": {
+      "categories": [
+        "START_TOO_LATE"
+      ],
+      "interpretation": "The note reports missing sh frication, regardless of the BOUNDARY EARLY enum.",
+      "visual_observation": "The crop contains the assigned 100 ms fricative, with high-frequency frication visible after the start. The syllabic nucleus is only 40 ms. A final-only representation makes this short-span limitation more severe.",
+      "root_cause_classification": "UNCERTAIN",
+      "root_cause_confidence": "Provisional acoustic interpretation; no independent hand-aligned reference. No proven material export or reconstruction error."
+    }
+  }
+}

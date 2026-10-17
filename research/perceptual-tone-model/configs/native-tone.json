@@ -1,0 +1,21 @@
+{
+  "version": "native-tone-phase-a-v1",
+  "seed": 20261015,
+  "primary_corpus": "THCHS-30/OpenSLR18",
+  "secondary_candidate": "AISHELL-1/OpenSLR33",
+  "windows": {
+    "local": {"before_seconds": 0, "after_seconds": 0},
+    "wide": {"before_seconds": 0.2, "after_seconds": 0.2}
+  },
+  "phase_a_target_syllables": [500, 1000],
+  "phase_b_target_syllables": [5000, 20000],
+  "review_per_class": 3,
+  "encoders": ["chinese_hubert_base", "wavlm_base_plus"],
+  "layers": [6, 9, 12],
+  "pooling": ["target_mean", "context_mean"],
+  "logistic_regression": {"C": [0.1, 1.0], "class_weight": "balanced", "max_iter": 1000},
+  "mlp": {"hidden_layer_sizes": [64], "alpha": 0.01, "max_iter": 200, "early_stopping": false},
+  "selection_metric": "validation_macro_f1",
+  "status": "recipe_only_blocked_until_data_qa",
+  "phonetic_identity": {"optional": true, "minimum_examples_per_tone": 5, "minimum_tones_per_base": 2}
+}

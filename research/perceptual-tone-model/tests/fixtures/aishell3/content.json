@@ -1,0 +1,35 @@
+{
+  "source_url": "https://www.openslr.org/resources/93/data_aishell3.tgz",
+  "member": "test/content.txt",
+  "member_sha256": "26187c611df08e7274afb1b0019c0688f1b15a80c17b9e85bf83d8dc3b1f937e",
+  "examples": [
+    {
+      "line_number": 12,
+      "line": "SSB06930014.wav\t而 er2 且 qie3 对 dui4 手 shou2 也 ye3 大 da4 多 duo1 是 shi4 中 zhong1 国 guo2 人 ren2"
+    },
+    {
+      "line_number": 19,
+      "line": "SSB06930022.wav\t可 ke2 以 yi3 和 he2 车 che1 主 zhu3 直 zhi2 接 jie1 进 jin4 行 xing2 对 dui4 话 hua4"
+    },
+    {
+      "line_number": 23,
+      "line": "SSB06930026.wav\t九 jiu3 千 qian1 四 si4 百 bai3 六 liu4 十 shi2 二 er4 点儿 dianr3 一 yi1 七 qi1"
+    },
+    {
+      "line_number": 32,
+      "line": "SSB06930035.wav\t有 you3 四 si4 名 ming2 看 kan4 上 shang4 去 qu4 仅 jin2 有 you3 十 shi2 四 si4 五 wu3 岁 sui4 的 de5 年 nian2 轻 qing1 女 nv3 孩儿 hair2"
+    },
+    {
+      "line_number": 40,
+      "line": "SSB06930045.wav\t我 wo3 要 yao4 听 ting1 崔 cui1 健 jian4 的 de5 歌儿 ger1"
+    },
+    {
+      "line_number": 13709,
+      "line": "SSB00090030.wav\t碗 wan2 碗 wan3 香 xiang1"
+    },
+    {
+      "line_number": 13849,
+      "line": "SSB00800453.wav\t我 wo2 想 xiang3 听 ting1 真 zhen1 的 de5 爱 ai4 你 ni3"
+    }
+  ]
+}

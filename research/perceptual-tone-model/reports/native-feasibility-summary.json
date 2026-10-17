@@ -1,0 +1,259 @@
+{
+  "alignment_license": "MIT",
+  "alignment_zip_sha256": "9999f175524a5a54103d2c809b89a14f1aae34222031dd3afe515c9b104b675b",
+  "baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "blockers": [
+    "developer_audio_qa_complete",
+    "original_transcript_verified",
+    "speaker_aliases_verified",
+    "syllable_alignment_audited",
+    "below_requested_phase_a_scale",
+    "missing_classes_in_validation",
+    "missing_classes_in_test",
+    "developer_audio_qa_missing_classes"
+  ],
+  "candidate_speakers_by_partition": {
+    "test": 3,
+    "train": 12,
+    "validation": 4
+  },
+  "candidate_split_counts": {
+    "test": 35,
+    "train": 137,
+    "validation": 57
+  },
+  "candidate_syllables": 229,
+  "candidate_t3_groups": {
+    "before_T1": 9,
+    "before_T2": 11,
+    "before_T4": 6,
+    "lexical_T3": 26,
+    "non_sandhi_T3": 26,
+    "utterance_medial_proxy": 26
+  },
+  "candidate_tone_counts": {
+    "NEUTRAL": 3,
+    "T1": 44,
+    "T2": 55,
+    "T3": 26,
+    "T4": 101
+  },
+  "candidate_tones_by_partition": {
+    "test": {
+      "T1": 4,
+      "T2": 13,
+      "T3": 3,
+      "T4": 15
+    },
+    "train": {
+      "NEUTRAL": 3,
+      "T1": 32,
+      "T2": 25,
+      "T3": 16,
+      "T4": 61
+    },
+    "validation": {
+      "T1": 8,
+      "T2": 17,
+      "T3": 7,
+      "T4": 25
+    }
+  },
+  "config": {
+    "encoders": [
+      "chinese_hubert_base",
+      "wavlm_base_plus"
+    ],
+    "layers": [
+      6,
+      9,
+      12
+    ],
+    "logistic_regression": {
+      "C": [
+        0.1,
+        1.0
+      ],
+      "class_weight": "balanced",
+      "max_iter": 1000
+    },
+    "mlp": {
+      "alpha": 0.01,
+      "early_stopping": false,
+      "hidden_layer_sizes": [
+        64
+      ],
+      "max_iter": 200
+    },
+    "phase_a_target_syllables": [
+      500,
+      1000
+    ],
+    "phase_b_target_syllables": [
+      5000,
+      20000
+    ],
+    "phonetic_identity": {
+      "minimum_examples_per_tone": 5,
+      "minimum_tones_per_base": 2,
+      "optional": true
+    },
+    "pooling": [
+      "target_mean",
+      "context_mean"
+    ],
+    "primary_corpus": "THCHS-30/OpenSLR18",
+    "review_per_class": 3,
+    "secondary_candidate": "AISHELL-1/OpenSLR33",
+    "seed": 20261015,
+    "selection_metric": "validation_macro_f1",
+    "status": "recipe_only_blocked_until_data_qa",
+    "version": "native-tone-phase-a-v1",
+    "windows": {
+      "local": {
+        "after_seconds": 0,
+        "before_seconds": 0
+      },
+      "wide": {
+        "after_seconds": 0.2,
+        "before_seconds": 0.2
+      }
+    }
+  },
+  "conservative_speaker_groups": 21,
+  "downloaded_audio_seconds": 640.6195,
+  "encoders_smoke_report": "reports/native-encoder-smoke-v3.json",
+  "exclusions": {
+    "alignment_bounds_or_duration": 110,
+    "cardinal_yi_surface_uncertain": 6,
+    "erhua_or_er_ownership_unresolved": 5,
+    "multi_han_word_no_verified_syllable_boundary": 1615,
+    "prosodic_grouping_unresolved": 57,
+    "quantity_ge_reduction_optional": 3,
+    "reading_unresolved": 690,
+    "reduplication_reduction_optional": 11,
+    "repeated_prompt_in_other_partition": 163,
+    "t3_following_reading_unresolved": 60,
+    "yi_grammatical_context_unresolved": 16
+  },
+  "final_baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "gates": {
+    "developer_audio_qa_complete": false,
+    "original_transcript_verified": false,
+    "speaker_aliases_verified": false,
+    "syllable_alignment_audited": false
+  },
+  "implementation": "thchs-single-han-word-audit-v2",
+  "manifest_path": "data/generated/native-tone-phase-a-v3/candidates.jsonl",
+  "manifest_sha256": "20b8953bd18f2f273f14b5d05180f26ebb177f47d1e4c4170ffea348ae5cf2f8",
+  "models_trained": 0,
+  "native_speaker_status": "fluent_standard_Mandarin_documented_native_status_not_independently_verified",
+  "phase_b_started": false,
+  "pypinyin_version": "0.55.0",
+  "quarantined_syllables": 1981,
+  "released_speaker_ids": [
+    "A19",
+    "A22",
+    "A23",
+    "A34",
+    "A36",
+    "A4",
+    "A7",
+    "A8",
+    "B11",
+    "B12",
+    "B15",
+    "B2",
+    "B22",
+    "B31",
+    "B32",
+    "B33",
+    "B4",
+    "B6",
+    "B7",
+    "B8",
+    "C12",
+    "C14",
+    "C17",
+    "C18",
+    "C19",
+    "C2",
+    "C20",
+    "C21",
+    "C22",
+    "C23",
+    "C31",
+    "C32",
+    "C4",
+    "C6",
+    "C7",
+    "C8"
+  ],
+  "research_source_hashes": {
+    "configs/native-tone.json": "eacddf703c6ecded615605169803dcd7a30f61bca7816aa88a66476a00ac3030",
+    "native_baseline.cjs": "efb1ccdf6ae41891edf9abae54134f03bed01d1098a37d450ce65301bbf605ae",
+    "perceptual_tone/native_labels.py": "73b73c7dfb54412ad67fa35c87d84b5a57b3887c853b970fc022941780b6e69d",
+    "perceptual_tone/native_protocol.py": "c6b11955eb7a50bfb0401f2f259563d04e73b108e007d47c1052b7509c366834",
+    "scripts/native_prepare.py": "882a6df0253c2b1073a64162cb775f4169465688557ff85db6c73e4e6cfb327c",
+    "scripts/native_smoke.py": "4e2f2a89a992992b83c3ef74b04ce99ed1a1b43ebdd0a36578d9352d19cd12d0",
+    "test_native_baseline.cjs": "0ae79276b9fa49bd2bb20e17c7826d0cd9f1041e6ac19afa99dbd6ff55918688",
+    "tests/test_native_tone.py": "6f512861881557b599b8c469673965abd2fa6dcf91c764d191f3a1422d4355ab"
+  },
+  "review_completed": 0,
+  "review_items": 15,
+  "review_path": "data/generated/native-tone-phase-a-v3/review.html",
+  "runtime": {
+    "dependencies": {
+      "huggingface-hub": "0.36.2",
+      "joblib": "1.6.0",
+      "numpy": "2.3.3",
+      "safetensors": "0.8.0",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.16.2",
+      "threadpoolctl": "3.7.0",
+      "tokenizers": "0.22.2",
+      "torch": "2.8.0+cpu",
+      "transformers": "4.57.6"
+    },
+    "platform": "Linux-7.2.6-arch2-1-x86_64-with-glibc2.44",
+    "python": "3.12.13"
+  },
+  "source_hash_note": "Final source; exact manifest reproduction verified after output-path normalization.",
+  "source_license": "Apache-2.0",
+  "source_prefix_bytes": 16777216,
+  "source_prefix_sha256": "a0d94c1ba7f32e02bf889c57d14a1c78f5c7aac59e0994eabb5ea741be9708aa",
+  "sources": {
+    "alignment": "https://zenodo.org/api/records/7528596/files/grids.zip/content",
+    "audio": "https://www.openslr.org/resources/18/data_thchs30.tgz",
+    "metadata": "https://zenodo.org/api/records/7528596"
+  },
+  "speaker_identity_audit": "unresolved_group_aliases",
+  "status": "STOPPED_PHASE_A_DATA_QUALITY",
+  "syllables_total": 2210,
+  "test_evaluated": 0,
+  "tone_metrics": {
+    "best_model": null,
+    "confusion_matrices": null,
+    "deterministic_accuracy": null,
+    "deterministic_coverage": null,
+    "deterministic_macro_f1": null,
+    "external_learned_probabilities": null,
+    "learned_accuracy": null,
+    "learned_macro_f1": null,
+    "per_tone_recall": null,
+    "t3_recall": null,
+    "t3_to_t4_comparison": null
+  },
+  "training_size": 0,
+  "utterances": 68,
+  "validation_report": "reports/native-validation.json",
+  "whole_archive_downloaded": false
+}

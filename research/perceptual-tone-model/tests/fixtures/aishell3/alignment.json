@@ -1,0 +1,1197 @@
+{
+  "provenance": "Real MFA 3.3.9 / mandarin_mfa 3.0.0 pilot outputs; source corpus Apache-2.0; phone resources CC-BY-4.0. Audio paths are provenance only, not needed by fixture tests.",
+  "records": [
+    {
+      "utterance": {
+        "alignment_audio": {
+          "conversion": "container_rewrite_only_original_pcm44100",
+          "pcm_sha256": "762738aa4a37255aa5d82a4c8a44b7d1374e05a1f0221670c459fcececc89467",
+          "reference": "/home/jacob/benma/research/perceptual-tone-model/data/generated/aishell3/pilot/corpus/SSB0080/SSB00800453.wav",
+          "sha256": "d03e688ad4c33bc6a06f293b3382836b924a9c14fc94209ca3e6ebdb1c7987f2"
+        },
+        "archive_member": "test/wav/SSB0080/SSB00800453.wav",
+        "audio": {
+          "reference": "/home/jacob/benma/research/perceptual-tone-model/data/generated/aishell3/extracted/test/wav/SSB0080/SSB00800453.wav",
+          "sample_rate_hz": 44100,
+          "sha256": "9c5711235b27ff68915a81cd608f8bbc53022faa4eab4e11b76226c3406ec25a"
+        },
+        "corpus": "AISHELL-3/OpenSLR93/v1.0",
+        "duration": 2.6252154195011337,
+        "filename": "SSB00800453.wav",
+        "partition": "pilot_qa",
+        "pcm_sha256": "762738aa4a37255aa5d82a4c8a44b7d1374e05a1f0221670c459fcececc89467",
+        "prosody_status": "not_in_train_prosody_file",
+        "source_partition": "test",
+        "speaker_id": "SSB0080",
+        "transcript": "我想听真的爱你",
+        "transcript_provenance": {
+          "line": 13849,
+          "member": "test/content.txt",
+          "sha256": "26187c611df08e7274afb1b0019c0688f1b15a80c17b9e85bf83d8dc3b1f937e"
+        },
+        "units": [
+          {
+            "corpus_pinyin": "wo2",
+            "corpus_tone": 2,
+            "erhua": false,
+            "hanzi": "我",
+            "index": 0,
+            "label": "T2",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "wo",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "xiang3",
+            "corpus_tone": 3,
+            "erhua": false,
+            "hanzi": "想",
+            "index": 1,
+            "label": "T3",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "xiang",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "ting1",
+            "corpus_tone": 1,
+            "erhua": false,
+            "hanzi": "听",
+            "index": 2,
+            "label": "T1",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "ting",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "zhen1",
+            "corpus_tone": 1,
+            "erhua": false,
+            "hanzi": "真",
+            "index": 3,
+            "label": "T1",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "zhen",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "de5",
+            "corpus_tone": 5,
+            "erhua": false,
+            "hanzi": "的",
+            "index": 4,
+            "label": "T5",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "de",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "ai4",
+            "corpus_tone": 4,
+            "erhua": false,
+            "hanzi": "爱",
+            "index": 5,
+            "label": "T4",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "ai",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "ni3",
+            "corpus_tone": 3,
+            "erhua": false,
+            "hanzi": "你",
+            "index": 6,
+            "label": "T3",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "ni",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          }
+        ],
+        "utterance_id": "SSB00800453"
+      },
+      "textgrid_sha256": "bac3d91df5a2abd8ba80efa415f069835885622315c3d269cf73448f4e43a50d"
+    },
+    {
+      "utterance": {
+        "alignment_audio": {
+          "conversion": "container_rewrite_only_original_pcm44100",
+          "pcm_sha256": "9cc27806a4ccdaa925f1aee93e97c2b2d29c5ef61ef87fba6eb42708c0a38680",
+          "reference": "/home/jacob/benma/research/perceptual-tone-model/data/generated/aishell3/pilot/corpus/SSB0139/SSB01390227.wav",
+          "sha256": "45ba6de16fec58f1f48e9c9b1688e0f6cfc5486b1a1ee446bc7687c978c3ae95"
+        },
+        "archive_member": "test/wav/SSB0139/SSB01390227.wav",
+        "audio": {
+          "reference": "/home/jacob/benma/research/perceptual-tone-model/data/generated/aishell3/extracted/test/wav/SSB0139/SSB01390227.wav",
+          "sample_rate_hz": 44100,
+          "sha256": "650cd0c8e97f30d8a9e1447ec2187c89f64702e225801c7916f4fef29d6c3866"
+        },
+        "corpus": "AISHELL-3/OpenSLR93/v1.0",
+        "duration": 1.4936507936507937,
+        "filename": "SSB01390227.wav",
+        "partition": "pilot_qa",
+        "pcm_sha256": "9cc27806a4ccdaa925f1aee93e97c2b2d29c5ef61ef87fba6eb42708c0a38680",
+        "prosody_status": "not_in_train_prosody_file",
+        "source_partition": "test",
+        "speaker_id": "SSB0139",
+        "transcript": "敌人在哪儿",
+        "transcript_provenance": {
+          "line": 13893,
+          "member": "test/content.txt",
+          "sha256": "26187c611df08e7274afb1b0019c0688f1b15a80c17b9e85bf83d8dc3b1f937e"
+        },
+        "units": [
+          {
+            "corpus_pinyin": "di2",
+            "corpus_tone": 2,
+            "erhua": false,
+            "hanzi": "敌",
+            "index": 0,
+            "label": "T2",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "di",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "ren2",
+            "corpus_tone": 2,
+            "erhua": false,
+            "hanzi": "人",
+            "index": 1,
+            "label": "T2",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "ren",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "zai4",
+            "corpus_tone": 4,
+            "erhua": false,
+            "hanzi": "在",
+            "index": 2,
+            "label": "T4",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "zai",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          },
+          {
+            "corpus_pinyin": "nar3",
+            "corpus_tone": 3,
+            "erhua": true,
+            "hanzi": "哪儿",
+            "index": 3,
+            "label": "T3",
+            "lexical_tone": null,
+            "lexical_tone_provenance": "not_derived",
+            "phonetic_base": "nar",
+            "prosody_after": null,
+            "unusual_multi_hanzi": false
+          }
+        ],
+        "utterance_id": "SSB01390227"
+      },
+      "textgrid_sha256": "1e18e963c5ce508e45bb70e59abea283a0b9af4c299d22986aea7dfa21eb73b2"
+    }
+  ],
+  "lexicon": {
+    "aisaitoned": [
+      [
+        "ʔ",
+        "aj˥˩"
+      ]
+    ],
+    "aisantonea": [
+      [
+        "ʔ",
+        "a˥",
+        "n"
+      ]
+    ],
+    "aisantoned": [
+      [
+        "ʔ",
+        "a˥˩",
+        "n"
+      ]
+    ],
+    "aisbantonea": [
+      [
+        "p",
+        "a˥",
+        "n"
+      ]
+    ],
+    "aisbantoned": [
+      [
+        "p",
+        "a˥˩",
+        "n"
+      ]
+    ],
+    "aisbaotonea": [
+      [
+        "p",
+        "aw˥"
+      ]
+    ],
+    "aisbatonee": [
+      [
+        "p",
+        "a"
+      ]
+    ],
+    "aisbeitoned": [
+      [
+        "p",
+        "ej˥˩"
+      ]
+    ],
+    "aisbitoned": [
+      [
+        "pʲ",
+        "i˥˩"
+      ]
+    ],
+    "aisbutoneb": [
+      [
+        "pʷ",
+        "u˧˥"
+      ]
+    ],
+    "aiscetoned": [
+      [
+        "tsʰ",
+        "o˥˩"
+      ]
+    ],
+    "aischutonea": [
+      [
+        "ʈʂʰ",
+        "u˥"
+      ]
+    ],
+    "aiscitoned": [
+      [
+        "tsʰ",
+        "z̩˥˩"
+      ]
+    ],
+    "aisdaitoned": [
+      [
+        "t",
+        "aj˥˩"
+      ]
+    ],
+    "aisdangtonec": [
+      [
+        "t",
+        "a˨˩˦",
+        "ŋ"
+      ]
+    ],
+    "aisdaotoned": [
+      [
+        "t",
+        "aw˥˩"
+      ]
+    ],
+    "aisdetonea": [
+      [
+        "t",
+        "ə˥"
+      ]
+    ],
+    "aisdetonee": [
+      [
+        "t",
+        "ə"
+      ]
+    ],
+    "aisdiantoned": [
+      [
+        "t",
+        "j",
+        "e˥˩",
+        "n"
+      ]
+    ],
+    "aisditoneb": [
+      [
+        "tʲ",
+        "i˧˥"
+      ]
+    ],
+    "aisditoned": [
+      [
+        "tʲ",
+        "i˥˩"
+      ]
+    ],
+    "aisdongtonea": [
+      [
+        "tʷ",
+        "u˥",
+        "ŋ"
+      ]
+    ],
+    "aisduotonea": [
+      [
+        "t",
+        "w",
+        "o˥"
+      ]
+    ],
+    "aisertoneb": [
+      [
+        "ʔ",
+        "o˧˥",
+        "ɻ"
+      ]
+    ],
+    "aisertonec": [
+      [
+        "ʔ",
+        "o˨˩˦",
+        "ɻ"
+      ]
+    ],
+    "aisertoned": [
+      [
+        "ʔ",
+        "o˥˩",
+        "ɻ"
+      ]
+    ],
+    "aisfangtoned": [
+      [
+        "f",
+        "a˥˩",
+        "ŋ"
+      ]
+    ],
+    "aisfatonea": [
+      [
+        "f",
+        "a˥"
+      ]
+    ],
+    "aisfengtonea": [
+      [
+        "f",
+        "o˥",
+        "ŋ"
+      ]
+    ],
+    "aisfengtoned": [
+      [
+        "f",
+        "o˥˩",
+        "ŋ"
+      ]
+    ],
+    "aisfutoned": [
+      [
+        "f",
+        "u˥˩"
+      ]
+    ],
+    "aisgaitonea": [
+      [
+        "k",
+        "aj˥"
+      ]
+    ],
+    "aisgangtonec": [
+      [
+        "k",
+        "a˨˩˦",
+        "ŋ"
+      ]
+    ],
+    "aisgaotoned": [
+      [
+        "k",
+        "aw˥˩"
+      ]
+    ],
+    "aisgetonea": [
+      [
+        "k",
+        "o˥"
+      ]
+    ],
+    "aisgongtonea": [
+      [
+        "kʷ",
+        "u˥",
+        "ŋ"
+      ]
+    ],
+    "aisgongtoned": [
+      [
+        "kʷ",
+        "u˥˩",
+        "ŋ"
+      ]
+    ],
+    "aisguotoned": [
+      [
+        "k",
+        "w",
+        "o˥˩"
+      ]
+    ],
+    "aisgutoned": [
+      [
+        "kʷ",
+        "u˥˩"
+      ]
+    ],
+    "aishaitonec": [
+      [
+        "x",
+        "aj˨˩˦"
+      ]
+    ],
+    "aisheitonea": [
+      [
+        "x",
+        "ej˥"
+      ]
+    ],
+    "aishetoneb": [
+      [
+        "x",
+        "o˧˥"
+      ]
+    ],
+    "aishoutoned": [
+      [
+        "x",
+        "ow˥˩"
+      ]
+    ],
+    "aishuitonea": [
+      [
+        "xʷ",
+        "ej˥"
+      ]
+    ],
+    "aishuitoned": [
+      [
+        "xʷ",
+        "ej˥˩"
+      ]
+    ],
+    "aishuntonea": [
+      [
+        "xʷ",
+        "ə˥",
+        "n"
+      ]
+    ],
+    "aishuotonec": [
+      [
+        "xʷ",
+        "o˨˩˦"
+      ]
+    ],
+    "aishutoneb": [
+      [
+        "xʷ",
+        "u˧˥"
+      ]
+    ],
+    "aisjiaotonea": [
+      [
+        "tɕ",
+        "aw˥"
+      ]
+    ],
+    "aisjiatonea": [
+      [
+        "tɕ",
+        "a˥"
+      ]
+    ],
+    "aisjingtonea": [
+      [
+        "tɕ",
+        "i˥",
+        "ŋ"
+      ]
+    ],
+    "aisjintonec": [
+      [
+        "tɕ",
+        "i˨˩˦",
+        "n"
+      ]
+    ],
+    "aisjitoneb": [
+      [
+        "tɕ",
+        "i˧˥"
+      ]
+    ],
+    "aisjutonea": [
+      [
+        "tɕ",
+        "y˥"
+      ]
+    ],
+    "aisjutoned": [
+      [
+        "tɕ",
+        "y˥˩"
+      ]
+    ],
+    "aiskaitonea": [
+      [
+        "kʰ",
+        "aj˥"
+      ]
+    ],
+    "aiskangtonea": [
+      [
+        "kʰ",
+        "a˥",
+        "ŋ"
+      ]
+    ],
+    "aisketoneb": [
+      [
+        "kʰ",
+        "o˧˥"
+      ]
+    ],
+    "aiskuaitoned": [
+      [
+        "kʰ",
+        "w",
+        "aj˥˩"
+      ]
+    ],
+    "aiskuangtoneb": [
+      [
+        "kʰ",
+        "w",
+        "a˧˥",
+        "ŋ"
+      ]
+    ],
+    "aiskutoned": [
+      [
+        "kʷ",
+        "u˥˩"
+      ]
+    ],
+    "aislatonee": [
+      [
+        "l",
+        "a"
+      ]
+    ],
+    "aisleitoned": [
+      [
+        "l",
+        "ej˥˩"
+      ]
+    ],
+    "aisletoned": [
+      [
+        "l",
+        "o˥˩"
+      ]
+    ],
+    "aisletonee": [
+      [
+        "l",
+        "ə"
+      ]
+    ],
+    "aisliangtoneb": [
+      [
+        "l",
+        "j",
+        "a˧˥",
+        "ŋ"
+      ]
+    ],
+    "aisliantoneb": [
+      [
+        "l",
+        "j",
+        "e˧˥",
+        "n"
+      ]
+    ],
+    "aislitonec": [
+      [
+        "ʎ",
+        "i˨˩˦"
+      ]
+    ],
+    "aisliutoneb": [
+      [
+        "l",
+        "j",
+        "ow˧˥"
+      ]
+    ],
+    "aisliutoned": [
+      [
+        "l",
+        "j",
+        "ow˥˩"
+      ]
+    ],
+    "aisluntoneb": [
+      [
+        "l",
+        "w",
+        "ə˧˥",
+        "n"
+      ]
+    ],
+    "aisluotoneb": [
+      [
+        "l",
+        "w",
+        "o˧˥"
+      ]
+    ],
+    "aislvetoned": [
+      [
+        "l",
+        "ɥ",
+        "e˥˩"
+      ]
+    ],
+    "aismetonee": [
+      [
+        "m",
+        "ə"
+      ]
+    ],
+    "aismingtoneb": [
+      [
+        "mʲ",
+        "i˧˥",
+        "ŋ"
+      ]
+    ],
+    "aismitoned": [
+      [
+        "mʲ",
+        "i˥˩"
+      ]
+    ],
+    "aismoutonec": [
+      [
+        "m",
+        "ow˨˩˦"
+      ]
+    ],
+    "aismutonec": [
+      [
+        "m",
+        "u˨˩˦"
+      ]
+    ],
+    "aisnantoneb": [
+      [
+        "n",
+        "a˧˥",
+        "n"
+      ]
+    ],
+    "aisnartonec": [
+      [
+        "n",
+        "a˨˩˦",
+        "ɻ"
+      ]
+    ],
+    "aisnatoned": [
+      [
+        "n",
+        "a˥˩"
+      ]
+    ],
+    "aisnitonec": [
+      [
+        "ɲ",
+        "i˨˩˦"
+      ]
+    ],
+    "aisnvetoned": [
+      [
+        "n",
+        "ɥ",
+        "e˥˩"
+      ]
+    ],
+    "aisnvtonec": [
+      [
+        "ɲ",
+        "y˨˩˦"
+      ]
+    ],
+    "aispaotonec": [
+      [
+        "pʰ",
+        "aw˨˩˦"
+      ]
+    ],
+    "aispeitoned": [
+      [
+        "pʰ",
+        "ej˥˩"
+      ]
+    ],
+    "aispengtoneb": [
+      [
+        "pʰ",
+        "o˧˥",
+        "ŋ"
+      ]
+    ],
+    "aispiaotoned": [
+      [
+        "pʰ",
+        "j",
+        "aw˥˩"
+      ]
+    ],
+    "aispotoned": [
+      [
+        "pʰ",
+        "w",
+        "o˥˩"
+      ]
+    ],
+    "aisqiantonec": [
+      [
+        "tɕʰ",
+        "e˨˩˦",
+        "n"
+      ]
+    ],
+    "aisqintonea": [
+      [
+        "tɕʰ",
+        "i˥",
+        "n"
+      ]
+    ],
+    "aisqutoned": [
+      [
+        "tɕʰ",
+        "y˥˩"
+      ]
+    ],
+    "aisrentoneb": [
+      [
+        "ʐ",
+        "ə˧˥",
+        "n"
+      ]
+    ],
+    "aisruitoned": [
+      [
+        "ʐ",
+        "w",
+        "ej˥˩"
+      ]
+    ],
+    "aissantonea": [
+      [
+        "s",
+        "a˥",
+        "n"
+      ]
+    ],
+    "aissetoned": [
+      [
+        "s",
+        "o˥˩"
+      ]
+    ],
+    "aisshangtonea": [
+      [
+        "ʂ",
+        "a˥",
+        "ŋ"
+      ]
+    ],
+    "aisshangtoned": [
+      [
+        "ʂ",
+        "a˥˩",
+        "ŋ"
+      ]
+    ],
+    "aisshengtonee": [
+      [
+        "ʂ",
+        "o",
+        "ŋ"
+      ]
+    ],
+    "aisshentonea": [
+      [
+        "ʂ",
+        "ə˥",
+        "n"
+      ]
+    ],
+    "aisshentonec": [
+      [
+        "ʂ",
+        "ə˨˩˦",
+        "n"
+      ]
+    ],
+    "aisshitoned": [
+      [
+        "ʂ",
+        "ʐ̩˥˩"
+      ]
+    ],
+    "aisshoutoned": [
+      [
+        "ʂ",
+        "ow˥˩"
+      ]
+    ],
+    "aisshutoned": [
+      [
+        "ʂ",
+        "u˥˩"
+      ]
+    ],
+    "aissitonea": [
+      [
+        "s",
+        "z̩˥"
+      ]
+    ],
+    "aissuitoned": [
+      [
+        "s",
+        "w",
+        "ej˥˩"
+      ]
+    ],
+    "aissuotonec": [
+      [
+        "s",
+        "w",
+        "o˨˩˦"
+      ]
+    ],
+    "aistaitoned": [
+      [
+        "tʰ",
+        "aj˥˩"
+      ]
+    ],
+    "aistaotoneb": [
+      [
+        "tʰ",
+        "aw˧˥"
+      ]
+    ],
+    "aistiantonea": [
+      [
+        "tʰ",
+        "j",
+        "e˥",
+        "n"
+      ]
+    ],
+    "aistingtonea": [
+      [
+        "tʲ",
+        "i˥",
+        "ŋ"
+      ]
+    ],
+    "aistongtoneb": [
+      [
+        "tʷ",
+        "u˧˥",
+        "ŋ"
+      ]
+    ],
+    "aistoutoneb": [
+      [
+        "tʰ",
+        "ow˧˥"
+      ]
+    ],
+    "aiswaitoned": [
+      [
+        "w",
+        "aj˥˩"
+      ]
+    ],
+    "aiswangtoned": [
+      [
+        "w",
+        "a˥˩",
+        "ŋ"
+      ]
+    ],
+    "aiswantonec": [
+      [
+        "w",
+        "a˨˩˦",
+        "n"
+      ]
+    ],
+    "aisweitonea": [
+      [
+        "w",
+        "ej˥"
+      ]
+    ],
+    "aiswotoneb": [
+      [
+        "w",
+        "o˧˥"
+      ]
+    ],
+    "aiswotonec": [
+      [
+        "w",
+        "o˨˩˦"
+      ]
+    ],
+    "aiswutonea": [
+      [
+        "u˥"
+      ]
+    ],
+    "aiswutoneb": [
+      [
+        "u˧˥"
+      ]
+    ],
+    "aisxiangtonec": [
+      [
+        "ɕ",
+        "a˨˩˦",
+        "ŋ"
+      ]
+    ],
+    "aisxiangtoned": [
+      [
+        "ɕ",
+        "a˥˩",
+        "ŋ"
+      ]
+    ],
+    "aisxiantonea": [
+      [
+        "ɕ",
+        "e˥",
+        "n"
+      ]
+    ],
+    "aisxiantoned": [
+      [
+        "ɕ",
+        "e˥˩",
+        "n"
+      ]
+    ],
+    "aisxutonec": [
+      [
+        "ɕ",
+        "y˨˩˦"
+      ]
+    ],
+    "aisyangtoneb": [
+      [
+        "j",
+        "a˧˥",
+        "ŋ"
+      ]
+    ],
+    "aisyangtoned": [
+      [
+        "j",
+        "a˥˩",
+        "ŋ"
+      ]
+    ],
+    "aisyantonec": [
+      [
+        "j",
+        "e˨˩˦",
+        "n"
+      ]
+    ],
+    "aisyetonec": [
+      [
+        "j",
+        "e˨˩˦"
+      ]
+    ],
+    "aisyetoned": [
+      [
+        "j",
+        "e˥˩"
+      ]
+    ],
+    "aisyintonea": [
+      [
+        "i˥",
+        "n"
+      ]
+    ],
+    "aisyitoneb": [
+      [
+        "i˧˥"
+      ]
+    ],
+    "aisyitoned": [
+      [
+        "i˥˩"
+      ]
+    ],
+    "aisyoutoneb": [
+      [
+        "j",
+        "ow˧˥"
+      ]
+    ],
+    "aisyoutonec": [
+      [
+        "j",
+        "ow˨˩˦"
+      ]
+    ],
+    "aisyutonec": [
+      [
+        "y˨˩˦"
+      ]
+    ],
+    "aisyutoned": [
+      [
+        "y˥˩"
+      ]
+    ],
+    "aiszaitoned": [
+      [
+        "ts",
+        "aj˥˩"
+      ]
+    ],
+    "aiszetoneb": [
+      [
+        "ts",
+        "o˧˥"
+      ]
+    ],
+    "aiszhantoned": [
+      [
+        "ʈʂ",
+        "a˥˩",
+        "n"
+      ]
+    ],
+    "aiszhentonea": [
+      [
+        "ʈʂ",
+        "ə˥",
+        "n"
+      ]
+    ],
+    "aiszhetoned": [
+      [
+        "ʈʂ",
+        "o˥˩"
+      ]
+    ],
+    "aiszhetonee": [
+      [
+        "ʈʂ",
+        "ə"
+      ]
+    ],
+    "aiszhitonea": [
+      [
+        "ʈʂ",
+        "ʐ̩˥"
+      ]
+    ],
+    "aiszhitonec": [
+      [
+        "ʈʂ",
+        "ʐ̩˨˩˦"
+      ]
+    ],
+    "aiszhitoned": [
+      [
+        "ʈʂ",
+        "ʐ̩˥˩"
+      ]
+    ],
+    "aiszhoutonea": [
+      [
+        "ʈʂ",
+        "ow˥"
+      ]
+    ],
+    "aiszitonec": [
+      [
+        "ts",
+        "z̩˨˩˦"
+      ]
+    ],
+    "aiszongtonec": [
+      [
+        "ts",
+        "u˨˩˦",
+        "ŋ"
+      ]
+    ],
+    "aiszuitoned": [
+      [
+        "ts",
+        "w",
+        "ej˥˩"
+      ]
+    ],
+    "aiszuotoned": [
+      [
+        "ts",
+        "w",
+        "o˥˩"
+      ]
+    ]
+  }
+}

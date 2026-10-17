@@ -1,0 +1,6 @@
+# The tone lableing as used in the Mandarin tonal variations.
+# Prosody labeling instructions:
+# %: The boundary after prosodic word and the minor prosodic phrase.
+# $: The major prosodic phrase respectively, represented the boundary for topic turning and the intonation boundary.
+SSB00430444|chi2 qi3 % hong2 ying1 qiang1 % zhui1 gan3 % dui4 fang1 % ban4 gong1 li3 $|持起%红缨枪%追赶%对方%半公里$
+SSB00570443|zheng4 le5 $ bu2 dao4 % ba1 bai3 % kuai4 qian2 $|挣了$不到%八百%块钱$

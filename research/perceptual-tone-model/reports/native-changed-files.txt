@@ -1,0 +1,38 @@
+Pass-specific changes only. Pre-existing uncommitted pilot infrastructure is not counted.
+
+Modified (prepended active native-tone scope; earlier content preserved):
+research/perceptual-tone-model/README.md
+research/perceptual-tone-model/EXPERIMENT.md
+
+Added:
+research/perceptual-tone-model/native-corpus-recon.md
+research/perceptual-tone-model/tone-labeling-policy.md
+research/perceptual-tone-model/native-evaluation-report.md
+research/perceptual-tone-model/native-error-analysis.md
+research/perceptual-tone-model/native-external-probe.md
+research/perceptual-tone-model/native-requirements.txt
+research/perceptual-tone-model/native_baseline.cjs
+research/perceptual-tone-model/test_native_baseline.cjs
+research/perceptual-tone-model/configs/native-tone.json
+research/perceptual-tone-model/perceptual_tone/native_labels.py
+research/perceptual-tone-model/perceptual_tone/native_protocol.py
+research/perceptual-tone-model/scripts/native_prepare.py
+research/perceptual-tone-model/scripts/native_smoke.py
+research/perceptual-tone-model/tests/test_native_tone.py
+research/perceptual-tone-model/reports/native-feasibility-summary.json
+research/perceptual-tone-model/reports/native-encoder-smoke.json
+research/perceptual-tone-model/reports/native-encoder-smoke-v3.json
+research/perceptual-tone-model/reports/native-external-baseline.json
+research/perceptual-tone-model/reports/native-validation.json
+research/perceptual-tone-model/reports/native-changed-files.txt
+
+Ignored local artifacts retained:
+research/perceptual-tone-model/data/generated/native-tone-recon/
+research/perceptual-tone-model/data/generated/native-tone-phase-a-v1/
+research/perceptual-tone-model/data/generated/native-tone-phase-a-v2/
+research/perceptual-tone-model/data/generated/native-tone-phase-a-v3/
+research/perceptual-tone-model/embeddings/generated/ (48 new content-addressed vectors)
+
+No production source, deterministic classifier, grader, UI, model weights,
+existing research implementation, frozen manifest, or Stage-0 archive changed.
+No commit, push, or deployment.

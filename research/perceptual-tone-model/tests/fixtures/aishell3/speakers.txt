@@ -1,0 +1,5 @@
+# voice-file name; age group; gender; accent
+# In years, A:< 14, B:14 - 25, C:26 - 40, D:> 41.
+SSB0009	B	female	south
+SSB0693	B	female	south
+SSB0080	B	female	south

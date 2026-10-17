@@ -1,0 +1,91 @@
+{
+  "release_manifest_sha256": "8407533341c3707e4cc5ff3fc839859fbb72157ca3c381f10621df6bdd6cec0f",
+  "baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "primary_rows": 729,
+  "derivative_audio_checks": 2361,
+  "embedding_cache_checks": 2562,
+  "class_counts": {
+    "train": {
+      "T1": 98,
+      "T4": 119,
+      "T2": 98,
+      "T3": 80
+    },
+    "validation": {
+      "T2": 35,
+      "T1": 35,
+      "T4": 51,
+      "T3": 36
+    },
+    "test": {
+      "T4": 54,
+      "T2": 50,
+      "T3": 31,
+      "T1": 42
+    }
+  },
+  "prediction_reproduction": {
+    "model1_acoustic": {
+      "reload_delta": 0.0,
+      "seeded_refit_delta": 0.0
+    },
+    "model2_hubert": {
+      "reload_delta": 0.0,
+      "seeded_refit_delta": 0.0
+    },
+    "model3_wavlm": {
+      "reload_delta": 0.0,
+      "seeded_refit_delta": 0.0
+    },
+    "model4_mlp": {
+      "reload_delta": 0.0,
+      "seeded_refit_delta": 0.0
+    },
+    "model6_combined": {
+      "reload_delta": 0.0,
+      "seeded_refit_delta": 0.0
+    }
+  },
+  "fresh_encoder_max_delta": {
+    "chinese_hubert_base": 0.0,
+    "wavlm_base_plus": 0.0
+  },
+  "selection_precedes_test": true,
+  "external_probe_follows_test_freeze": true,
+  "external_units_reproduced": 77,
+  "external_probability_max_delta": 0.0,
+  "python_tests": {
+    "passed": 83,
+    "command": "PYTHONPATH=research/perceptual-tone-model benchmark/pronunciation_v2/.venv/bin/python -m unittest discover -s research/perceptual-tone-model/tests -v"
+  },
+  "node_tests": {
+    "passed": 3,
+    "files": [
+      "test_aishell3_baseline.cjs",
+      "test_native_baseline.cjs",
+      "test_evaluate.cjs"
+    ]
+  },
+  "scoped_ruff": "passed",
+  "git_diff_check": "passed",
+  "stage0_replay": {
+    "examples": 63,
+    "byte_identical": true
+  },
+  "service_runtime": {
+    "python": "3.12.13",
+    "praat_parselmouth": "0.4.7",
+    "numpy": "2.5.3",
+    "node": "v24.18.0"
+  },
+  "original_evidence_unchanged": 1176,
+  "repeat_pipeline_artifacts_byte_identical": 5737,
+  "round2_export_byte_identical": true,
+  "resampled_model_input_audio_leakage_checks": 2187,
+  "finalization_no_new_configurations": true,
+  "finalization_no_experiment_fits_or_encoder_extraction": true
+}

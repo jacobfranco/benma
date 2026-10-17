@@ -1,0 +1,20 @@
+{
+  "chinese_hubert_base": {
+    "model_id": "TencentGameMate/chinese-hubert-base",
+    "revision": "fce0375452b1dd6c080ac3248d423d4d037bc831",
+    "architecture": "hubert",
+    "sample_rate_hz": 16000,
+    "hidden_layer": 9,
+    "hidden_size": 768,
+    "normalize": true
+  },
+  "wavlm_base_plus": {
+    "model_id": "microsoft/wavlm-base-plus",
+    "revision": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+    "architecture": "wavlm",
+    "sample_rate_hz": 16000,
+    "hidden_layer": 9,
+    "hidden_size": 768,
+    "normalize": false
+  }
+}

@@ -1,0 +1,1013 @@
+{
+  "dataset_manifest_sha256": "8407533341c3707e4cc5ff3fc839859fbb72157ca3c381f10621df6bdd6cec0f",
+  "baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "baseline_validation": {
+    "n": 157,
+    "covered": 72,
+    "coverage": 0.4585987261146497,
+    "accuracy": 0.3472222222222222,
+    "balanced_accuracy": 0.3305188923395445,
+    "macro_f1": 0.29945220841959974,
+    "correct_fraction_all": 0.1592356687898089,
+    "classes": [
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ],
+    "confusion": [
+      [
+        1,
+        8,
+        3,
+        0
+      ],
+      [
+        0,
+        2,
+        20,
+        1
+      ],
+      [
+        0,
+        0,
+        7,
+        9
+      ],
+      [
+        1,
+        3,
+        2,
+        15
+      ]
+    ],
+    "class_counts": {
+      "T2": 35,
+      "T1": 35,
+      "T4": 51,
+      "T3": 36
+    },
+    "per_tone": {
+      "T1": {
+        "precision": 0.5,
+        "recall": 0.08333333333333333,
+        "f1": 0.14285714285714285,
+        "covered_n": 12,
+        "n": 35,
+        "recall_all": 0.02857142857142857,
+        "abstentions": 23
+      },
+      "T2": {
+        "precision": 0.15384615384615385,
+        "recall": 0.08695652173913043,
+        "f1": 0.1111111111111111,
+        "covered_n": 23,
+        "n": 35,
+        "recall_all": 0.05714285714285714,
+        "abstentions": 12
+      },
+      "T3": {
+        "precision": 0.21875,
+        "recall": 0.4375,
+        "f1": 0.2916666666666667,
+        "covered_n": 16,
+        "n": 36,
+        "recall_all": 0.19444444444444445,
+        "abstentions": 20
+      },
+      "T4": {
+        "precision": 0.6,
+        "recall": 0.7142857142857143,
+        "f1": 0.6521739130434783,
+        "covered_n": 21,
+        "n": 51,
+        "recall_all": 0.29411764705882354,
+        "abstentions": 30
+      }
+    },
+    "T3_to_T2": {
+      "count": 0,
+      "rate_all_T3": 0.0
+    },
+    "T3_to_T4": {
+      "count": 9,
+      "rate_all_T3": 0.25
+    }
+  },
+  "baseline_validation_note": "Reporting-only score from frozen outputs; baseline has no fitted/selected parameters.",
+  "confidence": {
+    "model1_acoustic": {
+      "bins": [
+        {
+          "lower": 0.25,
+          "upper": 0.4,
+          "n": 4,
+          "correct": 2,
+          "incorrect": 2,
+          "accuracy": 0.5
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 10,
+          "correct": 3,
+          "incorrect": 7,
+          "accuracy": 0.3
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 31,
+          "correct": 12,
+          "incorrect": 19,
+          "accuracy": 0.3870967741935484
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 31,
+          "correct": 12,
+          "incorrect": 19,
+          "accuracy": 0.3870967741935484
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 26,
+          "correct": 14,
+          "incorrect": 12,
+          "accuracy": 0.5384615384615384
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 30,
+          "correct": 22,
+          "incorrect": 8,
+          "accuracy": 0.7333333333333333
+        },
+        {
+          "lower": 0.9,
+          "upper": 1,
+          "n": 45,
+          "correct": 36,
+          "incorrect": 9,
+          "accuracy": 0.8
+        }
+      ],
+      "high_confidence_errors": [
+        {
+          "example_id": "aishell3:SSB00380055:3",
+          "prediction": "T2",
+          "probabilities": [
+            9.966820817362762e-05,
+            0.8816724891394111,
+            0.11810109589549568,
+            0.0001267467569196463
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430212:4",
+          "prediction": "T3",
+          "probabilities": [
+            0.0015266963950729135,
+            0.028078964585965226,
+            0.931443519969636,
+            0.03895081904932596
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430075:2",
+          "prediction": "T3",
+          "probabilities": [
+            0.00012381301430897465,
+            0.11945146653930704,
+            0.8779820774980664,
+            0.00244264294831741
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430138:1",
+          "prediction": "T3",
+          "probabilities": [
+            3.091750676809447e-05,
+            0.008304114644465814,
+            0.9350940575606786,
+            0.056570910288087396
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430163:1",
+          "prediction": "T4",
+          "probabilities": [
+            0.01700985469836942,
+            0.0009352890889384653,
+            0.17824875068516358,
+            0.8038061055275285
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430186:0",
+          "prediction": "T2",
+          "probabilities": [
+            0.11359059018413883,
+            0.8686432875266739,
+            0.009988591309106194,
+            0.007777530980081078
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430221:2",
+          "prediction": "T2",
+          "probabilities": [
+            0.011760893001194333,
+            0.9020099359899377,
+            0.05486025346261349,
+            0.03136891754625442
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430273:3",
+          "prediction": "T2",
+          "probabilities": [
+            0.029802636176916808,
+            0.9699172122378539,
+            1.005885841776909e-05,
+            0.00027009272681143904
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430289:0",
+          "prediction": "T2",
+          "probabilities": [
+            0.1478060037306927,
+            0.8497932801340806,
+            0.0017371759724998314,
+            0.0006635401627269782
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430292:1",
+          "prediction": "T4",
+          "probabilities": [
+            0.004343995838960938,
+            0.0020774740064762507,
+            0.18550721597664763,
+            0.8080713141779152
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430295:2",
+          "prediction": "T2",
+          "probabilities": [
+            0.020689810574826915,
+            0.9768585611271842,
+            0.0009461012480773422,
+            0.0015055270499115694
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430366:3",
+          "prediction": "T1",
+          "probabilities": [
+            0.8283992857673729,
+            0.07190381013284172,
+            0.007709012588490603,
+            0.09198789151129486
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430400:3",
+          "prediction": "T3",
+          "probabilities": [
+            0.00013067324962308898,
+            0.0035766743355926133,
+            0.9635540511598456,
+            0.03273860125493873
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430443:4",
+          "prediction": "T1",
+          "probabilities": [
+            0.9571385575906262,
+            0.03480924814000861,
+            0.0035297064065515017,
+            0.004522487862813799
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430474:2",
+          "prediction": "T1",
+          "probabilities": [
+            0.8025041459219375,
+            0.08523501985304988,
+            0.024140522657150325,
+            0.08812031156786213
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430474:4",
+          "prediction": "T1",
+          "probabilities": [
+            0.9723207884092765,
+            0.009090872418452207,
+            0.004307756381882428,
+            0.014280582790388926
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB01330270:0",
+          "prediction": "T3",
+          "probabilities": [
+            2.65968617717245e-05,
+            0.02089247723956064,
+            0.9630638785043445,
+            0.01601704739432315
+          ],
+          "truth": "T1"
+        }
+      ]
+    },
+    "model2_hubert": {
+      "bins": [
+        {
+          "lower": 0.25,
+          "upper": 0.4,
+          "n": 2,
+          "correct": 1,
+          "incorrect": 1,
+          "accuracy": 0.5
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 3,
+          "correct": 1,
+          "incorrect": 2,
+          "accuracy": 0.3333333333333333
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 9,
+          "correct": 5,
+          "incorrect": 4,
+          "accuracy": 0.5555555555555556
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 10,
+          "correct": 9,
+          "incorrect": 1,
+          "accuracy": 0.9
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 16,
+          "correct": 12,
+          "incorrect": 4,
+          "accuracy": 0.75
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 15,
+          "correct": 14,
+          "incorrect": 1,
+          "accuracy": 0.9333333333333333
+        },
+        {
+          "lower": 0.9,
+          "upper": 1,
+          "n": 122,
+          "correct": 118,
+          "incorrect": 4,
+          "accuracy": 0.9672131147540983
+        }
+      ],
+      "high_confidence_errors": [
+        {
+          "example_id": "aishell3:SSB00430061:0",
+          "prediction": "T3",
+          "probabilities": [
+            0.0006239850461384191,
+            0.0009563942030564297,
+            0.9976529082213408,
+            0.0007667125294644239
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430061:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.02949873550381047,
+            0.9515077365472665,
+            0.0166273873390119,
+            0.0023661406099110133
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430124:3",
+          "prediction": "T4",
+          "probabilities": [
+            0.0005432323689032784,
+            0.0019119915782047517,
+            0.009609649887657876,
+            0.9879351261652342
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430396:3",
+          "prediction": "T3",
+          "probabilities": [
+            0.012360019430134112,
+            0.1472560949523178,
+            0.8384860891955438,
+            0.0018977964220042685
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430488:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.03069721590533739,
+            0.9464316325286023,
+            0.021402724951100575,
+            0.001468426614959847
+          ],
+          "truth": "T1"
+        }
+      ]
+    },
+    "model3_wavlm": {
+      "bins": [
+        {
+          "lower": 0.25,
+          "upper": 0.4,
+          "n": 3,
+          "correct": 1,
+          "incorrect": 2,
+          "accuracy": 0.3333333333333333
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 8,
+          "correct": 1,
+          "incorrect": 7,
+          "accuracy": 0.125
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 22,
+          "correct": 11,
+          "incorrect": 11,
+          "accuracy": 0.5
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 20,
+          "correct": 11,
+          "incorrect": 9,
+          "accuracy": 0.55
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 24,
+          "correct": 11,
+          "incorrect": 13,
+          "accuracy": 0.4583333333333333
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 42,
+          "correct": 35,
+          "incorrect": 7,
+          "accuracy": 0.8333333333333334
+        },
+        {
+          "lower": 0.9,
+          "upper": 1,
+          "n": 58,
+          "correct": 53,
+          "incorrect": 5,
+          "accuracy": 0.9137931034482759
+        }
+      ],
+      "high_confidence_errors": [
+        {
+          "example_id": "aishell3:SSB01330161:1",
+          "prediction": "T3",
+          "probabilities": [
+            0.09379179750509087,
+            0.0063766333779934955,
+            0.8174332359358547,
+            0.0823983331810611
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430212:4",
+          "prediction": "T2",
+          "probabilities": [
+            0.0007343059505517422,
+            0.9974988998511597,
+            0.0007936980047373678,
+            0.0009730961935512804
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430011:0",
+          "prediction": "T4",
+          "probabilities": [
+            0.019978873538235204,
+            0.04558609771260667,
+            0.0038218445991246666,
+            0.9306131841500335
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430039:4",
+          "prediction": "T2",
+          "probabilities": [
+            0.10277352992992649,
+            0.85979322948475,
+            0.012669137053176275,
+            0.02476410353214725
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430061:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.016376934941626207,
+            0.9620530762117274,
+            0.02103033307672166,
+            0.0005396557699248235
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430094:1",
+          "prediction": "T4",
+          "probabilities": [
+            0.05941395305334673,
+            0.07321043255996165,
+            0.005028781357143806,
+            0.8623468330295478
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430426:1",
+          "prediction": "T3",
+          "probabilities": [
+            0.026697203628955595,
+            0.024599792049687878,
+            0.9424397072369279,
+            0.0062632970844285485
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430474:0",
+          "prediction": "T2",
+          "probabilities": [
+            0.12351438082100585,
+            0.8744400526459029,
+            0.0011971976229143524,
+            0.0008483689101769825
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430474:4",
+          "prediction": "T2",
+          "probabilities": [
+            0.14921643071446752,
+            0.8296140817623355,
+            0.008101687505141742,
+            0.013067800018055284
+          ],
+          "truth": "T4"
+        },
+        {
+          "example_id": "aishell3:SSB00430484:0",
+          "prediction": "T2",
+          "probabilities": [
+            0.13375972654239307,
+            0.8122800521185742,
+            0.03311562511358406,
+            0.020844596225448608
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430488:2",
+          "prediction": "T4",
+          "probabilities": [
+            0.00023677783082778328,
+            0.023175321431023653,
+            0.007654466270015161,
+            0.9689334344681333
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB01330270:1",
+          "prediction": "T3",
+          "probabilities": [
+            0.006348009926930965,
+            0.003981705759423996,
+            0.8477593854058427,
+            0.1419108989078023
+          ],
+          "truth": "T4"
+        }
+      ]
+    },
+    "model4_mlp": {
+      "bins": [
+        {
+          "lower": 0.25,
+          "upper": 0.4,
+          "n": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 4,
+          "correct": 1,
+          "incorrect": 3,
+          "accuracy": 0.25
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 5,
+          "correct": 1,
+          "incorrect": 4,
+          "accuracy": 0.2
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 4,
+          "correct": 1,
+          "incorrect": 3,
+          "accuracy": 0.25
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 7,
+          "correct": 4,
+          "incorrect": 3,
+          "accuracy": 0.5714285714285714
+        },
+        {
+          "lower": 0.9,
+          "upper": 1,
+          "n": 157,
+          "correct": 147,
+          "incorrect": 10,
+          "accuracy": 0.9363057324840764
+        }
+      ],
+      "high_confidence_errors": [
+        {
+          "example_id": "aishell3:SSB00430011:0",
+          "prediction": "T4",
+          "probabilities": [
+            0.009927192724401911,
+            0.016176630644098588,
+            0.00025363754291560486,
+            0.9736425390885838
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430061:0",
+          "prediction": "T3",
+          "probabilities": [
+            1.1639529441270391e-07,
+            1.1152316752655071e-07,
+            0.999999733382986,
+            3.8698552121674586e-08
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430061:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.0010592243821206113,
+            0.9987577576734654,
+            0.00018096538467949572,
+            2.0525597344258804e-06
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430098:3",
+          "prediction": "T4",
+          "probabilities": [
+            0.025059161938083156,
+            0.0014905317449327826,
+            0.11485673284916777,
+            0.8585935734678163
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430124:3",
+          "prediction": "T4",
+          "probabilities": [
+            7.401565575294537e-06,
+            6.098600087614336e-06,
+            0.00025150817581133164,
+            0.9997349916585259
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430138:1",
+          "prediction": "T4",
+          "probabilities": [
+            0.14909608619346582,
+            0.004530018316193334,
+            0.00856770307644547,
+            0.8378061924138953
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430364:4",
+          "prediction": "T2",
+          "probabilities": [
+            0.015172937062909163,
+            0.9214785137053243,
+            0.005319008489348939,
+            0.058029540742417514
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430396:3",
+          "prediction": "T3",
+          "probabilities": [
+            6.404216783168497e-06,
+            0.002301365117786343,
+            0.9976922224679337,
+            8.197496928131468e-09
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430400:1",
+          "prediction": "T3",
+          "probabilities": [
+            0.0036280934393344475,
+            0.015962254092574683,
+            0.977035041327472,
+            0.003374611140618884
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430423:1",
+          "prediction": "T4",
+          "probabilities": [
+            0.001247274333003892,
+            0.0023817556884844797,
+            0.006871543971904832,
+            0.9894994260066068
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430426:0",
+          "prediction": "T2",
+          "probabilities": [
+            0.008191311658266835,
+            0.9767923018967496,
+            0.00022938728513469264,
+            0.014786999159849046
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430488:0",
+          "prediction": "T2",
+          "probabilities": [
+            0.1553522478458735,
+            0.8431101015572259,
+            0.0014739071367188975,
+            6.374346018187885e-05
+          ],
+          "truth": "T1"
+        },
+        {
+          "example_id": "aishell3:SSB00430488:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.0008341914946782561,
+            0.9874001573814355,
+            0.011713238122801657,
+            5.241300108453815e-05
+          ],
+          "truth": "T1"
+        }
+      ]
+    },
+    "model6_combined": {
+      "bins": [
+        {
+          "lower": 0.25,
+          "upper": 0.4,
+          "n": 1,
+          "correct": 1,
+          "incorrect": 0,
+          "accuracy": 1.0
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 4,
+          "correct": 1,
+          "incorrect": 3,
+          "accuracy": 0.25
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 10,
+          "correct": 7,
+          "incorrect": 3,
+          "accuracy": 0.7
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 10,
+          "correct": 7,
+          "incorrect": 3,
+          "accuracy": 0.7
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 14,
+          "correct": 10,
+          "incorrect": 4,
+          "accuracy": 0.7142857142857143
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 19,
+          "correct": 18,
+          "incorrect": 1,
+          "accuracy": 0.9473684210526315
+        },
+        {
+          "lower": 0.9,
+          "upper": 1,
+          "n": 119,
+          "correct": 115,
+          "incorrect": 4,
+          "accuracy": 0.9663865546218487
+        }
+      ],
+      "high_confidence_errors": [
+        {
+          "example_id": "aishell3:SSB00430061:0",
+          "prediction": "T3",
+          "probabilities": [
+            0.00045155663120496144,
+            0.0006913575708950065,
+            0.997899705173659,
+            0.000957380624240935
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430061:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.035495435867393385,
+            0.95381678859513,
+            0.008871493053017277,
+            0.0018162824844594094
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430124:3",
+          "prediction": "T4",
+          "probabilities": [
+            0.0006243963206422775,
+            0.0020111187183598864,
+            0.017479926567084296,
+            0.9798845583939135
+          ],
+          "truth": "T3"
+        },
+        {
+          "example_id": "aishell3:SSB00430396:3",
+          "prediction": "T3",
+          "probabilities": [
+            0.008595410848847776,
+            0.15637787844580395,
+            0.8307167627590181,
+            0.004309947946330303
+          ],
+          "truth": "T2"
+        },
+        {
+          "example_id": "aishell3:SSB00430488:1",
+          "prediction": "T2",
+          "probabilities": [
+            0.04132267834252472,
+            0.9368821121683051,
+            0.019671520508225068,
+            0.002123688980945099
+          ],
+          "truth": "T1"
+        }
+      ]
+    }
+  },
+  "cached_test_reload_max_delta": {
+    "model1_acoustic": 0.0,
+    "model2_hubert": 0.0,
+    "model3_wavlm": 0.0,
+    "model4_mlp": 0.0,
+    "model6_combined": 0.0
+  },
+  "tolerances": {
+    "reload_absolute": 1e-12,
+    "seeded_refit_absolute_prior_run": 1e-10,
+    "fresh_embedding_absolute_prior_run": 1e-06,
+    "relative": 0
+  },
+  "seeded_refit_note": "Previously completed exact reproduction retained; no retraining in finalization.",
+  "new_training_configs": 0,
+  "new_encoder_extractions": 0,
+  "new_training_fits": 0,
+  "baseline_replay_byte_identical": true,
+  "baseline_replay_examples": 63,
+  "frozen_artifact_hashes": {
+    "protocol.json": "45c37feeccd4dcd6b94c42cabbe2bfc85770203ed893f2d45d4059d750d15e1c",
+    "selected.json": "1d23834eb1c8037be09a2c2d8acee14b0713a98857b2ff1e72b585ee5d137970",
+    "test-results.json": "94aec77112761c8bb7e4ee5c32442fdc5ca9ed93e002f32a3be6f650a41f0938",
+    "test-seal.json": "fb3f8aea02761feffc7eae7fdeb0ee9ccbf2523c5468ee54c7d13280434bb5fa",
+    "external-probe.json": "ae0e041502adaa8601fce0d7ba8a58f4164f0ee7166918b536ac55cc97258f99",
+    "external-probe-seal.json": "9820ec914a405c97e96936bd159fc6a25a56b175670c815d8fc694773c8663ba"
+  }
+}

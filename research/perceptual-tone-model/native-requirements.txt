@@ -1,0 +1,3 @@
+# Research label derivation; production environment remains unchanged.
+-r requirements-lock.txt
+pypinyin==0.55.0

@@ -1,0 +1,19 @@
+{
+  "version": "aishell3-first-four-tone-v1",
+  "seed": 20261017,
+  "classes": ["T1", "T2", "T3", "T4"],
+  "encoders": ["chinese_hubert_base", "wavlm_base_plus"],
+  "layers": [6, 9, 12],
+  "views": ["target", "context"],
+  "pooling": "tone_bearing_frame_center_mean",
+  "encoder_padding": "200 zero samples per edge at 16kHz, before pinned processor; centers shifted by padding",
+  "logistic_C": [0.1, 1.0],
+  "class_weight": "balanced",
+  "mlp": {"hidden_layer_sizes": [64], "alpha": 0.01, "solver": "lbfgs", "max_iter": 400},
+  "selection": ["validation_macro_f1", "validation_balanced_accuracy", "validation_accuracy", "stable_configuration_order"],
+  "train_validation_refit": false,
+  "optional_phonetic_identity": false,
+  "optional_embedding_plus_acoustics": true,
+  "test_use": "only after selected configurations and model files are frozen",
+  "external_use": "only after test result freeze; no tuning"
+}

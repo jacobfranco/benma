@@ -1,0 +1,56 @@
+{
+  "baseline": {
+    "commit": "eaf9c4343b0b35f3a5572864fc9f4fc8e17e2a98",
+    "manifest_sha256": "23177e44e58a3f7c991ee51ac5b4677899ddd71f5a6ef73ecf47a8213d59a52e",
+    "verified_files": 413
+  },
+  "commit_push_deploy": false,
+  "data_qa_blockers": [
+    "developer_audio_qa_complete",
+    "original_transcript_verified",
+    "speaker_aliases_verified",
+    "syllable_alignment_audited",
+    "below_requested_phase_a_scale",
+    "missing_classes_in_validation",
+    "missing_classes_in_test",
+    "developer_audio_qa_missing_classes"
+  ],
+  "extraction_reproduction": {
+    "candidate_and_excluded_rows": 2210,
+    "comparison": "exact JSONL after output-directory normalization",
+    "status": "passed",
+    "utterances": 68
+  },
+  "frozen_stage0_replay": {
+    "byte_identical": true,
+    "examples": 63
+  },
+  "git_diff_check": "passed",
+  "lint": "ruff check passed on all five new Python files",
+  "native_baseline_adapter": {
+    "expected_label_poisoning_invariant": true,
+    "matches_existing_replay": true,
+    "saved_acoustic_units": 53
+  },
+  "native_encoder_smoke": {
+    "cache_reuse_exact": true,
+    "frozen": true,
+    "label_mutation_invariant": true,
+    "report_sha256": "93d156fcf52f28c4896d66973c34342165ea9cf4bf144b2f8c346806800db52d",
+    "test_audio_used": false,
+    "utterances": 2,
+    "vectors": 48
+  },
+  "node_test_files": {
+    "log_sha256": "aeadc76369156d0244484ff8864bbc3cf6d51817ca42e65ff059b01673c80d12",
+    "passed": 2
+  },
+  "production_files_changed": [],
+  "python_tests": {
+    "log_sha256": "451f8cc2b719063320d48025f78c091406bbe4e270706e02d97c43ba13c2266a",
+    "passed": 33
+  },
+  "scope": "Native-tone Phase A stopped at data QA; engineering validation only",
+  "timestamp_utc": "2026-10-15T21:43:42.527240+00:00",
+  "training_or_scientific_quality_pass": false
+}

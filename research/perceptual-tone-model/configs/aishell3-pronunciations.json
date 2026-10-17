@@ -1,0 +1,349 @@
+{
+  "source": "mandarin_china_mfa dictionary v3.0.0",
+  "purpose": "Research alignment phones only; corpus labels are immutable.",
+  "entries": {
+    "ba5": {
+      "source_word": "吧",
+      "source_phones": [
+        "p",
+        "a"
+      ],
+      "phones": [
+        "p",
+        "a"
+      ],
+      "operation": "reuse_exact_neutral_pronunciation"
+    },
+    "de5": {
+      "source_word": "的",
+      "source_phones": [
+        "t",
+        "ə"
+      ],
+      "phones": [
+        "t",
+        "ə"
+      ],
+      "operation": "reuse_exact_neutral_pronunciation"
+    },
+    "la5": {
+      "source_word": "啦",
+      "source_phones": [
+        "l",
+        "a"
+      ],
+      "phones": [
+        "l",
+        "a"
+      ],
+      "operation": "reuse_exact_neutral_pronunciation"
+    },
+    "le5": {
+      "source_word": "了",
+      "source_phones": [
+        "l",
+        "ə"
+      ],
+      "phones": [
+        "l",
+        "ə"
+      ],
+      "operation": "reuse_exact_neutral_pronunciation"
+    },
+    "me5": {
+      "source_word": "么",
+      "source_phones": [
+        "m",
+        "ə"
+      ],
+      "phones": [
+        "m",
+        "ə"
+      ],
+      "operation": "reuse_exact_neutral_pronunciation"
+    },
+    "zhe5": {
+      "source_word": "着",
+      "source_phones": [
+        "ʈʂ",
+        "ə"
+      ],
+      "phones": [
+        "ʈʂ",
+        "ə"
+      ],
+      "operation": "reuse_exact_neutral_pronunciation"
+    },
+    "sheng5": {
+      "source_word": "生",
+      "source_phones": [
+        "ʂ",
+        "o˥",
+        "ŋ"
+      ],
+      "phones": [
+        "ʂ",
+        "o",
+        "ŋ"
+      ],
+      "operation": "strip_dictionary_tone_to_match_corpus_neutral"
+    },
+    "wo2": {
+      "source_word": "我",
+      "source_phones": [
+        "w",
+        "o˨˩˦"
+      ],
+      "phones": [
+        "w",
+        "o˧˥"
+      ],
+      "operation": "retain_segmental_identity_apply_corpus_T2_for_alignment"
+    },
+    "de1": {
+      "source_word": "的",
+      "source_phones": [
+        "t",
+        "ə"
+      ],
+      "phones": [
+        "t",
+        "ə˥"
+      ],
+      "operation": "retain_segmental_identity_apply_corpus_T1_for_alignment"
+    },
+    "a5": {
+      "source_word": "啊",
+      "source_phones": [
+        "ʔ",
+        "a"
+      ],
+      "phones": [
+        "ʔ",
+        "a"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "bao2": {
+      "source_word": "宝",
+      "source_phones": [
+        "p",
+        "aw˨˩˦"
+      ],
+      "phones": [
+        "p",
+        "aw˧˥"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "dao5": {
+      "source_word": "道",
+      "source_phones": [
+        "t",
+        "aw˥˩"
+      ],
+      "phones": [
+        "t",
+        "aw"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "fan5": {
+      "source_word": "饭",
+      "source_phones": [
+        "f",
+        "a˥˩",
+        "n"
+      ],
+      "phones": [
+        "f",
+        "a",
+        "n"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "gei2": {
+      "source_word": "给",
+      "source_phones": [
+        "k",
+        "ej˨˩˦"
+      ],
+      "phones": [
+        "k",
+        "ej˧˥"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "guang2": {
+      "source_word": "广",
+      "source_phones": [
+        "k",
+        "w",
+        "a˨˩˦",
+        "ŋ"
+      ],
+      "phones": [
+        "k",
+        "w",
+        "a˧˥",
+        "ŋ"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "jiu2": {
+      "source_word": "九",
+      "source_phones": [
+        "tɕ",
+        "ow˨˩˦"
+      ],
+      "phones": [
+        "tɕ",
+        "ow˧˥"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "ma5": {
+      "source_word": "吗",
+      "source_phones": [
+        "m",
+        "a"
+      ],
+      "phones": [
+        "m",
+        "a"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "men5": {
+      "source_word": "们",
+      "source_phones": [
+        "m",
+        "ə",
+        "n"
+      ],
+      "phones": [
+        "m",
+        "ə",
+        "n"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "shuo2": {
+      "source_word": "说",
+      "source_phones": [
+        "ʂ",
+        "w",
+        "o˥"
+      ],
+      "phones": [
+        "ʂ",
+        "w",
+        "o˧˥"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "ya4": {
+      "source_word": "亚",
+      "source_phones": [
+        "j",
+        "a˥˩"
+      ],
+      "phones": [
+        "j",
+        "a˥˩"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "ya5": {
+      "source_word": "呀",
+      "source_phones": [
+        "j",
+        "a"
+      ],
+      "phones": [
+        "j",
+        "a"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "zi5": {
+      "source_word": "子",
+      "source_phones": [
+        "ts",
+        "z̩"
+      ],
+      "phones": [
+        "ts",
+        "z̩"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "nai2": {
+      "source_word": "奶",
+      "source_phones": [
+        "n",
+        "aj˨˩˦"
+      ],
+      "phones": [
+        "n",
+        "aj˧˥"
+      ],
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "stage": "expansion_only"
+    },
+    "hai2": {
+      "source_word": "还",
+      "source_phones": [
+        "x",
+        "aj˧˥"
+      ],
+      "phones": [
+        "x",
+        "aj˧˥"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "dou1": {
+      "source_word": "都",
+      "source_phones": [
+        "t",
+        "ow˥"
+      ],
+      "phones": [
+        "t",
+        "ow˥"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    },
+    "shui2": {
+      "source_word": "谁",
+      "source_phones": [
+        "ʂ",
+        "w",
+        "ej˧˥"
+      ],
+      "phones": [
+        "ʂ",
+        "w",
+        "ej˧˥"
+      ],
+      "operation": "reuse_exact_pinyin_matching_pronunciation",
+      "stage": "expansion_only"
+    }
+  }
+}
