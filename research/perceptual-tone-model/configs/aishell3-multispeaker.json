@@ -1,0 +1,26 @@
+{
+  "version": "aishell3-multispeaker-context-v2-20261017",
+  "seed": 20261017,
+  "source_repository": "AISHELL/AISHELL-3",
+  "source_revision": "f20d5db4a31fe779ef07bb1af4ea92da5c786622",
+  "speakers": 60,
+  "numbered_units_per_speaker_target": 64,
+  "minimum_t3_per_speaker_before_alignment": 12,
+  "maximum_source_bytes": 300000000,
+  "speaker_partitions": {"train": 36, "validation": 12, "test": 12},
+  "primary": {
+    "encoder": "chinese_hubert_base",
+    "revision": "fce0375452b1dd6c080ac3248d423d4d037bc831",
+    "frozen": true,
+    "view": "context",
+    "layer": 9,
+    "pooling": "tone_bearing_frame_center_mean",
+    "classifier": "logistic_regression",
+    "class_weight": "balanced",
+    "C": 0.1
+  },
+  "selection_policy": "Before split freeze only: new speakers first, then bounded utterance selection for numbered-tone and T3 coverage; never model outputs.",
+  "qa_items": 24,
+  "qa_policy": "Explicit human ownership/clipping/contamination review of context, whole unit and nucleus/coda; all PASS required before training or evaluation.",
+  "test_policy": "Freeze split and fitted heads before any test prediction; no retuning; validation sanity reporting only."
+}

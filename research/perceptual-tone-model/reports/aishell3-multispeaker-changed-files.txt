@@ -1,0 +1,17 @@
+research/perceptual-tone-model/aishell3-multispeaker-generalization-report.md
+research/perceptual-tone-model/configs/aishell3-multispeaker-pronunciations.json
+research/perceptual-tone-model/configs/aishell3-multispeaker.json
+research/perceptual-tone-model/perceptual_tone/aishell3_generalization_analysis.py
+research/perceptual-tone-model/perceptual_tone/aishell3_multispeaker.py
+research/perceptual-tone-model/reports/aishell3-multispeaker-changed-files.txt
+research/perceptual-tone-model/reports/aishell3-multispeaker-summary.json
+research/perceptual-tone-model/scripts/aishell3_multispeaker.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_acquire.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_adjudicate.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_lexicon.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_report.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_reproduce.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_smoke.cjs
+research/perceptual-tone-model/scripts/aishell3_multispeaker_train.py
+research/perceptual-tone-model/scripts/aishell3_multispeaker_verify.py
+research/perceptual-tone-model/tests/test_aishell3_multispeaker.py

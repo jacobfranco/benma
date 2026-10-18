@@ -1,0 +1,277 @@
+{
+  "entries": {
+    "bao5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "p",
+        "aw"
+      ],
+      "source_phones": [
+        "p",
+        "aw˥"
+      ],
+      "source_word": "包"
+    },
+    "dao2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "t",
+        "aw˧˥"
+      ],
+      "source_phones": [
+        "t",
+        "aw˨˩˦"
+      ],
+      "source_word": "岛"
+    },
+    "dian2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "t",
+        "j",
+        "e˧˥",
+        "n"
+      ],
+      "source_phones": [
+        "t",
+        "j",
+        "e˨˩˦",
+        "n"
+      ],
+      "source_word": "点"
+    },
+    "dianr2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "t",
+        "j",
+        "a˧˥",
+        "ɻ"
+      ],
+      "source_phones": [
+        "t",
+        "j",
+        "a˨˩˦",
+        "ɻ"
+      ],
+      "source_word": "点儿"
+    },
+    "fang5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "f",
+        "a",
+        "ŋ"
+      ],
+      "source_phones": [
+        "f",
+        "a˥",
+        "ŋ"
+      ],
+      "source_word": "方"
+    },
+    "gao2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "k",
+        "aw˧˥"
+      ],
+      "source_phones": [
+        "k",
+        "aw˥"
+      ],
+      "source_word": "高"
+    },
+    "guan2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "k",
+        "w",
+        "a˧˥",
+        "n"
+      ],
+      "source_phones": [
+        "k",
+        "w",
+        "a˨˩˦",
+        "n"
+      ],
+      "source_word": "管"
+    },
+    "mu5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "m",
+        "u"
+      ],
+      "source_phones": [
+        "m",
+        "u˥˩"
+      ],
+      "source_word": "木"
+    },
+    "nv5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ɲ",
+        "y"
+      ],
+      "source_phones": [
+        "ɲ",
+        "y˨˩˦"
+      ],
+      "source_word": "女"
+    },
+    "po5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "pʰ",
+        "w",
+        "o"
+      ],
+      "source_phones": [
+        "pʰ",
+        "w",
+        "o˧˥"
+      ],
+      "source_word": "婆"
+    },
+    "shang5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ʂ",
+        "a",
+        "ŋ"
+      ],
+      "source_phones": [
+        "ʂ",
+        "a˥˩",
+        "ŋ"
+      ],
+      "source_word": "上"
+    },
+    "shi5": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ʂ",
+        "ʐ̩"
+      ],
+      "source_phones": [
+        "ʂ",
+        "ʐ̩˥˩"
+      ],
+      "source_word": "是"
+    },
+    "shou2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ʂ",
+        "ow˧˥"
+      ],
+      "source_phones": [
+        "ʂ",
+        "ow˨˩˦"
+      ],
+      "source_word": "手"
+    },
+    "si2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "s",
+        "z̩˧˥"
+      ],
+      "source_phones": [
+        "s",
+        "z̩˨˩˦"
+      ],
+      "source_word": "死"
+    },
+    "suo2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "s",
+        "w",
+        "o˧˥"
+      ],
+      "source_phones": [
+        "s",
+        "w",
+        "o˨˩˦"
+      ],
+      "source_word": "所"
+    },
+    "zang3": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ts",
+        "a˨˩˦",
+        "ŋ"
+      ],
+      "source_phones": [
+        "ts",
+        "a˨˩˦",
+        "ŋ"
+      ],
+      "source_word": "脏"
+    },
+    "zhan2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ʈʂ",
+        "a˧˥",
+        "n"
+      ],
+      "source_phones": [
+        "ʈʂ",
+        "a˨˩˦",
+        "n"
+      ],
+      "source_word": "展"
+    },
+    "zhang2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ʈʂ",
+        "a˧˥",
+        "ŋ"
+      ],
+      "source_phones": [
+        "ʈʂ",
+        "a˨˩˦",
+        "ŋ"
+      ],
+      "source_word": "长"
+    },
+    "zui1": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ts",
+        "w",
+        "ej˥"
+      ],
+      "source_phones": [
+        "ts",
+        "w",
+        "ej˨˩˦"
+      ],
+      "source_word": "嘴"
+    },
+    "zui2": {
+      "operation": "retain_pinyin_segmental_identity_apply_corpus_tone_for_alignment",
+      "phones": [
+        "ts",
+        "w",
+        "ej˧˥"
+      ],
+      "source_phones": [
+        "ts",
+        "w",
+        "ej˨˩˦"
+      ],
+      "source_word": "嘴"
+    }
+  },
+  "purpose": "Bounded corrections for new observed G2P failures, same pilot method; historical correction file and corpus labels unchanged.",
+  "source": "mandarin_china_mfa dictionary v3.0.0",
+  "source_sha256": "0881d4e338e26509d022992cb5b897ead24a176448f534481238cb3a7fe949f0"
+}
