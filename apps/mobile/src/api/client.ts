@@ -149,9 +149,9 @@ export class BenmaApiClient {
     });
   }
 
-  analyzePerceivedSpeech(perceptionId: string): Promise<PerceivedSpeechAnalysis> {
+  analyzePerceivedSpeech(perceptionId: string, devLearnedTargetId?: string): Promise<PerceivedSpeechAnalysis> {
     return this.request(`/v1/perceptions/${perceptionId}/speech-analysis`, {
-      method: 'POST', body: JSON.stringify({}),
+      method: 'POST', body: JSON.stringify(devLearnedTargetId ? { dev_learned_target_id: devLearnedTargetId } : {}),
     });
   }
 

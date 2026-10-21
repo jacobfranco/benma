@@ -23,7 +23,13 @@ from sqlalchemy.orm import Session
 
 from benma_api.audio.presence import require_speech
 from benma_api.config import Settings
-from benma_api.db.models import AudioAsset, PerceivedSpeechAnalysis, PerceptionRun, Utterance
+from benma_api.db.models import (
+    AudioAsset,
+    PerceivedSpeechAnalysis,
+    PerceptionRun,
+    PronunciationTarget,
+    Utterance,
+)
 from benma_api.errors import AnalysisUnsupportedError, AuthorizationError
 from benma_api.pronunciation.acoustics import (
     AcousticAnalysisPort,
@@ -237,8 +243,22 @@ class PerceivedSpeechAnalysisService:
         self.aligner = aligner or build_aligner(settings)
 
     def run(
-        self, *, account_id: uuid.UUID, perception_run_id: uuid.UUID
+        self,
+        *,
+        account_id: uuid.UUID,
+        perception_run_id: uuid.UUID,
+        dev_learned_target_id: uuid.UUID | None = None,
     ) -> PerceivedSpeechAnalysis:
+        target = None
+        if dev_learned_target_id is not None:
+            if (
+                not self.settings.enable_dev_learned_tone
+                or self.settings.environment == "production"
+            ):
+                raise AnalysisUnsupportedError("learned dev target comparison is disabled")
+            target = self.db.get(PronunciationTarget, dev_learned_target_id)
+            if target is None or target.account_id != account_id:
+                raise AuthorizationError("pronunciation target was not found")
         # Serialize duplicate requests. NO KEY UPDATE allows interpretation's FK insertion.
         perception = self.db.scalar(
             select(PerceptionRun)
@@ -295,6 +315,9 @@ class PerceivedSpeechAnalysisService:
                 else {}
             ),
         }
+        if self.settings.enable_dev_learned_tone and self.settings.environment != "production":
+            config["dev_learned_tone"] = "dev-fast-learned-tone-v1"
+            config["dev_learned_target_id"] = str(target.id) if target else None
         config_hash = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()
         existing = self.db.scalar(
             select(PerceivedSpeechAnalysis).where(
@@ -558,6 +581,60 @@ class PerceivedSpeechAnalysisService:
             timing_groups,
             track=track if acoustic.status == "succeeded" else None,
         )
+        learned = None
+        if self.settings.enable_dev_learned_tone and self.settings.environment != "production":
+            from benma_api.pronunciation.learned import analyze_learned
+
+            deterministic_projection_ms = (time.perf_counter() - processing_started) * 1000
+            target_matches = True
+            expected = [s.model_copy(deep=True) for s in syllables]
+            if target:
+                target_syllables = perceived_syllables(target.text, {})
+                target_matches = [s.characters for s in target_syllables] == [
+                    s.characters for s in syllables
+                ] and len(target.pinyin_syllables) == len(syllables)
+                if target_matches:
+                    expectations = surface_expectations(
+                        target.text,
+                        [s.character_start for s in target_syllables],
+                        target.lexical_tones,
+                    )
+                    for s, reading, lexical, surface in zip(
+                        expected,
+                        target.pinyin_syllables,
+                        target.lexical_tones,
+                        expectations,
+                        strict=True,
+                    ):
+                        s.pinyin = to_tone(reading.replace("5", ""))
+                        s.lexical_tone = lexical  # type: ignore[assignment]
+                        s.expected_surface_tone = surface.tone  # type: ignore[assignment]
+                        s.surface_rule = surface.rule
+                else:
+                    for s in expected:
+                        s.expected_surface_tone = None
+                        s.surface_rule = "target_transcript_mapping_unresolved"
+            learned = analyze_learned(
+                audio=request.audio_path,
+                sha256=asset.sha256,
+                duration=duration_seconds,
+                syllables=syllables,
+                graph=tone_graph,
+                raw=acoustic.normalized_result or {},
+                recorded=alignment_status in {"aligned", "partial"}
+                and not synthetic_perception
+                and acoustic.status == "succeeded",
+                expected=expected,
+                target_text=target.text if target else text,
+                intended=target is not None,
+            )
+            learned.timings_ms.update(
+                azure_timing=alignment_ms,
+                deterministic_f0=acoustic.latency_ms or 0,
+                deterministic_projection=deterministic_projection_ms,
+                backend_analysis_total=(time.perf_counter() - started) * 1000,
+            )
+            learned.target_mapping_resolved = target_matches
         display = simplify_display(display)
         timings["contour_processing_classification"] = (
             time.perf_counter() - processing_started
@@ -581,6 +658,7 @@ class PerceivedSpeechAnalysisService:
         if issues:
             observations.append("Recording quality limits the pitch evidence.")
         data = PerceivedAnalysisData(
+            dev_learned_tone=learned,
             pitch_track_evidence_id=track.evidence_id if acoustic.status == "succeeded" else None,
             tone_graph=tone_graph,
             timing_groups=timing_groups,

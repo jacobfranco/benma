@@ -1,0 +1,31 @@
+{
+  "research_snapshot_files": 918,
+  "research_mismatches": [],
+  "frozen_native_artifacts": 7839,
+  "frozen_model_heads": 2,
+  "native_model_mismatches": [],
+  "historical_fast_timing_manifest_files": 2102,
+  "historical_files_unchanged": 2093,
+  "intentional_product_integration_changes": [
+    "apps/mobile/src/api/client.ts",
+    "apps/mobile/src/api/openapi.generated.ts",
+    "apps/mobile/src/api/openapi.json",
+    "apps/mobile/src/speech/PronunciationWorkspace.tsx",
+    "apps/mobile/src/speech/workflow.ts",
+    "services/api/src/benma_api/api/routes.py",
+    "services/api/src/benma_api/config.py",
+    "services/api/src/benma_api/pronunciation/perceived.py",
+    "services/api/src/benma_api/schemas.py"
+  ],
+  "deterministic_and_linguistic_files_unchanged": [
+    "apps/mobile/src/speech/toneLikeness.ts",
+    "apps/mobile/src/speech/learnerPitchGrade.ts",
+    "apps/mobile/src/speech/chunkPitchGrade.ts",
+    "apps/mobile/src/speech/pitchShape.ts",
+    "services/api/src/benma_api/pronunciation/acoustics.py",
+    "services/api/src/benma_api/pronunciation/contours.py",
+    "services/api/src/benma_api/pronunciation/pitch_evidence.py",
+    "services/api/src/benma_api/pronunciation/surface.py"
+  ],
+  "commit_push_deploy": false
+}

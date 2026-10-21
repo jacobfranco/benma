@@ -90,6 +90,7 @@ class Settings(BaseSettings):
     mfa_acoustic_model: str = "mandarin_mfa"
     mfa_timeout_seconds: float = 45.0
     enable_experimental_tone_interpretation: bool = False
+    enable_dev_learned_tone: bool = False
     enable_categorical_tone_judgment: bool = False
 
     @field_validator("cors_allowed_origins")
@@ -117,6 +118,15 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def validate_environment(self) -> Self:
+        if self.enable_dev_learned_tone:
+            if self.environment == "production":
+                raise ValueError("learned tone is development-only")
+            if self.alignment_provider not in {"auto", "azure"}:
+                raise ValueError("learned dev tone requires Azure timing; MFA is research-only")
+            if not (self.alignment_provider == "azure" or self.azure_alignment_enabled):
+                raise ValueError("learned dev tone requires explicit Azure timing opt-in")
+            if self.acoustic_provider != "praat":
+                raise ValueError("learned dev tone requires the frozen Praat frontend")
         if self.alignment_timeout_seconds <= 0:
             raise ValueError("alignment timeout must be positive")
         if (self.alignment_provider == "azure" or self.azure_alignment_enabled) and (

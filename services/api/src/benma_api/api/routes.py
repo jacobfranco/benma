@@ -875,6 +875,7 @@ async def analyze_perceived_speech(
             service.run,
             account_id=auth.account_id,
             perception_run_id=run_id,
+            dev_learned_target_id=body.dev_learned_target_id,
         ),
     )
     return analysis_response(run)

@@ -79,6 +79,7 @@ export async function submitSpeech(
   onInterpretation?: (interpretation: ContextualInterpretationRun) => void,
 ): Promise<SpeechSubmission> {
   let failure: SpeechFailure = 'upload';
+  const learnedDev = __DEV__ && process.env.EXPO_PUBLIC_BENMA_DEV_LEARNED_TONE === 'true';
   try {
     if (!checkpoint.utteranceId) {
       onStage('uploading');
@@ -101,7 +102,9 @@ export async function submitSpeech(
           if (!complete) publish({ ...identity, state: 'processing', readings });
         }).catch(() => {});
         const perceived = await measureSpeech('transcript-conditioned analysis total', () =>
-          client.analyzePerceivedSpeech(checkpoint.perception!.id));
+          learnedDev && mode.responseMode === 'none' && mode.targetId
+            ? client.analyzePerceivedSpeech(checkpoint.perception!.id, mode.targetId)
+            : client.analyzePerceivedSpeech(checkpoint.perception!.id));
         complete = true;
         publish({ ...identity, receivedAt: Date.now(), startedAt,
           state: perceived.status === 'failed' ? 'failed' : 'ready', perceived });
@@ -129,6 +132,9 @@ export async function submitSpeech(
       checkpoint.targetAnalysis ??= (async () => {
         try {
           checkpoint.attemptId ??= (await client.createAttempt(checkpoint.utteranceId!, targetId)).id;
+          // In learned dev mode the shared analysis owns timing and comparison.
+          // Preserve the attempt record without a duplicate assessment/alignment request.
+          if (learnedDev) return;
           checkpoint.pronunciation = await client.analyzePronunciation(checkpoint.attemptId);
           if (checkpoint.feedback) {
             checkpoint.feedback = { ...checkpoint.feedback, pronunciation: checkpoint.pronunciation };

@@ -8,6 +8,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, computed_field, model_validator
 
+from benma_api.pronunciation.learned_contracts import LearnedAnalysis
 from benma_api.pronunciation.pitch_types import (
     PitchInterpretationEligibility,
     PitchRegionProjection,
@@ -456,7 +457,9 @@ class ErrorResponse(BaseModel):
 
 
 class PerceivedAnalysisCreate(StrictRequest):
-    """Only the path's persisted perception ID supplies analysis input."""
+    """Persisted perception supplies acoustic input; dev target is comparison-only."""
+
+    dev_learned_target_id: uuid.UUID | None = None
 
 
 class MeasuredPitchPoint(BaseModel):
@@ -579,6 +582,7 @@ class PronunciationChunkCandidate(BaseModel):
 
 
 class PerceivedAnalysisData(BaseModel):
+    dev_learned_tone: LearnedAnalysis | None = Field(default=None, exclude_if=lambda v: v is None)
     pronunciation_chunk_policy: str | None = None
     pronunciation_chunk_candidates: list[PronunciationChunkCandidate] = Field(default_factory=list)
     pitch_track_evidence_id: str | None = None

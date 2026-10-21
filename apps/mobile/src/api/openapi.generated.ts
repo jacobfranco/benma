@@ -279,6 +279,60 @@ export interface components {
         "capability_state": string;
         "created_at": string;
       };
+    "LearnedAnalysis": {
+        "version"?: string;
+        "expectation_basis": "intended_target" | "perceived_text";
+        "target_text": string;
+        "target_mapping_resolved"?: boolean;
+        "units": Array<components["schemas"]["LearnedUnit"]>;
+        "timings_ms": {
+        [key: string]: number;
+      };
+        "runtime": {
+        [key: string]: unknown;
+      };
+      };
+    "LearnedComparison": {
+        "state": "experimental_match" | "experimental_mismatch" | "unresolved" | "neutral" | "insufficient";
+        "correction"?: boolean;
+        "message": string;
+        "explanation"?: string | null;
+      };
+    "LearnedRealization": {
+        "status"?: "ok" | "abstained";
+        "reason"?: string | null;
+        "probabilities"?: {
+        [key: string]: number;
+      } | null;
+        "prediction"?: "T1" | "T2" | "T3" | "T4" | null;
+        "confidence"?: number | null;
+        "confidence_is_calibrated_correctness"?: boolean;
+        "version"?: string;
+        "model_sha256"?: string;
+        "encoder_revision"?: string;
+        "encoder_weights_sha256"?: string;
+        "layer"?: number;
+        "pooling"?: string;
+        "azure_span"?: Array<number> | null;
+        "pooling_span"?: Array<number> | null;
+        "context_span"?: Array<number> | null;
+        "continuity"?: {
+        [key: string]: unknown;
+      };
+        "retained_frames"?: number;
+        "owned_encoder_frames"?: number | null;
+      };
+    "LearnedUnit": {
+        "index": number;
+        "characters": string;
+        "target_pinyin": string | null;
+        "lexical_tone": number | null;
+        "expected_surface_tone": number | null;
+        "surface_rule": string | null;
+        "heard_pinyin": string | null;
+        "realization": components["schemas"]["LearnedRealization"];
+        "comparison": components["schemas"]["LearnedComparison"];
+      };
     "MeasuredPitchPoint": {
         "timestamp_seconds": number;
         "f0_hz"?: number | null;
@@ -294,8 +348,11 @@ export interface components {
         [key: string]: number;
       };
       };
-    "PerceivedAnalysisCreate": {};
+    "PerceivedAnalysisCreate": {
+        "dev_learned_target_id"?: string | null;
+      };
     "PerceivedAnalysisData": {
+        "dev_learned_tone"?: components["schemas"]["LearnedAnalysis"] | null;
         "pronunciation_chunk_policy"?: string | null;
         "pronunciation_chunk_candidates"?: Array<components["schemas"]["PronunciationChunkCandidate"]>;
         "pitch_track_evidence_id"?: string | null;

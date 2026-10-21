@@ -7,6 +7,7 @@ import { stopAllPlayback } from '@/audio/session';
 import { PitchShapePlot } from '@/components/PitchShapePlot';
 import { WorkspaceDialog } from '@/components/WorkspaceActions';
 import { SentenceToneGraph } from '@/speech/SentenceToneGraph';
+import { LearnedToneWorkspace } from '@/speech/LearnedToneWorkspace';
 import { pitchFeedbackCopy } from '@/speech/pitchFeedback';
 import { gradeChunkPitch } from '@/speech/chunkPitchGrade';
 import { pitchExpectation, pitchGradePresentation, type LearnerPitchGrade } from '@/speech/learnerPitchGrade';
@@ -25,6 +26,11 @@ function PitchStatus({ grade, compact = false }: { grade: LearnerPitchGrade; com
 }
 
 export function PronunciationWorkspace({ analysis, phraseActions }: { analysis: PerceivedSpeechAnalysis; phraseActions?: ReactNode }) {
+  if (__DEV__ && analysis.data.dev_learned_tone) return <LearnedToneWorkspace analysis={analysis} phraseActions={phraseActions} />;
+  return <LegacyPronunciationWorkspace analysis={analysis} phraseActions={phraseActions} />;
+}
+
+function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: PerceivedSpeechAnalysis; phraseActions?: ReactNode }) {
   const { data } = analysis;
   const units = useMemo(() => pronunciationUnits(data), [data]);
   const chunks = useMemo(() => pronunciationChunks(data, units), [data, units]);

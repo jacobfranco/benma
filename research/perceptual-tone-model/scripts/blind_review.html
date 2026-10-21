@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; media-src data:; connect-src 'none'; img-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Listening review</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,sans-serif;color:#172b35;background:#edf2f3}
+*{box-sizing:border-box}body{margin:0}main{max-width:850px;margin:auto;padding:24px 16px 60px}
+h1{font-size:1.8rem;margin:0 0 12px}h2{font-size:1.15rem}p{line-height:1.55}
+.panel,section{background:white;border:1px solid #d4dfe3;border-radius:12px;padding:20px;margin:16px 0}
+.instruction{border-left:4px solid #26726d;padding-left:14px}.muted{color:#526670;font-size:.9rem}
+button,input,select{font:inherit}button{border:1px solid #486b74;border-radius:6px;padding:10px 14px;background:#fff;color:#173c42;cursor:pointer}
+button.primary{background:#185c58;color:white;border-color:#185c58}button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #dc9100;outline-offset:2px}
+input[type=text],select{padding:10px;border:1px solid #8da2aa;border-radius:5px;max-width:100%;width:100%;background:white}
+.toolbar,.row,.nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.toolbar{margin-top:12px}.nav{justify-content:space-between}
+label{display:block;margin:12px 0 5px}fieldset{border:0;padding:0;margin:14px 0}legend{font-weight:650;line-height:1.5}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices label{margin:0;display:flex;align-items:center;gap:8px;border:1px solid #bfced3;border-radius:7px;padding:12px;cursor:pointer}
+.choices label:has(input:checked){background:#e0f0ec;border-color:#185c58}.choices input{accent-color:#185c58}
+.id{font: .8rem ui-monospace,monospace;overflow-wrap:anywhere}#status{min-height:24px;color:#8a351c}audio{display:none}
+#progress{font-weight:600}.heard{font-size:.9rem;color:#526670}#card{min-height:400px}
+@media(max-width:520px){.choices{grid-template-columns:1fr}.panel,section{padding:15px}h1{font-size:1.5rem}}
+</style>
+<main>
+<h1>Listening review</h1>
+<div class="panel">
+<p>Judge <strong>what you actually hear</strong>. First listen to <strong>TONE-BEARING TARGET</strong>. Use <strong>WHOLE TARGET</strong> afterward if needed to hear the syllable naturally.</p>
+<p class="instruction">If it sounds like T2 even if you think the speaker probably meant T3, choose T2. Do not infer intended Mandarin. Do not mentally correct pronunciation.</p>
+<p>Choose the closest tone family, then confidence from 1 (very unsure) to 5 (very sure). Use UNCLEAR / CANNOT TELL when no family is defensible. NEUTRAL / WEAK is a separate choice. Acoustic usability is optional.</p>
+<label for="reviewer">Reviewer</label><input id="reviewer" type="text" autocomplete="off" placeholder="Your name">
+<div class="toolbar"><button id="draft">Save draft</button><button id="resume">Resume saved review</button><input id="import" type="file" accept="application/json,.json" hidden><button id="export" class="primary">Export completed review</button></div>
+<p class="muted">Save the completed file as <strong>benma-realized-tone-blind-review.json</strong> in Downloads. Save drafts before closing. This page also saves progress in this browser when storage is available.</p>
+<p id="status" role="status" aria-live="polite"></p>
+</div>
+<div class="nav"><span id="progress"></span><label>Go to item <select id="jump" aria-label="Go to item"></select></label></div>
+<section id="card" aria-label="Current listening item"></section>
+<div class="nav"><button id="previous">Previous</button><span id="position"></span><button id="next">Next</button></div>
+<p class="muted">Playback completion is recorded. Whole-target playback is optional. You can revisit answers before exporting.</p>
+</main>
+<script id="packet" type="application/json">__PACKET__</script>
+<script>__SCRIPT__</script>
+</html>

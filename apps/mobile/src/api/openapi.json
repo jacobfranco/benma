@@ -1718,6 +1718,365 @@
         "title": "InterpretationRunResponse",
         "type": "object"
       },
+      "LearnedAnalysis": {
+        "properties": {
+          "expectation_basis": {
+            "enum": [
+              "intended_target",
+              "perceived_text"
+            ],
+            "title": "Expectation Basis",
+            "type": "string"
+          },
+          "runtime": {
+            "additionalProperties": true,
+            "title": "Runtime",
+            "type": "object"
+          },
+          "target_mapping_resolved": {
+            "default": true,
+            "title": "Target Mapping Resolved",
+            "type": "boolean"
+          },
+          "target_text": {
+            "title": "Target Text",
+            "type": "string"
+          },
+          "timings_ms": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Timings Ms",
+            "type": "object"
+          },
+          "units": {
+            "items": {
+              "$ref": "#/components/schemas/LearnedUnit"
+            },
+            "title": "Units",
+            "type": "array"
+          },
+          "version": {
+            "default": "dev-fast-learned-tone-v1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expectation_basis",
+          "target_text",
+          "units",
+          "timings_ms",
+          "runtime"
+        ],
+        "title": "LearnedAnalysis",
+        "type": "object"
+      },
+      "LearnedComparison": {
+        "properties": {
+          "correction": {
+            "const": false,
+            "default": false,
+            "title": "Correction",
+            "type": "boolean"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "experimental_match",
+              "experimental_mismatch",
+              "unresolved",
+              "neutral",
+              "insufficient"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "message"
+        ],
+        "title": "LearnedComparison",
+        "type": "object"
+      },
+      "LearnedRealization": {
+        "additionalProperties": false,
+        "properties": {
+          "azure_span": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Azure Span"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "confidence_is_calibrated_correctness": {
+            "const": false,
+            "default": false,
+            "title": "Confidence Is Calibrated Correctness",
+            "type": "boolean"
+          },
+          "context_span": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Span"
+          },
+          "continuity": {
+            "additionalProperties": true,
+            "title": "Continuity",
+            "type": "object"
+          },
+          "encoder_revision": {
+            "default": "fce0375452b1dd6c080ac3248d423d4d037bc831",
+            "title": "Encoder Revision",
+            "type": "string"
+          },
+          "encoder_weights_sha256": {
+            "default": "2fefccd26c2794a583b80f6f7210c721873cb7ebae2c1cde3baf9b27855e24d8",
+            "title": "Encoder Weights Sha256",
+            "type": "string"
+          },
+          "layer": {
+            "const": 9,
+            "default": 9,
+            "title": "Layer",
+            "type": "integer"
+          },
+          "model_sha256": {
+            "default": "b3369239c5b6da261f0d38ea5ea0ab129f316552bda78b11cb0f755abfea011b",
+            "title": "Model Sha256",
+            "type": "string"
+          },
+          "owned_encoder_frames": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owned Encoder Frames"
+          },
+          "pooling": {
+            "default": "nucleus_coda_frame_center_mean",
+            "title": "Pooling",
+            "type": "string"
+          },
+          "pooling_span": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pooling Span"
+          },
+          "prediction": {
+            "anyOf": [
+              {
+                "enum": [
+                  "T1",
+                  "T2",
+                  "T3",
+                  "T4"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction"
+          },
+          "probabilities": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "propertyNames": {
+                  "enum": [
+                    "T1",
+                    "T2",
+                    "T3",
+                    "T4"
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Probabilities"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "retained_frames": {
+            "default": 0,
+            "title": "Retained Frames",
+            "type": "integer"
+          },
+          "status": {
+            "default": "abstained",
+            "enum": [
+              "ok",
+              "abstained"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "default": "dev-fast-learned-tone-v1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "title": "LearnedRealization",
+        "type": "object"
+      },
+      "LearnedUnit": {
+        "properties": {
+          "characters": {
+            "title": "Characters",
+            "type": "string"
+          },
+          "comparison": {
+            "$ref": "#/components/schemas/LearnedComparison"
+          },
+          "expected_surface_tone": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Surface Tone"
+          },
+          "heard_pinyin": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heard Pinyin"
+          },
+          "index": {
+            "title": "Index",
+            "type": "integer"
+          },
+          "lexical_tone": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lexical Tone"
+          },
+          "realization": {
+            "$ref": "#/components/schemas/LearnedRealization"
+          },
+          "surface_rule": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Surface Rule"
+          },
+          "target_pinyin": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Pinyin"
+          }
+        },
+        "required": [
+          "index",
+          "characters",
+          "target_pinyin",
+          "lexical_tone",
+          "expected_surface_tone",
+          "surface_rule",
+          "heard_pinyin",
+          "realization",
+          "comparison"
+        ],
+        "title": "LearnedUnit",
+        "type": "object"
+      },
       "MeasuredPitchPoint": {
         "properties": {
           "f0_hz": {
@@ -1815,8 +2174,21 @@
       },
       "PerceivedAnalysisCreate": {
         "additionalProperties": false,
-        "description": "Only the path's persisted perception ID supplies analysis input.",
-        "properties": {},
+        "description": "Persisted perception supplies acoustic input; dev target is comparison-only.",
+        "properties": {
+          "dev_learned_target_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dev Learned Target Id"
+          }
+        },
         "title": "PerceivedAnalysisCreate",
         "type": "object"
       },
@@ -1846,6 +2218,16 @@
             ],
             "title": "Alignment Status",
             "type": "string"
+          },
+          "dev_learned_tone": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LearnedAnalysis"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "display_contour": {
             "anyOf": [

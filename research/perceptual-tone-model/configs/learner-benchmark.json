@@ -1,0 +1,80 @@
+{
+  "version": "learner-alignment-candidates-v1-20261018",
+  "policy": "Provenance-only roles. Unknown capture intent stays unknown; historical importance permits supplemental alignment QA, never benchmark admission. No learned outputs read. All known suitable takes retained; no performance selection.",
+  "natural": {
+    "S01": "manual-sentence-study.md S01: explicitly natural baseline",
+    "S02": "manual-sentence-study.md S02: explicitly natural pace",
+    "S03": "manual-sentence-study.md S03: explicitly natural phrasing"
+  },
+  "diagnostic": {
+    "S13": "manual-sentence-study.md S13: deliberate word substitution 广州 -> 贵州; realization is a hypothesis, not a tone label",
+    "40357072": "2026-10-07-relative-pitch-gesture/physical-comparison.md: user-identified primary U-shape test take"
+  },
+  "human_intent_unconfirmed": {
+    "d11c8332": "2026-10-03-native-control-calibration/README.md: explicitly user-identified HUMAN comparative capture; normal versus deliberate intent not recorded",
+    "d7b27845": "2026-10-12-learner-classification/physical-provenance.json: Human physical take; normal versus deliberate intent not recorded",
+    "4f1ab9ed": "2026-10-13-natural-acceptance/physical-provenance.json: Human; normal versus deliberate intent not recorded"
+  },
+  "excluded": {
+    "c53d3e1c": "documented Google Translate playback",
+    "2b9ed253": "documented accidental no-speech capture; ASR transcript is not evidence of speech",
+    "2a409714": "documented native-reference playback test T1, capture-robustness.md",
+    "d51bb9c7": "documented native-reference playback test T2, capture-robustness.md",
+    "a9544d72": "documented native-reference playback test T3, capture-robustness.md",
+    "b8049b3e": "documented Google TTS physical take",
+    "cad88597": "documented Google/background-noise control"
+  },
+  "supplemental_alignment_prefixes": [
+    "89cee47e",
+    "19d8333b",
+    "d11c8332",
+    "d7b27845",
+    "4f1ab9ed",
+    "8d252264",
+    "d47274bc",
+    "4b9dbd2b",
+    "8faf1a90",
+    "a5acd04c",
+    "7e6b6fe9",
+    "6b5b2135",
+    "0b194cf9",
+    "ee8a8b32",
+    "b9067bec",
+    "5c70f317",
+    "bb27924c"
+  ],
+  "study_alignment_transcripts": {
+    "S01": "今天天气不错我们出去走走吧",
+    "S02": "我昨天晚上跟朋友去吃饭了",
+    "S03": "你想买哪种水果",
+    "S13": "我要去贵州"
+  },
+  "transcript_policy": "Study prompts, with S13's documented substitution, are alignment hypotheses. Retain disagreeing historical ASR and flag transcript uncertainty. Other supplemental recordings use saved alignment_reference_text, explicitly a hypothesis, not verified actual reading.",
+  "surface_policy": "Separate lexical and expected surface fields. Neutral contextual particles marked separately; 一/不 rules are textual. Consecutive T3 chains have unresolved grouping: retain lexical family with surface alternatives T2/T3, not a fabricated realized label.",
+  "release_policy": "Every reviewed unit needs both decisions and three listening acknowledgments. Non-PASS or automatic flags quarantine the unit. Unknown provenance remains excluded even if alignment passes. No release or prediction in this pass.",
+  "dictionary_supplements": {
+    "na3": {
+      "hanzi": "哪",
+      "phones": [
+        "n",
+        "a˨˩˦"
+      ]
+    },
+    "cuo4": {
+      "hanzi": "错",
+      "phones": [
+        "tsʰ",
+        "w",
+        "o˥˩"
+      ]
+    },
+    "san3": {
+      "hanzi": "伞",
+      "phones": [
+        "s",
+        "a˨˩˦",
+        "n"
+      ]
+    }
+  }
+}
