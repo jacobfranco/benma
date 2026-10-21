@@ -1,5 +1,9 @@
 # Normal dev learned-tone integration
 
+The [surface-tone learner grading report](surface-tone-learner-grading.md) now
+supersedes this report's unresolved-chain grading, learner copy, and physical
+feedback expectations. Recognition and timing remain frozen.
+
 The subsequent [Practice UI restoration](practice-ui-restoration.md) supersedes
 the diagnostic workspace presentation described in this original integration
 report. Use that report for current screenshots, checks, and launch instructions.

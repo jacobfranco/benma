@@ -7,6 +7,7 @@ Long third-tone chains, ambiguous 一 uses, and reduplication stay unresolved.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Literal
 
 SURFACE_VERSION = "exact-text-surface-v1.1"
 THIRD_TONE_WORDS = frozenset({"你好", "很好", "可以", "水果", "所有", "了解", "管理", "理想"})
@@ -20,6 +21,60 @@ DIGITS = frozenset("零〇一二三四五六七八九十百千万亿两")
 class SurfaceExpectation:
     tone: int | None
     rule: str
+    alternatives: tuple[int, ...] = ()
+    # Open identifier contract: only supported learner rules emit an explanation ID.
+    contextual_rule: str | None = None
+
+    @property
+    def acceptable_tones(self) -> tuple[int, ...]:
+        return (self.tone,) if self.tone in (1, 2, 3, 4) else self.alternatives
+
+    @property
+    def resolution(self) -> Literal["exact", "alternatives", "neutral", "unresolved"]:
+        if self.tone == 0:
+            return "neutral"
+        if self.acceptable_tones:
+            return "alternatives" if len(self.acceptable_tones) > 1 else "exact"
+        return "unresolved"
+
+
+LEARNER_SURFACE_VERSION = "learner-surface-context-v2"
+
+
+def learner_surface_expectations(
+    text: str, offsets: list[int], lexical: list[int | None]
+) -> list[SurfaceExpectation]:
+    """Grading policy; deliberately separate from frozen corpus/legacy labels.
+
+    Character gaps (including punctuation) break the domain. No stronger prosodic
+    parse exists in this path. Within an uninterrupted triple, 223 and 323 license
+    {2,3}, {2}, {3}; see Tu et al. 2017, section 1.3. Longer chains still need a
+    parse: preserve their unknown interior, but retain the known final T3.
+    """
+    result = surface_expectations(text, offsets, lexical)
+    i = 0
+    while i < len(lexical):
+        if lexical[i] != 3:
+            i += 1
+            continue
+        end = i + 1
+        while end < len(lexical) and offsets[end] == offsets[end - 1] + 1 and lexical[end] == 3:
+            end += 1
+        if end - i == 2:
+            result[i] = SurfaceExpectation(
+                2, "third_tone_pair", contextual_rule="third_tone_sandhi"
+            )
+        elif end - i == 3:
+            result[i] = SurfaceExpectation(
+                None, "third_tone_triple_grouping_alternatives", (2, 3), "third_tone_sandhi"
+            )
+            result[i + 1] = SurfaceExpectation(
+                2, "third_tone_triple_middle", contextual_rule="third_tone_sandhi"
+            )
+        if end - i >= 2:
+            result[end - 1] = SurfaceExpectation(3, "third_tone_chain_final")
+        i = end
+    return result
 
 
 def surface_expectations(

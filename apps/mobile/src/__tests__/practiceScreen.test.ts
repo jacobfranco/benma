@@ -106,7 +106,7 @@ it('keeps 我想买这个 on the normal prepared-target flow with learned result
     expect(renderer.root.findByProps({ testID: 'pronunciation-workspace' })).toBeTruthy();
     expect(renderer.root.findByProps({ accessibilityLabel: 'Play my recording for 我' })).toBeTruthy();
     expect(renderer.root.findByProps({ testID: 'pronunciation-unit-3' }).props.accessibilityLabel).toContain('这个');
-    expect(JSON.stringify(renderer.toJSON())).toContain('Most like Tone 2');
+    expect(JSON.stringify(renderer.toJSON())).toContain('Heard Tone 2');
     expect(JSON.stringify(renderer.toJSON())).not.toMatch(/Experimental tone realization|Dev evidence|Pitch acceptable/);
     await press('More details');
     expect(renderer.root.findByProps({ testID: 'learned-heard-rendering' })).toBeTruthy();

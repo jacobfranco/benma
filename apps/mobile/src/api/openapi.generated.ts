@@ -328,7 +328,11 @@ export interface components {
         "target_pinyin": string | null;
         "lexical_tone": number | null;
         "expected_surface_tone": number | null;
+        "acceptable_surface_tones"?: Array<number> | null;
+        "expected_neutral"?: boolean | null;
+        "expectation_resolution"?: "exact" | "alternatives" | "neutral" | "unresolved" | null;
         "surface_rule": string | null;
+        "contextual_rule"?: string | null;
         "heard_pinyin": string | null;
         "realization": components["schemas"]["LearnedRealization"];
         "comparison": components["schemas"]["LearnedComparison"];

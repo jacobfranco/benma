@@ -164,9 +164,27 @@ def test_explanation_requires_eligible_measured_movement():
     assert supported_explanation(s, r) is None
 
 
-@pytest.mark.parametrize("target_text", [None, "我", "买"])
+@pytest.mark.parametrize(
+    "transcript,target_text",
+    [
+        ("我", None),
+        ("我", "我"),
+        ("我", "买"),
+        ("我想买这个", None),
+        ("我想买这个", "我想买这个"),
+        ("我想买这个", "我，想买这个"),  # noqa: RUF001
+        ("我，想买这个", None),  # noqa: RUF001
+    ],
+)
 def test_normal_api_azure_reuse_and_no_mfa(
-    client, settings, auth_header, uploaded_utterance, session_factory, monkeypatch, target_text
+    client,
+    settings,
+    auth_header,
+    uploaded_utterance,
+    session_factory,
+    monkeypatch,
+    target_text,
+    transcript,
 ):
     settings.enable_dev_learned_tone = True
     settings.alignment_provider = "azure"
@@ -199,7 +217,7 @@ def test_normal_api_azure_reuse_and_no_mfa(
         [{"status": "abstained", "reason": "fixture"} for _ in contracts],
         {},
     )
-    p = perception_for(session_factory, uploaded_utterance, "我")
+    p = perception_for(session_factory, uploaded_utterance, transcript)
     body = {}
     if target_text:
         target = client.post(
@@ -224,10 +242,30 @@ def test_normal_api_azure_reuse_and_no_mfa(
     assert "azure_timing" in first["data"]["dev_learned_tone"]["timings_ms"]
     result = first["data"]["dev_learned_tone"]
     assert result["expectation_basis"] == ("intended_target" if target_text else "perceived_text")
-    assert result["target_mapping_resolved"] == (target_text != "买")
-    if target_text == "买":
+    mapping = target_text is None or target_text == transcript
+    assert result["target_mapping_resolved"] == mapping
+    if not mapping:
         assert result["units"][0]["expected_surface_tone"] is None
         assert result["units"][0]["comparison"]["correction"] is False
+        assert result["units"][0]["expectation_resolution"] == "unresolved"
+    if len(transcript) > 1 and mapping:
+        first = [3] if "，" in transcript else [2, 3]  # noqa: RUF001
+        assert [u["acceptable_surface_tones"] for u in result["units"]] == [
+            first,
+            [2],
+            [3],
+            [4],
+            [],
+        ]
+        assert result["units"][-1]["expected_neutral"] is True
+        assert [u["contextual_rule"] for u in result["units"]] == [
+            None if "，" in transcript else "third_tone_sandhi",  # noqa: RUF001
+            "third_tone_sandhi", None, None, None,
+        ]
+        assert result["units"][1]["target_pinyin"] == "xiǎng"
+        assert result["units"][1]["lexical_tone"] == 3
+        # Missing acoustic support never becomes a numbered recognition.
+        assert result["units"][-1]["realization"]["prediction"] is None
 
 
 def test_runtime_does_not_require_mfa_or_research_releases(monkeypatch):

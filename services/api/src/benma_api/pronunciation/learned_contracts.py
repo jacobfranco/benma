@@ -30,6 +30,8 @@ class LearnedRealization(BaseModel):
 
 
 class LearnedComparison(BaseModel):
+    # Family comparison only. Keep legacy state/correction keys compatible;
+    # the workspace assigns final learner severity using existing F0 safeguards.
     state: Literal[
         "experimental_match", "experimental_mismatch", "unresolved", "neutral", "insufficient"
     ]
@@ -44,7 +46,11 @@ class LearnedUnit(BaseModel):
     target_pinyin: str | None
     lexical_tone: int | None
     expected_surface_tone: int | None
+    acceptable_surface_tones: list[int] | None = None
+    expected_neutral: bool | None = None
+    expectation_resolution: Literal["exact", "alternatives", "neutral", "unresolved"] | None = None
     surface_rule: str | None
+    contextual_rule: str | None = None
     heard_pinyin: str | None
     realization: LearnedRealization
     comparison: LearnedComparison

@@ -1993,12 +1993,65 @@
       },
       "LearnedUnit": {
         "properties": {
+          "acceptable_surface_tones": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acceptable Surface Tones"
+          },
           "characters": {
             "title": "Characters",
             "type": "string"
           },
           "comparison": {
             "$ref": "#/components/schemas/LearnedComparison"
+          },
+          "contextual_rule": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contextual Rule"
+          },
+          "expectation_resolution": {
+            "anyOf": [
+              {
+                "enum": [
+                  "exact",
+                  "alternatives",
+                  "neutral",
+                  "unresolved"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expectation Resolution"
+          },
+          "expected_neutral": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Neutral"
           },
           "expected_surface_tone": {
             "anyOf": [

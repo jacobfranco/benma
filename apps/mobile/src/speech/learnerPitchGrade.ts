@@ -17,7 +17,7 @@ export const pitchGradePresentation = {
 export interface PitchExpectation {
   tone: number | null;
   acceptableTones?: readonly number[];
-  basis: 'resolved_surface' | 'lexical_family' | 'neutral' | 'unresolved';
+  basis: 'resolved_surface' | 'acceptable_alternatives' | 'lexical_family' | 'neutral' | 'unresolved';
   label: string;
   coaching: string | null;
   reason: string;

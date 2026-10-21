@@ -8,7 +8,8 @@ import { PitchShapePlot } from '@/components/PitchShapePlot';
 import { WorkspaceDialog } from '@/components/WorkspaceActions';
 import { SentenceToneGraph } from '@/speech/SentenceToneGraph';
 import { LearnedToneEvidence } from '@/speech/LearnedToneEvidence';
-import { learnedToneEvidence, toneRendering, workspaceChunkFeedback, workspaceExpectation, workspaceGradePresentation } from '@/speech/learnedToneView';
+import { ContextualToneHelp } from '@/speech/ContextualToneHelp';
+import { contextualToneExplanation, learnedToneEvidence, toneRendering, workspaceChunkFeedback, workspaceExpectation, workspaceGradePresentation } from '@/speech/learnedToneView';
 import { pitchFeedbackCopy } from '@/speech/pitchFeedback';
 import type { LearnerPitchGrade } from '@/speech/learnerPitchGrade';
 import { shapeLabels } from '@/speech/pitchShape';
@@ -83,8 +84,12 @@ export function PronunciationWorkspace({ analysis, phraseActions }: { analysis: 
           regions={selected.constituents.map(u => ({ label: u.text, start: u.start, end: u.end }))} /></View>}
       </View>
       {selectedFeedback && <View style={styles.feedbackRow}>
-        {observedTone && !single?.grouped && hasPitch && <Text accessibilityRole="text" style={styles.gesture}>{toneLikenessLabels[observedTone.tone]}</Text>}
-        <PitchStatus grade={selectedFeedback.grade} compact={!!observedTone && !single?.grouped && hasPitch} />
+        {observedTone && !single?.grouped && hasPitch && <Text accessibilityRole="text" style={styles.gesture}>{learned ? observedTone.tone === 'UNCLEAR' ? 'Not enough evidence' : `Heard Tone ${observedTone.tone.slice(-1)}` : toneLikenessLabels[observedTone.tone]}</Text>}
+        <PitchStatus grade={selectedFeedback.grade} compact={!learned && !!observedTone && !single?.grouped && hasPitch} />
+        {selected.members.map(s => {
+          const explanation = contextualToneExplanation(data, s);
+          return explanation && <ContextualToneHelp key={`${selected.id}-${s.index}`} characters={s.characters} explanation={explanation} />;
+        })}
       </View>}
       {!hasPitch && <Text accessibilityRole="text" style={styles.caption}>{pitchFeedbackCopy.unavailable}</Text>}
       {hasPitch && selectedFeedback && (['PARTIAL_OR_WEAK', 'CLEAR_DIFFERENCE'].includes(selectedFeedback.grade.agreement) ||
@@ -109,7 +114,7 @@ export function PronunciationWorkspace({ analysis, phraseActions }: { analysis: 
           regions={selected.constituents.map(u => ({ label: u.text, start: u.start, end: u.end }))} />
           : <Text style={styles.caption}>{pitchFeedbackCopy.unavailable}</Text>}
         {hasPitch && shape && !single?.grouped && <Text style={styles.reference}>Measured shape: {shapeLabels[shape.shape]}</Text>}
-        {hasPitch && observedTone && !single?.grouped && <Text style={styles.gesture}>{toneLikenessLabels[observedTone.tone]}</Text>}
+        {hasPitch && observedTone && !single?.grouped && <Text style={styles.gesture}>{learned ? observedTone.tone === 'UNCLEAR' ? 'Not enough evidence' : `Heard Tone ${observedTone.tone.slice(-1)}` : toneLikenessLabels[observedTone.tone]}</Text>}
         <Text style={styles.status}>Expected here</Text>
         <Text style={styles.reference}>{selected.members.map(s => `${s.characters} · ${workspaceExpectation(data, s).label}`).join('\n')}</Text>
         {selected.members.some(s => workspaceExpectation(data, s).basis === 'lexical_family') &&
@@ -148,7 +153,7 @@ export function PronunciationWorkspace({ analysis, phraseActions }: { analysis: 
           <Text style={styles.caption}>{inspected.hasPitch ? 'Pitch available' : 'Pitch unavailable'}</Text>
           {inspected.hasPitch ? <PitchShapePlot display={inspected.pitch} start={inspected.unit.start} end={inspected.unit.end} height={120} />
             : <Text accessibilityRole="text" style={styles.caption}>{pitchFeedbackCopy.unavailable}</Text>}
-          {inspected.hasPitch && inspected.expected.basis !== 'neutral' && <Text style={styles.gesture}>{toneLikenessLabels[inspected.observed.tone]}</Text>}
+          {inspected.hasPitch && inspected.expected.basis !== 'neutral' && <Text style={styles.gesture}>{learned ? inspected.observed.tone === 'UNCLEAR' ? 'Not enough evidence' : `Heard Tone ${inspected.observed.tone.slice(-1)}` : toneLikenessLabels[inspected.observed.tone]}</Text>}
           {inspected.hasPitch && <Text style={styles.reference}>Measured shape: {shapeLabels[inspected.shape.shape]}</Text>}
           <Text style={styles.reference}>Expected here · {inspected.expected.label}</Text>
           {inspected.expected.coaching && <Text style={styles.caption}>{inspected.expected.coaching}</Text>}
@@ -177,7 +182,7 @@ export function PronunciationWorkspace({ analysis, phraseActions }: { analysis: 
         </View>}
         {shape && <Text style={styles.caption}>Shape method: retained-geometry-v1 · {shape.reason}{'\n'}{JSON.stringify(shape.features)}{'\n'}{JSON.stringify(shape.perturbations)}</Text>}
         {evidence.map(e => <Text key={e.unit.id} style={styles.caption}>{e.unit.text} · Tone likeness: {e.observed.reason} · {e.observed.variant}{'\n'}
-          Grade: {e.grade.reason} · {e.role}{'\n'}Citation tone: {e.unit.members[0]?.lexical_tone ?? 'unresolved'} · Surface rule: {e.expected.reason}</Text>)}
+          Grade: {e.grade.agreement} · {e.grade.reason} · {e.role}{'\n'}Citation tone: {e.unit.members[0]?.lexical_tone ?? 'unresolved'} · Surface rule: {e.expected.reason}</Text>)}
         {selected && selected.constituents.length > 1 && inspected && <View>
           <Text style={styles.status}>{inspected.unit.text} · {unitPresentation(inspected.unit).label}</Text>
           <Text style={styles.caption}>{inspected.unit.start.toFixed(2)}–{inspected.unit.end.toFixed(2)} s · exact segment</Text>

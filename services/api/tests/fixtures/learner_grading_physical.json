@@ -1,0 +1,11 @@
+{
+  "purpose": "Grading-only acceptance: reported learned families; controlled F0 support, not a replay or recognition benchmark.",
+  "text": "我想买这个",
+  "units": [
+    {"characters": "我", "lexical_tone": 3, "acceptable_surface_tones": [2, 3], "heard_tone": "T3", "grade": "STRONG_MATCH"},
+    {"characters": "想", "lexical_tone": 3, "acceptable_surface_tones": [2], "heard_tone": "T4", "grade": "CLEAR_DIFFERENCE"},
+    {"characters": "买", "lexical_tone": 3, "acceptable_surface_tones": [3], "heard_tone": "T3", "grade": "STRONG_MATCH"},
+    {"characters": "这", "lexical_tone": 4, "acceptable_surface_tones": [4], "heard_tone": "T4", "grade": "STRONG_MATCH"},
+    {"characters": "个", "lexical_tone": 0, "acceptable_surface_tones": [], "heard_tone": null, "expected_neutral": true, "grade": "STRONG_MATCH"}
+  ]
+}

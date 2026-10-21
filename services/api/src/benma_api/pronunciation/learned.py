@@ -17,6 +17,7 @@ from benma_api.pronunciation.learned_contracts import (
     LearnedUnit,
 )
 from benma_api.pronunciation.learned_runtime import infer_batch
+from benma_api.pronunciation.surface import SurfaceExpectation
 from benma_api.schemas import PerceivedSyllable, SentencePitchEvidence
 
 
@@ -93,32 +94,32 @@ def refine_span(
     return result
 
 
-def comparison(expected: int | None, realization: LearnedRealization) -> LearnedComparison:
-    if expected == 0:
+def comparison(
+    expected: int | SurfaceExpectation | None, realization: LearnedRealization
+) -> LearnedComparison:
+    surface = (
+        expected
+        if isinstance(expected, SurfaceExpectation)
+        else SurfaceExpectation(expected, "saved")
+    )
+    if surface.tone == 0:
         return LearnedComparison(
             state="neutral", message="Neutral syllable: no numbered-tone correction."
         )
-    if realization.status != "ok":
-        return LearnedComparison(
-            state="insufficient", message="Insufficient acoustic evidence; no correction."
-        )
-    if expected is None:
+    if realization.status != "ok" or realization.prediction is None:
+        return LearnedComparison(state="insufficient", message="Not enough evidence")
+    heard = f"Tone {realization.prediction[-1]}"
+    if not surface.acceptable_tones:
         return LearnedComparison(
             state="unresolved",
-            message=(
-                f"Heard {realization.prediction}-like; "
-                "expected surface tone unresolved. No correction."
-            ),
+            message=(f"Heard {heard}. Benma can't reliably grade this tone in context yet."),
         )
-    match = realization.prediction == f"T{expected}"
+    match = int(realization.prediction[-1]) in surface.acceptable_tones
+    target = " or ".join(f"Tone {tone}" for tone in surface.acceptable_tones)
+    here = " here" if surface.contextual_rule else ""
     return LearnedComparison(
         state="experimental_match" if match else "experimental_mismatch",
-        message=f"Expected T{expected}; heard {realization.prediction}-like. "
-        + (
-            "Experimental agreement; correctness unverified."
-            if match
-            else "Experimental difference for review; not a confirmed error."
-        ),
+        message=f"Correct · {heard}{here}" if match else f"Expected {target}{here} · heard {heard}",
     )
 
 
@@ -154,6 +155,7 @@ def analyze_learned(
     expected: list[PerceivedSyllable],
     target_text: str,
     intended: bool,
+    surfaces: list[SurfaceExpectation] | None = None,
 ) -> LearnedAnalysis:
     started = time.perf_counter()
     retained = [p.timestamp_seconds for segment in graph.filtered.segments for p in segment]
@@ -202,8 +204,15 @@ def analyze_learned(
                 setattr(realizations[index], key, output[key])
     grading = time.perf_counter()
     units = []
-    for s, e, realized in zip(syllables, expected, realizations, strict=True):
-        grade = comparison(e.expected_surface_tone, realized)
+    surfaces = (
+        surfaces
+        if surfaces is not None
+        else [
+            SurfaceExpectation(e.expected_surface_tone, e.surface_rule or "saved") for e in expected
+        ]
+    )
+    for s, e, realized, surface in zip(syllables, expected, realizations, surfaces, strict=True):
+        grade = comparison(surface, realized)
         if grade.state == "experimental_mismatch":
             grade.explanation = supported_explanation(s, realized)
         numeric = to_tone3(e.pinyin, neutral_tone_with_five=True) if e.pinyin else None
@@ -218,8 +227,12 @@ def analyze_learned(
                 characters=e.characters,
                 target_pinyin=e.pinyin,
                 lexical_tone=e.lexical_tone,
-                expected_surface_tone=e.expected_surface_tone,
-                surface_rule=e.surface_rule,
+                expected_surface_tone=surface.tone,
+                acceptable_surface_tones=list(surface.acceptable_tones),
+                expected_neutral=surface.tone == 0,
+                expectation_resolution=surface.resolution,
+                surface_rule=surface.rule,
+                contextual_rule=surface.contextual_rule,
                 heard_pinyin=heard,
                 realization=realized,
                 comparison=grade,

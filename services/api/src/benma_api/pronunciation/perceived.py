@@ -60,7 +60,13 @@ from benma_api.pronunciation.pitch_evidence import (
 )
 from benma_api.pronunciation.pitch_types import ELIGIBILITY_VERSION, TRACK_VERSION
 from benma_api.pronunciation.readings import READING_VERSION, resolve_run
-from benma_api.pronunciation.surface import SURFACE_VERSION, surface_expectations
+from benma_api.pronunciation.surface import (
+    LEARNER_SURFACE_VERSION,
+    SURFACE_VERSION,
+    SurfaceExpectation,
+    learner_surface_expectations,
+    surface_expectations,
+)
 from benma_api.pronunciation.targets import parse_corrected_pinyin
 from benma_api.pronunciation.tone_graph import sentence_pitch_evidence
 from benma_api.schemas import (
@@ -317,6 +323,7 @@ class PerceivedSpeechAnalysisService:
         }
         if self.settings.enable_dev_learned_tone and self.settings.environment != "production":
             config["dev_learned_tone"] = "dev-fast-learned-tone-v1"
+            config["dev_learner_surface"] = LEARNER_SURFACE_VERSION
             config["dev_learned_target_id"] = str(target.id) if target else None
         config_hash = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()
         existing = self.db.scalar(
@@ -614,6 +621,18 @@ class PerceivedSpeechAnalysisService:
                     for s in expected:
                         s.expected_surface_tone = None
                         s.surface_rule = "target_transcript_mapping_unresolved"
+            surfaces = (
+                learner_surface_expectations(
+                    target.text if target else text,
+                    [s.character_start for s in (target_syllables if target else syllables)],
+                    [s.lexical_tone for s in expected],
+                )
+                if target_matches
+                else [
+                    SurfaceExpectation(None, "target_transcript_mapping_unresolved")
+                    for s in expected
+                ]
+            )
             learned = analyze_learned(
                 audio=request.audio_path,
                 sha256=asset.sha256,
@@ -627,6 +646,7 @@ class PerceivedSpeechAnalysisService:
                 expected=expected,
                 target_text=target.text if target else text,
                 intended=target is not None,
+                surfaces=surfaces,
             )
             learned.timings_ms.update(
                 azure_timing=alignment_ms,
