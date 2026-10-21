@@ -7,10 +7,10 @@ import { stopAllPlayback } from '@/audio/session';
 import { PitchShapePlot } from '@/components/PitchShapePlot';
 import { WorkspaceDialog } from '@/components/WorkspaceActions';
 import { SentenceToneGraph } from '@/speech/SentenceToneGraph';
-import { LearnedToneWorkspace } from '@/speech/LearnedToneWorkspace';
+import { LearnedToneEvidence } from '@/speech/LearnedToneEvidence';
+import { learnedToneEvidence, toneRendering, workspaceChunkFeedback, workspaceExpectation, workspaceGradePresentation } from '@/speech/learnedToneView';
 import { pitchFeedbackCopy } from '@/speech/pitchFeedback';
-import { gradeChunkPitch } from '@/speech/chunkPitchGrade';
-import { pitchExpectation, pitchGradePresentation, type LearnerPitchGrade } from '@/speech/learnerPitchGrade';
+import type { LearnerPitchGrade } from '@/speech/learnerPitchGrade';
 import { shapeLabels } from '@/speech/pitchShape';
 import { chunkPitch, chunkReading, defaultChunk, isTimedChunk, pronunciationChunks } from '@/speech/pronunciationChunks';
 import { pronunciationUnits, unitPresentation } from '@/speech/pronunciationWorkspace';
@@ -20,21 +20,16 @@ import { toneLikenessLabels } from '@/speech/toneLikeness';
 import { colors } from '@/theme';
 
 function PitchStatus({ grade, compact = false }: { grade: LearnerPitchGrade; compact?: boolean }) {
-  const state = pitchGradePresentation[grade.agreement];
+  const state = workspaceGradePresentation(grade);
   return <Text accessibilityRole="text" accessibilityLabel={state.label}
     style={[styles.pitchStatus, { color: state.ink, backgroundColor: state.background }]}>{state.symbol}{compact ? '' : ` ${state.label}`}</Text>;
 }
 
 export function PronunciationWorkspace({ analysis, phraseActions }: { analysis: PerceivedSpeechAnalysis; phraseActions?: ReactNode }) {
-  if (__DEV__ && analysis.data.dev_learned_tone) return <LearnedToneWorkspace analysis={analysis} phraseActions={phraseActions} />;
-  return <LegacyPronunciationWorkspace analysis={analysis} phraseActions={phraseActions} />;
-}
-
-function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: PerceivedSpeechAnalysis; phraseActions?: ReactNode }) {
   const { data } = analysis;
   const units = useMemo(() => pronunciationUnits(data), [data]);
   const chunks = useMemo(() => pronunciationChunks(data, units), [data, units]);
-  const feedback = useMemo(() => new Map(chunks.map(chunk => [chunk.id, gradeChunkPitch(analysis, chunk, units)])), [analysis, chunks, units]);
+  const feedback = useMemo(() => new Map(chunks.map(chunk => [chunk.id, workspaceChunkFeedback(analysis, chunk, units)])), [analysis, chunks, units]);
   const [selectedId, setSelectedId] = useState(() => defaultChunk(chunks));
   const [details, setDetails] = useState(false);
   const [technical, setTechnical] = useState(false);
@@ -42,12 +37,14 @@ function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: P
   const selected = chunks.filter(isTimedChunk).find(c => c.id === selectedId);
   const contour = useMemo(() => selected ? chunkPitch(data, selected, units) : null, [data, selected, units]);
   const selectedFeedback = selected ? feedback.get(selected.id) : undefined;
+  const learned = learnedToneEvidence(data);
+  const rendering = learned && selected ? toneRendering(learned, selected.members) : null;
   const evidence = selectedFeedback?.constituents ?? [];
   const single = selected?.constituents.length === 1 ? selected.constituents[0] : undefined;
   const inspected = evidence.find(e => e.unit.id === constituentId) ?? evidence[0];
   const hasPitch = evidence.some(e => e.hasPitch);
   const shape = single ? evidence[0]?.shape : undefined;
-  const observedTone = single ? evidence[0]?.observed : undefined;
+  const observedTone = single && (!learned || evidence[0]?.expected.basis !== 'neutral') ? evidence[0]?.observed : undefined;
   const fetchRecording = useCanonicalRecording(analysis.utterance_id);
   useEffect(() => () => stopAllPlayback(), []);
   const observed = single && !single.grouped && single.eligibility?.state === 'sufficient'
@@ -60,12 +57,12 @@ function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: P
         const grade = feedback.get(chunk.id)!.grade;
         return <Pressable key={chunk.id} testID={`pronunciation-unit-${chunk.members[0]!.index}`} accessibilityRole="button"
           {...(Platform.OS === 'web' ? { 'aria-pressed': chunk.id === selectedId } : {})}
-          accessibilityLabel={`${chunk.text}, pronunciation chunk${unit?.grouped ? ', grouped timing' : ''}, ${pitchGradePresentation[grade.agreement].label}`}
+          accessibilityLabel={`${chunk.text}, pronunciation chunk${unit?.grouped ? ', grouped timing' : ''}, ${workspaceGradePresentation(grade).label}`}
           accessibilityState={{ selected: chunk.id === selectedId }}
           onPress={() => { stopAllPlayback(); setSelectedId(chunk.id); setConstituentId(null); }}
           style={[styles.unit, chunk.id === selectedId && styles.selected]}>
           <Text style={styles.character}>{chunk.text}</Text>
-          <Text accessible={false} aria-hidden style={[styles.overviewStatus, { color: pitchGradePresentation[grade.agreement].ink }]}>{pitchGradePresentation[grade.agreement].symbol}</Text>
+          <Text accessible={false} aria-hidden style={[styles.overviewStatus, { color: workspaceGradePresentation(grade).ink }]}>{workspaceGradePresentation(grade).symbol}</Text>
         </Pressable>;
       })}
       {phraseActions}
@@ -90,7 +87,8 @@ function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: P
         <PitchStatus grade={selectedFeedback.grade} compact={!!observedTone && !single?.grouped && hasPitch} />
       </View>}
       {!hasPitch && <Text accessibilityRole="text" style={styles.caption}>{pitchFeedbackCopy.unavailable}</Text>}
-      {hasPitch && selectedFeedback && ['PARTIAL_OR_WEAK', 'CLEAR_DIFFERENCE'].includes(selectedFeedback.grade.agreement) &&
+      {hasPitch && selectedFeedback && (['PARTIAL_OR_WEAK', 'CLEAR_DIFFERENCE'].includes(selectedFeedback.grade.agreement) ||
+        (learned && selectedFeedback.grade.agreement === 'UNAVAILABLE')) &&
         <Text accessibilityRole="text" style={styles.caption}>{selectedFeedback.grade.message}</Text>}
       {selectedFeedback?.grade.coaching && <Text accessibilityRole="text" style={styles.caption}>{selectedFeedback.grade.coaching}</Text>}
     </View>}
@@ -113,9 +111,14 @@ function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: P
         {hasPitch && shape && !single?.grouped && <Text style={styles.reference}>Measured shape: {shapeLabels[shape.shape]}</Text>}
         {hasPitch && observedTone && !single?.grouped && <Text style={styles.gesture}>{toneLikenessLabels[observedTone.tone]}</Text>}
         <Text style={styles.status}>Expected here</Text>
-        <Text style={styles.reference}>{selected.members.map(s => `${s.characters} · ${pitchExpectation(s, analysis.data.syllables).label}`).join('\n')}</Text>
-        {selected.members.some(s => pitchExpectation(s).basis === 'lexical_family') &&
+        <Text style={styles.reference}>{selected.members.map(s => `${s.characters} · ${workspaceExpectation(data, s).label}`).join('\n')}</Text>
+        {selected.members.some(s => workspaceExpectation(data, s).basis === 'lexical_family') &&
           <Text style={styles.caption}>Connected-speech realization may vary here.</Text>}
+        {rendering && <>
+          <Text testID="learned-target-rendering" style={styles.reference}>{rendering.referenceLabel}: {rendering.target}</Text>
+          <Text testID="learned-heard-rendering" style={styles.reference}>Heard tones: {rendering.heard}</Text>
+          <Text style={styles.caption}>Tone marks describe the same syllables, not different words. Neutral readings stay contextual; unclear tones are not errors.</Text>
+        </>}
         <Text style={styles.status}>Feedback · pitch only</Text>
         {selectedFeedback && <><PitchStatus grade={selectedFeedback.grade} /><Text style={styles.caption}>{selectedFeedback.grade.message}</Text>
           {selectedFeedback.grade.coaching && <Text style={styles.caption}>{selectedFeedback.grade.coaching}</Text>}</>}
@@ -157,6 +160,7 @@ function LegacyPronunciationWorkspace({ analysis, phraseActions }: { analysis: P
       <Pressable accessibilityRole="button" accessibilityLabel="Technical details" accessibilityState={{ expanded: technical }}
         onPress={() => setTechnical(!technical)} style={styles.link}><Text style={styles.linkText}>Technical details {technical ? '⌄' : '›'}</Text></Pressable>
       {technical && <View style={styles.constituents}>
+        <LearnedToneEvidence data={data} />
         {selected && <View style={{ gap: 6 }}>
           <Text style={styles.caption}>{selected.start.toFixed(2)}–{selected.end.toFixed(2)} s · exact segment</Text>
           {single && <Text style={styles.gesture}>{observed && observed !== 'unclear'

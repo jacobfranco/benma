@@ -3,6 +3,7 @@ import { AccessibilityInfo, Text } from 'react-native';
 import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 
 import { perceivedAnalysis } from './perceivedFixture';
+import { physicalChunkAnalysis } from './pronunciationChunkFixture';
 
 import { practicePhrases } from '@/speech/practicePhrases';
 import { Card } from '@/components/Ui';
@@ -75,6 +76,48 @@ it('a prepared target still says Record; its body opens the existing edit dialog
   await press('Clear target');
   expect(renderer.root.findAllByProps({ accessibilityLabel: 'Target phrase' })).toHaveLength(0);
   expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
+});
+
+it('keeps 我想买这个 on the normal prepared-target flow with learned results in the polished workspace', async () => {
+  const previous = process.env.EXPO_PUBLIC_BENMA_DEV_LEARNED_TONE;
+  process.env.EXPO_PUBLIC_BENMA_DEV_LEARNED_TONE = 'true';
+  const analysis = physicalChunkAnalysis();
+  analysis.data.dev_learned_tone = {
+    expectation_basis: 'intended_target', target_text: '我想买这个', timings_ms: {}, runtime: {},
+    units: analysis.data.syllables.map(s => ({ index: s.index, characters: s.characters, target_pinyin: s.pinyin,
+      lexical_tone: s.lexical_tone ?? null, expected_surface_tone: s.expected_surface_tone ?? null,
+      surface_rule: s.surface_rule ?? null, heard_pinyin: s.index === 0 ? 'wó' : null,
+      realization: s.index === 0 ? { status: 'ok', prediction: 'T2' } : { status: 'abstained' },
+      comparison: { state: s.index === 4 ? 'neutral' : s.index === 0 ? 'unresolved' : 'insufficient', message: 'No correction.' },
+    })),
+  };
+  jest.mocked(api.createTarget).mockResolvedValueOnce({ id: 'target', text: '我想买这个', display_pinyin: 'wǒ xiǎng mǎi zhè ge',
+    pinyin_syllables: ['wo3', 'xiang3', 'mai3', 'zhe4', 'ge5'] } as never);
+  jest.mocked(api.createPerception).mockResolvedValueOnce({ id: 'perception', utterance_id: 'utterance', transcript: '我想买这个' } as never);
+  jest.mocked(api.analyzePerceivedSpeech).mockResolvedValueOnce(analysis);
+  try {
+    await press('Add target');
+    await act(async () => renderer.root.findByProps({ accessibilityLabel: 'Target phrase' }).props.onChangeText('我想买这个'));
+    await press('Prepare target');
+    expect(renderer.root.findByProps({ accessibilityLabel: 'Record' })).toBeTruthy();
+    await record();
+    expect(api.analyzePerceivedSpeech).toHaveBeenCalledWith('perception', 'target');
+    expect(api.analyzePronunciation).not.toHaveBeenCalled();
+    expect(renderer.root.findByProps({ testID: 'pronunciation-workspace' })).toBeTruthy();
+    expect(renderer.root.findByProps({ accessibilityLabel: 'Play my recording for 我' })).toBeTruthy();
+    expect(renderer.root.findByProps({ testID: 'pronunciation-unit-3' }).props.accessibilityLabel).toContain('这个');
+    expect(JSON.stringify(renderer.toJSON())).toContain('Most like Tone 2');
+    expect(JSON.stringify(renderer.toJSON())).not.toMatch(/Experimental tone realization|Dev evidence|Pitch acceptable/);
+    await press('More details');
+    expect(renderer.root.findByProps({ testID: 'learned-heard-rendering' })).toBeTruthy();
+    await press('Close Full pitch details');
+    await press('New Attempt');
+    expect(renderer.root.findAllByType(SpeechEvidence)).toHaveLength(0);
+    expect(renderer.root.findByProps({ accessibilityLabel: 'Stop recording' })).toBeTruthy();
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_BENMA_DEV_LEARNED_TONE;
+    else process.env.EXPO_PUBLIC_BENMA_DEV_LEARNED_TONE = previous;
+  }
 });
 
 it('Random phrase uses ordinary target/reference preparation, announces it, and never starts recording', async () => {

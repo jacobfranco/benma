@@ -1,5 +1,9 @@
 # Normal dev learned-tone integration
 
+The subsequent [Practice UI restoration](practice-ui-restoration.md) supersedes
+the diagnostic workspace presentation described in this original integration
+report. Use that report for current screenshots, checks, and launch instructions.
+
 **READY FOR PHYSICAL PRODUCT TESTING.** Production defaults remain unchanged.
 No training, tuning, calibration, research comparisons, commits, pushes or deployments.
 
@@ -189,9 +193,9 @@ Expo page origin for LAN web testing. Native requests do not need browser CORS.
 2. Select **Add target**, enter **我想买这个**, and choose **Prepare target**.
    Reference playback failure does not prevent recording.
 3. Record and stop normally. Expect the first usable recording to pay cold setup.
-4. Confirm **Experimental tone realization**, target reading and **Heard-tone
-   rendering** appear. Tap syllables to inspect pitch, playback and comparison.
-5. Open **Dev evidence**. Check Azure/refined spans, continuity, probabilities,
+4. Confirm the polished compact workspace, selected pitch chart, and playback
+   controls appear. Target/heard readings are inside **More details**.
+5. Open **More details → Technical details → Dev evidence**. Check Azure/refined spans, continuity, probabilities,
    expected state and `runtime.cold_start`. Record a second attempt without
    restarting the API: `cold_start` should be false and `load_count` remain 1.
 6. Check that unresolved 我/想/买 and neutral 个 have no corrections; missing or
