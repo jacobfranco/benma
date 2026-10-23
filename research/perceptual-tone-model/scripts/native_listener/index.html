@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Listening study</title>
+<style>
+body{font:18px system-ui,sans-serif;line-height:1.5;max-width:720px;margin:30px auto;padding:0 18px;color:#152333;background:#f6f7f9}
+button,select,input{font:inherit;padding:10px;margin:5px 0}button{cursor:pointer}button:disabled{cursor:default}fieldset{border:1px solid #bec8d4;padding:18px;border-radius:8px;background:white}label{display:block;margin:12px 0}input[type=text]{width:90%}.choices label{padding:8px;border:1px solid #d2d8e0;border-radius:6px}#status{min-height:2em;color:#7a3100}#timing{height:16px;background:#d9dee5;position:relative;overflow:hidden;margin:16px 0}#zone{height:100%;position:absolute;background:#6a75bd}#cursor{height:100%;width:3px;background:#111;position:absolute}small{display:block} [hidden]{display:none!important}
+</style>
+<h1>Listening study</h1>
+<p id="identity"></p>
+<section id="welcome">
+<p>Judge the sound of the indicated syllable. Use headphones in a quiet place. Work alone and do not discuss answers. You may stop at any time.</p>
+<p>Some trials play one syllable. Others play a short passage, followed by that same target syllable. The shaded timing bar marks the target in the passage. Judge the target's sound, even if you recognize the word. Low or dipping realizations may be Tone 3. Choose Neutral / light tone for a weak unstressed syllable, or Unclear / cannot tell if the sound is clipped, incomplete, or hard to judge.</p>
+<fieldset><legend>Before starting</legend>
+<label><input type="checkbox" id="adult"> I am at least 18 years old.</label>
+<label><input type="checkbox" id="native"> I am a native Mandarin speaker.</label>
+<label><input type="checkbox" id="primary_childhood"> I grew up speaking Mandarin / Standard Chinese as a primary language.</label>
+<label><input type="checkbox" id="independent"> I will answer independently and have not previously seen answers or participated in this study.</label>
+<label>Region where you acquired Mandarin (optional)<input type="text" id="region" maxlength="200"></label>
+<label>Other Chinese variety spoken at home (optional)<input type="text" id="other_variety" maxlength="200"></label>
+<label>Current primary spoken language (optional)<input type="text" id="current_language" maxlength="200"></label>
+<button id="start">Start</button></fieldset>
+</section>
+<section id="study" hidden>
+<p id="progress"></p><p id="instruction"></p>
+<div id="timing" aria-label="Shaded interval indicates target syllable"><div id="zone"></div><div id="cursor"></div></div>
+<button id="play">Play / replay</button><span id="playing" aria-live="polite"></span>
+<fieldset class="choices"><legend>Which tone does the highlighted syllable sound like?</legend>
+<label><input type="radio" name="answer" value="T1"> Tone 1</label>
+<label><input type="radio" name="answer" value="T2"> Tone 2</label>
+<label><input type="radio" name="answer" value="T3"> Tone 3</label>
+<label><input type="radio" name="answer" value="T4"> Tone 4</label>
+<label><input type="radio" name="answer" value="NEUTRAL"> Neutral / light tone</label>
+<label><input type="radio" name="answer" value="UNCLEAR"> Unclear / cannot tell</label>
+</fieldset><button id="next" disabled>Save answer and continue</button>
+</section>
+<p id="status" role="status"></p>
+<section id="done" hidden><p>Thank you. Save your JSON results and return that file to the study coordinator. CSV is an optional readable copy.</p></section>
+<button id="export" hidden>Download results JSON</button><button id="csv" hidden>Download results CSV</button>
+<small>Responses are stored in this browser when available. Download a partial JSON backup before taking a break. Keep the same file location and browser to resume. No results are sent automatically.</small>
+<script src="packet.js"></script><script src="app.js"></script></html>
